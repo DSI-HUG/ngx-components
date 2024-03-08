@@ -1,0 +1,35 @@
+{
+    "name": "@hug/ngx-numeric-stepper",
+    "version": "1.0.0",
+    "description": "",
+    "homepage": "https://github.com/dsi-hug/ngx-components",
+    "license": "GPL-3.0-only",
+    "author": "HUG - Hôpitaux Universitaires Genève",
+    "contributors": [
+        "badisi (https://github.com/badisi)",
+        "vapkse (https://github.com/vapkse)"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dsi-hug/ngx-components.git"
+    },
+    "keywords": [
+        "angular",
+        "material",
+        "material design",
+        "components"
+    ],
+    "sideEffects": false,
+    "scripts": {
+        "lint": "eslint . --fix",
+        "test": "ng test numeric-stepper",
+        "build": "ng build numeric-stepper -c production"
+    },
+    "peerDependencies": {
+        "@angular/common": "^14.3.0",
+        "@angular/core": "^14.3.0"
+    },
+    "dependencies": {
+        "tslib": "^2.6.2"
+    }
+}

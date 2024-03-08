@@ -10,11 +10,65 @@
         "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": true,
         "paths": {
+            "@hug/core": [
+                "projects/core/src"
+            ],
+            "@hug/core/*": [
+                "projects/core/src/*"
+            ],
             "@hug/list-loader": [
                 "projects/list-loader/src"
             ],
             "@hug/list-loader/*": [
                 "projects/list-loader/src/*"
+            ],
+            "@hug/message-box": [
+                "projects/message-box/src"
+            ],
+            "@hug/message-box/*": [
+                "projects/message-box/src/*"
+            ],
+            "@hug/numeric-stepper": [
+                "projects/numeric-stepper/src"
+            ],
+            "@hug/numeric-stepper/*": [
+                "projects/numeric-stepper/src/*"
+            ],
+            "@hug/overlay": [
+                "projects/overlay/src"
+            ],
+            "@hug/overlay/*": [
+                "projects/overlay/src/*"
+            ],
+            "@hug/snackbar": [
+                "projects/snackbar/src"
+            ],
+            "@hug/snackbar/*": [
+                "projects/snackbar/src/*"
+            ],
+            "@hug/splitter": [
+                "projects/splitter/src"
+            ],
+            "@hug/splitter/*": [
+                "projects/splitter/src/*"
+            ],
+            "@hug/status": [
+                "projects/status/src"
+            ],
+            "@hug/status/*": [
+                "projects/status/src/*"
+            ],
+            "@hug/time-picker": [
+                "projects/time-picker/src"
+            ],
+            "@hug/time-picker/*": [
+                "projects/time-picker/src/*"
+            ],
+            "@hug/tooltip": [
+                "projects/tooltip/src"
+            ],
+            "@hug/tooltip/*": [
+                "projects/tooltip/src/*"
             ]
         },
         "noImplicitReturns": true,

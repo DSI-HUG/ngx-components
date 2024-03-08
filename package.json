@@ -6,7 +6,16 @@
         "prepare": "husky || true"
     },
     "workspaces": [
-        "projects/list-loader"
+        "projects/core",
+        "projects/list-loader",
+        "projects/message-box",
+        "projects/numeric-stepper",
+        "projects/overlay",
+        "projects/snackbar",
+        "projects/splitter",
+        "projects/status",
+        "projects/time-picker",
+        "projects/tooltip"
     ],
     "dependencies": {
         "@angular/animations": "^14.3.0",

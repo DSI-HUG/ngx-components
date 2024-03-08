@@ -12,12 +12,26 @@
     <br/><br/>
 </p>
 
-<!--[![build status](https://github.com/Badisi/auth-js/actions/workflows/ci_tests.yml/badge.svg)][ci-tests]-->
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)][pullrequest]
+<p align="center">
+    <a href="https://github.com/dsi-hug/ngx-components/blob/main/CONTRIBUTING.md#-submitting-a-pull-request-pr">
+        <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome" /></a>
+    <a href="https://github.com/dsi-hug/ngx-components/blob/main/LICENSE">
+        <img src="https://img.shields.io/badge/license-GPLv3-ff69b4.svg" alt="license GPLv3" /></a>
+</p>
 
-Package | Version | Downloads | License | Description
+<hr/>
+
+Package | Version | Downloads | Tests | Description
 --- | --- | --- | --- | ---
-[@hug/ngx-list-loader](/projects/list-loader) | [![npm version](https://img.shields.io/npm/v/@hug/ngx-list-loader.svg?color=blue&logo=npm)][npm-list-loader] | [![npm downloads](https://img.shields.io/npm/dw/@hug/ngx-list-loader.svg?color=7986CB&logo=npm&label=npm)][npm-dl-list-loader] | [![license](https://img.shields.io/npm/l/@hug/ngx-list-loader.svg?color=ff69b4&label=)][license] | List loader
+[@hug/ngx-core](/projects/core) | [![npm version](https://img.shields.io/npm/v/@hug/ngx-core.svg?color=blue&logo=npm)][npm-core] | [![npm downloads](https://img.shields.io/npm/dw/@hug/ngx-core.svg?color=7986CB&logo=npm&label=npm)][npm-dl-core] | Build status | Core
+[@hug/ngx-message-box](/projects/message-box) | [![npm version](https://img.shields.io/npm/v/@hug/ngx-message-box.svg?color=blue&logo=npm)][npm-message-box] | [![npm downloads](https://img.shields.io/npm/dw/@hug/ngx-message-box.svg?color=7986CB&logo=npm&label=npm)][npm-dl-message-box] | Build status | Message box
+[@hug/ngx-numeric-stepper](/projects/numeric-stepper) | [![npm version](https://img.shields.io/npm/v/@hug/ngx-numeric-stepper.svg?color=blue&logo=npm)][npm-numeric-stepper] | [![npm downloads](https://img.shields.io/npm/dw/@hug/ngx-numeric-stepper.svg?color=7986CB&logo=npm&label=npm)][npm-dl-numeric-stepper] | Build status | Numeric stepper
+[@hug/ngx-overlay](/projects/overlay) | [![npm version](https://img.shields.io/npm/v/@hug/ngx-overlay.svg?color=blue&logo=npm)][npm-overlay] | [![npm downloads](https://img.shields.io/npm/dw/@hug/ngx-overlay.svg?color=7986CB&logo=npm&label=npm)][npm-dl-overlay] | Build status | Overlay
+[@hug/ngx-snackbar](/projects/snackbar) | [![npm version](https://img.shields.io/npm/v/@hug/ngx-snackbar.svg?color=blue&logo=npm)][npm-snackbar] | [![npm downloads](https://img.shields.io/npm/dw/@hug/ngx-snackbar.svg?color=7986CB&logo=npm&label=npm)][npm-dl-snackbar] | Build status | Snackbar
+[@hug/ngx-splitter](/projects/splitter) | [![npm version](https://img.shields.io/npm/v/@hug/ngx-splitter.svg?color=blue&logo=npm)][npm-splitter] | [![npm downloads](https://img.shields.io/npm/dw/@hug/ngx-splitter.svg?color=7986CB&logo=npm&label=npm)][npm-dl-splitter] | Build status | Splitter
+[@hug/ngx-status](/projects/status) | [![npm version](https://img.shields.io/npm/v/@hug/ngx-status.svg?color=blue&logo=npm)][npm-status] | [![npm downloads](https://img.shields.io/npm/dw/@hug/ngx-status.svg?color=7986CB&logo=npm&label=npm)][npm-dl-status] | Build status | Status
+[@hug/ngx-time-picker](/projects/time-picker) | [![npm version](https://img.shields.io/npm/v/@hug/ngx-time-picker.svg?color=blue&logo=npm)][npm-time-picker] | [![npm downloads](https://img.shields.io/npm/dw/@hug/ngx-time-picker.svg?color=7986CB&logo=npm&label=npm)][npm-dl-time-picker] | Build status | Time picker
+[@hug/ngx-tooltip](/projects/tooltip) | [![npm version](https://img.shields.io/npm/v/@hug/ngx-tooltip.svg?color=blue&logo=npm)][npm-tooltip] | [![npm downloads](https://img.shields.io/npm/dw/@hug/ngx-tooltip.svg?color=7986CB&logo=npm&label=npm)][npm-dl-tooltip] | Build status | Tooltip
 
 <hr/>
 
@@ -57,7 +71,26 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [developer]: https://github.com/dsi-hug/ngx-components/blob/main/DEVELOPER.md
 [contributing]: https://github.com/dsi-hug/ngx-components/blob/main/CONTRIBUTING.md
 [codeofconduct]: https://github.com/dsi-hug/ngx-components/blob/main/CODE_OF_CONDUCT.md
-[pullrequest]: https://github.com/dsi-hug/ngx-components/blob/main/CONTRIBUTING.md#-submitting-a-pull-request-pr
 [dsi-hug]: https://github.com/dsi-hug
-[npm-auth-js]: https://www.npmjs.com/package/@hug/ngx-list-loader
-[npm-dl-auth-js]: https://npmcharts.com/compare/@hug/ngx-list-loader?minimal=true
+
+[npm-core]: https://www.npmjs.com/package/@hug/core
+[npm-list-loader]: https://www.npmjs.com/package/@hug/list-loader
+[npm-message-box]: https://www.npmjs.com/package/@hug/message-box
+[npm-numeric-stepper]: https://www.npmjs.com/package/@hug/numeric-stepper
+[npm-overlay]: https://www.npmjs.com/package/@hug/overlay
+[npm-snackbar]: https://www.npmjs.com/package/@hug/snackbar
+[npm-splitter]: https://www.npmjs.com/package/@hug/splitter
+[npm-status]: https://www.npmjs.com/package/@hug/status
+[npm-time-picker]: https://www.npmjs.com/package/@hug/time-picker
+[npm-tooltip]: https://www.npmjs.com/package/@hug/tooltip
+
+[npm-dl-core]: https://npmcharts.com/compare/@hug/ngx-core?minimal=true
+[npm-dl-list-loader]: https://npmcharts.com/compare/@hug/ngx-list-loader?minimal=true
+[npm-dl-message-box]: https://npmcharts.com/compare/@hug/ngx-message-box?minimal=true
+[npm-dl-numeric-stepper]: https://npmcharts.com/compare/@hug/ngx-numeric-stepper?minimal=true
+[npm-dl-overlay]: https://npmcharts.com/compare/@hug/ngx-overlay?minimal=true
+[npm-dl-snackbar]: https://npmcharts.com/compare/@hug/ngx-snackbar?minimal=true
+[npm-dl-splitter]: https://npmcharts.com/compare/@hug/ngx-splitter?minimal=true
+[npm-dl-status]: https://npmcharts.com/compare/@hug/ngx-status?minimal=true
+[npm-dl-time-picker]: https://npmcharts.com/compare/@hug/ngx-time-picker?minimal=true
+[npm-dl-tooltip]: https://npmcharts.com/compare/@hug/ngx-tooltip?minimal=true

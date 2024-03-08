@@ -6,7 +6,8 @@
     "license": "GPL-3.0-only",
     "author": "HUG - Hôpitaux Universitaires Genève",
     "contributors": [
-        "badisi (https://github.com/badisi)"
+        "badisi (https://github.com/badisi)",
+        "vapkse (https://github.com/vapkse)"
     ],
     "repository": {
         "type": "git",
@@ -21,8 +22,8 @@
     "sideEffects": false,
     "scripts": {
         "lint": "eslint . --fix",
-        "test": "ng test lib",
-        "build": "ng build lib -c production"
+        "test": "ng test list-loader",
+        "build": "ng build list-loader -c production"
     },
     "peerDependencies": {
         "@angular/common": "^14.3.0",
