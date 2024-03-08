@@ -1,0 +1,9 @@
+{
+    "private": true,
+    "scripts": {
+        "start": "ng serve demo-app",
+        "lint": "eslint . --fix",
+        "test": "ng test demo-app",
+        "build": "ng build demo-app -c production"
+    }
+}

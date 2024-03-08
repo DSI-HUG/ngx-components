@@ -1,0 +1,32 @@
+{
+    "files.eol": "\n",
+    "files.watcherExclude": {
+        "**/dist/**": true,
+        "**/tmp/**": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/tmp": true
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "material-icon-theme.folders.theme": "none",
+    "material-icon-theme.opacity": 0.6,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "eslint.format.enable": true,
+    "html.format.wrapAttributes": "force-aligned",
+    "html.format.wrapLineLength": 120,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
+    },
+    "npm.exclude": "**/{dist,tmp}{,/**}",
+    "npm.scriptExplorerExclude": [
+        "install"
+    ]
+}
