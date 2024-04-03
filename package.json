@@ -35,7 +35,7 @@
         "@angular/cli": "~14.2.13",
         "@angular/compiler-cli": "^14.3.0",
         "@commitlint/cli": "^18.6.1",
-        "@commitlint/config-conventional": "^18.6.2",
+        "@commitlint/config-conventional": "^18.6.3",
         "@hug/eslint-config": "^17.0.1",
         "@types/jasmine": "~5.1.4",
         "jasmine-core": "~4.6.0",
