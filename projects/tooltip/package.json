@@ -23,6 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test tooltip",
+        "test:ci": "ng test tooltip --watch=false --browsers=ChromeHeadless",
         "build": "ng build tooltip -c production"
     },
     "peerDependencies": {

@@ -1,0 +1,43 @@
+name: Run release-please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: ci-release-please-group-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci_release-please:
+    runs-on: ubuntu-latest
+    #outputs:
+    #  release-outputs: ${{ fromJson(steps.release.outputs) }}
+    steps:
+      - id: release
+        uses: google-github-actions/release-please-action@v4
+        with:
+          config-file: .releasepleaserc.json
+          manifest-file: .releaseplease.manifest.json
+          token: ${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}
+
+  # ci_publish:
+  #   runs-on: ubuntu-latest
+  #   needs: ci_release-please
+  #   if: needs.ci_release-please.outputs.release-outputs.releases_created
+  #   strategy:
+  #     matrix:
+  #       path-released: ${{ fromJson(needs.ci_release-please.outputs.release-outputs.paths_released) }}
+  #   steps:
+  #     - name: Publish
+  #       if: needs.ci_release-please.outputs.release-outputs['${{ matrix.path-released }}--release_created']
+  #       uses: ./.github/workflows/ci_job.yml
+  #       with:
+  #         working-directory: ${{ matrix.path-released }}
+  #         npm-token: ${{ secrets.DSI_HUG_NPM_TOKEN }}
+  #         publish: true

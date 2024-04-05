@@ -23,6 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test time-picker",
+        "test:ci": "ng test time-picker --watch=false --browsers=ChromeHeadless",
         "build": "ng build time-picker -c production"
     },
     "peerDependencies": {

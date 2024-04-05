@@ -3,6 +3,7 @@
     "scripts": {
         "ncu": "npx npm-check-updates -i --target=minor --dep=dev,peer,optional,prod --format=group --packageFile='{,projects/**/}package.json'",
         "lint": "eslint . --fix",
+        "publish-dry-run": "npx release-please release-pr --token=XXX --repo-url=DSI-HUG/ngx-components --config-file=.releasepleaserc.json --manifest-file=.releaseplease.manifest.json --debug --dry-run",
         "prepare": "husky || true"
     },
     "workspaces": [

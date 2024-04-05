@@ -1,0 +1,26 @@
+{
+    "bootstrap-sha": "8f019f2e1a660e3061fac69ed1320fb90da65c37",
+    "last-release-sha": "8f019f2e1a660e3061fac69ed1320fb90da65c37",
+    "release-type": "node",
+    "separate-pull-requests": true,
+    "include-component-in-tag": true,
+    "packages": {
+        "projects/core": {},
+        "projects/list-loader": {},
+        "projects/message-box": {},
+        "projects/numeric-stepper": {},
+        "projects/overlay": {},
+        "projects/snackbar": {},
+        "projects/splitter": {},
+        "projects/status": {},
+        "projects/time-picker": {},
+        "projects/tooltip": {}
+    },
+    "plugins": [
+        "sentence-case",
+        {
+            "type": "node-workspace",
+            "updatePeerDependencies": true
+        }
+    ]
+}
