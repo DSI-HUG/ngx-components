@@ -23,6 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test snackbar",
+        "test:ci": "ng test snackbar --watch=false --browsers=ChromeHeadless",
         "build": "ng build snackbar -c production"
     },
     "peerDependencies": {

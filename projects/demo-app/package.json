@@ -4,6 +4,7 @@
         "start": "ng serve demo-app",
         "lint": "eslint . --fix",
         "test": "ng test demo-app",
+        "test:ci": "ng test demo-app --watch=false --browsers=ChromeHeadless",
         "build": "ng build demo-app -c production"
     }
 }

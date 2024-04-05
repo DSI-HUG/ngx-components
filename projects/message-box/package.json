@@ -23,6 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test message-box",
+        "test:ci": "ng test message-box --watch=false --browsers=ChromeHeadless",
         "build": "ng build message-box -c production"
     },
     "peerDependencies": {

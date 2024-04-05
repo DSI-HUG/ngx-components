@@ -1,0 +1,24 @@
+{
+    "release-type": "node",
+    "separate-pull-requests": true,
+    "include-component-in-tag": true,
+    "packages": {
+        "projects/core": {},
+        "projects/list-loader": {},
+        "projects/message-box": {},
+        "projects/numeric-stepper": {},
+        "projects/overlay": {},
+        "projects/snackbar": {},
+        "projects/splitter": {},
+        "projects/status": {},
+        "projects/time-picker": {},
+        "projects/tooltip": {}
+    },
+    "plugins": [
+        "sentence-case",
+        {
+            "type": "node-workspace",
+            "updatePeerDependencies": true
+        }
+    ]
+}

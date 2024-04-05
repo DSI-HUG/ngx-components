@@ -23,6 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test overlay",
+        "test:ci": "ng test overlay --watch=false --browsers=ChromeHeadless",
         "build": "ng build overlay -c production"
     },
     "peerDependencies": {

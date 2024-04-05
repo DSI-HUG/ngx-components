@@ -23,6 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test splitter",
+        "test:ci": "ng test splitter --watch=false --browsers=ChromeHeadless",
         "build": "ng build splitter -c production"
     },
     "peerDependencies": {

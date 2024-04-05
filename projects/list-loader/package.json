@@ -23,6 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test list-loader",
+        "test:ci": "ng test list-loader --watch=false --browsers=ChromeHeadless",
         "build": "ng build list-loader -c production"
     },
     "peerDependencies": {

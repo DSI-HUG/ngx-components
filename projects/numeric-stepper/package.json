@@ -23,6 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test numeric-stepper",
+        "test:ci": "ng test numeric-stepper --watch=false --browsers=ChromeHeadless",
         "build": "ng build numeric-stepper -c production"
     },
     "peerDependencies": {
