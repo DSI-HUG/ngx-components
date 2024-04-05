@@ -3,6 +3,7 @@
     "release-type": "node",
     "separate-pull-requests": true,
     "include-component-in-tag": true,
+    "include-v-in-tag": false,
     "packages": {
         "projects/core": {},
         "projects/list-loader": {},
