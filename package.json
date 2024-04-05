@@ -58,5 +58,6 @@
         "**/*.{js,json,ts,html}": [
             "eslint --fix"
         ]
-    }
+    },
+    "version": "1.0.0"
 }
