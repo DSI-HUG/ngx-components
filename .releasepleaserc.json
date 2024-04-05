@@ -1,6 +1,5 @@
 {
-    "bootstrap-sha": "8f019f2e1a660e3061fac69ed1320fb90da65c37",
-    "last-release-sha": "8f019f2e1a660e3061fac69ed1320fb90da65c37",
+    "last-release-sha": "c60488e8f1ee1c5d01ac1479b644b0a6c468db12",
     "release-type": "node",
     "separate-pull-requests": true,
     "include-component-in-tag": true,
