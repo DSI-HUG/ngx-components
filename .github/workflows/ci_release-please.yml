@@ -22,7 +22,6 @@ jobs:
       - id: release
         uses: google-github-actions/release-please-action@v4
         with:
-          include-component-in-tag: true
           config-file: .releasepleaserc.json
           manifest-file: .releaseplease.manifest.json
           token: ${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}
