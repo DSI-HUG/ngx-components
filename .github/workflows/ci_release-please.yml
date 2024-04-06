@@ -24,7 +24,6 @@ jobs:
         with:
           config-file: .releasepleaserc.json
           manifest-file: .releaseplease.manifest.json
-          token: ${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}
 
   # ci_publish:
   #   runs-on: ubuntu-latest
