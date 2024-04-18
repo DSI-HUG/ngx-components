@@ -1,7 +1,8 @@
 {
-    "bootstrap-sha": "c60488e8f1ee1c5d01ac1479b644b0a6c468db12",
+    "bootstrap-sha": "c4c9d9f87db9271cd1f520a7c287b95872e80dad",
     "release-type": "node",
     "separate-pull-requests": true,
+    "pull-request-title-pattern": "chore${component}: release v${version}",
     "include-component-in-tag": true,
     "include-v-in-tag": false,
     "packages": {
