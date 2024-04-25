@@ -28,7 +28,8 @@
                             "projects/demo-app/src/assets"
                         ],
                         "styles": [
-                            "projects/demo-app/src/styles.scss"
+                          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                          "projects/demo-app/src/styles.scss"
                         ],
                         "scripts": []
                     },
@@ -96,7 +97,8 @@
                             "projects/demo-app/src/assets"
                         ],
                         "styles": [
-                            "projects/demo-app/src/styles.scss"
+                          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                          "projects/demo-app/src/styles.scss"
                         ],
                         "scripts": []
                     }
