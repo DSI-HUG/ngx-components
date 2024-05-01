@@ -29,10 +29,6 @@ on:
 env:
   HUSKY: 0
 
-concurrency:
-  group: ci-job-group-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   ci_job:
     strategy:
