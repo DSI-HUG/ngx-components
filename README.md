@@ -1,6 +1,6 @@
-<h1 align="center">
-    @hug/ngx-components
-</h1>
+<div align="center">
+
+# @hug/ngx-components
 
 <p align="center">
     <br/>
@@ -21,8 +21,6 @@
 
 <hr/>
 
-<p align="center">
-
 Package | Version | Downloads | Tests
 --- | --- | --- | ---
 [@hug/ngx-core](/projects/core) | [![npm version][npm-logo-core]][npm-core] | [![npm downloads][npm-dl-logo-core]][npm-dl-core] | [![build status][tests-logo-core]][tests-core]
@@ -36,7 +34,7 @@ Package | Version | Downloads | Tests
 [@hug/ngx-time-picker](/projects/time-picker) | [![npm version][npm-logo-time-picker]][npm-time-picker] | [![npm downloads][npm-dl-logo-time-picker]][npm-dl-time-picker] | [![build status][tests-logo-time-picker]][tests-time-picker]
 [@hug/ngx-tooltip](/projects/tooltip) | [![npm version][npm-logo-tooltip]][npm-tooltip] | [![npm downloads][npm-dl-logo-tooltip]][npm-dl-tooltip] | [![build status][tests-logo-tooltip]][tests-tooltip]
 
-</p>
+</div>
 
 <hr/>
 
