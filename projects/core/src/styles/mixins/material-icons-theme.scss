@@ -1,0 +1,40 @@
+@use '@fontsource-variable/material-symbols-outlined/scss/mixins' as matSymbols;
+
+@include matSymbols.faces($axes: all);
+
+$fontFamily: "Material Symbols Outlined Variable";
+
+@mixin material-icons-theme {
+    .mat-icon {
+        font-family: $fontFamily;
+
+        // This code was previously present in the '@fontsource/material-icons' library.
+        // It is not the case anymore in the material-symbols one so we add it here.
+        &.material-icons,
+        &.material-symbols-outlined {
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            /* Preferred icon size */
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            /* Support for all WebKit browsers. */
+            -webkit-font-smoothing: antialiased;
+            /* Support for Safari and Chrome. */
+            text-rendering: optimizeLegibility;
+            /* Support for Firefox. */
+            -moz-osx-font-smoothing: grayscale;
+            /* Support for IE. */
+            font-feature-settings: 'liga';
+        }
+    }
+
+    .filled {
+        font-variation-settings: "FILL"1;
+    }
+}
