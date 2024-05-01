@@ -1,7 +1,5 @@
 <div align="center">
 
-# @hug/ngx-components
-
 <p align="center">
     <br/>
     <a href="https://www.hug.ch">
