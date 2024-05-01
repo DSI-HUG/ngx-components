@@ -25,6 +25,8 @@ jobs:
           config-file: .releasepleaserc.json
           manifest-file: .releaseplease.manifest.json
           token: ${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}
+      - run: |
+            echo "Output: ${{ toJson(steps.release.outputs) }}"
 
   ci_publish:
     runs-on: ubuntu-latest
@@ -32,7 +34,7 @@ jobs:
     if: needs.ci_release-please.outputs.release-outputs.releases_created
     strategy:
       matrix:
-        path-released: ${{ needs.ci_release-please.outputs.release-outputs.paths_released }}
+        path-released: ${{ toJson(needs.ci_release-please.outputs.release-outputs.paths_released) }}
     steps:
       - name: Publish
         if: needs.ci_release-please.outputs.release-outputs['${{ matrix.path-released }}--release_created']
