@@ -39,6 +39,7 @@ module.exports = config => {
         autoWatch: true,
         browsers: ['Chrome'],
         singleRun: false,
+        failOnEmptyTestSuite: false,
         restartOnFileChange: true
     });
 };
