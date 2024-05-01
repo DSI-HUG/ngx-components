@@ -1,0 +1,94 @@
+@use '@angular/material' as mat;
+
+@mixin icon-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    mat-icon,
+    fa-icon {
+        &[background="primary"] {
+            background: mat.get-color-from-palette($primary) !important;
+        }
+
+        &[background="accent"] {
+            background: mat.get-color-from-palette($accent) !important;
+        }
+
+        &[background="warn"] {
+            background: mat.get-color-from-palette($warn) !important;
+        }
+    }
+
+    mat-icon[double],
+    fa-icon[double] {
+        position: relative;
+        $ratio: 50%;
+
+        >mat-icon[secondary],
+        >fa-icon[secondary] {
+            background: mat.get-color-from-palette($background, background);
+            border-radius: 50%;
+            bottom: 0;
+            font-size: $ratio;
+            height: $ratio;
+            padding: 0;
+            position: absolute;
+            right: 0;
+            width: $ratio;
+            line-height: 1;
+        }
+
+        >fa-icon[secondary] {
+            font-size: calc($ratio - 5%);
+        }
+    }
+
+    fa-icon {
+        box-sizing: border-box;
+        direction: ltr;
+        display: inline-block;
+        font-feature-settings: 'liga';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: normal;
+        height: 24px;
+        letter-spacing: normal;
+        line-height: 12px;
+        text-align: center;
+        text-rendering: optimizeLegibility;
+        text-transform: none;
+        vertical-align: top;
+        white-space: nowrap;
+        width: 24px;
+        word-wrap: normal;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+
+        &[color="primary"] {
+            color: mat.get-color-from-palette($primary);
+        }
+
+        &[color="accent"] {
+            color: mat.get-color-from-palette($accent);
+        }
+
+        &[color="warn"] {
+            color: mat.get-color-from-palette($warn);
+        }
+
+        &:not([secondary]) svg {
+            padding: 4px 0;
+
+            &.fa-w-12,
+            &.fa-w-14,
+            &.fa-w-16,
+            &.fa-w-18 {
+                font-size: 20px;
+                padding: 2px 0;
+            }
+        }
+    }
+}
