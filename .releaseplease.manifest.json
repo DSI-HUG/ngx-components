@@ -6,7 +6,7 @@
     "projects/overlay": "1.0.0",
     "projects/snackbar": "1.0.0",
     "projects/splitter": "1.0.0",
-    "projects/status": "1.0.0",
+    "projects/status": "1.0.1",
     "projects/time-picker": "1.0.0",
     "projects/tooltip": "1.0.0"
 }
