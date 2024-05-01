@@ -20,6 +20,11 @@
         "components"
     ],
     "sideEffects": false,
+    "exports": {
+        ".": {
+            "sass": "./_list-loader-theme.scss"
+        }
+    },
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test list-loader",
@@ -27,8 +32,8 @@
         "build": "ng build list-loader -c production"
     },
     "peerDependencies": {
-        "@angular/common": "^14.3.0",
-        "@angular/core": "^14.3.0"
+        "@angular/common": ">= 14",
+        "@angular/core": ">= 14"
     },
     "dependencies": {
         "tslib": "^2.6.2"
