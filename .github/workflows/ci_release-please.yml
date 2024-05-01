@@ -32,10 +32,10 @@ jobs:
     if: ${{ fromJson(needs.ci_release-please.outputs.release-outputs).releases_created == 'true' }}
     strategy:
       matrix:
-        path-released: ${{ fromJson(needs.ci_release-please.outputs.release-outputs).paths_released }}
+        path-released: ${{ needs.ci_release-please.outputs.release-outputs.paths_released }}
     steps:
       - name: Publish
-        if: ${{ fromJson(needs.ci_release-please.outputs.release-outputs)['${{ matrix.path-released }}--release_created'] }}
+        if: ${{ needs.ci_release-please.outputs.release-outputs['${{ matrix.path-released }}--release_created'] }}
         uses: ./.github/workflows/ci_job.yml
         with:
           working-directory: ${{ matrix.path-released }}
