@@ -1,0 +1,105 @@
+message-box {
+    display: block;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: transparent;
+
+    #msgbox {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        display: block;
+        border-radius: 3px;
+
+        >.mat-card-title {
+            text-transform: uppercase;
+            align-items: center;
+            display: flex;
+            margin: 0;
+            padding: 1rem 0rem 0rem 1.2rem;
+            font-size: 1rem;
+
+            #icon {
+                margin-right: 0.3rem;
+            }
+
+            .header-actions {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+
+        >.mat-card-content {
+            margin: 0;
+            padding: 0.75rem;
+            overflow: hidden;
+            font-weight: 300;
+            padding-left: 1.3rem;
+            padding-top: 0.5rem;
+
+            h2 {
+                font-size: 1rem;
+                margin: 0;
+                font-weight: 500;
+                text-transform: uppercase;
+                line-height: 1.5rem;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+
+        >.mat-card-actions {
+            align-items: center;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0.5rem 0.5rem;
+        }
+    }
+
+    &[horizontal] {
+        #msgbox {
+            align-items: stretch;
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+            position: relative;
+
+            >.mat-card-title {
+                align-items: center;
+                display: flex;
+                flex: 0 0 auto;
+                justify-content: center;
+                margin: 0;
+                text-align: center;
+                padding: 0.5rem 0rem 0.5rem 0.8rem;
+
+                #icon {
+                    margin: 0;
+                }
+            }
+
+            >.mat-card-content {
+                align-self: center;
+                flex: 1 1 auto;
+                padding: 0.75rem;
+            }
+
+            >.mat-card-actions {
+                margin: 0;
+                padding: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+
+                [mat-icon-button] {
+                    mat-icon {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}

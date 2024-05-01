@@ -1,0 +1,121 @@
+@use "@angular/material" as mat;
+
+@mixin messageBoxStandard($palette) {
+    background-color: mat.get-color-from-palette($palette, 500);
+    color: mat.get-contrast-color-from-palette($palette, 900);
+    box-shadow:
+        0 4px 20px 0 rgba(0, 0, 0, 0.14),
+        0 7px 10px -5px rgba(mat.get-color-from-palette($palette), 0.4);
+
+    mat-icon {
+        color: mat.get-contrast-color-from-palette($palette, 900);
+    }
+
+    > .mat-card-actions {
+        background-color: mat.get-color-from-palette($palette, 700);
+    }
+
+    button {
+        background-color: transparent;
+    }
+}
+
+@mixin messageBoxLight($palette) {
+    background-color: mat.get-color-from-palette($palette, 50);
+    color: mat.get-color-from-palette($palette, 700);
+    box-shadow: none;
+
+    mat-icon {
+        color: mat.get-color-from-palette($palette, 700);
+    }
+
+    > .mat-card-actions {
+        color: mat.get-color-from-palette($palette, 900);
+        background-color: mat.get-color-from-palette($palette, 100);
+
+        button {
+            background-color: transparent;
+        }
+    }
+}
+
+@mixin theme($theme) {
+    $primary: map-get($theme, primary);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    $warning: mat.define-palette(mat.$orange-palette);
+    $success: mat.define-palette(mat.$green-palette);
+
+    message-box {
+        &[horizontal] {
+            #msgbox {
+                &.info,
+                &.primary,
+                &.danger,
+                &.success,
+                &.warn {
+                    .mat-card-actions {
+                        background-color: transparent !important;
+                    }
+                }
+            }
+        }
+
+        &[light] {
+            #msgbox {
+                &.info,
+                &.primary {
+                    @include messageBoxLight($primary);
+                }
+
+                &.danger {
+                    @include messageBoxLight($warn);
+                }
+
+                &.warn {
+                    @include messageBoxLight($warning);
+                }
+
+                &.success {
+                    @include messageBoxLight($success);
+                }
+            }
+        }
+
+        #msgbox {
+            &.info,
+            &.primary {
+                @include messageBoxStandard($primary);
+            }
+
+            &.danger {
+                @include messageBoxStandard($warn);
+            }
+
+            &.warn {
+                @include messageBoxStandard($warning);
+            }
+
+            &.success {
+                @include messageBoxStandard($success);
+            }
+
+            > .mat-card-actions {
+                button {
+                    &.mat-success[mat-icon-button]:not([disabled]) {
+                        color: mat.get-color-from-palette($success) !important;
+                    }
+
+                    &.mat-warn[mat-icon-button]:not([disabled]) {
+                        color: mat.get-color-from-palette($warning) !important;
+                    }
+
+                    &.mat-danger[mat-icon-button]:not([disabled]) {
+                        color: mat.get-color-from-palette($warn) !important;
+                    }
+                }
+            }
+        }
+    }
+}
