@@ -3,7 +3,6 @@
     "scripts": {
         "ncu": "npx npm-check-updates -i --target=minor --dep=dev,peer,optional,prod --format=group --packageFile='{,projects/**/}package.json'",
         "lint": "eslint . --fix",
-        "publish-dry-run": "npx release-please release-pr --token=XXX --repo-url=DSI-HUG/ngx-components --config-file=.releasepleaserc.json --manifest-file=.releaseplease.manifest.json --debug --dry-run",
         "prepare": "husky || true"
     },
     "workspaces": [
@@ -42,6 +41,9 @@
         "@commitlint/cli": "~18.6.1",
         "@commitlint/config-conventional": "~18.6.3",
         "@hug/eslint-config": "~17.0.2",
+        "@nx/js": "^19.2.1",
+        "@swc-node/register": "^1.9.1",
+        "@swc/core": "^1.5.25",
         "@types/jasmine": "~5.1.4",
         "@types/lodash-es": "^4.17.12",
         "husky": "~9.0.11",
@@ -53,6 +55,7 @@
         "karma-jasmine-html-reporter": "~2.1.0",
         "lint-staged": "~15.2.2",
         "ng-packagr": "~14.2.2",
+        "nx": "^19.2.0",
         "typescript": "~4.7.4"
     },
     "commitlint": {

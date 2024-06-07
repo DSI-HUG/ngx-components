@@ -28,8 +28,8 @@
                             "projects/demo-app/src/assets"
                         ],
                         "styles": [
-                          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-                          "projects/demo-app/src/styles.scss"
+                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "projects/demo-app/src/styles.scss"
                         ],
                         "scripts": []
                     },
@@ -97,8 +97,8 @@
                             "projects/demo-app/src/assets"
                         ],
                         "styles": [
-                          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-                          "projects/demo-app/src/styles.scss"
+                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "projects/demo-app/src/styles.scss"
                         ],
                         "scripts": []
                     }
@@ -109,7 +109,7 @@
             "projectType": "library",
             "root": "projects/core",
             "sourceRoot": "projects/core/src",
-            "prefix": "lib",
+            "prefix": "core",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -140,7 +140,7 @@
             "projectType": "library",
             "root": "projects/list-loader",
             "sourceRoot": "projects/list-loader/src",
-            "prefix": "lib",
+            "prefix": "list-loader",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -171,7 +171,7 @@
             "projectType": "library",
             "root": "projects/message-box",
             "sourceRoot": "projects/message-box/src",
-            "prefix": "lib",
+            "prefix": "message-box",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -202,7 +202,7 @@
             "projectType": "library",
             "root": "projects/numeric-stepper",
             "sourceRoot": "projects/numeric-stepper/src",
-            "prefix": "lib",
+            "prefix": "numeric-stepper",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -233,7 +233,7 @@
             "projectType": "library",
             "root": "projects/overlay",
             "sourceRoot": "projects/overlay/src",
-            "prefix": "lib",
+            "prefix": "overlay",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -264,7 +264,7 @@
             "projectType": "library",
             "root": "projects/snackbar",
             "sourceRoot": "projects/snackbar/src",
-            "prefix": "lib",
+            "prefix": "snackbar",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -295,7 +295,7 @@
             "projectType": "library",
             "root": "projects/splitter",
             "sourceRoot": "projects/splitter/src",
-            "prefix": "lib",
+            "prefix": "splitter",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -326,7 +326,7 @@
             "projectType": "library",
             "root": "projects/status",
             "sourceRoot": "projects/status/src",
-            "prefix": "lib",
+            "prefix": "status",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -357,7 +357,7 @@
             "projectType": "library",
             "root": "projects/time-picker",
             "sourceRoot": "projects/time-picker/src",
-            "prefix": "lib",
+            "prefix": "time-picker",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -388,7 +388,7 @@
             "projectType": "library",
             "root": "projects/tooltip",
             "sourceRoot": "projects/tooltip/src",
-            "prefix": "lib",
+            "prefix": "tooltip",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",

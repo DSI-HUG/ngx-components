@@ -1,33 +1,37 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-    "extends": "./tsconfig.hug.json",
-    "compileOnSave": false,
+    "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "baseUrl": "./",
-        "outDir": "./dist/out-tsc",
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "noImplicitOverride": true,
-        "noPropertyAccessFromIndexSignature": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "sourceMap": true,
-        "declaration": false,
-        "downlevelIteration": true,
-        "experimentalDecorators": true,
-        "moduleResolution": "node",
-        "importHelpers": true,
-        "target": "es2020",
-        "module": "es2020",
-        "lib": [
-            "es2020",
-            "dom"
-        ]
-    },
-    "angularCompilerOptions": {
-        "enableI18nLegacyMessageIdFormat": false,
-        "strictInjectionParameters": true,
-        "strictInputAccessModifiers": true,
-        "strictTemplates": true
+        "paths": {
+            "@hug/ngx-core": [
+                "projects/core/src"
+            ],
+            "@hug/ngx-list-loader": [
+                "projects/list-loader/src"
+            ],
+            "@hug/ngx-message-box": [
+                "projects/message-box/src"
+            ],
+            "@hug/ngx-numeric-stepper": [
+                "projects/numeric-stepper/src"
+            ],
+            "@hug/ngx-overlay": [
+                "projects/overlay/src"
+            ],
+            "@hug/ngx-snackbar": [
+                "projects/snackbar/src"
+            ],
+            "@hug/ngx-splitter": [
+                "projects/splitter/src"
+            ],
+            "@hug/ngx-status": [
+                "projects/status/src"
+            ],
+            "@hug/ngx-time-picker": [
+                "projects/time-picker/src"
+            ],
+            "@hug/ngx-tooltip": [
+                "projects/tooltip/src"
+            ]
+        }
     }
 }

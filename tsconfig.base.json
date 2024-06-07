@@ -1,0 +1,63 @@
+{
+  "extends": "./tsconfig.hug.json",
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2020",
+    "module": "es2020",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "paths": {
+      "@hug/ngx-core": [
+        "dist/core/src"
+      ],
+      "@hug/ngx-list-loader": [
+        "dist/list-loader"
+      ],
+      "@hug/ngx-message-box": [
+        "dist/message-box"
+      ],
+      "@hug/ngx-numeric-stepper": [
+        "dist/numeric-stepper"
+      ],
+      "@hug/ngx-overlay": [
+        "dist/overlay"
+      ],
+      "@hug/ngx-snackbar": [
+        "dist/snackbar"
+      ],
+      "@hug/ngx-splitter": [
+        "dist/splitter"
+      ],
+      "@hug/ngx-status": [
+        "dist/status"
+      ],
+      "@hug/ngx-time-picker": [
+        "dist/time-picker"
+      ],
+      "@hug/ngx-tooltip": [
+        "dist/tooltip"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

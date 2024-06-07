@@ -5,10 +5,10 @@ on:
   push:
     branches:
       - '**'
-      - '!release-please--branches--main'
     tags-ignore:
       - '**'
     paths:
+      - '.github/workflows/ci_test_message-box.yml'
       - 'projects/message-box/**'
 
 concurrency:
@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   ci_test_message-box:
-    uses: ./.github/workflows/ci_job.yml
+    uses: dsi-hug/action/.github/workflows/action.yml@v1
     with:
       working-directory: projects/message-box
       runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'

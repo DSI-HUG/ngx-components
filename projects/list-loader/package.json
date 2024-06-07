@@ -1,41 +1,43 @@
 {
-    "name": "@hug/ngx-list-loader",
-    "version": "1.1.0",
-    "description": "",
-    "homepage": "https://github.com/dsi-hug/ngx-components",
-    "license": "GPL-3.0-only",
-    "author": "HUG - Hôpitaux Universitaires Genève",
-    "contributors": [
-        "badisi (https://github.com/badisi)",
-        "vapkse (https://github.com/vapkse)"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dsi-hug/ngx-components.git"
-    },
-    "keywords": [
-        "angular",
-        "material",
-        "material design",
-        "components"
-    ],
-    "sideEffects": false,
-    "exports": {
-        ".": {
-            "sass": "./_list-loader-theme.scss"
-        }
-    },
-    "scripts": {
-        "lint": "eslint . --fix",
-        "test": "ng test list-loader",
-        "test:ci": "ng test list-loader --watch=false --browsers=ChromeHeadless",
-        "build": "ng build list-loader -c production"
-    },
-    "peerDependencies": {
-        "@angular/common": ">= 14",
-        "@angular/core": ">= 14"
-    },
-    "dependencies": {
-        "tslib": "^2.6.2"
+  "name": "@hug/ngx-list-loader",
+  "version": "1.1.0",
+  "description": "",
+  "homepage": "https://github.com/dsi-hug/ngx-components",
+  "license": "GPL-3.0-only",
+  "author": "HUG - Hôpitaux Universitaires Genève",
+  "contributors": [
+    "badisi (https://github.com/badisi)",
+    "vapkse (https://github.com/vapkse)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsi-hug/ngx-components.git"
+  },
+  "keywords": [
+    "angular",
+    "material",
+    "material design",
+    "components"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "sass": "./_list-loader-theme.scss"
     }
+  },
+  "scripts": {
+    "lint": "eslint . --fix",
+    "test": "ng test list-loader",
+    "test:ci": "ng test list-loader --watch=false --browsers=ChromeHeadless",
+    "build": "ng build list-loader -c=production",
+    "release": "nx release -p=@hug/ngx-list-loader",
+    "release:dry-run": "nx release -p=@hug/ngx-list-loader --dry-run"
+  },
+  "peerDependencies": {
+    "@angular/common": ">= 14",
+    "@angular/core": ">= 14"
+  },
+  "dependencies": {
+    "tslib": "^2.6.2"
+  }
 }

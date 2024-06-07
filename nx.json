@@ -1,0 +1,21 @@
+{
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "targetDefaults": {
+        "build": {
+            "dependsOn": [
+                "^build"
+            ]
+        }
+    },
+    "release": {
+        "projectsRelationship": "independent",
+        "version": {
+            "conventionalCommits": true
+        },
+        "changelog": {
+            "projectChangelogs": {
+                "createRelease": "github"
+            }
+        }
+    }
+}

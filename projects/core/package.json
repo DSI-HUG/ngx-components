@@ -1,45 +1,47 @@
 {
-    "name": "@hug/ngx-core",
-    "version": "1.1.0",
-    "description": "",
-    "homepage": "https://github.com/dsi-hug/ngx-components",
-    "license": "GPL-3.0-only",
-    "author": "HUG - Hôpitaux Universitaires Genève",
-    "contributors": [
-        "badisi (https://github.com/badisi)",
-        "vapkse (https://github.com/vapkse)"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dsi-hug/ngx-components.git"
-    },
-    "keywords": [
-        "angular",
-        "material",
-        "material design",
-        "components"
-    ],
-    "sideEffects": false,
-    "exports": {
-        ".": {
-            "sass": "./styles"
-        }
-    },
-    "scripts": {
-        "lint": "eslint . --fix",
-        "test": "ng test core",
-        "test:ci": "ng test core --watch=false --browsers=ChromeHeadless",
-        "build": "ng build core -c production"
-    },
-    "peerDependencies": {
-        "@angular/common": ">= 14",
-        "@angular/core": ">= 14",
-        "@angular/cdk": ">= 14",
-        "@angular/material": ">= 14",
-        "rxjs": ">= 7.0.0",
-        "date-fns": "^2.30.0"
-    },
-    "dependencies": {
-        "tslib": "^2.6.2"
+  "name": "@hug/ngx-core",
+  "version": "1.1.0",
+  "description": "",
+  "homepage": "https://github.com/dsi-hug/ngx-components",
+  "license": "GPL-3.0-only",
+  "author": "HUG - Hôpitaux Universitaires Genève",
+  "contributors": [
+    "badisi (https://github.com/badisi)",
+    "vapkse (https://github.com/vapkse)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsi-hug/ngx-components.git"
+  },
+  "keywords": [
+    "angular",
+    "material",
+    "material design",
+    "components"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "sass": "./styles"
     }
+  },
+  "scripts": {
+    "lint": "eslint . --fix",
+    "test": "ng test core",
+    "test:ci": "ng test core --watch=false --browsers=ChromeHeadless",
+    "build": "ng build core -c=production",
+    "release": "nx release -p=@hug/ngx-core",
+    "release:dry-run": "nx release -p=@hug/ngx-core --dry-run"
+  },
+  "peerDependencies": {
+    "@angular/common": ">= 14",
+    "@angular/core": ">= 14",
+    "@angular/cdk": ">= 14",
+    "@angular/material": ">= 14",
+    "rxjs": ">= 7.0.0",
+    "date-fns": "^2.30.0"
+  },
+  "dependencies": {
+    "tslib": "^2.6.2"
+  }
 }

@@ -1,43 +1,45 @@
 {
-    "name": "@hug/ngx-message-box",
-    "version": "1.1.0",
-    "description": "",
-    "homepage": "https://github.com/dsi-hug/ngx-components",
-    "license": "GPL-3.0-only",
-    "author": "HUG - Hôpitaux Universitaires Genève",
-    "contributors": [
-        "badisi (https://github.com/badisi)",
-        "vapkse (https://github.com/vapkse)"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dsi-hug/ngx-components.git"
-    },
-    "keywords": [
-        "angular",
-        "material",
-        "material design",
-        "components"
-    ],
-    "sideEffects": false,
-    "exports": {
-        ".": {
-            "sass": "./_message-box-theme.scss"
-        }
-    },
-    "scripts": {
-        "lint": "eslint . --fix",
-        "test": "ng test message-box",
-        "test:ci": "ng test message-box --watch=false --browsers=ChromeHeadless",
-        "build": "ng build message-box -c production"
-    },
-    "peerDependencies": {
-        "@angular/common": ">= 14",
-        "@angular/core": ">= 14",
-        "@angular/cdk": ">= 14",
-        "@angular/material": ">= 14"
-    },
-    "dependencies": {
-        "tslib": "^2.6.2"
+  "name": "@hug/ngx-message-box",
+  "version": "1.1.0",
+  "description": "",
+  "homepage": "https://github.com/dsi-hug/ngx-components",
+  "license": "GPL-3.0-only",
+  "author": "HUG - Hôpitaux Universitaires Genève",
+  "contributors": [
+    "badisi (https://github.com/badisi)",
+    "vapkse (https://github.com/vapkse)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsi-hug/ngx-components.git"
+  },
+  "keywords": [
+    "angular",
+    "material",
+    "material design",
+    "components"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "sass": "./_message-box-theme.scss"
     }
+  },
+  "scripts": {
+    "lint": "eslint . --fix",
+    "test": "ng test message-box",
+    "test:ci": "ng test message-box --watch=false --browsers=ChromeHeadless",
+    "build": "ng build message-box -c=production",
+    "release": "nx release -p=@hug/ngx-message-box",
+    "release:dry-run": "nx release -p=@hug/ngx-message-box --dry-run"
+  },
+  "peerDependencies": {
+    "@angular/common": ">= 14",
+    "@angular/core": ">= 14",
+    "@angular/cdk": ">= 14",
+    "@angular/material": ">= 14"
+  },
+  "dependencies": {
+    "tslib": "^2.6.2"
+  }
 }
