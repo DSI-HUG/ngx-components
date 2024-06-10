@@ -1,7 +1,7 @@
 {
     "name": "@hug/ngx-overlay",
     "version": "1.0.0",
-    "description": "",
+    "description": "HUG Angular - overlay component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
     "author": "HUG - Hôpitaux Universitaires Genève",

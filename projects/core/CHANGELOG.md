@@ -1,11 +1,11 @@
 ## 1.1.0 (2024-05-01)
 
 
-### Features
+### 🚀 Features
 
-- Core package ([1cb90ba](https://github.com/DSI-HUG/ngx-components/commit/1cb90bac803acbb9708e3983ab9e4d6a872d2a5c))
+- **core**: first commit ([1cb90ba](https://github.com/DSI-HUG/ngx-components/commit/1cb90bac803acbb9708e3983ab9e4d6a872d2a5c))
 
 
-### ❤️  Thank You
+### ❤️ Thank You
 
-- Badisi
+- @Badisi

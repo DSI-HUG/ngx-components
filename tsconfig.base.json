@@ -23,7 +23,7 @@
     ],
     "paths": {
       "@hug/ngx-core": [
-        "dist/core/src"
+        "dist/core"
       ],
       "@hug/ngx-list-loader": [
         "dist/list-loader"

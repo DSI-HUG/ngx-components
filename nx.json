@@ -1,9 +1,9 @@
 {
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "targetDefaults": {
-        "build": {
+        "build:ng": {
             "dependsOn": [
-                "^build"
+                "^build:ng"
             ]
         }
     },
@@ -11,6 +11,24 @@
         "projectsRelationship": "independent",
         "version": {
             "conventionalCommits": true
+        },
+        "conventionalCommits": {
+            "types": {
+                "refactor": {
+                    "semverBump": "patch",
+                    "changelog": false
+                },
+                "styles": {
+                    "semverBump": "patch",
+                    "changelog": false
+                },
+                "docs": {
+                    "semverBump": "patch",
+                    "changelog": {
+                        "title": "Documentation Changes"
+                    }
+                }
+            }
         },
         "changelog": {
             "projectChangelogs": {
