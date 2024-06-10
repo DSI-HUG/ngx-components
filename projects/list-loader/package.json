@@ -31,8 +31,8 @@
         "test:ci": "ng test list-loader --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build list-loader -c=production",
         "build": "nx build:ng @hug/ngx-list-loader --verbose",
-        "release": "nx release -p=@hug/ngx-list-loader",
-        "release:dry-run": "nx release -p=@hug/ngx-list-loader --dry-run"
+        "release": "nx release -p=@hug/ngx-list-loader --verbose",
+        "release:dry-run": "nx release -p=@hug/ngx-list-loader --verbose --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",

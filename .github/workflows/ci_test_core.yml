@@ -22,3 +22,7 @@ jobs:
       working-directory: projects/core
       runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
       node-versions: '[18, 20]'
+
+  ci_test_numeric_stepper:
+    needs: ci_test_core
+    uses: ./.github/workflows/ci_test_numeric-stepper.yml

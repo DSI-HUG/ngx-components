@@ -30,9 +30,9 @@
         "test": "ng test core",
         "test:ci": "ng test core --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build core -c=production",
-        "build": "nx build:ng @hug/ngx-core",
-        "release": "nx release -p=@hug/ngx-core",
-        "release:dry-run": "nx release -p=@hug/ngx-core --dry-run"
+        "build": "nx build:ng @hug/ngx-core --verbose",
+        "release": "nx release -p=@hug/ngx-core --verbose",
+        "release:dry-run": "nx release -p=@hug/ngx-core --verbose --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",
