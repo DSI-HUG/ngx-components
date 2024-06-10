@@ -1,0 +1,55 @@
+@use "@angular/material" as mat;
+
+@mixin theme($theme) {
+    $primary: map-get($theme, primary);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+
+    [numeric-stepper-form-field] {
+        numeric-stepper {
+            .arrow {
+                color: mat.get-color-from-palette($primary);
+
+                &[disabled] {
+                    color: rgba(#000, 0.3);
+                }
+            }
+
+            .shadow {
+                background-color: mat.get-color-from-palette($background, card);
+            }
+        }
+
+        &:not(.disabled) {
+            &.mat-form-field-invalid {
+                numeric-stepper {
+                    .arrow:not([disabled]) {
+                        color: mat.get-color-from-palette($warn);
+                    }
+
+                    .shadow {
+                        box-shadow: 0px 2px 4px rgba(mat.get-color-from-palette($warn), 0.3);
+                    }
+                }
+
+                .mat-form-field-flex {
+                    background-color: mat.get-color-from-palette($background);
+                }
+            }
+
+            &:hover {
+                .mat-form-field-flex {
+                    background-color: transparent;
+                }
+            }
+        }
+
+        &.mat-form-field-appearance-fill {
+            numeric-stepper {
+                .shadow::after {
+                    background-color: rgba(0, 0, 0, 0.04);
+                }
+            }
+        }
+    }
+}
