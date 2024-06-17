@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-core",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "HUG Angular - the core framework",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
