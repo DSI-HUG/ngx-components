@@ -74,16 +74,16 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [codeofconduct]: https://github.com/dsi-hug/ngx-components/blob/main/CODE_OF_CONDUCT.md
 [dsi-hug]: https://github.com/dsi-hug
 
-[npm-core]: https://www.npmjs.com/package/@hug/core
-[npm-list-loader]: https://www.npmjs.com/package/@hug/list-loader
-[npm-message-box]: https://www.npmjs.com/package/@hug/message-box
-[npm-numeric-stepper]: https://www.npmjs.com/package/@hug/numeric-stepper
-[npm-overlay]: https://www.npmjs.com/package/@hug/overlay
-[npm-snackbar]: https://www.npmjs.com/package/@hug/snackbar
-[npm-splitter]: https://www.npmjs.com/package/@hug/splitter
-[npm-status]: https://www.npmjs.com/package/@hug/status
-[npm-time-picker]: https://www.npmjs.com/package/@hug/time-picker
-[npm-tooltip]: https://www.npmjs.com/package/@hug/tooltip
+[npm-core]: https://www.npmjs.com/package/@hug/ngx-core
+[npm-list-loader]: https://www.npmjs.com/package/@hug/ngx-list-loader
+[npm-message-box]: https://www.npmjs.com/package/@hug/ngx-message-box
+[npm-numeric-stepper]: https://www.npmjs.com/package/@hug/ngx-numeric-stepper
+[npm-overlay]: https://www.npmjs.com/package/@hug/ngx-overlay
+[npm-snackbar]: https://www.npmjs.com/package/@hug/ngx-snackbar
+[npm-splitter]: https://www.npmjs.com/package/@hug/ngx-splitter
+[npm-status]: https://www.npmjs.com/package/@hug/ngx-status
+[npm-time-picker]: https://www.npmjs.com/package/@hug/ngx-time-picker
+[npm-tooltip]: https://www.npmjs.com/package/@hug/ngx-tooltip
 
 [npm-logo-core]: https://img.shields.io/npm/v/@hug/ngx-core.svg?color=blue&logo=npm
 [npm-logo-list-loader]: https://img.shields.io/npm/v/@hug/ngx-list-loader.svg?color=blue&logo=npm
