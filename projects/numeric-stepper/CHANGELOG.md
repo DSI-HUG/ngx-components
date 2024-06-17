@@ -3,7 +3,7 @@
 
 ### 🚀 Features
 
-- **numeric-stepper:** first commit ([f7b4413](https://github.com/DSI-HUG/ngx-components/commit/f7b4413))
+- **numeric-stepper**: first commit ([f7b4413](https://github.com/DSI-HUG/ngx-components/commit/f7b4413))
 
 
 ### ❤️  Thank You
