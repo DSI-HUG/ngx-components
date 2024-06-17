@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-message-box",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "HUG Angular - message box component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -11,7 +11,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/dsi-hug/ngx-components.git"
+        "url": "git+https://github.com/dsi-hug/ngx-components.git"
     },
     "keywords": [
         "angular",
@@ -31,7 +31,7 @@
         "test:ci": "ng test message-box --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build message-box -c=production",
         "build": "nx build:ng @hug/ngx-message-box --verbose",
-        "release": "nx release -p=@hug/ngx-message-box --verbose",
+        "release": "nx release -p=@hug/ngx-message-box --yes --verbose",
         "release:dry-run": "nx release -p=@hug/ngx-message-box --verbose --dry-run"
     },
     "peerDependencies": {
