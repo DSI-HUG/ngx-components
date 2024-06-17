@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-core",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "HUG Angular - the core framework",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -11,7 +11,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/dsi-hug/ngx-components.git"
+        "url": "git+https://github.com/dsi-hug/ngx-components.git"
     },
     "keywords": [
         "angular",
@@ -31,7 +31,7 @@
         "test:ci": "ng test core --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build core -c=production",
         "build": "nx build:ng @hug/ngx-core --verbose",
-        "release": "nx release -p=@hug/ngx-core --verbose",
+        "release": "nx release -p=@hug/ngx-core --yes --verbose",
         "release:dry-run": "nx release -p=@hug/ngx-core --verbose --dry-run"
     },
     "peerDependencies": {
