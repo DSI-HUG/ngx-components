@@ -1,48 +1,48 @@
 {
-  "name": "@hug/ngx-numeric-stepper",
-  "version": "1.1.0",
-  "description": "HUG Angular - numeric stepper component",
-  "homepage": "https://github.com/dsi-hug/ngx-components",
-  "license": "GPL-3.0-only",
-  "author": "HUG - Hôpitaux Universitaires Genève",
-  "contributors": [
-    "badisi (https://github.com/badisi)",
-    "vapkse (https://github.com/vapkse)"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dsi-hug/ngx-components.git"
-  },
-  "keywords": [
-    "angular",
-    "material",
-    "material design",
-    "components"
-  ],
-  "sideEffects": false,
-  "exports": {
-    ".": {
-      "sass": "./_numeric-stepper-theme.scss"
+    "name": "@hug/ngx-numeric-stepper",
+    "version": "1.1.1",
+    "description": "HUG Angular - numeric stepper component",
+    "homepage": "https://github.com/dsi-hug/ngx-components",
+    "license": "GPL-3.0-only",
+    "author": "HUG - Hôpitaux Universitaires Genève",
+    "contributors": [
+        "badisi (https://github.com/badisi)",
+        "vapkse (https://github.com/vapkse)"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dsi-hug/ngx-components.git"
+    },
+    "keywords": [
+        "angular",
+        "material",
+        "material design",
+        "components"
+    ],
+    "sideEffects": false,
+    "exports": {
+        ".": {
+            "sass": "./_numeric-stepper-theme.scss"
+        }
+    },
+    "scripts": {
+        "lint": "eslint . --fix",
+        "test": "ng test numeric-stepper",
+        "test:ci": "ng test numeric-stepper --watch=false --browsers=ChromeHeadless",
+        "build:ng": "ng build numeric-stepper -c=production",
+        "build": "nx build:ng @hug/ngx-numeric-stepper --verbose",
+        "release": "nx release -p=@hug/ngx-numeric-stepper --yes --verbose",
+        "release:dry-run": "nx release -p=@hug/ngx-numeric-stepper --verbose --dry-run"
+    },
+    "peerDependencies": {
+        "@angular/common": ">= 14",
+        "@angular/core": ">= 14",
+        "@angular/cdk": ">= 14",
+        "@angular/material": ">= 14",
+        "rxjs": ">= 7.0.0",
+        "@hug/ngx-core": "1.1.2"
+    },
+    "dependencies": {
+        "tslib": "^2.6.3"
     }
-  },
-  "scripts": {
-    "lint": "eslint . --fix",
-    "test": "ng test numeric-stepper",
-    "test:ci": "ng test numeric-stepper --watch=false --browsers=ChromeHeadless",
-    "build:ng": "ng build numeric-stepper -c=production",
-    "build": "nx build:ng @hug/ngx-numeric-stepper --verbose",
-    "release": "nx release -p=@hug/ngx-numeric-stepper --verbose",
-    "release:dry-run": "nx release -p=@hug/ngx-numeric-stepper --verbose --dry-run"
-  },
-  "peerDependencies": {
-    "@angular/common": ">= 14",
-    "@angular/core": ">= 14",
-    "@angular/cdk": ">= 14",
-    "@angular/material": ">= 14",
-    "rxjs": ">= 7.0.0",
-    "@hug/ngx-core": "1.1.0"
-  },
-  "dependencies": {
-    "tslib": "^2.6.3"
-  }
 }
