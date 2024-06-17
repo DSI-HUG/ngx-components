@@ -43,6 +43,6 @@
         "date-fns": "^2.30.0"
     },
     "dependencies": {
-        "tslib": "^2.6.2"
+        "tslib": "^2.6.3"
     }
 }
