@@ -48,7 +48,8 @@ jobs:
         - name: Checkout sources
           uses: actions/checkout@v4
           with:
-            persist-credentials: false
+            ref: ${{ github.ref_name }} # https://github.com/actions/checkout/issues/1327
+            persist-credentials: false # https://github.com/semantic-release/semantic-release/issues/2636
 
         - name: Synchronize peer dependencies
           working-directory: 'scripts'
