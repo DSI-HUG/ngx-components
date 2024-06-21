@@ -1,6 +1,2 @@
-/*
- * Public API Surface of lib
- */
-
-export * from './example/example.service';
-export * from './example/example.component';
+export * from './overlay.component';
+export * from './connection-position-pair';
