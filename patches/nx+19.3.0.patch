@@ -30,3 +30,41 @@ index e08aff8..de3cdc7 100644
 +    return commits.filter((c) => c.affectedFiles.some((f) => filesInReleaseGroup.has(f)));
  }
  exports.getCommitsRelevantToProjects = getCommitsRelevantToProjects;
+diff --git a/node_modules/nx/src/generators/utils/json.js b/node_modules/nx/src/generators/utils/json.js
+index 7db40ce..5e69931 100644
+--- a/node_modules/nx/src/generators/utils/json.js
++++ b/node_modules/nx/src/generators/utils/json.js
+@@ -1,6 +1,8 @@
+ "use strict";
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.updateJson = exports.writeJson = exports.readJson = void 0;
++let detectIndent_1;
++(async () => detectIndent_1 = ((await import('detect-indent')).default))();
+ const json_1 = require("../../utils/json");
+ /**
+  * Reads a json file, removes all comments and parses JSON.
+@@ -30,7 +32,10 @@ exports.readJson = readJson;
+  * @param options Optional JSON Serialize Options
+  */
+ function writeJson(tree, path, value, options) {
+-    const serialized = (0, json_1.serializeJson)(value, options);
++    // const serialized = (0, json_1.serializeJson)(value, options);
++    // tree.write(path, `${serialized}\n`);
++    const indent = options?.indent ?? detectIndent_1(tree.read(path, 'utf-8')).indent;
++    const serialized = (0, json_1.serializeJson)(value, { ...options, indent });
+     tree.write(path, `${serialized}\n`);
+ }
+ exports.writeJson = writeJson;
+diff --git a/node_modules/nx/src/utils/json.js b/node_modules/nx/src/utils/json.js
+index 9ea1345..0a51412 100644
+--- a/node_modules/nx/src/utils/json.js
++++ b/node_modules/nx/src/utils/json.js
+@@ -57,6 +57,7 @@ function formatParseError(input, parseError) {
+  * @returns the formatted JSON representation of the object
+  */
+ function serializeJson(input, options) {
+-    return JSON.stringify(input, null, options?.spaces ?? 2);
++    // return JSON.stringify(input, null, options?.spaces ?? 2);
++    return JSON.stringify(input, null, options?.indent ?? 2);
+ }
+ exports.serializeJson = serializeJson;
