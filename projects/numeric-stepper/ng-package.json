@@ -2,6 +2,7 @@
     "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
     "dest": "../../dist/numeric-stepper",
     "assets": [
+        "CHANGELOG.md",
         {
             "input": "src/",
             "glob": "_numeric-stepper-theme.scss",

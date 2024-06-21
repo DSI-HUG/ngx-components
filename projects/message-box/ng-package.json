@@ -2,6 +2,7 @@
     "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
     "dest": "../../dist/message-box",
     "assets": [
+        "CHANGELOG.md",
         {
             "input": "src/",
             "glob": "_message-box-theme.scss",

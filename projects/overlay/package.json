@@ -27,8 +27,7 @@
         "build:ng": "ng build overlay -c=production",
         "build": "nx build:ng @hug/ngx-overlay --verbose",
         "release": "nx release -p=@hug/ngx-overlay --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-overlay --verbose --dry-run",
-        "publish": "NODE_AUTH_TOKEN=XXX nx release -p=@hug/ngx-overlay publish --first-release --verbose"
+        "release:dry-run": "nx release -p=@hug/ngx-overlay --verbose --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",
