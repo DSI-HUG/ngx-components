@@ -44,7 +44,7 @@
         "@hug/eslint-config": "~17.0.3",
         "@nx/js": "^19.3.0",
         "@swc-node/register": "^1.9.2",
-        "@swc/core": "^1.6.1",
+        "@swc/core": "^1.6.3",
         "@types/jasmine": "~5.1.4",
         "@types/lodash-es": "^4.17.12",
         "husky": "~9.0.11",
