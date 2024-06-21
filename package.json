@@ -3,7 +3,8 @@
     "scripts": {
         "ncu": "npx npm-check-updates -i --target=minor --dep=dev,peer,optional,prod --format=group --packageFile='{,projects/**/}package.json'",
         "lint": "eslint . --fix",
-        "prepare": "husky || true"
+        "prepare": "husky || true",
+        "release:dry-run": "nx release --verbose --dry-run"
     },
     "workspaces": [
         "projects/core",
