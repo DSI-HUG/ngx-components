@@ -1,0 +1,32 @@
+diff --git a/node_modules/nx/bin/nx-cloud.js b/node_modules/nx/bin/nx-cloud.js
+old mode 100755
+new mode 100644
+diff --git a/node_modules/nx/src/command-line/release/changelog.js b/node_modules/nx/src/command-line/release/changelog.js
+index 3f43843..958744d 100644
+--- a/node_modules/nx/src/command-line/release/changelog.js
++++ b/node_modules/nx/src/command-line/release/changelog.js
+@@ -305,6 +305,7 @@ async function releaseChangelog(args) {
+                     }
+                     if (!commits) {
+                         commits = await getCommits(fromRef, toSHA);
++                        commits = commits.filter((c) => c.affectedFiles.find((f) => f.startsWith(project.data.root)));
+                     }
+                     const { fileMap } = await (0, file_map_utils_1.createFileMapUsingProjectGraph)(projectGraph);
+                     const fileToProjectMap = createFileToProjectMap(fileMap.projectFileMap);
+diff --git a/node_modules/nx/src/command-line/release/utils/shared.js b/node_modules/nx/src/command-line/release/utils/shared.js
+index e08aff8..de3cdc7 100644
+--- a/node_modules/nx/src/command-line/release/utils/shared.js
++++ b/node_modules/nx/src/command-line/release/utils/shared.js
+@@ -209,8 +209,9 @@ async function getCommitsRelevantToProjects(projectGraph, commits, projects) {
+      * - touch project files which are contained within the list of projects directly
+      * - touch non-project files and the commit is not scoped
+      */
+-    return commits.filter((c) => c.affectedFiles.some((f) => filesInReleaseGroup.has(f) ||
+-        (!c.scope &&
+-            fileMap.nonProjectFiles.some((nonProjectFile) => nonProjectFile.file === f))));
++    // return commits.filter((c) => c.affectedFiles.some((f) => filesInReleaseGroup.has(f) ||
++    //     (!c.scope &&
++    //         fileMap.nonProjectFiles.some((nonProjectFile) => nonProjectFile.file === f))));
++    return commits.filter((c) => c.affectedFiles.some((f) => filesInReleaseGroup.has(f)));
+ }
+ exports.getCommitsRelevantToProjects = getCommitsRelevantToProjects;
