@@ -26,6 +26,7 @@ on:
 
 env:
   HUSKY: 0
+  FORCE_COLOR: 3
 
 jobs:
   ci_release:
@@ -39,3 +40,23 @@ jobs:
       working-directory: 'projects/${{ inputs.package }}'
       dry-run: ${{ inputs.dry-run }}
       release: true
+
+  ci_sync_peer_deps:
+    needs: ci_release
+    runs-on: 'ubuntu-latest'
+    steps:
+        - name: Checkout sources
+          uses: actions/checkout@v4
+          with:
+            persist-credentials: false
+
+        - name: Synchronize peer dependencies
+          working-directory: 'scripts'
+          env:
+            GITHUB_TOKEN: ${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}
+          run: |
+            git config user.name 'dsi-hug-bot'
+            git config user.email 'dsi-hug-bot@users.noreply.github.com'
+            git remote set-url origin https://x-access-token:${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}@github.com/${{ github.repository }}
+            npm --prefix . i chalk
+            node ./sync-peer-deps.mjs
