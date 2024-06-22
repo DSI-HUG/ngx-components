@@ -35,3 +35,7 @@ jobs:
   ci_test_snackbar:
     needs: ci_test_core
     uses: ./.github/workflows/ci_test_snackbar.yml
+
+  ci_test_splitter:
+    needs: ci_test_core
+    uses: ./.github/workflows/ci_test_splitter.yml

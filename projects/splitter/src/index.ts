@@ -1,6 +1,3 @@
-/*
- * Public API Surface of lib
- */
-
-export * from './example/example.service';
-export * from './example/example.component';
+export * from './splitter-direction-type';
+export * from './split-area.directive';
+export * from './splitter.component';
