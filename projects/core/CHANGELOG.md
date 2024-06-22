@@ -1,3 +1,14 @@
+## 1.1.4 (2024-06-21)
+
+
+### 🛠️ Chore
+
+- **release:** include CHANGELOG.md in distribution package ([9897e06](https://github.com/DSI-HUG/ngx-components/commit/9897e06))
+
+
+### ❤️  Thank You
+
+- @Badisi
 
 
 ## 1.1.2 (2024-06-17)

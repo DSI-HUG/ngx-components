@@ -38,10 +38,10 @@
                         "title": "📖 Documentation"
                     }
                 },
-                "chore": {
+                "deps": {
                     "semverBump": "patch",
                     "changelog": {
-                        "title": "🛠️ Chore"
+                        "title": "🌱 Dependencies"
                     }
                 },
                 "refactor": {
@@ -63,7 +63,10 @@
                 "revert": {
                     "semverBump": "patch",
                     "changelog": false
-                }
+                },
+                "chore": false,
+                "build": false,
+                "ci": false
             }
         },
         "changelog": {
