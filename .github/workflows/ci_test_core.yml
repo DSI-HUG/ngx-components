@@ -31,3 +31,7 @@ jobs:
   ci_test_overlay:
     needs: ci_test_core
     uses: ./.github/workflows/ci_test_overlay.yml
+
+  ci_test_snackbar:
+    needs: ci_test_core
+    uses: ./.github/workflows/ci_test_snackbar.yml
