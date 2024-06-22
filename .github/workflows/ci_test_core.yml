@@ -43,3 +43,7 @@ jobs:
   ci_test_status:
     needs: ci_test_core
     uses: ./.github/workflows/ci_test_status.yml
+
+  ci_test_time-picker:
+    needs: ci_test_core
+    uses: ./.github/workflows/ci_test_time-picker.yml
