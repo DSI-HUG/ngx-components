@@ -1,6 +1,6 @@
-/*
- * Public API Surface of lib
- */
+export * from './status-detail';
 
-export * from './example/example.service';
-export * from './example/example.component';
+export * from './status.module';
+export * from './status.component';
+export * from './status.service';
+export * from './status.model';

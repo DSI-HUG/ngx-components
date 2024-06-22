@@ -1,0 +1,15 @@
+<message-box *ngIf="status" [type]="messageBoxType" [title]="status.title || ''" showCloseIcon="true" (close)="dialogRef.close()">
+    <p>{{status.text}}</p>
+
+    <p class="detail-error-title">Détails de l'erreur: </p>
+    <div class="detail-error-container">
+        {{status.date | date:'medium'}}
+        <pre>{{status.technicalText}}</pre>
+    </div>
+
+    <ng-template #actionsTemplate>
+        <button *ngIf="status.technicalText" mat-icon-button mat-button (click)="copyToClipboard(fullTextError)" type="button" [color]="'blank'" class="info">
+            <mat-icon>content_copy</mat-icon>
+        </button>
+    </ng-template>
+</message-box>

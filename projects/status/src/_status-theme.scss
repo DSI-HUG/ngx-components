@@ -1,0 +1,46 @@
+@use "@angular/material" as mat;
+
+@mixin theme($theme) {
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    $danger: map-get($theme, warn);
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $success: mat.define-palette(mat.$green-palette);
+    $warn: mat.define-palette(mat.$orange-palette);
+
+    app-status {
+        .snackbar {
+            color: mat.get-color-from-palette($primary, default-contrast);
+
+            &.snackbar-success {
+                background: mat.get-color-from-palette($success);
+                box-shadow:
+                    0 4px 20px 0 rgba(0, 0, 0, 0.14),
+                    0 7px 10px -5px rgba(mat.get-color-from-palette($success), 0.4);
+            }
+
+            &.snackbar-primary,
+            &.snackbar-info {
+                background: mat.get-color-from-palette($primary);
+                box-shadow:
+                    0 4px 20px 0 rgba(0, 0, 0, 0.14),
+                    0 7px 10px -5px rgba(mat.get-color-from-palette($primary), 0.4);
+            }
+
+            &.snackbar-warn {
+                background: mat.get-color-from-palette($warn);
+                box-shadow:
+                    0 4px 20px 0 rgba(0, 0, 0, 0.14),
+                    0 7px 10px -5px rgba(mat.get-color-from-palette($warn), 0.4);
+            }
+
+            &.snackbar-danger {
+                background: mat.get-color-from-palette($danger);
+                box-shadow:
+                    0 4px 20px 0 rgba(0, 0, 0, 0.14),
+                    0 7px 10px -5px rgba(mat.get-color-from-palette($danger), 0.4);
+            }
+        }
+    }
+}

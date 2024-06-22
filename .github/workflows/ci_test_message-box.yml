@@ -23,3 +23,7 @@ jobs:
       working-directory: projects/message-box
       runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
       node-versions: '[18, 20]'
+
+  ci_test_status:
+    needs: ci_test_message-box
+    uses: ./.github/workflows/ci_test_status.yml

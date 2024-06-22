@@ -1,0 +1,50 @@
+app-status {
+    .snackbar {
+        border: 0;
+        border-radius: 3px;
+        line-height: 20px;
+        min-width: 250px;
+        overflow: hidden;
+        padding: 1rem;
+        width: 30vw;
+        z-index: 1010;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        &:before {
+            font-size: 2rem;
+        }
+
+        >span {
+            b {
+                display: block;
+                font-size: 12px;
+                font-weight: 500;
+                padding-right: 2.5rem;
+                text-transform: uppercase;
+            }
+
+            p {
+                font-weight: 300;
+            }
+        }
+
+        .action-container {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+
+            mat-icon {
+                cursor: pointer;
+                margin-left: 0.5rem;
+                opacity: 0.8;
+                transition: opacity 200ms ease;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

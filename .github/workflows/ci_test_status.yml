@@ -1,4 +1,4 @@
-name: Test snackbar
+name: Test status
 
 on:
   workflow_dispatch:
@@ -9,22 +9,18 @@ on:
     tags-ignore:
       - '**'
     paths:
-      - '.github/workflows/ci_test_snackbar.yml'
-      - 'projects/snackbar/**'
+      - '.github/workflows/ci_test_status.yml'
+      - 'projects/status/**'
 
 concurrency:
-  group: ci-test-snackbar-group-${{ github.ref }}
+  group: ci-test-status-group-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  ci_test_snackbar:
+  ci_test_status:
     if: "${{ !contains(github.event.head_commit.message, 'chore(release): publish') }}"
     uses: dsi-hug/action/.github/workflows/action.yml@v1
     with:
-      working-directory: projects/snackbar
+      working-directory: projects/status
       runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
       node-versions: '[18, 20]'
-
-  ci_test_status:
-    needs: ci_test_snackbar
-    uses: ./.github/workflows/ci_test_status.yml

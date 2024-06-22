@@ -1,0 +1,50 @@
+app-status-detail {
+    display: flex;
+    flex: 1 1 auto;
+    height: 100%;
+
+    message-box {
+        overflow: hidden;
+        width: 100%;
+
+        #msgbox {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+
+            .mat-card-content {
+                display: flex;
+                flex-direction: column;
+                flex: 1 1 auto;
+                padding: 1rem;
+            }
+
+            .mat-card-title {
+                padding: 1rem;
+            }
+
+            .detail-error-title {
+                font-weight: 600;
+            }
+
+            .detail-error-container {
+                overflow: scroll;
+                background-color: #e3ecf0;
+                color: rgba(0, 0, 0, 0.94);
+                padding: 1rem;
+                overflow: auto;
+                flex: 1 1 auto;
+
+                pre {
+                    white-space: normal;
+                }
+            }
+        }
+    }
+}
+
+.status-panel {
+    .mat-dialog-container {
+        padding: 0;
+    }
+}
