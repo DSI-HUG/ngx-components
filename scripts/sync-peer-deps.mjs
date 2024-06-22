@@ -14,7 +14,7 @@
 import chalk from 'chalk';
 import { spawnSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const { yellow, blue, red, green, gray, white, bgBlue, bgWhite } = chalk;
@@ -43,14 +43,15 @@ const getWorkspaces = () => {
         console.error(red('No workspaces found in package.json'));
     }
     return (rootPackageJson.workspaces || []).map(workspace => ({
-        packageJsonPath: resolve(rootPath, workspace, 'package.json'),
-        packageJson: JSON.parse(readFileSync(resolve(rootPath, workspace, 'package.json'), 'utf8'))
+        packageJsonPath: join(workspace, 'package.json'),
+        packageJson: JSON.parse(readFileSync(join(workspace, 'package.json'), 'utf8'))
     }));
 };
 
 (() => {
     console.log(`\n${bgBlue(' > ')} Synchronizing peer dependencies`);
     let changesDetected = false;
+    let packageJsonFiles = [];
     const workspaces = getWorkspaces();
     workspaces.forEach(workspace => {
         workspaces.forEach(workspace2 => {
@@ -63,7 +64,10 @@ const getWorkspaces = () => {
                     const versionRange = version.match(/(^[^\d]*)\d.*/)[1];
                     const newVersion = `${versionRange}${workspace.packageJson.version}`;
 
-                    console.log(blue.bold(`\n[${workspace2.packageJson.name}]`));
+                    if (!packageJsonFiles.length) {
+                        console.log(`\n${blue(workspace.packageJson.name)}`);
+                    }
+
                     console.log(`\n${bgWhite(' > ')} ${white('UPDATE')} ${workspace2.packageJsonPath}${dryRun ? yellow(' [dry-run]') : ''}\n`);
                     console.log(gray('  "peerDependencies": {'));
                     console.log(red(`-    "${workspace.packageJson.name}": "${version}"`));
@@ -74,14 +78,23 @@ const getWorkspaces = () => {
                         writeFileSync(workspace2.packageJsonPath, JSON.stringify(workspace2.packageJson, null, 4), { encoding: 'utf8' });
                     }
 
-                    console.log(`\n${bgWhite(' > ')} Staging changed files with git${dryRun ? yellow(' [dry-run]') : ''}`);
-                    execCommand('git', ['add', workspace2.packageJsonPath]);
-
-                    console.log(`\n${bgWhite(' > ')} Committing changes with git${dryRun ? yellow(' [dry-run]') : ''}`);
-                    execCommand('git', ['commit', '--message', `deps(${workspace.packageJson.name}): upgrade to v${workspace.packageJson.version}`]);
+                    packageJsonFiles.push(workspace2.packageJsonPath);
                 }
             }
         });
+
+        if (packageJsonFiles.length) {
+            console.log(`\n${bgWhite(' > ')} Updating npm lock file${dryRun ? yellow(' [dry-run]') : ''}`);
+            execCommand('npm', ['install', '--package-lock-only']);
+
+            console.log(`\n${bgWhite(' > ')} Staging changed files with git${dryRun ? yellow(' [dry-run]') : ''}`);
+            execCommand('git', ['add', 'package-lock.json', packageJsonFiles.join(' ')]);
+
+            console.log(`\n${bgWhite(' > ')} Committing changes with git${dryRun ? yellow(' [dry-run]') : ''}`);
+            execCommand('git', ['commit', '--message', `deps(${workspace.packageJson.name}): upgrade to v${workspace.packageJson.version}`]);
+
+            packageJsonFiles = [];
+        }
     });
 
     if (changesDetected) {
