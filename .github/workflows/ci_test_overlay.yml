@@ -1,33 +1,26 @@
-name: Test core
+name: Test overlay
 
 on:
   workflow_dispatch:
+  workflow_call:
   push:
     branches:
       - '**'
     tags-ignore:
       - '**'
     paths:
-      - '.github/workflows/ci_test_core.yml'
-      - 'projects/core/**'
+      - '.github/workflows/ci_test_overlay.yml'
+      - 'projects/overlay/**'
 
 concurrency:
-  group: ci-test-core-group-${{ github.ref }}
+  group: ci-test-overlay-group-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  ci_test_core:
+  ci_test_overlay:
     if: "${{ !contains(github.event.head_commit.message, 'chore(release): publish') }}"
     uses: dsi-hug/action/.github/workflows/action.yml@v1
     with:
-      working-directory: projects/core
+      working-directory: projects/overlay
       runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
       node-versions: '[18, 20]'
-
-  ci_test_numeric_stepper:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_numeric-stepper.yml
-
-  ci_test_overlay:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_overlay.yml
