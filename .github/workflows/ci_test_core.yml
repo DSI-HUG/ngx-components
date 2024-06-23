@@ -40,13 +40,19 @@ jobs:
     needs: ci_test_core
     uses: ./.github/workflows/ci_test_splitter.yml
 
-  ci_test_status:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_status.yml
+  #
+  # Not needed here because will be triggered by `ci_test_snackbar`
+  #
+  # ci_test_status:
+  #   needs: ci_test_core
+  #   uses: ./.github/workflows/ci_test_status.yml
 
-  ci_test_time-picker:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_time-picker.yml
+  #
+  # Not needed here because will be triggered by `ci_test_numeric-stepper`
+  #
+  # ci_test_time-picker:
+  #   needs: ci_test_core
+  #   uses: ./.github/workflows/ci_test_time-picker.yml
 
   ci_test_tooltip:
     needs: ci_test_core
