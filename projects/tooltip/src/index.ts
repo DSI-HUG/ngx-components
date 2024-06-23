@@ -1,6 +1,4 @@
-/*
- * Public API Surface of lib
- */
-
-export * from './example/example.service';
-export * from './example/example.component';
+export * from './tooltip.model';
+export * from './tooltip-component.interface';
+export * from './tooltip.service';
+export * from './tooltip.directive';

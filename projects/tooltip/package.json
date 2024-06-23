@@ -11,7 +11,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/dsi-hug/ngx-components.git"
+        "url": "git+https://github.com/dsi-hug/ngx-components.git"
     },
     "keywords": [
         "angular",
@@ -24,11 +24,19 @@
         "lint": "eslint . --fix",
         "test": "ng test tooltip",
         "test:ci": "ng test tooltip --watch=false --browsers=ChromeHeadless",
-        "build": "ng build tooltip -c production"
+        "build:ng": "ng build tooltip -c=production",
+        "build": "nx build:ng @hug/ngx-tooltip --verbose",
+        "release": "nx release -p=@hug/ngx-tooltip --yes --verbose",
+        "release:dry-run": "nx release -p=@hug/ngx-tooltip --verbose --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": "^14.3.0",
-        "@angular/core": "^14.3.0"
+        "@angular/common": ">= 14",
+        "@angular/core": ">= 14",
+        "@angular/cdk": ">= 14",
+        "@angular/material": ">= 14",
+        "rxjs": ">= 7.0.0",
+        "lodash-es": "^4.17.21",
+        "@hug/ngx-core": "1.1.4"
     },
     "dependencies": {
         "tslib": "^2.6.3"
