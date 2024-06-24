@@ -1,3 +1,15 @@
+## 1.1.5 (2024-06-24)
+
+
+### 🐛 Fixes
+
+- fix some issues ([74cc405](https://github.com/DSI-HUG/ngx-components/commit/74cc405))
+
+
+### ❤️  Thank You
+
+- Badisi
+
 ## 1.1.4 (2024-06-21)
 
 
