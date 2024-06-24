@@ -89,5 +89,5 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}@github.com/${{ github.repository }}
           npm install
           git add package.json package-lock.json
-          git commit --message chore: synchronize package.json and package-lock.json
+          git commit --message "chore: synchronize package.json and package-lock.json"
           git push --follow-tags --no-verify --atomic
