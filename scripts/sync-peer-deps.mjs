@@ -14,7 +14,7 @@
 import chalk from 'chalk';
 import { spawnSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const { yellow, blue, red, green, gray, white, bgBlue, bgWhite } = chalk;
@@ -43,8 +43,8 @@ const getWorkspaces = () => {
         console.error(red('No workspaces found in package.json'));
     }
     return (rootPackageJson.workspaces || []).map(workspace => ({
-        packageJsonPath: join(workspace, 'package.json'),
-        packageJson: JSON.parse(readFileSync(join(workspace, 'package.json'), 'utf8'))
+        packageJsonPath: resolve(rootPath, workspace, 'package.json'),
+        packageJson: JSON.parse(readFileSync(resolve(rootPath, workspace, 'package.json'), 'utf8'))
     }));
 };
 
@@ -88,7 +88,7 @@ const getWorkspaces = () => {
             execCommand('npm', ['install', '--package-lock-only']);
 
             console.log(`\n${bgWhite(' > ')} Staging changed files with git${dryRun ? yellow(' [dry-run]') : ''}`);
-            execCommand('git', ['add', 'package-lock.json', packageJsonFiles.join(' ')]);
+            execCommand('git', ['add', resolve(rootPath, 'package-lock.json'), ...packageJsonFiles]);
 
             console.log(`\n${bgWhite(' > ')} Committing changes with git${dryRun ? yellow(' [dry-run]') : ''}`);
             execCommand('git', ['commit', '--message', `deps(${workspace.packageJson.name}): upgrade to v${workspace.packageJson.version}`]);
