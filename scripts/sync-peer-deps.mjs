@@ -85,7 +85,7 @@ const getWorkspaces = () => {
 
         if (packageJsonFiles.length) {
             console.log(`\n${bgWhite(' > ')} Updating npm lock file${dryRun ? yellow(' [dry-run]') : ''}`);
-            execCommand('npm', ['install', '--package-lock-only']);
+            execCommand('npm', ['install']);
 
             console.log(`\n${bgWhite(' > ')} Staging changed files with git${dryRun ? yellow(' [dry-run]') : ''}`);
             execCommand('git', ['add', resolve(rootPath, 'package-lock.json'), ...packageJsonFiles]);
