@@ -12,23 +12,30 @@ export class TooltipDirective extends Destroy {
 
     @Input('app-tooltip') public openTooltip$?: (element: HTMLElement) => Observable<void>;
 
-    public constructor(elementRef: ElementRef) {
+    public constructor(elementRef: ElementRef<HTMLElement>) {
         super();
 
-        const triggerElement = elementRef.nativeElement as HTMLElement;
+        const triggerElement = elementRef.nativeElement;
 
         // Install global CSS if not already present
         const docEl = triggerElement.ownerDocument;
         if (!docEl.head.querySelector('style[data-ngx-tooltip]')) {
             const styleEl = docEl.createElement('style');
             styleEl.setAttribute('data-ngx-tooltip', '');
-            styleEl.textContent =
-                '.tooltip-opening { opacity: 0; visibility: hidden; transition: opacity 200ms linear; } ' +
-                '.tooltip-opening.tooltip-opened { opacity: 1; visibility: visible; }';
+            styleEl.textContent = `.tooltip-opening {
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 200ms linear;
+            }
+            .tooltip-opening.tooltip-opened {
+                opacity: 1;
+                visibility: visible;
+            }`;
             docEl.head.appendChild(styleEl);
         }
 
         const leave$ = fromEvent<MouseEvent>(triggerElement, 'mouseleave');
+
         fromEvent<MouseEvent>(triggerElement, 'mouseenter').pipe(
             switchMap(() => timer(this.delay).pipe(
                 take(1),

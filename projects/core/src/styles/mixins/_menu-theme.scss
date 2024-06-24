@@ -1,34 +1,35 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 @mixin menu-theme($theme) {
     $primary: map-get($theme, primary);
 
-    .ngx-overlay-container {
+    .ngx-menu,
+    [ngx-menu] {
         .menu-content {
-            background-color: #FFF;
+            background-color: #fff;
             border-color: rgba(0, 0, 0, 0.3);
 
-            >ul,
+            > ul,
             &ul {
                 li {
-                    background-color: #FFF;
+                    background-color: #fff;
                     color: mat.get-color-from-palette($primary);
 
                     &:hover {
                         background-color: mat.get-color-from-palette($primary);
-                        color: #FFF;
+                        color: #fff;
                     }
                 }
             }
 
-            >button,
-            >a {
-                background-color: #FFF;
+            > button,
+            > a {
+                background-color: #fff;
                 color: mat.get-color-from-palette($primary);
 
                 &:hover {
                     background-color: mat.get-color-from-palette($primary);
-                    color: #FFF;
+                    color: #fff;
                 }
             }
         }

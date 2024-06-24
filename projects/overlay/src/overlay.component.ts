@@ -1,7 +1,7 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MediaService } from '@hug/ngx-core';
 import { BehaviorSubject, combineLatestWith, delay, distinctUntilChanged, EMPTY, map, mergeWith, Observable, of, ReplaySubject, shareReplay, startWith, Subject, switchMap } from 'rxjs';
 
@@ -11,6 +11,7 @@ export interface ShowParams {
     event?: MouseEvent;
     offsetX?: number;
     offsetY?: number;
+    context?: unknown;
 }
 
 interface OverlayInfos {
@@ -18,6 +19,7 @@ interface OverlayInfos {
     offsetY: number;
     origin: CdkOverlayOrigin;
     width: string;
+    context: unknown;
 }
 
 @Component({
@@ -44,6 +46,8 @@ export class OverlayComponent implements OnChanges {
     @Input() public overlayContainerClass?: string;
 
     @Input() public isMobile?: BooleanInput;
+
+    @ContentChild('content') protected contentTemplate?: TemplateRef<unknown>;
 
     /** Overlay pane containing the options. */
     @ViewChild(CdkConnectedOverlay, { static: true }) private overlay?: CdkConnectedOverlay;
@@ -115,7 +119,8 @@ export class OverlayComponent implements OnChanges {
                         offsetX: showParams.offsetX && +showParams.offsetX || 0,
                         offsetY: showParams.offsetY && +showParams.offsetY || 0,
                         origin: new CdkOverlayOrigin(new ElementRef((isMobile && document.body) ?? showParams.event?.target ?? ownerElement ?? this.elementRef.nativeElement)),
-                        width: isMobile ? this.widthForMobile : this.width
+                        width: isMobile ? this.widthForMobile : this.width,
+                        context: showParams.context
                     } as OverlayInfos))
                 );
 
@@ -180,11 +185,11 @@ export class OverlayComponent implements OnChanges {
     }
 
     /** Affiche le dialog. */
-    public show(eventOrOffsetX?: MouseEvent | number, offsetY?: number): void {
+    public show(eventOrOffsetX?: MouseEvent | number, offsetY?: number, context?: unknown): void {
         if (typeof eventOrOffsetX === 'number') {
-            this.show$.next({ offsetX: eventOrOffsetX, offsetY });
+            this.show$.next({ offsetX: eventOrOffsetX, offsetY, context });
         } else {
-            this.show$.next({ event: eventOrOffsetX, offsetY });
+            this.show$.next({ event: eventOrOffsetX, offsetY, context });
         }
     }
 

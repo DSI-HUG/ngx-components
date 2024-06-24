@@ -1,43 +1,47 @@
 @mixin menu() {
-    .ngx-overlay-container {
-        .menu-content {
-            overflow-x: hidden;
-            overflow-y: auto;
-            height: 100%;
-            display: block;
-            border-style: solid;
-            border-width: 1px;
-            box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-            padding: 0.5rem 0;
+    .ngx-menu,
+    [ngx-menu] {
+        .cdk-overlay-pane {
+            display: flex;
+            flex-direction: column;
 
-            >button,
-            >a {
-                cursor: pointer;
+            .menu-content {
+                overflow-x: hidden;
+                overflow-y: auto;
                 display: block;
-                border: none;
-                width: 100%;
-                padding: 0.5rem 1rem 0.5rem 1rem;
-            }
+                border-style: solid;
+                border-width: 1px;
+                box-shadow:
+                    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+                    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+                height: 100%;
 
-            >a {
-                text-decoration: none;
-            }
+                .menu-header,
+                .menu-footer {
+                    flex: 0 0 auto;
+                    padding: 0.5rem;
+                }
 
-            >ul,
-            &ul {
-                padding: 0;
-                margin: 0;
-
-                li {
-                    cursor: pointer;
-                    align-items: center;
+                > ul,
+                &ul {
+                    padding: 0;
+                    margin: 0;
                     display: flex;
-                    justify-content: flex-start;
-                    list-style-type: none;
-                    padding: 0.5rem 1rem 0.5rem 0.5rem;
+                    flex-direction: column;
+                    flex: 1 1 auto;
 
-                    md-icon {
-                        margin: 0 0.5rem;
+                    li {
+                        cursor: pointer;
+                        align-items: center;
+                        display: flex;
+                        justify-content: flex-start;
+                        list-style-type: none;
+                        padding: 0.5rem;
+
+                        md-icon {
+                            margin: 0 0.5rem;
+                        }
                     }
                 }
             }
