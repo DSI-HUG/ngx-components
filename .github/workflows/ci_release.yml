@@ -41,8 +41,38 @@ jobs:
       dry-run: ${{ inputs.dry-run }}
       release: true
 
-  ci_sync_peer_deps:
+  #
+  # nx does not update package-lock file correctly.
+  # @see https://github.com/nrwl/nx/issues/26660
+  #
+  # This results in the following error, next time deps are installed:
+  #  “npm error `npm ci` can only install packages when your package.json and package-lock.json or
+  #   npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing."
+  #
+  ci_update_package_lock_file:
     needs: ci_release
+    runs-on: 'ubuntu-latest'
+    steps:
+        - name: Checkout sources
+          uses: actions/checkout@v4
+          with:
+            ref: ${{ github.ref_name }} # https://github.com/actions/checkout/issues/1327
+            persist-credentials: false # https://github.com/semantic-release/semantic-release/issues/2636
+
+        - name: Synchronize package.json and package-lock.json
+          env:
+            GITHUB_TOKEN: ${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}
+          run: |
+            git config user.name 'dsi-hug-bot'
+            git config user.email 'dsi-hug-bot@users.noreply.github.com'
+            git remote set-url origin https://x-access-token:${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}@github.com/${{ github.repository }}
+            npm install
+            git add package.json package-lock.json
+            git commit --message chore: synchronize package.json and package-lock.json
+            git push --follow-tags --no-verify --atomic
+
+  ci_sync_peer_deps:
+    needs: ci_update_package_lock_file
     runs-on: 'ubuntu-latest'
     steps:
         - name: Checkout sources
