@@ -1,5 +1,4 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
-import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ContentChildren, ElementRef, EventEmitter, HostBinding, Input, Output, QueryList, ViewEncapsulation } from '@angular/core';
 import { Destroy } from '@hug/ngx-core';
 import { filter, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
@@ -22,11 +21,7 @@ interface DraggingEvent {
     encapsulation: ViewEncapsulation.None,
     selector: 'splitter',
     styleUrls: ['./splitter.component.scss'],
-    templateUrl: './splitter.component.html',
-    standalone: true,
-    imports: [
-        NgIf
-    ]
+    templateUrl: './splitter.component.html'
 })
 export class SplitterComponent extends Destroy {
     /**
@@ -36,7 +31,7 @@ export class SplitterComponent extends Destroy {
     /**
      * Event triggered during the cursor's drag
      */
-    @Output() public readonly dragProgress = new EventEmitter(false);
+    @Output() public readonly dragProgress = new EventEmitter<number>(false);
     /**
      * Event triggered when the user stop to drag the cursor
      */
@@ -148,9 +143,12 @@ export class SplitterComponent extends Destroy {
                     tap(event => {
                         const pos = this.direction === 'horizontal' ? event.pageX || event.screenX : event.pageY || event.screenY;
                         const diffInPixels = startPos - pos;
-                        areaA.size = Math.min(100, Math.max(0, 100 * (startSizeInPixelsA - diffInPixels) / containerSizeInPixels));
-                        areaB.size = Math.min(100, Math.max(0, 100 * (startSizeInPixelsB + diffInPixels) / containerSizeInPixels));
-                        this.dragProgress.emit();
+                        const areaSizeInPixelsA = startSizeInPixelsA - diffInPixels;
+                        const areaSizeInPixelsB = startSizeInPixelsB + diffInPixels;
+                        areaA.size = Math.min(100, Math.max(0, 100 * areaSizeInPixelsA / containerSizeInPixels));
+                        areaB.size = Math.min(100, Math.max(0, 100 * areaSizeInPixelsB / containerSizeInPixels));
+                        const percentWithTwoDigits = Math.round(areaA.size * 100) / 100;
+                        this.dragProgress.emit(percentWithTwoDigits);
                     }),
                     takeUntil(stopDragging$)
                 );

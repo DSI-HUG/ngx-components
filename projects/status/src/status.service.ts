@@ -58,7 +58,7 @@ export class StatusService extends Destroy {
         this.showStatus({ type: 'danger', title, text, duration, technicalText, actions });
     }
 
-    protected showStatus(status: Status): void {
+    public showStatus(status: Status): void {
         this.lazyLoaderService.loadModule$(
             import('./status.module').then(m => m.StatusModule)
         ).pipe(
