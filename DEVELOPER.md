@@ -1,19 +1,28 @@
 # Development
 
-This document describes how you can test, build and publish the library and its documentation.
+This document describes how you can create, lint, test, build and publish packages in this project.
 
 ## Prerequisite
 
-Before you can build and test this library you must install and configure the following products on your development machine:
+Before you can start you must install and configure the following products on your development machine:
 
 * [Git][git]
 * [Node.js][nodejs]
 
-You will then need to install the required dependencies:
+You will then need to clone this project and install the required dependencies:
 
 ```sh
-cd <library-path>
+git clone <repository_url> <dir_name>
+cd <dir_name>
 npm install
+```
+
+## Creating a new package
+
+Create a new package using the built-in schematic tool.
+
+```sh
+run run new-package
 ```
 
 ## Linting/verifying source code
@@ -24,22 +33,34 @@ Check that the code is properly formatted and adheres to coding style.
 npm run lint
 ```
 
-## Unit testing
-
-Unit tests can be executed with the following command:
+You can also verify it per package:
 
 ```sh
-npm run test --prefix=projects/<PROJECT_NAME>
+npm run lint -w=projects/<package_name>
 ```
 
-## Publishing the library to NPM repository
+## Unit testing a package
+
+Unit testing a package can be executed with the following command:
+
+```sh
+npm run test -w=projects/<package_name>
+```
+
+## Building a package
+
+Building a package can be executed with the following command:
+
+```sh
+npm run build -w=projects/<package_name>
+```
+
+## Publishing a package to NPM repository
 
 This project comes with automatic continuous delivery (CD) using *GitHub Actions*.
 
-1. Bump the library version in `./projects/<PROJECT_NAME>/package.json`
-2. Push the changes
-3. TODO
-4. Watch the results in: [Actions](https://github.com/dsi-hug/ngx-components/actions)
+1. Trigger a new: [Workflow release](https://github.com/dsi-hug/ngx-components/actions/workflows/ci_release.yml)
+2. Watch the results in: [Actions](https://github.com/dsi-hug/ngx-components/actions)
 
 
 
