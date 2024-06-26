@@ -37,6 +37,9 @@
             ],
             "@hug/ngx-tooltip": [
                 "projects/tooltip/src"
+            ],
+            "@hug/ngx-user-card": [
+                "projects/user-card/src"
             ]
         }
     }

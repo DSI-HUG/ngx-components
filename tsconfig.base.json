@@ -57,6 +57,9 @@
             ],
             "@hug/ngx-tooltip": [
                 "dist/tooltip"
+            ],
+            "@hug/ngx-user-card": [
+                "dist/user-card"
             ]
         }
     },

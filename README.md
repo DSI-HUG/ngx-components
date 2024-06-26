@@ -33,6 +33,7 @@ Package | Version | Downloads | Tests
 [@hug/ngx-status](/projects/status) | [![npm version][npm-logo-status]][npm-status] | [![npm downloads][npm-dl-logo-status]][npm-dl-status] | [![build status][tests-logo-status]][tests-status]
 [@hug/ngx-time-picker](/projects/time-picker) | [![npm version][npm-logo-time-picker]][npm-time-picker] | [![npm downloads][npm-dl-logo-time-picker]][npm-dl-time-picker] | [![build status][tests-logo-time-picker]][tests-time-picker]
 [@hug/ngx-tooltip](/projects/tooltip) | [![npm version][npm-logo-tooltip]][npm-tooltip] | [![npm downloads][npm-dl-logo-tooltip]][npm-dl-tooltip] | [![build status][tests-logo-tooltip]][tests-tooltip]
+[@hug/ngx-user-card](/projects/user-card) | [![npm version][npm-logo-user-card]][npm-user-card] | [![npm downloads][npm-dl-logo-user-card]][npm-dl-user-card] | [![build status][tests-logo-user-card]][tests-user-card]
 
 </div>
 
@@ -83,6 +84,13 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [tests-core]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_core.yml
 [tests-logo-core]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_core.yml/badge.svg
 
+[npm-layout]: https://www.npmjs.com/package/@hug/ngx-layout
+[npm-logo-layout]: https://img.shields.io/npm/v/@hug/ngx-layout.svg?color=blue&logo=npm
+[npm-dl-layout]: https://npmcharts.com/compare/@hug/ngx-layout?minimal=true
+[npm-dl-logo-layout]: https://img.shields.io/npm/dw/@hug/ngx-layout.svg?color=7986CB&logo=npm&label=npm
+[tests-layout]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_layout.yml
+[tests-logo-layout]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_layout.yml/badge.svg
+
 [npm-list-loader]: https://www.npmjs.com/package/@hug/ngx-list-loader
 [npm-logo-list-loader]: https://img.shields.io/npm/v/@hug/ngx-list-loader.svg?color=blue&logo=npm
 [npm-dl-list-loader]: https://npmcharts.com/compare/@hug/ngx-list-loader?minimal=true
@@ -110,6 +118,13 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [npm-dl-logo-overlay]: https://img.shields.io/npm/dw/@hug/ngx-overlay.svg?color=7986CB&logo=npm&label=npm
 [tests-overlay]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_overlay.yml
 [tests-logo-overlay]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_overlay.yml/badge.svg
+
+[npm-sidenav]: https://www.npmjs.com/package/@hug/ngx-sidenav
+[npm-logo-sidenav]: https://img.shields.io/npm/v/@hug/ngx-sidenav.svg?color=blue&logo=npm
+[npm-dl-sidenav]: https://npmcharts.com/compare/@hug/ngx-sidenav?minimal=true
+[npm-dl-logo-sidenav]: https://img.shields.io/npm/dw/@hug/ngx-sidenav.svg?color=7986CB&logo=npm&label=npm
+[tests-sidenav]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_sidenav.yml
+[tests-logo-sidenav]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_sidenav.yml/badge.svg
 
 [npm-snackbar]: https://www.npmjs.com/package/@hug/ngx-snackbar
 [npm-logo-snackbar]: https://img.shields.io/npm/v/@hug/ngx-snackbar.svg?color=blue&logo=npm
@@ -146,16 +161,9 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [tests-tooltip]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_tooltip.yml
 [tests-logo-tooltip]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_tooltip.yml/badge.svg
 
-[npm-sidenav]: https://www.npmjs.com/package/@hug/ngx-sidenav
-[npm-logo-sidenav]: https://img.shields.io/npm/v/@hug/ngx-sidenav.svg?color=blue&logo=npm
-[npm-dl-sidenav]: https://npmcharts.com/compare/@hug/ngx-sidenav?minimal=true
-[npm-dl-logo-sidenav]: https://img.shields.io/npm/dw/@hug/ngx-sidenav.svg?color=7986CB&logo=npm&label=npm
-[tests-sidenav]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_sidenav.yml
-[tests-logo-sidenav]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_sidenav.yml/badge.svg
-
-[npm-layout]: https://www.npmjs.com/package/@hug/ngx-layout
-[npm-logo-layout]: https://img.shields.io/npm/v/@hug/ngx-layout.svg?color=blue&logo=npm
-[npm-dl-layout]: https://npmcharts.com/compare/@hug/ngx-layout?minimal=true
-[npm-dl-logo-layout]: https://img.shields.io/npm/dw/@hug/ngx-layout.svg?color=7986CB&logo=npm&label=npm
-[tests-layout]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_layout.yml
-[tests-logo-layout]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_layout.yml/badge.svg
+[npm-user-card]: https://www.npmjs.com/package/@hug/ngx-user-card
+[npm-logo-user-card]: https://img.shields.io/npm/v/@hug/ngx-user-card.svg?color=blue&logo=npm
+[npm-dl-user-card]: https://npmcharts.com/compare/@hug/ngx-user-card?minimal=true
+[npm-dl-logo-user-card]: https://img.shields.io/npm/dw/@hug/ngx-user-card.svg?color=7986CB&logo=npm&label=npm
+[tests-user-card]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_user-card.yml
+[tests-logo-user-card]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_user-card.yml/badge.svg

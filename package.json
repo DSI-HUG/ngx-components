@@ -20,7 +20,8 @@
         "projects/splitter",
         "projects/status",
         "projects/time-picker",
-        "projects/tooltip"
+        "projects/tooltip",
+        "projects/user-card"
     ],
     "dependencies": {
         "@angular/animations": "~14.3.0",

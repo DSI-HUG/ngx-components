@@ -1,0 +1,121 @@
+user-card {
+    display: block;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 350px;
+    word-break: break-word;
+
+    >.user-card-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-weight: 400;
+        font-size: 12px;
+
+        &.expandable {
+            cursor: pointer;
+        }
+
+        >.header-badge {
+            display: flex;
+            flex: 0 0 auto;
+            width: 16px;
+            height: 16px;
+            margin: 10px;
+            border-radius: 12px;
+        }
+
+        >.header-infos {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+
+            >.header-fullname {
+                display: flex;
+                align-items: baseline;
+                font-weight: 600;
+                font-size: 1rem;
+
+                >.header-initials {
+                    font-size: 12px;
+                    margin-left: 5px;
+                    font-weight: 400;
+                    text-transform: uppercase;
+                }
+            }
+
+            >.header-function {
+                font-size: 14px;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        >.header-icon {
+            display: flex;
+            transition: rotate 300ms ease-in-out;
+
+            &.expanded {
+                rotate: -180deg;
+            }
+        }
+    }
+
+    >.user-card-wrapper {
+        overflow: hidden;
+    }
+
+    hr {
+        border-bottom: 1px;
+        margin: 1rem 0;
+    }
+
+    .user-card-content {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+        "service type"
+        "phone mobile"
+        "email email"
+        "address address";
+        row-gap: 12px;
+        column-gap: .5rem;
+
+        .label {
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 14px;
+        }
+
+        .value {
+            line-height: 20px;
+        }
+
+        >.content-service {
+            grid-area: service;
+        }
+
+        >.content-type {
+            grid-area: type;
+        }
+
+        >.content-phone {
+            grid-area: phone;
+        }
+
+        >.content-mobile {
+            grid-area: mobile;
+        }
+
+        >.content-email {
+            grid-area: email;
+        }
+
+        >.content-address {
+            grid-area: address;
+        }
+    }
+}
