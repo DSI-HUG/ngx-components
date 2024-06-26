@@ -26,12 +26,12 @@ Package | Version | Downloads | Tests
 [@hug/ngx-message-box](/projects/message-box) | [![npm version][npm-logo-message-box]][npm-message-box] | [![npm downloads][npm-dl-logo-message-box]][npm-dl-message-box] | [![build status][tests-logo-message-box]][tests-message-box]
 [@hug/ngx-numeric-stepper](/projects/numeric-stepper) | [![npm version][npm-logo-numeric-stepper]][npm-numeric-stepper] | [![npm downloads][npm-dl-logo-numeric-stepper]][npm-dl-numeric-stepper] | [![build status][tests-logo-numeric-stepper]][tests-numeric-stepper]
 [@hug/ngx-overlay](/projects/overlay) | [![npm version][npm-logo-overlay]][npm-overlay] | [![npm downloads][npm-dl-logo-overlay]][npm-dl-overlay] | [![build status][tests-logo-overlay]][tests-overlay]
+[@hug/ngx-sidenav](/projects/sidenav) | [![npm version][npm-logo-sidenav]][npm-sidenav] | [![npm downloads][npm-dl-logo-sidenav]][npm-dl-sidenav] | [![build status][tests-logo-sidenav]][tests-sidenav]
 [@hug/ngx-snackbar](/projects/snackbar) | [![npm version][npm-logo-snackbar]][npm-snackbar] | [![npm downloads][npm-dl-logo-snackbar]][npm-dl-snackbar] | [![build status][tests-logo-snackbar]][tests-snackbar]
 [@hug/ngx-splitter](/projects/splitter) | [![npm version][npm-logo-splitter]][npm-splitter] | [![npm downloads][npm-dl-logo-splitter]][npm-dl-splitter] | [![build status][tests-logo-splitter]][tests-splitter]
 [@hug/ngx-status](/projects/status) | [![npm version][npm-logo-status]][npm-status] | [![npm downloads][npm-dl-logo-status]][npm-dl-status] | [![build status][tests-logo-status]][tests-status]
 [@hug/ngx-time-picker](/projects/time-picker) | [![npm version][npm-logo-time-picker]][npm-time-picker] | [![npm downloads][npm-dl-logo-time-picker]][npm-dl-time-picker] | [![build status][tests-logo-time-picker]][tests-time-picker]
 [@hug/ngx-tooltip](/projects/tooltip) | [![npm version][npm-logo-tooltip]][npm-tooltip] | [![npm downloads][npm-dl-logo-tooltip]][npm-dl-tooltip] | [![build status][tests-logo-tooltip]][tests-tooltip]
-[@hug/ngx-sidenav](/projects/sidenav) | [![npm version][npm-logo-sidenav]][npm-sidenav] | [![npm downloads][npm-dl-logo-sidenav]][npm-dl-sidenav] | [![build status][tests-logo-sidenav]][tests-sidenav]
 
 </div>
 
