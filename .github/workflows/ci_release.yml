@@ -22,6 +22,7 @@ on:
           - time-picker
           - tooltip
           - user-card
+          - user-tooltip
       dry-run:
         description: --dry-run
         type: boolean

@@ -40,6 +40,9 @@
             ],
             "@hug/ngx-user-card": [
                 "projects/user-card/src"
+            ],
+            "@hug/ngx-user-tooltip": [
+                "projects/user-tooltip/src"
             ]
         }
     }

@@ -25,7 +25,7 @@ jobs:
       node-versions: '[18, 20]'
 
   #
-  # Not needed here because will be triggered by `ci_test_sidenav`
+  # Not needed here because it will be triggered by `ci_test_sidenav`
   #
   # ci_test_layout:
   #   needs: ci_test_core
@@ -52,14 +52,14 @@ jobs:
     uses: ./.github/workflows/ci_test_splitter.yml
 
   #
-  # Not needed here because will be triggered by `ci_test_snackbar`
+  # Not needed here because it will be triggered by `ci_test_snackbar`
   #
   # ci_test_status:
   #   needs: ci_test_core
   #   uses: ./.github/workflows/ci_test_status.yml
 
   #
-  # Not needed here because will be triggered by `ci_test_numeric-stepper`
+  # Not needed here because it will be triggered by `ci_test_numeric-stepper`
   #
   # ci_test_time-picker:
   #   needs: ci_test_core
@@ -68,3 +68,10 @@ jobs:
   ci_test_tooltip:
     needs: ci_test_core
     uses: ./.github/workflows/ci_test_tooltip.yml
+
+  #
+  # Not needed here because it will be triggered by `ci_test_tooltip`
+  #
+  # ci_test_user-tooltip:
+  #   needs: ci_test_core
+  #   uses: ./.github/workflows/ci_test_user-tooltip.yml

@@ -24,3 +24,7 @@ jobs:
       working-directory: projects/user-card
       runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
       node-versions: '[18, 20]'
+
+  ci_test_user-tooltip:
+    needs: ci_test_user-card
+    uses: ./.github/workflows/ci_test_user-tooltip.yml
