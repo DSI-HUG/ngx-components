@@ -1,0 +1,18 @@
+<mat-toolbar class="dialog-toolbar" color="primary">
+    <span class="dialog-title" data-cy="confirmation-dialog-title">{{ dialogParams.title }}</span>
+    <mat-icon class="dialog-action" mat-dialog-close="cancel">close</mat-icon>
+</mat-toolbar>
+
+<div class="dialog-container">
+    <div [innerHTML]="dialogParams.text"></div>
+</div>
+
+<div class="dialog-buttons">
+    <button type="button" id="cancelbtn" mat-button mat-dialog-close="cancel" *ngIf="hasControl('CANCEL')" color="primary" data-cy="cancel">Annuler</button>
+    <button type="button" mat-button mat-dialog-close="ignore" *ngIf="hasControl('IGNORE')" color="primary" data-cy="ignore">Ignorer</button>
+    <button type="button" mat-stroked-button default mat-dialog-close="retry" *ngIf="hasControl('RETRY')" color="primary" data-cy="retry">Recommencer</button>
+    <button type="button" id="okbtn" mat-stroked-button mat-dialog-close="ok" *ngIf="hasControl('OK')" color="primary" data-cy="ok">Ok</button>
+    <button type="button" mat-stroked-button mat-dialog-close="yes" *ngIf="hasControl('YES')" color="primary" data-cy="yes">Oui</button>
+    <button type="button" mat-stroked-button mat-dialog-close="no" *ngIf="hasControl('NO')" color="primary" data-cy="no">Non</button>
+    <button type="button" mat-stroked-button mat-dialog-close="continue" *ngIf="hasControl('CONTINUE')" color="primary" data-cy="continue">Continuer</button>
+</div>

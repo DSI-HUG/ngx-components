@@ -13,6 +13,7 @@
         "projects/layout",
         "projects/list-loader",
         "projects/message-box",
+        "projects/message-box-dialog",
         "projects/numeric-stepper",
         "projects/overlay",
         "projects/search-container",

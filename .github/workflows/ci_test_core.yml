@@ -31,7 +31,11 @@ jobs:
   #   needs: ci_test_core
   #   uses: ./.github/workflows/ci_test_layout.yml
 
-  ci_test_numeric_stepper:
+  ci_test_message-box-dialog:
+    needs: ci_test_core
+    uses: ./.github/workflows/ci_test_message-box-dialog.yml
+
+  ci_test_numeric-stepper:
     needs: ci_test_core
     uses: ./.github/workflows/ci_test_numeric-stepper.yml
 

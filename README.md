@@ -25,6 +25,7 @@ Package | Version | Downloads | Tests
 [@hug/ngx-layout](/projects/layout) | [![npm version][npm-logo-layout]][npm-layout] | [![npm downloads][npm-dl-logo-layout]][npm-dl-layout] | [![build status][tests-logo-layout]][tests-layout]
 [@hug/ngx-list-loader](/projects/list-loader) | [![npm version][npm-logo-list-loader]][npm-list-loader] | [![npm downloads][npm-dl-logo-list-loader]][npm-dl-list-loader] | [![build status][tests-logo-list-loader]][tests-list-loader]
 [@hug/ngx-message-box](/projects/message-box) | [![npm version][npm-logo-message-box]][npm-message-box] | [![npm downloads][npm-dl-logo-message-box]][npm-dl-message-box] | [![build status][tests-logo-message-box]][tests-message-box]
+[@hug/ngx-message-box-dialog](/projects/message-box-dialog) | [![npm version][npm-logo-message-box-dialog]][npm-message-box-dialog] | [![npm downloads][npm-dl-logo-message-box-dialog]][npm-dl-message-box-dialog] | [![build status][tests-logo-message-box-dialog]][tests-message-box-dialog]
 [@hug/ngx-numeric-stepper](/projects/numeric-stepper) | [![npm version][npm-logo-numeric-stepper]][npm-numeric-stepper] | [![npm downloads][npm-dl-logo-numeric-stepper]][npm-dl-numeric-stepper] | [![build status][tests-logo-numeric-stepper]][tests-numeric-stepper]
 [@hug/ngx-overlay](/projects/overlay) | [![npm version][npm-logo-overlay]][npm-overlay] | [![npm downloads][npm-dl-logo-overlay]][npm-dl-overlay] | [![build status][tests-logo-overlay]][tests-overlay]
 [@hug/ngx-search-container](/projects/search-container) | [![npm version][npm-logo-search-container]][npm-search-container] | [![npm downloads][npm-dl-logo-search-container]][npm-dl-search-container] | [![build status][tests-logo-search-container]][tests-search-container]
@@ -106,6 +107,13 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [npm-dl-logo-message-box]: https://img.shields.io/npm/dw/@hug/ngx-message-box.svg?color=7986CB&logo=npm&label=npm
 [tests-message-box]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_message-box.yml
 [tests-logo-message-box]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_message-box.yml/badge.svg
+
+[npm-message-box-dialog]: https://www.npmjs.com/package/@hug/ngx-message-box-dialog
+[npm-logo-message-box-dialog]: https://img.shields.io/npm/v/@hug/ngx-message-box-dialog.svg?color=blue&logo=npm
+[npm-dl-message-box-dialog]: https://npmcharts.com/compare/@hug/ngx-message-box-dialog?minimal=true
+[npm-dl-logo-message-box-dialog]: https://img.shields.io/npm/dw/@hug/ngx-message-box-dialog.svg?color=7986CB&logo=npm&label=npm
+[tests-message-box-dialog]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_message-box-dialog.yml
+[tests-logo-message-box-dialog]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_message-box-dialog.yml/badge.svg
 
 [npm-numeric-stepper]: https://www.npmjs.com/package/@hug/ngx-numeric-stepper
 [npm-logo-numeric-stepper]: https://img.shields.io/npm/v/@hug/ngx-numeric-stepper.svg?color=blue&logo=npm

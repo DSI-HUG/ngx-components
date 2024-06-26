@@ -569,6 +569,37 @@
                     }
                 }
             }
+        },
+        "message-box-dialog": {
+            "projectType": "library",
+            "root": "projects/message-box-dialog",
+            "sourceRoot": "projects/message-box-dialog/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "project": "projects/message-box-dialog/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/message-box-dialog/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "projects/message-box-dialog/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/message-box-dialog/src/test.ts",
+                        "tsConfig": "projects/message-box-dialog/tsconfig.spec.json",
+                        "karmaConfig": "projects/message-box-dialog/karma.conf.js"
+                    }
+                }
+            }
         }
     }
 }

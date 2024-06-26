@@ -34,6 +34,9 @@
             "@hug/ngx-message-box": [
                 "dist/message-box"
             ],
+            "@hug/ngx-message-box-dialog": [
+                "dist/message-box-dialog"
+            ],
             "@hug/ngx-numeric-stepper": [
                 "dist/numeric-stepper"
             ],

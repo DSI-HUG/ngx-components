@@ -13,6 +13,7 @@ on:
           - layout
           - list-loader
           - message-box
+          - message-box-dialog
           - numeric-stepper
           - overlay
           - search-container

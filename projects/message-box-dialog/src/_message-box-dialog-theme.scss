@@ -1,0 +1,33 @@
+@use '@angular/material' as mat;
+
+@mixin message-box-dialog-theme($theme) {
+    $warn: map-get($theme, warn);
+
+    .cdk-overlay-container {
+        .cdk-overlay-pane {
+            &.warning {
+                app-message-box-dialog {
+                    .mat-toolbar {
+                        background-color: mat.get-color-from-palette(mat.$orange-palette, 500);
+                    }
+
+                    button.mat-primary {
+                        color: mat.get-color-from-palette(mat.$orange-palette, 500);
+                    }
+                }
+            }
+
+            &.error {
+                app-message-box-dialog {
+                    .mat-toolbar {
+                        background-color: mat.get-color-from-palette($warn);
+                    }
+
+                    button.mat-primary {
+                        color: mat.get-color-from-palette($warn);
+                    }
+                }
+            }
+        }
+    }
+}

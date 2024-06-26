@@ -1,0 +1,15 @@
+{
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../dist/message-box-dialog",
+    "assets": [
+        "CHANGELOG.md",
+        {
+            "input": "src/",
+            "glob": "_message-box-dialog-theme.scss",
+            "output": "."
+        }
+    ],
+    "lib": {
+        "entryFile": "src/index.ts"
+    }
+}
