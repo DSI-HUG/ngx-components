@@ -1,0 +1,76 @@
+@use '@angular/material' as mat;
+
+@mixin search-container-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    search-container {
+        .search-container {
+            background-color: mat.get-color-from-palette($background, background, 0.2);
+
+            &:hover {
+                background-color: mat.get-color-from-palette($background, background, 0.3);
+            }
+
+            &:focus,
+            &:focus-within {
+                color: mat.get-color-from-palette($foreground, text, 0.8);
+                background-color: mat.get-color-from-palette($background, background, 0.8);
+
+                input {
+                    color: mat.get-color-from-palette($foreground, text, 0.6);
+
+                    &::placeholder {
+                        color: mat.get-color-from-palette($foreground, text, 0.6);
+                    }
+                }
+
+                .icon-clear {
+                    transition: 0.3s ease-in-out;
+                    color: mat.get-color-from-palette($foreground, disabled);
+
+                    &:hover {
+                        color: mat.get-color-from-palette($foreground, text);
+                    }
+                }
+            }
+
+            .icon-clear {
+                :hover {
+                    color: mat.get-color-from-palette($background, background)
+                }
+            }
+
+            input {
+                color: mat.get-color-from-palette($background, background, 0.8);
+
+                &::placeholder {
+                    color: mat.get-color-from-palette($background, background, 0.8);
+                }
+            }
+        }
+
+        .search-container-mobile {
+            &.active {
+                background-color: mat.get-color-from-palette($background, background);
+                color: mat.get-color-from-palette($foreground, text);
+            }
+
+            .search-container {
+                &::placeholder {
+                    color: mat.get-color-from-palette($foreground, secondary-text);
+                }
+
+                input {
+                    color: mat.get-color-from-palette($foreground, text, 0.6);
+
+                    &::placeholder {
+                        color: mat.get-color-from-palette($foreground, text, 0.6);
+                    }
+                }
+            }
+        }
+    }
+}

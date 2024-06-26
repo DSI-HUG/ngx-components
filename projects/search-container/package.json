@@ -1,0 +1,46 @@
+{
+    "name": "@hug/ngx-search-container",
+    "version": "1.0.0",
+    "description": "HUG Angular - search-container component",
+    "homepage": "https://github.com/dsi-hug/ngx-components",
+    "license": "GPL-3.0-only",
+    "author": "HUG - Hôpitaux Universitaires Genève",
+    "contributors": [
+        "badisi (https://github.com/badisi)",
+        "vapkse (https://github.com/vapkse)"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dsi-hug/ngx-components.git"
+    },
+    "keywords": [
+        "angular",
+        "material",
+        "material design",
+        "components"
+    ],
+    "sideEffects": false,
+    "scripts": {
+        "lint": "eslint . --fix",
+        "test": "ng test search-container",
+        "test:ci": "ng test search-container --watch=false --browsers=ChromeHeadless",
+        "build:ng": "ng build search-container -c=production",
+        "build": "nx build:ng @hug/ngx-search-container --verbose",
+        "release": "nx release -p=@hug/ngx-search-container --yes --verbose",
+        "release:dry-run": "nx release -p=@hug/ngx-search-container --verbose --dry-run"
+    },
+    "peerDependencies": {
+        "@angular/common": ">= 14",
+        "@angular/core": ">= 14",
+        "@angular/forms": ">= 14",
+        "@angular/material": ">= 14",
+        "rxjs": ">= 7.0.0",
+        "@hug/ngx-core": "1.1.5"
+    },
+    "dependencies": {
+        "tslib": "^2.6.3"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

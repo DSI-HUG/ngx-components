@@ -27,6 +27,7 @@ Package | Version | Downloads | Tests
 [@hug/ngx-message-box](/projects/message-box) | [![npm version][npm-logo-message-box]][npm-message-box] | [![npm downloads][npm-dl-logo-message-box]][npm-dl-message-box] | [![build status][tests-logo-message-box]][tests-message-box]
 [@hug/ngx-numeric-stepper](/projects/numeric-stepper) | [![npm version][npm-logo-numeric-stepper]][npm-numeric-stepper] | [![npm downloads][npm-dl-logo-numeric-stepper]][npm-dl-numeric-stepper] | [![build status][tests-logo-numeric-stepper]][tests-numeric-stepper]
 [@hug/ngx-overlay](/projects/overlay) | [![npm version][npm-logo-overlay]][npm-overlay] | [![npm downloads][npm-dl-logo-overlay]][npm-dl-overlay] | [![build status][tests-logo-overlay]][tests-overlay]
+[@hug/ngx-search-container](/projects/search-container) | [![npm version][npm-logo-search-container]][npm-search-container] | [![npm downloads][npm-dl-logo-search-container]][npm-dl-search-container] | [![build status][tests-logo-search-container]][tests-search-container]
 [@hug/ngx-sidenav](/projects/sidenav) | [![npm version][npm-logo-sidenav]][npm-sidenav] | [![npm downloads][npm-dl-logo-sidenav]][npm-dl-sidenav] | [![build status][tests-logo-sidenav]][tests-sidenav]
 [@hug/ngx-snackbar](/projects/snackbar) | [![npm version][npm-logo-snackbar]][npm-snackbar] | [![npm downloads][npm-dl-logo-snackbar]][npm-dl-snackbar] | [![build status][tests-logo-snackbar]][tests-snackbar]
 [@hug/ngx-splitter](/projects/splitter) | [![npm version][npm-logo-splitter]][npm-splitter] | [![npm downloads][npm-dl-logo-splitter]][npm-dl-splitter] | [![build status][tests-logo-splitter]][tests-splitter]
@@ -119,6 +120,13 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [npm-dl-logo-overlay]: https://img.shields.io/npm/dw/@hug/ngx-overlay.svg?color=7986CB&logo=npm&label=npm
 [tests-overlay]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_overlay.yml
 [tests-logo-overlay]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_overlay.yml/badge.svg
+
+[npm-search-container]: https://www.npmjs.com/package/@hug/ngx-search-container
+[npm-logo-search-container]: https://img.shields.io/npm/v/@hug/ngx-search-container.svg?color=blue&logo=npm
+[npm-dl-search-container]: https://npmcharts.com/compare/@hug/ngx-search-container?minimal=true
+[npm-dl-logo-search-container]: https://img.shields.io/npm/dw/@hug/ngx-search-container.svg?color=7986CB&logo=npm&label=npm
+[tests-search-container]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_search-container.yml
+[tests-logo-search-container]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_search-container.yml/badge.svg
 
 [npm-sidenav]: https://www.npmjs.com/package/@hug/ngx-sidenav
 [npm-logo-sidenav]: https://img.shields.io/npm/v/@hug/ngx-sidenav.svg?color=blue&logo=npm

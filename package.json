@@ -15,6 +15,7 @@
         "projects/message-box",
         "projects/numeric-stepper",
         "projects/overlay",
+        "projects/search-container",
         "projects/sidenav",
         "projects/snackbar",
         "projects/splitter",

@@ -40,6 +40,9 @@
             "@hug/ngx-overlay": [
                 "dist/overlay"
             ],
+            "@hug/ngx-search-container": [
+                "dist/search-container"
+            ],
             "@hug/ngx-sidenav": [
                 "dist/sidenav"
             ],
