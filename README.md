@@ -22,6 +22,7 @@
 Package | Version | Downloads | Tests
 --- | --- | --- | ---
 [@hug/ngx-core](/projects/core) | [![npm version][npm-logo-core]][npm-core] | [![npm downloads][npm-dl-logo-core]][npm-dl-core] | [![build status][tests-logo-core]][tests-core]
+[@hug/ngx-layout](/projects/layout) | [![npm version][npm-logo-layout]][npm-layout] | [![npm downloads][npm-dl-logo-layout]][npm-dl-layout] | [![build status][tests-logo-layout]][tests-layout]
 [@hug/ngx-list-loader](/projects/list-loader) | [![npm version][npm-logo-list-loader]][npm-list-loader] | [![npm downloads][npm-dl-logo-list-loader]][npm-dl-list-loader] | [![build status][tests-logo-list-loader]][tests-list-loader]
 [@hug/ngx-message-box](/projects/message-box) | [![npm version][npm-logo-message-box]][npm-message-box] | [![npm downloads][npm-dl-logo-message-box]][npm-dl-message-box] | [![build status][tests-logo-message-box]][tests-message-box]
 [@hug/ngx-numeric-stepper](/projects/numeric-stepper) | [![npm version][npm-logo-numeric-stepper]][npm-numeric-stepper] | [![npm downloads][npm-dl-logo-numeric-stepper]][npm-dl-numeric-stepper] | [![build status][tests-logo-numeric-stepper]][tests-numeric-stepper]
@@ -151,3 +152,10 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [npm-dl-logo-sidenav]: https://img.shields.io/npm/dw/@hug/ngx-sidenav.svg?color=7986CB&logo=npm&label=npm
 [tests-sidenav]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_sidenav.yml
 [tests-logo-sidenav]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_sidenav.yml/badge.svg
+
+[npm-layout]: https://www.npmjs.com/package/@hug/ngx-layout
+[npm-logo-layout]: https://img.shields.io/npm/v/@hug/ngx-layout.svg?color=blue&logo=npm
+[npm-dl-layout]: https://npmcharts.com/compare/@hug/ngx-layout?minimal=true
+[npm-dl-logo-layout]: https://img.shields.io/npm/dw/@hug/ngx-layout.svg?color=7986CB&logo=npm&label=npm
+[tests-layout]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_layout.yml
+[tests-logo-layout]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_layout.yml/badge.svg

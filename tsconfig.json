@@ -5,6 +5,9 @@
             "@hug/ngx-core": [
                 "projects/core/src"
             ],
+            "@hug/ngx-layout": [
+                "projects/layout/src"
+            ],
             "@hug/ngx-list-loader": [
                 "projects/list-loader/src"
             ],

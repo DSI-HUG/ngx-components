@@ -10,6 +10,7 @@
     },
     "workspaces": [
         "projects/core",
+        "projects/layout",
         "projects/list-loader",
         "projects/message-box",
         "projects/numeric-stepper",

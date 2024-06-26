@@ -1,4 +1,4 @@
-name: Test sidenav
+name: Test layout
 
 on:
   workflow_dispatch:
@@ -9,22 +9,18 @@ on:
     tags-ignore:
       - '**'
     paths:
-      - '.github/workflows/ci_test_sidenav.yml'
-      - 'projects/sidenav/**'
+      - '.github/workflows/ci_test_layout.yml'
+      - 'projects/layout/**'
 
 concurrency:
-  group: ci-test-sidenav-group-${{ github.ref }}
+  group: ci-test-layout-group-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  ci_test_sidenav:
+  ci_test_layout:
     if: "${{ !contains(github.event.head_commit.message, 'chore(release): publish') }}"
     uses: dsi-hug/action/.github/workflows/action.yml@v1
     with:
-      working-directory: projects/sidenav
+      working-directory: projects/layout
       runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
       node-versions: '[18, 20]'
-
-  ci_test_layout:
-    needs: ci_test_sidenav
-    uses: ./.github/workflows/ci_test_layout.yml

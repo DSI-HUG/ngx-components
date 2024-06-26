@@ -10,6 +10,7 @@ on:
         type: choice
         options:
           - core
+          - layout
           - list-loader
           - message-box
           - numeric-stepper
