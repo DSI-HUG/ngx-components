@@ -414,6 +414,37 @@
                     }
                 }
             }
+        },
+        "sidenav": {
+            "projectType": "library",
+            "root": "projects/sidenav",
+            "sourceRoot": "projects/sidenav/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "project": "projects/sidenav/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/sidenav/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "projects/sidenav/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/sidenav/src/test.ts",
+                        "tsConfig": "projects/sidenav/tsconfig.spec.json",
+                        "karmaConfig": "projects/sidenav/karma.conf.js"
+                    }
+                }
+            }
         }
     }
 }

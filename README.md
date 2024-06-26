@@ -31,6 +31,7 @@ Package | Version | Downloads | Tests
 [@hug/ngx-status](/projects/status) | [![npm version][npm-logo-status]][npm-status] | [![npm downloads][npm-dl-logo-status]][npm-dl-status] | [![build status][tests-logo-status]][tests-status]
 [@hug/ngx-time-picker](/projects/time-picker) | [![npm version][npm-logo-time-picker]][npm-time-picker] | [![npm downloads][npm-dl-logo-time-picker]][npm-dl-time-picker] | [![build status][tests-logo-time-picker]][tests-time-picker]
 [@hug/ngx-tooltip](/projects/tooltip) | [![npm version][npm-logo-tooltip]][npm-tooltip] | [![npm downloads][npm-dl-logo-tooltip]][npm-dl-tooltip] | [![build status][tests-logo-tooltip]][tests-tooltip]
+[@hug/ngx-sidenav](/projects/sidenav) | [![npm version][npm-logo-sidenav]][npm-sidenav] | [![npm downloads][npm-dl-logo-sidenav]][npm-dl-sidenav] | [![build status][tests-logo-sidenav]][tests-sidenav]
 
 </div>
 
@@ -143,3 +144,10 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [npm-dl-logo-tooltip]: https://img.shields.io/npm/dw/@hug/ngx-tooltip.svg?color=7986CB&logo=npm&label=npm
 [tests-tooltip]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_tooltip.yml
 [tests-logo-tooltip]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_tooltip.yml/badge.svg
+
+[npm-sidenav]: https://www.npmjs.com/package/@hug/ngx-sidenav
+[npm-logo-sidenav]: https://img.shields.io/npm/v/@hug/ngx-sidenav.svg?color=blue&logo=npm
+[npm-dl-sidenav]: https://npmcharts.com/compare/@hug/ngx-sidenav?minimal=true
+[npm-dl-logo-sidenav]: https://img.shields.io/npm/dw/@hug/ngx-sidenav.svg?color=7986CB&logo=npm&label=npm
+[tests-sidenav]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_sidenav.yml
+[tests-logo-sidenav]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_sidenav.yml/badge.svg
