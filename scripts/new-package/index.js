@@ -35,6 +35,15 @@ exports.default = options =>
                 return modifyJsonFile('tsconfig.json', ['compilerOptions', 'paths'], paths);
             })
 
+            // modify tsconfig.base.json
+            .rule(({ tree }) => {
+                const paths = tree.readJson('tsconfig.base.json').compilerOptions.paths;
+                paths[`@hug/ngx-${options.libName.toLowerCase()}`] = [
+                    `dist/${options.libName.toLowerCase()}`
+                ];
+                return modifyJsonFile('tsconfig.base.json', ['compilerOptions', 'paths'], paths);
+            })
+
             // modify package.json
             .rule(({ tree }) => {
                 const workspaces = tree.readJson('package.json').workspaces;
