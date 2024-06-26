@@ -65,7 +65,7 @@
         "patch-package": "^8.0.0",
         "typescript": "~4.7.4"
     },
-    "schematics": "./scripts/new-lib/collection.json",
+    "schematics": "./scripts/new-package/collection.json",
     "commitlint": {
         "extends": [
             "@commitlint/config-conventional"
