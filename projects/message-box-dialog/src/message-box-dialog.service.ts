@@ -33,13 +33,13 @@ export class MessageBoxDialogService extends DialogService<MessageBoxDialogRespo
         return super.openDialog$(messageBoxDialogData, dialogConfig);
     }
 
-    public openConfirmation$(message: string): Observable<MessageBoxDialogResponse | undefined> {
+    public openConfirmation$(message: string, dialogConfig?: MatDialogConfig<MessageBoxDialogData>): Observable<MessageBoxDialogResponse | undefined> {
         const dialogData = {
             text: message,
             buttons: MessageBoxDialogButtons.OK + MessageBoxDialogButtons.CANCEL
         } as MessageBoxDialogData;
 
-        return this.openDialog$(dialogData).pipe(
+        return this.openDialog$(dialogData, dialogConfig).pipe(
             take(1)
         );
     }
