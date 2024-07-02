@@ -9,6 +9,9 @@
     },
     "release": {
         "projectsRelationship": "independent",
+        "git": {
+            "commitMessage": "chore({projectName}): release version {version} [skip ci]"
+        },
         "version": {
             "conventionalCommits": true
         },

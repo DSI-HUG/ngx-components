@@ -91,7 +91,7 @@ const getWorkspaces = () => {
             execCommand('git', ['add', resolve(rootPath, 'package-lock.json'), ...packageJsonFiles]);
 
             console.log(`\n${bgWhite(' > ')} Committing changes with git${dryRun ? yellow(' [dry-run]') : ''}`);
-            execCommand('git', ['commit', '--message', `deps(${workspace.packageJson.name}): upgrade to v${workspace.packageJson.version}`]);
+            execCommand('git', ['commit', '--message', `deps(${workspace.packageJson.name}): upgrade to v${workspace.packageJson.version} [skip ci]`]);
 
             packageJsonFiles = [];
         }
