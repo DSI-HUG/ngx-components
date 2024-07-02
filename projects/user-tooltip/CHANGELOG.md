@@ -1,3 +1,15 @@
+## 1.1.2 (2024-07-02)
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-tooltip:** upgrade to v1.1.4 ([ed6d39d](https://github.com/DSI-HUG/ngx-components/commit/ed6d39d))
+
+
+### ❤️  Thank You
+
+- Badisi
+
 ## 1.1.0 (2024-06-26)
 
 

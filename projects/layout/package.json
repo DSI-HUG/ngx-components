@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-layout",
-    "version": "1.1.0",
+    "version": "1.1.2",
     "description": "HUG Angular - layout component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -34,8 +34,8 @@
         "@angular/core": ">= 14",
         "@angular/cdk": ">= 14",
         "@angular/material": ">= 14",
-        "@hug/ngx-core": "1.1.5",
-        "@hug/ngx-sidenav": "1.1.0"
+        "@hug/ngx-core": "1.1.6",
+        "@hug/ngx-sidenav": "1.1.1"
     },
     "dependencies": {
         "tslib": "^2.6.3"

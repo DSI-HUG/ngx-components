@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-sidenav",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "HUG Angular - sidenav component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -33,7 +33,7 @@
         "@angular/common": ">= 14",
         "@angular/core": ">= 14",
         "rxjs": ">= 7.0.0",
-        "@hug/ngx-core": "1.1.5"
+        "@hug/ngx-core": "1.1.6"
     },
     "dependencies": {
         "tslib": "^2.6.3"
