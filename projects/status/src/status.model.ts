@@ -3,6 +3,7 @@ export type StatusType = 'info' | 'primary' | 'success' | 'warn' | 'danger';
 export interface StatusAction {
     label: string;
     terminal?: boolean;
+    className?: string;
     callback: () => void;
 }
 
@@ -14,5 +15,6 @@ export interface Status {
     date?: Date;
     originalError?: unknown;
     duration?: number;
+    className?: string;
     actions?: readonly StatusAction[];
 }
