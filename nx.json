@@ -5,6 +5,14 @@
             "dependsOn": [
                 "^build:ng"
             ]
+        },
+        "nx-release-publish": {
+            "dependsOn": [
+                "build"
+            ],
+            "options": {
+                "packageRoot": "{workspaceRoot}/dist/{projectRoot}"
+            }
         }
     },
     "release": {
@@ -14,6 +22,11 @@
         },
         "version": {
             "conventionalCommits": true
+        },
+        "changelog": {
+            "projectChangelogs": {
+                "createRelease": "github"
+            }
         },
         "conventionalCommits": {
             "types": {
@@ -70,11 +83,6 @@
                 "chore": false,
                 "build": false,
                 "ci": false
-            }
-        },
-        "changelog": {
-            "projectChangelogs": {
-                "createRelease": "github"
             }
         }
     }
