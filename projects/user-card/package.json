@@ -20,6 +20,11 @@
         "components"
     ],
     "sideEffects": false,
+    "exports": {
+        ".": {
+            "sass": "./_user-card-theme.scss"
+        }
+    },
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test user-card",

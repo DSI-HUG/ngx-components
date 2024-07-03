@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 
-@mixin message-box-dialog-theme($theme) {
+@mixin theme($theme) {
     $warn: map-get($theme, warn);
 
     .cdk-overlay-container {

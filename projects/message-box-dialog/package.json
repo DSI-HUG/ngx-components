@@ -20,6 +20,11 @@
         "components"
     ],
     "sideEffects": false,
+    "exports": {
+        ".": {
+            "sass": "./_message-box-dialog-theme.scss"
+        }
+    },
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test message-box-dialog",

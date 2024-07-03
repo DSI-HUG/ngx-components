@@ -6,7 +6,8 @@
         "prepare": "husky || true",
         "new-package": "ng g .:new-package",
         "release:dry-run": "nx release --verbose --dry-run",
-        "postinstall": "patch-package"
+        "postinstall": "patch-package",
+        "ng": "ng"
     },
     "workspaces": [
         "projects/core",

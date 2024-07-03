@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
     encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [
-        CommonModule
+        NgIf
     ]
 })
 export class ListLoaderComponent {
