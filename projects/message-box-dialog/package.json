@@ -31,8 +31,8 @@
         "test:ci": "ng test message-box-dialog --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build message-box-dialog -c=production",
         "build": "nx build:ng @hug/ngx-message-box-dialog --verbose",
-        "release": "nx release -p=@hug/ngx-message-box-dialog --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-message-box-dialog --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-message-box-dialog --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",

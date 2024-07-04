@@ -26,8 +26,8 @@
         "test:ci": "ng test overlay --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build overlay -c=production",
         "build": "nx build:ng @hug/ngx-overlay --verbose",
-        "release": "nx release -p=@hug/ngx-overlay --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-overlay --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-overlay --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",

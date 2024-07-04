@@ -5,9 +5,8 @@
         "lint": "eslint . --fix",
         "prepare": "husky || true",
         "new-package": "ng g .:new-package",
-        "release:dry-run": "nx release --verbose --dry-run",
-        "postinstall": "patch-package",
-        "ng": "ng"
+        "release:dry-run": "node -r @swc-node/register ./scripts/release.ts --verbose --dry-run",
+        "postinstall": "patch-package"
     },
     "workspaces": [
         "projects/core",
