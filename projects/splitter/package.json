@@ -31,8 +31,8 @@
         "test:ci": "ng test splitter --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build splitter -c=production",
         "build": "nx build:ng @hug/ngx-splitter --verbose",
-        "release": "nx release -p=@hug/ngx-splitter --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-splitter --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-splitter --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",

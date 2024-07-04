@@ -26,8 +26,8 @@
         "test:ci": "ng test snackbar --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build snackbar -c=production",
         "build": "nx build:ng @hug/ngx-snackbar --verbose",
-        "release": "nx release -p=@hug/ngx-snackbar --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-snackbar --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-snackbar --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",

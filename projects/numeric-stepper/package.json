@@ -31,8 +31,8 @@
         "test:ci": "ng test numeric-stepper --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build numeric-stepper -c=production",
         "build": "nx build:ng @hug/ngx-numeric-stepper --verbose",
-        "release": "nx release -p=@hug/ngx-numeric-stepper --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-numeric-stepper --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-numeric-stepper --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",

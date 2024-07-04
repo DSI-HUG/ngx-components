@@ -26,8 +26,8 @@
         "test:ci": "ng test layout --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build layout -c=production",
         "build": "nx build:ng @hug/ngx-layout --verbose",
-        "release": "nx release -p=@hug/ngx-layout --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-layout --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-layout --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",

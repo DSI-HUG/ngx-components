@@ -26,8 +26,8 @@
         "test:ci": "ng test tooltip --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build tooltip -c=production",
         "build": "nx build:ng @hug/ngx-tooltip --verbose",
-        "release": "nx release -p=@hug/ngx-tooltip --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-tooltip --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-tooltip --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",
