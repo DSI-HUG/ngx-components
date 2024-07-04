@@ -20,6 +20,11 @@
         "components"
     ],
     "sideEffects": false,
+    "exports": {
+        ".": {
+            "sass": "./_sidenav-theme.scss"
+        }
+    },
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test sidenav",

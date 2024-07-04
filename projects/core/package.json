@@ -21,8 +21,23 @@
     ],
     "sideEffects": false,
     "exports": {
-        ".": {
-            "sass": "./styles"
+        "./theme": {
+            "sass": "./styles/_theme.scss"
+        },
+        "./themeVariables": {
+            "sass": "./styles/_themeVariables.scss"
+        },
+        "./menu": {
+            "sass": "./styles/mixins/_menu.scss"
+        },
+        "./menu-theme": {
+            "sass": "./styles/mixins/_menu-theme.scss"
+        },
+        "./loader-theme": {
+            "sass": "./styles/mixins/_loader-theme.scss"
+        },
+        "./icon-theme": {
+            "sass": "./styles/mixins/_icon-theme.scss"
         }
     },
     "scripts": {

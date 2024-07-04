@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 
-@mixin icon-theme($theme) {
+@mixin theme($theme) {
     $primary: map-get($theme, primary);
     $accent: map-get($theme, accent);
     $warn: map-get($theme, warn);

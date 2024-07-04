@@ -1,15 +1,13 @@
 @use '@angular/material' as mat;
 @use './themeVariables' as themeVariables;
 @use './mixins/material-icons-theme' as materialIconsTheme;
-@use './mixins/ngx-components-theme' as ngxComponentsTheme;
 
 @import './roboto';
 
 // Include theme styles for core and each component used in the app
 @include mat.core();
 @include mat.all-component-themes(themeVariables.$theme);
-@include materialIconsTheme.material-icons-theme();
-@include ngxComponentsTheme.all-component-themes(themeVariables.$theme);
+@include materialIconsTheme.theme();
 
 body#hug-ngx {
     margin: 0;

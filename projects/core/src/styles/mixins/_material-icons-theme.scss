@@ -4,7 +4,7 @@
 
 $fontFamily: "Material Symbols Outlined Variable";
 
-@mixin material-icons-theme {
+@mixin theme {
     .mat-icon {
         font-family: $fontFamily;
 

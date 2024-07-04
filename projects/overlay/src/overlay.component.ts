@@ -1,9 +1,9 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { CdkConnectedOverlay, CdkOverlayOrigin, OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
+import { CdkConnectedOverlay, CdkOverlayOrigin, OverlayContainer, OverlayModule, OverlayRef } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MediaService } from '@hug/ngx-core';
-import { BehaviorSubject, combineLatestWith, delay, distinctUntilChanged, EMPTY, map, mergeWith, Observable, of, ReplaySubject, shareReplay, startWith, Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, combineLatestWith, distinctUntilChanged, EMPTY, map, mergeWith, Observable, of, ReplaySubject, shareReplay, startWith, Subject, switchMap, take } from 'rxjs';
 
 import { defaultConnectionPositionPair, OverlayConnectionPositionPair } from './connection-position-pair';
 
@@ -50,11 +50,18 @@ export class OverlayComponent implements OnChanges {
     @ContentChild('content') protected contentTemplate?: TemplateRef<unknown>;
 
     /** Overlay pane containing the options. */
-    @ViewChild(CdkConnectedOverlay, { static: true }) private overlay?: CdkConnectedOverlay;
+    @ViewChild(CdkConnectedOverlay) protected set overlay(value: CdkConnectedOverlay | undefined) {
+        if (!value) {
+            return;
+        }
+
+        this.overlayRef$.next(value.overlayRef);
+    }
 
     public readonly isVisible$: Observable<boolean>;
 
     protected overlayInfos$: Observable<OverlayInfos | undefined>;
+    protected overlayRef$ = new ReplaySubject<OverlayRef>(1);
 
     private show$ = new ReplaySubject<ShowParams>(1);
     private hide$ = new Subject<void>();
@@ -115,19 +122,22 @@ export class OverlayComponent implements OnChanges {
 
                 const info$ = this.ownerElement$.pipe(
                     combineLatestWith(isMobile$),
-                    map(([ownerElement, isMobile]) => ({
-                        offsetX: showParams.offsetX && +showParams.offsetX || 0,
-                        offsetY: showParams.offsetY && +showParams.offsetY || 0,
-                        origin: new CdkOverlayOrigin(new ElementRef((isMobile && document.body) ?? showParams.event?.target ?? ownerElement ?? this.elementRef.nativeElement)),
-                        width: isMobile ? this.widthForMobile : this.width,
-                        context: showParams.context
-                    } as OverlayInfos))
+                    map(([ownerElement, isMobile]) => {
+                        const mobileElement = isMobile ? document.body : undefined;
+                        return {
+                            offsetX: showParams.offsetX && +showParams.offsetX || 0,
+                            offsetY: showParams.offsetY && +showParams.offsetY || 0,
+                            origin: new CdkOverlayOrigin(new ElementRef(mobileElement ?? showParams.event?.target ?? ownerElement ?? this.elementRef.nativeElement)),
+                            width: isMobile ? this.widthForMobile : this.width,
+                            context: showParams.context
+                        } as OverlayInfos;
+                    })
                 );
 
-                const updatePosition$ = info$.pipe(
-                    delay(1),
-                    switchMap(() => {
-                        this.overlay?.overlayRef?.updatePosition();
+                const updatePosition$ = this.overlayRef$.pipe(
+                    take(1),
+                    switchMap(overlayRef => {
+                        overlayRef.updatePosition();
                         return EMPTY;
                     })
                 );

@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 
-@mixin loader-theme($theme) {
+@mixin theme($theme) {
     $primary: map-get($theme, primary);
 
     .loader {
