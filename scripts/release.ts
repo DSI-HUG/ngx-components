@@ -14,6 +14,24 @@ import * as yargs from 'yargs';
 const { yellow, blue, red, green, gray, white, bgBlue } = chalk;
 
 void (async (): Promise<void> => {
+    const exec = (message: string | undefined, cmd: string, args: string[]): void => {
+        if (message) {
+            console.log(message);
+        }
+        if (options.verbose) {
+            console.log(`\n${cmd} ${args.join(' ')}`);
+        }
+        if (!options.dryRun) {
+            const result = spawnSync(cmd, args, { stdio: 'inherit', cwd: workspaceRoot });
+            if (result.error) {
+                throw result.error;
+            }
+            if (result.status !== 0) {
+                throw new Error(`Command failed with exit code ${result.status}`);
+            }
+        }
+    };
+
     const options = await yargs
         .version(false)
         .option('projects', {
@@ -102,21 +120,6 @@ void (async (): Promise<void> => {
      *       [skip ci]
      *  13. Push to git remote
      */
-    const exec = (message: string, cmd: string, args: string[]): void => {
-        console.log(message);
-        if (options.verbose) {
-            console.log(`\n${cmd} ${args.join(' ')}`);
-        }
-        if (!options.dryRun) {
-            const result = spawnSync(cmd, args, { stdio: 'inherit', cwd: workspaceRoot });
-            if (result.error) {
-                throw result.error;
-            }
-            if (result.status !== 0) {
-                throw new Error(`Command failed with exit code ${result.status}`);
-            }
-        }
-    };
     const projectGraph = await createProjectGraphAsync({ exitOnError: true });
     const { projects } = readProjectsConfigurationFromProjectGraph(projectGraph);
     const workspaces = Object.values(projects).map(project => ({
@@ -184,6 +187,20 @@ void (async (): Promise<void> => {
     }
 
     /**
+     *  Currently `nx release` does not update package-lock file correctly.
+     *
+     *  TODO: remove this script if one day this feature is supported by `nx release` directly
+     *  @see https://github.com/nrwl/nx/issues/26660
+     *
+     *   14. Synchronize `package-lock.json` file
+     */
+    console.log(`\n${bgBlue(' HUG ')}  ${blue('Synchronizing npm lock file')}${options.dryRun ? yellow(' [dry-run]') : ''}`);
+    exec(undefined, 'npm', ['install']);
+    exec(undefined, 'git', ['add', 'package.json', 'package-lock.json']);
+    exec(undefined, 'git', ['commit', '--message', 'chore: synchronize package.json and package-lock.json', '--message', '[skip ci]']);
+    exec(undefined, 'git', ['push', '--follow-tags', '--no-verify', '--atomic']);
+
+    /**
      *  Currently `nx release` publishes packages from their source directory by default.
      *
      *  So we need to make sure `dist` are in sync and published instead.
@@ -191,7 +208,7 @@ void (async (): Promise<void> => {
      *  TODO: remove this script if one day this feature is supported by `nx release` directly
      *  @see https://github.com/nrwl/nx/issues/21855#issuecomment-1977360480
      *
-     *   14. Update project(s) `package.json` and `CHANGELOG.md` in dist
+     *   15. Update project(s) `package.json` and `CHANGELOG.md` in dist
      */
     console.log(`\n${bgBlue(' HUG ')}  ${blue('Synchronizing dist packages')}${options.dryRun ? yellow(' [dry-run]') : ''}`);
     projectsToRelease.forEach(project => {
@@ -223,7 +240,7 @@ void (async (): Promise<void> => {
      *  And what we need is actually `xyz` because Angular generates projects in `dist/xyz`.
      *  So to make it work, we use the hidden option (__overrides_unparsed__) and publish each project individually.
      *
-     *   15. Publish to npm
+     *   16. Publish to npm
      */
     let processStatus = 0;
     if (!options.dryRun) {
