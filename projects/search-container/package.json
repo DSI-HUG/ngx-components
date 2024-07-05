@@ -40,7 +40,7 @@
         "@angular/forms": ">= 14",
         "@angular/material": ">= 14",
         "rxjs": ">= 7.0.0",
-        "@hug/ngx-core": "1.1.6"
+        "@hug/ngx-core": "1.1.7"
     },
     "dependencies": {
         "tslib": "^2.6.3"
