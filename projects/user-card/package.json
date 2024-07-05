@@ -31,8 +31,8 @@
         "test:ci": "ng test user-card --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build user-card -c=production",
         "build": "nx build:ng @hug/ngx-user-card --verbose",
-        "release": "nx release -p=@hug/ngx-user-card --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-user-card --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-user-card --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",

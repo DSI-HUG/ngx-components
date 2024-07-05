@@ -3,19 +3,10 @@
     "targetDefaults": {
         "build:ng": {
             "dependsOn": ["^build:ng"]
-        },
-        "nx-release-publish": {
-            "dependsOn": ["build"],
-            "options": {
-                "packageRoot": "{workspaceRoot}/dist/{projectRoot}"
-            }
         }
     },
     "release": {
         "projectsRelationship": "independent",
-        "git": {
-            "commitMessage": "chore({projectName}): release version {version} [skip ci]"
-        },
         "version": {
             "conventionalCommits": true
         },

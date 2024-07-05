@@ -31,14 +31,14 @@
         "test:ci": "ng test sidenav --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build sidenav -c=production",
         "build": "nx build:ng @hug/ngx-sidenav --verbose",
-        "release": "nx release -p=@hug/ngx-sidenav --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-sidenav --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-sidenav --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",
         "@angular/core": ">= 14",
         "rxjs": ">= 7.0.0",
-        "@hug/ngx-core": "1.1.6"
+        "@hug/ngx-core": "1.1.7"
     },
     "dependencies": {
         "tslib": "^2.6.3"

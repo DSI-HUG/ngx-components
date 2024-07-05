@@ -26,8 +26,8 @@
         "test:ci": "ng test time-picker --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build time-picker -c=production",
         "build": "nx build:ng @hug/ngx-time-picker --verbose",
-        "release": "nx release -p=@hug/ngx-time-picker --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-time-picker --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-time-picker --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",
@@ -37,7 +37,7 @@
         "@angular/material": ">= 14",
         "rxjs": ">= 7.0.0",
         "date-fns": "^2.30.0",
-        "@hug/ngx-core": "1.1.6",
+        "@hug/ngx-core": "1.1.7",
         "@hug/ngx-numeric-stepper": "1.1.3"
     },
     "dependencies": {

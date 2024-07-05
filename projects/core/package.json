@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-core",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "description": "HUG Angular - the core framework",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -46,8 +46,8 @@
         "test:ci": "ng test core --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build core -c=production",
         "build": "nx build:ng @hug/ngx-core --verbose",
-        "release": "nx release -p=@hug/ngx-core --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-core --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-core --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",

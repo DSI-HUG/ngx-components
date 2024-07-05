@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-search-container",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "HUG Angular - search-container component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -31,8 +31,8 @@
         "test:ci": "ng test search-container --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build search-container -c=production",
         "build": "nx build:ng @hug/ngx-search-container --verbose",
-        "release": "nx release -p=@hug/ngx-search-container --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-search-container --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-search-container --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
         "@angular/common": ">= 14",
@@ -40,7 +40,7 @@
         "@angular/forms": ">= 14",
         "@angular/material": ">= 14",
         "rxjs": ">= 7.0.0",
-        "@hug/ngx-core": "1.1.6"
+        "@hug/ngx-core": "1.1.7"
     },
     "dependencies": {
         "tslib": "^2.6.3"

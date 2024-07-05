@@ -1,6 +1,3 @@
-diff --git a/node_modules/nx/bin/nx-cloud.js b/node_modules/nx/bin/nx-cloud.js
-old mode 100755
-new mode 100644
 diff --git a/node_modules/nx/src/command-line/release/changelog.js b/node_modules/nx/src/command-line/release/changelog.js
 index 13e2e34..5dc0610 100644
 --- a/node_modules/nx/src/command-line/release/changelog.js
@@ -13,6 +10,20 @@ index 13e2e34..5dc0610 100644
                      }
                      const { fileMap } = await (0, file_map_utils_1.createFileMapUsingProjectGraph)(projectGraph);
                      const fileToProjectMap = createFileToProjectMap(fileMap.projectFileMap);
+diff --git a/node_modules/nx/src/command-line/release/utils/git.js b/node_modules/nx/src/command-line/release/utils/git.js
+index c5c7d90..bb882ad 100644
+--- a/node_modules/nx/src/command-line/release/utils/git.js
++++ b/node_modules/nx/src/command-line/release/utils/git.js
+@@ -281,7 +281,8 @@ function parseConventionalCommitsMessage(message) {
+ exports.parseConventionalCommitsMessage = parseConventionalCommitsMessage;
+ // https://www.conventionalcommits.org/en/v1.0.0/
+ // https://regex101.com/r/FSfNvA/1
+-const ConventionalCommitRegex = /(?<type>[a-z]+)(\((?<scope>.+)\))?(?<breaking>!)?: (?<description>.+)/i;
++// const ConventionalCommitRegex = /(?<type>[a-z]+)(\((?<scope>.+)\))?(?<breaking>!)?: (?<description>.+)/i;
++const ConventionalCommitRegex = /(?<type>[a-z]+)(\((?<scope>.*)\))?(?<breaking>!)?: (?<description>.+)/i;
+ const CoAuthoredByRegex = /co-authored-by:\s*(?<name>.+)(<(?<email>.+)>)/gim;
+ const PullRequestRE = /\([ a-z]*(#\d+)\s*\)/gm;
+ const IssueRE = /(#\d+)/gm;
 diff --git a/node_modules/nx/src/command-line/release/utils/shared.js b/node_modules/nx/src/command-line/release/utils/shared.js
 index e08aff8..de3cdc7 100644
 --- a/node_modules/nx/src/command-line/release/utils/shared.js
