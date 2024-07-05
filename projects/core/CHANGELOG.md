@@ -1,3 +1,15 @@
+## 1.1.7 (2024-07-05)
+
+
+### 🐛 Fixes
+
+- theming ([79feb6e](https://github.com/DSI-HUG/ngx-components/commit/79feb6e))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.5 (2024-06-24)
 
 
