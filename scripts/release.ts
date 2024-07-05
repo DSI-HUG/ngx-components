@@ -226,16 +226,18 @@ void (async (): Promise<void> => {
      *   15. Publish to npm
      */
     let processStatus = 0;
-    for (const project of projectsToRelease) {
-        const projectName = projects[project].root.substring('projects/'.length);
-        const publishStatus = await releasePublish({
-            __overrides_unparsed__: `--packageRoot=./dist/${projectName}`,
-            projects: [project],
-            dryRun: options.dryRun,
-            verbose: options.verbose
-        } as PublishOptions);
-        if (publishStatus !== 0) {
-            processStatus = publishStatus;
+    if (!options.dryRun) {
+        for (const project of projectsToRelease) {
+            const projectName = projects[project].root.substring('projects/'.length);
+            const publishStatus = await releasePublish({
+                __overrides_unparsed__: `--packageRoot=./dist/${projectName}`,
+                projects: [project],
+                dryRun: options.dryRun,
+                verbose: options.verbose
+            } as PublishOptions);
+            if (publishStatus !== 0) {
+                processStatus = publishStatus;
+            }
         }
     }
 
