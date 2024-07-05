@@ -1,10 +1,10 @@
-<snackbar *ngIf="status" alignment="bottom right" [class.hasInfo]="!!status.technicalText" class="snackbar snackbar-{{status.type}} {{status.className}}">
-    <mat-icon *ngIf="statusIcon">{{statusIcon}}</mat-icon>
+<snackbar *ngIf="status" alignment="bottom right" [class.hasInfo]="!!status.technicalText" class="snackbar snackbar-{{ status.type }} {{ status.className }}">
+    <mat-icon *ngIf="statusIcon">{{ statusIcon }}</mat-icon>
     <span>
-        <b>{{status.title}}</b>
+        <b>{{ status.title }}</b>
         <p *ngIf="status.text" [innerHTML]="status.text"></p>
         <div class="user-defined-actions" *ngIf="status.actions?.length">
-            <button type="button" *ngFor="let action of status.actions" mat-button (click)="executeAction(action)" [class]="action.className">{{action.label}}</button>
+            <button type="button" *ngFor="let action of status.actions" mat-button (click)="executeAction(action)" [class]="action.className">{{ action.label }}</button>
         </div>
         <span class="action-container">
             <mat-icon class="info" inline (click)="displayDetailedStatus$.next(status)" *ngIf="status.technicalText">info</mat-icon>

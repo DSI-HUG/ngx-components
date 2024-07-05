@@ -2,7 +2,7 @@
 
 <ng-template #content>
     <div class="main-content">
-        <span class="primary-action-container" [class.bottom]="(mediaService.isHandset$ | async)" *ngIf="layoutPrimaryAction && !((layoutActions || layoutInfoBoxes) && ((mediaService.isHandset$ | async) === false))">
+        <span class="primary-action-container" [class.bottom]="mediaService.isHandset$ | async" *ngIf="layoutPrimaryAction && !((layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false)">
             <ng-template [ngTemplateOutlet]="layoutPrimaryAction"></ng-template>
         </span>
         <ng-content></ng-content>
@@ -13,8 +13,8 @@
 </ng-template>
 
 <ng-template #actionsToolbar>
-    <mat-toolbar id="actions-toolbar" class="actions" [color]="toolbarColor" [class.bottom]="(mediaService.isHandset$ | async)">
-        <span class="primary-action-container" *ngIf="layoutPrimaryAction && (layoutActions || layoutInfoBoxes) && ((mediaService.isHandset$ | async) === false)">
+    <mat-toolbar id="actions-toolbar" class="actions" [color]="toolbarColor" [class.bottom]="mediaService.isHandset$ | async">
+        <span class="primary-action-container" *ngIf="layoutPrimaryAction && (layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false">
             <ng-template [ngTemplateOutlet]="layoutPrimaryAction"></ng-template>
         </span>
         <ng-container *ngIf="layoutActions">
@@ -28,7 +28,7 @@
 
 <ng-template #filter>
     <mat-toolbar id="toolbar" [color]="toolbarColor" *ngIf="layoutToolbar || layoutRight">
-        <button type="button" id="sidenav-button" mat-icon-button *ngIf="withSidenav && (mediaService.isHandset$ | async) && ((sidenavService.openChanged$ | async) === false)" (click)="sidenavService.toggle()">
+        <button type="button" id="sidenav-button" mat-icon-button *ngIf="withSidenav && (mediaService.isHandset$ | async) && (sidenavService.openChanged$ | async) === false" (click)="sidenavService.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
         <button type="button" id="back-button" mat-icon-button *ngIf="withBackButton" (click)="this.backButtonClicked.emit($event)" [matTooltip]="backButtonLabel">
@@ -46,7 +46,7 @@
             <mat-icon>close</mat-icon>
         </button>
     </mat-toolbar>
-    <ng-container *ngIf="(layoutActions || layoutInfoBoxes) && ((mediaService.isHandset$ | async) === false)">
+    <ng-container *ngIf="(layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false">
         <ng-container *ngTemplateOutlet="actionsToolbar"></ng-container>
     </ng-container>
     <mat-drawer-container *ngIf="layoutRight; else content" autosize="true">

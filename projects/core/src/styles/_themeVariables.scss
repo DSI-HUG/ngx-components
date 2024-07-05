@@ -1,5 +1,5 @@
-@use "@angular/material" as mat;
-@use "./palette" as palette;
+@use '@angular/material' as mat;
+@use './palette' as palette;
 
 // Define color scheme
 $primary: mat.define-palette(palette.$mat-hug-primary);

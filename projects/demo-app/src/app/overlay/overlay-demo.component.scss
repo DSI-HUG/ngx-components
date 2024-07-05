@@ -1,5 +1,5 @@
 overlay-demo {
-    #demo-deja-menu {
+    #demo-ngx-menu {
         display: flex;
         flex-flow: row;
 
@@ -15,7 +15,7 @@ overlay-demo {
 }
 
 .overlay-container {
-    .deja-menu-content {
+    .ngx-menu-content {
         &#anchorMenu {
             .menu-item {
                 white-space: nowrap;

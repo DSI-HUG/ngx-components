@@ -20,10 +20,10 @@
     "html.format.wrapAttributes": "force-aligned",
     "html.format.wrapLineLength": 120,
     "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[scss]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "npm.exclude": "**/{dist,tmp}{,/**}",
     "npm.scriptExplorerExclude": [

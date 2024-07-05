@@ -1,19 +1,6 @@
 <ng-container *ngIf="overlayInfos$ | async as overlayInfos">
-    <ng-template #overlayCmp
-                 cdk-connected-overlay
-                 [cdkConnectedOverlayHasBackdrop]="hasBackdrop"
-                 [cdkConnectedOverlayBackdropClass]="overlayBackdropClass"
-                 [cdkConnectedOverlayOpen]="true"
-                 [cdkConnectedOverlayOffsetY]="overlayInfos.offsetY"
-                 [cdkConnectedOverlayOffsetX]="overlayInfos.offsetX"
-                 [cdkConnectedOverlayOrigin]="overlayInfos.origin"
-                 (backdropClick)="close()"
-                 (detach)="close()"
-                 [cdkConnectedOverlayPositions]="positionPairs"
-                 [cdkConnectedOverlayWidth]="overlayInfos.width">
-        <ng-template *ngIf="contentTemplate; else noContentTemplate"
-                     [ngTemplateOutlet]="contentTemplate"
-                     [ngTemplateOutletContext]="{$implicit: overlayInfos.context}"></ng-template>
+    <ng-template #overlayCmp cdk-connected-overlay [cdkConnectedOverlayHasBackdrop]="hasBackdrop" [cdkConnectedOverlayBackdropClass]="overlayBackdropClass" [cdkConnectedOverlayOpen]="true" [cdkConnectedOverlayOffsetY]="overlayInfos.offsetY" [cdkConnectedOverlayOffsetX]="overlayInfos.offsetX" [cdkConnectedOverlayOrigin]="overlayInfos.origin" (backdropClick)="close()" (detach)="close()" [cdkConnectedOverlayPositions]="positionPairs" [cdkConnectedOverlayWidth]="overlayInfos.width">
+        <ng-template *ngIf="contentTemplate; else noContentTemplate" [ngTemplateOutlet]="contentTemplate" [ngTemplateOutletContext]="{ $implicit: overlayInfos.context }"></ng-template>
         <ng-template #noContentTemplate>
             <ng-content></ng-content>
         </ng-template>

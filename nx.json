@@ -2,14 +2,10 @@
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "targetDefaults": {
         "build:ng": {
-            "dependsOn": [
-                "^build:ng"
-            ]
+            "dependsOn": ["^build:ng"]
         },
         "nx-release-publish": {
-            "dependsOn": [
-                "build"
-            ],
+            "dependsOn": ["build"],
             "options": {
                 "packageRoot": "{workspaceRoot}/dist/{projectRoot}"
             }

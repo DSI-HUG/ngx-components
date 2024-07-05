@@ -7,6 +7,9 @@
         "new-package": "ng g .:new-package",
         "release:dry-run": "nx release --verbose --dry-run",
         "postinstall": "patch-package",
+        "start": "ng serve",
+        "prettier": "npx prettier . --check",
+        "prettier-fix": "npx prettier . --write",
         "ng": "ng"
     },
     "workspaces": [
@@ -69,6 +72,7 @@
         "ng-packagr": "~14.2.2",
         "nx": "^19.3.2",
         "patch-package": "^8.0.0",
+        "prettier": "3.3.2",
         "typescript": "~4.7.4"
     },
     "schematics": "./scripts/new-package/collection.json",
@@ -98,8 +102,11 @@
         }
     },
     "lint-staged": {
-        "**/*.{js,json,ts,html}": [
+        "**/*.{js,ts}": [
             "eslint --fix"
+        ],
+        "**/*.{html,scss,json}": [
+            "npx prettier . --check"
         ]
     }
 }

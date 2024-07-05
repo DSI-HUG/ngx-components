@@ -1,4 +1,4 @@
-@use '@angular/material'as mat;
+@use '@angular/material' as mat;
 
 @mixin theme($theme) {
     $primary: map-get($theme, primary);
@@ -6,7 +6,7 @@
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
 
-    layout>.mat-toolbar.mat-primary {
+    layout > .mat-toolbar.mat-primary {
         background-color: mat.get-color-from-palette($primary, darker);
         color: mat.get-color-from-palette($primary, darker-contrast);
 
@@ -86,7 +86,7 @@
         }
 
         mat-button-toggle-group {
-            &:not([filters-toggle-group]):not([color="accent"]):not([color="primary"]) {
+            &:not([filters-toggle-group]):not([color='accent']):not([color='primary']) {
                 mat-button-toggle {
                     button {
                         .mat-button-toggle-label-content {

@@ -9,15 +9,15 @@
 
     mat-icon,
     fa-icon {
-        &[background="primary"] {
+        &[background='primary'] {
             background: mat.get-color-from-palette($primary) !important;
         }
 
-        &[background="accent"] {
+        &[background='accent'] {
             background: mat.get-color-from-palette($accent) !important;
         }
 
-        &[background="warn"] {
+        &[background='warn'] {
             background: mat.get-color-from-palette($warn) !important;
         }
     }
@@ -27,8 +27,8 @@
         position: relative;
         $ratio: 50%;
 
-        >mat-icon[secondary],
-        >fa-icon[secondary] {
+        > mat-icon[secondary],
+        > fa-icon[secondary] {
             background: mat.get-color-from-palette($background, background);
             border-radius: 50%;
             bottom: 0;
@@ -41,7 +41,7 @@
             line-height: 1;
         }
 
-        >fa-icon[secondary] {
+        > fa-icon[secondary] {
             font-size: calc($ratio - 5%);
         }
     }
@@ -67,15 +67,15 @@
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
 
-        &[color="primary"] {
+        &[color='primary'] {
             color: mat.get-color-from-palette($primary);
         }
 
-        &[color="accent"] {
+        &[color='accent'] {
             color: mat.get-color-from-palette($accent);
         }
 
-        &[color="warn"] {
+        &[color='warn'] {
             color: mat.get-color-from-palette($warn);
         }
 

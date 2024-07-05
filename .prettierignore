@@ -1,0 +1,9 @@
+# Ignore all JS and TS files:
+**/*.js
+**/*.ts
+
+/node_modules/
+/.angular/
+/.husky/
+/.vscode/
+/dist/

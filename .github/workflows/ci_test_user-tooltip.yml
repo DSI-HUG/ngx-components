@@ -1,25 +1,25 @@
 name: Test user-tooltip
 
 on:
-  workflow_dispatch:
-  workflow_call:
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '**'
-    paths:
-      - '.github/workflows/ci_test_user-tooltip.yml'
-      - 'projects/user-tooltip/**'
+    workflow_dispatch:
+    workflow_call:
+    push:
+        branches:
+            - '**'
+        tags-ignore:
+            - '**'
+        paths:
+            - '.github/workflows/ci_test_user-tooltip.yml'
+            - 'projects/user-tooltip/**'
 
 concurrency:
-  group: ci-test-user-tooltip-group-${{ github.ref }}
-  cancel-in-progress: true
+    group: ci-test-user-tooltip-group-${{ github.ref }}
+    cancel-in-progress: true
 
 jobs:
-  ci_test_user-tooltip:
-    uses: dsi-hug/action/.github/workflows/action.yml@v1
-    with:
-      working-directory: projects/user-tooltip
-      runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
-      node-versions: '[18, 20]'
+    ci_test_user-tooltip:
+        uses: dsi-hug/action/.github/workflows/action.yml@v1
+        with:
+            working-directory: projects/user-tooltip
+            runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
+            node-versions: '[18, 20]'

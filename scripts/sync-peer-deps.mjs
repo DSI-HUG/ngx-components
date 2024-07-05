@@ -22,7 +22,7 @@ const { yellow, blue, red, green, gray, white, bgBlue, bgWhite } = chalk;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootPath = resolve(__dirname, '..');
 
-const dryRun = (process.argv[2] === '--dry-run');
+const dryRun = process.argv[2] === '--dry-run';
 
 const execCommand = (command, args) => {
     console.log(`\n${command} ${args.join(' ')}`);
@@ -42,9 +42,9 @@ const getWorkspaces = () => {
     if (!rootPackageJson.workspaces) {
         console.error(red('No workspaces found in package.json'));
     }
-    return (rootPackageJson.workspaces || []).map(workspace => ({
+    return (rootPackageJson.workspaces || []).map((workspace) => ({
         packageJsonPath: resolve(rootPath, workspace, 'package.json'),
-        packageJson: JSON.parse(readFileSync(resolve(rootPath, workspace, 'package.json'), 'utf8'))
+        packageJson: JSON.parse(readFileSync(resolve(rootPath, workspace, 'package.json'), 'utf8')),
     }));
 };
 
@@ -53,8 +53,8 @@ const getWorkspaces = () => {
     let changesDetected = false;
     let packageJsonFiles = [];
     const workspaces = getWorkspaces();
-    workspaces.forEach(workspace => {
-        workspaces.forEach(workspace2 => {
+    workspaces.forEach((workspace) => {
+        workspaces.forEach((workspace2) => {
             const peerDependencies = workspace2.packageJson.peerDependencies || {};
             if (Object.hasOwn(peerDependencies, workspace.packageJson.name)) {
                 const version = peerDependencies[workspace.packageJson.name];

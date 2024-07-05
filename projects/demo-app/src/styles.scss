@@ -1,6 +1,6 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use "@angular/material" as mat;
+@use '@angular/material' as mat;
 // Plus imports for other components in your app.
 //@use "@hug/ngx-list-loader" as list-loader;
 // @use "../../list-loader/src/list-loader-theme" as list-loader;
@@ -26,8 +26,8 @@ $demo-app-theme: mat.define-light-theme(
         color: (
             primary: $demo-app-primary,
             accent: $demo-app-accent,
-            warn: $demo-app-warn
-        )
+            warn: $demo-app-warn,
+        ),
     )
 );
 
@@ -47,5 +47,58 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+@mixin menu() {
+    .ngx-menu,
+    [ngx-menu] {
+        .cdk-overlay-pane {
+            display: flex;
+            flex-direction: column;
+
+            .menu-content {
+                overflow-x: hidden;
+                overflow-y: auto;
+                display: block;
+                border-style: solid;
+                border-width: 1px;
+                box-shadow:
+                    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+                    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+                height: 100%;
+
+                .menu-header,
+                .menu-footer {
+                    flex: 0 0 auto;
+                    padding: 0.5rem;
+                }
+
+                > ul,
+                &ul {
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1 1 auto;
+
+                    li {
+                        cursor: pointer;
+                        align-items: center;
+                        display: flex;
+                        justify-content: flex-start;
+                        list-style-type: none;
+                        padding: 0.5rem;
+
+                        md-icon {
+                            margin: 0 0.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include menu();

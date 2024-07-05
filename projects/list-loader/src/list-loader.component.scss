@@ -4,14 +4,14 @@ list-loader {
     height: 100%;
     align-items: center;
 
-    >.container {
+    > .container {
         display: flex;
         flex-direction: column;
         flex: 1 1 auto;
         margin-top: 1rem;
         margin-bottom: 1rem;
 
-        >.spinner {
+        > .spinner {
             margin: auto;
             width: 60px;
             text-align: center;
@@ -27,38 +27,42 @@ list-loader {
                 animation: sk-bouncedelay 1.4s infinite ease-in-out both;
             }
 
-            >.bounce1 {
+            > .bounce1 {
                 -webkit-animation-delay: -0.32s;
                 animation-delay: -0.32s;
             }
 
-            >.bounce2 {
+            > .bounce2 {
                 -webkit-animation-delay: -0.16s;
                 animation-delay: -0.16s;
             }
         }
 
         @-webkit-keyframes sk-bouncedelay {
-            0%, 80%, 100% {
+            0%,
+            80%,
+            100% {
                 -webkit-transform: scale(0);
             }
             40% {
-                -webkit-transform: scale(1.0);
+                -webkit-transform: scale(1);
             }
         }
 
         @keyframes sk-bouncedelay {
-            0%, 80%, 100% {
+            0%,
+            80%,
+            100% {
                 -webkit-transform: scale(0);
                 transform: scale(0);
             }
             40% {
-                -webkit-transform: scale(1.0);
-                transform: scale(1.0);
+                -webkit-transform: scale(1);
+                transform: scale(1);
             }
         }
 
-        >.label {
+        > .label {
             text-align: center;
             font-size: 0.9rem;
             margin-top: 1rem;
