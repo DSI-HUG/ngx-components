@@ -4,8 +4,7 @@ import chalk from 'chalk';
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { releaseChangelog, releasePublish, releaseVersion } from 'nx/release';
-import { PublishOptions } from 'nx/src/command-line/release/command-object';
+import { releaseChangelog, releaseVersion } from 'nx/release';
 import { createProjectGraphAsync, readProjectsConfigurationFromProjectGraph } from 'nx/src/project-graph/project-graph';
 import { PackageJson } from 'nx/src/utils/package-json';
 import { workspaceRoot } from 'nx/src/utils/workspace-root';
@@ -105,7 +104,7 @@ void (async (): Promise<void> => {
     const exec = (message: string, cmd: string, args: string[]): void => {
         console.log(message);
         if (options.verbose) {
-            console.log(cmd);
+            console.log(`\n${cmd} ${args.join(' ')}`);
         }
         if (!options.dryRun) {
             const result = spawnSync(cmd, args, { stdio: 'inherit', cwd: workspaceRoot });
@@ -221,23 +220,17 @@ void (async (): Promise<void> => {
      *      - {projectName}: which resolved to '@hug/ngx-xyz' (ie. package.json#name)
      *      - {projectRoot}: which resolved to 'projects/xyz'
      *  And what we need is actually `xyz` because Angular generates projects in `dist/xyz`.
-     *  So to make it work, we use the hidden option (__overrides_unparsed__) and publish each project individually.
+     *  So to make it work, we publish each project individually ourselves.
      *
      *   15. Publish to npm
      */
-    let processStatus = 0;
-    for (const project of projectsToRelease) {
-        const projectName = projects[project].root.substring('projects/'.length);
-        const publishStatus = await releasePublish({
-            __overrides_unparsed__: `--packageRoot=./dist/${projectName}`,
-            projects: [project],
-            dryRun: options.dryRun,
-            verbose: options.verbose
-        } as PublishOptions);
-        if (publishStatus !== 0) {
-            processStatus = publishStatus;
-        }
-    }
+    projectsToRelease.forEach(project => {
+        const distPath = `./dist/${projects[project].root.substring('projects/'.length)}`;
+        exec(
+            `\n${bgBlue(' HUG ')}  ${blue(`Publishing ${projects[project].name} to npm`)}${options.dryRun ? yellow(' [dry-run]') : ''}\n`,
+            'npm', ['publish', distPath]
+        );
+    });
 
-    return process.exit(processStatus);
+    return process.exit(0);
 })();
