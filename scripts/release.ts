@@ -4,7 +4,8 @@ import chalk from 'chalk';
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { releaseChangelog, releaseVersion } from 'nx/release';
+import { releaseChangelog, releasePublish, releaseVersion } from 'nx/release';
+import { PublishOptions } from 'nx/src/command-line/release/command-object';
 import { createProjectGraphAsync, readProjectsConfigurationFromProjectGraph } from 'nx/src/project-graph/project-graph';
 import { PackageJson } from 'nx/src/utils/package-json';
 import { workspaceRoot } from 'nx/src/utils/workspace-root';
@@ -203,7 +204,7 @@ void (async (): Promise<void> => {
         console.log(`\n${blue(projects[project].name ?? '')} New version ${projectNewVersion} written to ${distPackageJsonPath}`);
         if (!options.dryRun) {
             const distPackageJson = JSON.parse(readFileSync(join(workspaceRoot, projectRoot, 'package.json'), 'utf8')) as PackageJson;
-            distPackageJson.name = projectNewVersion;
+            distPackageJson.version = projectNewVersion;
             writeFileSync(join(workspaceRoot, distPackageJsonPath), JSON.stringify(distPackageJson, null, 4), { encoding: 'utf8' });
         }
 
@@ -220,17 +221,23 @@ void (async (): Promise<void> => {
      *      - {projectName}: which resolved to '@hug/ngx-xyz' (ie. package.json#name)
      *      - {projectRoot}: which resolved to 'projects/xyz'
      *  And what we need is actually `xyz` because Angular generates projects in `dist/xyz`.
-     *  So to make it work, we publish each project individually ourselves.
+     *  So to make it work, we use the hidden option (__overrides_unparsed__) and publish each project individually.
      *
      *   15. Publish to npm
      */
-    projectsToRelease.forEach(project => {
-        const distPath = `./dist/${projects[project].root.substring('projects/'.length)}`;
-        exec(
-            `\n${bgBlue(' HUG ')}  ${blue(`Publishing ${projects[project].name} to npm`)}${options.dryRun ? yellow(' [dry-run]') : ''}\n`,
-            'npm', ['publish', distPath]
-        );
-    });
+    let processStatus = 0;
+    for (const project of projectsToRelease) {
+        const projectName = projects[project].root.substring('projects/'.length);
+        const publishStatus = await releasePublish({
+            __overrides_unparsed__: `--packageRoot=./dist/${projectName}`,
+            projects: [project],
+            dryRun: options.dryRun,
+            verbose: options.verbose
+        } as PublishOptions);
+        if (publishStatus !== 0) {
+            processStatus = publishStatus;
+        }
+    }
 
-    return process.exit(0);
+    return process.exit(processStatus);
 })();
