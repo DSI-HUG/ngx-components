@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention, no-loops/no-loops, camelcase */
 
 import chalk from 'chalk';
-import { execSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { releaseChangelog, releasePublish, releaseVersion } from 'nx/release';
@@ -102,13 +102,19 @@ void (async (): Promise<void> => {
      *       [skip ci]
      *  13. Push to git remote
      */
-    const exec = (message: string, cmd: string): void => {
+    const exec = (message: string, cmd: string, args: string[]): void => {
         console.log(message);
         if (options.verbose) {
             console.log(cmd);
         }
         if (!options.dryRun) {
-            execSync(cmd, { cwd: workspaceRoot, stdio: 'inherit' });
+            const result = spawnSync(cmd, args, { stdio: 'inherit', cwd: workspaceRoot });
+            if (result.error) {
+                throw result.error;
+            }
+            if (result.status !== 0) {
+                throw new Error(`Command failed with exit code ${result.status}`);
+            }
         }
     };
     const projectGraph = await createProjectGraphAsync({ exitOnError: true });
@@ -155,15 +161,15 @@ void (async (): Promise<void> => {
         if (packageJsonFiles.length) {
             exec(
                 `\n${bgBlue(' HUG ')}  ${blue('Updating npm lock file')}${options.dryRun ? yellow(' [dry-run]') : ''}\n`,
-                'npm install'
+                'npm', ['install']
             );
             exec(
                 `\n${bgBlue(' HUG ')}  ${blue('Staging changed files with git')}${options.dryRun ? yellow(' [dry-run]') : ''}\n`,
-                `git add package-lock.json ${packageJsonFiles.join(' ')}`
+                'git', ['add', 'package-lock.json', ...packageJsonFiles]
             );
             exec(
                 `\n${bgBlue(' HUG ')}  ${blue('Comitting changes with git')}${options.dryRun ? yellow(' [dry-run]') : ''}\n`,
-                `git commit --message deps(${workspace.packageJson.name}): upgrade to v${workspace.packageJson.version} --message [skip ci]`
+                'git', ['commit', '--message', `deps(${workspace.packageJson.name}): upgrade to v${workspace.packageJson.version}`, '--message', '[skip ci]']
             );
             packageJsonFiles = [];
         }
@@ -171,7 +177,7 @@ void (async (): Promise<void> => {
     if (changesDetected) {
         exec(
             `\n${bgBlue(' HUG ')}  ${blue('Pushing to git remote')}${options.dryRun ? yellow(' [dry-run]') : ''}\n`,
-            'git push --follow-tags --no-verify --atomic'
+            'git', ['push', '--follow-tags', '--no-verify', '--atomic']
         );
     } else {
         console.log('\nNo changes were needed, versions already in sync.');
