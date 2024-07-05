@@ -8,8 +8,7 @@
         "release:dry-run": "node -r @swc-node/register ./scripts/release.ts --verbose --dry-run",
         "postinstall": "patch-package",
         "start": "ng serve",
-        "prettier": "npx prettier . --check",
-        "prettier-fix": "npx prettier . --write"
+        "prettier": "npx prettier . --write"
     },
     "workspaces": [
         "projects/core",
