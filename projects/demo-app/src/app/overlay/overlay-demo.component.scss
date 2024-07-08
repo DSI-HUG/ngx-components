@@ -19,7 +19,8 @@ app-overlay-demo {
 
 .ngx-menu {
     .menu-content {
-        background-color: #fff;
+        display: flex;
+        flex-direction: column;
 
         &.anchor-menu,
         &.button-menu {

@@ -1,0 +1,56 @@
+<mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)="tabIndex = $event.index">
+    <mat-tab label="API REFERENCE"></mat-tab>
+    <mat-tab label="EXAMPLES"></mat-tab>
+</mat-tab-group>
+
+<mat-card class="demo-card demo-basic" *ngIf="tabIndex === 0">
+    <!-- <markdown [url]="'https://raw.githubusercontent.com/DSI-HUG/dejajs-components/develop/projects/deja-js/component/message-box/readme.md'"></markdown> -->
+</mat-card>
+
+<div *ngIf="tabIndex === 1" class="example">
+    <message-box type="primary" title="Title" [actions]="closeAction">
+        Du texte dans la
+        <b>message box</b>
+    </message-box>
+
+    <message-box type="primary" title="Title" horizontal [actions]="closeAction">
+        Du texte dans la
+        <b>message box</b>
+    </message-box>
+
+    <message-box type="warn" horizontal title="Title" [actions]="closeAction">
+        Un message "warn"
+        <b>horizontal</b>
+        avec titre
+    </message-box>
+
+    <message-box type="info" horizontal>
+        Un message "info"
+        <b>horizontal</b>
+    </message-box>
+
+    <message-box type="warn" horizontal [actions]="closeAction">
+        Un message "warn"
+        <b>horizontal</b>
+    </message-box>
+
+    <message-box type="danger" horizontal title="Title">
+        Un message "danger"
+        <b>horizontal</b>
+        avec une action au format template
+        <ng-template #actionsTemplate>
+            <button mat-icon-button>
+                <mat-icon>clear</mat-icon>
+            </button>
+        </ng-template>
+    </message-box>
+
+    <message-box horizontal>Un message horizontal sans type ni titre</message-box>
+
+    <message-box type="danger" horizontal light [actions]="closeAction">Un message horizontal sans type ni titre</message-box>
+    <message-box type="success" horizontal light>Un message horizontal sans type ni titre</message-box>
+    <message-box type="warn" horizontal light>Un message horizontal sans type ni titre</message-box>
+    <message-box type="info" horizontal light>Un message horizontal sans type ni titre</message-box>
+
+    <button mat-raised-button (click)="openDialog$.next()">Open dialog</button>
+</div>

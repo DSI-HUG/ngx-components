@@ -7,7 +7,13 @@
     </mat-toolbar>
 
     <mat-sidenav-container class="demo-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" opened="true">
+            <mat-nav-list>
+                <mat-list-item title="Message Box" routerLink="/message-box" routerLinkActive="active">
+                    <mat-icon mat-list-icon>message</mat-icon>
+                    <span mat-line>Message Box</span>
+                </mat-list-item>
+            </mat-nav-list>
             <mat-nav-list>
                 <mat-list-item title="Overlay" routerLink="/overlay" routerLinkActive="active">
                     <mat-icon mat-list-icon>menu</mat-icon>
