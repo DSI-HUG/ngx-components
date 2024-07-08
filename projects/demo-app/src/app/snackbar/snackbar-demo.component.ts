@@ -7,7 +7,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MessageBoxComponent } from '@hug/ngx-message-box';
 import { SnackbarComponent } from '@hug/ngx-snackbar';
-import { defaultIfEmpty, filter, from, interval, map, Observable, scan } from 'rxjs';
+import { Observable, defaultIfEmpty, filter, from, interval, map, scan, shareReplay } from 'rxjs';
 
 class Message {
     public constructor(public content = 'Some snackbar', public gate = true) { }
@@ -55,29 +55,39 @@ export class SnackbarDemoComponent {
             filter(type => type === 'danger'),
             map(() => new Message('Danger snackbar')),
             scan((acc, curr) => [...acc, curr], [] as Message[]),
-            defaultIfEmpty([] as Message[]));
+            defaultIfEmpty([] as Message[]),
+            shareReplay({ bufferSize: 1, refCount: false})
+        );
 
         this.warnings$ = from(this.push).pipe(
             filter(type => type === 'warning'),
             map(() => new Message('Warning snackbar')),
             scan((acc, curr) => [...acc, curr], [] as Message[]),
-            defaultIfEmpty([] as Message[]));
+            defaultIfEmpty([] as Message[]),
+            shareReplay({ bufferSize: 1, refCount: false})
+        );
 
         this.successes$ = from(this.push).pipe(
             filter(type => type === 'success'),
             map(() => new Message('Success snackbar')),
             scan((acc, curr) => [...acc, curr], [] as Message[]),
-            defaultIfEmpty([] as Message[]));
+            defaultIfEmpty([] as Message[]),
+            shareReplay({ bufferSize: 1, refCount: false})
+        );
 
         this.infos$ = from(this.push).pipe(
             filter(type => type === 'info'),
             map(() => new Message('Info snackbar')),
             scan((acc, curr) => [...acc, curr], [] as Message[]),
-            defaultIfEmpty([] as Message[]));
+            defaultIfEmpty([] as Message[]),
+            shareReplay({ bufferSize: 1, refCount: false})
+        );
 
         this.messages$ = interval(2000).pipe(
             map(() => new Message('Server push snackbar')),
             scan((acc, curr) => [...acc, curr], [] as Message[]),
-            defaultIfEmpty([] as Message[]));
+            defaultIfEmpty([] as Message[]),
+            shareReplay({ bufferSize: 1, refCount: false})
+        );
     }
 }

@@ -1,5 +1,7 @@
 :host {
-    .mat-card {
+    .demo-card {
+        min-height: 200px;
+
         .mat-card-content {
             display: flex;
             flex-direction: row;

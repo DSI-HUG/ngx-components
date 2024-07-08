@@ -5,7 +5,7 @@
 
 <mat-card class="demo-card demo-basic" *ngIf="tabIndex === 0">TODO</mat-card>
 
-<div *ngIf="tabIndex === 1" (contextmenu)="onContextMenu($event)">
+<div *ngIf="tabIndex === 1" (contextmenu)="onContextMenu($event)" class="demo-content">
     <overlay #contextMenu overlayContainerClass="ngx-menu">
         <div class="menu-content">
             <ul>
