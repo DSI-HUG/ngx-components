@@ -6,32 +6,214 @@ import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { releaseChangelog, releasePublish, releaseVersion } from 'nx/release';
 import { PublishOptions } from 'nx/src/command-line/release/command-object';
+import { VersionData } from 'nx/src/command-line/release/version';
+import { ProjectsConfigurations } from 'nx/src/config/workspace-json-project-json';
 import { createProjectGraphAsync, readProjectsConfigurationFromProjectGraph } from 'nx/src/project-graph/project-graph';
 import { PackageJson } from 'nx/src/utils/package-json';
 import { workspaceRoot } from 'nx/src/utils/workspace-root';
 import * as yargs from 'yargs';
 
-const { yellow, blue, red, green, gray, white, bgBlue } = chalk;
+const { yellow, blue, red, green, gray, white, cyan, bgBlue } = chalk;
+
+interface Options {
+    projects: string[];
+    dryRun: boolean;
+    verbose: boolean;
+}
+
+const exec = (message: string, cmd: string, args: string[], options: Options, newLine = false): void => {
+    console.log(`${message}${options.dryRun ? yellow(' [dry-run]') : ''}${newLine ? '\n' : ''}`);
+    if (options.verbose) {
+        console.log(`${cmd} ${args.join(' ')}`);
+    }
+    if (!options.dryRun) {
+        const result = spawnSync(cmd, args, { stdio: 'inherit', cwd: workspaceRoot });
+        if (result.error) {
+            throw result.error;
+        }
+        if (result.status !== 0) {
+            throw new Error(`Command failed with exit code ${result.status}`);
+        }
+    }
+};
+
+/**
+ *  Currently `nx release` does not allow to easily change the folder to be published.
+ *
+ *  `nx.json#targetDefaults.nx-release-publish.options.packageRoot` could be used but can only interpolate:
+ *      - {projectName}: which resolved to '@hug/ngx-abc' (ie. package.json#name)
+ *      - {projectRoot}: which resolved to 'projects/abc'
+ *  And what we need is actually `abc` because Angular generates projects in `dist/abc`.
+ *  So to make it work, we use the hidden option (__overrides_unparsed__) and publish each project individually.
+ */
+const publishProjects = async (
+    projectsToRelease: string[],
+    projects: ProjectsConfigurations['projects'],
+    options: Options
+): Promise<number> => {
+    let processStatus = 0;
+    if (!options.dryRun) {
+        for (const project of projectsToRelease) {
+            const projectName = projects[project].root.substring('projects/'.length);
+            const publishStatus = await releasePublish({
+                __overrides_unparsed__: `--packageRoot=./dist/${projectName}`,
+                projects: [project],
+                dryRun: options.dryRun,
+                verbose: options.verbose
+            } as PublishOptions);
+            if (publishStatus !== 0) {
+                processStatus = publishStatus;
+            }
+        }
+    } else {
+        console.log(`\n${bgBlue(' HUG ')}  ${blue('Publishing to npm')}${yellow(' [dry-run]')}\n`);
+    }
+    return processStatus;
+};
+/**
+ *  Currently `nx release` publishes packages from their source directory by default.
+ *
+ *  So we need to make sure `dist` are in sync and used for publishing instead.
+ *
+ *  TODO: remove this script if one day this feature is supported by `nx release` directly
+ *  @see https://github.com/nrwl/nx/issues/21855#issuecomment-1977360480
+ */
+const updateProjectsDists = (
+    projectsToRelease: string[],
+    projects: ProjectsConfigurations['projects'],
+    projectsVersionData: VersionData,
+    options: Options
+): void => {
+    console.log(`\n${bgBlue(' HUG ')}  ${blue('Synchronizing dist packages')}${options.dryRun ? yellow(' [dry-run]') : ''}`);
+    projectsToRelease.forEach(project => {
+        const projectRoot = projects[project].root;
+        const projectName = projectRoot.substring('projects/'.length);
+        const projectNewVersion = projectsVersionData[project].newVersion ?? '';
+        const distPackageJsonPath = join('dist', projectName, 'package.json');
+        const distChangelogPath = join('dist', projectName, 'CHANGELOG.md');
+
+        console.log(`\n${cyan(projects[project].name ?? '')} New version ${projectNewVersion} written to ${distPackageJsonPath}`);
+        if (!options.dryRun) {
+            const distPackageJson = JSON.parse(readFileSync(join(workspaceRoot, projectRoot, 'package.json'), 'utf8')) as PackageJson;
+            distPackageJson.version = projectNewVersion;
+            writeFileSync(join(workspaceRoot, distPackageJsonPath), JSON.stringify(distPackageJson, null, 4), { encoding: 'utf8' });
+        }
+
+        console.log(`${cyan(projects[project].name ?? '')} Changelog updated in ${distChangelogPath}`);
+        if (!options.dryRun) {
+            copyFileSync(join(workspaceRoot, projectRoot, 'CHANGELOG.md'), join(workspaceRoot, distChangelogPath));
+        }
+    });
+};
+
+/**
+ *  Ensures consistent versioning across interdependent packages in the monorepo.
+ *
+ *  It reads the current version of each package and updates any other packages that reference
+ *  it in their `peerDependencies` to maintain version synchronization.
+ *
+ *  TODO: remove this script if one day this feature is supported by `nx release` directly
+ *  @see https://github.com/nrwl/nx/issues/22776
+ *  @see https://github.com/nrwl/nx/discussions/23388
+ */
+const updateProjectsPeerDeps = (
+    projectsToRelease: string[],
+    projects: ProjectsConfigurations['projects'],
+    projectsVersionData: VersionData,
+    options: Options
+): boolean => {
+    let packageJsonFiles: string[] = [];
+    let changesDetected = false;
+
+    console.log(`\n${bgBlue(' HUG ')}  ${blue('Synchronizing inter peer dependencies')}${options.dryRun ? yellow(' [dry-run]') : ''}`);
+    projectsToRelease.forEach(projectToRelease => {
+        const projectToReleaseNewVersion = projectsVersionData[projectToRelease].newVersion ?? '';
+
+        Object.values(projects).forEach(project => {
+            const packageJsonPath = join(project.root, 'package.json');
+            const packageJson = JSON.parse(readFileSync(join(workspaceRoot, packageJsonPath), 'utf8')) as PackageJson;
+            const peerDependencies = packageJson.peerDependencies ?? {};
+
+            if (Object.prototype.hasOwnProperty.call(peerDependencies, projectToRelease)) {
+                const version = peerDependencies[projectToRelease];
+                if (!version.includes(projectToReleaseNewVersion)) {
+                    changesDetected = true;
+
+                    const versionRange = version.match(/(^[^\d]*)\d.*/)?.[1] ?? '';
+                    const newVersion = `${versionRange}${projectToReleaseNewVersion}`;
+
+                    if (!packageJsonFiles.length) {
+                        console.log(blue(`\n- ${projectToRelease}`));
+                    }
+
+                    console.log(`\n${white('UPDATE')} ${packageJsonPath}${options.dryRun ? yellow(' [dry-run]') : ''}\n`);
+                    console.log(gray('  "peerDependencies": {'));
+                    console.log(red(`-    "${projectToRelease}": "${version}"`));
+                    console.log(green(`+    "${projectToRelease}": "${newVersion}"`));
+                    console.log(gray('  }'));
+                    if (!options.dryRun) {
+                        peerDependencies[projectToRelease] = newVersion;
+                        packageJson.peerDependencies = peerDependencies;
+                        writeFileSync(join(workspaceRoot, packageJsonPath), JSON.stringify(packageJson, null, 4), { encoding: 'utf8' });
+                    }
+
+                    packageJsonFiles.push(packageJsonPath);
+                }
+            }
+        });
+
+        if (packageJsonFiles.length) {
+            exec('\nUpdating npm lock file:', 'npm', ['install'], options);
+            exec('\nStaging changed files with git:', 'git', ['add', 'package-lock.json', ...packageJsonFiles], options);
+            exec(
+                '\nComitting changes with git:',
+                'git', ['commit', '--message', `deps(${projectToRelease}): upgrade to v${projectToReleaseNewVersion}`, '--message', '[skip ci]'],
+                options
+            );
+            packageJsonFiles = [];
+        }
+    });
+
+    if (changesDetected) {
+        exec(
+            `\n${bgBlue(' HUG ')}  ${blue('Pushing to git remote')}`,
+            'git', ['push', '--follow-tags', '--no-verify', '--atomic'],
+            options, true
+        );
+    } else {
+        console.log('\nNo changes were needed, versions already in sync.');
+    }
+
+    return changesDetected;
+};
+
+const updateProjectsVersions = async (gitCommitMessage: string, options: Options): Promise<{
+    projectsToRelease: string[];
+    workspaceVersion: (string | null) | undefined;
+    projectsVersionData: VersionData;
+}> => {
+    const { workspaceVersion, projectsVersionData } = await releaseVersion({
+        projects: options.projects,
+        stageChanges: true,
+        gitCommit: true,
+        gitCommitMessage,
+        dryRun: options.dryRun,
+        verbose: options.verbose
+    });
+    const projectsToRelease = Object.keys(projectsVersionData).filter(key => {
+        const { newVersion, currentVersion } = projectsVersionData[key];
+        return (newVersion && (newVersion !== currentVersion));
+    });
+    if (projectsToRelease.length === 0) {
+        console.log('No affected projects found to be published');
+        return process.exit(0);
+    }
+    return { projectsToRelease, workspaceVersion, projectsVersionData };
+};
 
 void (async (): Promise<void> => {
-    const exec = (message: string | undefined, cmd: string, args: string[]): void => {
-        if (message) {
-            console.log(message);
-        }
-        if (options.verbose) {
-            console.log(`\n${cmd} ${args.join(' ')}`);
-        }
-        if (!options.dryRun) {
-            const result = spawnSync(cmd, args, { stdio: 'inherit', cwd: workspaceRoot });
-            if (result.error) {
-                throw result.error;
-            }
-            if (result.status !== 0) {
-                throw new Error(`Command failed with exit code ${result.status}`);
-            }
-        }
-    };
-
+    const projectGraph = await createProjectGraphAsync({ exitOnError: true });
+    const { projects } = readProjectsConfigurationFromProjectGraph(projectGraph);
     const options = await yargs
         .version(false)
         .option('projects', {
@@ -53,210 +235,81 @@ void (async (): Promise<void> => {
         .parseAsync();
 
     /**
-     *   1. Resolve new project version
-     *   2. Update `projects/<project_name>/package.json` with new version
+     *   1. Resolve new versions of projects using semantic versioning
+     *   2. Update every projects `package.json` file with their new version
      *   3. Update npm lock file
      *   4. Stage changed files with git
+     *   5. Commit all previously staged files in git
+     *        chore(release): update projects versions [skip ci]
+     *        - project: @hug/ngx-abc 1.2.3
+     *        - project: @hug/ngx-xyz 4.5.6
      */
-    const { workspaceVersion, projectsVersionData } = await releaseVersion({
-        projects: options.projects,
-        stageChanges: true,
-        gitCommit: false,
-        dryRun: options.dryRun,
-        verbose: options.verbose
-    });
+    let updates = await updateProjectsVersions('chore(release): update projects versions [skip ci]', options);
 
     /**
-     *   5. Determine affected projects and exit if none
+     *   6. Synchronize inter peer dependencies
+     *      For each project:
+     *      - Update project's package.json file
+     *      - Update npm lock file
+     *      - Stage changed files with git
+     *      - Commit all previously staged files in git
+     *          deps(@hug/ngx-abc): upgrade to v1.2.3
+     *          [skip ci]
+     *   7. Push to git remote
      */
-    const projectsToRelease = Object.keys(projectsVersionData).filter(key => {
-        const { newVersion, currentVersion } = projectsVersionData[key];
-        return (newVersion && (newVersion !== currentVersion));
-    });
-    if (projectsToRelease.length === 0) {
-        console.log('No affected projects found to be published');
-        return process.exit(0);
+    const needReUpdate = updateProjectsPeerDeps(updates.projectsToRelease, projects, updates.projectsVersionData, options);
+
+    /**
+     *   If multiple projects were be released, synchronizing inter peer dependencies might have affected some of them.
+     *   So we need to resolve new versions of projects once more.
+     *
+     *   8. Resolve new versions of projects using semantic versioning
+     *   9. Update every projects `package.json` file with their new version
+     *  10. Update npm lock file
+     *  11. Stage changed files with git
+     *  12. Commit all previously staged files in git
+     *        chore(release): re-update projects versions [skip ci]
+     *        - project: @hug/ngx-abc 1.2.3
+     *        - project: @hug/ngx-xyz 4.5.6
+     */
+    if (needReUpdate && (options.projects?.length > 1)) {
+        updates = await updateProjectsVersions('chore(release): re-update projects versions [skip ci]', options);
     }
 
     /**
-     *   6. Update `projects/<project_name>/CHANGELOG.md`
-     *   7. Stage changed files with git
-     *   8. Commit all previously staged files in git
-     *        chore(release): publish [skip ci]
-     *        - project: @hug/ngx-xyz 1.2.3
-     *   9. Tag commit with git
-     *        @hug/ngx-xyz@1.2.3
-     *  10. Push to git remote
-     *  11. Create GitHub release
+     *  13. Update every projects `CHANGELOG.md` file
+     *  14. Stage changed files with git
+     *  15. Commit all previously staged files in git
+     *        chore(release): update projects changelogs [skip ci]
+     *        - project: @hug/ngx-abc 1.2.3
+     *        - project: @hug/ngx-xyz 4.5.6
+     *  16. Tag commit with git
+     *        @hug/ngx-abc@1.2.3
+     *        @hug/ngx-xyz@5.6.7
+     *  17. Push to git remote
+     *  18. Create GitHub releases
      */
     await releaseChangelog({
-        projects: options.projects,
-        version: workspaceVersion,
-        versionData: projectsVersionData,
+        projects: updates.projectsToRelease,
+        version: updates.workspaceVersion,
+        versionData: updates.projectsVersionData,
         stageChanges: true,
         gitCommit: true,
-        gitCommitMessage: 'chore(release): publish [skip ci]',
+        gitCommitMessage: 'chore(release): update projects changelogs [skip ci]',
         gitTag: true,
         dryRun: options.dryRun,
         verbose: options.verbose
     });
 
     /**
-     *  Ensures consistent versioning across interdependent packages in the monorepo.
-     *
-     *  It reads the current version of each package and updates any other packages that reference
-     *  it in their `peerDependencies` to maintain version synchronization.
-     *
-     *  TODO: remove this script if one day this feature is supported by `nx release` directly
-     *  @see https://github.com/nrwl/nx/issues/22776
-     *  @see https://github.com/nrwl/nx/discussions/23388
-     *
-     *  12. Synchronize interdependencies
-     *   - Update project's package.json file
-     *   - Update npm lock file
-     *   - Stage changed files with git
-     *   - Commit all previously staged files in git
-     *       deps(@hug/ngx-xyz): upgrade to v1.2.3
-     *       [skip ci]
-     *  13. Push to git remote
+     *   19. Update projects `package.json` and `CHANGELOG.md` in their dist folder
      */
-    const projectGraph = await createProjectGraphAsync({ exitOnError: true });
-    const { projects } = readProjectsConfigurationFromProjectGraph(projectGraph);
-    const workspaces = Object.values(projects).map(project => ({
-        packageJsonPath: join(project.root, 'package.json'),
-        packageJson: JSON.parse(readFileSync(join(workspaceRoot, project.root, 'package.json'), 'utf8')) as PackageJson
-    }));
-    let packageJsonFiles: string[] = [];
-    let changesDetected = false;
-
-    console.log(`\n${bgBlue(' HUG ')}  ${blue('Synchronizing peer interdependencies')}${options.dryRun ? yellow(' [dry-run]') : ''}`);
-    workspaces.forEach(workspace => {
-        workspaces.forEach(workspace2 => {
-            const peerDependencies = workspace2.packageJson.peerDependencies ?? {};
-            if (Object.prototype.hasOwnProperty.call(peerDependencies, workspace.packageJson.name)) {
-                const version = peerDependencies[workspace.packageJson.name];
-                if (!version.includes(workspace.packageJson.version)) {
-                    changesDetected = true;
-
-                    const versionRange = version.match(/(^[^\d]*)\d.*/)?.[1] ?? '';
-                    const newVersion = `${versionRange}${workspace.packageJson.version}`;
-
-                    if (!packageJsonFiles.length) {
-                        console.log(`\n- ${blue(workspace.packageJson.name)}`);
-                    }
-
-                    console.log(`\n${white('UPDATE')} ${workspace2.packageJsonPath}${options.dryRun ? yellow(' [dry-run]') : ''}\n`);
-                    console.log(gray('  "peerDependencies": {'));
-                    console.log(red(`-    "${workspace.packageJson.name}": "${version}"`));
-                    console.log(green(`+    "${workspace.packageJson.name}": "${newVersion}"`));
-                    console.log(gray('  }'));
-                    if (!options.dryRun) {
-                        peerDependencies[workspace.packageJson.name] = newVersion;
-                        workspace2.packageJson.peerDependencies = peerDependencies;
-                        writeFileSync(join(workspaceRoot, workspace2.packageJsonPath), JSON.stringify(workspace2.packageJson, null, 4), { encoding: 'utf8' });
-                    }
-
-                    packageJsonFiles.push(workspace2.packageJsonPath);
-                }
-            }
-        });
-
-        if (packageJsonFiles.length) {
-            exec(
-                `\n${bgBlue(' HUG ')}  ${blue('Updating npm lock file')}${options.dryRun ? yellow(' [dry-run]') : ''}\n`,
-                'npm', ['install']
-            );
-            exec(
-                `\n${bgBlue(' HUG ')}  ${blue('Staging changed files with git')}${options.dryRun ? yellow(' [dry-run]') : ''}\n`,
-                'git', ['add', 'package-lock.json', ...packageJsonFiles]
-            );
-            exec(
-                `\n${bgBlue(' HUG ')}  ${blue('Comitting changes with git')}${options.dryRun ? yellow(' [dry-run]') : ''}\n`,
-                'git', ['commit', '--message', `deps(${workspace.packageJson.name}): upgrade to v${workspace.packageJson.version}`, '--message', '[skip ci]']
-            );
-            packageJsonFiles = [];
-        }
-    });
-    if (changesDetected) {
-        exec(
-            `\n${bgBlue(' HUG ')}  ${blue('Pushing to git remote')}${options.dryRun ? yellow(' [dry-run]') : ''}\n`,
-            'git', ['push', '--follow-tags', '--no-verify', '--atomic']
-        );
-    } else {
-        console.log('\nNo changes were needed, versions already in sync.');
-    }
+    updateProjectsDists(updates.projectsToRelease, projects, updates.projectsVersionData, options);
 
     /**
-     *  Currently `nx release` does not update package-lock file correctly.
-     *
-     *  TODO: remove this script if one day this feature is supported by `nx release` directly
-     *  @see https://github.com/nrwl/nx/issues/26660
-     *
-     *   14. Synchronize `package-lock.json` file
+     *   20. Publish projects to npm
      */
-    console.log(`\n${bgBlue(' HUG ')}  ${blue('Synchronizing npm lock file')}${options.dryRun ? yellow(' [dry-run]') : ''}`);
-    exec(undefined, 'npm', ['install']);
-    exec(undefined, 'git', ['add', 'package.json', 'package-lock.json']);
-    exec(undefined, 'git', ['commit', '--message', 'chore: synchronize package.json and package-lock.json', '--message', '[skip ci]']);
-    exec(undefined, 'git', ['push', '--follow-tags', '--no-verify', '--atomic']);
+    const publishStatus = await publishProjects(updates.projectsToRelease, projects, options);
 
-    /**
-     *  Currently `nx release` publishes packages from their source directory by default.
-     *
-     *  So we need to make sure `dist` are in sync and published instead.
-     *
-     *  TODO: remove this script if one day this feature is supported by `nx release` directly
-     *  @see https://github.com/nrwl/nx/issues/21855#issuecomment-1977360480
-     *
-     *   15. Update project(s) `package.json` and `CHANGELOG.md` in dist
-     */
-    console.log(`\n${bgBlue(' HUG ')}  ${blue('Synchronizing dist packages')}${options.dryRun ? yellow(' [dry-run]') : ''}`);
-    projectsToRelease.forEach(project => {
-        const projectRoot = projects[project].root;
-        const projectName = projectRoot.substring('projects/'.length);
-        const projectNewVersion = projectsVersionData[project].newVersion ?? '';
-        const distPackageJsonPath = join('dist', projectName, 'package.json');
-        const distChangelogPath = join('dist', projectName, 'CHANGELOG.md');
-
-        console.log(`\n${blue(projects[project].name ?? '')} New version ${projectNewVersion} written to ${distPackageJsonPath}`);
-        if (!options.dryRun) {
-            const distPackageJson = JSON.parse(readFileSync(join(workspaceRoot, projectRoot, 'package.json'), 'utf8')) as PackageJson;
-            distPackageJson.version = projectNewVersion;
-            writeFileSync(join(workspaceRoot, distPackageJsonPath), JSON.stringify(distPackageJson, null, 4), { encoding: 'utf8' });
-        }
-
-        console.log(`${blue(projects[project].name ?? '')} Changelog updated in ${distChangelogPath}`);
-        if (!options.dryRun) {
-            copyFileSync(join(workspaceRoot, projectRoot, 'CHANGELOG.md'), join(workspaceRoot, distChangelogPath));
-        }
-    });
-
-    /**
-     *  Currently `nx release` does not allow to easily change the folder to be published.
-     *
-     *  `nx.json#targetDefaults.nx-release-publish.options.packageRoot` could be used but can only interpolate:
-     *      - {projectName}: which resolved to '@hug/ngx-xyz' (ie. package.json#name)
-     *      - {projectRoot}: which resolved to 'projects/xyz'
-     *  And what we need is actually `xyz` because Angular generates projects in `dist/xyz`.
-     *  So to make it work, we use the hidden option (__overrides_unparsed__) and publish each project individually.
-     *
-     *   16. Publish to npm
-     */
-    let processStatus = 0;
-    if (!options.dryRun) {
-        for (const project of projectsToRelease) {
-            const projectName = projects[project].root.substring('projects/'.length);
-            const publishStatus = await releasePublish({
-                __overrides_unparsed__: `--packageRoot=./dist/${projectName}`,
-                projects: [project],
-                dryRun: options.dryRun,
-                verbose: options.verbose
-            } as PublishOptions);
-            if (publishStatus !== 0) {
-                processStatus = publishStatus;
-            }
-        }
-    }
-
-    return process.exit(processStatus);
+    return process.exit(publishStatus);
 })();

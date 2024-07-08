@@ -5,7 +5,8 @@
         "lint": "eslint . --fix",
         "prepare": "husky || true",
         "new-package": "ng g .:new-package",
-        "release:dry-run": "node -r @swc-node/register ./scripts/release.ts --verbose --dry-run",
+        "release": "node -r @swc-node/register ./scripts/release.ts --verbose",
+        "release:dry-run": "npm run release -- --dry-run",
         "postinstall": "patch-package"
     },
     "workspaces": [
