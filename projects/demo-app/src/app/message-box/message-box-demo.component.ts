@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { Destroy } from '@hug/ngx-core';
 import { MessageBoxAction, MessageBoxComponent } from '@hug/ngx-message-box';
 import { MessageBoxDialogButtons, MessageBoxDialogService } from '@hug/ngx-message-box-dialog';
@@ -20,9 +21,10 @@ import { Subject, switchMap, takeUntil } from 'rxjs';
         MatCardModule,
         MatIconModule,
         MatTabsModule,
+        MatToolbarModule,
         MessageBoxComponent,
         NgIf
-    ],
+    ]
 })
 export class MessageBoxDemoComponent extends Destroy {
     public tabIndex = 1;
@@ -32,7 +34,7 @@ export class MessageBoxDemoComponent extends Destroy {
             action: (): void => alert('test action'),
             icon: 'clear'
         }
-    ] as ReadonlyArray<MessageBoxAction>;
+    ] as readonly MessageBoxAction[];
 
     protected openDialog$ = new Subject<void>();
 
@@ -46,7 +48,7 @@ export class MessageBoxDemoComponent extends Destroy {
                 const dialogData = {
                     title: 'MessageBox Dialog',
                     text: 'This is a message box dialog. Click OK or Cancel to close.',
-                    buttons: MessageBoxDialogButtons.OK + MessageBoxDialogButtons.CANCEL,
+                    buttons: MessageBoxDialogButtons.OK + MessageBoxDialogButtons.CANCEL
                 };
 
                 return this.messageBoxService.openDialog$(dialogData);
