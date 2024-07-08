@@ -9,111 +9,116 @@
 </mat-tab-group>
 
 <mat-card class="demo-card demo-basic" *ngIf="tabIndex === 0">
-    <!-- <markdown [url]="'https://raw.githubusercontent.com/DSI-HUG/dejajs-components/develop/projects/js/component/snackbar/readme.md'"></markdown> -->
+    <!-- <markdown [url]="'https://raw.githubusercontent.com/DSI-HUG/dejajs-components/develop/projects/deja-js/component/snackbar/readme.md'"></markdown> -->
 </mat-card>
 
 <div class="demo-card" *ngIf="tabIndex === 1">
-    <!--
-			important:
+    <mat-card class="demo-card">
+        <mat-toolbar color="primary">Snackbar</mat-toolbar>
+        <mat-card-content>
+            <!--
+                important:
 
-			using web-animations-js polyfill is mandatory for IE & Safari because
-			they don't implement the Web Animation API natively
+                using web-animations-js polyfill is mandatory for IE & Safari because
+                they don't implement the Web Animation API natively
 
-			note:
-			the graphic representation of the snackbar has no link with it's implementation beside it's size (see impl)
-			the graphic impl proposed here may be impl in the future as a separate component
-			it may be something that looks like a mat-card but with context property defining the context (danger, warning, success, info, simple)
-			which will be translated to it's color and z index
-			-->
+                note:
+                the graphic representation of the snackbar has no link with it's implementation beside it's size (see impl)
+                the graphic impl proposed here may be impl in the future as a separate component
+                it may be something that looks like a mat-card but with context property defining the context (danger, warning, success, info, simple)
+                which will be translated to it's color and z index
+            -->
 
-    <!--
-			todo
-			check body position if scrollHeight > viewportHeight
-			check if html container but !outerContainerElement => position on viewport
-		-->
+            <!--
+                todo
+                check body position if scrollHeight > viewportHeight
+                check if html container but !outerContainerElement => position on viewport
+            -->
 
-    <div class="btn-container">
-        <button mat-raised-button background="danger" (click)="push.emit('danger')">Danger</button>
-        <button mat-raised-button background="warning" (click)="push.emit('warning')">Warning</button>
-        <button mat-raised-button background="success" (click)="push.emit('success')">Success</button>
-        <button mat-raised-button background="info" (click)="push.emit('info')">Info</button>
-        <button mat-raised-button (click)="simpleGate = true">Simple</button>
-    </div>
+            <div class="btn-container">
+                <button mat-raised-button background="danger" (click)="push.emit('danger')">Danger</button>
+                <button mat-raised-button background="warning" (click)="push.emit('warning')">Warning</button>
+                <button mat-raised-button background="success" (click)="push.emit('success')">Success</button>
+                <button mat-raised-button background="info" (click)="push.emit('info')">Info</button>
+                <button mat-raised-button (click)="simpleGate = true">Simple</button>
+            </div>
 
-    <!-- simple use case, single snackbar -->
-    <snackbar *ngIf="simpleGate" alignment="top left" [duration]="2000" (onAnimationDone)="simpleGate = false">
-        <message-box type="primary" horizontal>Hello world ! I'm a simple snackbar.</message-box>
-    </snackbar>
-
-    <!-- event driven from UI -->
-    <!-- this behavior is to be used to react to user behavior on the UI, snackbars MUST be disposed using user interraction -->
-
-    <!--inside a container-->
-    <section #containerEl class="container" [style.position]="'relative'">
-        <ng-template ngFor let-message [ngForOf]="infos$ | async">
-            <snackbar *ngIf="message.gate" alignment="right" [outerContainerElement]="containerEl">
-                <message-box type="primary" horizontal>
-                    {{ message.content }}
-                    <ng-template #actionsTemplate>
-                        <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
-                            <mat-icon>clear</mat-icon>
-                        </button>
-                    </ng-template>
-                </message-box>
+            <!-- simple use case, single snackbar -->
+            <snackbar *ngIf="simpleGate" alignment="top left" [duration]="2000" (onAnimationDone)="simpleGate = false">
+                <message-box type="primary" horizontal>Hello world ! I'm a simple snackbar.</message-box>
             </snackbar>
-        </ng-template>
-    </section>
 
-    <!--on the viewport-->
-    <ng-template ngFor let-message [ngForOf]="successes$ | async">
-        <snackbar *ngIf="message.gate" alignment="bottom left">
-            <message-box type="success" horizontal>
-                {{ message.content }}
-                <ng-template #actionsTemplate>
-                    <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
-                        <mat-icon>clear</mat-icon>
-                    </button>
+            <!-- event driven from UI -->
+            <!-- this behavior is to be used to react to user behavior on the UI, snackbars MUST be disposed using user interraction -->
+
+            <!--inside a container-->
+            <section #containerEl class="container" [style.position]="'relative'">
+                <ng-template ngFor let-message [ngForOf]="infos$ | async">
+                    <snackbar *ngIf="message.gate" alignment="right" [outerContainerElement]="containerEl">
+                        <message-box type="primary" horizontal>
+                            {{ message.content }}
+                            <ng-template #actionsTemplate>
+                                <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
+                                    <mat-icon>clear</mat-icon>
+                                </button>
+                            </ng-template>
+                        </message-box>
+                    </snackbar>
                 </ng-template>
-            </message-box>
-        </snackbar>
-    </ng-template>
+            </section>
 
-    <ng-template ngFor let-message [ngForOf]="warnings$ | async">
-        <snackbar *ngIf="message.gate" alignment="bottom">
-            <message-box type="warn" horizontal>
-                {{ message.content }}
-                <ng-template #actionsTemplate>
-                    <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
-                        <mat-icon>clear</mat-icon>
-                    </button>
+            <!--on the viewport-->
+            <ng-template ngFor let-message [ngForOf]="successes$ | async">
+                <snackbar *ngIf="message.gate" alignment="bottom left">
+                    <message-box type="success" horizontal>
+                        {{ message.content }}
+                        <ng-template #actionsTemplate>
+                            <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
+                                <mat-icon>clear</mat-icon>
+                            </button>
+                        </ng-template>
+                    </message-box>
+                </snackbar>
+            </ng-template>
+
+            <ng-template ngFor let-message [ngForOf]="warnings$ | async">
+                <snackbar *ngIf="message.gate" alignment="bottom">
+                    <message-box type="warn" horizontal>
+                        {{ message.content }}
+                        <ng-template #actionsTemplate>
+                            <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
+                                <mat-icon>clear</mat-icon>
+                            </button>
+                        </ng-template>
+                    </message-box>
+                </snackbar>
+            </ng-template>
+
+            <ng-template ngFor let-message [ngForOf]="dangers$ | async">
+                <snackbar *ngIf="message.gate" alignment="bottom right">
+                    <message-box type="danger" horizontal>
+                        {{ message.content }}
+                        <ng-template #actionsTemplate>
+                            <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
+                                <mat-icon>clear</mat-icon>
+                            </button>
+                        </ng-template>
+                    </message-box>
+                </snackbar>
+            </ng-template>
+
+            <section class="push-section">
+                <!-- server push like feed -->
+                <!-- this behavior is to be used to push message to the client for example, snackbars MUST be displosed by themself -->
+                <!-- to do so, define duration @Input and negate flag used for disposal using the onAnimationDone @Output -->
+                <ng-template ngFor let-message [ngForOf]="messages$ | async">
+                    <snackbar *ngIf="message.gate" alignment="left" [duration]="5000" (onAnimationDone)="message.gate = false">
+                        <message-box type="primary" horizontal>
+                            {{ message.content }}
+                        </message-box>
+                    </snackbar>
                 </ng-template>
-            </message-box>
-        </snackbar>
-    </ng-template>
-
-    <ng-template ngFor let-message [ngForOf]="dangers$ | async">
-        <snackbar *ngIf="message.gate" alignment="bottom right">
-            <message-box type="danger" horizontal>
-                {{ message.content }}
-                <ng-template #actionsTemplate>
-                    <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
-                        <mat-icon>clear</mat-icon>
-                    </button>
-                </ng-template>
-            </message-box>
-        </snackbar>
-    </ng-template>
-
-    <section class="push-section">
-        <!-- server push like feed -->
-        <!-- this behavior is to be used to push message to the client for example, snackbars MUST be displosed by themself -->
-        <!-- to do so, define duration @Input and negate flag used for disposal using the onAnimationDone @Output -->
-        <ng-template ngFor let-message [ngForOf]="messages$ | async">
-            <snackbar *ngIf="message.gate" alignment="left" [duration]="5000" (onAnimationDone)="message.gate = false">
-                <message-box type="primary" horizontal>
-                    {{ message.content }}
-                </message-box>
-            </snackbar>
-        </ng-template>
-    </section>
+            </section>
+        </mat-card-content>
+    </mat-card>
 </div>

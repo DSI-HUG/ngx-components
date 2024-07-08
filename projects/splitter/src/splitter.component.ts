@@ -108,7 +108,7 @@ export class SplitterComponent extends Destroy {
     private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
     private changeDetectorRef = inject(ChangeDetectorRef);
 
-    public constructor(    ) {
+    public constructor() {
         super();
 
         this.startDragging$.pipe(
@@ -171,7 +171,7 @@ export class SplitterComponent extends Destroy {
                 this.elementRef.nativeElement.removeAttribute('splitting');
             }
             event.preventDefault();
-            this.changeDetectorRef.markForCheck()
+            this.changeDetectorRef.markForCheck();
             return false;
         });
     }

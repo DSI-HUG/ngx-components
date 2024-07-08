@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MessageBoxComponent } from '@hug/ngx-message-box';
 import { SnackbarComponent } from '@hug/ngx-snackbar';
 import { defaultIfEmpty, filter, from, interval, map, Observable, scan } from 'rxjs';
@@ -24,6 +25,7 @@ class Message {
         MatCardModule,
         MatIconModule,
         MatTabsModule,
+        MatToolbarModule,
         MessageBoxComponent,
         NgIf,
         NgFor,
