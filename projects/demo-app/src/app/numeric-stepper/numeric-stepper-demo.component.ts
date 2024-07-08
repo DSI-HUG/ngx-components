@@ -8,7 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Destroy } from '@hug/ngx-core';
 import { NumericStepperComponent } from '@hug/ngx-numeric-stepper';
-import { Subject, debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Subject, takeUntil } from 'rxjs';
 
 interface NumberFormControls {
     numberValue3: FormControl<number>;
@@ -17,7 +17,7 @@ interface NumberFormControls {
     numberValue6: FormControl<number>;
 }
 
-const numberValidator = (control: AbstractControl): Array<string> | null => {
+const numberValidator = (control: AbstractControl): string[] | null => {
     const val = +control.value;
     if (isNaN(val)) {
         return ['Not a number'];
@@ -68,7 +68,7 @@ export class NumericStepperDemoComponent extends Destroy {
         super();
 
         this.numberForm = this.formBuilder.group({
-            numberValue3: this.formBuilder.control({ value: this.value3, disabled: false}, { validators: numberValidator, nonNullable: true }),
+            numberValue3: this.formBuilder.control({ value: this.value3, disabled: false }, { validators: numberValidator, nonNullable: true }),
             numberValue4: this.formBuilder.control(this.value4, { validators: [Validators.required, numberValidator], nonNullable: true }),
             numberValue5: this.formBuilder.control(this.value5, { validators: numberValidator, nonNullable: true }),
             numberValue6: this.formBuilder.control(this.value6, { validators: numberValidator, nonNullable: true })

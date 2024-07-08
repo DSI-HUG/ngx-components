@@ -90,9 +90,7 @@ message-box {
             > .mat-card-actions {
                 margin: 0;
                 padding: 0;
-                position: absolute;
-                right: 0;
-                top: 0;
+                flex: 0 0 auto;
 
                 [mat-icon-button] {
                     mat-icon {
