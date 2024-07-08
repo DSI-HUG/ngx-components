@@ -70,6 +70,7 @@ const publishProjects = async (
     }
     return processStatus;
 };
+
 /**
  *  Currently `nx release` publishes packages from their source directory by default.
  *
@@ -272,7 +273,7 @@ void (async (): Promise<void> => {
      *        - project: @hug/ngx-abc 1.2.3
      *        - project: @hug/ngx-xyz 4.5.6
      */
-    if (needReUpdate && (options.projects?.length > 1)) {
+    if (needReUpdate && (options.projects?.length !== 1)) {
         updates = await updateProjectsVersions('chore(release): re-update projects versions [skip ci]', options);
     }
 
