@@ -2,9 +2,11 @@
     "private": true,
     "scripts": {
         "ncu": "npx npm-check-updates -i --target=minor --dep=dev,peer,optional,prod --format=group --packageFile='{,projects/**/}package.json'",
-        "lint": "eslint . --fix",
         "prepare": "husky || true",
         "new-package": "ng g .:new-package",
+        "lint": "nx run-many -t lint",
+        "test:ci": "nx run-many -t test:ci",
+        "build": "nx run-many -t build:ng --verbose",
         "release": "node -r @swc-node/register ./scripts/release.ts --verbose",
         "release:dry-run": "npm run release -- --dry-run",
         "postinstall": "patch-package"
