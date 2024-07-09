@@ -22,8 +22,10 @@ npm install
 Create a new package using the built-in schematic tool:
 
 ```sh
-run run new-package
+npm run new-package
 ```
+
+Reorder alphabetically what was generated in `README.md` and `.github/workflows/ci_release.yml`.
 
 If this new package has any other internal packages as peer dependencies:
 - make sure that this new package is also tested during the tests of the other packages
@@ -80,7 +82,7 @@ So when you publish a package for the first time, you will have to do the follow
 feat(<package_name>): first commit
 ```
 
-2. Add a tag to the commit prior the one you just created, and push it:
+2. Add a tag to the commit prior to the one you just created, and push it:
 ```sh
 @hug/ngx-<package_name>@1.0.0
 ```
