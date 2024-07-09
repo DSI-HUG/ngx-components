@@ -37,6 +37,7 @@ Package | Version | Downloads | Tests
 [@hug/ngx-tooltip](/projects/tooltip) | [![npm version][npm-logo-tooltip]][npm-tooltip] | [![npm downloads][npm-dl-logo-tooltip]][npm-dl-tooltip] | [![build status][tests-logo-tooltip]][tests-tooltip]
 [@hug/ngx-user-card](/projects/user-card) | [![npm version][npm-logo-user-card]][npm-user-card] | [![npm downloads][npm-dl-logo-user-card]][npm-dl-user-card] | [![build status][tests-logo-user-card]][tests-user-card]
 [@hug/ngx-user-tooltip](/projects/user-tooltip) | [![npm version][npm-logo-user-tooltip]][npm-user-tooltip] | [![npm downloads][npm-dl-logo-user-tooltip]][npm-dl-user-tooltip] | [![build status][tests-logo-user-tooltip]][tests-user-tooltip]
+[@hug/ngx-date-picker](/projects/date-picker) | [![npm version][npm-logo-date-picker]][npm-date-picker] | [![npm downloads][npm-dl-logo-date-picker]][npm-dl-date-picker] | [![build status][tests-logo-date-picker]][tests-date-picker]
 
 </div>
 
@@ -191,3 +192,10 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [npm-dl-logo-user-tooltip]: https://img.shields.io/npm/dw/@hug/ngx-user-tooltip.svg?color=7986CB&logo=npm&label=npm
 [tests-user-tooltip]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_user-tooltip.yml
 [tests-logo-user-tooltip]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_user-tooltip.yml/badge.svg
+
+[npm-date-picker]: https://www.npmjs.com/package/@hug/ngx-date-picker
+[npm-logo-date-picker]: https://img.shields.io/npm/v/@hug/ngx-date-picker.svg?color=blue&logo=npm
+[npm-dl-date-picker]: https://npmcharts.com/compare/@hug/ngx-date-picker?minimal=true
+[npm-dl-logo-date-picker]: https://img.shields.io/npm/dw/@hug/ngx-date-picker.svg?color=7986CB&logo=npm&label=npm
+[tests-date-picker]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_date-picker.yml
+[tests-logo-date-picker]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_date-picker.yml/badge.svg

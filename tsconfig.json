@@ -5,6 +5,9 @@
             "@hug/ngx-core": [
                 "projects/core/src"
             ],
+            "@hug/ngx-date-picker": [
+                "projects/date-picker/src"
+            ],
             "@hug/ngx-layout": [
                 "projects/layout/src"
             ],

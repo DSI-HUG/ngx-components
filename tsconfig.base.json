@@ -25,6 +25,9 @@
             "@hug/ngx-core": [
                 "dist/core"
             ],
+            "@hug/ngx-date-picker": [
+                "dist/date-picker"
+            ],
             "@hug/ngx-layout": [
                 "dist/layout"
             ],

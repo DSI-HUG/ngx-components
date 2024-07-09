@@ -11,6 +11,7 @@ on:
         options:
           - -- all --
           - core
+          - date-picker
           - layout
           - list-loader
           - message-box

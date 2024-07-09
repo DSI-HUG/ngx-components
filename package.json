@@ -13,6 +13,7 @@
     },
     "workspaces": [
         "projects/core",
+        "projects/date-picker",
         "projects/layout",
         "projects/list-loader",
         "projects/message-box",
