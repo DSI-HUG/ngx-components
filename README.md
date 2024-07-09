@@ -88,6 +88,13 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [tests-core]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_core.yml
 [tests-logo-core]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_core.yml/badge.svg
 
+[npm-date-picker]: https://www.npmjs.com/package/@hug/ngx-date-picker
+[npm-logo-date-picker]: https://img.shields.io/npm/v/@hug/ngx-date-picker.svg?color=blue&logo=npm
+[npm-dl-date-picker]: https://npmcharts.com/compare/@hug/ngx-date-picker?minimal=true
+[npm-dl-logo-date-picker]: https://img.shields.io/npm/dw/@hug/ngx-date-picker.svg?color=7986CB&logo=npm&label=npm
+[tests-date-picker]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_date-picker.yml
+[tests-logo-date-picker]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_date-picker.yml/badge.svg
+
 [npm-layout]: https://www.npmjs.com/package/@hug/ngx-layout
 [npm-logo-layout]: https://img.shields.io/npm/v/@hug/ngx-layout.svg?color=blue&logo=npm
 [npm-dl-layout]: https://npmcharts.com/compare/@hug/ngx-layout?minimal=true
@@ -192,10 +199,3 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 [npm-dl-logo-user-tooltip]: https://img.shields.io/npm/dw/@hug/ngx-user-tooltip.svg?color=7986CB&logo=npm&label=npm
 [tests-user-tooltip]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_user-tooltip.yml
 [tests-logo-user-tooltip]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_user-tooltip.yml/badge.svg
-
-[npm-date-picker]: https://www.npmjs.com/package/@hug/ngx-date-picker
-[npm-logo-date-picker]: https://img.shields.io/npm/v/@hug/ngx-date-picker.svg?color=blue&logo=npm
-[npm-dl-date-picker]: https://npmcharts.com/compare/@hug/ngx-date-picker?minimal=true
-[npm-dl-logo-date-picker]: https://img.shields.io/npm/dw/@hug/ngx-date-picker.svg?color=7986CB&logo=npm&label=npm
-[tests-date-picker]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_date-picker.yml
-[tests-logo-date-picker]: https://github.com/dsi-hug/ngx-components/actions/workflows/ci_test_date-picker.yml/badge.svg
