@@ -40,7 +40,12 @@
                 <button mat-raised-button background="warning" (click)="push.emit('warning')">Warning</button>
                 <button mat-raised-button background="success" (click)="push.emit('success')">Success</button>
                 <button mat-raised-button background="info" (click)="push.emit('info')">Info</button>
-                <button mat-raised-button (click)="simpleGate = true">Simple</button>
+                <button mat-raised-button class="spaced" (click)="simpleGate = true">Simple</button>
+                <button mat-raised-button background="danger" (click)="showStatus('danger')">Status Danger</button>
+                <button mat-raised-button background="warning" (click)="showStatus('warn')">Status Warn</button>
+                <button mat-raised-button background="success" (click)="showStatus('success')">Status Success</button>
+                <button mat-raised-button background="primary" (click)="showStatus('primary')">Status Primary</button>
+                <button mat-raised-button (click)="showStatus('info')">Status Info</button>
             </div>
 
             <!-- simple use case, single snackbar -->

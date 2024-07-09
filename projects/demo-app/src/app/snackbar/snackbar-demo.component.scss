@@ -1,4 +1,7 @@
 @use '@angular/material' as mat;
+@use '../../../../core/src/styles/themeVariables' as themeVariables;
+
+$primary: map-get(themeVariables.$theme, primary);
 
 :host {
     .container {
@@ -12,9 +15,13 @@
     }
 
     .btn-container {
-        width: 500px;
+        width: 1000px;
         margin: auto;
         margin-bottom: 12px;
+
+        .spaced {
+            margin-right: 12px;
+        }
 
         [background='danger'] {
             background: mat.get-color-from-palette(mat.$red-palette, 400);
@@ -34,6 +41,10 @@
 
         [background='default'] {
             background: mat.get-color-from-palette(mat.$grey-palette, 900);
+        }
+
+        [background='primary'] {
+            background: mat.get-color-from-palette($primary);
         }
     }
 
