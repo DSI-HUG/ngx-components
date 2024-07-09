@@ -27,9 +27,9 @@ import { Subject, switchMap, takeUntil } from 'rxjs';
     ]
 })
 export class MessageBoxDemoComponent extends Destroy {
-    public tabIndex = 1;
+    protected tabIndex = 1;
 
-    public closeAction = [
+    protected closeAction = [
         {
             action: (): void => alert('test action'),
             icon: 'clear'

@@ -34,21 +34,21 @@ class Message {
     ]
 })
 export class SnackbarDemoComponent {
-    public tabIndex = 1;
+    protected tabIndex = 1;
     /*
      The example below demonstrate how you can dynamically add snackbars using *ngFor structural directive.
      Here the Observable simulate items being push from the server
      */
-    public messages$: Observable<Message[]>;
+    protected messages$: Observable<Message[]>;
 
-    public dangers$: Observable<Message[]>;
-    public warnings$: Observable<Message[]>;
-    public successes$: Observable<Message[]>;
-    public infos$: Observable<Message[]>;
+    protected dangers$: Observable<Message[]>;
+    protected warnings$: Observable<Message[]>;
+    protected successes$: Observable<Message[]>;
+    protected infos$: Observable<Message[]>;
 
-    public push = new EventEmitter<string>();
+    protected push = new EventEmitter<string>();
 
-    public simpleGate = false;
+    protected simpleGate = false;
 
     private statusService = inject(StatusService);
 

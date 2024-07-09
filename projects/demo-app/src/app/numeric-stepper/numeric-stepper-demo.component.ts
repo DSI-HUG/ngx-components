@@ -47,19 +47,19 @@ const numberValidator = (control: AbstractControl): string[] | null => {
     ]
 })
 export class NumericStepperDemoComponent extends Destroy {
-    public tabIndex = 1;
+    protected tabIndex = 1;
 
-    public value1 = 90;
-    public value2 = 9.5;
-    public value3 = 5;
-    public value4 = 1;
-    public value5 = 1;
-    public value6 = 1;
-    public value6min = 0;
-    public value6max = 20;
+    protected value1 = 90;
+    protected value2 = 9.5;
+    protected value3 = 5;
+    protected value4 = 1;
+    protected value5 = 1;
+    protected value6 = 1;
+    protected value6min = 0;
+    protected value6max = 20;
 
-    public numberForm: FormGroup<NumberFormControls>;
-    public onInput1Change$ = new Subject<Event>();
+    protected numberForm: FormGroup<NumberFormControls>;
+    protected onInput1Change$ = new Subject<Event>();
 
     private changeDetectorRef = inject(ChangeDetectorRef);
     private formBuilder = inject(FormBuilder);
@@ -85,19 +85,19 @@ export class NumericStepperDemoComponent extends Destroy {
         });
     }
 
-    public changeValue3(step: number): void {
+    protected changeValue3(step: number): void {
         this.numberForm.controls.numberValue3.setValue(+this.numberForm.controls.numberValue3.value + step);
     }
 
-    public changeValue4(step: number): void {
+    protected changeValue4(step: number): void {
         this.numberForm.controls.numberValue4.setValue(+this.numberForm.controls.numberValue4.value + step);
     }
 
-    public changeValue5(step: number): void {
+    protected changeValue5(step: number): void {
         this.numberForm.controls.numberValue5.setValue(+this.numberForm.controls.numberValue5.value + step);
     }
 
-    public changeValue6(step: number): void {
+    protected changeValue6(step: number): void {
         const value = Math.max(Math.min(+this.numberForm.controls.numberValue6.value + step, this.value6max), this.value6min);
         this.numberForm.controls.numberValue6.setValue(value);
     }

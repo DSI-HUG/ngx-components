@@ -7,5 +7,6 @@ export const appRoutes: Routes = [
     { path: 'overlay', loadComponent: () => import('./overlay/overlay-demo.component').then(m => m.OverlayDemoComponent), data: { title: 'Overlay' } },
     { path: 'snackbar', loadComponent: () => import('./snackbar/snackbar-demo.component').then(m => m.SnackbarDemoComponent), data: { title: 'Snackbar' } },
     { path: 'splitter', loadComponent: () => import('./splitter/splitter-demo.component').then(m => m.SplitterDemoComponent), data: { title: 'Splitter' } },
+    { path: 'time-picker', loadComponent: () => import('./time-picker/time-picker-demo.component').then(m => m.TimePickerDemoComponent), data: { title: 'Time Picker' } },
     { path: '**', redirectTo: 'message-box', pathMatch: 'prefix' }
 ];
