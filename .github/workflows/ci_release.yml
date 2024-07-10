@@ -38,13 +38,15 @@ env:
 
 jobs:
   ci_release:
-    uses: dsi-hug/action/.github/workflows/action.yml@v1
+    uses: dsi-hug/actions/.github/workflows/action.yml@v2
     secrets:
-      GH_USER_NAME: 'dsi-hug-bot'
-      GH_USER_EMAIL: 'dsi-hug-bot@users.noreply.github.com'
+      GIT_USER_NAME: 'dsi-hug-bot'
+      GIT_USER_EMAIL: 'dsi-hug-bot@users.noreply.github.com'
       GH_TOKEN: ${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}
       NPM_TOKEN: ${{ secrets.DSI_HUG_NPM_TOKEN }}
     with:
       working-directory: ${{ (inputs.package == '-- all --') && '.' || format('projects/{0}', inputs.package) }}
       dry-run: ${{ inputs.dry-run }}
+      lint: true
+      test: true
       release: true
