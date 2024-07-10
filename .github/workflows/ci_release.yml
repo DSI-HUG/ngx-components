@@ -49,4 +49,5 @@ jobs:
       dry-run: ${{ inputs.dry-run }}
       lint: true
       test: true
+      build: true
       release: true
