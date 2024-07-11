@@ -41,7 +41,7 @@ npm run lint
 You can also verify it per package:
 
 ```sh
-npm run lint -w=projects/<package_name>
+npm run lint -w projects/<package_name>
 ```
 
 ## Unit testing a package
@@ -49,7 +49,7 @@ npm run lint -w=projects/<package_name>
 Unit testing a package can be executed with the following command:
 
 ```sh
-npm run test -w=projects/<package_name>
+npm run test -w projects/<package_name>
 ```
 
 ## Building a package
@@ -57,7 +57,7 @@ npm run test -w=projects/<package_name>
 Building a package can be executed with the following command:
 
 ```sh
-npm run build -w=projects/<package_name>
+npm run build -w projects/<package_name>
 ```
 
 ## Publishing a package to NPM repository
