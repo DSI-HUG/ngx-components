@@ -17,62 +17,25 @@
         "importHelpers": true,
         "target": "es2020",
         "module": "es2020",
-        "lib": [
-            "es2020",
-            "dom"
-        ],
+        "lib": ["es2020", "dom"],
         "paths": {
-            "@hug/ngx-core": [
-                "dist/core"
-            ],
-            "@hug/ngx-date-picker": [
-                "dist/date-picker"
-            ],
-            "@hug/ngx-layout": [
-                "dist/layout"
-            ],
-            "@hug/ngx-list-loader": [
-                "dist/list-loader"
-            ],
-            "@hug/ngx-message-box": [
-                "dist/message-box"
-            ],
-            "@hug/ngx-message-box-dialog": [
-                "dist/message-box-dialog"
-            ],
-            "@hug/ngx-numeric-stepper": [
-                "dist/numeric-stepper"
-            ],
-            "@hug/ngx-overlay": [
-                "dist/overlay"
-            ],
-            "@hug/ngx-search-container": [
-                "dist/search-container"
-            ],
-            "@hug/ngx-sidenav": [
-                "dist/sidenav"
-            ],
-            "@hug/ngx-snackbar": [
-                "dist/snackbar"
-            ],
-            "@hug/ngx-splitter": [
-                "dist/splitter"
-            ],
-            "@hug/ngx-status": [
-                "dist/status"
-            ],
-            "@hug/ngx-time-picker": [
-                "dist/time-picker"
-            ],
-            "@hug/ngx-tooltip": [
-                "dist/tooltip"
-            ],
-            "@hug/ngx-user-card": [
-                "dist/user-card"
-            ],
-            "@hug/ngx-user-tooltip": [
-                "dist/user-tooltip"
-            ]
+            "@hug/ngx-core": ["dist/core"],
+            "@hug/ngx-date-picker": ["dist/date-picker"],
+            "@hug/ngx-layout": ["dist/layout"],
+            "@hug/ngx-list-loader": ["dist/list-loader"],
+            "@hug/ngx-message-box": ["dist/message-box"],
+            "@hug/ngx-message-box-dialog": ["dist/message-box-dialog"],
+            "@hug/ngx-numeric-stepper": ["dist/numeric-stepper"],
+            "@hug/ngx-overlay": ["dist/overlay"],
+            "@hug/ngx-search-container": ["dist/search-container"],
+            "@hug/ngx-sidenav": ["dist/sidenav"],
+            "@hug/ngx-snackbar": ["dist/snackbar"],
+            "@hug/ngx-splitter": ["dist/splitter"],
+            "@hug/ngx-status": ["dist/status"],
+            "@hug/ngx-time-picker": ["dist/time-picker"],
+            "@hug/ngx-tooltip": ["dist/tooltip"],
+            "@hug/ngx-user-card": ["dist/user-card"],
+            "@hug/ngx-user-tooltip": ["dist/user-tooltip"]
         }
     },
     "angularCompilerOptions": {

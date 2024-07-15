@@ -1,0 +1,56 @@
+@use '@angular/material' as mat;
+@use '../../../../core/src/styles/themeVariables' as themeVariables;
+
+$primary: map-get(themeVariables.$theme, primary);
+
+:host {
+    .container {
+        display: block;
+        margin: auto;
+        max-width: 800px;
+        max-height: 800px;
+        min-height: 400px;
+        box-sizing: border-box;
+        border: solid rgba(0, 0, 0, 1) 1px;
+    }
+
+    .btn-container {
+        width: 1000px;
+        margin: auto;
+        margin-bottom: 12px;
+
+        .spaced {
+            margin-right: 12px;
+        }
+
+        [background='danger'] {
+            background: mat.get-color-from-palette(mat.$red-palette, 400);
+        }
+
+        [background='warning'] {
+            background: mat.get-color-from-palette(mat.$orange-palette, 400);
+        }
+
+        [background='success'] {
+            background: mat.get-color-from-palette(mat.$green-palette, 400);
+        }
+
+        [background='info'] {
+            background: mat.get-color-from-palette(mat.$blue-palette, 400);
+        }
+
+        [background='default'] {
+            background: mat.get-color-from-palette(mat.$grey-palette, 900);
+        }
+
+        [background='primary'] {
+            background: mat.get-color-from-palette($primary);
+        }
+    }
+
+    .push-section {
+        width: 400px;
+        height: 4000px;
+        border: red solid 1px;
+    }
+}

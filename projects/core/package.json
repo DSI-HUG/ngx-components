@@ -27,6 +27,9 @@
         "./themeVariables": {
             "sass": "./styles/_themeVariables.scss"
         },
+        "./dialog": {
+            "sass": "./styles/mixins/_dialog.scss"
+        },
         "./menu": {
             "sass": "./styles/mixins/_menu.scss"
         },

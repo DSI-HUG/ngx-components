@@ -1,27 +1,27 @@
 name: Test date-picker
 
 on:
-  workflow_dispatch:
-  workflow_call:
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '**'
-    paths:
-      - '.github/workflows/ci_test_date-picker.yml'
-      - 'projects/date-picker/**'
+    workflow_dispatch:
+    workflow_call:
+    push:
+        branches:
+            - '**'
+        tags-ignore:
+            - '**'
+        paths:
+            - '.github/workflows/ci_test_date-picker.yml'
+            - 'projects/date-picker/**'
 
 concurrency:
-  group: ci-test-date-picker-group-${{ github.ref }}
-  cancel-in-progress: true
+    group: ci-test-date-picker-group-${{ github.ref }}
+    cancel-in-progress: true
 
 jobs:
-  ci_test_date-picker:
-    uses: dsi-hug/actions/.github/workflows/action.yml@v2
-    with:
-      working-directory: projects/date-picker
-      runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
-      node-versions: '[18, 20]'
-      lint: true
-      test: true
+    ci_test_date-picker:
+        uses: dsi-hug/actions/.github/workflows/action.yml@v2
+        with:
+            working-directory: projects/date-picker
+            runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
+            node-versions: '[18, 20]'
+            lint: true
+            test: true

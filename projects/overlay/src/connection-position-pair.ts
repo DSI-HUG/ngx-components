@@ -7,7 +7,7 @@ export class OverlayConnectionPositionPair extends ConnectionPositionPair {
         values.forEach(pos => {
             const poss = pos.trim().split(' ');
             if (poss.length !== 4) {
-                throw new Error('Invalid positions property for DejaMenuComponent. String entry must be of type \'positions="start top end bottom"\'');
+                throw new Error('Invalid positions property for MenuComponent. String entry must be of type \'positions="start top end bottom"\'');
             }
 
             const originPosition = {

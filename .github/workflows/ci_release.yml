@@ -2,52 +2,52 @@ name: Release
 run-name: Release ${{ inputs.package }}${{ inputs.dry-run && ' (dry-run)' || '' }}
 
 on:
-  workflow_dispatch:
-    inputs:
-      package:
-        description: Package
-        required: true
-        type: choice
-        options:
-          - -- all --
-          - core
-          - date-picker
-          - layout
-          - list-loader
-          - message-box
-          - message-box-dialog
-          - numeric-stepper
-          - overlay
-          - search-container
-          - sidenav
-          - snackbar
-          - splitter
-          - status
-          - time-picker
-          - tooltip
-          - user-card
-          - user-tooltip
-      dry-run:
-        description: --dry-run
-        type: boolean
-        default: false
+    workflow_dispatch:
+        inputs:
+            package:
+                description: Package
+                required: true
+                type: choice
+                options:
+                    - -- all --
+                    - core
+                    - date-picker
+                    - layout
+                    - list-loader
+                    - message-box
+                    - message-box-dialog
+                    - numeric-stepper
+                    - overlay
+                    - search-container
+                    - sidenav
+                    - snackbar
+                    - splitter
+                    - status
+                    - time-picker
+                    - tooltip
+                    - user-card
+                    - user-tooltip
+            dry-run:
+                description: --dry-run
+                type: boolean
+                default: false
 
 env:
-  HUSKY: 0
-  FORCE_COLOR: 3
+    HUSKY: 0
+    FORCE_COLOR: 3
 
 jobs:
-  ci_release:
-    uses: dsi-hug/actions/.github/workflows/action.yml@v2
-    secrets:
-      GIT_USER_NAME: 'dsi-hug-bot'
-      GIT_USER_EMAIL: 'dsi-hug-bot@users.noreply.github.com'
-      GH_TOKEN: ${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}
-      NPM_TOKEN: ${{ secrets.DSI_HUG_NPM_TOKEN }}
-    with:
-      working-directory: ${{ (inputs.package == '-- all --') && '.' || format('projects/{0}', inputs.package) }}
-      dry-run: ${{ inputs.dry-run }}
-      lint: true
-      test: true
-      build: true
-      release: true
+    ci_release:
+        uses: dsi-hug/actions/.github/workflows/action.yml@v2
+        secrets:
+            GIT_USER_NAME: 'dsi-hug-bot'
+            GIT_USER_EMAIL: 'dsi-hug-bot@users.noreply.github.com'
+            GH_TOKEN: ${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}
+            NPM_TOKEN: ${{ secrets.DSI_HUG_NPM_TOKEN }}
+        with:
+            working-directory: ${{ (inputs.package == '-- all --') && '.' || format('projects/{0}', inputs.package) }}
+            dry-run: ${{ inputs.dry-run }}
+            lint: true
+            test: true
+            build: true
+            release: true

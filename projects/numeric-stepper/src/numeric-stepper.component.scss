@@ -6,10 +6,8 @@
         align-items: center;
     }
 
-    &[numeric-stepper-form-field="vertical"] {
-
+    &[numeric-stepper-form-field='vertical'] {
         &:not(.disabled) {
-
             &:hover {
                 .mat-form-field-label-wrapper {
                     opacity: 0 !important;
@@ -24,16 +22,16 @@
         }
     }
 
-    &[numeric-stepper-form-field="horizontal-inlay"] {
+    &[numeric-stepper-form-field='horizontal-inlay'] {
         &:not(.disabled) {
             input:not([inputAutosize]) {
                 width: calc(100% - 64px);
             }
 
             &:hover {
-                &:not([float-label="always"]) {
+                &:not([float-label='always']) {
                     .mat-form-field-label.mat-empty {
-                        padding-left: 23px
+                        padding-left: 23px;
                     }
                 }
 
@@ -50,7 +48,6 @@
                 }
 
                 &:not([inputAutosizeFormField]) {
-
                     &.mat-form-field-appearance-fill {
                         input {
                             margin: 0 18px;
@@ -93,9 +90,7 @@
     }
 
     &:not(.disabled) {
-
         &:hover {
-
             .arrow,
             .shadow {
                 opacity: 1;
@@ -119,7 +114,6 @@
 
         &:hover,
         &[hover] {
-
             .arrow,
             .shadow {
                 visibility: visible;
@@ -148,7 +142,7 @@
             height: 32px;
             width: 32px;
 
-            &[disabled=true] {
+            &[disabled='true'] {
                 cursor: default;
             }
         }
@@ -166,8 +160,8 @@
             border-radius: 0 0 4px 4px;
         }
 
-        &[layout="horizontal"],
-        &[layout="horizontal-inlay"] {
+        &[layout='horizontal'],
+        &[layout='horizontal-inlay'] {
             .increment {
                 border-radius: 0 4px 4px 0;
             }

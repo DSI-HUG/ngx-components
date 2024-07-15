@@ -6,8 +6,8 @@ This document describes how you can create, lint, test, build and publish packag
 
 Before you can start you must install and configure the following products on your development machine:
 
-* [Git][git]
-* [Node.js][nodejs]
+-   [Git][git]
+-   [Node.js][nodejs]
 
 You will then need to clone this project and install the required dependencies:
 
@@ -20,15 +20,15 @@ npm install
 ## Creating a new package
 
 1. Create a new package using the built-in schematic tool:
-   ```sh
-   npm run new-package
-   ```
+
+    ```sh
+    npm run new-package
+    ```
 
 2. Reorder alphabetically what was generated in `README.md` and `.github/workflows/ci_release.yml`.
 
 3. If this new package has any other internal packages as peer dependencies:
-   - Make sure that this new package is also tested during the tests of the other packages<br/>
-   *(have a look at [ci_test_core.yml](https://github.com/DSI-HUG/ngx-components/blob/main/.github/workflows/ci_test_core.yml#L27-L29) for examples)*
+    - Make sure that this new package is also tested during the tests of the other packages<br/> _(have a look at [ci_test_core.yml](https://github.com/DSI-HUG/ngx-components/blob/main/.github/workflows/ci_test_core.yml#L27-L29) for examples)_
 
 ## Linting/verifying source code
 
@@ -62,7 +62,7 @@ npm run build -w projects/<package_name>
 
 ## Publishing a package to NPM repository
 
-This project comes with automatic continuous delivery (CD) using *GitHub Actions*.
+This project comes with automatic continuous delivery (CD) using _GitHub Actions_.
 
 To publish a package:
 
@@ -76,19 +76,20 @@ To publish a package:
 When you publish a package for the first time, you will have to do the following:
 
 1. Commit and push the package, using this commit message:
-   ```sh
-   feat(<package_name>): first commit
-   ```
 
-3. Add a tag to the commit prior to the one you just created, and push it:
-   ```sh
-   @hug/ngx-<package_name>@1.0.0
-   ```
+    ```sh
+    feat(<package_name>): first commit
+    ```
 
-4. Trigger a new release
+2. Add a tag to the commit prior to the one you just created, and push it:
 
-5. Once done, remove the tag you previously created
+    ```sh
+    @hug/ngx-<package_name>@1.0.0
+    ```
 
+3. Trigger a new release
+
+4. Once done, remove the tag you previously created
 
 [git]: https://git-scm.com/
 [nodejs]: https://nodejs.org/

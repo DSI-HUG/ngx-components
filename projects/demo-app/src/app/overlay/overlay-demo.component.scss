@@ -1,9 +1,12 @@
-overlay-demo {
-    #demo-deja-menu {
+app-overlay-demo {
+    #demo-overlay {
         display: flex;
         flex-flow: row;
+        align-items: center;
+        justify-content: center;
 
-        .menu-section {
+        .section {
+            flex: 1 1 auto;
             width: 300px;
             margin: 0.5rem;
         }
@@ -14,9 +17,13 @@ overlay-demo {
     }
 }
 
-.overlay-container {
-    .deja-menu-content {
-        &#anchorMenu {
+.ngx-menu {
+    .menu-content {
+        display: flex;
+        flex-direction: column;
+
+        &.anchor-menu,
+        &.button-menu {
             .menu-item {
                 white-space: nowrap;
                 padding: 0.5rem 2rem;

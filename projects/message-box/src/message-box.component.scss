@@ -11,7 +11,7 @@ message-box {
         display: block;
         border-radius: 3px;
 
-        >.mat-card-title {
+        > .mat-card-title {
             text-transform: uppercase;
             align-items: center;
             display: flex;
@@ -30,7 +30,7 @@ message-box {
             }
         }
 
-        >.mat-card-content {
+        > .mat-card-content {
             margin: 0;
             padding: 0.75rem;
             overflow: hidden;
@@ -50,7 +50,7 @@ message-box {
             }
         }
 
-        >.mat-card-actions {
+        > .mat-card-actions {
             align-items: center;
             display: flex;
             justify-content: flex-end;
@@ -67,7 +67,7 @@ message-box {
             padding: 0;
             position: relative;
 
-            >.mat-card-title {
+            > .mat-card-title {
                 align-items: center;
                 display: flex;
                 flex: 0 0 auto;
@@ -81,18 +81,16 @@ message-box {
                 }
             }
 
-            >.mat-card-content {
+            > .mat-card-content {
                 align-self: center;
                 flex: 1 1 auto;
                 padding: 0.75rem;
             }
 
-            >.mat-card-actions {
+            > .mat-card-actions {
                 margin: 0;
                 padding: 0;
-                position: absolute;
-                right: 0;
-                top: 0;
+                flex: 0 0 auto;
 
                 [mat-icon-button] {
                     mat-icon {

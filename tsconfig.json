@@ -2,57 +2,23 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "paths": {
-            "@hug/ngx-core": [
-                "projects/core/src"
-            ],
-            "@hug/ngx-date-picker": [
-                "projects/date-picker/src"
-            ],
-            "@hug/ngx-layout": [
-                "projects/layout/src"
-            ],
-            "@hug/ngx-list-loader": [
-                "projects/list-loader/src"
-            ],
-            "@hug/ngx-message-box": [
-                "projects/message-box/src"
-            ],
-            "@hug/ngx-message-box-dialog": [
-                "projects/message-box-dialog/src"
-            ],
-            "@hug/ngx-numeric-stepper": [
-                "projects/numeric-stepper/src"
-            ],
-            "@hug/ngx-overlay": [
-                "projects/overlay/src"
-            ],
-            "@hug/ngx-search-container": [
-                "projects/search-container/src"
-            ],
-            "@hug/ngx-sidenav": [
-                "projects/sidenav/src"
-            ],
-            "@hug/ngx-snackbar": [
-                "projects/snackbar/src"
-            ],
-            "@hug/ngx-splitter": [
-                "projects/splitter/src"
-            ],
-            "@hug/ngx-status": [
-                "projects/status/src"
-            ],
-            "@hug/ngx-time-picker": [
-                "projects/time-picker/src"
-            ],
-            "@hug/ngx-tooltip": [
-                "projects/tooltip/src"
-            ],
-            "@hug/ngx-user-card": [
-                "projects/user-card/src"
-            ],
-            "@hug/ngx-user-tooltip": [
-                "projects/user-tooltip/src"
-            ]
+            "@hug/ngx-core": ["projects/core/src"],
+            "@hug/ngx-date-picker": ["projects/date-picker/src"],
+            "@hug/ngx-layout": ["projects/layout/src"],
+            "@hug/ngx-list-loader": ["projects/list-loader/src"],
+            "@hug/ngx-message-box": ["projects/message-box/src"],
+            "@hug/ngx-message-box-dialog": ["projects/message-box-dialog/src"],
+            "@hug/ngx-numeric-stepper": ["projects/numeric-stepper/src"],
+            "@hug/ngx-overlay": ["projects/overlay/src"],
+            "@hug/ngx-search-container": ["projects/search-container/src"],
+            "@hug/ngx-sidenav": ["projects/sidenav/src"],
+            "@hug/ngx-snackbar": ["projects/snackbar/src"],
+            "@hug/ngx-splitter": ["projects/splitter/src"],
+            "@hug/ngx-status": ["projects/status/src"],
+            "@hug/ngx-time-picker": ["projects/time-picker/src"],
+            "@hug/ngx-tooltip": ["projects/tooltip/src"],
+            "@hug/ngx-user-card": ["projects/user-card/src"],
+            "@hug/ngx-user-tooltip": ["projects/user-tooltip/src"]
         }
     }
 }

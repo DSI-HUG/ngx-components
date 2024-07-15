@@ -1,4 +1,7 @@
+import { Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER } from '@angular/cdk/dialog';
+import { Overlay } from '@angular/cdk/overlay';
 import { enableProdMode } from '@angular/core';
+import { MAT_DIALOG_SCROLL_STRATEGY_PROVIDER, MatDialog } from '@angular/material/dialog';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
@@ -14,6 +17,11 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
     providers: [
         provideAnimations(),
-        provideRouter(appRoutes, withPreloading(PreloadAllModules))
+        provideRouter(appRoutes, withPreloading(PreloadAllModules)),
+        MatDialog,
+        Overlay,
+        MAT_DIALOG_SCROLL_STRATEGY_PROVIDER,
+        Dialog,
+        DIALOG_SCROLL_STRATEGY_PROVIDER
     ]
 }).catch(err => console.error(err));

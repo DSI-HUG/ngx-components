@@ -2,7 +2,7 @@
 
 @include matSymbols.faces($axes: all);
 
-$fontFamily: "Material Symbols Outlined Variable";
+$fontFamily: 'Material Symbols Outlined Variable';
 
 @mixin theme {
     .mat-icon {
@@ -35,6 +35,6 @@ $fontFamily: "Material Symbols Outlined Variable";
     }
 
     .filled {
-        font-variation-settings: "FILL"1;
+        font-variation-settings: 'FILL' 1;
     }
 }

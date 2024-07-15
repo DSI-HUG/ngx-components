@@ -1,86 +1,86 @@
 name: Test core
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '**'
-    paths:
-      - '.github/workflows/ci_test_core.yml'
-      - 'projects/core/**'
+    workflow_dispatch:
+    push:
+        branches:
+            - '**'
+        tags-ignore:
+            - '**'
+        paths:
+            - '.github/workflows/ci_test_core.yml'
+            - 'projects/core/**'
 
 concurrency:
-  group: ci-test-core-group-${{ github.ref }}
-  cancel-in-progress: true
+    group: ci-test-core-group-${{ github.ref }}
+    cancel-in-progress: true
 
 jobs:
-  ci_test_core:
-    uses: dsi-hug/actions/.github/workflows/action.yml@v2
-    with:
-      working-directory: projects/core
-      runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
-      node-versions: '[18, 20]'
-      lint: true
-      test: true
+    ci_test_core:
+        uses: dsi-hug/actions/.github/workflows/action.yml@v2
+        with:
+            working-directory: projects/core
+            runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
+            node-versions: '[18, 20]'
+            lint: true
+            test: true
 
-  #
-  # Not needed here because it will be triggered by `ci_test_sidenav`
-  #
-  # ci_test_layout:
-  #   needs: ci_test_core
-  #   uses: ./.github/workflows/ci_test_layout.yml
+    #
+    # Not needed here because it will be triggered by `ci_test_sidenav`
+    #
+    # ci_test_layout:
+    #   needs: ci_test_core
+    #   uses: ./.github/workflows/ci_test_layout.yml
 
-  ci_test_message-box-dialog:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_message-box-dialog.yml
+    ci_test_message-box-dialog:
+        needs: ci_test_core
+        uses: ./.github/workflows/ci_test_message-box-dialog.yml
 
-  ci_test_numeric-stepper:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_numeric-stepper.yml
+    ci_test_numeric-stepper:
+        needs: ci_test_core
+        uses: ./.github/workflows/ci_test_numeric-stepper.yml
 
-  ci_test_overlay:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_overlay.yml
+    ci_test_overlay:
+        needs: ci_test_core
+        uses: ./.github/workflows/ci_test_overlay.yml
 
-  ci_test_search-container:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_search-container.yml
+    ci_test_search-container:
+        needs: ci_test_core
+        uses: ./.github/workflows/ci_test_search-container.yml
 
-  ci_test_sidenav:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_sidenav.yml
+    ci_test_sidenav:
+        needs: ci_test_core
+        uses: ./.github/workflows/ci_test_sidenav.yml
 
-  ci_test_snackbar:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_snackbar.yml
+    ci_test_snackbar:
+        needs: ci_test_core
+        uses: ./.github/workflows/ci_test_snackbar.yml
 
-  ci_test_splitter:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_splitter.yml
+    ci_test_splitter:
+        needs: ci_test_core
+        uses: ./.github/workflows/ci_test_splitter.yml
 
-  #
-  # Not needed here because it will be triggered by `ci_test_snackbar`
-  #
-  # ci_test_status:
-  #   needs: ci_test_core
-  #   uses: ./.github/workflows/ci_test_status.yml
+    #
+    # Not needed here because it will be triggered by `ci_test_snackbar`
+    #
+    # ci_test_status:
+    #   needs: ci_test_core
+    #   uses: ./.github/workflows/ci_test_status.yml
 
-  #
-  # Not needed here because it will be triggered by `ci_test_numeric-stepper`
-  #
-  # ci_test_time-picker:
-  #   needs: ci_test_core
-  #   uses: ./.github/workflows/ci_test_time-picker.yml
+    #
+    # Not needed here because it will be triggered by `ci_test_numeric-stepper`
+    #
+    # ci_test_time-picker:
+    #   needs: ci_test_core
+    #   uses: ./.github/workflows/ci_test_time-picker.yml
 
-  ci_test_tooltip:
-    needs: ci_test_core
-    uses: ./.github/workflows/ci_test_tooltip.yml
+    ci_test_tooltip:
+        needs: ci_test_core
+        uses: ./.github/workflows/ci_test_tooltip.yml
 
-  #
-  # Not needed here because it will be triggered by `ci_test_tooltip`
-  #
-  # ci_test_user-tooltip:
-  #   needs: ci_test_core
-  #   uses: ./.github/workflows/ci_test_user-tooltip.yml
+    #
+    # Not needed here because it will be triggered by `ci_test_tooltip`
+    #
+    # ci_test_user-tooltip:
+    #   needs: ci_test_core
+    #   uses: ./.github/workflows/ci_test_user-tooltip.yml

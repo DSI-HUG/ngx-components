@@ -29,24 +29,23 @@
 
                 .mat-list-item {
                     &.active {
-
                         .mat-list-icon,
                         .mat-list-text {
                             color: mat.get-color-from-palette($primary) !important;
                         }
 
                         .mat-icon {
-                            font-variation-settings: "FILL" 1;
+                            font-variation-settings: 'FILL' 1;
                         }
                     }
 
                     .mat-list-item-content {
                         .mat-list-icon {
-                            color: mat.get-color-from-palette($foreground, icons)
+                            color: mat.get-color-from-palette($foreground, icons);
                         }
 
                         .mat-list-text {
-                            color: mat.get-color-from-palette($foreground, text)
+                            color: mat.get-color-from-palette($foreground, text);
                         }
                     }
                 }

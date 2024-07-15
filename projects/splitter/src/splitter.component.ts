@@ -1,6 +1,6 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { NgFor, NgForOf, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ContentChildren, ElementRef, EventEmitter, HostBinding, Input, Output, QueryList, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, HostBinding, inject, Input, Output, QueryList, ViewEncapsulation } from '@angular/core';
 import { Destroy } from '@hug/ngx-core';
 import { filter, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 
@@ -105,12 +105,10 @@ export class SplitterComponent extends Destroy {
         return this._disabled;
     }
 
-    /**
-     * Constructor
-     */
-    public constructor(
-        elementRef: ElementRef<HTMLElement>
-    ) {
+    private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+    private changeDetectorRef = inject(ChangeDetectorRef);
+
+    public constructor() {
         super();
 
         this.startDragging$.pipe(
@@ -124,7 +122,7 @@ export class SplitterComponent extends Destroy {
                 }
 
                 const startPos = this.direction === 'horizontal' ? mouseEvent.pageX || mouseEvent.screenX : mouseEvent.pageY || mouseEvent.screenY;
-                const containerSizeInPixels = this.direction === 'horizontal' ? elementRef.nativeElement.offsetWidth : elementRef.nativeElement.offsetHeight;
+                const containerSizeInPixels = this.direction === 'horizontal' ? this.elementRef.nativeElement.offsetWidth : this.elementRef.nativeElement.offsetHeight;
                 const startSizeInPixelsA = areaA.sizeinPixels;
                 const startSizeInPixelsB = areaB.sizeinPixels;
 
@@ -152,9 +150,9 @@ export class SplitterComponent extends Destroy {
                         const diffInPixels = startPos - pos;
                         const areaSizeInPixelsA = startSizeInPixelsA - diffInPixels;
                         const areaSizeInPixelsB = startSizeInPixelsB + diffInPixels;
-                        areaA.size = Math.min(100, Math.max(0, 100 * areaSizeInPixelsA / containerSizeInPixels));
+                        const areaSizeInPercentA = areaA.size = Math.min(100, Math.max(0, 100 * areaSizeInPixelsA / containerSizeInPixels));
                         areaB.size = Math.min(100, Math.max(0, 100 * areaSizeInPixelsB / containerSizeInPixels));
-                        const percentWithTwoDigits = Math.round(areaA.size * 100) / 100;
+                        const percentWithTwoDigits = Math.round(areaSizeInPercentA * 100) / 100;
                         this.dragProgress.emit(percentWithTwoDigits);
                     }),
                     takeUntil(stopDragging$)
@@ -168,11 +166,12 @@ export class SplitterComponent extends Destroy {
             takeUntil(this.destroyed$)
         ).subscribe(event => {
             if (event.type !== 'mouseup' && event.type !== 'touchend' && event.type !== 'touchcancel') {
-                elementRef.nativeElement.setAttribute('splitting', 'true');
+                this.elementRef.nativeElement.setAttribute('splitting', 'true');
             } else {
-                elementRef.nativeElement.removeAttribute('splitting');
+                this.elementRef.nativeElement.removeAttribute('splitting');
             }
             event.preventDefault();
+            this.changeDetectorRef.markForCheck();
             return false;
         });
     }

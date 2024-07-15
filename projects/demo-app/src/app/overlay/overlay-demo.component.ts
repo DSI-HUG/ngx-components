@@ -31,21 +31,21 @@ export class OverlayDemoComponent {
     @ViewChild('contextMenu')
     private contextMenu?: OverlayComponent;
 
-    public selected = '';
-    public items = [
+    protected selected = '';
+    protected items = [
         { text: 'Refresh' },
         { text: 'Settings' },
         { text: 'Help', disabled: true },
         { text: 'Sign Out' }
     ];
 
-    public tabIndex = 1;
+    protected tabIndex = 1;
 
-    public select(text: string): void {
+    protected select(text: string): void {
         this.selected = text;
     }
 
-    public onContextMenu(event: MouseEvent): boolean {
+    protected onContextMenu(event: MouseEvent): boolean {
         const parent = event.currentTarget as HTMLElement;
         const parentRect = parent.getBoundingClientRect();
         this.contextMenu?.show(event.pageX - parentRect.left, event.pageY - parentRect.top);

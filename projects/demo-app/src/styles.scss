@@ -1,44 +1,34 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@use "@angular/material" as mat;
-// Plus imports for other components in your app.
-//@use "@hug/ngx-list-loader" as list-loader;
-// @use "../../list-loader/src/list-loader-theme" as list-loader;
+@use '@angular/material' as mat;
+@use '../../core/src/styles/themeVariables' as themeVariables;
+@use '../../core/src/styles/theme';
+@use '../../core/src/styles/mixins/dialog' as dialog;
+@use '../../core/src/styles/mixins/menu' as menu;
+@use '../../core/src/styles/mixins/icon-theme' as iconTheme;
+@use '../../core/src/styles/mixins/menu-theme' as menuTheme;
+@use '../../layout/src/layout-theme' as layoutTheme;
+@use '../../search-container/src/search-container-theme' as searchContainerTheme;
+@use '../../message-box/src/message-box-theme' as messageBoxTheme;
+@use '../../message-box-dialog/src/message-box-dialog-theme' as messageBoxDialogTheme;
+@use '../../splitter/src/splitter-theme' as splitterTheme;
+@use '../../numeric-stepper/src/numeric-stepper-theme' as numericStepperTheme;
+@use '../../user-card/src/user-card-theme' as userCardTheme;
+@use '../../status/src/status-theme' as statusTheme;
+@use '../../list-loader/src/list-loader-theme' as listLoaderTheme;
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core();
+@include layoutTheme.theme(themeVariables.$theme);
+@include searchContainerTheme.theme(themeVariables.$theme);
+@include messageBoxTheme.theme(themeVariables.$theme);
+@include messageBoxDialogTheme.theme(themeVariables.$theme);
+@include splitterTheme.theme(themeVariables.$theme);
+@include numericStepperTheme.theme(themeVariables.$theme);
+@include userCardTheme.theme(themeVariables.$theme);
+@include iconTheme.theme(themeVariables.$theme);
+@include menuTheme.theme(themeVariables.$theme);
+@include statusTheme.theme(themeVariables.$theme);
+@include listLoaderTheme.theme(themeVariables.$theme);
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$demo-app-primary: mat.define-palette(mat.$indigo-palette);
-$demo-app-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$demo-app-warn: mat.define-palette(mat.$red-palette);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$demo-app-theme: mat.define-light-theme(
-    (
-        color: (
-            primary: $demo-app-primary,
-            accent: $demo-app-accent,
-            warn: $demo-app-warn
-        )
-    )
-);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-// ex: @include mat.button-theme($demo-app-theme)
-@include mat.all-component-themes($demo-app-theme);
-// @include list-loader.theme($demo-app-theme);
-
-/* You can add global styles to this file, and also import other style files */
+@include menu.menu();
+@include dialog.dialog();
 
 html,
 body {
@@ -47,5 +37,29 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.demo-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 50px);
+
+    .demo-card {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        .mat-toolbar {
+            flex: 0 0 auto;
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+
+        .mat-card-content {
+            flex: 1 1 auto;
+            overflow: auto;
+        }
+    }
 }
