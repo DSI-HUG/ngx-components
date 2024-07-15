@@ -18,11 +18,13 @@ concurrency:
 
 jobs:
     ci_test_snackbar:
-        uses: dsi-hug/action/.github/workflows/action.yml@v1
+        uses: dsi-hug/actions/.github/workflows/action.yml@v2
         with:
             working-directory: projects/snackbar
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
             node-versions: '[18, 20]'
+            lint: true
+            test: true
 
     ci_test_status:
         needs: ci_test_snackbar

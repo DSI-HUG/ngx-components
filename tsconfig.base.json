@@ -20,6 +20,7 @@
         "lib": ["es2020", "dom"],
         "paths": {
             "@hug/ngx-core": ["dist/core"],
+            "@hug/ngx-date-picker": ["dist/date-picker"],
             "@hug/ngx-layout": ["dist/layout"],
             "@hug/ngx-list-loader": ["dist/list-loader"],
             "@hug/ngx-message-box": ["dist/message-box"],

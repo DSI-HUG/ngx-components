@@ -1,6 +1,24 @@
 const { schematic, spawn, replaceInFile, workspace, modifyJsonFile, library, createOrUpdateFile } = require('@hug/ngx-schematics-utilities');
 const { noop } = require('@angular-devkit/schematics');
 
+const scheduledTasks = {};
+const runAtEnd = cb =>
+    (tree, context) => {
+        const name = `__task_${Object.keys(scheduledTasks).length}__`;
+
+        // Register the task
+        if (!scheduledTasks[name]) {
+            context.engine._host.registerTaskExecutor({
+                name, create: async () => new Promise(resolve => resolve(() => Promise.resolve(cb(tree, context))))
+            });
+        } else {
+            throw new Error(`Task with name '${name}' already registered.`);
+        }
+
+        // Schedule the task
+        scheduledTasks[name] = context.addTask({ toConfiguration: () => ({ name }) }, Object.values(scheduledTasks));
+    };
+
 exports.default = options =>
     schematic('new-package', [
         spawn('ng', ['g', 'library', options.libName]),
@@ -32,7 +50,8 @@ exports.default = options =>
                 paths[`@hug/ngx-${options.libName.toLowerCase()}`] = [
                     `projects/${options.libName.toLowerCase()}/src`
                 ];
-                return modifyJsonFile('tsconfig.json', ['compilerOptions', 'paths'], paths);
+                const sortedPaths = Object.fromEntries(Object.entries(paths).sort());
+                return modifyJsonFile('tsconfig.json', ['compilerOptions', 'paths'], sortedPaths);
             })
 
             // modify tsconfig.base.json
@@ -41,7 +60,8 @@ exports.default = options =>
                 paths[`@hug/ngx-${options.libName.toLowerCase()}`] = [
                     `dist/${options.libName.toLowerCase()}`
                 ];
-                return modifyJsonFile('tsconfig.base.json', ['compilerOptions', 'paths'], paths);
+                const sortedPaths = Object.fromEntries(Object.entries(paths).sort());
+                return modifyJsonFile('tsconfig.base.json', ['compilerOptions', 'paths'], sortedPaths);
             })
 
             // modify package.json
@@ -50,6 +70,7 @@ exports.default = options =>
                 const value = `projects/${options.libName.toLowerCase()}`;
                 if (!workspaces.includes(value)) {
                     workspaces.push(value);
+                    workspaces.sort();
                     return modifyJsonFile('package.json', ['workspaces'], workspaces);
                 }
                 return noop();
@@ -97,5 +118,9 @@ exports.default = options =>
             // delete `lib` folder
             .deleteFiles(['__SRC__/lib'], true)
 
-            .toRule()
+            .toRule(),
+
+        // Update `package-lock.json`
+        runAtEnd(spawn('npm', ['install']))
+
     ], options);
