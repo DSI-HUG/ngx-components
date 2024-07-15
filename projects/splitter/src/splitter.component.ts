@@ -150,9 +150,9 @@ export class SplitterComponent extends Destroy {
                         const diffInPixels = startPos - pos;
                         const areaSizeInPixelsA = startSizeInPixelsA - diffInPixels;
                         const areaSizeInPixelsB = startSizeInPixelsB + diffInPixels;
-                        areaA.size = Math.min(100, Math.max(0, 100 * areaSizeInPixelsA / containerSizeInPixels));
+                        const areaSizeInPercentA = areaA.size = Math.min(100, Math.max(0, 100 * areaSizeInPixelsA / containerSizeInPixels));
                         areaB.size = Math.min(100, Math.max(0, 100 * areaSizeInPixelsB / containerSizeInPixels));
-                        const percentWithTwoDigits = Math.round(areaA.size * 100) / 100;
+                        const percentWithTwoDigits = Math.round(areaSizeInPercentA * 100) / 100;
                         this.dragProgress.emit(percentWithTwoDigits);
                     }),
                     takeUntil(stopDragging$)
