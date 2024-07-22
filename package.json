@@ -11,7 +11,8 @@
         "release:dry-run": "npm run release -- --dry-run",
         "postinstall": "patch-package",
         "start": "ng serve",
-        "prettier": "npx prettier . --write"
+        "prettier": "npx prettier . --write",
+        "nx": "nx"
     },
     "workspaces": [
         "projects/core",
