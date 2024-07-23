@@ -56,7 +56,7 @@ const publishProjects = async (
         for (const project of projectsToRelease) {
             const projectName = projects[project].root.substring('projects/'.length);
             const publishStatus = await releasePublish({
-                __overrides_unparsed__: `--packageRoot=./dist/${projectName}`,
+                __overrides_unparsed__: `--packageRoot=./dist/ngx-${projectName}`,
                 projects: [project],
                 dryRun: options.dryRun,
                 verbose: options.verbose
@@ -90,8 +90,8 @@ const updateProjectsDists = (
         const projectRoot = projects[project].root;
         const projectName = projectRoot.substring('projects/'.length);
         const projectNewVersion = projectsVersionData[project].newVersion ?? '';
-        const distPackageJsonPath = join('dist', projectName, 'package.json');
-        const distChangelogPath = join('dist', projectName, 'CHANGELOG.md');
+        const distPackageJsonPath = join('dist', `ngx-${projectName}`, 'package.json');
+        const distChangelogPath = join('dist', `ngx-${projectName}`, 'CHANGELOG.md');
 
         console.log(`\n${cyan(projects[project].name ?? '')} New version ${projectNewVersion} written to ${distPackageJsonPath}`);
         if (!options.dryRun) {
