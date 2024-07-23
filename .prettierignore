@@ -10,4 +10,5 @@
 /dist/
 
 /projects/**/package.json
+/projects/**/ng-package.json
 package-lock.json
