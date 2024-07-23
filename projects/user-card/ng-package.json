@@ -1,6 +1,6 @@
 {
     "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-    "dest": "../../dist/user-card",
+    "dest": "../../dist/ngx-user-card",
     "assets": [
         "CHANGELOG.md",
         {
