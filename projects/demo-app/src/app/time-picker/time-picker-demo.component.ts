@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { TimePickerComponent } from '@hug/ngx-time-picker';
+import { NgxTimePickerComponent } from '@hug/ngx-time-picker';
 
 export const myFormats = {
     parse: {
@@ -52,7 +52,7 @@ interface DateFormControl {
         MatTabsModule,
         MatToolbarModule,
         ReactiveFormsModule,
-        TimePickerComponent,
+        NgxTimePickerComponent,
         NgIf
     ],
     providers: [

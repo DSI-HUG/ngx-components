@@ -9,9 +9,9 @@ import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
 import { isSameHour, set } from 'date-fns';
 import { debounce, distinctUntilChanged, map, Subject, takeUntil, timer } from 'rxjs';
 
-export type TimePickerDisplayMode = 'fullTime' | 'fullTimeWithHoursDisabled' | 'fullTimeWithMinutesDisabled' | 'hoursOnly' | 'minutesOnly';
+export type NgxTimePickerDisplayMode = 'fullTime' | 'fullTimeWithHoursDisabled' | 'fullTimeWithMinutesDisabled' | 'hoursOnly' | 'minutesOnly';
 
-export type DateOrDuration = Date | Duration;
+export type NgxDateOrDuration = Date | Duration;
 
 type DataType = 'date' | 'duration';
 
@@ -33,14 +33,14 @@ type FieldType = 'hours' | 'minutes';
         NgxNumericStepperComponent
     ]
 })
-export class TimePickerComponent extends NgxDestroy implements ControlValueAccessor {
+export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAccessor {
     @ViewChild('hours') public hours?: ElementRef<HTMLInputElement>;
     @ViewChild('minutes') public minutes?: ElementRef<HTMLInputElement>;
 
-    @Output() public readonly timeChange = new EventEmitter<DateOrDuration>();
+    @Output() public readonly timeChange = new EventEmitter<NgxDateOrDuration>();
 
     /** Display mode for the time-picker */
-    @Input() public mode: TimePickerDisplayMode = 'fullTime';
+    @Input() public mode: NgxTimePickerDisplayMode = 'fullTime';
 
     /** Data type to manage (Date or Duration) */
     @Input() public dataType: DataType = 'date';
@@ -64,11 +64,11 @@ export class TimePickerComponent extends NgxDestroy implements ControlValueAcces
     @Input() public defaultPlaceholderMinutes = '_ _';
 
     @Input()
-    public set time(value: DateOrDuration | undefined) {
+    public set time(value: NgxDateOrDuration | undefined) {
         this.writeValue(value);
     }
 
-    public get time(): DateOrDuration | undefined {
+    public get time(): NgxDateOrDuration | undefined {
         return this.value;
     }
 
@@ -104,7 +104,7 @@ export class TimePickerComponent extends NgxDestroy implements ControlValueAcces
     protected control = inject(NgControl, { self: true, optional: true });
 
     private _disabled = false;
-    private _value?: DateOrDuration;
+    private _value?: NgxDateOrDuration;
     private _autoFocus = true;
 
     public constructor() {
@@ -272,7 +272,7 @@ export class TimePickerComponent extends NgxDestroy implements ControlValueAcces
 
     // ************* ControlValueAccessor Implementation **************
     /** set accessor including call the onchange callback */
-    public set value(v: DateOrDuration | undefined) {
+    public set value(v: NgxDateOrDuration | undefined) {
         if (v !== this._value) {
             this.writeValue(v);
             this.onChangeCallback(v);
@@ -281,12 +281,12 @@ export class TimePickerComponent extends NgxDestroy implements ControlValueAcces
     }
 
     /** get accessor */
-    public get value(): DateOrDuration | undefined {
+    public get value(): NgxDateOrDuration | undefined {
         return this._value;
     }
 
     /** From ControlValueAccessor interface */
-    public writeValue(value: DateOrDuration | undefined): void {
+    public writeValue(value: NgxDateOrDuration | undefined): void {
         if ((value ?? null) !== (this._value ?? null)) {
             if (value instanceof Date) {
                 this._value = value ? new Date(value.getTime()) : set(new Date(), { hours: 0, minutes: 0, seconds: 0 });

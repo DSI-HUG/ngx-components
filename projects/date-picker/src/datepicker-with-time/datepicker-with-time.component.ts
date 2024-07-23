@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
 import { MatDatepicker, MatDatepickerInput, MatDateSelectionModel } from '@angular/material/datepicker';
 import { NgxDestroy } from '@hug/ngx-core';
-import { DateOrDuration, TimePickerComponent } from '@hug/ngx-time-picker';
+import { NgxDateOrDuration, NgxTimePickerComponent } from '@hug/ngx-time-picker';
 import { cloneDeep } from 'lodash-es';
 import { delay, filter, map, takeUntil, tap } from 'rxjs';
 
@@ -20,17 +20,17 @@ import { DATE_TIME_ADAPTER, DateTimeAdapter } from '../date-adapter/date-time-ad
     standalone: true,
     imports: [
         MatButtonModule,
-        TimePickerComponent
+        NgxTimePickerComponent
     ]
 })
 export class NgxDatepickerWithTimeComponent extends NgxDestroy implements AfterViewInit, OnDestroy {
     @ViewChild(TemplateRef)
     private template?: TemplateRef<unknown>;
 
-    @ViewChild(TimePickerComponent, { read: ElementRef, static: false })
+    @ViewChild(NgxTimePickerComponent, { read: ElementRef, static: false })
     private timePickerElement?: ElementRef<HTMLElement>;
 
-    protected time?: DateOrDuration;
+    protected time?: NgxDateOrDuration;
 
     protected datepicker = inject<MatDatepicker<unknown>>(MatDatepicker);
     protected viewContainerRef = inject(ViewContainerRef);
