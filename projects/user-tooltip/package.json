@@ -34,7 +34,7 @@
         "@angular/core": ">= 14",
         "@angular/material": ">= 14",
         "@hug/ngx-core": "1.1.8",
-        "@hug/ngx-tooltip": "1.1.4",
+        "@hug/ngx-tooltip": "1.1.5",
         "@hug/ngx-user-card": "1.1.4"
     },
     "dependencies": {
