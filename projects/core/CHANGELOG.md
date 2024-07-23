@@ -1,3 +1,15 @@
+## 1.1.9 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-core:** ngx prefix ([e08e71a](https://github.com/DSI-HUG/ngx-components/commit/e08e71a))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.8 (2024-07-23)
 
 
