@@ -1,3 +1,25 @@
+## 1.1.4 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-tooltip:** ngx prefix ([552ce59](https://github.com/DSI-HUG/ngx-components/commit/552ce59))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-user-card:** upgrade to v1.1.4 ([199114b](https://github.com/DSI-HUG/ngx-components/commit/199114b))
+
+- **@hug/ngx-tooltip:** upgrade to v1.1.5 ([e8e8b5d](https://github.com/DSI-HUG/ngx-components/commit/e8e8b5d))
+
+- **@hug/ngx-tooltip:** upgrade to v1.1.6 ([742d350](https://github.com/DSI-HUG/ngx-components/commit/742d350))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.3 (2024-07-23)
 
 

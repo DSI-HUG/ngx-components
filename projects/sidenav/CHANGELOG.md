@@ -1,3 +1,21 @@
+## 1.1.3 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-sidenav:** ngx prefix ([334f8c9](https://github.com/DSI-HUG/ngx-components/commit/334f8c9))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.8 ([26f0d10](https://github.com/DSI-HUG/ngx-components/commit/26f0d10))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.2 (2024-07-08)
 
 ### 🐛 Fixes

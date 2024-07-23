@@ -1,3 +1,15 @@
+## 1.1.6 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-splitter:** ngx prefix ([4f2db1c](https://github.com/DSI-HUG/ngx-components/commit/4f2db1c))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.5 (2024-07-23)
 
 

@@ -1,3 +1,17 @@
+## 1.1.4 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-snackbar:** use inject ([042cf24](https://github.com/DSI-HUG/ngx-components/commit/042cf24))
+
+- **ngx-search-container:** ngx prefix ([2ed4360](https://github.com/DSI-HUG/ngx-components/commit/2ed4360))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.3 (2024-07-23)
 
 

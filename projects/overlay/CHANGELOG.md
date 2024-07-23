@@ -1,3 +1,19 @@
+## 1.1.5 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-search-container:** ngx prefix ([064666d](https://github.com/DSI-HUG/ngx-components/commit/064666d))
+
+- **ngx-overlay:** ngx prefix ([704a316](https://github.com/DSI-HUG/ngx-components/commit/704a316))
+
+- **ngx-overlay:** ngx prefix ([07a2950](https://github.com/DSI-HUG/ngx-components/commit/07a2950))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.4 (2024-07-23)
 
 

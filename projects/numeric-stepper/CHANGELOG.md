@@ -1,3 +1,17 @@
+## 1.1.6 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-numeric-stepper:** ngx prefix ([73ab7bb](https://github.com/DSI-HUG/ngx-components/commit/73ab7bb))
+
+- **ngx-numeric-stepper:** ngx prefix ([0fc6cb9](https://github.com/DSI-HUG/ngx-components/commit/0fc6cb9))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.5 (2024-07-23)
 
 

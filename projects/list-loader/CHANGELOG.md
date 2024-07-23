@@ -1,3 +1,15 @@
+## 1.1.5 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-list-loader:** ngx prefix ([5128b8f](https://github.com/DSI-HUG/ngx-components/commit/5128b8f))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.4 (2024-07-23)
 
 

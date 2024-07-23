@@ -1,3 +1,19 @@
+## 1.1.4 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-message-box-dialog:** ngx prefix ([3f2436c](https://github.com/DSI-HUG/ngx-components/commit/3f2436c))
+
+- **ngx-message-box-dialog:** ngx prefix ([3b3fc15](https://github.com/DSI-HUG/ngx-components/commit/3b3fc15))
+
+- **ngx-message-box:** ngx prefix ([1c56274](https://github.com/DSI-HUG/ngx-components/commit/1c56274))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.3 (2024-07-23)
 
 

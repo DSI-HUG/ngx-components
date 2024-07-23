@@ -1,3 +1,23 @@
+## 1.1.5 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-list-loader:** improve encapsulation ([550e79a](https://github.com/DSI-HUG/ngx-components/commit/550e79a))
+
+- **ngx-layout:** ngx prefix ([d5a4b08](https://github.com/DSI-HUG/ngx-components/commit/d5a4b08))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-sidenav:** upgrade to v1.1.3 ([3d9afa7](https://github.com/DSI-HUG/ngx-components/commit/3d9afa7))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.4 (2024-07-23)
 
 

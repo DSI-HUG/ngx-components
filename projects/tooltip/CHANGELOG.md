@@ -1,3 +1,15 @@
+## 1.1.6 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-tooltip:** ngx prefix ([85b35e1](https://github.com/DSI-HUG/ngx-components/commit/85b35e1))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.5 (2024-07-23)
 
 

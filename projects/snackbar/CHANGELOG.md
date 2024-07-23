@@ -1,3 +1,15 @@
+## 1.1.5 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-snackbar:** ngx prefix ([99e8231](https://github.com/DSI-HUG/ngx-components/commit/99e8231))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.4 (2024-07-23)
 
 
