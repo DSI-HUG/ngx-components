@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { SearchContainerComponent, SearchInputDirective } from './search-container.component';
+import { NgxSearchContainerComponent, NgxSearchInputDirective } from './search-container.component';
 
 @NgModule({
     imports: [
@@ -16,12 +16,12 @@ import { SearchContainerComponent, SearchInputDirective } from './search-contain
         MatTooltipModule
     ],
     declarations: [
-        SearchContainerComponent,
-        SearchInputDirective
+        NgxSearchContainerComponent,
+        NgxSearchInputDirective
     ],
     exports: [
-        SearchContainerComponent,
-        SearchInputDirective
+        NgxSearchContainerComponent,
+        NgxSearchInputDirective
     ]
 })
 export class SearchContainerModule { }

@@ -1,4 +1,4 @@
-import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, EventEmitter, Input, NgZone, Optional, Output, Self, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, EventEmitter, Input, NgZone, Output, TemplateRef, ViewEncapsulation, inject } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { NgxDestroy, NgxMediaService } from '@hug/ngx-core';
 import { BehaviorSubject, Observable, distinctUntilChanged, first, shareReplay, switchMap, takeUntil, tap } from 'rxjs';
@@ -6,11 +6,12 @@ import { BehaviorSubject, Observable, distinctUntilChanged, first, shareReplay, 
 @Directive({
     selector: '[ngx-search-input]'
 })
-export class SearchInputDirective {
-    public constructor(
-        @Optional() @Self() public ngControl: NgControl,
-        private elementRef: ElementRef<HTMLElement>
-    ) {
+export class NgxSearchInputDirective {
+    public ngControl = inject(NgControl);
+
+    protected elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
+    public constructor() {
         this.focus();
     }
 
@@ -26,7 +27,7 @@ export class SearchInputDirective {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchContainerComponent extends NgxDestroy implements AfterContentInit {
+export class NgxSearchContainerComponent extends NgxDestroy implements AfterContentInit {
 
     @Output()
     public readonly cleared = new EventEmitter<void>();
@@ -41,10 +42,10 @@ export class SearchContainerComponent extends NgxDestroy implements AfterContent
 
     protected searchInputValue$: Observable<string> | null | undefined;
 
-    private _searchInput: SearchInputDirective | undefined;
+    private _searchInput: NgxSearchInputDirective | undefined;
 
-    @ContentChild(SearchInputDirective)
-    public set searchInput(searchInput: SearchInputDirective) {
+    @ContentChild(NgxSearchInputDirective)
+    public set searchInput(searchInput: NgxSearchInputDirective) {
         if (!searchInput) {
             throw new Error('You need to add the attribute searchInput to the SearchContainerComponent');
         }

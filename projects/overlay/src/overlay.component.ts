@@ -63,7 +63,7 @@ export class OverlayComponent implements OnChanges {
     protected overlayInfos$: Observable<OverlayInfos | undefined>;
     protected overlayRef$ = new ReplaySubject<OverlayRef>(1);
 
-    protected elementRef = inject(ElementRef );
+    protected elementRef = inject(ElementRef);
     protected overlayContainer = inject(OverlayContainer);
     protected mediaService = inject(NgxMediaService);
 
