@@ -1,6 +1,6 @@
 {
     "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-    "dest": "../../dist/message-box-dialog",
+    "dest": "../../dist/ngx-message-box-dialog",
     "assets": [
         "CHANGELOG.md",
         {
