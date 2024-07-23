@@ -8,7 +8,7 @@ export type SidenavMode = 'over' | 'side';
 @Injectable({
     providedIn: 'root'
 })
-export class SidenavService {
+export class NgxSidenavService {
     public readonly openChanged$: Observable<boolean>;
     public readonly modeChanged$: Observable<SidenavMode>;
     public readonly hiddenChanged$: Observable<boolean>;
