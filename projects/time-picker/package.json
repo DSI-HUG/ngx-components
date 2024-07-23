@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-time-picker",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "description": "HUG Angular - time picker component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
