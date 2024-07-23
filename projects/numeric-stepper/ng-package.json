@@ -1,6 +1,6 @@
 {
     "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-    "dest": "../../dist/numeric-stepper",
+    "dest": "../../dist/ngx-numeric-stepper",
     "assets": [
         "CHANGELOG.md",
         {
