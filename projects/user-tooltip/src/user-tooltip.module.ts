@@ -1,20 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AbstractLazyModule } from '@hug/ngx-core';
-import { UserCardComponent } from '@hug/ngx-user-card';
+import { NgxUserCardComponent } from '@hug/ngx-user-card';
 
-import { UserTooltipComponent } from './user-tooltip.component';
+import { NgxUserTooltipComponent } from './user-tooltip.component';
 
 @NgModule({
-    declarations: [UserTooltipComponent],
-    exports: [UserTooltipComponent],
+    declarations: [NgxUserTooltipComponent],
+    exports: [NgxUserTooltipComponent],
     imports: [
         CommonModule,
-        UserCardComponent
+        NgxUserCardComponent
     ]
 })
-export class UserTooltipModule extends AbstractLazyModule<UserTooltipComponent> {
+export class NgxUserTooltipModule extends AbstractLazyModule<NgxUserTooltipComponent> {
     public constructor() {
-        super(UserTooltipComponent);
+        super(NgxUserTooltipComponent);
     }
 }
