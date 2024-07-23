@@ -7,8 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxDestroy } from '@hug/ngx-core';
-import { NumericStepperComponent } from '@hug/ngx-numeric-stepper';
-import { debounceTime, distinctUntilChanged, map, Subject, takeUntil } from 'rxjs';
+import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
+import { Subject, debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs';
 
 interface NumberFormControls {
     numberValue3: FormControl<number>;
@@ -41,7 +41,7 @@ const numberValidator = (control: AbstractControl): string[] | null => {
         MatInputModule,
         MatTabsModule,
         MatToolbarModule,
-        NumericStepperComponent,
+        NgxNumericStepperComponent,
         NgIf,
         DecimalPipe
     ]

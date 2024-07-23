@@ -1,14 +1,14 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, ViewEncapsulation, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { filterMap, KeyCodes, NgxDestroy } from '@hug/ngx-core';
-import { combineLatestWith, debounceTime, delay, filter, fromEvent, map, mergeWith, ReplaySubject, shareReplay, startWith, Subject, switchMap, takeUntil, tap, timer, withLatestFrom } from 'rxjs';
+import { KeyCodes, NgxDestroy, filterMap } from '@hug/ngx-core';
+import { ReplaySubject, Subject, combineLatestWith, debounceTime, delay, filter, fromEvent, map, mergeWith, shareReplay, startWith, switchMap, takeUntil, tap, timer, withLatestFrom } from 'rxjs';
 
-export type NumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-inlay';
+export type NgxNumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-inlay';
 
 // TODO sdil refactor rxjs flows
 @Component({
@@ -27,13 +27,13 @@ export type NumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-inlay
     ],
     encapsulation: ViewEncapsulation.None
 })
-export class NumericStepperComponent extends NgxDestroy implements OnInit {
+export class NgxNumericStepperComponent extends NgxDestroy implements OnInit {
     private static TYPE_ERROR = 'Input element on the same mat-form-field must be type="number". With other input type, use increment or decrement events and implement your proper functions to change the value.';
     private static STEP_FN_ERROR = 'Input element on the same mat-form-field must implement stepDown/stepUp functions.';
     private static INPUT_ERROR = 'To use the automatic binding, you must specify the input field with a matInput reference. [input]="matInputRef"';
 
     @HostBinding('attr.layout') @Input()
-    public layout: NumericStepperLayout = 'vertical';
+    public layout: NgxNumericStepperLayout = 'vertical';
 
     @Output() public readonly increment = new EventEmitter<void>();
     @Output() public readonly decrement = new EventEmitter<void>();
@@ -194,15 +194,15 @@ export class NumericStepperComponent extends NgxDestroy implements OnInit {
                 this[event].emit();
             } else {
                 if (inputElement?.type !== 'number') {
-                    throw new Error(NumericStepperComponent.TYPE_ERROR);
+                    throw new Error(NgxNumericStepperComponent.TYPE_ERROR);
                 }
 
                 if (!inputElement[fn]) {
-                    throw new Error(NumericStepperComponent.STEP_FN_ERROR);
+                    throw new Error(NgxNumericStepperComponent.STEP_FN_ERROR);
                 }
 
                 if (!this.input?.ngControl?.control) {
-                    throw new Error(NumericStepperComponent.INPUT_ERROR);
+                    throw new Error(NgxNumericStepperComponent.INPUT_ERROR);
                 }
 
                 inputElement[fn]();
