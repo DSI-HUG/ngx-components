@@ -3,28 +3,28 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NgxAbstractLazyModule, NgxDialogService, NgxLazyLoaderService } from '@hug/ngx-core';
 import { Observable, take } from 'rxjs';
 
-import { MessageBoxDialogButtons, MessageBoxDialogData, MessageBoxDialogResponse } from './message-box-dialog.model';
+import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData, NgxMessageBoxDialogResponse } from './message-box-dialog.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class NgxMessageBoxDialogService extends NgxDialogService<MessageBoxDialogResponse, MessageBoxDialogData | string> {
+export class NgxMessageBoxDialogService extends NgxDialogService<NgxMessageBoxDialogResponse, NgxMessageBoxDialogData | string> {
     public constructor(
         lazyLoaderService: NgxLazyLoaderService,
         dialog: MatDialog
     ) {
         super(lazyLoaderService, dialog, {
             panelClass: 'no-padding-dialog'
-        } as MatDialogConfig<MessageBoxDialogData>);
+        } as MatDialogConfig<NgxMessageBoxDialogData>);
     }
 
-    public override openDialog$(dialogData: string | MessageBoxDialogData, dialogConfig?: MatDialogConfig<MessageBoxDialogData>): Observable<MessageBoxDialogResponse | undefined> {
-        let messageBoxDialogData: MessageBoxDialogData;
+    public override openDialog$(dialogData: string | NgxMessageBoxDialogData, dialogConfig?: MatDialogConfig<NgxMessageBoxDialogData>): Observable<NgxMessageBoxDialogResponse | undefined> {
+        let messageBoxDialogData: NgxMessageBoxDialogData;
         if (typeof dialogData === 'string') {
             messageBoxDialogData = {
                 text: dialogData,
-                buttons: MessageBoxDialogButtons.OK
-            } as MessageBoxDialogData;
+                buttons: NgxMessageBoxDialogButtons.OK
+            } as NgxMessageBoxDialogData;
         } else {
             messageBoxDialogData = dialogData;
         }
@@ -33,11 +33,11 @@ export class NgxMessageBoxDialogService extends NgxDialogService<MessageBoxDialo
         return super.openDialog$(messageBoxDialogData, dialogConfig);
     }
 
-    public openConfirmation$(message: string, dialogConfig?: MatDialogConfig<MessageBoxDialogData>): Observable<MessageBoxDialogResponse | undefined> {
+    public openConfirmation$(message: string, dialogConfig?: MatDialogConfig<NgxMessageBoxDialogData>): Observable<NgxMessageBoxDialogResponse | undefined> {
         const dialogData = {
             text: message,
-            buttons: MessageBoxDialogButtons.OK + MessageBoxDialogButtons.CANCEL
-        } as MessageBoxDialogData;
+            buttons: NgxMessageBoxDialogButtons.OK + NgxMessageBoxDialogButtons.CANCEL
+        } as NgxMessageBoxDialogData;
 
         return this.openDialog$(dialogData, dialogConfig).pipe(
             take(1)

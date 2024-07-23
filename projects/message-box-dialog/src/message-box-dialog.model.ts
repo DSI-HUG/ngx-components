@@ -1,6 +1,6 @@
-export type MessageBoxDialogResponse = 'ok' | 'cancel' | 'ignore' | 'retry' | 'yes' | 'no' | 'continue';
+export type NgxMessageBoxDialogResponse = 'ok' | 'cancel' | 'ignore' | 'retry' | 'yes' | 'no' | 'continue';
 
-export enum MessageBoxDialogButtons {
+export enum NgxMessageBoxDialogButtons {
     OK = 0x1,
     CANCEL = 0x2,
     IGNORE = 0x4,
@@ -10,8 +10,8 @@ export enum MessageBoxDialogButtons {
     CONTINUE = 0x40
 }
 
-export interface MessageBoxDialogData {
+export interface NgxMessageBoxDialogData {
     title: string;
     text: string;
-    buttons?: MessageBoxDialogButtons;
+    buttons?: NgxMessageBoxDialogButtons;
 }

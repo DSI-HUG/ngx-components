@@ -7,7 +7,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxDestroy } from '@hug/ngx-core';
 import { MessageBoxAction, NgxMessageBoxComponent } from '@hug/ngx-message-box';
-import { MessageBoxDialogButtons, NgxMessageBoxDialogService } from '@hug/ngx-message-box-dialog';
+import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogService } from '@hug/ngx-message-box-dialog';
 import { Subject, switchMap, takeUntil } from 'rxjs';
 
 @Component({
@@ -48,7 +48,7 @@ export class MessageBoxDemoComponent extends NgxDestroy {
                 const dialogData = {
                     title: 'MessageBox Dialog',
                     text: 'This is a message box dialog. Click OK or Cancel to close.',
-                    buttons: MessageBoxDialogButtons.OK + MessageBoxDialogButtons.CANCEL
+                    buttons: NgxMessageBoxDialogButtons.OK + NgxMessageBoxDialogButtons.CANCEL
                 };
 
                 return this.messageBoxService.openDialog$(dialogData);
