@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, inject, I
 import { NgxMediaService } from '@hug/ngx-core';
 import { BehaviorSubject, combineLatestWith, distinctUntilChanged, EMPTY, map, mergeWith, Observable, of, ReplaySubject, shareReplay, startWith, Subject, switchMap, take } from 'rxjs';
 
-import { defaultConnectionPositionPair, OverlayConnectionPositionPair } from './connection-position-pair';
+import { defaultConnectionPositionPair, NgxOverlayConnectionPositionPair } from './connection-position-pair';
 
 export interface ShowParams {
     event?: MouseEvent;
@@ -34,7 +34,7 @@ interface OverlayInfos {
         OverlayModule
     ]
 })
-export class OverlayComponent implements OnChanges {
+export class NgxOverlayComponent implements OnChanges {
     @Input() public ownerElement!: HTMLElement;
 
     @Input() public width!: string;
@@ -85,7 +85,7 @@ export class OverlayComponent implements OnChanges {
     }
 
     private _positions = defaultConnectionPositionPair;
-    private _positionsForMobile?: OverlayConnectionPositionPair[];
+    private _positionsForMobile?: NgxOverlayConnectionPositionPair[];
 
     public constructor() {
         const containerElement = this.overlayContainer.getContainerElement();
@@ -171,31 +171,31 @@ export class OverlayComponent implements OnChanges {
         }
     }
 
-    public get positionPairs(): OverlayConnectionPositionPair[] {
+    public get positionPairs(): NgxOverlayConnectionPositionPair[] {
         return this.positions;
     }
 
-    public get positions(): OverlayConnectionPositionPair[] {
+    public get positions(): NgxOverlayConnectionPositionPair[] {
         if (!this.isMobile) {
             return this._positions;
         } else if (this._positionsForMobile) {
             return this._positionsForMobile;
         } else {
-            return OverlayConnectionPositionPair.parse('start top start top');
+            return NgxOverlayConnectionPositionPair.parse('start top start top');
         }
     }
 
     @Input()
-    public set positions(value: OverlayConnectionPositionPair[] | string) {
-        this._positions = typeof value === 'string' ? OverlayConnectionPositionPair.parse(value) : value;
+    public set positions(value: NgxOverlayConnectionPositionPair[] | string) {
+        this._positions = typeof value === 'string' ? NgxOverlayConnectionPositionPair.parse(value) : value;
     }
 
     /** Si pas null, sera utilisé quand isMobile est vrai. Si null et si isMobile est vrai,
      *  alors c'est la valeur 'start top start top' qui est utilisée.
      * */
     @Input()
-    public set positionsForMobile(value: OverlayConnectionPositionPair[] | string) {
-        this._positionsForMobile = typeof value === 'string' ? OverlayConnectionPositionPair.parse(value) : value;
+    public set positionsForMobile(value: NgxOverlayConnectionPositionPair[] | string) {
+        this._positionsForMobile = typeof value === 'string' ? NgxOverlayConnectionPositionPair.parse(value) : value;
     }
 
     /** Affiche le dialog. */

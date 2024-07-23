@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { OverlayComponent } from '@hug/ngx-overlay';
+import { NgxOverlayComponent } from '@hug/ngx-overlay';
 
 
 @Component({
@@ -18,7 +18,7 @@ import { OverlayComponent } from '@hug/ngx-overlay';
     standalone: true,
     imports: [
         CommonModule,
-        OverlayComponent,
+        NgxOverlayComponent,
         FormsModule,
         MatButtonModule,
         MatCardModule,
@@ -29,7 +29,7 @@ import { OverlayComponent } from '@hug/ngx-overlay';
 })
 export class OverlayDemoComponent {
     @ViewChild('contextMenu')
-    private contextMenu?: OverlayComponent;
+    private contextMenu?: NgxOverlayComponent;
 
     protected selected = '';
     protected items = [

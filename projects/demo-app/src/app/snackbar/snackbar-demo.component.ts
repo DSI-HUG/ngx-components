@@ -5,10 +5,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MessageBoxComponent } from '@hug/ngx-message-box';
-import { SnackbarComponent } from '@hug/ngx-snackbar';
-import { StatusService, StatusType } from '@hug/ngx-status';
-import { defaultIfEmpty, filter, from, interval, map, Observable, scan, shareReplay } from 'rxjs';
+import { NgxMessageBoxComponent } from '@hug/ngx-message-box';
+import { NgxSnackbarComponent } from '@hug/ngx-snackbar';
+import { NgxStatusService, StatusType } from '@hug/ngx-status';
+import { Observable, defaultIfEmpty, filter, from, interval, map, scan, shareReplay } from 'rxjs';
 
 class Message {
     public constructor(public content = 'Some snackbar', public gate = true) { }
@@ -27,10 +27,10 @@ class Message {
         MatIconModule,
         MatTabsModule,
         MatToolbarModule,
-        MessageBoxComponent,
+        NgxMessageBoxComponent,
         NgIf,
         NgFor,
-        SnackbarComponent
+        NgxSnackbarComponent
     ]
 })
 export class SnackbarDemoComponent {
@@ -50,7 +50,7 @@ export class SnackbarDemoComponent {
 
     protected simpleGate = false;
 
-    private statusService = inject(StatusService);
+    private statusService = inject(NgxStatusService);
 
     public constructor() {
         this.dangers$ = from(this.push).pipe(
