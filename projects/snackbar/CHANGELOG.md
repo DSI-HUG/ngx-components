@@ -1,3 +1,23 @@
+## 1.1.4 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-snackbar:** use inject ([042cf24](https://github.com/DSI-HUG/ngx-components/commit/042cf24))
+
+- **ngx-snackbar:** use inject ([eb835c1](https://github.com/DSI-HUG/ngx-components/commit/eb835c1))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.8 ([26f0d10](https://github.com/DSI-HUG/ngx-components/commit/26f0d10))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.3 (2024-07-08)
 
 ### 🌱 Dependencies
