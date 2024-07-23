@@ -9,4 +9,5 @@
 /.vscode/
 /dist/
 
+/projects/**/package.json
 package-lock.json
