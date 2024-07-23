@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, Vi
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
-import { UserCard } from './user-card.model';
+import { NgxUserCard } from './user-card.model';
 
 const greenBadgeFamily = ['Médico-technique', 'Social', 'Médico-thérapeutique', 'Pharmacie'];
 const blueBadgeFamily = ['Soins', 'Infirmier-e'];
@@ -38,10 +38,10 @@ interface DisplayableUserCard {
         MatIconModule
     ]
 })
-export class UserCardComponent implements OnChanges {
+export class NgxUserCardComponent implements OnChanges {
 
     @Input()
-    public user!: UserCard;
+    public user!: NgxUserCard;
 
     protected userCard!: DisplayableUserCard;
 
@@ -62,7 +62,7 @@ export class UserCardComponent implements OnChanges {
         }
     }
 
-    private buildDisplayableUserCard(user: UserCard): DisplayableUserCard {
+    private buildDisplayableUserCard(user: NgxUserCard): DisplayableUserCard {
         return {
             fullname: this.getFullName(user),
             initials: user.initials,
@@ -78,7 +78,7 @@ export class UserCardComponent implements OnChanges {
         };
     }
 
-    private getUserAddress(user: UserCard): string | undefined {
+    private getUserAddress(user: NgxUserCard): string | undefined {
         if (user.organisation || user.address || user.zipCode || user.city) {
             let address = '';
             if (user.organisation) {
@@ -114,7 +114,7 @@ export class UserCardComponent implements OnChanges {
         return 'grey';
     }
 
-    private getSpecialty(user: UserCard): string | undefined {
+    private getSpecialty(user: NgxUserCard): string | undefined {
         if (this.isValidSpecialty(user.specialty1) || this.isValidSpecialty(user.specialty2)) {
             return [user.specialty1, user.specialty2].filter(s => this.isValidSpecialty(s)).join(', ');
         } else if (user.speciality?.trim()) {
@@ -128,7 +128,7 @@ export class UserCardComponent implements OnChanges {
         return !!s && s !== '-' && s !== 'null';
     }
 
-    private getFunction(user: UserCard): string {
+    private getFunction(user: NgxUserCard): string {
         return user.groupFunctionLabel ? `${user.groupFunctionLabel}` : `${user.functionSefName ? user.functionSefName : ''} ${user.functionSefCode ? `(${user.functionSefCode})` : ''} ${user.role ? `/ ${user.role}` : ''}`;
     }
 
@@ -151,7 +151,7 @@ export class UserCardComponent implements OnChanges {
         }
     }
 
-    private getFullName(user: UserCard): string {
+    private getFullName(user: NgxUserCard): string {
         return `${this.getShortTitle(user.title)} ${user.firstname || ''} ${user.lastname || ''}`;
     }
 

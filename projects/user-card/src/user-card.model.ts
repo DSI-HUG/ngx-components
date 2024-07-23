@@ -1,4 +1,4 @@
-export interface UserCard {
+export interface NgxUserCard {
     title?: string;
     firstname?: string;
     lastname?: string;
