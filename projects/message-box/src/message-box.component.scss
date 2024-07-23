@@ -4,7 +4,7 @@ ngx-message-box {
     overflow: hidden;
     background-color: transparent;
 
-    #msgbox {
+    .ngx-message-box {
         border: 0;
         margin: 0;
         padding: 0;
@@ -60,7 +60,7 @@ ngx-message-box {
     }
 
     &[horizontal] {
-        #msgbox {
+        .ngx-message-box {
             align-items: stretch;
             display: flex;
             flex-direction: row;

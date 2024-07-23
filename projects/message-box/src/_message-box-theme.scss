@@ -49,7 +49,7 @@
 
     ngx-message-box {
         &[horizontal] {
-            #msgbox {
+            .ngx-message-box {
                 &.info,
                 &.primary,
                 &.danger,
@@ -63,7 +63,7 @@
         }
 
         &[light] {
-            #msgbox {
+            .ngx-message-box {
                 &.info,
                 &.primary {
                     @include messageBoxLight($primary);
@@ -83,7 +83,7 @@
             }
         }
 
-        #msgbox {
+        .ngx-message-box {
             &.info,
             &.primary {
                 @include messageBoxStandard($primary);
