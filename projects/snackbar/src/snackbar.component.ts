@@ -18,11 +18,11 @@ interface Animation {
     template: '<ng-content></ng-content>',
     standalone: true
 })
-export class SnackbarComponent extends NgxDestroy implements OnInit, AfterViewInit, OnDestroy {
+export class NgxSnackbarComponent extends NgxDestroy implements OnInit, AfterViewInit, OnDestroy {
     /**
      * all snackbar instances
      */
-    private static INSTANCES: SnackbarComponent[] = [];
+    private static INSTANCES: NgxSnackbarComponent[] = [];
 
     /**
      * callback used to negate the boolean responsible for the presence of the snackbar on the dom (see demo)
@@ -133,11 +133,11 @@ export class SnackbarComponent extends NgxDestroy implements OnInit, AfterViewIn
 
         this.host = this.elementRef.nativeElement;
 
-        if (!SnackbarComponent.INSTANCES) {
-            SnackbarComponent.INSTANCES = [];
+        if (!NgxSnackbarComponent.INSTANCES) {
+            NgxSnackbarComponent.INSTANCES = [];
         }
 
-        SnackbarComponent.INSTANCES.push(this);
+        NgxSnackbarComponent.INSTANCES.push(this);
 
         const applyParams = (styles: CSSStyleDeclaration): void => {
             Object.keys(styles).forEach(key => {
@@ -236,8 +236,8 @@ export class SnackbarComponent extends NgxDestroy implements OnInit, AfterViewIn
         super.ngOnDestroy();
 
         // check if snackbars have to move (if they were created after the one deleted)
-        if (SnackbarComponent.INSTANCES.length) {
-            SnackbarComponent.INSTANCES
+        if (NgxSnackbarComponent.INSTANCES.length) {
+            NgxSnackbarComponent.INSTANCES
                 .filter(instance => this.outerContainerElement === instance.outerContainerElement)
                 .filter(instance => this.anchor === instance.anchor)
                 .forEach(instance => {
@@ -248,7 +248,7 @@ export class SnackbarComponent extends NgxDestroy implements OnInit, AfterViewIn
                 });
         }
         // remove the soon to be destroyed snackbar from the instances array
-        SnackbarComponent.INSTANCES = SnackbarComponent.INSTANCES.filter(instance => this !== instance);
+        NgxSnackbarComponent.INSTANCES = NgxSnackbarComponent.INSTANCES.filter(instance => this !== instance);
 
         this.animate$sub.unsubscribe();
     }
@@ -284,10 +284,10 @@ export class SnackbarComponent extends NgxDestroy implements OnInit, AfterViewIn
         const innerContainerHeight = innerContainerElementBounds.height;
 
         // Instances sharing the same outer container and the same anchor
-        const instancesInSameZone = SnackbarComponent.INSTANCES
-            .filter((instance: SnackbarComponent) => this.outerContainerElement === instance.outerContainerElement)
-            .filter((instance: SnackbarComponent) => this.anchor === instance.anchor)
-            .filter((instance: SnackbarComponent) => this !== instance);
+        const instancesInSameZone = NgxSnackbarComponent.INSTANCES
+            .filter((instance: NgxSnackbarComponent) => this.outerContainerElement === instance.outerContainerElement)
+            .filter((instance: NgxSnackbarComponent) => this.anchor === instance.anchor)
+            .filter((instance: NgxSnackbarComponent) => this !== instance);
 
         let precedentInstanceHeight = 0;
 
@@ -302,7 +302,7 @@ export class SnackbarComponent extends NgxDestroy implements OnInit, AfterViewIn
 
         // computed height of inner containers, sharing the same outer container and the same anchor
         const computedHeight = instancesInSameZone
-            .map((instance: SnackbarComponent) => {
+            .map((instance: NgxSnackbarComponent) => {
                 const innerContainerElement = instance.elementRef.nativeElement;
                 return innerContainerElement.getBoundingClientRect().height;
             })
