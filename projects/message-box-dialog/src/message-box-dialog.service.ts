@@ -8,7 +8,7 @@ import { MessageBoxDialogButtons, MessageBoxDialogData, MessageBoxDialogResponse
 @Injectable({
     providedIn: 'root'
 })
-export class MessageBoxDialogService extends NgxDialogService<MessageBoxDialogResponse, MessageBoxDialogData | string> {
+export class NgxMessageBoxDialogService extends NgxDialogService<MessageBoxDialogResponse, MessageBoxDialogData | string> {
     public constructor(
         lazyLoaderService: NgxLazyLoaderService,
         dialog: MatDialog
@@ -45,6 +45,6 @@ export class MessageBoxDialogService extends NgxDialogService<MessageBoxDialogRe
     }
 
     protected getModule(): Promise<Type<AbstractLazyModule<unknown>>> {
-        return import('./message-box-dialog.module').then(m => m.MessageBoxDialogModule);
+        return import('./message-box-dialog.module').then(m => m.NgxMessageBoxDialogModule);
     }
 }

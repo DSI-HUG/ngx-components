@@ -6,11 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AbstractLazyModule } from '@hug/ngx-core';
 
-import { MessageBoxDialogComponent } from './message-box-dialog.component';
+import { NgxMessageBoxDialogComponent } from './message-box-dialog.component';
 
 @NgModule({
-    declarations: [MessageBoxDialogComponent],
-    exports: [MessageBoxDialogComponent],
+    declarations: [NgxMessageBoxDialogComponent],
+    exports: [NgxMessageBoxDialogComponent],
     imports: [
         CommonModule,
         MatButtonModule,
@@ -19,8 +19,8 @@ import { MessageBoxDialogComponent } from './message-box-dialog.component';
         MatToolbarModule
     ]
 })
-export class MessageBoxDialogModule extends AbstractLazyModule<MessageBoxDialogComponent> {
+export class NgxMessageBoxDialogModule extends AbstractLazyModule<NgxMessageBoxDialogComponent> {
     public constructor() {
-        super(MessageBoxDialogComponent);
+        super(NgxMessageBoxDialogComponent);
     }
 }

@@ -10,7 +10,7 @@ import { MessageBoxDialogButtons, MessageBoxDialogData } from './message-box-dia
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class MessageBoxDialogComponent {
+export class NgxMessageBoxDialogComponent {
     public constructor(
         @Inject(MAT_DIALOG_DATA) protected dialogParams: MessageBoxDialogData
     ) { }

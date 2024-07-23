@@ -6,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxDestroy } from '@hug/ngx-core';
-import { MessageBoxAction, MessageBoxComponent } from '@hug/ngx-message-box';
-import { MessageBoxDialogButtons, MessageBoxDialogService } from '@hug/ngx-message-box-dialog';
+import { MessageBoxAction, NgxMessageBoxComponent } from '@hug/ngx-message-box';
+import { MessageBoxDialogButtons, NgxMessageBoxDialogService } from '@hug/ngx-message-box-dialog';
 import { Subject, switchMap, takeUntil } from 'rxjs';
 
 @Component({
@@ -22,7 +22,7 @@ import { Subject, switchMap, takeUntil } from 'rxjs';
         MatIconModule,
         MatTabsModule,
         MatToolbarModule,
-        MessageBoxComponent,
+        NgxMessageBoxComponent,
         NgIf
     ]
 })
@@ -38,7 +38,7 @@ export class MessageBoxDemoComponent extends NgxDestroy {
 
     protected openDialog$ = new Subject<void>();
 
-    private messageBoxService = inject(MessageBoxDialogService);
+    private messageBoxService = inject(NgxMessageBoxDialogService);
 
     public constructor() {
         super();
