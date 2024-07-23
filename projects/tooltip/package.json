@@ -36,7 +36,7 @@
         "@angular/material": ">= 14",
         "rxjs": ">= 7.0.0",
         "lodash-es": "^4.17.21",
-        "@hug/ngx-core": "1.1.8"
+        "@hug/ngx-core": "1.1.9"
     },
     "dependencies": {
         "tslib": "^2.6.3"
