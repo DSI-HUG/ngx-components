@@ -58,7 +58,7 @@ exports.default = options =>
             .rule(({ tree }) => {
                 const paths = tree.readJson('tsconfig.base.json').compilerOptions.paths;
                 paths[`@hug/ngx-${options.libName.toLowerCase()}`] = [
-                    `dist/${options.libName.toLowerCase()}`
+                    `dist/ngx-${options.libName.toLowerCase()}`
                 ];
                 const sortedPaths = Object.fromEntries(Object.entries(paths).sort());
                 return modifyJsonFile('tsconfig.base.json', ['compilerOptions', 'paths'], sortedPaths);
