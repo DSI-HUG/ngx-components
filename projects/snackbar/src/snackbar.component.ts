@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, inject } from '@angular/core';
 import { NgxDestroy } from '@hug/ngx-core';
 import { Subject, Subscription, debounce, delay, take, takeUntil, tap, timer } from 'rxjs';
 
@@ -49,6 +49,8 @@ export class SnackbarComponent extends NgxDestroy implements OnInit, AfterViewIn
      * set a container for the snackbar instead of default behavior (viewport)
      */
     @Input() public outerContainerElement?: HTMLElement;
+
+    protected elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
     /**
      * inner container element, represent the snackbar since the host has no height width and a position relative to it's html declaration
@@ -126,7 +128,7 @@ export class SnackbarComponent extends NgxDestroy implements OnInit, AfterViewIn
      * @param elementRef
      * @param renderer
      */
-    public constructor(private elementRef: ElementRef<HTMLElement>) {
+    public constructor() {
         super();
 
         this.host = this.elementRef.nativeElement;

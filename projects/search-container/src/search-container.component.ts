@@ -1,7 +1,7 @@
-import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, EventEmitter, Input, NgZone, Output, TemplateRef, ViewEncapsulation, inject } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, EventEmitter, inject, Input, NgZone, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { NgxDestroy, NgxMediaService } from '@hug/ngx-core';
-import { BehaviorSubject, Observable, distinctUntilChanged, first, shareReplay, switchMap, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, first, Observable, shareReplay, switchMap, takeUntil, tap } from 'rxjs';
 
 @Directive({
     selector: '[ngx-search-input]'
