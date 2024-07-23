@@ -1,3 +1,15 @@
+## 1.1.4 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-list-loader:** improve encapsulation ([550e79a](https://github.com/DSI-HUG/ngx-components/commit/550e79a))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.3 (2024-07-08)
 
 ### 🐛 Fixes
