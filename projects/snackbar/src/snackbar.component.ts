@@ -1,6 +1,6 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { NgxDestroy } from '@hug/ngx-core';
-import { Subject, Subscription, debounce, delay, take, takeUntil, tap, timer } from 'rxjs';
+import { debounce, delay, Subject, Subscription, take, takeUntil, tap, timer } from 'rxjs';
 
 interface Animation {
     before: CSSStyleDeclaration;
