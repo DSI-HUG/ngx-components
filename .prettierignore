@@ -1,9 +1,12 @@
 # Ignore all JS and TS files:
 **/*.js
 **/*.ts
+**/*.md
 
 /node_modules/
 /.angular/
 /.husky/
 /.vscode/
 /dist/
+
+package-lock.json
