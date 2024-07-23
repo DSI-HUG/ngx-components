@@ -19,7 +19,7 @@ const durationShort = 8_000;
 @Injectable({
     providedIn: 'root'
 })
-export class StatusService extends NgxDestroy {
+export class NgxStatusService extends NgxDestroy {
 
     public constructor(
         @Inject(DOCUMENT) private document: Document,
@@ -60,7 +60,7 @@ export class StatusService extends NgxDestroy {
 
     public showStatus(status: Status): void {
         this.lazyLoaderService.loadModule$(
-            import('./status.module').then(m => m.StatusModule)
+            import('./status.module').then(m => m.NgxStatusModule)
         ).pipe(
             take(1),
             switchMap(moduleInfos => {

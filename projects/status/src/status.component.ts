@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, ViewEn
 import { NgxDestroy } from '@hug/ngx-core';
 import { catchError, EMPTY, Subject, switchMap, takeUntil, throttleTime } from 'rxjs';
 
+import { NgxStatusDetailDialogService } from './status-detail/status-detail-dialog.service';
 import { Status, StatusAction, StatusType } from './status.model';
-import { StatusDetailDialogService } from './status-detail/status-detail-dialog.service';
 
 @Component({
     selector: 'ngx-status',
@@ -12,7 +12,7 @@ import { StatusDetailDialogService } from './status-detail/status-detail-dialog.
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class StatusComponent extends NgxDestroy {
+export class NgxStatusComponent extends NgxDestroy {
 
     public get status(): Status | undefined {
         return this._status;
@@ -30,7 +30,7 @@ export class StatusComponent extends NgxDestroy {
 
     protected readonly displayDetailedStatus$ = new Subject<Status>();
 
-    private statusDetailDialogService = inject(StatusDetailDialogService);
+    private statusDetailDialogService = inject(NgxStatusDetailDialogService);
 
     private _status?: Status;
 

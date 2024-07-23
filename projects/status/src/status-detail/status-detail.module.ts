@@ -3,22 +3,22 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AbstractLazyModule } from '@hug/ngx-core';
-import { MessageBoxComponent } from '@hug/ngx-message-box';
+import { NgxMessageBoxComponent } from '@hug/ngx-message-box';
 
-import { StatusDetailComponent } from './status-detail.component';
+import { NgxStatusDetailComponent } from './status-detail.component';
 
 @NgModule({
-    declarations: [StatusDetailComponent],
-    exports: [StatusDetailComponent],
+    declarations: [NgxStatusDetailComponent],
+    exports: [NgxStatusDetailComponent],
     imports: [
         CommonModule,
         MatButtonModule,
         MatIconModule,
-        MessageBoxComponent
+        NgxMessageBoxComponent
     ]
 })
-export class StatusDetailModule extends AbstractLazyModule<StatusDetailComponent> {
+export class NgxStatusDetailModule extends AbstractLazyModule<NgxStatusDetailComponent> {
     public constructor() {
-        super(StatusDetailComponent);
+        super(NgxStatusDetailComponent);
     }
 }

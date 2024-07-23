@@ -3,22 +3,22 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AbstractLazyModule } from '@hug/ngx-core';
-import { SnackbarComponent } from '@hug/ngx-snackbar';
+import { NgxSnackbarComponent } from '@hug/ngx-snackbar';
 
-import { StatusComponent } from './status.component';
+import { NgxStatusComponent } from './status.component';
 
 @NgModule({
-    declarations: [StatusComponent],
-    exports: [StatusComponent],
+    declarations: [NgxStatusComponent],
+    exports: [NgxStatusComponent],
     imports: [
         CommonModule,
         MatButtonModule,
         MatIconModule,
-        SnackbarComponent
+        NgxSnackbarComponent
     ]
 })
-export class StatusModule extends AbstractLazyModule<StatusComponent> {
+export class NgxStatusModule extends AbstractLazyModule<NgxStatusComponent> {
     public constructor() {
-        super(StatusComponent);
+        super(NgxStatusComponent);
     }
 }

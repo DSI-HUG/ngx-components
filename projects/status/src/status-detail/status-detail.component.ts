@@ -11,12 +11,12 @@ import { Status } from '../status.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class StatusDetailComponent {
+export class NgxStatusDetailComponent {
     protected fullTextError: string;
     protected messageBoxType: MessageBoxType;
 
     public constructor(
-        protected dialogRef: MatDialogRef<StatusDetailComponent, void>,
+        protected dialogRef: MatDialogRef<NgxStatusDetailComponent, void>,
         @Inject(MAT_DIALOG_DATA) protected status: Status
     ) {
         this.fullTextError = `Error Date: ${(status.date ?? new Date()).toUTCString()}\n${status.technicalText || ''}`;

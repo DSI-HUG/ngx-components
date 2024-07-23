@@ -7,7 +7,7 @@ import { Status } from '../status.model';
 @Injectable({
     providedIn: 'root'
 })
-export class StatusDetailDialogService extends NgxDialogService<void, Status> {
+export class NgxStatusDetailDialogService extends NgxDialogService<void, Status> {
     public constructor(
         lazyLoaderService: NgxLazyLoaderService,
         dialog: MatDialog
@@ -22,6 +22,6 @@ export class StatusDetailDialogService extends NgxDialogService<void, Status> {
     }
 
     protected getModule(): Promise<Type<AbstractLazyModule<unknown>>> {
-        return import('./status-detail.module').then(m => m.StatusDetailModule);
+        return import('./status-detail.module').then(m => m.NgxStatusDetailModule);
     }
 }
