@@ -1,3 +1,15 @@
+## 1.1.6 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-list-loader:** compile path ([83be3fa](https://github.com/DSI-HUG/ngx-components/commit/83be3fa))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.5 (2024-07-23)
 
 
