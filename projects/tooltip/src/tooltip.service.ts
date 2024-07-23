@@ -3,10 +3,10 @@ import { Type } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { AbstractLazyModule, NgxLazyLoaderService, subscribeWith } from '@hug/ngx-core';
 import { merge } from 'lodash-es';
-import { EMPTY, Observable, Subject, debounceTime, delay, filter, fromEvent, map, mergeWith, shareReplay, switchMap, tap, withLatestFrom } from 'rxjs';
+import { debounceTime, delay, EMPTY, filter, fromEvent, map, mergeWith, Observable, shareReplay, Subject, switchMap, tap, withLatestFrom } from 'rxjs';
 
-import { TooltipComponentInterface } from './tooltip-component.interface';
 import { TooltipConfig } from './tooltip.model';
+import { TooltipComponentInterface } from './tooltip-component.interface';
 
 export abstract class TooltipService<D> {
     protected close$ = new Subject<void>();
