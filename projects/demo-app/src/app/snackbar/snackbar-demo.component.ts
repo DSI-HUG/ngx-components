@@ -8,7 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxMessageBoxComponent } from '@hug/ngx-message-box';
 import { NgxSnackbarComponent } from '@hug/ngx-snackbar';
 import { NgxStatusService, StatusType } from '@hug/ngx-status';
-import { Observable, defaultIfEmpty, filter, from, interval, map, scan, shareReplay } from 'rxjs';
+import { defaultIfEmpty, filter, from, interval, map, Observable, scan, shareReplay } from 'rxjs';
 
 class Message {
     public constructor(public content = 'Some snackbar', public gate = true) { }
