@@ -1,8 +1,8 @@
 import { TemplatePortal } from '@angular/cdk/portal';
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Inject, OnDestroy, Optional, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
-import { MatDateSelectionModel, MatDatepicker, MatDatepickerInput } from '@angular/material/datepicker';
+import { MatDatepicker, MatDatepickerInput, MatDateSelectionModel } from '@angular/material/datepicker';
 import { NgxDestroy } from '@hug/ngx-core';
 import { DateOrDuration, TimePickerComponent } from '@hug/ngx-time-picker';
 import { cloneDeep } from 'lodash-es';
@@ -32,19 +32,19 @@ export class NgxDatepickerWithTimeComponent extends NgxDestroy implements AfterV
 
     protected time?: DateOrDuration;
 
+    protected datepicker = inject<MatDatepicker<unknown>>(MatDatepicker);
+    protected viewContainerRef = inject(ViewContainerRef);
+    protected globalModel = inject<MatDateSelectionModel<unknown, unknown>>(MatDateSelectionModel);
+    protected dateAdapter? = inject<DateTimeAdapter<unknown> & DateAdapter<unknown>>(DATE_TIME_ADAPTER, { optional: true });
+
     private portal?: TemplatePortal;
 
-    public constructor(
-        private datepicker: MatDatepicker<unknown>,
-        private viewContainerRef: ViewContainerRef,
-        private globalModel: MatDateSelectionModel<unknown, unknown>,
-        @Optional() @Inject(DATE_TIME_ADAPTER) private dateAdapter: DateTimeAdapter<unknown> & DateAdapter<unknown>
-    ) {
+    public constructor() {
         super();
 
-        datepicker.openedStream.pipe(
+        this.datepicker.openedStream.pipe(
             tap(() => {
-                const datePickerInput = datepicker.datepickerInput as MatDatepickerInput<Date>;
+                const datePickerInput = this.datepicker.datepickerInput as MatDatepickerInput<Date>;
                 this.time = datePickerInput.value ?? new Date();
             }),
             delay(1),

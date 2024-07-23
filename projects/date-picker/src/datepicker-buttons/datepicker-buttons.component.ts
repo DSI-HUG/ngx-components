@@ -1,16 +1,16 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
-import { MatDateRangeInput, MatDateRangePicker, MatDatepicker } from '@angular/material/datepicker';
+import { MatDatepicker, MatDateRangeInput, MatDateRangePicker } from '@angular/material/datepicker';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxDestroy } from '@hug/ngx-core';
 import { set } from 'date-fns';
-import { ReplaySubject, filter, switchMap, takeUntil, tap } from 'rxjs';
+import { filter, ReplaySubject, switchMap, takeUntil, tap } from 'rxjs';
 
 @Component({
     selector: 'ngx-datepicker-buttons',
@@ -31,6 +31,9 @@ export class NgxDatepickerButtonsComponent extends NgxDestroy implements OnInit 
 
     @Input() public forInput!: MatFormFieldControl<unknown>;
     @Input() public forPicker!: MatDatepicker<unknown> | MatDateRangePicker<Date>;
+
+    protected changeDetectorRef = inject(ChangeDetectorRef);
+    protected dateAdater = inject<DateAdapter<unknown>>(DateAdapter);
 
     private _hideToday = false;
     private _hideClear = false;
@@ -57,10 +60,6 @@ export class NgxDatepickerButtonsComponent extends NgxDestroy implements OnInit 
 
     public get hideClear(): BooleanInput {
         return this._hideClear;
-    }
-
-    public constructor(private changeDetectorRef: ChangeDetectorRef, private dateAdater: DateAdapter<unknown>) {
-        super();
     }
 
     public ngOnInit(): void {
