@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AbstractLazyModule, DialogService, LazyLoaderService } from '@hug/ngx-core';
+import { AbstractLazyModule, DialogService, NgxLazyLoaderService } from '@hug/ngx-core';
 
 import { Status } from '../status.model';
 
@@ -9,7 +9,7 @@ import { Status } from '../status.model';
 })
 export class StatusDetailDialogService extends DialogService<void, Status> {
     public constructor(
-        lazyLoaderService: LazyLoaderService,
+        lazyLoaderService: NgxLazyLoaderService,
         dialog: MatDialog
     ) {
         super(lazyLoaderService, dialog, {
@@ -17,7 +17,7 @@ export class StatusDetailDialogService extends DialogService<void, Status> {
             hasBackdrop: true,
             height: '500px',
             width: '700px',
-            panelClass: 'status-panel'
+            panelClass: 'ngx-status-panel'
         } as MatDialogConfig<Status>);
     }
 

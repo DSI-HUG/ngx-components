@@ -1,12 +1,12 @@
 import { ConnectedPosition } from '@angular/cdk/overlay';
 import { Type } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { AbstractLazyModule, LazyLoaderService, subscribeWith } from '@hug/ngx-core';
+import { AbstractLazyModule, NgxLazyLoaderService, subscribeWith } from '@hug/ngx-core';
 import { merge } from 'lodash-es';
-import { debounceTime, delay, EMPTY, filter, fromEvent, map, mergeWith, Observable, shareReplay, Subject, switchMap, tap, withLatestFrom } from 'rxjs';
+import { EMPTY, Observable, Subject, debounceTime, delay, filter, fromEvent, map, mergeWith, shareReplay, switchMap, tap, withLatestFrom } from 'rxjs';
 
-import { TooltipConfig } from './tooltip.model';
 import { TooltipComponentInterface } from './tooltip-component.interface';
+import { TooltipConfig } from './tooltip.model';
 
 export abstract class TooltipService<D> {
     protected close$ = new Subject<void>();
@@ -77,7 +77,7 @@ export abstract class TooltipService<D> {
     ];
 
     public constructor(
-        private lazyLoaderService: LazyLoaderService,
+        private lazyLoaderService: NgxLazyLoaderService,
         private dialog: MatDialog,
         private tooltipConfig?: MatDialogConfig<D>
     ) {
@@ -95,7 +95,7 @@ export abstract class TooltipService<D> {
 
         const config = merge(tooltipConfig, {
             hasBackdrop: false,
-            panelClass: ['tooltip-overlay', 'no-padding-dialog', 'tooltip-opening', ...additionalPanelClass]
+            panelClass: ['ngx-tooltip-overlay', 'no-padding-dialog', 'ngx-tooltip-opening', ...additionalPanelClass]
         } as TooltipConfig<D>);
 
 
@@ -131,7 +131,7 @@ export abstract class TooltipService<D> {
         const close$ = checkClose$.pipe(
             mergeWith(this.close$),
             withLatestFrom(dialogRef$),
-            tap(([_, dialogRef]) => dialogRef.removePanelClass('tooltip-opened')),
+            tap(([_, dialogRef]) => dialogRef.removePanelClass('ngx-tooltip-opened')),
             delay(300),
             tap(([response, dialogRef]) => dialogRef.close(response))
         );
@@ -243,7 +243,7 @@ export abstract class TooltipService<D> {
                             left: `${left}px`,
                             top: `${top}px`
                         });
-                        dialogRef.addPanelClass('tooltip-opened');
+                        dialogRef.addPanelClass('ngx-tooltip-opened');
 
                         return true;
                     });

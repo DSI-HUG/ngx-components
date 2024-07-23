@@ -16,7 +16,7 @@ export abstract class AbstractLazyModule<Component> {
 @Injectable({
     providedIn: 'root'
 })
-export class LazyLoaderService {
+export class NgxLazyLoaderService {
     public constructor(
         private injector: Injector
     ) {}

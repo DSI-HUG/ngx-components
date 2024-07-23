@@ -2,7 +2,7 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, OverlayContainer, OverlayModule, OverlayRef } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MediaService } from '@hug/ngx-core';
+import { NgxMediaService } from '@hug/ngx-core';
 import { BehaviorSubject, combineLatestWith, distinctUntilChanged, EMPTY, map, mergeWith, Observable, of, ReplaySubject, shareReplay, startWith, Subject, switchMap, take } from 'rxjs';
 
 import { defaultConnectionPositionPair, OverlayConnectionPositionPair } from './connection-position-pair';
@@ -25,7 +25,7 @@ interface OverlayInfos {
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    selector: 'overlay',
+    selector: 'ngx-overlay',
     styleUrls: ['./overlay.component.scss'],
     templateUrl: './overlay.component.html',
     standalone: true,
@@ -83,7 +83,7 @@ export class OverlayComponent implements OnChanges {
     private _positions = defaultConnectionPositionPair;
     private _positionsForMobile?: OverlayConnectionPositionPair[];
 
-    public constructor(private elementRef: ElementRef, private overlayContainer: OverlayContainer, mediaService: MediaService) {
+    public constructor(private elementRef: ElementRef, private overlayContainer: OverlayContainer, mediaService: NgxMediaService) {
         const containerElement = this.overlayContainer.getContainerElement();
         containerElement.addEventListener('contextmenu', (event: Event) => {
             event.preventDefault();

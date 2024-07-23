@@ -6,7 +6,7 @@
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
 
-    layout > .mat-toolbar.mat-primary {
+    ngx-layout > .mat-toolbar.mat-primary {
         background-color: mat.get-color-from-palette($primary, darker);
         color: mat.get-color-from-palette($primary, darker-contrast);
 
@@ -24,7 +24,7 @@
         }
     }
 
-    layout {
+    ngx-layout {
         mat-drawer {
             &.right {
                 [filters-title] {

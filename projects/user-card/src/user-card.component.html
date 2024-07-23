@@ -1,4 +1,4 @@
-<div class="user-card-header">
+<div class="ngx-user-card-header">
     <span class="header-badge" *ngIf="userCard.badgeColor as badgeColor" [ngClass]="badgeColor + '-badge'"></span>
     <div class="header-infos">
         <div class="header-fullname">
@@ -8,9 +8,9 @@
         <div class="header-function">{{ userCard.function }}{{ userCard.specialty ? ' - ' + userCard.specialty : '' }}</div>
     </div>
 </div>
-<div class="user-card-wrapper" *ngIf="expanded">
+<div class="ngx-user-card-wrapper" *ngIf="expanded">
     <hr />
-    <div class="user-card-content">
+    <div class="ngx-user-card-content">
         <div class="content-service">
             <div class="label">Service</div>
             <div class="value">{{ userCard.service ?? '-' }}</div>

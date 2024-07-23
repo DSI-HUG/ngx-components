@@ -1,7 +1,7 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { NgFor, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, HostBinding, inject, Input, Output, QueryList, ViewEncapsulation } from '@angular/core';
-import { Destroy } from '@hug/ngx-core';
+import { NgxDestroy } from '@hug/ngx-core';
 import { filter, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 
 import { SplitAreaDirective } from './split-area.directive';
@@ -20,7 +20,7 @@ interface DraggingEvent {
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    selector: 'splitter',
+    selector: 'ngx-splitter',
     styleUrls: ['./splitter.component.scss'],
     templateUrl: './splitter.component.html',
     standalone: true,
@@ -30,7 +30,7 @@ interface DraggingEvent {
         NgForOf
     ]
 })
-export class SplitterComponent extends Destroy {
+export class SplitterComponent extends NgxDestroy {
     /**
      * Event triggered when the user start to drag the cursor
      */

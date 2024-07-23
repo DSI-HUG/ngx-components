@@ -5,7 +5,7 @@ user-card {
     width: 350px;
     word-break: break-word;
 
-    > .user-card-header {
+    > .ngx-user-card-header {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -63,7 +63,7 @@ user-card {
         }
     }
 
-    > .user-card-wrapper {
+    > .ngx-user-card-wrapper {
         overflow: hidden;
     }
 
@@ -72,7 +72,7 @@ user-card {
         margin: 1rem 0;
     }
 
-    .user-card-content {
+    .ngx-user-card-content {
         display: grid;
         grid-template-columns: 3fr 2fr;
         grid-template-rows: auto;

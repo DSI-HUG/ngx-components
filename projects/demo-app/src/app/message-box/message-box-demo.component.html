@@ -11,33 +11,33 @@
     <mat-card class="demo-card">
         <mat-toolbar color="primary">MessageBox</mat-toolbar>
         <mat-card-content>
-            <message-box type="primary" title="Title" [actions]="closeAction">
+            <ngx-message-box type="primary" title="Title" [actions]="closeAction">
                 Du texte dans la
                 <b>message box</b>
-            </message-box>
+            </ngx-message-box>
 
-            <message-box type="primary" title="Title" horizontal [actions]="closeAction">
+            <ngx-message-box type="primary" title="Title" horizontal [actions]="closeAction">
                 Du texte dans la
                 <b>message box</b>
-            </message-box>
+            </ngx-message-box>
 
-            <message-box type="warn" horizontal title="Title" [actions]="closeAction">
+            <ngx-message-box type="warn" horizontal title="Title" [actions]="closeAction">
                 Un message "warn"
                 <b>horizontal</b>
                 avec titre
-            </message-box>
+            </ngx-message-box>
 
-            <message-box type="info" horizontal>
+            <ngx-message-box type="info" horizontal>
                 Un message "info"
                 <b>horizontal</b>
-            </message-box>
+            </ngx-message-box>
 
-            <message-box type="warn" horizontal [actions]="closeAction">
+            <ngx-message-box type="warn" horizontal [actions]="closeAction">
                 Un message "warn"
                 <b>horizontal</b>
-            </message-box>
+            </ngx-message-box>
 
-            <message-box type="danger" horizontal title="Title">
+            <ngx-message-box type="danger" horizontal title="Title">
                 Un message "danger"
                 <b>horizontal</b>
                 avec une action au format template
@@ -46,14 +46,14 @@
                         <mat-icon>clear</mat-icon>
                     </button>
                 </ng-template>
-            </message-box>
+            </ngx-message-box>
 
-            <message-box horizontal>Un message horizontal sans type ni titre</message-box>
+            <ngx-message-box horizontal>Un message horizontal sans type ni titre</ngx-message-box>
 
-            <message-box type="danger" horizontal light [actions]="closeAction">Un message horizontal sans type ni titre</message-box>
-            <message-box type="success" horizontal light>Un message horizontal sans type ni titre</message-box>
-            <message-box type="warn" horizontal light>Un message horizontal sans type ni titre</message-box>
-            <message-box type="info" horizontal light>Un message horizontal sans type ni titre</message-box>
+            <ngx-message-box type="danger" horizontal light [actions]="closeAction">Un message horizontal sans type ni titre</ngx-message-box>
+            <ngx-message-box type="success" horizontal light>Un message horizontal sans type ni titre</ngx-message-box>
+            <ngx-message-box type="warn" horizontal light>Un message horizontal sans type ni titre</ngx-message-box>
+            <ngx-message-box type="info" horizontal light>Un message horizontal sans type ni titre</ngx-message-box>
 
             <button mat-raised-button (click)="openDialog$.next()">Open dialog</button>
         </mat-card-content>

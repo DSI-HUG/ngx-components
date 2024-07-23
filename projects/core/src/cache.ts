@@ -1,11 +1,11 @@
 import { catchError, Observable, throwError } from 'rxjs';
 
-export interface CacheEntry<T> {
+export interface NgxCacheEntry<T> {
     timeStamp: number;
     data$: T;
 }
 
-export class Cache<T, K = string> extends Map<K, CacheEntry<T>> {
+export class NgxCache<T, K = string> extends Map<K, NgxCacheEntry<T>> {
     public constructor(public duty = 86400000) {
         super();
     }
@@ -44,7 +44,7 @@ export class Cache<T, K = string> extends Map<K, CacheEntry<T>> {
     }
 }
 
-export class ObservableCache<T, K = string> extends Cache<Observable<T>, K> {
+export class NgxObservableCache<T, K = string> extends NgxCache<Observable<T>, K> {
     // eslint-disable-next-line rxjs/finnish
     public override getCache(key: K, defaultValueFn?: (timeStamp: number) => Observable<T>): Observable<T> {
         const data$ = super.getCache(key, defaultValueFn);

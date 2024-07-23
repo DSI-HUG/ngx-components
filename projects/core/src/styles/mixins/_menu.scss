@@ -5,7 +5,7 @@
             display: flex;
             flex-direction: column;
 
-            .menu-content {
+            .ngx-menu-content {
                 overflow-x: hidden;
                 overflow-y: auto;
                 display: block;
@@ -17,8 +17,8 @@
                     0 1px 5px 0 rgba(0, 0, 0, 0.12);
                 height: 100%;
 
-                .menu-header,
-                .menu-footer {
+                .ngx-menu-header,
+                .ngx-menu-footer {
                     flex: 0 0 auto;
                     padding: 0.5rem;
                 }

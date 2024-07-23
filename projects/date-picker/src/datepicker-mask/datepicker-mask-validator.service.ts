@@ -3,7 +3,7 @@ import { FormControl, ValidationErrors, Validator } from '@angular/forms';
 import { isValid } from 'date-fns';
 
 @Injectable()
-export class DatepickerMaskValidatorService implements Validator {
+export class NgxDatepickerMaskValidatorService implements Validator {
     private invalid = false;
 
     public validate({ value }: FormControl<Date>): ValidationErrors | null {

@@ -1,4 +1,4 @@
-<snackbar *ngIf="status" alignment="bottom right" [class.hasInfo]="!!status.technicalText" class="snackbar snackbar-{{ status.type }} {{ status.className }}">
+<ngx-snackbar *ngIf="status" alignment="bottom right" [class.hasInfo]="!!status.technicalText" class="ngx-snackbar ngx-snackbar-{{ status.type }} {{ status.className }}">
     <mat-icon *ngIf="statusIcon">{{ statusIcon }}</mat-icon>
     <span>
         <b>{{ status.title }}</b>
@@ -11,4 +11,4 @@
             <mat-icon class="close" inline (click)="close.next()">close</mat-icon>
         </span>
     </span>
-</snackbar>
+</ngx-snackbar>

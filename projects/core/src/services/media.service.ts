@@ -1,13 +1,13 @@
 import { Inject, Injectable, InjectionToken, NgZone, OnDestroy, Optional } from '@angular/core';
 import { BehaviorSubject, distinctUntilChanged, map, Observable, shareReplay } from 'rxjs';
 
-export interface MediaQueryDefinition {
+export interface NgxMediaQueryDefinition {
     alias: string;
     mediaQuery: string;
     overlapping?: boolean;
 }
 
-export const mediaQueryDefinitions = new InjectionToken<MediaQueryDefinition[]>('MEDIA_QUERY_DEFINITIONS');
+export const mediaQueryDefinitions = new InjectionToken<NgxMediaQueryDefinition[]>('MEDIA_QUERY_DEFINITIONS');
 
 export const defaultMediaQueryDefinitions = [
     {
@@ -70,7 +70,7 @@ export const defaultMediaQueryDefinitions = [
         alias: 'xl',
         mediaQuery: '(min-width: 1920px) and (max-width: 5000px)'
     }
-] as MediaQueryDefinition[];
+] as NgxMediaQueryDefinition[];
 
 export const simplifiedMediaQueryDefinitions = [
     {
@@ -86,12 +86,12 @@ export const simplifiedMediaQueryDefinitions = [
         alias: 'lg',
         mediaQuery: '(min-width: 1280px)'
     }
-] as MediaQueryDefinition[];
+] as NgxMediaQueryDefinition[];
 
 @Injectable({
     providedIn: 'root'
 })
-export class MediaService implements OnDestroy {
+export class NgxMediaService implements OnDestroy {
     public readonly isHandset$: Observable<boolean>;
     public readonly isMobile$: Observable<boolean>;
     public mediaChanged$ = new BehaviorSubject('lg');
@@ -99,7 +99,7 @@ export class MediaService implements OnDestroy {
 
     public constructor(
         private zone: NgZone,
-        @Optional() @Inject(mediaQueryDefinitions) mediaDefinitions?: MediaQueryDefinition[]
+        @Optional() @Inject(mediaQueryDefinitions) mediaDefinitions?: NgxMediaQueryDefinition[]
     ) {
         if (!mediaDefinitions) {
             mediaDefinitions = simplifiedMediaQueryDefinitions;

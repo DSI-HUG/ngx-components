@@ -47,7 +47,7 @@
     $warning: mat.define-palette(mat.$orange-palette);
     $success: mat.define-palette(mat.$green-palette);
 
-    message-box {
+    ngx-message-box {
         &[horizontal] {
             #msgbox {
                 &.info,

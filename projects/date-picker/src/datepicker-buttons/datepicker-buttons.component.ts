@@ -4,16 +4,16 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, In
 import { AbstractControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
-import { MatDatepicker, MatDateRangeInput, MatDateRangePicker } from '@angular/material/datepicker';
+import { MatDateRangeInput, MatDateRangePicker, MatDatepicker } from '@angular/material/datepicker';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { Destroy } from '@hug/ngx-core';
+import { NgxDestroy } from '@hug/ngx-core';
 import { set } from 'date-fns';
-import { filter, ReplaySubject, switchMap, takeUntil, tap } from 'rxjs';
+import { ReplaySubject, filter, switchMap, takeUntil, tap } from 'rxjs';
 
 @Component({
-    selector: 'datepicker-buttons',
+    selector: 'ngx-datepicker-buttons',
     templateUrl: './datepicker-buttons.component.html',
     styleUrls: ['./datepicker-buttons.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,7 +26,7 @@ import { filter, ReplaySubject, switchMap, takeUntil, tap } from 'rxjs';
         MatTooltipModule
     ]
 })
-export class DatepickerButtonsComponent extends Destroy implements OnInit {
+export class NgxDatepickerButtonsComponent extends NgxDestroy implements OnInit {
     @Output() public readonly dateChange = new EventEmitter<Date>();
 
     @Input() public forInput!: MatFormFieldControl<unknown>;

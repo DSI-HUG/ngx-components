@@ -26,7 +26,7 @@ interface DisplayableUserCard {
 }
 
 @Component({
-    selector: 'user-card',
+    selector: 'ngx-user-card',
     styleUrls: ['./user-card.component.scss'],
     templateUrl: './user-card.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

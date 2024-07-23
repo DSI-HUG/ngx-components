@@ -5,8 +5,8 @@
     $warn: map-get($theme, warn);
     $background: map-get($theme, background);
 
-    [numeric-stepper-form-field] {
-        numeric-stepper {
+    [ngx-numeric-stepper-form-field] {
+        ngx-numeric-stepper {
             .arrow {
                 color: mat.get-color-from-palette($primary);
 
@@ -22,7 +22,7 @@
 
         &:not(.disabled) {
             &.mat-form-field-invalid {
-                numeric-stepper {
+                ngx-numeric-stepper {
                     .arrow:not([disabled]) {
                         color: mat.get-color-from-palette($warn);
                     }
@@ -45,7 +45,7 @@
         }
 
         &.mat-form-field-appearance-fill {
-            numeric-stepper {
+            ngx-numeric-stepper {
                 .shadow::after {
                     background-color: rgba(0, 0, 0, 0.04);
                 }

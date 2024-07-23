@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Destroy } from '@hug/ngx-core';
-import { debounce, delay, Subject, Subscription, take, takeUntil, tap, timer } from 'rxjs';
+import { NgxDestroy } from '@hug/ngx-core';
+import { Subject, Subscription, debounce, delay, take, takeUntil, tap, timer } from 'rxjs';
 
 interface Animation {
     before: CSSStyleDeclaration;
@@ -13,12 +13,12 @@ interface Animation {
 // TODO sdil refactor rxjs flows
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    selector: 'snackbar',
+    selector: 'ngx-snackbar',
     styleUrls: ['./snackbar.component.scss'],
     template: '<ng-content></ng-content>',
     standalone: true
 })
-export class SnackbarComponent extends Destroy implements OnInit, AfterViewInit, OnDestroy {
+export class SnackbarComponent extends NgxDestroy implements OnInit, AfterViewInit, OnDestroy {
     /**
      * all snackbar instances
      */

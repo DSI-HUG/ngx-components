@@ -2,26 +2,26 @@
 import { Directive, ElementRef, forwardRef, Inject, Input, OnInit, Optional, Renderer2 } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, NgControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
-import { Destroy, filterMap, KeyCodes, subscribeWith } from '@hug/ngx-core';
+import { filterMap, KeyCodes, NgxDestroy, subscribeWith } from '@hug/ngx-core';
 import { addDays, addHours, addMinutes, addMonths, addSeconds, addYears, isValid, parse, set } from 'date-fns';
 import { isNil } from 'lodash-es';
 import { delay, EMPTY, filter, fromEvent, mergeWith, of, startWith, switchMap, takeUntil, tap, timeInterval } from 'rxjs';
 
-import { DatepickerMaskValidatorService } from './datepicker-mask-validator.service';
+import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.service';
 
 
 @Directive({
     selector: '[matDatepicker][dateFormat],[matDatepicker][dateTimeFormat],[matStartDate][dateFormat],[matEndDate][dateFormat],[matStartDate][dateTimeFormat],[matEndDate][dateTimeFormat]',
     providers: [
-        DatepickerMaskValidatorService,
+        NgxDatepickerMaskValidatorService,
         {
             provide: NG_VALIDATORS,
-            useExisting: forwardRef(() => DatepickerMaskValidatorService),
+            useExisting: forwardRef(() => NgxDatepickerMaskValidatorService),
             multi: true
         }
     ]
 })
-export class DatepickerMaskDirective extends Destroy implements OnInit {
+export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('dateTimeFormat')
     public set dateTimeFormat(value: string) {
@@ -57,7 +57,7 @@ export class DatepickerMaskDirective extends Destroy implements OnInit {
         private elementRef: ElementRef<HTMLInputElement>,
         private ngControl: NgControl,
         private renderer: Renderer2,
-        private validator: DatepickerMaskValidatorService,
+        private validator: NgxDatepickerMaskValidatorService,
         private dateAdapter: DateAdapter<unknown>
     ) {
         super();

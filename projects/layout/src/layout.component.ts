@@ -6,11 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MediaService } from '@hug/ngx-core';
+import { NgxMediaService } from '@hug/ngx-core';
 import { SidenavService } from '@hug/ngx-sidenav';
 
 @Component({
-    selector: 'layout',
+    selector: 'ngx-layout',
     templateUrl: './layout.component.html',
     styleUrls: ['./layout.component.scss'],
     encapsulation: ViewEncapsulation.None,
@@ -25,7 +25,7 @@ import { SidenavService } from '@hug/ngx-sidenav';
         MatTooltipModule
     ]
 })
-export class LayoutComponent {
+export class NgxLayoutComponent {
     @Input() public toolbarColor = 'primary';
     @Input() public editorToolbarId = 'editor-toolbar';
 
@@ -140,7 +140,7 @@ export class LayoutComponent {
     }
 
     public constructor(
-        protected mediaService: MediaService,
+        protected mediaService: NgxMediaService,
         protected sidenavService: SidenavService
     ) {
     }

@@ -18,13 +18,13 @@ app-overlay-demo {
 }
 
 .ngx-menu {
-    .menu-content {
+    .ngx-menu-content {
         display: flex;
         flex-direction: column;
 
         &.anchor-menu,
         &.button-menu {
-            .menu-item {
+            .ngx-menu-item {
                 white-space: nowrap;
                 padding: 0.5rem 2rem;
             }

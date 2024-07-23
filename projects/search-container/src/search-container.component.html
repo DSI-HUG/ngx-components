@@ -1,4 +1,4 @@
-<div *ngIf="mediaService.isHandset$ | async; else noHandsetTpl" class="search-container-mobile mobile" [class.active]="activeSearch$ | async" #mobileSearch>
+<div *ngIf="mediaService.isHandset$ | async; else noHandsetTpl" class="ngx-search-container-mobile mobile" [class.active]="activeSearch$ | async" #mobileSearch>
     <ng-container *ngIf="activeSearch$ | async; else noActiveSearchTpl">
         <mat-icon (click)="activeSearch$.next(false)">arrow_back</mat-icon>
         <ng-container *ngTemplateOutlet="searchContainerTpl"></ng-container>
@@ -13,7 +13,7 @@
 </ng-template>
 
 <ng-template #searchContainerTpl>
-    <div class="search-container">
+    <div class="ngx-search-container">
         <mat-icon>search</mat-icon>
         <ng-content></ng-content>
         <mat-icon *ngIf="searchInputValue$ | async" class="icon-clear" [matTooltip]="clearTooltip" (click)="reset()">close</mat-icon>

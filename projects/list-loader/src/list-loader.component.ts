@@ -2,7 +2,7 @@ import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-    selector: 'list-loader',
+    selector: 'ngx-list-loader',
     templateUrl: './list-loader.component.html',
     styleUrls: ['./list-loader.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

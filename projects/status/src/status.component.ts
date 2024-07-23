@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, ViewEncapsulation } from '@angular/core';
-import { Destroy } from '@hug/ngx-core';
+import { NgxDestroy } from '@hug/ngx-core';
 import { catchError, EMPTY, Subject, switchMap, takeUntil, throttleTime } from 'rxjs';
 
-import { Status, StatusAction, StatusType } from './status.model';
 import { StatusDetailDialogService } from './status-detail/status-detail-dialog.service';
+import { Status, StatusAction, StatusType } from './status.model';
 
 @Component({
-    selector: 'app-status',
+    selector: 'ngx-status',
     styleUrls: ['./status.component.scss'],
     templateUrl: './status.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class StatusComponent extends Destroy {
+export class StatusComponent extends NgxDestroy {
 
     public get status(): Status | undefined {
         return this._status;

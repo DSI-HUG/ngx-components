@@ -1,4 +1,4 @@
-time-picker {
+ngx-time-picker {
     display: flex;
     flex-direction: row;
     align-items: baseline;
@@ -14,7 +14,7 @@ time-picker {
         }
     }
 
-    mat-form-field[numeric-stepper-form-field] {
+    mat-form-field[ngx-numeric-stepper-form-field] {
         width: 48px;
     }
 

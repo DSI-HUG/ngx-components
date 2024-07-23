@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Even
 import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Destroy } from '@hug/ngx-core';
+import { NgxDestroy } from '@hug/ngx-core';
 import { NumericStepperComponent } from '@hug/ngx-numeric-stepper';
 import { isSameHour, set } from 'date-fns';
 import { debounce, distinctUntilChanged, map, Subject, takeUntil, timer } from 'rxjs';
@@ -20,7 +20,7 @@ type FieldType = 'hours' | 'minutes';
 // TODO sdil refactor rxjs flows
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    selector: 'time-picker',
+    selector: 'ngx-time-picker',
     styleUrls: ['./time-picker.component.scss'],
     templateUrl: './time-picker.component.html',
     encapsulation: ViewEncapsulation.None,
@@ -33,7 +33,7 @@ type FieldType = 'hours' | 'minutes';
         NumericStepperComponent
     ]
 })
-export class TimePickerComponent extends Destroy implements ControlValueAccessor {
+export class TimePickerComponent extends NgxDestroy implements ControlValueAccessor {
     @ViewChild('hours') public hours?: ElementRef<HTMLInputElement>;
     @ViewChild('minutes') public minutes?: ElementRef<HTMLInputElement>;
 

@@ -4,7 +4,7 @@ import { TooltipComponentInterface } from '@hug/ngx-tooltip';
 import { UserCard } from '@hug/ngx-user-card';
 
 @Component({
-    selector: 'app-user-tooltip',
+    selector: 'ngx-user-tooltip',
     templateUrl: './user-tooltip.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })

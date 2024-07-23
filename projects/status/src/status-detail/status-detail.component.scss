@@ -1,9 +1,9 @@
-app-status-detail {
+ngx-status-detail {
     display: flex;
     flex: 1 1 auto;
     height: 100%;
 
-    message-box {
+    ngx-message-box {
         overflow: hidden;
         width: 100%;
 
@@ -43,7 +43,7 @@ app-status-detail {
     }
 }
 
-.status-panel {
+.ngx-status-panel {
     .mat-dialog-container {
         padding: 0;
     }

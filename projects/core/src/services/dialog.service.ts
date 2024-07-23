@@ -2,7 +2,7 @@ import { Type } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Observable, ReplaySubject, switchMap, take, throttleTime } from 'rxjs';
 
-import { AbstractLazyModule, LazyLoaderService } from './lazy-loader.service';
+import { AbstractLazyModule, NgxLazyLoaderService } from './lazy-loader.service';
 
 export abstract class DialogService<ReturnType, DataType> {
     protected openDialogSub$ = new ReplaySubject<MatDialogConfig<DataType>>(1);
@@ -10,7 +10,7 @@ export abstract class DialogService<ReturnType, DataType> {
     protected dialogRef!: MatDialogRef<unknown, ReturnType>;
 
     public constructor(
-        private lazyLoaderService: LazyLoaderService,
+        private lazyLoaderService: NgxLazyLoaderService,
         private dialog: MatDialog,
         matDialogConfig?: MatDialogConfig<DataType>
     ) {

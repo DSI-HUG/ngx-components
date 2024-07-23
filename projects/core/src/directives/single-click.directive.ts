@@ -2,13 +2,13 @@ import { Directive, EventEmitter, HostListener, Input, OnInit, Output } from '@a
 import { ReplaySubject } from 'rxjs';
 import { takeUntil, throttleTime } from 'rxjs/operators';
 
-import { Destroy } from './destroy';
+import { NgxDestroy } from './destroy';
 
 @Directive({
-    selector: '[singleClick]',
+    selector: '[ngx-single-click]',
     standalone: true
 })
-export class SingleClickDirective extends Destroy implements OnInit {
+export class NgxSingleClickDirective extends NgxDestroy implements OnInit {
     @Input()
     public throttleTime = 2000;
 

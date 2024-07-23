@@ -10,7 +10,7 @@ import { SplitterDirection } from './splitter-direction-type';
  * Directive representing a panel in a Splitter Component
  */
 @Directive({
-    selector: 'split-area',
+    selector: 'ngx-split-area',
     standalone: true
 })
 export class SplitAreaDirective {

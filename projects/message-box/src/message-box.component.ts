@@ -10,7 +10,7 @@ import { MessageBoxAction, MessageBoxType } from './message-box.model';
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    selector: 'message-box',
+    selector: 'ngx-message-box',
     styleUrls: ['./message-box.component.scss'],
     templateUrl: './message-box.component.html',
     standalone: true,

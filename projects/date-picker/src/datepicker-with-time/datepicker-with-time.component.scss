@@ -1,16 +1,16 @@
-deja-time-picker.datepicker-with-time {
+ngx-time-picker.ngx-datepicker-with-time {
     .time-range {
         display: flex;
         align-items: center;
 
-        .time-picker-separator {
+        .ngx-time-picker-separator {
             text-align: center;
             margin: 0 0.5rem;
         }
     }
 }
 
-.datepicker-with-time.action-buttons {
+.ngx-datepicker-with-time.action-buttons {
     padding: 1.5rem 0 1rem 0;
     display: flex;
     justify-content: center;
@@ -30,11 +30,11 @@ deja-time-picker.datepicker-with-time {
     }
 
     .mat-calendar,
-    deja-time-picker.datepicker-with-time {
+    ngx-time-picker.ngx-datepicker-with-time {
         flex: 0 0 auto;
     }
 
-    .datepicker-with-time.action-buttons {
+    .ngx-datepicker-with-time.action-buttons {
         flex: 1 0 100%;
         padding: 0 0 1rem 0;
     }

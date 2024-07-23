@@ -1,9 +1,9 @@
-search-container {
+ngx-search-container {
     display: flex;
     flex: 1 1 auto;
     padding-left: 0.5rem;
 
-    .search-container {
+    .ngx-search-container {
         width: 100%;
 
         &.mobile {
@@ -41,7 +41,7 @@ search-container {
         }
     }
 
-    .search-container-mobile {
+    .ngx-search-container-mobile {
         width: 100%;
         display: flex;
         justify-content: flex-end;

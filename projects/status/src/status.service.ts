@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Inject, Injectable, Injector } from '@angular/core';
-import { Destroy, LazyLoaderService } from '@hug/ngx-core';
+import { NgxDestroy, NgxLazyLoaderService } from '@hug/ngx-core';
 import { mergeWith, switchMap, take, takeUntil, tap, timer } from 'rxjs';
 
 import { Status, StatusAction } from './status.model';
@@ -19,11 +19,11 @@ const durationShort = 8_000;
 @Injectable({
     providedIn: 'root'
 })
-export class StatusService extends Destroy {
+export class StatusService extends NgxDestroy {
 
     public constructor(
         @Inject(DOCUMENT) private document: Document,
-        private lazyLoaderService: LazyLoaderService,
+        private lazyLoaderService: NgxLazyLoaderService,
         private injector: Injector,
         private resolver: ComponentFactoryResolver
     ) {

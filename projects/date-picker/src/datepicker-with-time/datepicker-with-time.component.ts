@@ -2,8 +2,8 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Inject, OnDestroy, Optional, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
-import { MatDatepicker, MatDatepickerInput, MatDateSelectionModel } from '@angular/material/datepicker';
-import { Destroy } from '@hug/ngx-core';
+import { MatDateSelectionModel, MatDatepicker, MatDatepickerInput } from '@angular/material/datepicker';
+import { NgxDestroy } from '@hug/ngx-core';
 import { DateOrDuration, TimePickerComponent } from '@hug/ngx-time-picker';
 import { cloneDeep } from 'lodash-es';
 import { delay, filter, map, takeUntil, tap } from 'rxjs';
@@ -12,7 +12,7 @@ import { DATE_TIME_ADAPTER, DateTimeAdapter } from '../date-adapter/date-time-ad
 
 
 @Component({
-    selector: 'datepicker-with-time',
+    selector: 'ngx-datepicker-with-time',
     templateUrl: './datepicker-with-time.component.html',
     styleUrls: ['./datepicker-with-time.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,7 +23,7 @@ import { DATE_TIME_ADAPTER, DateTimeAdapter } from '../date-adapter/date-time-ad
         TimePickerComponent
     ]
 })
-export class DatepickerWithTimeComponent extends Destroy implements AfterViewInit, OnDestroy {
+export class NgxDatepickerWithTimeComponent extends NgxDestroy implements AfterViewInit, OnDestroy {
     @ViewChild(TemplateRef)
     private template?: TemplateRef<unknown>;
 

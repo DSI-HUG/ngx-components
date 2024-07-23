@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Destroy, filterMap, KeyCodes } from '@hug/ngx-core';
+import { filterMap, KeyCodes, NgxDestroy } from '@hug/ngx-core';
 import { combineLatestWith, debounceTime, delay, filter, fromEvent, map, mergeWith, ReplaySubject, shareReplay, startWith, Subject, switchMap, takeUntil, tap, timer, withLatestFrom } from 'rxjs';
 
 export type NumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-inlay';
@@ -13,7 +13,7 @@ export type NumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-inlay
 // TODO sdil refactor rxjs flows
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    selector: 'numeric-stepper',
+    selector: 'ngx-numeric-stepper',
     styleUrls: ['./numeric-stepper.component.scss'],
     templateUrl: './numeric-stepper.component.html',
     standalone: true,
@@ -27,7 +27,7 @@ export type NumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-inlay
     ],
     encapsulation: ViewEncapsulation.None
 })
-export class NumericStepperComponent extends Destroy implements OnInit {
+export class NumericStepperComponent extends NgxDestroy implements OnInit {
     private static TYPE_ERROR = 'Input element on the same mat-form-field must be type="number". With other input type, use increment or decrement events and implement your proper functions to change the value.';
     private static STEP_FN_ERROR = 'Input element on the same mat-form-field must implement stepDown/stepUp functions.';
     private static INPUT_ERROR = 'To use the automatic binding, you must specify the input field with a matInput reference. [input]="matInputRef"';
@@ -160,10 +160,10 @@ export class NumericStepperComponent extends Destroy implements OnInit {
 
                 // eslint-disable-next-line no-loops/no-loops
                 while (parentElement) {
-                    if (parentElement.tagName === 'MAT-FORM-FIELD' || parentElement.hasAttribute('numeric-stepper-form-field')) {
+                    if (parentElement.tagName === 'MAT-FORM-FIELD' || parentElement.hasAttribute('ngx-numeric-stepper-form-field')) {
                         formFieldElement = parentElement;
                     }
-                    if (parentElement.hasAttribute('numeric-stepper-container')) {
+                    if (parentElement.hasAttribute('ngx-numeric-stepper-container')) {
                         containerElement = parentElement;
                     }
                     if (containerElement && formFieldElement) {
@@ -173,17 +173,17 @@ export class NumericStepperComponent extends Destroy implements OnInit {
                 }
 
                 if (formFieldElement) {
-                    formFieldElement.setAttribute('numeric-stepper-form-field', this.layout);
+                    formFieldElement.setAttribute('ngx-numeric-stepper-form-field', this.layout);
                     this.parentAppearance = formFieldElement.getAttribute('appearance')?.toUpperCase();
                 }
 
                 if (!formFieldElement) {
-                    console.error('numeric-stepper work only inside a mat-form-field or a [numeric-stepper-form-field] element');
+                    console.error('ngx-numeric-stepper work only inside a mat-form-field or a [ngx-numeric-stepper-form-field] element');
                 } else {
                     inputElement = formFieldElement.getElementsByTagName('INPUT')?.[0] as HTMLInputElement || null;
 
                     if (!inputElement) {
-                        console.error('numeric-stepper work only inside a mat-form-field or a [numeric-stepper-form-field] element containing an input element');
+                        console.error('ngx-numeric-stepper work only inside a mat-form-field or a [ngx-numeric-stepper-form-field] element containing an input element');
                     }
                 }
 

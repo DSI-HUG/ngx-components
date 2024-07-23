@@ -49,9 +49,9 @@
             </div>
 
             <!-- simple use case, single snackbar -->
-            <snackbar *ngIf="simpleGate" alignment="top left" [duration]="2000" (onAnimationDone)="simpleGate = false">
-                <message-box type="primary" horizontal>Hello world ! I'm a simple snackbar.</message-box>
-            </snackbar>
+            <ngx-snackbar *ngIf="simpleGate" alignment="top left" [duration]="2000" (onAnimationDone)="simpleGate = false">
+                <ngx-message-box type="primary" horizontal>Hello world ! I'm a simple snackbar.</ngx-message-box>
+            </ngx-snackbar>
 
             <!-- event driven from UI -->
             <!-- this behavior is to be used to react to user behavior on the UI, snackbars MUST be disposed using user interraction -->
@@ -59,57 +59,57 @@
             <!--inside a container-->
             <section #containerEl class="container" [style.position]="'relative'">
                 <ng-template ngFor let-message [ngForOf]="infos$ | async">
-                    <snackbar *ngIf="message.gate" alignment="right" [outerContainerElement]="containerEl">
-                        <message-box type="primary" horizontal>
+                    <ngx-snackbar *ngIf="message.gate" alignment="right" [outerContainerElement]="containerEl">
+                        <ngx-message-box type="primary" horizontal>
                             {{ message.content }}
                             <ng-template #actionsTemplate>
                                 <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
                                     <mat-icon>clear</mat-icon>
                                 </button>
                             </ng-template>
-                        </message-box>
-                    </snackbar>
+                        </ngx-message-box>
+                    </ngx-snackbar>
                 </ng-template>
             </section>
 
             <!--on the viewport-->
             <ng-template ngFor let-message [ngForOf]="successes$ | async">
-                <snackbar *ngIf="message.gate" alignment="bottom left">
-                    <message-box type="success" horizontal>
+                <ngx-snackbar *ngIf="message.gate" alignment="bottom left">
+                    <ngx-message-box type="success" horizontal>
                         {{ message.content }}
                         <ng-template #actionsTemplate>
                             <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
                                 <mat-icon>clear</mat-icon>
                             </button>
                         </ng-template>
-                    </message-box>
-                </snackbar>
+                    </ngx-message-box>
+                </ngx-snackbar>
             </ng-template>
 
             <ng-template ngFor let-message [ngForOf]="warnings$ | async">
-                <snackbar *ngIf="message.gate" alignment="bottom">
-                    <message-box type="warn" horizontal>
+                <ngx-snackbar *ngIf="message.gate" alignment="bottom">
+                    <ngx-message-box type="warn" horizontal>
                         {{ message.content }}
                         <ng-template #actionsTemplate>
                             <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
                                 <mat-icon>clear</mat-icon>
                             </button>
                         </ng-template>
-                    </message-box>
-                </snackbar>
+                    </ngx-message-box>
+                </ngx-snackbar>
             </ng-template>
 
             <ng-template ngFor let-message [ngForOf]="dangers$ | async">
-                <snackbar *ngIf="message.gate" alignment="bottom right">
-                    <message-box type="danger" horizontal>
+                <ngx-snackbar *ngIf="message.gate" alignment="bottom right">
+                    <ngx-message-box type="danger" horizontal>
                         {{ message.content }}
                         <ng-template #actionsTemplate>
                             <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
                                 <mat-icon>clear</mat-icon>
                             </button>
                         </ng-template>
-                    </message-box>
-                </snackbar>
+                    </ngx-message-box>
+                </ngx-snackbar>
             </ng-template>
 
             <section class="push-section">
@@ -117,11 +117,11 @@
                 <!-- this behavior is to be used to push message to the client for example, snackbars MUST be displosed by themself -->
                 <!-- to do so, define duration @Input and negate flag used for disposal using the onAnimationDone @Output -->
                 <ng-template ngFor let-message [ngForOf]="messages$ | async">
-                    <snackbar *ngIf="message.gate" alignment="left" [duration]="5000" (onAnimationDone)="message.gate = false">
-                        <message-box type="primary" horizontal>
+                    <ngx-snackbar *ngIf="message.gate" alignment="left" [duration]="5000" (onAnimationDone)="message.gate = false">
+                        <ngx-message-box type="primary" horizontal>
                             {{ message.content }}
-                        </message-box>
-                    </snackbar>
+                        </ngx-message-box>
+                    </ngx-snackbar>
                 </ng-template>
             </section>
         </mat-card-content>

@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Destroy } from '@hug/ngx-core';
+import { NgxDestroy } from '@hug/ngx-core';
 import { MessageBoxAction, MessageBoxComponent } from '@hug/ngx-message-box';
 import { MessageBoxDialogButtons, MessageBoxDialogService } from '@hug/ngx-message-box-dialog';
 import { Subject, switchMap, takeUntil } from 'rxjs';
@@ -26,7 +26,7 @@ import { Subject, switchMap, takeUntil } from 'rxjs';
         NgIf
     ]
 })
-export class MessageBoxDemoComponent extends Destroy {
+export class MessageBoxDemoComponent extends NgxDestroy {
     protected tabIndex = 1;
 
     protected closeAction = [

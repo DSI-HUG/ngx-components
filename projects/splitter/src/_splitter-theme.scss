@@ -3,8 +3,8 @@
 @mixin theme($theme) {
     $background: map-get($theme, background);
 
-    splitter {
-        .split-gutter {
+    ngx-splitter {
+        .ngx-split-gutter {
             background-color: mat.get-color-from-palette($background, app-bar);
         }
     }

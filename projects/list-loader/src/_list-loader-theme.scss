@@ -5,7 +5,7 @@
     $accent: map-get($theme, accent);
     $foreground: map-get($theme, foreground);
 
-    list-loader > .container {
+    ngx-list-loader > .container {
         > .spinner {
             > .bounce1 {
                 background-color: mat.get-color-from-palette($foreground, disabled);

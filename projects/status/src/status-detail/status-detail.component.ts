@@ -5,7 +5,7 @@ import { MessageBoxType } from '@hug/ngx-message-box';
 import { Status } from '../status.model';
 
 @Component({
-    selector: 'app-status-detail',
+    selector: 'ngx-status-detail',
     styleUrls: ['./status-detail.component.scss'],
     templateUrl: './status-detail.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

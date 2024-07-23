@@ -15,7 +15,7 @@ app-time-picker-demo {
         align-items: center;
     }
 
-    .time-picker-actions {
+    .ngx-time-picker-actions {
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -36,7 +36,7 @@ app-time-picker-demo {
         margin-left: 64px !important;
     }
 
-    time-picker[inform] {
+    ngx-time-picker[inform] {
         padding-right: 1rem;
     }
 }

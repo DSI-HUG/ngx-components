@@ -1,7 +1,7 @@
-datepicker-buttons {
+ngx-datepicker-buttons {
     font-size: 80%;
 
-    .date-picker-button {
+    .ngx-date-picker-button {
         max-width: 20px;
         max-height: 20px;
 
@@ -21,7 +21,7 @@ datepicker-buttons {
 .mat-form-field.mat-form-field-appearance-legacy {
     font-size: inherit;
 
-    datepicker-buttons {
+    ngx-datepicker-buttons {
         .mat-icon-button {
             font-size: 130%;
         }

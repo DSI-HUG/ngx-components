@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { MediaService } from '@hug/ngx-core';
+import { NgxMediaService } from '@hug/ngx-core';
 import { mergeWith, Observable, ReplaySubject, shareReplay, switchMap, take } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -13,7 +13,7 @@ export class SidenavService {
     public readonly modeChanged$: Observable<SidenavMode>;
     public readonly hiddenChanged$: Observable<boolean>;
 
-    protected mediaService = inject(MediaService);
+    protected mediaService = inject(NgxMediaService);
 
     private readonly opened$ = new ReplaySubject<boolean>(1);
     private readonly mode$ = new ReplaySubject<SidenavMode>(1);

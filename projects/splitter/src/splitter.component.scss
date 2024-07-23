@@ -1,10 +1,10 @@
-splitter {
+ngx-splitter {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
     overflow: hidden;
 
-    split-area {
+    ngx-split-area {
         flex: 1 1 auto;
         overflow: hidden;
 
@@ -13,7 +13,7 @@ splitter {
         }
     }
 
-    .split-gutter {
+    .ngx-split-gutter {
         flex-grow: 0;
         flex-shrink: 0;
         background-position: 50%;
@@ -24,12 +24,12 @@ splitter {
     }
 
     &[direction='horizontal'] {
-        split-area {
+        ngx-split-area {
             width: 100%;
         }
 
         &:not([disabled]) {
-            .split-gutter {
+            .ngx-split-gutter {
                 cursor: col-resize;
                 content: ' ';
                 background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
@@ -38,12 +38,12 @@ splitter {
     }
 
     &[direction='vertical'] {
-        split-area {
+        ngx-split-area {
             height: 100%;
         }
 
         &:not([disabled]) {
-            .split-gutter {
+            .ngx-split-gutter {
                 cursor: row-resize;
                 background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFCAMAAABl/6zIAAAABlBMVEUAAADMzMzIT8AyAAAAAXRSTlMAQObYZgAAABRJREFUeAFjYGRkwIMJSeMHlBkOABP7AEGzSuPKAAAAAElFTkSuQmCC');
             }

@@ -1,12 +1,12 @@
-[numeric-stepper-container] .mat-form-field,
-[numeric-stepper-form-field] {
+[ngx-numeric-stepper-container] .mat-form-field,
+[ngx-numeric-stepper-form-field] {
     .mat-form-field-infix {
         display: inline-flex;
         justify-content: center;
         align-items: center;
     }
 
-    &[numeric-stepper-form-field='vertical'] {
+    &[ngx-numeric-stepper-form-field='vertical'] {
         &:not(.disabled) {
             &:hover {
                 .mat-form-field-label-wrapper {
@@ -22,9 +22,9 @@
         }
     }
 
-    &[numeric-stepper-form-field='horizontal-inlay'] {
+    &[ngx-numeric-stepper-form-field='horizontal-inlay'] {
         &:not(.disabled) {
-            input:not([inputAutosize]) {
+            input:not([ngx-input-autosize]) {
                 width: calc(100% - 64px);
             }
 
@@ -35,7 +35,7 @@
                     }
                 }
 
-                &[inputAutosizeFormField] {
+                &[ngx-input-autosize-form-field] {
                     .mat-form-field-infix {
                         padding: 1em 23px;
                     }
@@ -47,7 +47,7 @@
                     }
                 }
 
-                &:not([inputAutosizeFormField]) {
+                &:not([ngx-input-autosize-form-field]) {
                     &.mat-form-field-appearance-fill {
                         input {
                             margin: 0 18px;
@@ -121,7 +121,7 @@
         }
     }
 
-    numeric-stepper {
+    ngx-numeric-stepper {
         position: relative;
         z-index: 10002;
 
@@ -160,8 +160,8 @@
             border-radius: 0 0 4px 4px;
         }
 
-        &[layout='horizontal'],
-        &[layout='horizontal-inlay'] {
+        &[ngx-layout='horizontal'],
+        &[ngx-layout='horizontal-inlay'] {
             .increment {
                 border-radius: 0 4px 4px 0;
             }

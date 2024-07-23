@@ -6,8 +6,8 @@
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
 
-    search-container {
-        .search-container {
+    ngx-search-container {
+        .ngx-search-container {
             background-color: mat.get-color-from-palette($background, background, 0.2);
 
             &:hover {
@@ -52,13 +52,13 @@
             }
         }
 
-        .search-container-mobile {
+        .ngx-search-container-mobile {
             &.active {
                 background-color: mat.get-color-from-palette($background, background);
                 color: mat.get-color-from-palette($foreground, text);
             }
 
-            .search-container {
+            .ngx-search-container {
                 &::placeholder {
                     color: mat.get-color-from-palette($foreground, secondary-text);
                 }
