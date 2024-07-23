@@ -41,7 +41,7 @@
         "@angular/material": ">= 14",
         "rxjs": ">= 7.0.0",
         "@hug/ngx-core": "1.1.8",
-        "@hug/ngx-snackbar": "1.1.3",
+        "@hug/ngx-snackbar": "1.1.4",
         "@hug/ngx-message-box": "1.1.3"
     },
     "dependencies": {
