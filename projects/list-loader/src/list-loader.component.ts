@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
         NgIf
     ]
 })
-export class ListLoaderComponent {
+export class NgxListLoaderComponent {
     @Input()
     public label?: string;
 }
