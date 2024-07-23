@@ -35,10 +35,12 @@ export class SplitterComponent extends NgxDestroy {
      * Event triggered when the user start to drag the cursor
      */
     @Output() public readonly dragStart = new EventEmitter(false);
+
     /**
      * Event triggered during the cursor's drag
      */
     @Output() public readonly dragProgress = new EventEmitter<number>(false);
+
     /**
      * Event triggered when the user stop to drag the cursor
      */

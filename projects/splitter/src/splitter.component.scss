@@ -4,13 +4,15 @@ ngx-splitter {
     justify-content: flex-start;
     overflow: hidden;
 
+    &[splitting] * {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
     ngx-split-area {
         flex: 1 1 auto;
         overflow: hidden;
-
-        &[splitting] * {
-            user-select: none;
-        }
     }
 
     .ngx-split-gutter {
