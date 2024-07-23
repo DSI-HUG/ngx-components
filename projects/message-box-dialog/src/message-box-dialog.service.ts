@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AbstractLazyModule, DialogService, NgxLazyLoaderService } from '@hug/ngx-core';
+import { AbstractLazyModule, NgxDialogService, NgxLazyLoaderService } from '@hug/ngx-core';
 import { Observable, take } from 'rxjs';
 
 import { MessageBoxDialogButtons, MessageBoxDialogData, MessageBoxDialogResponse } from './message-box-dialog.model';
@@ -8,7 +8,7 @@ import { MessageBoxDialogButtons, MessageBoxDialogData, MessageBoxDialogResponse
 @Injectable({
     providedIn: 'root'
 })
-export class MessageBoxDialogService extends DialogService<MessageBoxDialogResponse, MessageBoxDialogData | string> {
+export class MessageBoxDialogService extends NgxDialogService<MessageBoxDialogResponse, MessageBoxDialogData | string> {
     public constructor(
         lazyLoaderService: NgxLazyLoaderService,
         dialog: MatDialog
