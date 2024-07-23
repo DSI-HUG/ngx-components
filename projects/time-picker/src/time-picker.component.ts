@@ -1,6 +1,6 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Optional, Output, Self, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -99,14 +99,15 @@ export class TimePickerComponent extends NgxDestroy implements ControlValueAcces
     public onHoursChange$ = new Subject<Event | number>();
     public onMinutesChange$ = new Subject<Event | number>();
     public _step = 1;
+
+    protected changeDetectorRef = inject(ChangeDetectorRef);
+    protected control = inject(NgControl, { self: true, optional: true });
+
     private _disabled = false;
     private _value?: DateOrDuration;
     private _autoFocus = true;
 
-    public constructor(
-        private changeDetectorRef: ChangeDetectorRef,
-        @Self() @Optional() public control: NgControl
-    ) {
+    public constructor() {
         super();
 
         if (this.control) {
@@ -230,14 +231,14 @@ export class TimePickerComponent extends NgxDestroy implements ControlValueAcces
     }
 
     public get hoursValue(): number | undefined {
-        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithMinutesDisabled' && this.control.pristine)) {
+        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithMinutesDisabled' && !!this.control?.pristine)) {
             return undefined;
         }
         return this.value instanceof Date ? this.value.getHours() : this.value.hours;
     }
 
     public get minutesValue(): number | undefined {
-        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithHoursDisabled' && this.control.pristine)) {
+        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithHoursDisabled' && !!this.control?.pristine)) {
             return undefined;
         }
         return this.value instanceof Date ? this.value.getMinutes() : this.value.minutes;
