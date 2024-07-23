@@ -5,7 +5,7 @@ import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgxDestroy } from '@hug/ngx-core';
-import { NumericStepperComponent } from '@hug/ngx-numeric-stepper';
+import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
 import { isSameHour, set } from 'date-fns';
 import { debounce, distinctUntilChanged, map, Subject, takeUntil, timer } from 'rxjs';
 
@@ -30,7 +30,7 @@ type FieldType = 'hours' | 'minutes';
         FormsModule,
         MatFormFieldModule,
         MatInputModule,
-        NumericStepperComponent
+        NgxNumericStepperComponent
     ]
 })
 export class TimePickerComponent extends NgxDestroy implements ControlValueAccessor {
