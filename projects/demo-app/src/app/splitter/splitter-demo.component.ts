@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { SplitAreaDirective, SplitterComponent } from '@hug/ngx-splitter';
+import { NgxSplitAreaDirective, NgxSplitterComponent } from '@hug/ngx-splitter';
 
 @Component({
     selector: 'app-splitter-demo',
@@ -17,8 +17,8 @@ import { SplitAreaDirective, SplitterComponent } from '@hug/ngx-splitter';
         MatCardModule,
         MatTabsModule,
         MatToolbarModule,
-        SplitterComponent,
-        SplitAreaDirective
+        NgxSplitterComponent,
+        NgxSplitAreaDirective
     ]
 })
 export class SplitterDemoComponent {

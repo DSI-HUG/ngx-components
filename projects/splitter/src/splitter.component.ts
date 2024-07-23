@@ -4,8 +4,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren,
 import { NgxDestroy } from '@hug/ngx-core';
 import { filter, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 
-import { SplitAreaDirective } from './split-area.directive';
-import { SplitterDirection } from './splitter-direction-type';
+import { NgxSplitAreaDirective } from './split-area.directive';
+import { NgxSplitterDirection } from './splitter-direction-type';
 
 interface DraggingEvent {
     event: MouseEvent | TouchEvent;
@@ -30,7 +30,7 @@ interface DraggingEvent {
         NgForOf
     ]
 })
-export class SplitterComponent extends NgxDestroy {
+export class NgxSplitterComponent extends NgxDestroy {
     /**
      * Event triggered when the user start to drag the cursor
      */
@@ -51,12 +51,12 @@ export class SplitterComponent extends NgxDestroy {
      * Can be `horizontal` or `vertical`
      */
     @Input()
-    public set direction(direction: SplitterDirection) {
+    public set direction(direction: NgxSplitterDirection) {
         this._direction = direction;
         this.ensureDirections();
     }
 
-    public get direction(): SplitterDirection {
+    public get direction(): NgxSplitterDirection {
         return this._direction;
     }
 
@@ -78,22 +78,22 @@ export class SplitterComponent extends NgxDestroy {
         return this.direction === 'horizontal' ? 'row' : 'column';
     }
 
-    @ContentChildren(SplitAreaDirective)
-    protected set spliterAreas(spliterAreas: QueryList<SplitAreaDirective>) {
+    @ContentChildren(NgxSplitAreaDirective)
+    protected set spliterAreas(spliterAreas: QueryList<NgxSplitAreaDirective>) {
         this.areas = spliterAreas.toArray();
         this.areas.forEach((area, index) => area.order = 2 * index);
         this.ensureDirections();
     }
 
     @HostBinding('attr.direction')
-    private _direction = 'horizontal' as SplitterDirection;
+    private _direction = 'horizontal' as NgxSplitterDirection;
 
     @HostBinding('attr.disabled')
     private _disabled: boolean | null = null;
 
     protected startDragging$ = new Subject<DraggingEvent>();
 
-    protected areas = new Array<SplitAreaDirective>() as readonly SplitAreaDirective[];
+    protected areas = new Array<NgxSplitAreaDirective>() as readonly NgxSplitAreaDirective[];
 
     private _gutterSize = 10;
 

@@ -1,1 +1,1 @@
-export type SplitterDirection = 'horizontal' | 'vertical';
+export type NgxSplitterDirection = 'horizontal' | 'vertical';

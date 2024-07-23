@@ -4,7 +4,7 @@
 import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
 
-import { SplitterDirection } from './splitter-direction-type';
+import { NgxSplitterDirection } from './splitter-direction-type';
 
 /**
  * Directive representing a panel in a Splitter Component
@@ -13,7 +13,7 @@ import { SplitterDirection } from './splitter-direction-type';
     selector: 'ngx-split-area',
     standalone: true
 })
-export class SplitAreaDirective {
+export class NgxSplitAreaDirective {
 
     @HostBinding('style.order')
     public order?: number;
@@ -21,7 +21,7 @@ export class SplitAreaDirective {
     @HostBinding('style.flex-basis.%')
     protected _size: number | null = null;
 
-    public direction = 'horizontal' as SplitterDirection;
+    public direction = 'horizontal' as NgxSplitterDirection;
 
     /**
      * Size in percent of the current area
