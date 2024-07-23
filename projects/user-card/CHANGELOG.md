@@ -1,3 +1,15 @@
+## 1.1.5 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-user-card:** compile path ([9d33df0](https://github.com/DSI-HUG/ngx-components/commit/9d33df0))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.4 (2024-07-23)
 
 

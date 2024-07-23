@@ -1,3 +1,27 @@
+## 1.1.6 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-core:** ngx prefix ([e08e71a](https://github.com/DSI-HUG/ngx-components/commit/e08e71a))
+
+- **ngx-message-box-dialog:** ngx prefix ([480605a](https://github.com/DSI-HUG/ngx-components/commit/480605a))
+
+- **ngx-message-box-dialog:** compile path ([ad132d2](https://github.com/DSI-HUG/ngx-components/commit/ad132d2))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.9 ([3692c68](https://github.com/DSI-HUG/ngx-components/commit/3692c68))
+
+- **@hug/ngx-core:** upgrade to v1.1.10 ([78dbe21](https://github.com/DSI-HUG/ngx-components/commit/78dbe21))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.5 (2024-07-23)
 
 

@@ -1,3 +1,17 @@
+## 1.1.10 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-core:** ngx prefix ([e827f2d](https://github.com/DSI-HUG/ngx-components/commit/e827f2d))
+
+- **ngx-core:** compile path ([e6adb11](https://github.com/DSI-HUG/ngx-components/commit/e6adb11))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.9 (2024-07-23)
 
 

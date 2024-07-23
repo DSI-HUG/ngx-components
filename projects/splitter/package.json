@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-splitter",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "description": "HUG Angular - splitter component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -39,7 +39,7 @@
         "@angular/core": ">= 14",
         "@angular/cdk": ">= 14",
         "rxjs": ">= 7.0.0",
-        "@hug/ngx-core": "1.1.9"
+        "@hug/ngx-core": "1.1.10"
     },
     "dependencies": {
         "tslib": "^2.6.3"
