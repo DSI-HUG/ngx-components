@@ -1,6 +1,6 @@
 {
     "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-    "dest": "../../dist/list-loader",
+    "dest": "../../dist/ngx-list-loader",
     "assets": [
         "CHANGELOG.md",
         {
