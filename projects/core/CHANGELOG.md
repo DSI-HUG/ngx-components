@@ -1,3 +1,15 @@
+## 1.1.8 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-chore:** ngx prefix ([ea89d67](https://github.com/DSI-HUG/ngx-components/commit/ea89d67))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.7 (2024-07-05)
 
 ### 🐛 Fixes
