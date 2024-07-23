@@ -1,6 +1,6 @@
 {
     "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-    "dest": "../../dist/search-container",
+    "dest": "../../dist/ngx-search-container",
     "assets": [
         "CHANGELOG.md",
         {
