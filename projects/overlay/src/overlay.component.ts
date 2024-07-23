@@ -1,7 +1,7 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, OverlayContainer, OverlayModule, OverlayRef } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, inject, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgxMediaService } from '@hug/ngx-core';
 import { BehaviorSubject, combineLatestWith, distinctUntilChanged, EMPTY, map, mergeWith, Observable, of, ReplaySubject, shareReplay, startWith, Subject, switchMap, take } from 'rxjs';
 
@@ -63,6 +63,10 @@ export class OverlayComponent implements OnChanges {
     protected overlayInfos$: Observable<OverlayInfos | undefined>;
     protected overlayRef$ = new ReplaySubject<OverlayRef>(1);
 
+    protected elementRef = inject(ElementRef );
+    protected overlayContainer = inject(OverlayContainer);
+    protected mediaService = inject(NgxMediaService);
+
     private show$ = new ReplaySubject<ShowParams>(1);
     private hide$ = new Subject<void>();
 
@@ -83,7 +87,7 @@ export class OverlayComponent implements OnChanges {
     private _positions = defaultConnectionPositionPair;
     private _positionsForMobile?: OverlayConnectionPositionPair[];
 
-    public constructor(private elementRef: ElementRef, private overlayContainer: OverlayContainer, mediaService: NgxMediaService) {
+    public constructor() {
         const containerElement = this.overlayContainer.getContainerElement();
         containerElement.addEventListener('contextmenu', (event: Event) => {
             event.preventDefault();
@@ -96,7 +100,7 @@ export class OverlayComponent implements OnChanges {
                     return of(isMobileExt);
                 }
 
-                return mediaService.isMobile$;
+                return this.mediaService.isMobile$;
             }),
             startWith(false),
             shareReplay({ bufferSize: 1, refCount: false })
