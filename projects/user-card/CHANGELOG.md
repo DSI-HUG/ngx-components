@@ -1,3 +1,15 @@
+## 1.1.4 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-user-card:** ngx prefix ([01863c4](https://github.com/DSI-HUG/ngx-components/commit/01863c4))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.3 (2024-07-23)
 
 
