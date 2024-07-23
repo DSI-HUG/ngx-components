@@ -3,12 +3,12 @@ import { Type } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { AbstractLazyModule, NgxLazyLoaderService, subscribeWith } from '@hug/ngx-core';
 import { merge } from 'lodash-es';
-import { debounceTime, delay, EMPTY, filter, fromEvent, map, mergeWith, Observable, shareReplay, Subject, switchMap, tap, withLatestFrom } from 'rxjs';
+import { EMPTY, Observable, Subject, debounceTime, delay, filter, fromEvent, map, mergeWith, shareReplay, switchMap, tap, withLatestFrom } from 'rxjs';
 
-import { TooltipConfig } from './tooltip.model';
-import { TooltipComponentInterface } from './tooltip-component.interface';
+import { NgxTooltipComponentInterface } from './tooltip-component.interface';
+import { NgxTooltipConfig } from './tooltip.model';
 
-export abstract class TooltipService<D> {
+export abstract class NgxTooltipService<D> {
     protected close$ = new Subject<void>();
 
     protected positions: readonly ConnectedPosition[] = [
@@ -86,7 +86,7 @@ export abstract class TooltipService<D> {
         }
     }
 
-    public open$(triggerElement: HTMLElement, tooltipData: D, tooltipConfig?: TooltipConfig<D>): Observable<void> {
+    public open$(triggerElement: HTMLElement, tooltipData: D, tooltipConfig?: NgxTooltipConfig<D>): Observable<void> {
         this.close();
 
         const additionalPanelClass = (tooltipConfig?.panelClass && tooltipConfig.panelClass instanceof Array && tooltipConfig.panelClass)
@@ -96,7 +96,7 @@ export abstract class TooltipService<D> {
         const config = merge(tooltipConfig, {
             hasBackdrop: false,
             panelClass: ['ngx-tooltip-overlay', 'no-padding-dialog', 'ngx-tooltip-opening', ...additionalPanelClass]
-        } as TooltipConfig<D>);
+        } as NgxTooltipConfig<D>);
 
 
         const dialogRef$ = this.openRef$(tooltipData, triggerElement, config).pipe(
@@ -147,7 +147,7 @@ export abstract class TooltipService<D> {
         this.close$.next();
     }
 
-    protected openRef$(tooltipData: D, triggerElement: HTMLElement, tooltipConfig: Partial<TooltipConfig<D>>): Observable<MatDialogRef<TooltipComponentInterface, void>> {
+    protected openRef$(tooltipData: D, triggerElement: HTMLElement, tooltipConfig: Partial<NgxTooltipConfig<D>>): Observable<MatDialogRef<NgxTooltipComponentInterface, void>> {
         return this.lazyLoaderService.loadModule$(this.getModule()).pipe(
             switchMap(moduleInfos => {
                 const config = merge({}, this.tooltipConfig, tooltipConfig || {} as Partial<MatDialogConfig<D>>);
@@ -155,7 +155,7 @@ export abstract class TooltipService<D> {
                 config.minWidth = config.minWidth || '100px';
                 config.injector = moduleInfos.injector;
 
-                const dialogRef = this.dialog.open<TooltipComponentInterface, D, void>(moduleInfos.module.componentType, config);
+                const dialogRef = this.dialog.open<NgxTooltipComponentInterface, D, void>(moduleInfos.module.componentType, config);
                 return dialogRef.afterOpened().pipe(
                     map(() => dialogRef)
                 );
@@ -254,5 +254,5 @@ export abstract class TooltipService<D> {
         );
     }
 
-    protected abstract getModule(): Promise<Type<AbstractLazyModule<TooltipComponentInterface>>>;
+    protected abstract getModule(): Promise<Type<AbstractLazyModule<NgxTooltipComponentInterface>>>;
 }

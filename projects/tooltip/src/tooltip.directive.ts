@@ -1,12 +1,12 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 import { NgxDestroy } from '@hug/ngx-core';
-import { fromEvent, Observable, of, switchMap, take, takeUntil, timer } from 'rxjs';
+import { Observable, fromEvent, of, switchMap, take, takeUntil, timer } from 'rxjs';
 
 @Directive({
     selector: '[ngx-tooltip]',
     standalone: true
 })
-export class TooltipDirective extends NgxDestroy {
+export class NgxTooltipDirective extends NgxDestroy {
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('ngx-tooltip-delay') public delay = 300;
 

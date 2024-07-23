@@ -1,5 +1,5 @@
 import { ElementRef } from '@angular/core';
 
-export interface TooltipComponentInterface {
+export interface NgxTooltipComponentInterface {
     elementRef: ElementRef<HTMLElement>;
 }

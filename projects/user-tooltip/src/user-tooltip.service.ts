@@ -1,13 +1,13 @@
 import { Injectable, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AbstractLazyModule, NgxLazyLoaderService } from '@hug/ngx-core';
-import { TooltipComponentInterface, TooltipService } from '@hug/ngx-tooltip';
+import { NgxTooltipComponentInterface, NgxTooltipService } from '@hug/ngx-tooltip';
 import { NgxUserCard } from '@hug/ngx-user-card';
 
 @Injectable({
     providedIn: 'root'
 })
-export class NgxUserTooltipService extends TooltipService<NgxUserCard> {
+export class NgxUserTooltipService extends NgxTooltipService<NgxUserCard> {
     public constructor(
         lazyLoaderService: NgxLazyLoaderService,
         dialog: MatDialog
@@ -19,7 +19,7 @@ export class NgxUserTooltipService extends TooltipService<NgxUserCard> {
         } as MatDialogConfig<NgxUserCard>);
     }
 
-    protected getModule(): Promise<Type<AbstractLazyModule<TooltipComponentInterface>>> {
+    protected getModule(): Promise<Type<AbstractLazyModule<NgxTooltipComponentInterface>>> {
         return import('./user-tooltip.module').then(m => m.NgxUserTooltipModule);
     }
 }
