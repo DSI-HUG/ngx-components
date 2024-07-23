@@ -21,7 +21,7 @@ import { MessageBoxAction, MessageBoxType } from './message-box.model';
         MatIconModule
     ]
 })
-export class MessageBoxComponent implements OnInit {
+export class NgxMessageBoxComponent implements OnInit {
     // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() public readonly close = new EventEmitter();
 
