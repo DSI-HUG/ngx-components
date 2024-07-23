@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AbstractLazyModule, NgxDialogService, NgxLazyLoaderService } from '@hug/ngx-core';
+import { NgxAbstractLazyModule, NgxDialogService, NgxLazyLoaderService } from '@hug/ngx-core';
 
 import { Status } from '../status.model';
 
@@ -21,7 +21,7 @@ export class NgxStatusDetailDialogService extends NgxDialogService<void, Status>
         } as MatDialogConfig<Status>);
     }
 
-    protected getModule(): Promise<Type<AbstractLazyModule<unknown>>> {
+    protected getModule(): Promise<Type<NgxAbstractLazyModule<unknown>>> {
         return import('./status-detail.module').then(m => m.NgxStatusDetailModule);
     }
 }

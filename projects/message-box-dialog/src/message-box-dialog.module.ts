@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AbstractLazyModule } from '@hug/ngx-core';
+import { NgxAbstractLazyModule } from '@hug/ngx-core';
 
 import { NgxMessageBoxDialogComponent } from './message-box-dialog.component';
 
@@ -19,7 +19,7 @@ import { NgxMessageBoxDialogComponent } from './message-box-dialog.component';
         MatToolbarModule
     ]
 })
-export class NgxMessageBoxDialogModule extends AbstractLazyModule<NgxMessageBoxDialogComponent> {
+export class NgxMessageBoxDialogModule extends NgxAbstractLazyModule<NgxMessageBoxDialogComponent> {
     public constructor() {
         super(NgxMessageBoxDialogComponent);
     }

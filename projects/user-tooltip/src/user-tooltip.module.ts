@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AbstractLazyModule } from '@hug/ngx-core';
+import { NgxAbstractLazyModule } from '@hug/ngx-core';
 import { NgxUserCardComponent } from '@hug/ngx-user-card';
 
 import { NgxUserTooltipComponent } from './user-tooltip.component';
@@ -13,7 +13,7 @@ import { NgxUserTooltipComponent } from './user-tooltip.component';
         NgxUserCardComponent
     ]
 })
-export class NgxUserTooltipModule extends AbstractLazyModule<NgxUserTooltipComponent> {
+export class NgxUserTooltipModule extends NgxAbstractLazyModule<NgxUserTooltipComponent> {
     public constructor() {
         super(NgxUserTooltipComponent);
     }

@@ -1,13 +1,13 @@
 import { ComponentType } from '@angular/cdk/portal';
-import { Injectable, Injector, ɵcreateInjector as createInjector, Type } from '@angular/core';
-import { from, map, Observable } from 'rxjs';
+import { Injectable, Injector, Type, ɵcreateInjector as createInjector } from '@angular/core';
+import { Observable, from, map } from 'rxjs';
 
 export interface LoadModuleInfos<T> {
     injector: Injector;
     module: T;
 }
 
-export abstract class AbstractLazyModule<Component> {
+export abstract class NgxAbstractLazyModule<Component> {
     public constructor(
         public componentType: ComponentType<Component>
     ) {}
@@ -21,7 +21,7 @@ export class NgxLazyLoaderService {
         private injector: Injector
     ) {}
 
-    public loadModule$<T extends AbstractLazyModule<unknown>>(path: Promise<Type<T>>, parentInjector?: Injector): Observable<LoadModuleInfos<T>> {
+    public loadModule$<T extends NgxAbstractLazyModule<unknown>>(path: Promise<Type<T>>, parentInjector?: Injector): Observable<LoadModuleInfos<T>> {
         return from(path).pipe(
             map(elementModuleOrFactory => {
                 const injector = createInjector(elementModuleOrFactory, parentInjector ?? this.injector);

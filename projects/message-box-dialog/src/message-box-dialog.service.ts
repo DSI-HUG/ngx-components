@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AbstractLazyModule, NgxDialogService, NgxLazyLoaderService } from '@hug/ngx-core';
+import { NgxAbstractLazyModule, NgxDialogService, NgxLazyLoaderService } from '@hug/ngx-core';
 import { Observable, take } from 'rxjs';
 
 import { MessageBoxDialogButtons, MessageBoxDialogData, MessageBoxDialogResponse } from './message-box-dialog.model';
@@ -44,7 +44,7 @@ export class NgxMessageBoxDialogService extends NgxDialogService<MessageBoxDialo
         );
     }
 
-    protected getModule(): Promise<Type<AbstractLazyModule<unknown>>> {
+    protected getModule(): Promise<Type<NgxAbstractLazyModule<unknown>>> {
         return import('./message-box-dialog.module').then(m => m.NgxMessageBoxDialogModule);
     }
 }

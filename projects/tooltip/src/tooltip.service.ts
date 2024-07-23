@@ -1,12 +1,12 @@
 import { ConnectedPosition } from '@angular/cdk/overlay';
 import { Type } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { AbstractLazyModule, NgxLazyLoaderService, subscribeWith } from '@hug/ngx-core';
+import { NgxAbstractLazyModule, NgxLazyLoaderService, subscribeWith } from '@hug/ngx-core';
 import { merge } from 'lodash-es';
-import { debounceTime, delay, EMPTY, filter, fromEvent, map, mergeWith, Observable, shareReplay, Subject, switchMap, tap, withLatestFrom } from 'rxjs';
+import { EMPTY, Observable, Subject, debounceTime, delay, filter, fromEvent, map, mergeWith, shareReplay, switchMap, tap, withLatestFrom } from 'rxjs';
 
-import { NgxTooltipConfig } from './tooltip.model';
 import { NgxTooltipComponentInterface } from './tooltip-component.interface';
+import { NgxTooltipConfig } from './tooltip.model';
 
 export abstract class NgxTooltipService<D> {
     protected close$ = new Subject<void>();
@@ -254,5 +254,5 @@ export abstract class NgxTooltipService<D> {
         );
     }
 
-    protected abstract getModule(): Promise<Type<AbstractLazyModule<NgxTooltipComponentInterface>>>;
+    protected abstract getModule(): Promise<Type<NgxAbstractLazyModule<NgxTooltipComponentInterface>>>;
 }
