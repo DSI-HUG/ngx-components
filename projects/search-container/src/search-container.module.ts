@@ -24,4 +24,4 @@ import { NgxSearchContainerComponent, NgxSearchInputDirective } from './search-c
         NgxSearchInputDirective
     ]
 })
-export class SearchContainerModule { }
+export class NgxSearchContainerModule { }
