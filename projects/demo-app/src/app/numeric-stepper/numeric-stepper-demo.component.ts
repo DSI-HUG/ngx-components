@@ -8,7 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxDestroy } from '@hug/ngx-core';
 import { NumericStepperComponent } from '@hug/ngx-numeric-stepper';
-import { Subject, debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Subject, takeUntil } from 'rxjs';
 
 interface NumberFormControls {
     numberValue3: FormControl<number>;
