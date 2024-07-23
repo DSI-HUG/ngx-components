@@ -1,3 +1,21 @@
+## 1.1.5 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-numeric-stepper:** use inject ([db6ed86](https://github.com/DSI-HUG/ngx-components/commit/db6ed86))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.8 ([26f0d10](https://github.com/DSI-HUG/ngx-components/commit/26f0d10))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.4 (2024-07-08)
 
 ### 🌱 Dependencies
