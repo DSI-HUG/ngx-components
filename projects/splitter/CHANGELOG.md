@@ -1,3 +1,15 @@
+## 1.1.4 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-splitter:** fix wrong value on event ([f17fd8a](https://github.com/DSI-HUG/ngx-components/commit/f17fd8a))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.3 (2024-07-05)
 
 ### 🐛 Fixes
