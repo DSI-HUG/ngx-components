@@ -1,3 +1,21 @@
+## 1.1.4 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-overlay:** use inject ([b936a15](https://github.com/DSI-HUG/ngx-components/commit/b936a15))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.8 ([26f0d10](https://github.com/DSI-HUG/ngx-components/commit/26f0d10))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.3 (2024-07-05)
 
 ### 🐛 Fixes
