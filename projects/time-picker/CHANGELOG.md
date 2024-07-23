@@ -1,3 +1,23 @@
+## 1.1.4 (2024-07-23)
+
+
+### 🐛 Fixes
+
+- **ngx-time-picker:** use inject ([16ab25a](https://github.com/DSI-HUG/ngx-components/commit/16ab25a))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.8 ([26f0d10](https://github.com/DSI-HUG/ngx-components/commit/26f0d10))
+
+- **@hug/ngx-numeric-stepper:** upgrade to v1.1.5 ([a76174a](https://github.com/DSI-HUG/ngx-components/commit/a76174a))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.3 (2024-07-08)
 
 ### 🌱 Dependencies
