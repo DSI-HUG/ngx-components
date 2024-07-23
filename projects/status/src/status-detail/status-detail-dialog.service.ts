@@ -1,13 +1,13 @@
 import { Injectable, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AbstractLazyModule, DialogService, NgxLazyLoaderService } from '@hug/ngx-core';
+import { AbstractLazyModule, NgxDialogService, NgxLazyLoaderService } from '@hug/ngx-core';
 
 import { Status } from '../status.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class StatusDetailDialogService extends DialogService<void, Status> {
+export class StatusDetailDialogService extends NgxDialogService<void, Status> {
     public constructor(
         lazyLoaderService: NgxLazyLoaderService,
         dialog: MatDialog

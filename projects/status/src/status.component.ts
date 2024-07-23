@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, ViewEn
 import { NgxDestroy } from '@hug/ngx-core';
 import { catchError, EMPTY, Subject, switchMap, takeUntil, throttleTime } from 'rxjs';
 
-import { StatusDetailDialogService } from './status-detail/status-detail-dialog.service';
 import { Status, StatusAction, StatusType } from './status.model';
+import { StatusDetailDialogService } from './status-detail/status-detail-dialog.service';
 
 @Component({
     selector: 'ngx-status',

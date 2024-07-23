@@ -7,7 +7,7 @@ ngx-status-detail {
         overflow: hidden;
         width: 100%;
 
-        #msgbox {
+        .ngx-message-box {
             display: flex;
             flex-direction: column;
             height: 100%;
