@@ -40,7 +40,7 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
 
     protected readonly activeSearch$ = new BehaviorSubject(false);
 
-    protected searchInputValue$: Observable<string> | null | undefined;
+    protected searchInputValue$: Observable<string> | undefined;
 
     private _searchInput: NgxSearchInputDirective | undefined;
 
@@ -90,7 +90,7 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
         this.searchInputValue$ = this._searchInput?.ngControl?.valueChanges?.pipe(
             distinctUntilChanged(),
             shareReplay({ bufferSize: 1, refCount: false })
-        );
+        ) ?? undefined;
     }
 
     public reset(): void {
