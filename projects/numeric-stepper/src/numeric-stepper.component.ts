@@ -1,12 +1,12 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, ViewEncapsulation, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { filterMap, KeyCodes, NgxDestroy } from '@hug/ngx-core';
-import { combineLatestWith, debounceTime, delay, filter, fromEvent, map, mergeWith, ReplaySubject, shareReplay, startWith, Subject, switchMap, takeUntil, tap, timer, withLatestFrom } from 'rxjs';
+import { KeyCodes, NgxDestroy, filterMap } from '@hug/ngx-core';
+import { ReplaySubject, Subject, combineLatestWith, debounceTime, delay, filter, fromEvent, map, mergeWith, shareReplay, startWith, switchMap, takeUntil, tap, timer, withLatestFrom } from 'rxjs';
 
 export type NgxNumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-inlay';
 
@@ -18,7 +18,7 @@ export type NgxNumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-in
     templateUrl: './numeric-stepper.component.html',
     standalone: true,
     imports: [
-        CommonModule,
+        NgIf,
         FormsModule,
         MatFormFieldModule,
         MatIconModule,
