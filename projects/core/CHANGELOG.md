@@ -1,3 +1,15 @@
+## 1.1.11 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-core:** update patch version ([fdf2e81](https://github.com/DSI-HUG/ngx-components/commit/fdf2e81))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.10 (2024-07-23)
 
 
