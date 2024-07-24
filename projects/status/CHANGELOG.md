@@ -1,3 +1,25 @@
+## 1.1.10 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-status:** update patch version ([3018aad](https://github.com/DSI-HUG/ngx-components/commit/3018aad))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-message-box:** upgrade to v1.1.7 ([75da383](https://github.com/DSI-HUG/ngx-components/commit/75da383))
+
+- **@hug/ngx-snackbar:** upgrade to v1.1.8 ([4df4b4e](https://github.com/DSI-HUG/ngx-components/commit/4df4b4e))
+
+- **@hug/ngx-core:** upgrade to v1.1.12 ([78a2936](https://github.com/DSI-HUG/ngx-components/commit/78a2936))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.9 (2024-07-24)
 
 

@@ -1,3 +1,21 @@
+## 1.1.6 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-sidenav:** update patch version ([f888022](https://github.com/DSI-HUG/ngx-components/commit/f888022))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.12 ([78a2936](https://github.com/DSI-HUG/ngx-components/commit/78a2936))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.5 (2024-07-24)
 
 

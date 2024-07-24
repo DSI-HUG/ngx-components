@@ -1,3 +1,15 @@
+## 1.1.7 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-user-card:** update patch version ([2e3e257](https://github.com/DSI-HUG/ngx-components/commit/2e3e257))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.6 (2024-07-24)
 
 

@@ -1,3 +1,23 @@
+## 1.1.8 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-time-picker:** update patch version ([f8a7d86](https://github.com/DSI-HUG/ngx-components/commit/f8a7d86))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-numeric-stepper:** upgrade to v1.1.9 ([34f74e7](https://github.com/DSI-HUG/ngx-components/commit/34f74e7))
+
+- **@hug/ngx-core:** upgrade to v1.1.12 ([78a2936](https://github.com/DSI-HUG/ngx-components/commit/78a2936))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.7 (2024-07-24)
 
 
