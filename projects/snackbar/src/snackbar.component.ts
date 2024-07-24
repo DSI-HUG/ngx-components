@@ -73,14 +73,14 @@ export class NgxSnackbarComponent extends NgxDestroy implements OnInit, AfterVie
     private enterAnimationDuration = 350;
 
     /**
-     * leave animation duration
-     */
-    private leaveAnimationDuration = 175;
-
-    /**
      * adapt animation duration
      */
     private adaptAnimationDuration = 225;
+
+    /**
+     * leave animation duration
+     */
+    private leaveAnimationDuration = 175;
 
     /**
      * string representation of the alignment, used for statements and initial final position
