@@ -17,8 +17,8 @@ interface ShowParams {
 export interface OverlayInfos {
     offsetX: number;
     offsetY: number;
-    origin: CdkOverlayOrigin;
     width: string;
+    origin: CdkOverlayOrigin;
     context: unknown;
 }
 
