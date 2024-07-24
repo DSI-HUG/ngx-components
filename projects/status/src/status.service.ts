@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Injectable, Injector, inject } from '@angular/core';
+import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, inject, Injectable, Injector } from '@angular/core';
 import { NgxDestroy, NgxLazyLoaderService } from '@hug/ngx-core';
 import { mergeWith, switchMap, take, takeUntil, tap, timer } from 'rxjs';
 

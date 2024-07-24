@@ -43,7 +43,7 @@ const exec = (message: string, cmd: string, args: string[], options: Options, ne
  *  `nx.json#targetDefaults.nx-release-publish.options.packageRoot` could be used but can only interpolate:
  *      - {projectName}: which resolved to '@hug/ngx-abc' (ie. package.json#name)
  *      - {projectRoot}: which resolved to 'projects/abc'
- *  And what we need is actually `abc` because Angular generates projects in `dist/abc`.
+ *  And what we need is actually `abc` because Angular generates projects in `dist/ngx-abc`.
  *  So to make it work, we use the hidden option (__overrides_unparsed__) and publish each project individually.
  */
 const publishProjects = async (
@@ -95,7 +95,7 @@ const updateProjectsDists = (
 
         console.log(`\n${cyan(projects[project].name ?? '')} New version ${projectNewVersion} written to ${distPackageJsonPath}`);
         if (!options.dryRun) {
-            const distPackageJson = JSON.parse(readFileSync(join(workspaceRoot, projectRoot, 'package.json'), 'utf8')) as PackageJson;
+            const distPackageJson = JSON.parse(readFileSync(join(workspaceRoot, distPackageJsonPath, 'package.json'), 'utf8')) as PackageJson;
             distPackageJson.version = projectNewVersion;
             writeFileSync(join(workspaceRoot, distPackageJsonPath), JSON.stringify(distPackageJson, null, 4), { encoding: 'utf8' });
         }
