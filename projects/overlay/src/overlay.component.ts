@@ -7,14 +7,14 @@ import { BehaviorSubject, combineLatestWith, distinctUntilChanged, EMPTY, map, m
 
 import { defaultConnectionPositionPair, NgxOverlayConnectionPositionPair } from './connection-position-pair';
 
-export interface ShowParams {
+interface ShowParams {
     event?: MouseEvent;
     offsetX?: number;
     offsetY?: number;
     context?: unknown;
 }
 
-interface OverlayInfos {
+export interface OverlayInfos {
     offsetX: number;
     offsetY: number;
     origin: CdkOverlayOrigin;
