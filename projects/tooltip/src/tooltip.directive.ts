@@ -1,6 +1,6 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, Input, inject } from '@angular/core';
 import { NgxDestroy } from '@hug/ngx-core';
-import { fromEvent, Observable, of, switchMap, take, takeUntil, timer } from 'rxjs';
+import { Observable, fromEvent, of, switchMap, take, takeUntil, timer } from 'rxjs';
 
 @Directive({
     selector: '[ngx-tooltip]',
@@ -12,10 +12,12 @@ export class NgxTooltipDirective extends NgxDestroy {
 
     @Input('ngx-tooltip') public openTooltip$?: (element: HTMLElement) => Observable<void>;
 
-    public constructor(elementRef: ElementRef<HTMLElement>) {
+    private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
+    public constructor() {
         super();
 
-        const triggerElement = elementRef.nativeElement;
+        const triggerElement = this.elementRef.nativeElement;
 
         // Install global CSS if not already present
         const docEl = triggerElement.ownerDocument;
