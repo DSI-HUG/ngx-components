@@ -29,8 +29,8 @@
 
                 .mat-list-item {
                     &.active {
-                        .mat-list-icon,
-                        .mat-list-text {
+                        .mat-list-text,
+                        .mat-list-icon {
                             color: mat.get-color-from-palette($primary) !important;
                         }
 
