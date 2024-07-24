@@ -95,7 +95,7 @@ const updateProjectsDists = (
 
         console.log(`\n${cyan(projects[project].name ?? '')} New version ${projectNewVersion} written to ${distPackageJsonPath}`);
         if (!options.dryRun) {
-            const distPackageJson = JSON.parse(readFileSync(join(workspaceRoot, distPackageJsonPath, 'package.json'), 'utf8')) as PackageJson;
+            const distPackageJson = JSON.parse(readFileSync(join(workspaceRoot, distPackageJsonPath), 'utf8')) as PackageJson;
             distPackageJson.version = projectNewVersion;
             writeFileSync(join(workspaceRoot, distPackageJsonPath), JSON.stringify(distPackageJson, null, 4), { encoding: 'utf8' });
         }

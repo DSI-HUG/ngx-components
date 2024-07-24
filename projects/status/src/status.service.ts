@@ -21,10 +21,10 @@ const durationShort = 8_000;
 })
 export class NgxStatusService extends NgxDestroy {
 
-    private document = inject<Document>(DOCUMENT);
-    private lazyLoaderService = inject(NgxLazyLoaderService);
-    private injector = inject(Injector);
-    private resolver = inject(ComponentFactoryResolver);
+    protected document = inject<Document>(DOCUMENT);
+    protected lazyLoaderService = inject(NgxLazyLoaderService);
+    protected injector = inject(Injector);
+    protected resolver = inject(ComponentFactoryResolver);
 
     /**
      * Display an information message to the screen.
