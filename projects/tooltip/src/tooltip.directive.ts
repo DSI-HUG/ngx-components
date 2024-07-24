@@ -1,6 +1,6 @@
-import { Directive, ElementRef, Input, inject } from '@angular/core';
+import { Directive, ElementRef, inject, Input } from '@angular/core';
 import { NgxDestroy } from '@hug/ngx-core';
-import { Observable, fromEvent, of, switchMap, take, takeUntil, timer } from 'rxjs';
+import { fromEvent, Observable, of, switchMap, take, takeUntil, timer } from 'rxjs';
 
 @Directive({
     selector: '[ngx-tooltip]',

@@ -94,12 +94,12 @@ ngx-user-card {
             line-height: 20px;
         }
 
-        > .content-service {
-            grid-area: service;
-        }
-
         > .content-type {
             grid-area: type;
+        }
+
+        > .content-service {
+            grid-area: service;
         }
 
         > .content-phone {
