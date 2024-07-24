@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
-import { MessageBoxAction, MessageBoxType } from './message-box.model';
+import { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,10 +25,10 @@ export class NgxMessageBoxComponent implements OnInit {
     // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() public readonly close = new EventEmitter();
 
-    @Input() public type?: MessageBoxType;
+    @Input() public type?: NgxMessageBoxType;
     @Input() public title?: string;
     @Input() public icon?: string;
-    @Input() public actions?: readonly MessageBoxAction[];
+    @Input() public actions?: readonly NgxMessageBoxAction[];
 
     /** Event Emmited when the close action is called */
     @ContentChild('actionsTemplate') public actionsTemplate?: TemplateRef<unknown>;

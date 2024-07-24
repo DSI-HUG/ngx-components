@@ -1,8 +1,8 @@
-export type MessageBoxType = 'info' | 'primary' | 'success' | 'warn' | 'danger';
+export type NgxMessageBoxType = 'info' | 'primary' | 'success' | 'warn' | 'danger';
 
-export interface MessageBoxAction {
+export interface NgxMessageBoxAction {
     text?: string;
-    type?: MessageBoxType;
+    type?: NgxMessageBoxType;
     icon?: string;
     action: () => unknown;
 }

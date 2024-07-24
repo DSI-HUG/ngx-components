@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxDestroy } from '@hug/ngx-core';
-import { MessageBoxAction, NgxMessageBoxComponent } from '@hug/ngx-message-box';
+import { NgxMessageBoxAction, NgxMessageBoxComponent } from '@hug/ngx-message-box';
 import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogService } from '@hug/ngx-message-box-dialog';
 import { Subject, switchMap, takeUntil } from 'rxjs';
 
@@ -34,7 +34,7 @@ export class MessageBoxDemoComponent extends NgxDestroy {
             action: (): void => alert('test action'),
             icon: 'clear'
         }
-    ] as readonly MessageBoxAction[];
+    ] as readonly NgxMessageBoxAction[];
 
     protected openDialog$ = new Subject<void>();
 
