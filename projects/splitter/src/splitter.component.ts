@@ -18,8 +18,8 @@ interface DraggingEvent {
  * The splitter component allows to split horizontally or vertically, a container in N resizable part.
  */
 @Component({
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'ngx-splitter',
     styleUrls: ['./splitter.component.scss'],
     templateUrl: './splitter.component.html',
