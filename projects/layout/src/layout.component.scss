@@ -19,8 +19,8 @@ ngx-layout {
         right: 0;
     }
 
-    mat-sidenav-content,
-    mat-drawer-content {
+    mat-drawer-content,
+    mat-sidenav-content {
         display: flex !important;
         flex-direction: column;
     }
