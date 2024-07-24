@@ -3,10 +3,10 @@ import { Type } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { NgxAbstractLazyModule, NgxLazyLoaderService, subscribeWith } from '@hug/ngx-core';
 import { merge } from 'lodash-es';
-import { debounceTime, delay, EMPTY, filter, fromEvent, map, mergeWith, Observable, shareReplay, Subject, switchMap, tap, withLatestFrom } from 'rxjs';
+import { EMPTY, Observable, Subject, debounceTime, delay, filter, fromEvent, map, mergeWith, shareReplay, switchMap, tap, withLatestFrom } from 'rxjs';
 
-import { NgxTooltipConfig } from './tooltip.model';
 import { NgxTooltipComponentInterface } from './tooltip-component.interface';
+import { NgxTooltipConfig } from './tooltip.model';
 
 export abstract class NgxTooltipService<D> {
     protected close$ = new Subject<void>();
@@ -107,10 +107,10 @@ export abstract class NgxTooltipService<D> {
             switchMap(dialogRef => {
                 const tooltipElement = dialogRef.componentInstance.elementRef?.nativeElement.parentElement;
 
-                const mouseEnterTooltip$ = tooltipElement ? fromEvent(tooltipElement, 'mouseenter') : EMPTY;
                 const mouseEnterTrigger$ = triggerElement ? fromEvent(triggerElement, 'mouseenter') : EMPTY;
-                const mouseLeaveTooltip$ = tooltipElement ? fromEvent(tooltipElement, 'mouseleave') : EMPTY;
+                const mouseEnterTooltip$ = tooltipElement ? fromEvent(tooltipElement, 'mouseenter') : EMPTY;
                 const mouseLeaveTrigger$ = triggerElement ? fromEvent(triggerElement, 'mouseleave') : EMPTY;
+                const mouseLeaveTooltip$ = tooltipElement ? fromEvent(tooltipElement, 'mouseleave') : EMPTY;
                 const set$ = mouseEnterTooltip$.pipe(
                     mergeWith(mouseEnterTrigger$),
                     map(() => false)
