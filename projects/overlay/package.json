@@ -34,7 +34,7 @@
         "@angular/core": ">= 14",
         "@angular/cdk": ">= 14",
         "rxjs": ">= 7.0.0",
-        "@hug/ngx-core": "1.1.10"
+        "@hug/ngx-core": "1.1.11"
     },
     "dependencies": {
         "tslib": "^2.6.3"

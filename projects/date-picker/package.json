@@ -32,7 +32,7 @@
     "peerDependencies": {
         "@angular/common": ">= 14",
         "@angular/core": ">= 14",
-        "@hug/ngx-core": "1.1.10",
+        "@hug/ngx-core": "1.1.11",
         "@hug/ngx-time-picker": "1.1.6"
     },
     "dependencies": {
