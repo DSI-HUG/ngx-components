@@ -1,3 +1,15 @@
+## 1.1.7 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-search-container:** remove module ([938de48](https://github.com/DSI-HUG/ngx-components/commit/938de48))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.6 (2024-07-24)
 
 
