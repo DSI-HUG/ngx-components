@@ -1,10 +1,14 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, EventEmitter, inject, Input, NgZone, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxDestroy, NgxMediaService } from '@hug/ngx-core';
 import { BehaviorSubject, distinctUntilChanged, first, Observable, shareReplay, switchMap, takeUntil, tap } from 'rxjs';
 
 @Directive({
-    selector: '[ngx-search-input]'
+    selector: '[ngx-search-input]',
+    standalone: true
 })
 export class NgxSearchInputDirective {
     public ngControl = inject(NgControl);
@@ -25,7 +29,14 @@ export class NgxSearchInputDirective {
     templateUrl: './search-container.component.html',
     styleUrls: ['./search-container.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        AsyncPipe,
+        NgIf,
+        MatIconModule,
+        MatTooltipModule
+    ]
 })
 export class NgxSearchContainerComponent extends NgxDestroy implements AfterContentInit {
 
