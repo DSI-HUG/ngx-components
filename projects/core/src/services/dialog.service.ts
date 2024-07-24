@@ -15,7 +15,7 @@ export abstract class NgxDialogService<ReturnType, DataType> {
         matDialogConfig?: MatDialogConfig<DataType>
     ) {
         this.dialogResponse$ = this.openDialogSub$.pipe(
-            throttleTime(10),
+            throttleTime(11),
             take(1),
             switchMap(dialogConfig => this.lazyLoaderService.loadModule$(this.getModule(), dialogConfig.injector).pipe(
                 switchMap(moduleInfos => {
