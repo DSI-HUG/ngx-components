@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxTooltipComponentInterface } from '@hug/ngx-tooltip';
 import { NgxUserCard } from '@hug/ngx-user-card';
@@ -9,8 +9,6 @@ import { NgxUserCard } from '@hug/ngx-user-card';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxUserTooltipComponent implements NgxTooltipComponentInterface {
-    public constructor(
-        public elementRef: ElementRef<HTMLElement>,
-        @Inject(MAT_DIALOG_DATA) protected user: NgxUserCard
-    ) { }
+    public elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+    protected user = inject<NgxUserCard>(MAT_DIALOG_DATA);
 }
