@@ -1,3 +1,15 @@
+## 1.1.7 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-list-loader:** update patch version ([a4ffd7e](https://github.com/DSI-HUG/ngx-components/commit/a4ffd7e))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.6 (2024-07-23)
 
 

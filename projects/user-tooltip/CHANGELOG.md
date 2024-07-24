@@ -1,3 +1,25 @@
+## 1.1.6 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-user-tooltip:** use inject ([ede3f4d](https://github.com/DSI-HUG/ngx-components/commit/ede3f4d))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.11 ([bda1d8c](https://github.com/DSI-HUG/ngx-components/commit/bda1d8c))
+
+- **@hug/ngx-user-card:** upgrade to v1.1.6 ([7aac9d3](https://github.com/DSI-HUG/ngx-components/commit/7aac9d3))
+
+- **@hug/ngx-tooltip:** upgrade to v1.1.8 ([3a48832](https://github.com/DSI-HUG/ngx-components/commit/3a48832))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.5 (2024-07-23)
 
 

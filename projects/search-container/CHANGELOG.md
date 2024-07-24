@@ -1,3 +1,21 @@
+## 1.1.6 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-search-container:** update patch version ([bfacbcb](https://github.com/DSI-HUG/ngx-components/commit/bfacbcb))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.11 ([bda1d8c](https://github.com/DSI-HUG/ngx-components/commit/bda1d8c))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.5 (2024-07-23)
 
 

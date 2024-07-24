@@ -1,3 +1,23 @@
+## 1.1.8 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-numeric-stepper:** update patch version ([8355ec4](https://github.com/DSI-HUG/ngx-components/commit/8355ec4))
+
+- **ngx-numeric-stepper:** update patch version ([dd12853](https://github.com/DSI-HUG/ngx-components/commit/dd12853))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.11 ([bda1d8c](https://github.com/DSI-HUG/ngx-components/commit/bda1d8c))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.7 (2024-07-23)
 
 
