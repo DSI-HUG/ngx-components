@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, ViewEn
 import { NgxDestroy } from '@hug/ngx-core';
 import { catchError, EMPTY, Subject, switchMap, takeUntil, throttleTime } from 'rxjs';
 
-import { Status, StatusAction, StatusType } from './status.model';
 import { NgxStatusDetailDialogService } from './status-detail/status-detail-dialog.service';
+import { NgxStatus, NgxStatusAction, NgxStatusType } from './status.model';
 
 @Component({
     selector: 'ngx-status',
@@ -14,12 +14,12 @@ import { NgxStatusDetailDialogService } from './status-detail/status-detail-dial
 })
 export class NgxStatusComponent extends NgxDestroy {
 
-    public get status(): Status | undefined {
+    public get status(): NgxStatus | undefined {
         return this._status;
     }
 
     @Input()
-    public set status(value: Status | undefined) {
+    public set status(value: NgxStatus | undefined) {
         this._status = value;
         this.statusIcon = this.getStatusIcon(value?.type);
     }
@@ -28,11 +28,11 @@ export class NgxStatusComponent extends NgxDestroy {
 
     protected statusIcon: string | undefined;
 
-    protected readonly displayDetailedStatus$ = new Subject<Status>();
+    protected readonly displayDetailedStatus$ = new Subject<NgxStatus>();
 
     private statusDetailDialogService = inject(NgxStatusDetailDialogService);
 
-    private _status?: Status;
+    private _status?: NgxStatus;
 
     public constructor() {
         super();
@@ -49,7 +49,7 @@ export class NgxStatusComponent extends NgxDestroy {
         ).subscribe();
     }
 
-    public executeAction(action: StatusAction | undefined): void {
+    public executeAction(action: NgxStatusAction | undefined): void {
         if (!action?.callback || typeof action.callback !== 'function') {
             return;
         }
@@ -59,7 +59,7 @@ export class NgxStatusComponent extends NgxDestroy {
         }
     }
 
-    private getStatusIcon(statusType: StatusType | undefined): string {
+    private getStatusIcon(statusType: NgxStatusType | undefined): string {
         switch (statusType) {
             case 'success':
                 return 'check';

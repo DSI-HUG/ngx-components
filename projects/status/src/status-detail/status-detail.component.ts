@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MessageBoxType } from '@hug/ngx-message-box';
+import { NgxMessageBoxType } from '@hug/ngx-message-box';
 
-import { Status } from '../status.model';
+import { NgxStatus } from '../status.model';
 
 @Component({
     selector: 'ngx-status-detail',
@@ -13,11 +13,11 @@ import { Status } from '../status.model';
 })
 export class NgxStatusDetailComponent {
     protected fullTextError: string;
-    protected messageBoxType: MessageBoxType;
+    protected messageBoxType: NgxMessageBoxType;
 
     public constructor(
         protected dialogRef: MatDialogRef<NgxStatusDetailComponent, void>,
-        @Inject(MAT_DIALOG_DATA) protected status: Status
+        @Inject(MAT_DIALOG_DATA) protected status: NgxStatus
     ) {
         this.fullTextError = `Error Date: ${(status.date ?? new Date()).toUTCString()}\n${status.technicalText || ''}`;
 

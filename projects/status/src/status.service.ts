@@ -3,7 +3,7 @@ import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Inject, Inje
 import { NgxDestroy, NgxLazyLoaderService } from '@hug/ngx-core';
 import { mergeWith, switchMap, take, takeUntil, tap, timer } from 'rxjs';
 
-import { Status, StatusAction } from './status.model';
+import { NgxStatus, NgxStatusAction } from './status.model';
 
 
 const durationLong = 30_000;
@@ -33,32 +33,32 @@ export class NgxStatusService extends NgxDestroy {
     /**
      * Display an information message to the screen.
      */
-    public info(text: string, title = '', duration?: number, actions?: readonly StatusAction[]): void {
+    public info(text: string, title = '', duration?: number, actions?: readonly NgxStatusAction[]): void {
         this.showStatus({ type: 'info', title, text, duration, actions });
     }
 
     /**
      * Display an information message to the screen.
      */
-    public success(text: string, title = '', duration?: number, actions?: readonly StatusAction[]): void {
+    public success(text: string, title = '', duration?: number, actions?: readonly NgxStatusAction[]): void {
         this.showStatus({ type: 'success', title, text, duration, actions });
     }
 
     /**
      * Display a warning message to the screen.
      */
-    public warning(text: string, title = 'Attention', technicalText?: string, duration?: number, actions?: readonly StatusAction[]): void {
+    public warning(text: string, title = 'Attention', technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
         this.showStatus({ type: 'warn', title, text, duration, technicalText, actions });
     }
 
     /**
      * Display an error message to the screen and send it to HugLog.
      */
-    public error(text: string, title = 'Erreur', technicalText?: string, duration?: number, actions?: readonly StatusAction[]): void {
+    public error(text: string, title = 'Erreur', technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
         this.showStatus({ type: 'danger', title, text, duration, technicalText, actions });
     }
 
-    public showStatus(status: Status): void {
+    public showStatus(status: NgxStatus): void {
         this.lazyLoaderService.loadModule$(
             import('./status.module').then(m => m.NgxStatusModule)
         ).pipe(
