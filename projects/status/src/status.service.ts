@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Inject, Injectable, Injector } from '@angular/core';
+import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Injectable, Injector, inject } from '@angular/core';
 import { NgxDestroy, NgxLazyLoaderService } from '@hug/ngx-core';
 import { mergeWith, switchMap, take, takeUntil, tap, timer } from 'rxjs';
 
@@ -21,14 +21,10 @@ const durationShort = 8_000;
 })
 export class NgxStatusService extends NgxDestroy {
 
-    public constructor(
-        @Inject(DOCUMENT) private document: Document,
-        private lazyLoaderService: NgxLazyLoaderService,
-        private injector: Injector,
-        private resolver: ComponentFactoryResolver
-    ) {
-        super();
-    }
+    private document = inject<Document>(DOCUMENT);
+    private lazyLoaderService = inject(NgxLazyLoaderService);
+    private injector = inject(Injector);
+    private resolver = inject(ComponentFactoryResolver);
 
     /**
      * Display an information message to the screen.
