@@ -1,6 +1,6 @@
 export type KeyCodes = 'Backspace'
-| 'Tab'
 | 'Enter'
+| 'Tab'
 | 'Shift'
 | 'Ctrl'
 | 'Alt'
