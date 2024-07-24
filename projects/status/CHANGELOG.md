@@ -1,3 +1,15 @@
+## 1.1.8 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-status:** use inject ([7eb4ae3](https://github.com/DSI-HUG/ngx-components/commit/7eb4ae3))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.7 (2024-07-24)
 
 
