@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-search-container",
-    "version": "1.1.7",
+    "version": "1.1.8",
     "description": "HUG Angular - search-container component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
