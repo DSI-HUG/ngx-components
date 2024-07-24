@@ -122,8 +122,8 @@
     }
 
     ngx-numeric-stepper {
-        position: relative;
         z-index: 10002;
+        position: relative;
 
         .arrow,
         .shadow {
