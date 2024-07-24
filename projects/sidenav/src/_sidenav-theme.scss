@@ -20,8 +20,8 @@
 
         .mat-sidenav {
             .header {
-                border-bottom: 1px solid mat.get-color-from-palette($foreground, divider);
                 background: mat.get-color-from-palette($background, background);
+                border-bottom: 1px solid mat.get-color-from-palette($foreground, divider);
             }
 
             .sidenav-menu {
