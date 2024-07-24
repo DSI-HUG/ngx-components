@@ -1,8 +1,8 @@
 ngx-time-picker {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
     justify-content: center;
+    align-items: baseline;
 
     &:not([inform]) .mat-form-field-appearance-outline {
         .mat-form-field-wrapper {
