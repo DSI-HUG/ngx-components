@@ -3,9 +3,9 @@ ngx-layout {
     flex-direction: column;
     position: absolute;
     top: 0;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
 
     &.no-left.no-right .main-content {
         padding: 0;
