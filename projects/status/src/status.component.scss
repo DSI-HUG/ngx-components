@@ -1,5 +1,6 @@
 ngx-status {
     .ngx-snackbar {
+        display: flex;
         border: 0;
         border-radius: 3px;
         line-height: 20px;
@@ -8,7 +9,6 @@ ngx-status {
         padding: 1rem;
         width: 30vw;
         z-index: 1010;
-        display: flex;
         align-items: center;
         gap: 1rem;
 
