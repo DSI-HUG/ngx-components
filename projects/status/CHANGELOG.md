@@ -1,3 +1,15 @@
+## 1.1.7 (2024-07-24)
+
+
+### 🐛 Fixes
+
+- **ngx-status:** update patch version ([d9c3283](https://github.com/DSI-HUG/ngx-components/commit/d9c3283))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.6 (2024-07-24)
 
 
