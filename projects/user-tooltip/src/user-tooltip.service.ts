@@ -13,9 +13,9 @@ export class NgxUserTooltipService extends NgxTooltipService<NgxUserCard> {
         dialog: MatDialog
     ) {
         super(lazyLoaderService, dialog, {
-            panelClass: 'no-padding-dialog',
             width: 'auto',
-            minWidth: '16px'
+            minWidth: '16px',
+            panelClass: 'no-padding-dialog'
         } as MatDialogConfig<NgxUserCard>);
     }
 
