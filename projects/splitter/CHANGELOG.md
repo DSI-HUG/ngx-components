@@ -1,3 +1,21 @@
+## 1.1.11 (2024-07-25)
+
+
+### 🐛 Fixes
+
+- **ngx-splitter:** update patch version ([c9c027d](https://github.com/DSI-HUG/ngx-components/commit/c9c027d))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.14 ([12ee5d4](https://github.com/DSI-HUG/ngx-components/commit/12ee5d4))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.10 (2024-07-25)
 
 

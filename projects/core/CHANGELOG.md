@@ -1,3 +1,15 @@
+## 1.1.14 (2024-07-25)
+
+
+### 🐛 Fixes
+
+- **ngx-core:** update patch version ([67e4749](https://github.com/DSI-HUG/ngx-components/commit/67e4749))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.13 (2024-07-25)
 
 

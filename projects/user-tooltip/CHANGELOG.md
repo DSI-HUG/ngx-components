@@ -1,3 +1,25 @@
+## 1.1.9 (2024-07-25)
+
+
+### 🐛 Fixes
+
+- **ngx-user-tooltip:** update patch version ([7f4e0c1](https://github.com/DSI-HUG/ngx-components/commit/7f4e0c1))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-user-card:** upgrade to v1.1.8 ([b28951b](https://github.com/DSI-HUG/ngx-components/commit/b28951b))
+
+- **@hug/ngx-tooltip:** upgrade to v1.1.11 ([9a9d671](https://github.com/DSI-HUG/ngx-components/commit/9a9d671))
+
+- **@hug/ngx-core:** upgrade to v1.1.14 ([12ee5d4](https://github.com/DSI-HUG/ngx-components/commit/12ee5d4))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.1.8 (2024-07-25)
 
 
