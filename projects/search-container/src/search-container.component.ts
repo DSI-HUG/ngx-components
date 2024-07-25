@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgIf, NgTemplateOutlet } from '@angular/common';
 import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, EventEmitter, inject, Input, NgZone, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -34,6 +34,7 @@ export class NgxSearchInputDirective {
     imports: [
         AsyncPipe,
         NgIf,
+        NgTemplateOutlet,
         MatIconModule,
         MatTooltipModule
     ]
@@ -45,6 +46,12 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
 
     @Input()
     public clearTooltip = 'Effacer la recherche';
+
+    @Input()
+    public openSearchTooltip = 'Ouvrir la recherche';
+
+    @Input()
+    public closeSearchTooltip = 'Quitter la recherche';
 
     @ContentChild('mobileSearch')
     public mobileSearch: TemplateRef<unknown> | undefined;
@@ -58,10 +65,10 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
     @ContentChild(NgxSearchInputDirective)
     public set searchInput(searchInput: NgxSearchInputDirective) {
         if (!searchInput) {
-            throw new Error('You need to add the attribute ngx-search-input to the SearchContainerComponent');
+            throw new Error('You need to add the attribute ngx-search-input to the NgxSearchContainerComponent');
         }
         if (!searchInput.ngControl) {
-            throw new Error('You need to add the attribute ngModel to the SearchContainerComponent');
+            throw new Error('You need to add the attribute ngModel to the NgxSearchContainerComponent');
         }
         this._searchInput = searchInput;
     }
