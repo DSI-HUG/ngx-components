@@ -58,7 +58,7 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
     @ContentChild(NgxSearchInputDirective)
     public set searchInput(searchInput: NgxSearchInputDirective) {
         if (!searchInput) {
-            throw new Error('You need to add the attribute searchInput to the SearchContainerComponent');
+            throw new Error('You need to add the attribute ngx-search-input to the SearchContainerComponent');
         }
         if (!searchInput.ngControl) {
             throw new Error('You need to add the attribute ngModel to the SearchContainerComponent');
