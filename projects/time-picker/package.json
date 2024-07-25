@@ -37,8 +37,8 @@
         "@angular/material": ">= 14",
         "rxjs": ">= 7.0.0",
         "date-fns": "^2.30.0",
-        "@hug/ngx-core": "1.1.13",
-        "@hug/ngx-numeric-stepper": "1.1.9"
+        "@hug/ngx-core": "^1.1.13",
+        "@hug/ngx-numeric-stepper": "^1.1.9"
     },
     "dependencies": {
         "tslib": "^2.6.3"
