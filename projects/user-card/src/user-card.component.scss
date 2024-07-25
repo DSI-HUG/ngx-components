@@ -9,8 +9,8 @@ ngx-user-card {
         display: flex;
         flex-direction: row;
         align-items: center;
-        font-weight: 400;
         font-size: 12px;
+        font-weight: 400;
 
         &.expandable {
             cursor: pointer;
