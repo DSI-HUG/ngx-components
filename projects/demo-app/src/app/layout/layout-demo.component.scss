@@ -1,0 +1,18 @@
+@use '@angular/material' as mat;
+
+:host {
+    ngx-layout {
+        .content-container {
+            display: flex;
+            flex: 1 1 auto;
+            padding: 1rem;
+            background: mat.get-color-from-palette(mat.$green-palette, 100);
+        }
+
+        .layout-right-container {
+            display: flex;
+            flex: 1 1 auto;
+            background: mat.get-color-from-palette(mat.$red-palette, 100);
+        }
+    }
+}
