@@ -1,3 +1,15 @@
+## 1.1.7 (2024-07-25)
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.1.13 ([15e11d7](https://github.com/DSI-HUG/ngx-components/commit/15e11d7))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+
 ## 1.1.6 (2024-07-24)
 
 

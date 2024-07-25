@@ -1,3 +1,17 @@
+## 1.1.11 (2024-07-25)
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-snackbar:** upgrade to v1.1.9 ([ea28818](https://github.com/DSI-HUG/ngx-components/commit/ea28818))
+
+- **@hug/ngx-core:** upgrade to v1.1.13 ([15e11d7](https://github.com/DSI-HUG/ngx-components/commit/15e11d7))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+
 ## 1.1.10 (2024-07-24)
 
 
