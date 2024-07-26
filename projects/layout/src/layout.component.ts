@@ -56,8 +56,6 @@ export class NgxLayoutComponent {
     protected mediaService = inject(NgxMediaService);
     protected sidenavService = inject(NgxSidenavService);
 
-    private _withEditorToolbar = true;
-
     public get layoutToolbar(): TemplateRef<unknown> | undefined {
         return this.layoutToolbarExternal ?? this.layoutToolbarContent;
     }
@@ -80,15 +78,6 @@ export class NgxLayoutComponent {
         return value;
     }
 
-    @Input()
-    public set withEditorToolbar(value: BooleanInput) {
-        this._withEditorToolbar = coerceBooleanProperty(value);
-    }
-
-    public get withEditorToolbar(): BooleanInput {
-        return this._withEditorToolbar;
-    }
-
     private _withSidenav = false;
 
     @Input()
@@ -101,6 +90,7 @@ export class NgxLayoutComponent {
     }
 
     private _keepFilterButtonDisplayed = true;
+
     @Input()
     public set keepFilterButtonDisplayed(value: BooleanInput) {
         this._keepFilterButtonDisplayed = coerceBooleanProperty(value);
@@ -111,6 +101,7 @@ export class NgxLayoutComponent {
     }
 
     private _withCloseButton = false;
+
     @Input()
     public set withCloseButton(value: BooleanInput) {
         this._withCloseButton = coerceBooleanProperty(value);
@@ -129,17 +120,6 @@ export class NgxLayoutComponent {
 
     public get withBackButton(): BooleanInput {
         return this._withBackButton;
-    }
-
-    private _displayEditorToolbar = true;
-
-    @Input()
-    public set displayEditorToolbar(value: BooleanInput) {
-        this._displayEditorToolbar = coerceBooleanProperty(value);
-    }
-
-    public get displayEditorToolbar(): BooleanInput {
-        return this._displayEditorToolbar;
     }
 
     public closeSideFilter(): void {
