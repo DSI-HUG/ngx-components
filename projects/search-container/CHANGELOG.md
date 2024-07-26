@@ -1,3 +1,18 @@
+## 1.1.11 (2024-07-26)
+
+
+### 🐛 Fixes
+
+- error message ([e174fe9](https://github.com/DSI-HUG/ngx-components/commit/e174fe9))
+
+- **ngx-search-container:** add NgTemplateOutlet import + add tooltip and style to icons ([46ae279](https://github.com/DSI-HUG/ngx-components/commit/46ae279))
+
+
+### ❤️  Thank You
+
+- damien-guillermet
+- Serge
+
 ## 1.1.10 (2024-07-25)
 
 

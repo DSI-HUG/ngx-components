@@ -1,3 +1,15 @@
+## 1.1.11 (2024-07-26)
+
+
+### 🐛 Fixes
+
+- **ngx-layout:** remove deprecated/unused input options ([73defb9](https://github.com/DSI-HUG/ngx-components/commit/73defb9))
+
+
+### ❤️  Thank You
+
+- damien-guillermet
+
 ## 1.1.10 (2024-07-25)
 
 
