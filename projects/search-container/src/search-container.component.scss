@@ -50,7 +50,7 @@ ngx-search-container {
         &.active {
             display: flex;
             align-items: center;
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100vw;
@@ -60,6 +60,11 @@ ngx-search-container {
 
         .mat-icon {
             padding: 0.5rem;
+        }
+
+        .icon-close-search,
+        .icon-open-search {
+            cursor: pointer;
         }
     }
 }
