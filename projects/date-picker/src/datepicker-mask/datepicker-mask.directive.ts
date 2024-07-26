@@ -19,7 +19,8 @@ import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.s
             useExisting: forwardRef(() => NgxDatepickerMaskValidatorService),
             multi: true
         }
-    ]
+    ],
+    standalone: true
 })
 export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
     // eslint-disable-next-line @angular-eslint/no-input-rename

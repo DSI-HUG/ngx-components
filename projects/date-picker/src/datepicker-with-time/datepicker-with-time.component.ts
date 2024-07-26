@@ -2,7 +2,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
-import { MatDatepicker, MatDatepickerInput, MatDateSelectionModel } from '@angular/material/datepicker';
+import { MatDatepicker, MatDatepickerInput, MatDatepickerModule, MatDateSelectionModel } from '@angular/material/datepicker';
 import { NgxDestroy } from '@hug/ngx-core';
 import { NgxDateOrDuration, NgxTimePickerComponent } from '@hug/ngx-time-picker';
 import { cloneDeep } from 'lodash-es';
@@ -20,7 +20,8 @@ import { DATE_TIME_ADAPTER, DateTimeAdapter } from '../date-adapter/date-time-ad
     standalone: true,
     imports: [
         MatButtonModule,
-        NgxTimePickerComponent
+        NgxTimePickerComponent,
+        MatDatepickerModule
     ]
 })
 export class NgxDatepickerWithTimeComponent extends NgxDestroy implements AfterViewInit, OnDestroy {
