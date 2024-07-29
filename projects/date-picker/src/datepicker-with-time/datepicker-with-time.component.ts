@@ -1,8 +1,8 @@
 import { TemplatePortal } from '@angular/cdk/portal';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { DateAdapter } from '@angular/material/core';
 import { MatDatepicker, MatDatepickerInput, MatDatepickerModule, MatDateSelectionModel } from '@angular/material/datepicker';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { NgxDestroy } from '@hug/ngx-core';
 import { NgxDateOrDuration, NgxTimePickerComponent } from '@hug/ngx-time-picker';
 import { cloneDeep } from 'lodash-es';

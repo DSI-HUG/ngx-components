@@ -1,9 +1,9 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
-import { MatIconModule } from '@angular/material/icon';
 
 import { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
 

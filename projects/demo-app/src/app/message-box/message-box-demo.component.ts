@@ -1,8 +1,8 @@
 import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
-import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxDestroy } from '@hug/ngx-core';
