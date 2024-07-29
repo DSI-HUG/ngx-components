@@ -1,0 +1,36 @@
+<mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)="tabIndex = $event.index">
+    <mat-tab label="API REFERENCE"></mat-tab>
+    <mat-tab label="EXAMPLES"></mat-tab>
+</mat-tab-group>
+
+<mat-card class="demo-card demo-basic" *ngIf="tabIndex === 0">
+    <!-- <markdown [url]="'https://raw.githubusercontent.com/DSI-HUG/dejajs-components/develop/projects/deja-js/component/ngx-time-picker/readme.md'"></markdown> -->
+</mat-card>
+
+<div *ngIf="tabIndex === 1">
+    <mat-card class="demo-card">
+        <mat-toolbar color="primary">Default List loader</mat-toolbar>
+        <mat-card-content>
+            <div class="flex-layout">
+                <ngx-list-loader></ngx-list-loader>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="demo-card">
+        <mat-toolbar color="primary">List loader with custom label</mat-toolbar>
+        <mat-card-content>
+            <div class="flex-layout">
+                <div>
+                    <mat-form-field>
+                        <mat-label>Label</mat-label>
+                        <input matInput type="text" [ngModel]="label" (change)="onInput1Change$.next($event)" #matLabel="matInput" />
+                    </mat-form-field>
+                </div>
+                <div>
+                    <ngx-list-loader [label]="label"></ngx-list-loader>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
