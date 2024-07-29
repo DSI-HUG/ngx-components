@@ -7,7 +7,7 @@
         .cdk-overlay-pane {
             &.warning {
                 ngx-message-box-dialog {
-                    .mat-toolbar {
+                    mat-toolbar {
                         background-color: mat.get-color-from-palette(mat.$orange-palette, 500);
                     }
 
@@ -19,7 +19,7 @@
 
             &.error {
                 ngx-message-box-dialog {
-                    .mat-toolbar {
+                    mat-toolbar {
                         background-color: mat.get-color-from-palette($warn);
                     }
 

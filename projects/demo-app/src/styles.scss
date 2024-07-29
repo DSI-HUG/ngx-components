@@ -74,3 +74,11 @@ body {
         flex-direction: row;
     }
 }
+
+.filled-icon {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 700,
+        'GRAD' 0,
+        'opsz' 24;
+}

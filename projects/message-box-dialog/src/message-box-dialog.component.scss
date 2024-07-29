@@ -7,4 +7,17 @@ ngx-message-box-dialog {
         max-height: 80vh;
         margin: 1rem 1rem 0.5rem 1rem;
     }
+    .dialog-toolbar {
+        > .toolbar-spacer {
+            flex: 1 1 auto;
+        }
+        > button {
+            > mat-icon.mat-icon {
+                font-size: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
 }

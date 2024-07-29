@@ -9,57 +9,57 @@
     <mat-sidenav-container class="demo-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" opened="true">
             <mat-nav-list>
-                <mat-list-item title="Date Picker" routerLink="/date-picker" routerLinkActive="active">
-                    <mat-icon mat-list-icon>date_range</mat-icon>
-                    <span mat-line>Date Picker</span>
+                <mat-list-item title="Date Picker" routerLink="/date-picker" [routerLinkActive]="['filled-icon']">
+                    <mat-icon matListItemIcon>date_range</mat-icon>
+                    <span matListItemLine>Date Picker</span>
                 </mat-list-item>
             </mat-nav-list>
             <mat-nav-list>
-                <mat-list-item title="Message Box" routerLink="/message-box" routerLinkActive="active">
-                    <mat-icon mat-list-icon>message</mat-icon>
-                    <span mat-line>Message Box</span>
+                <mat-list-item title="Message Box" routerLink="/message-box" [routerLinkActive]="['filled-icon']">
+                    <mat-icon matListItemIcon>message</mat-icon>
+                    <span matListItemLine>Message Box</span>
                 </mat-list-item>
             </mat-nav-list>
             <mat-nav-list>
-                <mat-list-item title="Numeric Stepper" routerLink="/numeric-stepper" routerLinkActive="active">
-                    <mat-icon mat-list-icon>filter_9_plus</mat-icon>
-                    <span mat-line>Numeric Stepper</span>
+                <mat-list-item title="Numeric Stepper" routerLink="/numeric-stepper" [routerLinkActive]="['filled-icon']">
+                    <mat-icon matListItemIcon>filter_9_plus</mat-icon>
+                    <span matListItemLine>Numeric Stepper</span>
                 </mat-list-item>
             </mat-nav-list>
             <mat-nav-list>
-                <mat-list-item title="Overlay" routerLink="/overlay" routerLinkActive="active">
-                    <mat-icon mat-list-icon>menu</mat-icon>
-                    <span mat-line>Overlay</span>
+                <mat-list-item title="Overlay" routerLink="/overlay" [routerLinkActive]="['filled-icon']">
+                    <mat-icon matListItemIcon>menu</mat-icon>
+                    <span matListItemLine>Overlay</span>
                 </mat-list-item>
             </mat-nav-list>
             <mat-nav-list>
-                <mat-list-item title="Snackbar" routerLink="/snackbar" routerLinkActive="active">
-                    <mat-icon mat-list-icon>home</mat-icon>
-                    <span mat-line>Snackbar</span>
+                <mat-list-item title="Snackbar" routerLink="/snackbar" [routerLinkActive]="['filled-icon']">
+                    <mat-icon matListItemIcon>home</mat-icon>
+                    <span matListItemLine>Snackbar</span>
                 </mat-list-item>
             </mat-nav-list>
             <mat-nav-list>
-                <mat-list-item title="Splitter" routerLink="/splitter" routerLinkActive="active">
-                    <mat-icon mat-list-icon>call_split</mat-icon>
-                    <span mat-line>Splitter</span>
+                <mat-list-item title="Splitter" routerLink="/splitter" [routerLinkActive]="['filled-icon']">
+                    <mat-icon matListItemIcon>call_split</mat-icon>
+                    <span matListItemLine>Splitter</span>
                 </mat-list-item>
             </mat-nav-list>
             <mat-nav-list>
-                <mat-list-item title="Time Picker" routerLink="/time-picker" routerLinkActive="active">
-                    <mat-icon mat-list-icon>access_time</mat-icon>
-                    <span mat-line>Time Picker</span>
+                <mat-list-item title="Time Picker" routerLink="/time-picker" [routerLinkActive]="['filled-icon']">
+                    <mat-icon matListItemIcon>access_time</mat-icon>
+                    <span matListItemLine>Time Picker</span>
                 </mat-list-item>
             </mat-nav-list>
             <mat-nav-list>
-                <mat-list-item title="Layout" routerLink="/layout" routerLinkActive="active">
-                    <mat-icon mat-list-icon>dashboard</mat-icon>
-                    <span mat-line>Layout</span>
+                <mat-list-item title="Layout" routerLink="/layout" [routerLinkActive]="['filled-icon']">
+                    <mat-icon matListItemIcon>dashboard</mat-icon>
+                    <span matListItemLine>Layout</span>
                 </mat-list-item>
             </mat-nav-list>
             <mat-nav-list>
-                <mat-list-item title="List Loader" routerLink="/list-loader" routerLinkActive="active">
-                    <mat-icon mat-list-icon>list</mat-icon>
-                    <span mat-line>List Loader</span>
+                <mat-list-item title="List Loader" routerLink="/list-loader" [routerLinkActive]="['filled-icon']">
+                    <mat-icon matListItemIcon>list</mat-icon>
+                    <span matListItemLine>List Loader</span>
                 </mat-list-item>
             </mat-nav-list>
         </mat-sidenav>

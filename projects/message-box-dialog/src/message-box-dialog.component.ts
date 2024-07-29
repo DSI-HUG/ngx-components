@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, Inject, ViewEncapsulation } from '@angular/core';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 
 import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData } from './message-box-dialog.model';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
     selector: 'ngx-message-box-dialog',
@@ -11,9 +11,8 @@ import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData } from './message-b
     encapsulation: ViewEncapsulation.None
 })
 export class NgxMessageBoxDialogComponent {
-    public constructor(
-        @Inject(MAT_DIALOG_DATA) protected dialogParams: NgxMessageBoxDialogData
-    ) { }
+
+    protected dialogParams = inject<NgxMessageBoxDialogData>(MAT_DIALOG_DATA);
 
     protected hasControl(key: 'OK' | 'CANCEL' | 'IGNORE' | 'RETRY' | 'YES' | 'NO' | 'CONTINUE'): boolean {
         // eslint-disable-next-line no-bitwise
