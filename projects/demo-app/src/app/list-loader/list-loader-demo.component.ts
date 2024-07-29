@@ -52,7 +52,7 @@ export const myFormats = {
 export class ListLoaderDemoComponent extends NgxDestroy {
     protected tabIndex = 1;
 
-    protected label = "MyCustomLabel";
+    protected label = 'MyCustomLabel';
 
     protected onInput1Change$ = new Subject<Event>();
     private changeDetectorRef = inject(ChangeDetectorRef);
