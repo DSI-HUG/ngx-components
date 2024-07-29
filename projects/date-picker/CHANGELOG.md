@@ -1,3 +1,15 @@
+## 1.0.8 (2024-07-26)
+
+
+### 🐛 Fixes
+
+- **ngx-date-picker:** fix module import ([13cc1d4](https://github.com/DSI-HUG/ngx-components/commit/13cc1d4))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.0.7 (2024-07-25)
 
 
