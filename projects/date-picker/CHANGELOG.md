@@ -1,3 +1,15 @@
+## 1.0.9 (2024-07-29)
+
+
+### 🐛 Fixes
+
+- **ngx-date-picker:** fix peer dep ([d120912](https://github.com/DSI-HUG/ngx-components/commit/d120912))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.0.8 (2024-07-26)
 
 
