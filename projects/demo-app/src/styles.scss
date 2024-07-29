@@ -63,3 +63,14 @@ body {
         }
     }
 }
+
+.demo-card-container {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+    &.row {
+        flex-direction: row;
+    }
+}

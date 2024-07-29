@@ -6,17 +6,13 @@ app-list-loader-demo {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 10px;
 
         > div {
             flex: 1 1 auto;
             display: flex;
             flex-direction: column;
             gap: 1rem;
-
-            .actions {
-                display: flex;
-                gap: 1rem;
-            }
         }
     }
 }
