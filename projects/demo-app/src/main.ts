@@ -1,6 +1,7 @@
 import { Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER } from '@angular/cdk/dialog';
 import { Overlay } from '@angular/cdk/overlay';
 import { enableProdMode } from '@angular/core';
+import { MAT_DIALOG_SCROLL_STRATEGY_PROVIDER, MatDialog } from '@angular/material/dialog';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
@@ -8,7 +9,6 @@ import { PreloadAllModules, provideRouter, withPreloading } from '@angular/route
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
 import { environment } from './environments/environment';
-import { MatDialog, MAT_DIALOG_SCROLL_STRATEGY_PROVIDER } from '@angular/material/dialog';
 
 if (environment.production) {
     enableProdMode();

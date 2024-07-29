@@ -1,8 +1,8 @@
 import { Type } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Observable, ReplaySubject, switchMap, take, throttleTime } from 'rxjs';
 
 import { NgxAbstractLazyModule, NgxLazyLoaderService } from './lazy-loader.service';
-import { MatDialogConfig, MatDialogRef, MatDialog } from '@angular/material/dialog';
 
 export abstract class NgxDialogService<ReturnType, DataType> {
     protected openDialogSub$ = new ReplaySubject<MatDialogConfig<DataType>>(1);
