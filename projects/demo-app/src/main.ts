@@ -1,7 +1,7 @@
 import { Dialog, DIALOG_SCROLL_STRATEGY_PROVIDER } from '@angular/cdk/dialog';
 import { Overlay } from '@angular/cdk/overlay';
 import { enableProdMode } from '@angular/core';
-import { MAT_DIALOG_SCROLL_STRATEGY_PROVIDER, MatDialog } from '@angular/material/dialog';
+import { MAT_LEGACY_DIALOG_SCROLL_STRATEGY_PROVIDER as MAT_DIALOG_SCROLL_STRATEGY_PROVIDER, MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';

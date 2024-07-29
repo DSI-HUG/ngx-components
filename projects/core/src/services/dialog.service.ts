@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { Observable, ReplaySubject, switchMap, take, throttleTime } from 'rxjs';
 
 import { NgxAbstractLazyModule, NgxLazyLoaderService } from './lazy-loader.service';

@@ -1,5 +1,5 @@
 import { Directive, ElementRef, inject, NgZone, OnInit } from '@angular/core';
-import { MatInput } from '@angular/material/input';
+import { MatLegacyInput as MatInput } from '@angular/material/legacy-input';
 import { debounceTime, fromEvent, mergeWith, of, startWith, takeUntil } from 'rxjs';
 
 import { NgxDestroy } from './destroy';
