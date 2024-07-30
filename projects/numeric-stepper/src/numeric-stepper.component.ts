@@ -2,9 +2,9 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyFormFieldControl as MatFormFieldControl, MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
+import { MatInputModule } from '@angular/material/input';
 import { filterMap, KeyCodes, NgxDestroy } from '@hug/ngx-core';
 import { combineLatestWith, debounceTime, delay, filter, fromEvent, map, mergeWith, ReplaySubject, shareReplay, startWith, Subject, switchMap, takeUntil, tap, timer, withLatestFrom } from 'rxjs';
 
@@ -99,35 +99,27 @@ export class NgxNumericStepperComponent extends NgxDestroy implements OnInit {
 
             if (this.layout === 'horizontal') {
                 const height = containerBounds?.height || formFieldBounds.height;
-                this.heightShadow = Math.min(48, height) + 2;
+                console.log(height)
+                this.heightShadow = Math.min(54, height) + 2;
                 this.topShadow = (containerBounds?.top ?? inputBounds.top + (inputBounds.height - this.heightShadow) / 2 - 5) - bounds.top;
                 this.leftDown = this.leftShadow = formFieldBounds.left - bounds.left - 28;
                 this.leftUp = formFieldBounds.right - bounds.left;
                 this.widthShadow = this.leftUp - this.leftDown + 28;
 
-                if (this.parentAppearance === 'LEGACY' || this.parentAppearance === 'STANDARD') {
-                    this.heightShadow -= 6;
-                } else if (this.parentAppearance === 'FILL') {
+                if (this.parentAppearance === 'FILL') {
                     this.heightShadow -= 2;
                 }
 
                 this.topUp = this.topDown = inputBounds.top + (inputBounds.height - this.arrowSize) / 2 - bounds.top;
 
             } else if (this.layout === 'horizontal-inlay') {
-                this.heightShadow = Math.min(48, containerBounds?.height || formFieldBounds.height) + 4;
+                this.heightShadow = Math.min(54, containerBounds?.height || formFieldBounds.height) + 4;
                 this.topShadow = containerBounds?.top ?? (inputBounds.top + (inputBounds.height - this.heightShadow) / 2 - 5) - bounds.top;
                 this.leftDown = this.leftShadow = formFieldBounds.left - bounds.left;
                 this.leftUp = formFieldBounds.right - bounds.left - 28;
                 this.widthShadow = this.leftUp - this.leftDown + 28;
 
-                if (this.parentAppearance === 'LEGACY' || this.parentAppearance === 'STANDARD') {
-                    const addedPadding = 6;
-                    this.widthShadow += addedPadding * 2;
-                    this.leftDown -= addedPadding;
-                    this.leftUp += addedPadding;
-                    this.heightShadow -= addedPadding;
-                    this.leftShadow -= addedPadding;
-                } else if (this.parentAppearance === 'FILL') {
+                if (this.parentAppearance === 'FILL') {
                     this.heightShadow -= 2;
                 }
 

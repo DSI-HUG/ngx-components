@@ -17,11 +17,12 @@
 
             .shadow {
                 background-color: mat.get-color-from-palette($background, card);
+                background-color: transparent;
             }
         }
 
         &:not(.disabled) {
-            &.mat-form-field-invalid {
+            &.mat-mdc-form-field-invalid {
                 ngx-numeric-stepper {
                     .arrow:not([disabled]) {
                         color: mat.get-color-from-palette($warn);
@@ -32,19 +33,40 @@
                     }
                 }
 
-                .mat-form-field-flex {
+                .mat-mdc-form-field-flex {
                     background-color: mat.get-color-from-palette($background);
                 }
             }
 
             &:hover {
-                .mat-form-field-flex {
+                .mdc-text-field--filled {
+                    overflow: visible;
                     background-color: transparent;
+
+                    .mat-mdcform-field-focus-overlay,
+                    .mat-mdc-form-field-focus-overlay,
+                    .mdc-line-ripple {
+                        transition: opacity ease-out;
+                        opacity: 0;
+                    }
+
+                    .mat-mdc-form-field-flex {
+                        background-color: transparent;
+
+                        .mat-mdc-form-field-infix {
+                            padding-top: 16px;
+                            padding-bottom: 16px;
+                        }
+                    }
+
+                    .shadow {
+                        background-color: rgba(245, 245, 245);
+                    }
                 }
             }
         }
 
-        &.mat-form-field-appearance-fill {
+        &.mat-mdc-form-field-appearance-fill {
             ngx-numeric-stepper {
                 .shadow::after {
                     background-color: rgba(0, 0, 0, 0.04);
