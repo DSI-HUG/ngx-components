@@ -1,8 +1,8 @@
 import { Injectable, Type } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NgxAbstractLazyModule, NgxDialogService, NgxLazyLoaderService } from '@hug/ngx-core';
 
 import { NgxStatus } from '../status.model';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Injectable({
     providedIn: 'root'
