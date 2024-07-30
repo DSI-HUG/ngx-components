@@ -10,19 +10,19 @@ app-splitter-demo {
         }
     }
 
-    .mat-tab-group {
+    .mat-mdc-tab-group {
         display: flex;
         height: 100%;
 
-        .mat-tab-body-wrapper {
+        .mat-mdc-tab-body-wrapper {
             flex: 1;
 
-            .mat-tab-body {
-                .mat-tab-body-content {
+            .mat-mdc-tab-body {
+                .mat-mdc-tab-body-content {
                     display: flex;
                     flex-direction: column;
 
-                    .mat-card {
+                    .mat-mdc-card {
                         flex: 1 1 100%;
                         overflow: hidden;
                         min-height: 300px;
@@ -32,16 +32,16 @@ app-splitter-demo {
                 &.fixed-height {
                     overflow: hidden;
 
-                    .mat-tab-body-content {
+                    .mat-mdc-tab-body-content {
                         overflow: hidden;
 
-                        .mat-card {
+                        .mat-mdc-card {
                             height: calc(100% - 10px);
                             margin: 0;
                             display: flex;
                             flex-direction: column;
 
-                            .mat-card-content {
+                            .mat-mdc-card-content {
                                 flex: 1;
 
                                 ngx-splitter {
