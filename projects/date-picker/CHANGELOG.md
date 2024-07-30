@@ -1,3 +1,15 @@
+## 1.0.10 (2024-07-30)
+
+
+### 🐛 Fixes
+
+- **ngx-date-picker:** update patch version ([e4ae931](https://github.com/DSI-HUG/ngx-components/commit/e4ae931))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.0.9 (2024-07-29)
 
 
