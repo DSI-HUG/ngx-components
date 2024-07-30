@@ -2,7 +2,7 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
+import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { filterMap, KeyCodes, NgxDestroy } from '@hug/ngx-core';
@@ -99,7 +99,7 @@ export class NgxNumericStepperComponent extends NgxDestroy implements OnInit {
 
             if (this.layout === 'horizontal') {
                 const height = containerBounds?.height || formFieldBounds.height;
-                console.log(height)
+                console.log(height);
                 this.heightShadow = Math.min(54, height) + 2;
                 this.topShadow = (containerBounds?.top ?? inputBounds.top + (inputBounds.height - this.heightShadow) / 2 - 5) - bounds.top;
                 this.leftDown = this.leftShadow = formFieldBounds.left - bounds.left - 28;
