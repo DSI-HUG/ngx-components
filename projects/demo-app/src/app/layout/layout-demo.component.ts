@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxLayoutComponent } from '@hug/ngx-layout';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from '@hug/ngx-search-container';
 import { NgxStatusService } from '@hug/ngx-status';
-import {MatChipsModule} from '@angular/material/chips';
 
 @Component({
     selector: 'app-layout-demo',
