@@ -30,7 +30,18 @@
 
     <!-- Right panel -->
     <ng-template #layoutRight>
-        <div class="layout-right-container">Layout right</div>
+        <div class="layout-right-container">
+            Layout right
+            <div filters-chip-list>
+                <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Color selection">
+                    <mat-chip-option>1</mat-chip-option>
+                    <mat-chip-option>2</mat-chip-option>
+                    <mat-chip-option>3</mat-chip-option>
+                    <mat-chip-option>4</mat-chip-option>
+                    <mat-chip-option>5</mat-chip-option>
+                </mat-chip-listbox>
+            </div>
+        </div>
     </ng-template>
 
     <!-- Info boxes panel -->

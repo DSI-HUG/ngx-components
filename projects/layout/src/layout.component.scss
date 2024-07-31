@@ -69,17 +69,14 @@ ngx-layout {
             }
 
             [filters-chip-list] {
-                .mat-chip-list-wrapper {
+                mat-chip-listbox {
                     margin: 0;
                     max-height: 20vh;
                     overflow-y: auto;
                 }
 
-                .mat-standard-chip {
+                .mat-mdc-chip {
                     position: relative;
-                }
-
-                .mat-standard-chip {
                     padding: 0.5rem;
                     margin: 0.1rem;
                     font-size: 0.75rem;
@@ -137,7 +134,7 @@ ngx-layout {
                 width: 100%;
             }
 
-            .mat-form-field-infix {
+            .mat-mdc-form-field-infix {
                 width: inherit;
             }
 
@@ -209,6 +206,10 @@ ngx-layout {
 
             .primary-action-container {
                 z-index: 20;
+
+                button {
+                    background-color: #009688;
+                }
             }
         }
     }

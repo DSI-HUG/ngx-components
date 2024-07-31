@@ -12,6 +12,7 @@
         .layout-right-container {
             display: flex;
             flex: 1 1 auto;
+            flex-direction: column;
             background: mat.get-color-from-palette(mat.$red-palette, 100);
         }
     }

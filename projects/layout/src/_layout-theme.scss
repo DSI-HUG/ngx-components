@@ -10,7 +10,7 @@
         background-color: mat.get-color-from-palette($primary, darker);
         color: mat.get-color-from-palette($primary, darker-contrast);
 
-        .mat-icon-button:not([disabled]) .mat-icon {
+        .mat-mdc-icon-button:not([disabled]) .mat-icon {
             color: mat.get-color-from-palette($primary, darker-contrast);
         }
 
@@ -18,7 +18,7 @@
             background-color: mat.get-color-from-palette($primary);
             color: mat.get-color-from-palette($primary, default-contrast);
 
-            .mat-icon-button:not([disabled]) .mat-icon {
+            .mat-mdc-icon-button:not([disabled]) .mat-icon {
                 color: mat.get-color-from-palette($primary, default-contrast);
             }
         }
@@ -46,12 +46,12 @@
                 }
 
                 [filters-chip-list] {
-                    .mat-standard-chip {
+                    .mat-mdc-chip {
                         background-color: mat.get-color-from-palette($accent);
                         color: mat.get-color-from-palette($background, background);
                     }
 
-                    .mat-standard-chip {
+                    .mat-mdc-chip {
                         &:not([disabled]) {
                             &:hover {
                                 background-color: mat.get-color-from-palette($accent, 700);
