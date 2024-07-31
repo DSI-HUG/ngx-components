@@ -12,11 +12,6 @@ import { ChangeDetectionStrategy, Component, Injectable, LOCALE_ID, ViewEncapsul
 import { FormControl, FormGroup, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatDateFormats } from '@angular/material/core';
 import { DateRange, MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/material/datepicker';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
-import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
-import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DateFnsAdapter } from '@angular/material-date-fns-adapter';
 import { NgxDestroy, setLocale } from '@hug/ngx-core';
@@ -24,6 +19,11 @@ import { NgxDatepickerButtonsComponent, NgxDatepickerMaskDirective, NgxDatepicke
 import { addDays, addMonths, endOfMonth, startOfDay, startOfMonth } from 'date-fns';
 import { frCH } from 'date-fns/locale';
 import { debounceTime, ReplaySubject, takeUntil } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
 
 registerLocaleData(localeFrCh);
 setLocale(frCH);

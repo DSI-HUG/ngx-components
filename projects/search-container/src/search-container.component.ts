@@ -2,7 +2,7 @@ import { AsyncPipe, NgIf, NgTemplateOutlet } from '@angular/common';
 import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, EventEmitter, inject, Input, NgZone, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxDestroy, NgxMediaService } from '@hug/ngx-core';
 import { BehaviorSubject, distinctUntilChanged, first, Observable, shareReplay, switchMap, takeUntil, tap } from 'rxjs';
 

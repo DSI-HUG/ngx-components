@@ -1,13 +1,18 @@
 ngx-datepicker-buttons {
     font-size: 80%;
+    white-space: nowrap;
+
+    .mat-mdc-icon-button .mat-mdc-button-touch-target {
+        width: 100%;
+        height: 100%;
+    }
 
     .ngx-date-picker-button {
-        max-width: 20px;
-        max-height: 20px;
-
+        max-width: 24px;
+        max-height: 24px;
         .mat-icon {
             display: flex;
-            align-items: baseline;
+            align-items: center;
             justify-content: center;
             font-size: 20px;
         }
@@ -18,12 +23,13 @@ ngx-datepicker-buttons {
     }
 }
 
-.mat-form-field.mat-form-field-appearance-legacy {
+.mat-mdc-form-field {
     font-size: inherit;
 
     ngx-datepicker-buttons {
-        .mat-icon-button {
+        .mat-mdc-icon-button {
             font-size: 130%;
+            padding: 0;
         }
     }
 }

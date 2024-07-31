@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-date-picker",
-    "version": "1.0.8",
+    "version": "1.0.10",
     "description": "HUG Angular - date-picker component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -33,7 +33,9 @@
         "@angular/common": ">= 14",
         "@angular/core": ">= 14",
         "@hug/ngx-core": "^1.1.14",
-        "@hug/ngx-time-picker": "^1.1.10"
+        "@hug/ngx-time-picker": "^1.1.10",
+        "date-fns": "^2.30.0",
+        "lodash-es": "^4.17.21"
     },
     "dependencies": {
         "tslib": "^2.6.3"
