@@ -5,17 +5,17 @@ ngx-time-picker {
     justify-content: center;
 
     &:not([inform]) .mat-form-field-appearance-outline {
-        .mat-form-field-wrapper {
+        .mat-mdc-form-field-wrapper {
             padding-bottom: 0;
 
-            .mat-form-field-infix {
+            .mat-mdc-form-field-infix {
                 border-bottom: 0.7em solid transparent;
             }
         }
     }
 
     mat-form-field[ngx-numeric-stepper-form-field] {
-        width: 48px;
+        width: 52px;
     }
 
     .time-separator {

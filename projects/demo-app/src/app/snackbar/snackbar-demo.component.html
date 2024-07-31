@@ -12,9 +12,11 @@
     <!-- <markdown [url]="'https://raw.githubusercontent.com/DSI-HUG/dejajs-components/develop/projects/deja-js/component/snackbar/readme.md'"></markdown> -->
 </mat-card>
 
-<div class="demo-content" *ngIf="tabIndex === 1">
+<div class="demo-card-container" *ngIf="tabIndex === 1">
     <mat-card class="demo-card">
-        <mat-toolbar color="primary">Snackbar</mat-toolbar>
+        <mat-card-header>
+            <mat-toolbar color="primary">Snackbar</mat-toolbar>
+        </mat-card-header>
         <mat-card-content>
             <!--
                 important:

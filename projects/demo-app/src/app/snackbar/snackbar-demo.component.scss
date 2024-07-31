@@ -18,6 +18,11 @@ $primary: map-get(themeVariables.$theme, primary);
         width: 1000px;
         margin: auto;
         margin-bottom: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 5px 0;
+        gap: 5px;
 
         .spaced {
             margin-right: 12px;

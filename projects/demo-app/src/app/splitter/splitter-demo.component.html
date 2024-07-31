@@ -5,82 +5,90 @@
         </mat-card>
     </mat-tab>
     <mat-tab label="EXAMPLES" class="demo-content">
-        <mat-card class="demo-card">
-            <mat-toolbar color="primary">Horizontal splitter</mat-toolbar>
-            <mat-card-content class="no-padding">
-                <div class="container">
-                    <ngx-splitter direction="horizontal" order="1">
-                        <ngx-split-area size="25" minSizePixel="100">
-                            <p>Lorem ipsum dolor sit amet...</p>
-                        </ngx-split-area>
-                        <ngx-split-area size="75" minSizePixel="100">
-                            <p>Sed ut perspiciatis unde omnis iste natus erro...</p>
-                        </ngx-split-area>
-                    </ngx-splitter>
-                </div>
-            </mat-card-content>
-        </mat-card>
+        <div class="demo-card-container">
+            <mat-card class="demo-card">
+                <mat-card-header>
+                    <mat-toolbar color="primary">Horizontal splitter</mat-toolbar>
+                </mat-card-header>
+                <mat-card-content class="no-padding">
+                    <div class="container">
+                        <ngx-splitter direction="horizontal" order="1">
+                            <ngx-split-area size="25" minSizePixel="100">
+                                <p>Lorem ipsum dolor sit amet...</p>
+                            </ngx-split-area>
+                            <ngx-split-area size="75" minSizePixel="100">
+                                <p>Sed ut perspiciatis unde omnis iste natus erro...</p>
+                            </ngx-split-area>
+                        </ngx-splitter>
+                    </div>
+                </mat-card-content>
+            </mat-card>
 
-        <mat-card class="demo-card">
-            <mat-toolbar color="primary">Vertical splitter</mat-toolbar>
-            <mat-card-content class="no-padding">
-                <div class="container">
-                    <ngx-splitter direction="vertical">
-                        <ngx-split-area size="25">
-                            <p>Lorem ipsum dolor sit amet...</p>
-                        </ngx-split-area>
-                        <ngx-split-area size="75">
-                            <p>Sed ut perspiciatis unde omnis iste natus erro...</p>
-                        </ngx-split-area>
-                    </ngx-splitter>
-                </div>
-            </mat-card-content>
-        </mat-card>
+            <mat-card class="demo-card">
+                <mat-toolbar color="primary">Vertical splitter</mat-toolbar>
+                <mat-card-content class="no-padding">
+                    <div class="container">
+                        <ngx-splitter direction="vertical">
+                            <ngx-split-area size="25">
+                                <p>Lorem ipsum dolor sit amet...</p>
+                            </ngx-split-area>
+                            <ngx-split-area size="75">
+                                <p>Sed ut perspiciatis unde omnis iste natus erro...</p>
+                            </ngx-split-area>
+                        </ngx-splitter>
+                    </div>
+                </mat-card-content>
+            </mat-card>
 
-        <mat-card class="demo-card">
-            <mat-toolbar color="primary">Multiple splitter</mat-toolbar>
-            <mat-card-content class="no-padding">
-                <div class="container">
-                    <ngx-splitter direction="horizontal">
-                        <ngx-split-area size="40">
-                            <ngx-splitter direction="vertical">
-                                <ngx-split-area size="30">
-                                    <p>Lorem ipsum dolor sit amet...</p>
-                                </ngx-split-area>
-                                <ngx-split-area size="40">
-                                    <p>Sed ut perspiciatis unde omnis iste natus erro...</p>
-                                </ngx-split-area>
-                                <ngx-split-area size="30">
-                                    <p>Lorem ipsum dolor sit amet...</p>
-                                </ngx-split-area>
-                            </ngx-splitter>
-                        </ngx-split-area>
-                        <ngx-split-area size="60">
-                            <ngx-splitter direction="vertical">
-                                <ngx-split-area size="50">
-                                    <p>Lorem ipsum dolor sit amet...</p>
-                                </ngx-split-area>
-                                <ngx-split-area size="50">
-                                    <p>Sed ut perspiciatis unde omnis iste natus erro...</p>
-                                </ngx-split-area>
-                            </ngx-splitter>
-                        </ngx-split-area>
-                    </ngx-splitter>
-                </div>
-            </mat-card-content>
-        </mat-card>
+            <mat-card class="demo-card">
+                <mat-toolbar color="primary">Multiple splitter</mat-toolbar>
+                <mat-card-content class="no-padding">
+                    <div class="container">
+                        <ngx-splitter direction="horizontal">
+                            <ngx-split-area size="40">
+                                <ngx-splitter direction="vertical">
+                                    <ngx-split-area size="30">
+                                        <p>Lorem ipsum dolor sit amet...</p>
+                                    </ngx-split-area>
+                                    <ngx-split-area size="40">
+                                        <p>Sed ut perspiciatis unde omnis iste natus erro...</p>
+                                    </ngx-split-area>
+                                    <ngx-split-area size="30">
+                                        <p>Lorem ipsum dolor sit amet...</p>
+                                    </ngx-split-area>
+                                </ngx-splitter>
+                            </ngx-split-area>
+                            <ngx-split-area size="60">
+                                <ngx-splitter direction="vertical">
+                                    <ngx-split-area size="50">
+                                        <p>Lorem ipsum dolor sit amet...</p>
+                                    </ngx-split-area>
+                                    <ngx-split-area size="50">
+                                        <p>Sed ut perspiciatis unde omnis iste natus erro...</p>
+                                    </ngx-split-area>
+                                </ngx-splitter>
+                            </ngx-split-area>
+                        </ngx-splitter>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </mat-tab>
     <mat-tab label="EXAMPLE FULL PAGE" bodyClass="fixed-height" class="demo-content">
-        <mat-card class="demo-card">
-            <mat-toolbar color="primary">Vertical splitter</mat-toolbar>
-            <mat-card-content class="no-padding">
-                <ngx-splitter direction="vertical">
-                    <ngx-split-area size="1" minSizePixel="58">Test 1</ngx-split-area>
-                    <ngx-split-area size="48" minSizePixel="0">Test 2</ngx-split-area>
-                    <ngx-split-area size="1" minSizePixel="30">Test 3</ngx-split-area>
-                    <ngx-split-area size="50" minSizePixel="0">Test 4</ngx-split-area>
-                </ngx-splitter>
-            </mat-card-content>
-        </mat-card>
+        <div class="demo-card-container">
+            <mat-card class="demo-card">
+                <mat-card-header>
+                    <mat-toolbar color="primary">Vertical splitter</mat-toolbar>
+                </mat-card-header>
+                <mat-card-content class="no-padding">
+                    <ngx-splitter direction="vertical">
+                        <ngx-split-area size="1" minSizePixel="58">Test 1</ngx-split-area>
+                        <ngx-split-area size="48" minSizePixel="0">Test 2</ngx-split-area>
+                        <ngx-split-area size="1" minSizePixel="30">Test 3</ngx-split-area>
+                        <ngx-split-area size="50" minSizePixel="0">Test 4</ngx-split-area>
+                    </ngx-splitter>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </mat-tab>
 </mat-tab-group>

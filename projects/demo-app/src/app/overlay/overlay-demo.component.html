@@ -6,24 +6,6 @@
 <mat-card class="demo-card demo-basic" *ngIf="tabIndex === 0">TODO</mat-card>
 
 <div *ngIf="tabIndex === 1" (contextmenu)="onContextMenu($event)" class="demo-card-container">
-    <ngx-overlay #contextMenu overlayContainerClass="ngx-menu">
-        <div class="ngx-menu-content">
-            <ul>
-                <li class="ngx-menu-item" (click)="contextMenu.close()">
-                    <mat-icon>delete_sweep</mat-icon>
-                    Context menu
-                </li>
-                <li class="ngx-menu-item" (click)="contextMenu.close()">
-                    <mat-icon>content_copy</mat-icon>
-                    Dupliquer
-                </li>
-                <li class="ngx-menu-item" (click)="contextMenu.close()">
-                    <mat-icon>edit</mat-icon>
-                    Editer
-                </li>
-            </ul>
-        </div>
-    </ngx-overlay>
     <mat-card class="demo-card">
         <mat-card-header>
             <mat-toolbar color="primary">Overlay</mat-toolbar>
@@ -111,4 +93,22 @@
             </div>
         </mat-card-content>
     </mat-card>
+    <ngx-overlay #contextMenu overlayContainerClass="ngx-menu">
+        <div class="ngx-menu-content">
+            <ul>
+                <li class="ngx-menu-item" (click)="contextMenu.close()">
+                    <mat-icon>delete_sweep</mat-icon>
+                    Context menu
+                </li>
+                <li class="ngx-menu-item" (click)="contextMenu.close()">
+                    <mat-icon>content_copy</mat-icon>
+                    Dupliquer
+                </li>
+                <li class="ngx-menu-item" (click)="contextMenu.close()">
+                    <mat-icon>edit</mat-icon>
+                    Editer
+                </li>
+            </ul>
+        </div>
+    </ngx-overlay>
 </div>
