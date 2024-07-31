@@ -2,7 +2,7 @@ import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput 
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
-import { MatFormFieldModule, MatFormFieldAppearance } from '@angular/material/form-field';
+import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgxDestroy } from '@hug/ngx-core';
 import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
