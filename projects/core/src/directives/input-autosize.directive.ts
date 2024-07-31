@@ -1,8 +1,8 @@
 import { Directive, ElementRef, inject, NgZone, OnInit } from '@angular/core';
+import { MatInput } from '@angular/material/input';
 import { debounceTime, fromEvent, mergeWith, of, startWith, takeUntil } from 'rxjs';
 
 import { NgxDestroy } from './destroy';
-import { MatInput } from '@angular/material/input';
 
 @Directive({
     selector: '[ngx-input-autosize][matInput], [ngx-input-autosize] [matInput]',
