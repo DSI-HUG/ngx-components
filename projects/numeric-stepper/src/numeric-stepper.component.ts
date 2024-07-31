@@ -105,9 +105,7 @@ export class NgxNumericStepperComponent extends NgxDestroy implements OnInit {
                 this.leftUp = formFieldBounds.right - bounds.left;
                 this.widthShadow = this.leftUp - this.leftDown + 28;
 
-                if (this.parentAppearance === 'LEGACY' || this.parentAppearance === 'STANDARD') {
-                    this.heightShadow -= 6;
-                } else if (this.parentAppearance === 'FILL') {
+                if (this.parentAppearance === 'FILL') {
                     this.heightShadow -= 2;
                 }
 
@@ -120,14 +118,7 @@ export class NgxNumericStepperComponent extends NgxDestroy implements OnInit {
                 this.leftUp = formFieldBounds.right - bounds.left - 28;
                 this.widthShadow = this.leftUp - this.leftDown + 28;
 
-                if (this.parentAppearance === 'LEGACY' || this.parentAppearance === 'STANDARD') {
-                    const addedPadding = 6;
-                    this.widthShadow += addedPadding * 2;
-                    this.leftDown -= addedPadding;
-                    this.leftUp += addedPadding;
-                    this.heightShadow -= addedPadding;
-                    this.leftShadow -= addedPadding;
-                } else if (this.parentAppearance === 'FILL') {
+                if (this.parentAppearance === 'FILL') {
                     this.heightShadow -= 2;
                 }
 
