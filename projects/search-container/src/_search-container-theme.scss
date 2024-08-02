@@ -8,66 +8,66 @@
 
     ngx-search-container {
         .ngx-search-container {
-            background-color: mat.get-color-from-palette($background, background, 0.2);
+            background-color: mat.m2-get-color-from-palette($background, background, 0.2);
 
             &:hover {
-                background-color: mat.get-color-from-palette($background, background, 0.3);
+                background-color: mat.m2-get-color-from-palette($background, background, 0.3);
             }
 
             &:focus,
             &:focus-within {
-                color: mat.get-color-from-palette($foreground, text, 0.8);
-                background-color: mat.get-color-from-palette($background, background, 0.8);
+                color: mat.m2-get-color-from-palette($foreground, text, 0.8);
+                background-color: mat.m2-get-color-from-palette($background, background, 0.8);
 
                 input {
-                    color: mat.get-color-from-palette($foreground, text, 0.6);
+                    color: mat.m2-get-color-from-palette($foreground, text, 0.6);
 
                     &::placeholder {
-                        color: mat.get-color-from-palette($foreground, text, 0.6);
+                        color: mat.m2-get-color-from-palette($foreground, text, 0.6);
                     }
                 }
 
                 .icon-clear {
                     transition: 0.3s ease-in-out;
-                    color: mat.get-color-from-palette($foreground, disabled);
+                    color: mat.m2-get-color-from-palette($foreground, disabled);
 
                     &:hover {
-                        color: mat.get-color-from-palette($foreground, text);
+                        color: mat.m2-get-color-from-palette($foreground, text);
                     }
                 }
             }
 
             .icon-clear {
                 :hover {
-                    color: mat.get-color-from-palette($background, background);
+                    color: mat.m2-get-color-from-palette($background, background);
                 }
             }
 
             input {
-                color: mat.get-color-from-palette($background, background, 0.8);
+                color: mat.m2-get-color-from-palette($background, background, 0.8);
 
                 &::placeholder {
-                    color: mat.get-color-from-palette($background, background, 0.8);
+                    color: mat.m2-get-color-from-palette($background, background, 0.8);
                 }
             }
         }
 
         .ngx-search-container-mobile {
             &.active {
-                background-color: mat.get-color-from-palette($background, background);
-                color: mat.get-color-from-palette($foreground, text);
+                background-color: mat.m2-get-color-from-palette($background, background);
+                color: mat.m2-get-color-from-palette($foreground, text);
             }
 
             .ngx-search-container {
                 &::placeholder {
-                    color: mat.get-color-from-palette($foreground, secondary-text);
+                    color: mat.m2-get-color-from-palette($foreground, secondary-text);
                 }
 
                 input {
-                    color: mat.get-color-from-palette($foreground, text, 0.6);
+                    color: mat.m2-get-color-from-palette($foreground, text, 0.6);
 
                     &::placeholder {
-                        color: mat.get-color-from-palette($foreground, text, 0.6);
+                        color: mat.m2-get-color-from-palette($foreground, text, 0.6);
                     }
                 }
             }

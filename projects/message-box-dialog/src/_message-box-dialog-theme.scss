@@ -8,11 +8,11 @@
             &.warning {
                 ngx-message-box-dialog {
                     mat-toolbar {
-                        background-color: mat.get-color-from-palette(mat.$orange-palette, 500);
+                        background-color: mat.m2-get-color-from-palette(mat.$m2-orange-palette, 500);
                     }
 
                     button.mat-primary {
-                        color: mat.get-color-from-palette(mat.$orange-palette, 500);
+                        color: mat.m2-get-color-from-palette(mat.$m2-orange-palette, 500);
                     }
                 }
             }
@@ -20,11 +20,11 @@
             &.error {
                 ngx-message-box-dialog {
                     mat-toolbar {
-                        background-color: mat.get-color-from-palette($warn);
+                        background-color: mat.m2-get-color-from-palette($warn);
                     }
 
                     button.mat-primary {
-                        color: mat.get-color-from-palette($warn);
+                        color: mat.m2-get-color-from-palette($warn);
                     }
                 }
             }

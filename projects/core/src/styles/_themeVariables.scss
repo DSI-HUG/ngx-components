@@ -2,9 +2,9 @@
 @use './palette' as palette;
 
 // Define color scheme
-$primary: mat.define-palette(palette.$mat-hug-primary);
-$accent: mat.define-palette(mat.$teal-palette);
-$warn: mat.define-palette(mat.$red-palette);
+$primary: mat.m2-define-palette(palette.$mat-hug-primary);
+$accent: mat.m2-define-palette(mat.$m2-teal-palette);
+$warn: mat.m2-define-palette(mat.$m2-red-palette);
 
 // Create the theme object from colors
-$theme: mat.define-light-theme($primary, $accent, $warn);
+$theme: mat.m2-define-light-theme($primary, $accent, $warn);

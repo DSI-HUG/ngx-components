@@ -7,19 +7,19 @@
     $foreground: map-get($theme, foreground);
 
     ngx-layout > .mat-toolbar.mat-primary {
-        background-color: mat.get-color-from-palette($primary, darker);
-        color: mat.get-color-from-palette($primary, darker-contrast);
+        background-color: mat.m2-get-color-from-palette($primary, darker);
+        color: mat.m2-get-color-from-palette($primary, darker-contrast);
 
         .mat-mdc-icon-button:not([disabled]) .mat-icon {
-            color: mat.get-color-from-palette($primary, darker-contrast);
+            color: mat.m2-get-color-from-palette($primary, darker-contrast);
         }
 
         &:not(:first-of-type) {
-            background-color: mat.get-color-from-palette($primary);
-            color: mat.get-color-from-palette($primary, default-contrast);
+            background-color: mat.m2-get-color-from-palette($primary);
+            color: mat.m2-get-color-from-palette($primary, default-contrast);
 
             .mat-mdc-icon-button:not([disabled]) .mat-icon {
-                color: mat.get-color-from-palette($primary, default-contrast);
+                color: mat.m2-get-color-from-palette($primary, default-contrast);
             }
         }
     }
@@ -28,37 +28,37 @@
         mat-drawer {
             &.right {
                 [filters-title] {
-                    color: mat.get-color-from-palette($foreground, secondary-text);
-                    background-color: mat.get-color-from-palette($background, disabled-button-toggle);
+                    color: mat.m2-get-color-from-palette($foreground, secondary-text);
+                    background-color: mat.m2-get-color-from-palette($background, disabled-button-toggle);
                 }
 
                 [filters-subtitle] {
-                    color: mat.get-color-from-palette($foreground, secondary-text);
-                    background-color: mat.get-color-from-palette($background, hover);
+                    color: mat.m2-get-color-from-palette($foreground, secondary-text);
+                    background-color: mat.m2-get-color-from-palette($background, hover);
                 }
 
                 [filters-icon] {
-                    color: mat.get-color-from-palette($foreground, text);
+                    color: mat.m2-get-color-from-palette($foreground, text);
 
                     &:hover {
-                        color: mat.get-color-from-palette($foreground, secondary-text);
+                        color: mat.m2-get-color-from-palette($foreground, secondary-text);
                     }
                 }
 
                 [filters-chip-list] {
                     .mat-mdc-chip {
-                        background-color: mat.get-color-from-palette($accent);
-                        color: mat.get-color-from-palette($background, background);
+                        background-color: mat.m2-get-color-from-palette($accent);
+                        color: mat.m2-get-color-from-palette($background, background);
                     }
 
                     .mat-mdc-chip {
                         &:not([disabled]) {
                             &:hover {
-                                background-color: mat.get-color-from-palette($accent, 700);
-                                color: mat.get-color-from-palette($accent, 600);
+                                background-color: mat.m2-get-color-from-palette($accent, 700);
+                                color: mat.m2-get-color-from-palette($accent, 600);
 
                                 &:before {
-                                    color: mat.get-color-from-palette($background, background);
+                                    color: mat.m2-get-color-from-palette($background, background);
                                 }
                             }
                         }
@@ -67,17 +67,17 @@
 
                 [filters-toggle-group] {
                     .mat-button-toggle {
-                        color: mat.get-color-from-palette($foreground, secondary-text);
+                        color: mat.m2-get-color-from-palette($foreground, secondary-text);
 
                         &.mat-button-toggle-checked {
-                            background-color: mat.get-color-from-palette($accent);
-                            color: mat.get-color-from-palette($background, background);
+                            background-color: mat.m2-get-color-from-palette($accent);
+                            color: mat.m2-get-color-from-palette($background, background);
                         }
 
                         &:not(:has(button[disabled])) {
                             &:hover {
-                                background-color: mat.get-color-from-palette($accent, 200);
-                                color: mat.get-color-from-palette($background, background);
+                                background-color: mat.m2-get-color-from-palette($accent, 200);
+                                color: mat.m2-get-color-from-palette($background, background);
                             }
                         }
                     }
@@ -90,7 +90,7 @@
                 mat-button-toggle {
                     button {
                         .mat-button-toggle-label-content {
-                            color: mat.get-color-from-palette($foreground, secondary-text);
+                            color: mat.m2-get-color-from-palette($foreground, secondary-text);
                         }
                     }
                 }
@@ -102,13 +102,13 @@
                 .info-boxes-container {
                     .info-box {
                         &.accent {
-                            background-color: mat.get-color-from-palette($accent);
-                            color: mat.get-color-from-palette($accent, default-contrast);
+                            background-color: mat.m2-get-color-from-palette($accent);
+                            color: mat.m2-get-color-from-palette($accent, default-contrast);
                         }
 
                         &.primary {
-                            background-color: mat.get-color-from-palette($primary, 800);
-                            color: mat.get-color-from-palette($primary, default-contrast);
+                            background-color: mat.m2-get-color-from-palette($primary, 800);
+                            color: mat.m2-get-color-from-palette($primary, default-contrast);
                         }
                     }
                 }
@@ -117,20 +117,20 @@
 
         // Custom scrollbar
         ::-webkit-scrollbar-track {
-            background-color: mat.get-color-from-palette($background, background);
+            background-color: mat.m2-get-color-from-palette($background, background);
         }
 
         ::-webkit-scrollbar-thumb {
-            background-color: mat.get-color-from-palette($foreground, hint-text);
-            border: 2px solid mat.get-color-from-palette($background, background);
+            background-color: mat.m2-get-color-from-palette($foreground, hint-text);
+            border: 2px solid mat.m2-get-color-from-palette($background, background);
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background-color: mat.get-color-from-palette($foreground, secondary-text);
+            background-color: mat.m2-get-color-from-palette($foreground, secondary-text);
         }
 
         .editor-toolbar-wrapper {
-            background-color: mat.get-color-from-palette($background, background);
+            background-color: mat.m2-get-color-from-palette($background, background);
         }
     }
 }

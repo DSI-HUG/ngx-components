@@ -58,21 +58,35 @@
             <!-- event driven from UI -->
             <!-- this behavior is to be used to react to user behavior on the UI, snackbars MUST be disposed using user interraction -->
 
-            <!--inside a container-->
-            <section #containerEl class="container" [style.position]="'relative'">
-                <ng-template ngFor let-message [ngForOf]="infos$ | async">
-                    <ngx-snackbar *ngIf="message.gate" alignment="right" [outerContainerElement]="containerEl">
-                        <ngx-message-box type="primary" horizontal>
-                            {{ message.content }}
-                            <ng-template #actionsTemplate>
-                                <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
-                                    <mat-icon>clear</mat-icon>
-                                </button>
-                            </ng-template>
-                        </ngx-message-box>
-                    </ngx-snackbar>
-                </ng-template>
-            </section>
+            <div class="sectionContainer">
+                <section class="push-section">
+                    <!-- server push like feed -->
+                    <!-- this behavior is to be used to push message to the client for example, snackbars MUST be displosed by themself -->
+                    <!-- to do so, define duration @Input and negate flag used for disposal using the onAnimationDone @Output -->
+                    <ng-template ngFor let-message [ngForOf]="messages$ | async">
+                        <ngx-snackbar *ngIf="message.gate" alignment="left" [duration]="5000" (onAnimationDone)="message.gate = false">
+                            <ngx-message-box type="primary" horizontal>
+                                {{ message.content }}
+                            </ngx-message-box>
+                        </ngx-snackbar>
+                    </ng-template>
+                </section>
+                <!--inside a container-->
+                <section #containerEl class="container" [style.position]="'relative'">
+                    <ng-template ngFor let-message [ngForOf]="infos$ | async">
+                        <ngx-snackbar *ngIf="message.gate" alignment="right" [outerContainerElement]="containerEl">
+                            <ngx-message-box type="primary" horizontal>
+                                {{ message.content }}
+                                <ng-template #actionsTemplate>
+                                    <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
+                                        <mat-icon>clear</mat-icon>
+                                    </button>
+                                </ng-template>
+                            </ngx-message-box>
+                        </ngx-snackbar>
+                    </ng-template>
+                </section>
+            </div>
 
             <!--on the viewport-->
             <ng-template ngFor let-message [ngForOf]="successes$ | async">
@@ -113,19 +127,6 @@
                     </ngx-message-box>
                 </ngx-snackbar>
             </ng-template>
-
-            <section class="push-section">
-                <!-- server push like feed -->
-                <!-- this behavior is to be used to push message to the client for example, snackbars MUST be displosed by themself -->
-                <!-- to do so, define duration @Input and negate flag used for disposal using the onAnimationDone @Output -->
-                <ng-template ngFor let-message [ngForOf]="messages$ | async">
-                    <ngx-snackbar *ngIf="message.gate" alignment="left" [duration]="5000" (onAnimationDone)="message.gate = false">
-                        <ngx-message-box type="primary" horizontal>
-                            {{ message.content }}
-                        </ngx-message-box>
-                    </ngx-snackbar>
-                </ng-template>
-            </section>
         </mat-card-content>
     </mat-card>
 </div>

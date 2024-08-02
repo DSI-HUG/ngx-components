@@ -9,10 +9,10 @@
         &.sidenav-light {
             .mat-sidenav {
                 .header {
-                    background: mat.get-color-from-palette($primary);
+                    background: mat.m2-get-color-from-palette($primary);
 
                     .header-menu-btn [fontIcon] {
-                        color: mat.get-color-from-palette($primary, default-contrast);
+                        color: mat.m2-get-color-from-palette($primary, default-contrast);
                     }
                 }
             }
@@ -20,18 +20,18 @@
 
         .mat-sidenav {
             .header {
-                background: mat.get-color-from-palette($background, background);
-                border-bottom: 1px solid mat.get-color-from-palette($foreground, divider);
+                background: mat.m2-get-color-from-palette($background, background);
+                border-bottom: 1px solid mat.m2-get-color-from-palette($foreground, divider);
             }
 
             .sidenav-menu {
-                border-right: 1px solid mat.get-color-from-palette($foreground, divider);
+                border-right: 1px solid mat.m2-get-color-from-palette($foreground, divider);
 
                 .mat-list-item {
                     &.active {
                         .mat-list-text,
                         .mat-list-icon {
-                            color: mat.get-color-from-palette($primary) !important;
+                            color: mat.m2-get-color-from-palette($primary) !important;
                         }
 
                         .mat-icon {
@@ -41,11 +41,11 @@
 
                     .mat-list-item-content {
                         .mat-list-icon {
-                            color: mat.get-color-from-palette($foreground, icons);
+                            color: mat.m2-get-color-from-palette($foreground, icons);
                         }
 
                         .mat-list-text {
-                            color: mat.get-color-from-palette($foreground, text);
+                            color: mat.m2-get-color-from-palette($foreground, text);
                         }
                     }
                 }

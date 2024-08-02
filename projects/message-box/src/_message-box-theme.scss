@@ -1,18 +1,18 @@
 @use '@angular/material' as mat;
 
 @mixin messageBoxStandard($palette) {
-    background-color: mat.get-color-from-palette($palette, 500);
-    color: mat.get-contrast-color-from-palette($palette, 900);
+    background-color: mat.m2-get-color-from-palette($palette, 500);
+    color: mat.m2-get-contrast-color-from-palette($palette, 900);
     box-shadow:
         0 4px 20px 0 rgba(0, 0, 0, 0.14),
-        0 7px 10px -5px rgba(mat.get-color-from-palette($palette), 0.4);
+        0 7px 10px -5px rgba(mat.m2-get-color-from-palette($palette), 0.4);
 
     mat-icon {
-        color: mat.get-contrast-color-from-palette($palette, 900);
+        color: mat.m2-get-contrast-color-from-palette($palette, 900);
     }
 
     > .mat-card-actions {
-        background-color: mat.get-color-from-palette($palette, 700);
+        background-color: mat.m2-get-color-from-palette($palette, 700);
     }
 
     button {
@@ -21,17 +21,17 @@
 }
 
 @mixin messageBoxLight($palette) {
-    background-color: mat.get-color-from-palette($palette, 50);
-    color: mat.get-color-from-palette($palette, 700);
+    background-color: mat.m2-get-color-from-palette($palette, 50);
+    color: mat.m2-get-color-from-palette($palette, 700);
     box-shadow: none;
 
     mat-icon {
-        color: mat.get-color-from-palette($palette, 700);
+        color: mat.m2-get-color-from-palette($palette, 700);
     }
 
     > .mat-card-actions {
-        color: mat.get-color-from-palette($palette, 900);
-        background-color: mat.get-color-from-palette($palette, 100);
+        color: mat.m2-get-color-from-palette($palette, 900);
+        background-color: mat.m2-get-color-from-palette($palette, 100);
 
         button {
             background-color: transparent;
@@ -44,8 +44,8 @@
     $warn: map-get($theme, warn);
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
-    $warning: mat.define-palette(mat.$orange-palette);
-    $success: mat.define-palette(mat.$green-palette);
+    $warning: mat.m2-define-palette(mat.$m2-orange-palette);
+    $success: mat.m2-define-palette(mat.$m2-green-palette);
 
     ngx-message-box {
         &[horizontal] {
@@ -104,15 +104,15 @@
             > .mat-card-actions {
                 button {
                     &.mat-success[mat-icon-button]:not([disabled]) {
-                        color: mat.get-color-from-palette($success) !important;
+                        color: mat.m2-get-color-from-palette($success) !important;
                     }
 
                     &.mat-warn[mat-icon-button]:not([disabled]) {
-                        color: mat.get-color-from-palette($warning) !important;
+                        color: mat.m2-get-color-from-palette($warning) !important;
                     }
 
                     &.mat-danger[mat-icon-button]:not([disabled]) {
-                        color: mat.get-color-from-palette($warn) !important;
+                        color: mat.m2-get-color-from-palette($warn) !important;
                     }
                 }
             }

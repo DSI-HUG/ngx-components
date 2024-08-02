@@ -10,15 +10,15 @@
     mat-icon,
     fa-icon {
         &[background='primary'] {
-            background: mat.get-color-from-palette($primary) !important;
+            background: mat.m2-get-color-from-palette($primary) !important;
         }
 
         &[background='accent'] {
-            background: mat.get-color-from-palette($accent) !important;
+            background: mat.m2-get-color-from-palette($accent) !important;
         }
 
         &[background='warn'] {
-            background: mat.get-color-from-palette($warn) !important;
+            background: mat.m2-get-color-from-palette($warn) !important;
         }
     }
 
@@ -29,7 +29,7 @@
 
         > mat-icon[secondary],
         > fa-icon[secondary] {
-            background: mat.get-color-from-palette($background, background);
+            background: mat.m2-get-color-from-palette($background, background);
             border-radius: 50%;
             bottom: 0;
             font-size: $ratio;
@@ -68,15 +68,15 @@
         -webkit-font-smoothing: antialiased;
 
         &[color='primary'] {
-            color: mat.get-color-from-palette($primary);
+            color: mat.m2-get-color-from-palette($primary);
         }
 
         &[color='accent'] {
-            color: mat.get-color-from-palette($accent);
+            color: mat.m2-get-color-from-palette($accent);
         }
 
         &[color='warn'] {
-            color: mat.get-color-from-palette($warn);
+            color: mat.m2-get-color-from-palette($warn);
         }
 
         &:not([secondary]) svg {

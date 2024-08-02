@@ -5,47 +5,47 @@
     $background: map-get($theme, background);
 
     ngx-user-card {
-        background-color: mat.get-color-from-palette($background, card);
+        background-color: mat.m2-get-color-from-palette($background, card);
         @include mat.elevation(3);
 
         .header-badge {
             &.green-badge {
-                background-color: mat.get-color-from-palette(mat.$green-palette, 500);
+                background-color: mat.m2-get-color-from-palette(mat.$m2-green-palette, 500);
             }
 
             &.blue-badge {
-                background-color: mat.get-color-from-palette(mat.$blue-palette, 500);
+                background-color: mat.m2-get-color-from-palette(mat.$m2-blue-palette, 500);
             }
 
             &.red-badge {
-                background-color: mat.get-color-from-palette(mat.$red-palette, 500);
+                background-color: mat.m2-get-color-from-palette(mat.$m2-red-palette, 500);
             }
 
             &.grey-badge {
-                background-color: mat.get-color-from-palette(mat.$grey-palette, 500);
+                background-color: mat.m2-get-color-from-palette(mat.$m2-grey-palette, 500);
             }
         }
 
         .header-separator,
         .header-initials {
-            color: mat.get-color-from-palette(mat.$grey-palette, 400);
+            color: mat.m2-get-color-from-palette(mat.$m2-grey-palette, 400);
         }
 
         hr {
-            border-color: mat.get-color-from-palette($foreground, divider);
+            border-color: mat.m2-get-color-from-palette($foreground, divider);
         }
 
         .header-icon {
-            color: mat.get-color-from-palette($foreground, icon);
+            color: mat.m2-get-color-from-palette($foreground, icon);
         }
 
         .header-function,
         .label {
-            color: mat.get-color-from-palette($foreground, secondary-text);
+            color: mat.m2-get-color-from-palette($foreground, secondary-text);
         }
 
         .value {
-            color: mat.get-color-from-palette($foreground, text);
+            color: mat.m2-get-color-from-palette($foreground, text);
         }
     }
 }
