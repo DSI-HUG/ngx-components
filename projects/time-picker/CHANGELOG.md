@@ -1,3 +1,15 @@
+## 1.1.12 (2024-08-03)
+
+
+### 🐛 Fixes
+
+- **ngx-time-picker:** fix NG_VALUE_ACCESSOR error ([28bce28](https://github.com/DSI-HUG/ngx-components/commit/28bce28))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.11 (2024-08-03)
 
 
