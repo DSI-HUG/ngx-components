@@ -1,6 +1,6 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, inject, Input, Optional, Output, Self, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -106,13 +106,12 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
     public _step = 1;
 
     protected changeDetectorRef = inject(ChangeDetectorRef);
-    protected control = inject(NgControl, { self: true, optional: true });
 
     private _disabled = false;
     private _value?: NgxDateOrDuration;
     private _autoFocus = true;
 
-    public constructor() {
+    public constructor(@Self() @Optional() public control?: NgControl) {
         super();
 
         if (this.control) {
