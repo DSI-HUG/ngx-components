@@ -1,7 +1,7 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, inject, Input, Optional, Output, Self, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgxDestroy } from '@hug/ngx-core';
@@ -31,12 +31,7 @@ type FieldType = 'hours' | 'minutes';
         MatFormFieldModule,
         MatInputModule,
         NgxNumericStepperComponent
-    ],
-    providers: [{
-        provide: NG_VALUE_ACCESSOR,
-        multi: true,
-        useExisting: forwardRef(() => NgxTimePickerComponent)
-    }]
+    ]
 })
 export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAccessor {
     @ViewChild('hours') public hours?: ElementRef<HTMLInputElement>;
@@ -106,12 +101,13 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
     public _step = 1;
 
     protected changeDetectorRef = inject(ChangeDetectorRef);
+    protected control = inject(NgControl, { optional: true, self: true });
 
     private _disabled = false;
     private _value?: NgxDateOrDuration;
     private _autoFocus = true;
 
-    public constructor(@Self() @Optional() public control?: NgControl) {
+    public constructor() {
         super();
 
         if (this.control) {
