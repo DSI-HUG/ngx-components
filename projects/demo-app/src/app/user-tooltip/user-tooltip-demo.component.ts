@@ -45,32 +45,32 @@ export class UserTooltipDemoComponent {
 
     public constructor() {
         this.user1 = {
-            title: "Docteur",
-            firstname: "Jean",
-            lastname: "PATATE",
-            initials: "jpat",
-            type: "Type",
-            email: "jean.patate@hug.ch",
-            role: "Medecin",
-            groupFunctionLabel: "Group",
-            familyCode: "Infirmier-e",
-            functionSefName: "SefNameFunction",
-            functionSefCode: "SefCodeFunction",
-            organisation: "HUG",
-            speciality: "Neurochirurgie",
-            specialty1: "Dermatologie",
-            specialty2: "Pedicure",
-            esoN3Label: "EsoN3Label",
-            login: "PatateLogin",
-            phone: "+44 150 509 39",
-            bip: "8859595",
-            mobile: "+44 150 509 39",
-            address: "Carouge, 7 Rue St Julien",
-            city: "Carouge",
-            zipCode: "1227"
+            title: 'Docteur',
+            firstname: 'Jean',
+            lastname: 'PATATE',
+            initials: 'jpat',
+            type: 'Type',
+            email: 'jean.patate@hug.ch',
+            role: 'Medecin',
+            groupFunctionLabel: 'Group',
+            familyCode: 'Infirmier-e',
+            functionSefName: 'SefNameFunction',
+            functionSefCode: 'SefCodeFunction',
+            organisation: 'HUG',
+            speciality: 'Neurochirurgie',
+            specialty1: 'Dermatologie',
+            specialty2: 'Pedicure',
+            esoN3Label: 'EsoN3Label',
+            login: 'PatateLogin',
+            phone: '+44 150 509 39',
+            bip: '8859595',
+            mobile: '+44 150 509 39',
+            address: 'Carouge, 7 Rue St Julien',
+            city: 'Carouge',
+            zipCode: '1227'
         };
     }
-    
+
     protected userTooltip$(): (element: HTMLElement) => Observable<void> {
         return (element: HTMLElement): Observable<void> => this.userTooltipService.open$(element, this.user1);
     }
