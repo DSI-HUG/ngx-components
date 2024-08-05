@@ -15,19 +15,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from '@hug/ngx-search-container';
-import { Subject } from 'rxjs';
-
-export const myFormats = {
-    parse: {
-        dateInput: 'DD/MM/YYYY HH:mm'
-    },
-    display: {
-        dateInput: 'DD/MM/YYYY HH:mm',
-        monthYearLabel: 'MMM YYYY',
-        dateA11yLabel: 'DD/MM/YYYY HH:mm',
-        monthYearA11yLabel: 'MMMM YYYY'
-    }
-};
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,10 +39,6 @@ export const myFormats = {
 export class SearchContainerDemoComponent {
     protected tabIndex = 1;
     protected searchModel = '';
-
-    protected label = 'MyCustomLabel';
-
-    protected onInput1Change$ = new Subject<Event>();
 
     protected fullList: readonly string[] = [
         'limace',

@@ -11,6 +11,8 @@ export const appRoutes: Routes = [
     { path: 'time-picker', loadComponent: () => import('./time-picker/time-picker-demo.component').then(m => m.TimePickerDemoComponent), data: { title: 'Time Picker' } },
     { path: 'layout', loadComponent: () => import('./layout/layout-demo.component').then(m => m.LayoutDemoComponent), data: { title: 'Layout' } },
     { path: 'list-loader', loadComponent: () => import('./list-loader/list-loader-demo.component').then(m => m.ListLoaderDemoComponent), data: { title: 'List Loader' } },
-    { path: 'search-container', loadComponent: () => import('./search-container/search-container-demo.component').then(m => m.SearchContainerDemoComponent), data: { title: 'List Loader' } },
+    { path: 'search-container', loadComponent: () => import('./search-container/search-container-demo.component').then(m => m.SearchContainerDemoComponent), data: { title: 'Search container' } },
+    { path: 'user-card', loadComponent: () => import('./user-card/user-card-demo.component').then(m => m.UserCardDemoComponent), data: { title: 'User Card' } },
+    { path: 'user-tooltip', loadComponent: () => import('./user-tooltip/user-tooltip-demo.component').then(m => m.UserTooltipDemoComponent), data: { title: 'User Tooltip' } },
     { path: '**', redirectTo: 'message-box', pathMatch: 'prefix' }
 ];
