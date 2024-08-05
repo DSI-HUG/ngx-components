@@ -17,7 +17,7 @@ export interface NgxTooltipModel {
     card?: {
         title?: string;
         description?: string;
-    }
+    };
     text?: string;
 }
 @Component({
@@ -42,10 +42,10 @@ export class StatusDemoComponent {
     protected status4!: NgxStatus;
 
     protected tabIndex = 1;
-    
+
     public constructor() {
         this.status1 = {
-            title: "Mon titre de status",
+            title: 'Mon titre de status',
             type: 'info',
             text: 'Attention, voici mon texte',
             technicalText: 'Ici mon texte technique',
@@ -53,9 +53,9 @@ export class StatusDemoComponent {
             duration: 5000,
             className: 'maClassCss',
             actions: [
-                { 
+                {
                     label: 'Action 1',
-                    callback: (): void  => {
+                    callback: (): void => {
                         console.log('Resultat Action 1');
                         return;
                     }
@@ -63,7 +63,7 @@ export class StatusDemoComponent {
             ]
         };
         this.status2 = {
-            title: "Mon titre de status",
+            title: 'Mon titre de status',
             type: 'warn',
             text: 'Attention, voici mon texte',
             technicalText: 'Ici mon texte technique',
@@ -71,9 +71,9 @@ export class StatusDemoComponent {
             duration: 5000,
             className: 'maClassCss',
             actions: [
-                { 
+                {
                     label: 'Action 2',
-                    callback: (): void  => {
+                    callback: (): void => {
                         console.log('Resultat Action 2');
                         return;
                     }
@@ -81,7 +81,7 @@ export class StatusDemoComponent {
             ]
         };
         this.status3 = {
-            title: "Mon titre de status",
+            title: 'Mon titre de status',
             type: 'danger',
             technicalText: 'Ici mon texte technique',
             date: new Date(),
@@ -89,13 +89,13 @@ export class StatusDemoComponent {
             className: 'customCssClass'
         };
         this.status4 = {
-            title: "Status rose",
+            title: 'Status rose',
             type: 'danger',
             date: new Date(),
             duration: 5000,
             className: 'maClassCssCouleurRose',
             actions: [
-                { 
+                {
                     label: 'Action 3',
                     callback: (): void => {
                         console.log('Resultat Action 3');

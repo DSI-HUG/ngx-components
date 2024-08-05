@@ -6,7 +6,7 @@ export interface NgxTooltipModel {
     card?: {
         title?: string;
         description?: string;
-    }
+    };
     text?: string;
 }
 

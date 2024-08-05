@@ -2,6 +2,7 @@ import { Injectable, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NgxAbstractLazyModule, NgxLazyLoaderService } from '@hug/ngx-core';
 import { NgxTooltipComponentInterface, NgxTooltipService } from '@hug/ngx-tooltip';
+
 import { NgxTooltipModel } from './tooltip-element-demo.component';
 
 @Injectable({
