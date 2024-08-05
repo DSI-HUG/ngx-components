@@ -14,5 +14,7 @@ export const appRoutes: Routes = [
     { path: 'search-container', loadComponent: () => import('./search-container/search-container-demo.component').then(m => m.SearchContainerDemoComponent), data: { title: 'Search container' } },
     { path: 'user-card', loadComponent: () => import('./user-card/user-card-demo.component').then(m => m.UserCardDemoComponent), data: { title: 'User Card' } },
     { path: 'user-tooltip', loadComponent: () => import('./user-tooltip/user-tooltip-demo.component').then(m => m.UserTooltipDemoComponent), data: { title: 'User Tooltip' } },
+    { path: 'tooltip', loadComponent: () => import('./tooltip/tooltip-demo.component').then(m => m.TooltipDemoComponent), data: { title: 'Tooltip' } },
+    { path: 'status', loadComponent: () => import('./status/status-demo.component').then(m => m.StatusDemoComponent), data: { title: 'Status' } },
     { path: '**', redirectTo: 'message-box', pathMatch: 'prefix' }
 ];

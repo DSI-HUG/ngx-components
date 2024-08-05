@@ -10,11 +10,21 @@
 <div *ngIf="tabIndex === 1" class="demo-card-container">
     <mat-card class="demo-card">
         <mat-card-header>
-            <mat-toolbar color="primary">Default user tooltip</mat-toolbar>
+            <mat-toolbar color="primary">Default tooltip</mat-toolbar>
         </mat-card-header>
         <mat-card-content>
             <div class="flex-layout">
-                <div class="tooltip" [ngx-tooltip]="userTooltip$()">Survol moi</div>
+                <div class="tooltip" [ngx-tooltip]="simpleTooltip$()">Survol moi</div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="demo-card">
+        <mat-card-header>
+            <mat-toolbar color="primary">More complexe tooltip</mat-toolbar>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="flex-layout">
+                <div class="tooltip" [ngx-tooltip]="complexeTooltip$()">Survol moi</div>
             </div>
         </mat-card-content>
     </mat-card>

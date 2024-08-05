@@ -10,11 +10,16 @@
 <div *ngIf="tabIndex === 1" class="demo-card-container">
     <mat-card class="demo-card">
         <mat-card-header>
-            <mat-toolbar color="primary">Default user tooltip</mat-toolbar>
+            <mat-toolbar color="primary">Default status</mat-toolbar>
         </mat-card-header>
         <mat-card-content>
             <div class="flex-layout">
-                <div class="tooltip" [ngx-tooltip]="userTooltip$()">Survol moi</div>
+                <div>
+                    <ngx-status [status]="status1"></ngx-status>
+                    <ngx-status [status]="status2"></ngx-status>
+                    <ngx-status [status]="status3"></ngx-status>
+                    <ngx-status [status]="status4"></ngx-status>
+                </div>
             </div>
         </mat-card-content>
     </mat-card>

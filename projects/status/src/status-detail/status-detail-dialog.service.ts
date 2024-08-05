@@ -15,7 +15,6 @@ export class NgxStatusDetailDialogService extends NgxDialogService<void, NgxStat
         super(lazyLoaderService, dialog, {
             disableClose: false,
             hasBackdrop: true,
-            height: '500px',
             width: '700px',
             panelClass: 'ngx-status-panel'
         } as MatDialogConfig<NgxStatus>);

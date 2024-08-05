@@ -1,4 +1,4 @@
-app-user-tooltip-demo {
+app-tooltip-demo {
     .flex-layout {
         margin-top: 20px;
         display: flex;
@@ -9,7 +9,7 @@ app-user-tooltip-demo {
     .tooltip {
         height: 100px;
         width: 200px;
-        background-color: aliceblue;
+        background-color: rgb(240, 255, 243);
         display: flex;
         justify-content: center;
         align-items: center;

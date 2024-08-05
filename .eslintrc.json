@@ -4,5 +4,6 @@
     "rules": {
         // Use destroyRef and takeUntilDestroyed
         "rxjs-angular/prefer-takeuntil": "off"
+        // "deprecation/deprecation": "warn"
     }
 }
