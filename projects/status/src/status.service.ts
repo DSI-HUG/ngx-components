@@ -1,9 +1,10 @@
 import { DOCUMENT } from '@angular/common';
-import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, inject, Injectable, Injector } from '@angular/core';
-import { NgxDestroy, NgxLazyLoaderService } from '@hug/ngx-core';
-import { mergeWith, switchMap, take, takeUntil, tap, timer } from 'rxjs';
+import { ApplicationRef, ComponentFactoryResolver, DestroyRef, EmbeddedViewRef, inject, Injectable, Injector } from '@angular/core';
+import { NgxLazyLoaderService } from '@hug/ngx-core';
+import { mergeWith, switchMap, take, tap, timer } from 'rxjs';
 
 import { NgxStatus, NgxStatusAction } from './status.model';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 const durationLong = 30_000;
@@ -19,12 +20,13 @@ const durationShort = 8_000;
 @Injectable({
     providedIn: 'root'
 })
-export class NgxStatusService extends NgxDestroy {
+export class NgxStatusService {
 
     protected document = inject<Document>(DOCUMENT);
     protected lazyLoaderService = inject(NgxLazyLoaderService);
     protected injector = inject(Injector);
     protected resolver = inject(ComponentFactoryResolver);
+    private destroyRef = inject(DestroyRef);
 
     /**
      * Display an information message to the screen.
@@ -80,7 +82,7 @@ export class NgxStatusService extends NgxDestroy {
                     })
                 );
             }),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe();
     }
 }

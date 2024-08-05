@@ -1,12 +1,13 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, ElementRef, EventEmitter, HostBinding, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { filterMap, KeyCodes, NgxDestroy } from '@hug/ngx-core';
-import { combineLatestWith, debounceTime, delay, filter, fromEvent, map, mergeWith, ReplaySubject, shareReplay, startWith, Subject, switchMap, takeUntil, tap, timer, withLatestFrom } from 'rxjs';
+import { filterMap, KeyCodes } from '@hug/ngx-core';
+import { combineLatestWith, debounceTime, delay, filter, fromEvent, map, mergeWith, ReplaySubject, shareReplay, startWith, Subject, switchMap, tap, timer, withLatestFrom } from 'rxjs';
 
 export type NgxNumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-inlay';
 
@@ -27,7 +28,7 @@ export type NgxNumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-in
     ],
     encapsulation: ViewEncapsulation.None
 })
-export class NgxNumericStepperComponent extends NgxDestroy implements OnInit {
+export class NgxNumericStepperComponent implements OnInit {
     private static TYPE_ERROR = 'Input element on the same mat-form-field must be type="number". With other input type, use increment or decrement events and implement your proper functions to change the value.';
     private static STEP_FN_ERROR = 'Input element on the same mat-form-field must implement stepDown/stepUp functions.';
     private static INPUT_ERROR = 'To use the automatic binding, you must specify the input field with a matInput reference. [input]="matInputRef"';
@@ -77,6 +78,7 @@ export class NgxNumericStepperComponent extends NgxDestroy implements OnInit {
 
     protected elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
     protected changeDetectorRef = inject(ChangeDetectorRef);
+    private destroyRef = inject(DestroyRef);
 
     private validateArrows$ = new Subject<void>();
     private _arrowIcons = false;
@@ -245,7 +247,7 @@ export class NgxNumericStepperComponent extends NgxDestroy implements OnInit {
                     })
                 );
             }),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe();
 
         linkedElements$.pipe(
@@ -259,7 +261,7 @@ export class NgxNumericStepperComponent extends NgxDestroy implements OnInit {
                 }
                 return false;
             }),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(event => {
             event.preventDefault();
             return false;
@@ -269,7 +271,7 @@ export class NgxNumericStepperComponent extends NgxDestroy implements OnInit {
             combineLatestWith(this.validateArrows$),
             filterMap(([[inputElement]]) => inputElement),
             debounceTime(1),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(inputElement => {
             if (inputElement.disabled) {
                 this.disableDown = true;
@@ -286,7 +288,7 @@ export class NgxNumericStepperComponent extends NgxDestroy implements OnInit {
         });
 
         step$.pipe(
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe();
 
         if (this.showOnInit) {

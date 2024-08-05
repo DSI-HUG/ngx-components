@@ -1,14 +1,14 @@
 import { DecimalPipe, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgxDestroy } from '@hug/ngx-core';
 import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
-import { debounceTime, distinctUntilChanged, map, Subject, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Subject } from 'rxjs';
 
 interface NumberFormControls {
     numberValue3: FormControl<number>;
@@ -46,7 +46,7 @@ const numberValidator = (control: AbstractControl): string[] | null => {
         DecimalPipe
     ]
 })
-export class NumericStepperDemoComponent extends NgxDestroy {
+export class NumericStepperDemoComponent {
     protected tabIndex = 1;
 
     protected value1 = 90;
@@ -63,9 +63,9 @@ export class NumericStepperDemoComponent extends NgxDestroy {
 
     private changeDetectorRef = inject(ChangeDetectorRef);
     private formBuilder = inject(FormBuilder);
+    private destroyRef = inject(DestroyRef);
 
     public constructor() {
-        super();
 
         this.numberForm = this.formBuilder.group({
             numberValue3: this.formBuilder.control({ value: this.value3, disabled: false }, { validators: numberValidator, nonNullable: true }),
@@ -78,7 +78,7 @@ export class NumericStepperDemoComponent extends NgxDestroy {
             debounceTime(1),
             distinctUntilChanged(),
             map(event => parseFloat((event.target as HTMLInputElement).value)),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(v => {
             this.value1 = v;
             this.changeDetectorRef.markForCheck();

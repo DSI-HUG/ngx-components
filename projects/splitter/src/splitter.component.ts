@@ -1,11 +1,11 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { NgFor, NgForOf, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, ElementRef, EventEmitter, HostBinding, inject, Input, Output, QueryList, ViewEncapsulation } from '@angular/core';
-import { NgxDestroy } from '@hug/ngx-core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, DestroyRef, ElementRef, EventEmitter, HostBinding, inject, Input, Output, QueryList, ViewEncapsulation } from '@angular/core';
 import { filter, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 
 import { NgxSplitAreaDirective } from './split-area.directive';
 import { NgxSplitterDirection } from './splitter-direction-type';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 interface DraggingEvent {
     event: MouseEvent | TouchEvent;
@@ -30,7 +30,7 @@ interface DraggingEvent {
         NgForOf
     ]
 })
-export class NgxSplitterComponent extends NgxDestroy {
+export class NgxSplitterComponent {
     /**
      * Event triggered when the user start to drag the cursor
      */
@@ -109,9 +109,9 @@ export class NgxSplitterComponent extends NgxDestroy {
 
     private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
     private changeDetectorRef = inject(ChangeDetectorRef);
+    private destroyRef = inject(DestroyRef);
 
     public constructor() {
-        super();
 
         this.startDragging$.pipe(
             filter(() => !this.disabled),
@@ -165,7 +165,7 @@ export class NgxSplitterComponent extends NgxDestroy {
                     mergeWith(drag$)
                 );
             }),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(event => {
             if (event.type !== 'mouseup' && event.type !== 'touchend' && event.type !== 'touchcancel') {
                 this.elementRef.nativeElement.setAttribute('splitting', 'true');

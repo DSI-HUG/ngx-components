@@ -1,6 +1,7 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
@@ -8,9 +9,8 @@ import { MatDatepicker, MatDateRangeInput, MatDateRangePicker } from '@angular/m
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { NgxDestroy } from '@hug/ngx-core';
 import { set } from 'date-fns';
-import { filter, ReplaySubject, switchMap, takeUntil, tap } from 'rxjs';
+import { filter, ReplaySubject, switchMap, tap } from 'rxjs';
 
 @Component({
     selector: 'ngx-datepicker-buttons',
@@ -26,7 +26,7 @@ import { filter, ReplaySubject, switchMap, takeUntil, tap } from 'rxjs';
         MatTooltipModule
     ]
 })
-export class NgxDatepickerButtonsComponent extends NgxDestroy implements OnInit {
+export class NgxDatepickerButtonsComponent implements OnInit {
     @Output() public readonly dateChange = new EventEmitter<Date>();
 
     @Input() public forInput!: MatFormFieldControl<unknown>;
@@ -34,6 +34,7 @@ export class NgxDatepickerButtonsComponent extends NgxDestroy implements OnInit 
 
     protected changeDetectorRef = inject(ChangeDetectorRef);
     protected dateAdater = inject<DateAdapter<unknown>>(DateAdapter);
+    private destroyRef = inject(DestroyRef);
 
     private _hideToday = false;
     private _hideClear = false;
@@ -72,12 +73,12 @@ export class NgxDatepickerButtonsComponent extends NgxDestroy implements OnInit 
                     }
                 })
             )),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe();
 
         if (this.forInput.ngControl?.valueChanges) {
             this.forInput.ngControl.valueChanges.pipe(
-                takeUntil(this.destroyed$)
+                takeUntilDestroyed(this.destroyRef)
             ).subscribe(() => {
                 this.changeDetectorRef.markForCheck();
             });

@@ -1,4 +1,8 @@
 {
     "root": true,
-    "extends": ["@hug/eslint-config/recommended"]
+    "extends": ["@hug/eslint-config/recommended"],
+    "rules": {
+        // Use dwdwdw and ngOnDestroy
+        "rxjs-angular/prefer-takeuntil": "off"
+    }
 }

@@ -1,14 +1,14 @@
 import { TemplatePortal } from '@angular/cdk/portal';
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, inject, OnDestroy, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, OnDestroy, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
 import { MatDatepicker, MatDatepickerInput, MatDatepickerModule, MatDateSelectionModel } from '@angular/material/datepicker';
-import { NgxDestroy } from '@hug/ngx-core';
 import { NgxDateOrDuration, NgxTimePickerComponent } from '@hug/ngx-time-picker';
 import { cloneDeep } from 'lodash-es';
-import { delay, filter, map, takeUntil, tap } from 'rxjs';
+import { delay, filter, map, tap } from 'rxjs';
 
 import { DATE_TIME_ADAPTER, DateTimeAdapter } from '../date-adapter/date-time-adapter';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -24,7 +24,8 @@ import { DATE_TIME_ADAPTER, DateTimeAdapter } from '../date-adapter/date-time-ad
         MatDatepickerModule
     ]
 })
-export class NgxDatepickerWithTimeComponent extends NgxDestroy implements AfterViewInit, OnDestroy {
+export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy {
+
     @ViewChild(TemplateRef)
     private template?: TemplateRef<unknown>;
 
@@ -37,11 +38,11 @@ export class NgxDatepickerWithTimeComponent extends NgxDestroy implements AfterV
     protected viewContainerRef = inject(ViewContainerRef);
     protected globalModel = inject<MatDateSelectionModel<unknown, unknown>>(MatDateSelectionModel);
     protected dateAdapter? = inject<DateTimeAdapter<unknown> & DateAdapter<unknown>>(DATE_TIME_ADAPTER, { optional: true });
+    private destroyRef = inject(DestroyRef);
 
     private portal?: TemplatePortal;
 
     public constructor() {
-        super();
 
         this.datepicker.openedStream.pipe(
             tap(() => {
@@ -51,7 +52,7 @@ export class NgxDatepickerWithTimeComponent extends NgxDestroy implements AfterV
             delay(1),
             map(() => this.timePickerElement?.nativeElement.parentElement),
             filter(Boolean),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(datePickerContainer => {
             const containerRef = this.viewContainerRef.element.nativeElement as HTMLElement;
             datePickerContainer.setAttribute('layout', containerRef?.ownerDocument?.body?.clientHeight <= 500 ? 'h' : 'v');
@@ -93,9 +94,7 @@ export class NgxDatepickerWithTimeComponent extends NgxDestroy implements AfterV
         this.datepicker.registerActions(this.portal);
     }
 
-    public override ngOnDestroy(): void {
-        super.ngOnDestroy();
-
+    public ngOnDestroy(): void {
         if (!this.portal) {
             return;
         }

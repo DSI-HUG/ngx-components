@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, ViewEncapsulation } from '@angular/core';
-import { NgxDestroy } from '@hug/ngx-core';
-import { catchError, EMPTY, Subject, switchMap, takeUntil, throttleTime } from 'rxjs';
+import { ChangeDetectionStrategy, Component, DestroyRef, EventEmitter, inject, Input, ViewEncapsulation } from '@angular/core';
+import { catchError, EMPTY, Subject, switchMap, throttleTime } from 'rxjs';
 
 import { NgxStatus, NgxStatusAction, NgxStatusType } from './status.model';
 import { NgxStatusDetailDialogService } from './status-detail/status-detail-dialog.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'ngx-status',
@@ -12,7 +12,7 @@ import { NgxStatusDetailDialogService } from './status-detail/status-detail-dial
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None
 })
-export class NgxStatusComponent extends NgxDestroy {
+export class NgxStatusComponent {
 
     public get status(): NgxStatus | undefined {
         return this._status;
@@ -31,11 +31,11 @@ export class NgxStatusComponent extends NgxDestroy {
     protected readonly displayDetailedStatus$ = new Subject<NgxStatus>();
 
     private statusDetailDialogService = inject(NgxStatusDetailDialogService);
+    private destroyRef = inject(DestroyRef);
 
     private _status?: NgxStatus;
 
     public constructor() {
-        super();
 
         this.displayDetailedStatus$.pipe(
             throttleTime(1000),
@@ -45,7 +45,7 @@ export class NgxStatusComponent extends NgxDestroy {
                     return EMPTY;
                 })
             )),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe();
     }
 

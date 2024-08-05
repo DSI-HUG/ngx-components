@@ -14,7 +14,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgxDestroy } from '@hug/ngx-core';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from '@hug/ngx-search-container';
 import { Subject } from 'rxjs';
 
@@ -50,17 +49,13 @@ export const myFormats = {
         NgIf
     ]
 })
-export class SearchContainerDemoComponent extends NgxDestroy {
+export class SearchContainerDemoComponent {
     protected tabIndex = 1;
     protected searchModel = '';
 
     protected label = 'MyCustomLabel';
 
     protected onInput1Change$ = new Subject<Event>();
-
-    public constructor() {
-        super();
-    }
 
     protected searchQueryChanged(value: string): void {
         console.log(value);

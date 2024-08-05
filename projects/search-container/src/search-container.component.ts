@@ -1,10 +1,11 @@
 import { AsyncPipe, NgIf, NgTemplateOutlet } from '@angular/common';
-import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, Directive, ElementRef, EventEmitter, inject, Input, NgZone, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, DestroyRef, Directive, ElementRef, EventEmitter, inject, Input, NgZone, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgControl } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { NgxDestroy, NgxMediaService } from '@hug/ngx-core';
-import { BehaviorSubject, distinctUntilChanged, first, Observable, shareReplay, switchMap, takeUntil, tap } from 'rxjs';
+import { NgxMediaService } from '@hug/ngx-core';
+import { BehaviorSubject, distinctUntilChanged, first, Observable, shareReplay, switchMap, tap } from 'rxjs';
 
 @Directive({
     selector: '[ngx-search-input]',
@@ -39,7 +40,7 @@ export class NgxSearchInputDirective {
         MatTooltipModule
     ]
 })
-export class NgxSearchContainerComponent extends NgxDestroy implements AfterContentInit {
+export class NgxSearchContainerComponent implements AfterContentInit {
 
     @Output()
     public readonly cleared = new EventEmitter<void>();
@@ -60,7 +61,6 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
 
     protected searchInputValue$: Observable<string> | undefined;
 
-    private _searchInput: NgxSearchInputDirective | undefined;
 
     @ContentChild(NgxSearchInputDirective)
     public set searchInput(searchInput: NgxSearchInputDirective) {
@@ -73,7 +73,6 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
         this._searchInput = searchInput;
     }
 
-    private _right: TemplateRef<unknown> | null = null;
 
     @Input()
     public set right(value: TemplateRef<unknown> | null) {
@@ -84,11 +83,16 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
         return this._right;
     }
 
-    public constructor(
-        protected mediaService: NgxMediaService,
-        private zone: NgZone
-    ) {
-        super();
+    protected mediaService = inject(NgxMediaService);
+    private zone = inject(NgZone);
+    private destroyRef = inject(DestroyRef);
+
+    private _searchInput: NgxSearchInputDirective | undefined;
+
+    private _right: TemplateRef<unknown> | null = null;
+
+
+    public constructor() {
 
         this.activeSearch$.pipe(
             switchMap(activeSearch => this.zone.onStable.pipe(
@@ -100,7 +104,7 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
                     this._searchInput?.focus();
                 })
             )),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe();
     }
 

@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Directive, ElementRef, forwardRef, Inject, Input, OnInit, Optional, Renderer2 } from '@angular/core';
+import { DestroyRef, Directive, ElementRef, forwardRef, inject, Input, OnInit, Renderer2 } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, NgControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
-import { filterMap, KeyCodes, NgxDestroy, subscribeWith } from '@hug/ngx-core';
+import { filterMap, KeyCodes, subscribeWith } from '@hug/ngx-core';
 import { addDays, addHours, addMinutes, addMonths, addSeconds, addYears, isValid, parse, set } from 'date-fns';
 import { isNil } from 'lodash-es';
-import { delay, EMPTY, filter, fromEvent, mergeWith, of, startWith, switchMap, takeUntil, tap, timeInterval } from 'rxjs';
+import { delay, EMPTY, filter, fromEvent, mergeWith, of, startWith, switchMap, tap, timeInterval } from 'rxjs';
 
 import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 @Directive({
@@ -22,17 +23,17 @@ import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.s
     ],
     standalone: true
 })
-export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
+export class NgxDatepickerMaskDirective implements OnInit {
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('dateTimeFormat')
     public set dateTimeFormat(value: string) {
-        this.formatExpression = value || this.dateFormats.display.dateInput as string;
+        this.formatExpression = value || this.dateFormats?.display.dateInput as string;
     }
 
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('dateFormat')
     public set dateFormat(value: string) {
-        this.formatExpression = value || this.dateFormats.display.dateInput as string;
+        this.formatExpression = value || this.dateFormats?.display.dateInput as string;
     }
 
     private set formatExpression(value: string) {
@@ -53,26 +54,26 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
     private formatCharRegExp = /[mdyhs]/i;
     private forwardToInputKeyCodes = ['LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow', 'PageDown', 'PageUp', 'End', 'Home', 'Tab'];
 
-    public constructor(
-        @Optional() @Inject(MAT_DATE_FORMATS) private dateFormats: MatDateFormats,
-        private elementRef: ElementRef<HTMLInputElement>,
-        private ngControl: NgControl,
-        private renderer: Renderer2,
-        private validator: NgxDatepickerMaskValidatorService,
-        private dateAdapter: DateAdapter<unknown>
-    ) {
-        super();
+    private dateFormats = inject<MatDateFormats>(MAT_DATE_FORMATS, { optional: true });
+    private elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
+    private ngControl = inject(NgControl);
+    private renderer = inject(Renderer2);
+    private validator = inject(NgxDatepickerMaskValidatorService);
+    private dateAdapter = inject<DateAdapter<unknown>>(DateAdapter);
+    private destroyRef = inject(DestroyRef);
 
-        elementRef.nativeElement.setAttribute('autocomplete', 'off');
+    public constructor() {
 
-        const dblClick$ = fromEvent<Event>(elementRef.nativeElement, 'mousedown').pipe(
+        this.elementRef.nativeElement.setAttribute('autocomplete', 'off');
+
+        const dblClick$ = fromEvent<Event>(this.elementRef.nativeElement, 'mousedown').pipe(
             timeInterval(),
             filter(intervalEvent => intervalEvent.interval < 400)
         );
 
-        const selectAll$ = fromEvent<FocusEvent>(elementRef.nativeElement, 'focus').pipe(
+        const selectAll$ = fromEvent<FocusEvent>(this.elementRef.nativeElement, 'focus').pipe(
             delay(400),
-            mergeWith(fromEvent<KeyboardEvent>(elementRef.nativeElement, 'keydown')),
+            mergeWith(fromEvent<KeyboardEvent>(this.elementRef.nativeElement, 'keydown')),
             timeInterval(),
             tap(intervalEvent => {
                 const selectionStart = this.elementRef.nativeElement.selectionStart;
@@ -89,8 +90,8 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
             })
         );
 
-        fromEvent<ClipboardEvent>(elementRef.nativeElement, 'paste').pipe(
-            takeUntil(this.destroyed$)
+        fromEvent<ClipboardEvent>(this.elementRef.nativeElement, 'paste').pipe(
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(event => {
             // Get pasted data via clipboard
             const pastedData = event.clipboardData?.getData('Text');
@@ -142,7 +143,7 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
             }),
             delay(1),
             subscribeWith(selectAll$),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(([event, start, end]) => {
             if (start !== undefined && end !== undefined) {
                 this.elementRef.nativeElement.setSelectionRange(start, end);
@@ -152,8 +153,8 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
             return false;
         });
 
-        fromEvent<KeyboardEvent>(elementRef.nativeElement, 'keydown').pipe(
-            takeUntil(this.destroyed$)
+        fromEvent<KeyboardEvent>(this.elementRef.nativeElement, 'keydown').pipe(
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(e => {
             const formatExpression = this._formatExpression;
             if (!this.maskValue || !formatExpression) {
@@ -344,7 +345,7 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
                     this.applyMask();
                 })
             )),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe();
     }
 

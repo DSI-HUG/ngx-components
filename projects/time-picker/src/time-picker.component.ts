@@ -1,13 +1,13 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NgxDestroy } from '@hug/ngx-core';
 import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
 import { isSameHour, set } from 'date-fns';
-import { debounce, distinctUntilChanged, map, Subject, takeUntil, timer } from 'rxjs';
+import { debounce, distinctUntilChanged, map, Subject, timer } from 'rxjs';
 
 export type NgxTimePickerDisplayMode = 'fullTime' | 'fullTimeWithHoursDisabled' | 'fullTimeWithMinutesDisabled' | 'hoursOnly' | 'minutesOnly';
 
@@ -33,7 +33,7 @@ type FieldType = 'hours' | 'minutes';
         NgxNumericStepperComponent
     ]
 })
-export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAccessor {
+export class NgxTimePickerComponent implements ControlValueAccessor {
     @ViewChild('hours') public hours?: ElementRef<HTMLInputElement>;
     @ViewChild('minutes') public minutes?: ElementRef<HTMLInputElement>;
 
@@ -102,14 +102,13 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
 
     protected changeDetectorRef = inject(ChangeDetectorRef);
     protected control = inject(NgControl, { self: true, optional: true });
+    private destroyRef = inject(DestroyRef);
 
     private _disabled = false;
     private _value?: NgxDateOrDuration;
     private _autoFocus = true;
 
     public constructor() {
-        super();
-
         if (this.control) {
             this.control.valueAccessor = this;
         }
@@ -124,7 +123,7 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
                 }
                 return [!isNaN(hours) ? hours : 0, false] as const;
             }),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(([hours, isEvent]) => {
             if (!this.value) {
                 this.value = this.dataType === 'date' ? set(new Date(), { hours, minutes: 0, seconds: 0, milliseconds: 0 }) : { hours, minutes: 0 } as Duration;
@@ -164,7 +163,7 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
                 }
                 return minutes && !isNaN(minutes) && minutes || 0;
             }),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(minutes => {
             if (!this.value) {
                 this.value = this.dataType === 'date' ? set(new Date(), { hours: 0, minutes, seconds: 0, milliseconds: 0 }) : { hours: 0, minutes } as Duration;

@@ -1,14 +1,14 @@
 import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgxDestroy } from '@hug/ngx-core';
 import { NgxMessageBoxAction, NgxMessageBoxComponent } from '@hug/ngx-message-box';
 import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogService } from '@hug/ngx-message-box-dialog';
-import { Subject, switchMap, takeUntil } from 'rxjs';
+import { Subject, switchMap } from 'rxjs';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,7 +26,7 @@ import { Subject, switchMap, takeUntil } from 'rxjs';
         NgIf
     ]
 })
-export class MessageBoxDemoComponent extends NgxDestroy {
+export class MessageBoxDemoComponent {
     protected tabIndex = 1;
 
     protected closeAction = [
@@ -39,9 +39,9 @@ export class MessageBoxDemoComponent extends NgxDestroy {
     protected openDialog$ = new Subject<void>();
 
     private messageBoxService = inject(NgxMessageBoxDialogService);
+    private destroyRef = inject(DestroyRef);
 
     public constructor() {
-        super();
 
         this.openDialog$.pipe(
             switchMap(() => {
@@ -53,7 +53,7 @@ export class MessageBoxDemoComponent extends NgxDestroy {
 
                 return this.messageBoxService.openDialog$(dialogData);
             }),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(response => {
             alert(`${response} was clicked`);
         });

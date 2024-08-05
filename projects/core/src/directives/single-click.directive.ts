@@ -1,14 +1,14 @@
-import { Directive, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { DestroyRef, Directive, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
-import { takeUntil, throttleTime } from 'rxjs/operators';
+import { throttleTime } from 'rxjs/operators';
 
-import { NgxDestroy } from './destroy';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Directive({
     selector: '[ngx-single-click]',
     standalone: true
 })
-export class NgxSingleClickDirective extends NgxDestroy implements OnInit {
+export class NgxSingleClickDirective implements OnInit {
     @Input()
     public throttleTime = 2000;
 
@@ -19,6 +19,8 @@ export class NgxSingleClickDirective extends NgxDestroy implements OnInit {
     public readonly singleClick = new EventEmitter<MouseEvent>();
 
     private _clicks$ = new ReplaySubject<MouseEvent>(1);
+
+    private destroyRef = inject(DestroyRef);
 
     @HostListener('click', ['$event'])
     public clickEvent(event: MouseEvent): void {
@@ -38,7 +40,7 @@ export class NgxSingleClickDirective extends NgxDestroy implements OnInit {
     public ngOnInit(): void {
         this._clicks$.pipe(
             throttleTime(this.throttleTime),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe((event: MouseEvent) => this.singleClick.emit(event));
     }
 }

@@ -1,6 +1,6 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { NgxDestroy } from '@hug/ngx-core';
-import { debounce, delay, Subject, Subscription, take, takeUntil, tap, timer } from 'rxjs';
+import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { debounce, delay, Subject, Subscription, take, tap, timer } from 'rxjs';
 
 interface Animation {
     before: CSSStyleDeclaration;
@@ -18,7 +18,7 @@ interface Animation {
     template: '<ng-content></ng-content>',
     standalone: true
 })
-export class NgxSnackbarComponent extends NgxDestroy implements OnInit, AfterViewInit, OnDestroy {
+export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
     /**
      * all snackbar instances
      */
@@ -121,6 +121,7 @@ export class NgxSnackbarComponent extends NgxDestroy implements OnInit, AfterVie
         this._alignments.bottom = this._alignments.top && this._alignments.bottom ? false : this._alignments.bottom;
         this._alignments.left = this._alignments.right && this._alignments.left ? false : this._alignments.left;
     }
+    private destroyRef = inject(DestroyRef);
 
     /**
      * Creates an instance of SnackbarComponent.
@@ -129,7 +130,6 @@ export class NgxSnackbarComponent extends NgxDestroy implements OnInit, AfterVie
      * @param renderer
      */
     public constructor() {
-        super();
 
         this.host = this.elementRef.nativeElement;
 
@@ -157,7 +157,7 @@ export class NgxSnackbarComponent extends NgxDestroy implements OnInit, AfterVie
             debounce(animation => timer(animation.delay || 1)),
             tap(animation => applyParams(animation.after)),
             debounce(animation => timer(animation.duration)),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(() => {
             this.host.style.transitionDuration = '';
             this.host.style.transitionTimingFunction = '';
@@ -225,16 +225,14 @@ export class NgxSnackbarComponent extends NgxDestroy implements OnInit, AfterVie
                 }
             }),
             delay(this.leaveAnimationDuration),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(() => this.onAnimationDone.emit());
     }
 
     /**
      * onDestroy hook
      */
-    public override ngOnDestroy(): void {
-        super.ngOnDestroy();
-
+    public ngOnDestroy(): void {
         // check if snackbars have to move (if they were created after the one deleted)
         if (NgxSnackbarComponent.INSTANCES.length) {
             NgxSnackbarComponent.INSTANCES

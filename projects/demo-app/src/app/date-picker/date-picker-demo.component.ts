@@ -8,7 +8,7 @@
 
 import { AsyncPipe, DatePipe, NgIf, registerLocaleData } from '@angular/common';
 import localeFrCh from '@angular/common/locales/fr-CH';
-import { ChangeDetectionStrategy, Component, Injectable, LOCALE_ID, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, Injectable, LOCALE_ID, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -19,11 +19,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DateFnsAdapter } from '@angular/material-date-fns-adapter';
-import { NgxDestroy, setLocale } from '@hug/ngx-core';
+import { setLocale } from '@hug/ngx-core';
 import { NgxDatepickerButtonsComponent, NgxDatepickerMaskDirective, NgxDatepickerWithTimeComponent } from '@hug/ngx-date-picker';
 import { addDays, addMonths, endOfMonth, startOfDay, startOfMonth } from 'date-fns';
 import { frCH } from 'date-fns/locale';
-import { debounceTime, ReplaySubject, takeUntil } from 'rxjs';
+import { debounceTime, ReplaySubject } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 registerLocaleData(localeFrCh);
 setLocale(frCH);
@@ -109,7 +110,7 @@ const dejaDateTimeFormats: DejaDateFormats = {
         { provide: MAT_DATE_LOCALE, useValue: frCH }
     ]
 })
-export class DatePickerDemoComponent extends NgxDestroy {
+export class DatePickerDemoComponent {
     public tabIndex = 1;
 
     public dateForm: FormGroup<DateFormControls>;
@@ -129,8 +130,9 @@ export class DatePickerDemoComponent extends NgxDestroy {
     public maxDate: Date;
     public defaultValues: DateRange<Date>;
 
+    private destroyRef = inject(DestroyRef)
+
     public constructor() {
-        super();
 
         this.dateForm = new FormGroup<DateFormControls>({
             date: new FormControl<Date | null>(null)
@@ -152,28 +154,28 @@ export class DatePickerDemoComponent extends NgxDestroy {
 
         this.dateForm.valueChanges.pipe(
             debounceTime(10),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(values => {
             console.log('date selected', values.date);
         });
 
         this.dateRangeForm.valueChanges.pipe(
             debounceTime(10),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(values => {
             console.log('date range selected', values.from, 'to', values.to);
         });
 
         this.dateTimeForm.valueChanges.pipe(
             debounceTime(10),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(values => {
             console.log('date time selected', values.date);
         });
 
         this.dateTimeRangeForm.valueChanges.pipe(
             debounceTime(10),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(values => {
             console.log('date time range selected', values.from, 'to', values.to);
         });
@@ -188,7 +190,7 @@ export class DatePickerDemoComponent extends NgxDestroy {
             addDays(startOfDay(new Date()), 1)
         );
         this.selectedRange$.pipe(
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(newRange => this.defaultValues = newRange);
     }
 

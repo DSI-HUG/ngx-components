@@ -7,16 +7,16 @@
  */
 
 import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgxDestroy } from '@hug/ngx-core';
 import { NgxListLoaderComponent } from '@hug/ngx-list-loader';
-import { debounceTime, distinctUntilChanged, map, Subject, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Subject } from 'rxjs';
 
 export const myFormats = {
     parse: {
@@ -49,22 +49,22 @@ export const myFormats = {
         NgIf
     ]
 })
-export class ListLoaderDemoComponent extends NgxDestroy {
+export class ListLoaderDemoComponent {
     protected tabIndex = 1;
 
     protected label = 'MyCustomLabel';
 
     protected onInput1Change$ = new Subject<Event>();
     private changeDetectorRef = inject(ChangeDetectorRef);
+    private destroyRef = inject(DestroyRef);
 
     public constructor() {
-        super();
 
         this.onInput1Change$.pipe(
             debounceTime(1),
             distinctUntilChanged(),
             map(event => (event.target as HTMLInputElement).value),
-            takeUntil(this.destroyed$)
+            takeUntilDestroyed(this.destroyRef)
         ).subscribe(v => {
             this.label = v;
             this.changeDetectorRef.markForCheck();
