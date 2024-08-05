@@ -57,7 +57,57 @@ export class SearchContainerDemoComponent {
 
     protected onInput1Change$ = new Subject<Event>();
 
+    protected fullList: ReadonlyArray<string> = [
+        "limace",
+"cygne",
+"chat",
+"ours",
+"faisan",
+"dauphin",
+"paon",
+"furet",
+"panda",
+"phoque",
+"crocodile",
+"gorille",
+"raie",
+"chinchilla",
+"cafard",
+"faisan",
+"corbeau",
+"dromadaire",
+"alpaga",
+"aigle",
+"espadon",
+"canari",
+"guépard",
+"phoque",
+"bison",
+"poney",
+"alpaga",
+"kangourou",
+"pingouin",
+"raie",
+"autruche",
+"jaguar",
+"chameau",
+"oie",
+"lama",
+"perruche",
+"mouche",
+"iguane",
+"crabe"
+
+    ];
+    protected searchList: ReadonlyArray<string> = this.fullList;
+
     protected searchQueryChanged(value: string): void {
         console.log(value);
+        if (!value || value === '') {
+            this.searchList = this.fullList;
+        } else {
+            this.searchList = this.fullList.filter(animal => animal.includes(value));
+
+        }
     }
 }

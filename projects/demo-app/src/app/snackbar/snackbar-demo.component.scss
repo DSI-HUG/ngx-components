@@ -62,6 +62,7 @@ $primary: map-get(themeVariables.$theme, primary);
 
     .push-section {
         width: 400px;
+        height: 5000px;
         border: red solid 1px;
     }
 }

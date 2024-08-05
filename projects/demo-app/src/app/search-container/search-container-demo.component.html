@@ -10,13 +10,32 @@
 <div *ngIf="tabIndex === 1" class="demo-card-container">
     <mat-card class="demo-card">
         <mat-card-header>
-            <mat-toolbar color="primary">Default List loader</mat-toolbar>
+            <mat-toolbar color="primary">Default search container</mat-toolbar>
         </mat-card-header>
         <mat-card-content>
             <div class="flex-layout">
                 <ngx-search-container>
-                    <input ngxSearchInput type="text" placeholder="Rechercher dans la liste" [(ngModel)]="searchModel" (ngModelChange)="searchQueryChanged($event)" />
+                    <input ngx-search-input type="text" placeholder="Rechercher dans la liste" [(ngModel)]="searchModel" (ngModelChange)="searchQueryChanged($event)" />
                 </ngx-search-container>
+                <br />
+                <div class="listsContainer">
+                    <div class="fullList">
+                        <span>Liste complète</span>
+                        <ul class="animals">
+                            @for (animal of fullList; track $index) {
+                                <li class="animal">{{ animal }}</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="searchList">
+                        <span>Liste issu de la recherche</span>
+                        <ul class="animals">
+                            @for (animal of searchList; track $index) {
+                                <li class="animal">{{ animal }}</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
             </div>
         </mat-card-content>
     </mat-card>
