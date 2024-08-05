@@ -16,5 +16,6 @@ export const appRoutes: Routes = [
     { path: 'user-tooltip', loadComponent: () => import('./user-tooltip/user-tooltip-demo.component').then(m => m.UserTooltipDemoComponent), data: { title: 'User Tooltip' } },
     { path: 'tooltip', loadComponent: () => import('./tooltip/tooltip-demo.component').then(m => m.TooltipDemoComponent), data: { title: 'Tooltip' } },
     { path: 'status', loadComponent: () => import('./status/status-demo.component').then(m => m.StatusDemoComponent), data: { title: 'Status' } },
+    { path: 'input-autosize', loadComponent: () => import('./input-autosize/input-autosize-demo.component').then(m => m.InputAutosizeDemoComponent), data: { title: 'Status' } },
     { path: '**', redirectTo: 'message-box', pathMatch: 'prefix' }
 ];

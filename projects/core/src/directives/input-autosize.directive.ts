@@ -1,7 +1,7 @@
 import { DestroyRef, Directive, ElementRef, inject, NgZone, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatInput } from '@angular/material/input';
-import { debounceTime, fromEvent, mergeWith, of, startWith } from 'rxjs';
+import { debounceTime, fromEvent, mergeWith, of, startWith, tap } from 'rxjs';
 
 @Directive({
     selector: '[ngx-input-autosize][matInput], [ngx-input-autosize] [matInput]',
@@ -20,6 +20,7 @@ export class NgxInputAutosizeDirective implements OnInit {
 
         this.ngZone.runOutsideAngular(() => {
             fromEvent<Event>(inputElement, 'input').pipe(
+                tap(x => console.log(x)),
                 mergeWith(fromEvent<Event>(inputElement, 'paste'), valueChanges$),
                 startWith(inputElement.value),
                 debounceTime(5),
