@@ -1,11 +1,11 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { NgFor, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, DestroyRef, ElementRef, EventEmitter, HostBinding, inject, Input, Output, QueryList, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 
 import { NgxSplitAreaDirective } from './split-area.directive';
 import { NgxSplitterDirection } from './splitter-direction-type';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 interface DraggingEvent {
     event: MouseEvent | TouchEvent;

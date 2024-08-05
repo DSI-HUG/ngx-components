@@ -9,6 +9,7 @@
 import { AsyncPipe, DatePipe, NgIf, registerLocaleData } from '@angular/common';
 import localeFrCh from '@angular/common/locales/fr-CH';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, Injectable, LOCALE_ID, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -24,7 +25,6 @@ import { NgxDatepickerButtonsComponent, NgxDatepickerMaskDirective, NgxDatepicke
 import { addDays, addMonths, endOfMonth, startOfDay, startOfMonth } from 'date-fns';
 import { frCH } from 'date-fns/locale';
 import { debounceTime, ReplaySubject } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 registerLocaleData(localeFrCh);
 setLocale(frCH);
@@ -130,7 +130,7 @@ export class DatePickerDemoComponent {
     public maxDate: Date;
     public defaultValues: DateRange<Date>;
 
-    private destroyRef = inject(DestroyRef)
+    private destroyRef = inject(DestroyRef);
 
     public constructor() {
 

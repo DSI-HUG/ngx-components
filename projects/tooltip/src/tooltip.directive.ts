@@ -13,7 +13,7 @@ export class NgxTooltipDirective {
     @Input('ngx-tooltip') public openTooltip$?: (element: HTMLElement) => Observable<void>;
 
     private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
-    private destroyRef = inject(DestroyRef)
+    private destroyRef = inject(DestroyRef);
 
     public constructor() {
 

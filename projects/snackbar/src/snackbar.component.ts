@@ -121,6 +121,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
         this._alignments.bottom = this._alignments.top && this._alignments.bottom ? false : this._alignments.bottom;
         this._alignments.left = this._alignments.right && this._alignments.left ? false : this._alignments.left;
     }
+
     private destroyRef = inject(DestroyRef);
 
     /**

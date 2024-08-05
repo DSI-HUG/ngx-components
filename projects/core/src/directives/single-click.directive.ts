@@ -1,8 +1,7 @@
 import { DestroyRef, Directive, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReplaySubject } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
-
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Directive({
     selector: '[ngx-single-click]',

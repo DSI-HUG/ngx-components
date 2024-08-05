@@ -2,7 +2,7 @@
     "root": true,
     "extends": ["@hug/eslint-config/recommended"],
     "rules": {
-        // Use dwdwdw and ngOnDestroy
+        // Use destroyRef and takeUntilDestroyed
         "rxjs-angular/prefer-takeuntil": "off"
     }
 }

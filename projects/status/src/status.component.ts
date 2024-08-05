@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, EventEmitter, inject, Input, ViewEncapsulation } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, EMPTY, Subject, switchMap, throttleTime } from 'rxjs';
 
 import { NgxStatus, NgxStatusAction, NgxStatusType } from './status.model';
 import { NgxStatusDetailDialogService } from './status-detail/status-detail-dialog.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'ngx-status',

@@ -1,10 +1,10 @@
 import { DOCUMENT } from '@angular/common';
 import { ApplicationRef, ComponentFactoryResolver, DestroyRef, EmbeddedViewRef, inject, Injectable, Injector } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgxLazyLoaderService } from '@hug/ngx-core';
 import { mergeWith, switchMap, take, tap, timer } from 'rxjs';
 
 import { NgxStatus, NgxStatusAction } from './status.model';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 const durationLong = 30_000;
