@@ -175,6 +175,16 @@ ngx-layout {
             }
         }
 
+        .mat-mdc-icon-button {
+            height: 40px;
+            line-height: 40px;
+            width: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+
         &#actions-toolbar {
             flex: 0 0 auto;
             height: 40px;
