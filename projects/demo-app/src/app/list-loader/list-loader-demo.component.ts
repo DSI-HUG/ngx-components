@@ -65,7 +65,7 @@ export class ListLoaderDemoComponent extends NgxDestroy {
             map(event => (event.target as HTMLInputElement).value),
             takeUntil(this.destroyed$)
         ).subscribe(v => {
-            this.label = v as string;
+            this.label = v;
             this.changeDetectorRef.markForCheck();
         });
 
