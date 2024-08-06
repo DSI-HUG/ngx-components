@@ -1,0 +1,13 @@
+<mat-card>
+    <ng-container *ngIf="data.card as card; else noCard">
+        <mat-card-header>
+            <mat-card-title>{{ card.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{ card.description }}</p>
+        </mat-card-content>
+    </ng-container>
+    <ng-template #noCard>
+        <mat-card-content>{{ data.text }}</mat-card-content>
+    </ng-template>
+</mat-card>
