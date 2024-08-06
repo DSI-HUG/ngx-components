@@ -9,27 +9,18 @@
 
 <div *ngIf="tabIndex === 1" class="demo-card-container">
     <mat-card class="demo-card">
-        <mat-toolbar color="primary">Default List loader</mat-toolbar>
+        <mat-toolbar color="primary">Default tooltip</mat-toolbar>
         <mat-card-content>
             <div class="flex-layout">
-                <ngx-list-loader></ngx-list-loader>
+                <div class="tooltip" [ngx-tooltip]="simpleTooltip$()">Survol moi</div>
             </div>
         </mat-card-content>
     </mat-card>
-
     <mat-card class="demo-card">
-        <mat-toolbar color="primary">List loader with custom label</mat-toolbar>
+        <mat-toolbar color="primary">More complexe tooltip</mat-toolbar>
         <mat-card-content>
             <div class="flex-layout">
-                <div>
-                    <mat-form-field>
-                        <mat-label>Label</mat-label>
-                        <input matInput type="text" [ngModel]="label" (change)="onInput1Change$.next($event)" #matLabel="matInput" />
-                    </mat-form-field>
-                </div>
-                <div>
-                    <ngx-list-loader [label]="label"></ngx-list-loader>
-                </div>
+                <div class="tooltip" [ngx-tooltip]="complexeTooltip$()">Survol moi</div>
             </div>
         </mat-card-content>
     </mat-card>

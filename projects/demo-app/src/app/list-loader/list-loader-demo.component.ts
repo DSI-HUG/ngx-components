@@ -59,14 +59,13 @@ export class ListLoaderDemoComponent extends NgxDestroy {
 
     public constructor() {
         super();
-
         this.onInput1Change$.pipe(
             debounceTime(1),
             distinctUntilChanged(),
             map(event => (event.target as HTMLInputElement).value),
             takeUntil(this.destroyed$)
         ).subscribe(v => {
-            this.label = v;
+            this.label = v as string;
             this.changeDetectorRef.markForCheck();
         });
 

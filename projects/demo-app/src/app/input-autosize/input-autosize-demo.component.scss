@@ -1,0 +1,11 @@
+app-input-autosize-demo {
+    .flex-layout {
+        gap: 5px;
+        display: flex;
+        margin-top: 20px;
+
+        .mat-form-field-infix {
+            width: max-content;
+        }
+    }
+}
