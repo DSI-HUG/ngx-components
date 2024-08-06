@@ -8,7 +8,7 @@
     </div>
 
     <ng-template #actionsTemplate>
-        <button *ngIf="status.technicalText" mat-icon-button mat-button (click)="copyToClipboard(fullTextError)" type="button" [color]="'blank'" class="info">
+        <button *ngIf="status.technicalText" mat-icon-button (click)="copyToClipboard(fullTextError)" type="button" [color]="'blank'" class="info">
             <mat-icon>content_copy</mat-icon>
         </button>
     </ng-template>
