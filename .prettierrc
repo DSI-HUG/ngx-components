@@ -5,7 +5,7 @@
     "bracketSameLine": true,
     "htmlWhitespaceSensitivity": "ignore",
     "proseWrap": "never",
-    "endOfLine": "lf",
+    "endOfLine": "auto",
     "singleAttributePerLine": false,
     "printWidth": 800,
     "singleQuote": true
