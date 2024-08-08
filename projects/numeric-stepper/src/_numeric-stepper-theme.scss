@@ -37,28 +37,6 @@
                     background-color: mat.m2-get-color-from-palette($background);
                 }
             }
-
-            &:hover {
-                .mdc-text-field--filled {
-                    overflow: visible;
-                    background-color: transparent;
-
-                    .mat-mdcform-field-focus-overlay,
-                    .mat-mdc-form-field-focus-overlay,
-                    .mdc-line-ripple {
-                        transition: opacity ease-out;
-                        opacity: 0;
-                    }
-
-                    .mat-mdc-form-field-flex {
-                        background-color: transparent;
-                    }
-
-                    .shadow {
-                        background-color: rgba(245, 245, 245);
-                    }
-                }
-            }
         }
 
         &.mat-mdc-form-field-appearance-fill {

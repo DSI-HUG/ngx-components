@@ -101,7 +101,7 @@ export class NgxNumericStepperComponent implements OnInit {
 
             if (this.layout === 'horizontal') {
                 const height = containerBounds?.height || formFieldBounds.height;
-                this.heightShadow = Math.min(48, height) + 2;
+                this.heightShadow = Math.min(54, height) + 2;
                 this.topShadow = (containerBounds?.top ?? inputBounds.top + (inputBounds.height - this.heightShadow) / 2 - 5) - bounds.top;
                 this.leftDown = this.leftShadow = formFieldBounds.left - bounds.left - 28;
                 this.leftUp = formFieldBounds.right - bounds.left;
@@ -114,7 +114,7 @@ export class NgxNumericStepperComponent implements OnInit {
                 this.topUp = this.topDown = inputBounds.top + (inputBounds.height - this.arrowSize) / 2 - bounds.top;
 
             } else if (this.layout === 'horizontal-inlay') {
-                this.heightShadow = Math.min(48, containerBounds?.height || formFieldBounds.height) + 4;
+                this.heightShadow = Math.min(54, containerBounds?.height || formFieldBounds.height) + 4;
                 this.topShadow = containerBounds?.top ?? (inputBounds.top + (inputBounds.height - this.heightShadow) / 2 - 5) - bounds.top;
                 this.leftDown = this.leftShadow = formFieldBounds.left - bounds.left;
                 this.leftUp = formFieldBounds.right - bounds.left - 28;

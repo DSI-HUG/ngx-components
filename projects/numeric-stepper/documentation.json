@@ -1,0 +1,330 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "appearanceFill",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        value: 115,\n        appearance: 'fill'\n    }\n}"
+            },
+            {
+                "name": "basic",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    argTypes: {\n        value: {\n            table: {\n                type: { summary: 'number' }\n            }\n        },\n        increment: {\n            table: {\n                type: { summary: 'number' }\n            },\n            description: 'Numeric stepper increment value'\n        },\n        decrement: {\n            table: {\n                type: { summary: 'number' }\n            },\n            description: 'Numeric stepper decrement value'\n        },\n        appearance: {\n            options: ['outline', 'fill'],\n            control: { type: 'radio' },\n            table: {\n                defaultValue: {\n                    summary: 'outline'\n                },\n                type: { summary: 'outline | fill' }\n\n            },\n            description: 'Possible appearance styles for the form field.'\n        },\n        layout: {\n            options: ['vertical', 'horizontal', 'horizontal-inlay'],\n            control: { type: 'radio' },\n            table: {\n                defaultValue: {\n                    summary: 'vertical'\n                },\n                type: { summary: 'vertical | horizontal | horizontal-inlay' }\n            }\n        }\n    },\n    args: {\n        value: 115,\n        increment: 5,\n        decrement: 5,\n        appearance: 'outline',\n        layout: 'vertical'\n    }\n}"
+            },
+            {
+                "name": "horizontalInlayLayout",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        value: 115,\n        layout: 'horizontal-inlay'\n    }\n}"
+            },
+            {
+                "name": "horizontalLayout",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        value: 115,\n        layout: 'horizontal'\n    }\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<StorybookNumericStepperComponent>",
+                "defaultValue": "{\n    title: 'Numeric Stepper',\n    component: StorybookNumericStepperComponent,\n    tags: ['autodocs'],\n    parameters: {\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\n        layout: 'fullscreen'\n    }\n}"
+            },
+            {
+                "name": "preview",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/numeric-stepper/.storybook/preview.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Preview",
+                "defaultValue": "{\n    parameters: {\n        controls: {\n            matchers: {\n                color: /(background|color)$/i,\n                date: /Date$/i,\n            },\n        },\n    },\n}"
+            },
+            {
+                "name": "withPreffix",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        value: 115,\n        preffix: 'my_preffix'\n    }\n}"
+            },
+            {
+                "name": "withPrefixAndSuffix",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        value: 115,\n        preffix: 'Nous avons',\n        suffix: 'cm'\n    }\n}"
+            },
+            {
+                "name": "withSuffix",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    args: {\n        value: 115,\n        suffix: 'cm'\n    }\n}"
+            }
+        ],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<StorybookNumericStepperComponent>",
+                "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts": [
+                {
+                    "name": "appearanceFill",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        value: 115,\n        appearance: 'fill'\n    }\n}"
+                },
+                {
+                    "name": "basic",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    argTypes: {\n        value: {\n            table: {\n                type: { summary: 'number' }\n            }\n        },\n        increment: {\n            table: {\n                type: { summary: 'number' }\n            },\n            description: 'Numeric stepper increment value'\n        },\n        decrement: {\n            table: {\n                type: { summary: 'number' }\n            },\n            description: 'Numeric stepper decrement value'\n        },\n        appearance: {\n            options: ['outline', 'fill'],\n            control: { type: 'radio' },\n            table: {\n                defaultValue: {\n                    summary: 'outline'\n                },\n                type: { summary: 'outline | fill' }\n\n            },\n            description: 'Possible appearance styles for the form field.'\n        },\n        layout: {\n            options: ['vertical', 'horizontal', 'horizontal-inlay'],\n            control: { type: 'radio' },\n            table: {\n                defaultValue: {\n                    summary: 'vertical'\n                },\n                type: { summary: 'vertical | horizontal | horizontal-inlay' }\n            }\n        }\n    },\n    args: {\n        value: 115,\n        increment: 5,\n        decrement: 5,\n        appearance: 'outline',\n        layout: 'vertical'\n    }\n}"
+                },
+                {
+                    "name": "horizontalInlayLayout",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        value: 115,\n        layout: 'horizontal-inlay'\n    }\n}"
+                },
+                {
+                    "name": "horizontalLayout",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        value: 115,\n        layout: 'horizontal'\n    }\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<StorybookNumericStepperComponent>",
+                    "defaultValue": "{\n    title: 'Numeric Stepper',\n    component: StorybookNumericStepperComponent,\n    tags: ['autodocs'],\n    parameters: {\n    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout\n        layout: 'fullscreen'\n    }\n}"
+                },
+                {
+                    "name": "withPreffix",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        value: 115,\n        preffix: 'my_preffix'\n    }\n}"
+                },
+                {
+                    "name": "withPrefixAndSuffix",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        value: 115,\n        preffix: 'Nous avons',\n        suffix: 'cm'\n    }\n}"
+                },
+                {
+                    "name": "withSuffix",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    args: {\n        value: 115,\n        suffix: 'cm'\n    }\n}"
+                }
+            ],
+            "projects/numeric-stepper/.storybook/preview.ts": [
+                {
+                    "name": "preview",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/numeric-stepper/.storybook/preview.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Preview",
+                    "defaultValue": "{\n    parameters: {\n        controls: {\n            matchers: {\n                color: /(background|color)$/i,\n                date: /Date$/i,\n            },\n        },\n    },\n}"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<StorybookNumericStepperComponent>",
+                    "file": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ]
+        }
+    },
+    "routes": [],
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "projects/numeric-stepper/.storybook/preview.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "preview",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "appearanceFill",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "horizontalInlayLayout",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "horizontalLayout",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "withPreffix",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "withPrefixAndSuffix",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/numeric-stepper/src/stories/numeric-stepper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "withSuffix",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

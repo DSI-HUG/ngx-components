@@ -35,9 +35,9 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
+        "@angular/cdk": ">= 14",
         "@angular/common": ">= 14",
         "@angular/core": ">= 14",
-        "@angular/cdk": ">= 14",
         "@angular/material": ">= 14"
     },
     "dependencies": {
@@ -45,5 +45,8 @@
     },
     "publishConfig": {
         "access": "public"
+    },
+    "devDependencies": {
+        "@storybook/addon-themes": "^8.2.8"
     }
 }
