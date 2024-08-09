@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
 import { NgxUserCardComponent } from '../../../../user-card/src/user-card.component';
 import type { NgxUserCard } from '../../../../user-card/src/user-card.model';
@@ -10,6 +10,7 @@ import type { NgxUserCard } from '../../../../user-card/src/user-card.model';
     templateUrl: './user-card.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
+    encapsulation: ViewEncapsulation.None,
     imports: [CommonModule, NgxUserCardComponent],
     styleUrls: ['./user-card.scss']
 })

@@ -9,6 +9,7 @@
         @include mat.elevation(3);
 
         .header-badge {
+            background-color: red;
             &.green-badge {
                 background-color: mat.m2-get-color-from-palette(mat.$m2-green-palette, 500);
             }

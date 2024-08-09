@@ -1,3 +1,8 @@
+@use '../../../../core/src/styles/themeVariables' as themeVariables;
+@use '../../../../core/src/styles/theme';
+@use '../../../../numeric-stepper/src/numeric-stepper-theme' as numericStepperTheme;
+
+@include numericStepperTheme.theme(themeVariables.$theme);
 section {
     padding: 5rem;
 }

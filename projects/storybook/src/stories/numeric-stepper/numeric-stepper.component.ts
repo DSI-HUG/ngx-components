@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { type MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NgxNumericStepperComponent, type NgxNumericStepperLayout } from '@hug/ngx-numeric-stepper';
+import { NgxNumericStepperComponent, NgxNumericStepperLayout } from '../../../../numeric-stepper/src/numeric-stepper.component';
 
 @Component({
     selector: 'storybook-numeric-stepper',
     templateUrl: './numeric-stepper.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
+    encapsulation: ViewEncapsulation.None,
     imports: [CommonModule, NgxNumericStepperComponent, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule],
     styleUrls: ['./numeric-stepper.scss']
 })

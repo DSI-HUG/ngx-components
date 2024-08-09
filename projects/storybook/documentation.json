@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "StorybookNumericStepperComponent",
-            "id": "component-StorybookNumericStepperComponent-da18f04fc821fb531e1e1750ceba1b48a2cc523e70bc54472cb0b2a63eacd6403be536fc5ebbaf7859d4d98463a883a27c69c9998ae03dc00cb95b6c636708d5",
+            "id": "component-StorybookNumericStepperComponent-8c9ad5dcdf98b20da23f6aed980a593c10233f10cd651cf30d3e3a907a9614e3767720b0389ea9a004c97c2f8b5a9e39217dae9d8bde49422ba9caa4e9757771",
             "file": "projects/storybook/src/stories/numeric-stepper/numeric-stepper.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -146,11 +146,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { type MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\nimport { NgxNumericStepperComponent, type NgxNumericStepperLayout } from '@hug/ngx-numeric-stepper';\n\n@Component({\n    selector: 'storybook-numeric-stepper',\n    templateUrl: './numeric-stepper.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    imports: [CommonModule, NgxNumericStepperComponent, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule],\n    styleUrls: ['./numeric-stepper.scss']\n})\nexport class StorybookNumericStepperComponent {\n\n    @Input()\n    public value!: number;\n\n    @Input()\n    public label = 'This is my label';\n\n    @Input()\n    public preffix: string | undefined = undefined;\n\n    @Input()\n    public suffix: string | undefined = undefined;\n\n    @Input()\n    public appearance: MatFormFieldAppearance = 'outline';\n\n    @Input()\n    public increment!: number;\n\n    @Input()\n    public decrement!: number;\n\n    @Input()\n    public layout!: NgxNumericStepperLayout;\n\n    @Input()\n    public arrowIcons!: boolean;\n\n    @Input()\n    public showOnInit!: boolean;\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { type MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\nimport { NgxNumericStepperComponent, NgxNumericStepperLayout } from '../../../../numeric-stepper/src/numeric-stepper.component';\n\n@Component({\n    selector: 'storybook-numeric-stepper',\n    templateUrl: './numeric-stepper.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    imports: [CommonModule, NgxNumericStepperComponent, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule],\n    styleUrls: ['./numeric-stepper.scss']\n})\nexport class StorybookNumericStepperComponent {\n\n    @Input()\n    public value!: number;\n\n    @Input()\n    public label = 'This is my label';\n\n    @Input()\n    public preffix: string | undefined = undefined;\n\n    @Input()\n    public suffix: string | undefined = undefined;\n\n    @Input()\n    public appearance: MatFormFieldAppearance = 'outline';\n\n    @Input()\n    public increment!: number;\n\n    @Input()\n    public decrement!: number;\n\n    @Input()\n    public layout!: NgxNumericStepperLayout;\n\n    @Input()\n    public arrowIcons!: boolean;\n\n    @Input()\n    public showOnInit!: boolean;\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "section {\n    padding: 5rem;\n}\n",
+                    "data": "@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../numeric-stepper/src/numeric-stepper-theme' as numericStepperTheme;\n\n@include numericStepperTheme.theme(themeVariables.$theme);\nsection {\n    padding: 5rem;\n}\n",
                     "styleUrl": "./numeric-stepper.scss"
                 }
             ],
@@ -218,7 +218,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "section {\n    padding: 5rem;\n}\n",
+                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../user-card/src/user-card-theme' as userCardTheme;\n\n@include userCardTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n\nstorybook-user-card {\n    margin: 0;\n    font-family: Roboto, 'Helvetica Neue', sans-serif;\n}\n\nsection {\n    padding: 5rem;\n}\n",
                     "styleUrl": "./user-card.scss"
                 }
             ],
