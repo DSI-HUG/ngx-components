@@ -93,6 +93,112 @@
                 }
             }
         },
+        "storybook": {
+            "projectType": "library",
+            "root": "projects/storybook",
+            "sourceRoot": "projects/storybook/src",
+            "prefix": "storybook",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "project": "projects/storybook/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/storybook/tsconfig.app.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "projects/storybook/tsconfig.app.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/storybook/src/test.ts",
+                        "tsConfig": "projects/storybook/tsconfig.spec.json",
+                        "karmaConfig": "projects/storybook/karma.conf.js"
+                    }
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "configDir": "projects/storybook/.storybook",
+                        "browserTarget": "storybook:build",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "projects/storybook"],
+                        "port": 6006,
+                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/user-card/src/_user-card-theme.scss"]
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "options": {
+                        "configDir": "projects/storybook/.storybook",
+                        "browserTarget": "storybook:build",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "projects/storybook"],
+                        "outputDir": "dist/storybook/storybook",
+                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/user-card/src/_user-card-theme.scss"]
+                    }
+                }
+            }
+        },
+        "numeric-stepper": {
+            "projectType": "library",
+            "root": "projects/numeric-stepper",
+            "sourceRoot": "projects/numeric-stepper/src",
+            "prefix": "numeric-stepper",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "project": "projects/numeric-stepper/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/numeric-stepper/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "projects/numeric-stepper/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/numeric-stepper/src/test.ts",
+                        "tsConfig": "projects/numeric-stepper/tsconfig.spec.json",
+                        "karmaConfig": "projects/numeric-stepper/karma.conf.js"
+                    }
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "configDir": "projects/numeric-stepper/.storybook",
+                        "browserTarget": "numeric-stepper:build",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "projects/numeric-stepper"],
+                        "port": 6006,
+                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/user-card/src/_user-card-theme.scss"]
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "options": {
+                        "configDir": "projects/numeric-stepper/.storybook",
+                        "browserTarget": "numeric-stepper:build",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "projects/numeric-stepper"],
+                        "outputDir": "dist/storybook/numeric-stepper",
+                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/user-card/src/_user-card-theme.scss"]
+                    }
+                }
+            }
+        },
         "core": {
             "projectType": "library",
             "root": "projects/core",
@@ -182,59 +288,6 @@
                         "main": "projects/message-box/src/test.ts",
                         "tsConfig": "projects/message-box/tsconfig.spec.json",
                         "karmaConfig": "projects/message-box/karma.conf.js"
-                    }
-                }
-            }
-        },
-        "numeric-stepper": {
-            "projectType": "library",
-            "root": "projects/numeric-stepper",
-            "sourceRoot": "projects/numeric-stepper/src",
-            "prefix": "numeric-stepper",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": {
-                        "project": "projects/numeric-stepper/ng-package.json"
-                    },
-                    "configurations": {
-                        "production": {
-                            "tsConfig": "projects/numeric-stepper/tsconfig.lib.prod.json"
-                        },
-                        "development": {
-                            "tsConfig": "projects/numeric-stepper/tsconfig.lib.json"
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
-                    "options": {
-                        "main": "projects/numeric-stepper/src/test.ts",
-                        "tsConfig": "projects/numeric-stepper/tsconfig.spec.json",
-                        "karmaConfig": "projects/numeric-stepper/karma.conf.js"
-                    }
-                },
-                "storybook": {
-                    "builder": "@storybook/angular:start-storybook",
-                    "options": {
-                        "configDir": "projects/numeric-stepper/.storybook",
-                        "browserTarget": "numeric-stepper:build",
-                        "compodoc": true,
-                        "compodocArgs": ["-e", "json", "-d", "projects/numeric-stepper"],
-                        "port": 6006,
-                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/user-card/src/_user-card-theme.scss"]
-                    }
-                },
-                "build-storybook": {
-                    "builder": "@storybook/angular:build-storybook",
-                    "options": {
-                        "configDir": "projects/numeric-stepper/.storybook",
-                        "browserTarget": "numeric-stepper:build",
-                        "compodoc": true,
-                        "compodocArgs": ["-e", "json", "-d", "projects/numeric-stepper"],
-                        "outputDir": "dist/storybook/numeric-stepper",
-                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/user-card/src/_user-card-theme.scss"]
                     }
                 }
             }

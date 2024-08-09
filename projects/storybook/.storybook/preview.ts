@@ -1,8 +1,6 @@
 import type { Preview } from '@storybook/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import docJson from '../documentation.json';
-import "../src/_user-card-theme.scss";
-
 setCompodocJson(docJson);
 
 const preview: Preview = {

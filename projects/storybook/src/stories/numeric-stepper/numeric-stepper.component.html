@@ -1,0 +1,11 @@
+<section>
+    <div ngx-numeric-stepper-container>
+        <mat-form-field [appearance]="appearance">
+            <mat-label>{{ label }}</mat-label>
+            <span matTextPrefix="" *ngIf="preffix">{{ preffix }}</span>
+            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
+            <span matTextSuffix *ngIf="suffix">{{ suffix }}</span>
+            <ngx-numeric-stepper (increment)="value = value + increment" (decrement)="value = value - decrement" [layout]="layout" showOnInit></ngx-numeric-stepper>
+        </mat-form-field>
+    </div>
+</section>
