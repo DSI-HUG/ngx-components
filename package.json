@@ -12,6 +12,7 @@
         "postinstall": "patch-package",
         "start": "ng serve",
         "prettier": "npx prettier . --write",
+        "demo": "ng run storybook:storybook",
         "nx": "nx"
     },
     "workspaces": [

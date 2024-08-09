@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "StorybookNumericStepperComponent",
-            "id": "component-StorybookNumericStepperComponent-bb7cdf69d5d46c435391da8ad696aeab91004b47b3739946840f9c659bcab87d657891b3a40cb3284091dc56d0360b6568c960eb4f924f21b854c6b965e16286",
+            "id": "component-StorybookNumericStepperComponent-da18f04fc821fb531e1e1750ceba1b48a2cc523e70bc54472cb0b2a63eacd6403be536fc5ebbaf7859d4d98463a883a27c69c9998ae03dc00cb95b6c636708d5",
             "file": "projects/storybook/src/stories/numeric-stepper/numeric-stepper.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -29,7 +29,7 @@
                     "defaultValue": "'outline'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 32,
+                    "line": 31,
                     "type": "MatFormFieldAppearance",
                     "decorators": []
                 },
@@ -37,7 +37,7 @@
                     "name": "arrowIcons",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 44,
+                    "line": 43,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -45,7 +45,7 @@
                     "name": "decrement",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 38,
+                    "line": 37,
                     "type": "number",
                     "decorators": []
                 },
@@ -53,7 +53,7 @@
                     "name": "increment",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 35,
+                    "line": 34,
                     "type": "number",
                     "decorators": []
                 },
@@ -62,7 +62,7 @@
                     "defaultValue": "'This is my label'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 23,
+                    "line": 22,
                     "type": "string",
                     "decorators": []
                 },
@@ -70,7 +70,7 @@
                     "name": "layout",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 41,
+                    "line": 40,
                     "type": "NgxNumericStepperLayout",
                     "decorators": []
                 },
@@ -79,7 +79,7 @@
                     "defaultValue": "undefined",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 25,
                     "type": "string | undefined",
                     "decorators": []
                 },
@@ -87,7 +87,7 @@
                     "name": "showOnInit",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 47,
+                    "line": 46,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -96,7 +96,7 @@
                     "defaultValue": "undefined",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 28,
                     "type": "string | undefined",
                     "decorators": []
                 },
@@ -104,7 +104,7 @@
                     "name": "value",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 20,
+                    "line": 19,
                     "type": "number",
                     "decorators": []
                 }
@@ -146,7 +146,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { type MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\n\nimport { NgxNumericStepperComponent, type NgxNumericStepperLayout } from '../../../../numeric-stepper/src/numeric-stepper.component';\n\n@Component({\n    selector: 'storybook-numeric-stepper',\n    templateUrl: './numeric-stepper.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    imports: [CommonModule, NgxNumericStepperComponent, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule],\n    styleUrls: ['./numeric-stepper.scss']\n})\nexport class StorybookNumericStepperComponent {\n\n    @Input()\n    public value!: number;\n\n    @Input()\n    public label = 'This is my label';\n\n    @Input()\n    public preffix: string | undefined = undefined;\n\n    @Input()\n    public suffix: string | undefined = undefined;\n\n    @Input()\n    public appearance: MatFormFieldAppearance = 'outline';\n\n    @Input()\n    public increment!: number;\n\n    @Input()\n    public decrement!: number;\n\n    @Input()\n    public layout!: NgxNumericStepperLayout;\n\n    @Input()\n    public arrowIcons!: boolean;\n\n    @Input()\n    public showOnInit!: boolean;\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input } from '@angular/core';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { type MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\nimport { NgxNumericStepperComponent, type NgxNumericStepperLayout } from '@hug/ngx-numeric-stepper';\n\n@Component({\n    selector: 'storybook-numeric-stepper',\n    templateUrl: './numeric-stepper.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    imports: [CommonModule, NgxNumericStepperComponent, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule],\n    styleUrls: ['./numeric-stepper.scss']\n})\nexport class StorybookNumericStepperComponent {\n\n    @Input()\n    public value!: number;\n\n    @Input()\n    public label = 'This is my label';\n\n    @Input()\n    public preffix: string | undefined = undefined;\n\n    @Input()\n    public suffix: string | undefined = undefined;\n\n    @Input()\n    public appearance: MatFormFieldAppearance = 'outline';\n\n    @Input()\n    public increment!: number;\n\n    @Input()\n    public decrement!: number;\n\n    @Input()\n    public layout!: NgxNumericStepperLayout;\n\n    @Input()\n    public arrowIcons!: boolean;\n\n    @Input()\n    public showOnInit!: boolean;\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -160,7 +160,7 @@
         },
         {
             "name": "StorybookUserCardComponent",
-            "id": "component-StorybookUserCardComponent-cab654177ff208840f31e2e30f433db69054eb4454334349254ae9e321e27f2a9024ecd9fb4146aa851ca7f7022cd4bc89022603fdcdc2b80985b0306e3c6539",
+            "id": "component-StorybookUserCardComponent-b8d0b2cc408c4e58651d473dcdfcd874e76f6d9a236ec176a3285de6c99036621ab56e0758247c131343430539bcb4960e496c70a6950de31191ce97a1d58cf9",
             "file": "projects/storybook/src/stories/user-card/user-card.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -180,7 +180,7 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 21,
+                    "line": 22,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -188,7 +188,7 @@
                     "name": "user",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 18,
+                    "line": 19,
                     "type": "NgxUserCard",
                     "decorators": []
                 }
@@ -214,7 +214,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input } from '@angular/core';\n\nimport { NgxUserCard, NgxUserCardComponent } from '@hug/ngx-user-card';\n\n\n@Component({\n    selector: 'storybook-user-card',\n    templateUrl: './user-card.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    imports: [CommonModule, NgxUserCardComponent],\n    styleUrls: ['./user-card.scss']\n})\nexport class StorybookUserCardComponent {\n\n    @Input()\n    public user!: NgxUserCard;\n\n    @Input()\n    public expanded = true;\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input } from '@angular/core';\n\nimport { NgxUserCardComponent } from '../../../../user-card/src/user-card.component';\nimport type { NgxUserCard } from '../../../../user-card/src/user-card.model';\n\n\n@Component({\n    selector: 'storybook-user-card',\n    templateUrl: './user-card.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    imports: [CommonModule, NgxUserCardComponent],\n    styleUrls: ['./user-card.scss']\n})\nexport class StorybookUserCardComponent {\n\n    @Input()\n    public user!: NgxUserCard;\n\n    @Input()\n    public expanded = true;\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { NgxUserCardComponent } from '../../../../user-card/src/user-card.component';
-import { NgxUserCard } from '../../../../user-card/src/user-card.model';
+import type { NgxUserCard } from '../../../../user-card/src/user-card.model';
 
 
 @Component({
