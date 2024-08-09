@@ -6,7 +6,7 @@ import { StorybookUserCardComponent } from './user-card.component';
 const meta: Meta<StorybookUserCardComponent> = {
     title: 'User card',
     component: StorybookUserCardComponent,
-    // tags: ['autodocs'],
+    tags: ['autodocs'],
     parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
         layout: 'fullscreen'

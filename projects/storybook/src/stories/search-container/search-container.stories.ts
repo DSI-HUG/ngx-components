@@ -6,7 +6,7 @@ import { StorybookSearchContainerComponent } from './search-container.component'
 const meta: Meta<StorybookSearchContainerComponent> = {
     title: 'Search container',
     component: StorybookSearchContainerComponent,
-    // tags: ['autodocs'],
+    tags: ['autodocs'],
     parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
         layout: 'fullscreen'

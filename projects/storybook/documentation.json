@@ -9,7 +9,7 @@
     "components": [
         {
             "name": "StorybookListLoaderComponent",
-            "id": "component-StorybookListLoaderComponent-7a5fbc1fc8438870ab6a11ad19a9e6f607c60e1702e70a944c0b6a08720febe6337980907c8c53e74626e874b68ce2d5fb6c18424b9bf09e64472bd35443d11b",
+            "id": "component-StorybookListLoaderComponent-73c278c08a20a5d7a9b4a612e0c0937ff848e54913bba268685b431c9748553008a3ceedc540c4b82effdcdd114713fb568a5a766c26dfcd4a58fdaae0881599",
             "file": "projects/storybook/src/stories/list-loader/list-loader.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": ["ViewEncapsulation.None"],
@@ -23,7 +23,17 @@
             "templateUrl": ["./list-loader.component.html"],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
             "outputsClass": [],
             "propertiesClass": [],
             "methodsClass": [],
@@ -45,17 +55,17 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';\n\nimport { NgxListLoaderComponent } from '../../../../list-loader/src/list-loader.component';\n\n\n@Component({\n    selector: 'storybook-NgxListLoaderComponent',\n    templateUrl: './list-loader.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    encapsulation: ViewEncapsulation.None,\n    imports: [CommonModule, NgxListLoaderComponent],\n    styleUrls: ['./list-loader.scss']\n})\nexport class StorybookListLoaderComponent {\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';\n\nimport { NgxListLoaderComponent } from '../../../../list-loader/src/list-loader.component';\n\n\n@Component({\n    selector: 'storybook-NgxListLoaderComponent',\n    templateUrl: './list-loader.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    encapsulation: ViewEncapsulation.None,\n    imports: [CommonModule, NgxListLoaderComponent],\n    styleUrls: ['./list-loader.scss']\n})\nexport class StorybookListLoaderComponent {\n    @Input()\n    public label = '';\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../list-loader/src/list-loader-theme' as listLoaderTheme;\n\n@include listLoaderTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n\nsection {\n    padding: 5rem;\n    display: flex;\n    gap: 5px;\n}\n",
+                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../list-loader/src/list-loader-theme' as listLoaderTheme;\n\n@include listLoaderTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n\nsection {\n    padding: 5rem;\n    font-family: 'Roboto';\n    display: flex;\n    gap: 5px;\n}\n",
                     "styleUrl": "./list-loader.scss"
                 }
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<section>\n    <ngx-list-loader></ngx-list-loader>\n</section>\n"
+            "templateData": "<section>\n    <ngx-list-loader [label]=\"label\"></ngx-list-loader>\n</section>\n"
         },
         {
             "name": "StorybookNumericStepperComponent",
@@ -200,7 +210,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../numeric-stepper/src/numeric-stepper-theme' as numericStepperTheme;\n\n@include numericStepperTheme.theme(themeVariables.$theme);\nsection {\n    padding: 5rem;\n    background-color: white;\n}\n",
+                    "data": "@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../numeric-stepper/src/numeric-stepper-theme' as numericStepperTheme;\n\n@include numericStepperTheme.theme(themeVariables.$theme);\nsection {\n    padding: 5rem;\n    font-family: 'Roboto';\n    background-color: white;\n}\n",
                     "styleUrl": "./numeric-stepper.scss"
                 }
             ],
@@ -415,7 +425,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../user-card/src/user-card-theme' as userCardTheme;\n\n@include userCardTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n\nsection {\n    padding: 5rem;\n    display: flex;\n    gap: 5px;\n}\n",
+                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../user-card/src/user-card-theme' as userCardTheme;\n\n@include userCardTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n\nsection {\n    padding: 5rem;\n    font-family: 'Roboto';\n    display: flex;\n    gap: 5px;\n}\n",
                     "styleUrl": "./user-card.scss"
                 }
             ],
@@ -437,7 +447,7 @@
                 "linktype": "component",
                 "name": "StorybookListLoaderComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/2",
                 "status": "low"
             },
             {

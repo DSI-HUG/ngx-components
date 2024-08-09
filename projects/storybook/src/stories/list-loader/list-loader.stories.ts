@@ -6,7 +6,7 @@ import { StorybookListLoaderComponent } from './list-loader.component';
 const meta: Meta<StorybookListLoaderComponent> = {
     title: 'List loader',
     component: StorybookListLoaderComponent,
-    // tags: ['autodocs'],
+    tags: ['autodocs'],
     parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
         layout: 'fullscreen'
