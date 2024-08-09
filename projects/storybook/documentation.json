@@ -8,6 +8,56 @@
     "directives": [],
     "components": [
         {
+            "name": "StorybookListLoaderComponent",
+            "id": "component-StorybookListLoaderComponent-7a5fbc1fc8438870ab6a11ad19a9e6f607c60e1702e70a944c0b6a08720febe6337980907c8c53e74626e874b68ce2d5fb6c18424b9bf09e64472bd35443d11b",
+            "file": "projects/storybook/src/stories/list-loader/list-loader.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": ["ViewEncapsulation.None"],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-NgxListLoaderComponent",
+            "styleUrls": ["./list-loader.scss"],
+            "styles": [],
+            "templateUrl": ["./list-loader.component.html"],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "NgxListLoaderComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';\n\nimport { NgxListLoaderComponent } from '../../../../list-loader/src/list-loader.component';\n\n\n@Component({\n    selector: 'storybook-NgxListLoaderComponent',\n    templateUrl: './list-loader.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    encapsulation: ViewEncapsulation.None,\n    imports: [CommonModule, NgxListLoaderComponent],\n    styleUrls: ['./list-loader.scss']\n})\nexport class StorybookListLoaderComponent {\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../list-loader/src/list-loader-theme' as listLoaderTheme;\n\n@include listLoaderTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n\nsection {\n    padding: 5rem;\n    display: flex;\n    gap: 5px;\n}\n",
+                    "styleUrl": "./list-loader.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<section>\n    <ngx-list-loader></ngx-list-loader>\n</section>\n"
+        },
+        {
             "name": "StorybookNumericStepperComponent",
             "id": "component-StorybookNumericStepperComponent-afa5dee8a048973eb6afdcde8a079f8c31d13e8e5bf6007b8ad1c0ab683dc1dcdc51a5c9d3f28584ce99bff61319aadf7d51c0fffb9a53e7788a79b1fc916e6d",
             "file": "projects/storybook/src/stories/numeric-stepper/numeric-stepper.component.ts",
@@ -160,7 +210,7 @@
         },
         {
             "name": "StorybookSearchContainerComponent",
-            "id": "component-StorybookSearchContainerComponent-cd7ebba8a2c18b27b087284b689ecdc84a7a81db8e4a6ceebfc51f944b3e4bbd8e59061c2ae146a9a84ec80b6574a6a454347c5a5b7fbcd0e384bf2d81765083",
+            "id": "component-StorybookSearchContainerComponent-992914362bbd08e27696e521ce95f5772d3e777e152b4351c2d891ac0c117a6cda96e6316d010cf9597f9243abec933b376d73e0d1eb2d30f5419176cf8d5e6c",
             "file": "projects/storybook/src/stories/search-container/search-container.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": ["ViewEncapsulation.None"],
@@ -176,11 +226,29 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
+                    "name": "clearTooltipLabel",
+                    "defaultValue": "'Effacer la recherche'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "'Rechercher dans la liste'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
                     "name": "searchModel",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 23,
+                    "line": 25,
                     "type": "string",
                     "decorators": []
                 }
@@ -195,7 +263,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 25,
+                    "line": 33,
                     "modifierKind": [124]
                 },
                 {
@@ -206,7 +274,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 68,
+                    "line": 76,
                     "modifierKind": [124]
                 }
             ],
@@ -224,7 +292,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 70,
+                    "line": 78,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [124],
@@ -266,22 +334,26 @@
                 {
                     "name": "FormsModule",
                     "type": "module"
+                },
+                {
+                    "name": "MatListModule",
+                    "type": "module"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';\nimport { MatInputModule } from '@angular/material/input';\nimport { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../../search-container/src/search-container.component';\nimport { FormsModule } from '@angular/forms';\n\n@Component({\n    selector: 'storybook-search-container',\n    templateUrl: './search-container.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    encapsulation: ViewEncapsulation.None,\n    imports: [CommonModule,         \n        MatInputModule,\n        NgxSearchContainerComponent,\n        NgxSearchInputDirective,\n        FormsModule\n    ],\n    styleUrls: ['./search-container.scss']\n})\nexport class StorybookSearchContainerComponent {\n    @Input()\n    public searchModel = '';\n\n    protected fullList: readonly string[] = [\n        'limace',\n        'cygne',\n        'chat',\n        'ours',\n        'faisan',\n        'dauphin',\n        'paon',\n        'furet',\n        'panda',\n        'phoque',\n        'crocodile',\n        'gorille',\n        'raie',\n        'chinchilla',\n        'cafard',\n        'faisan',\n        'corbeau',\n        'dromadaire',\n        'alpaga',\n        'aigle',\n        'espadon',\n        'canari',\n        'guépard',\n        'phoque',\n        'bison',\n        'poney',\n        'alpaga',\n        'kangourou',\n        'pingouin',\n        'raie',\n        'autruche',\n        'jaguar',\n        'chameau',\n        'oie',\n        'lama',\n        'perruche',\n        'mouche',\n        'iguane',\n        'crabe'\n\n    ];\n\n    protected searchList: readonly string[] = this.fullList;\n\n    protected searchQueryChanged(value: string): void {\n        console.log(value);\n        if (!value || value === '') {\n            this.searchList = this.fullList;\n        } else {\n            this.searchList = this.fullList.filter(animal => animal.includes(value));\n\n        }\n    }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatListModule } from '@angular/material/list';\n\nimport { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../../search-container/src/search-container.component';\n\n@Component({\n    selector: 'storybook-search-container',\n    templateUrl: './search-container.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    encapsulation: ViewEncapsulation.None,\n    imports: [CommonModule,\n        MatInputModule,\n        NgxSearchContainerComponent,\n        NgxSearchInputDirective,\n        FormsModule,\n        MatListModule],\n    styleUrls: ['./search-container.scss']\n})\nexport class StorybookSearchContainerComponent {\n    @Input()\n    public searchModel = '';\n\n    @Input()\n    public placeholder = 'Rechercher dans la liste';\n\n    @Input()\n    public clearTooltipLabel = 'Effacer la recherche';\n\n    protected fullList: readonly string[] = [\n        'limace',\n        'cygne',\n        'chat',\n        'ours',\n        'faisan',\n        'dauphin',\n        'paon',\n        'furet',\n        'panda',\n        'phoque',\n        'crocodile',\n        'gorille',\n        'raie',\n        'chinchilla',\n        'cafard',\n        'faisan',\n        'corbeau',\n        'dromadaire',\n        'alpaga',\n        'aigle',\n        'espadon',\n        'canari',\n        'guépard',\n        'phoque',\n        'bison',\n        'poney',\n        'alpaga',\n        'kangourou',\n        'pingouin',\n        'raie',\n        'autruche',\n        'jaguar',\n        'chameau',\n        'oie',\n        'lama',\n        'perruche',\n        'mouche',\n        'iguane',\n        'crabe'\n\n    ];\n\n    protected searchList: readonly string[] = this.fullList;\n\n    protected searchQueryChanged(value: string): void {\n        if (!value || value === '') {\n            this.searchList = this.fullList;\n        } else {\n            this.searchList = this.fullList.filter(animal => animal.includes(value));\n\n        }\n    }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../search-container/src/search-container-theme' as searchContainerTheme;\n\n@include searchContainerTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n\nsection {\n    padding: 5rem;\n    display: flex;\n    gap: 5px;\n}\n",
+                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../search-container/src/search-container-theme' as searchContainerTheme;\n\n@include searchContainerTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n\nsection {\n    padding: 5rem;\n    font-family: 'Roboto';\n\n    .listsContainer {\n        display: flex;\n        gap: 5px;\n\n        .fullList,\n        .searchList {\n            flex: auto;\n        }\n\n        .mdc-list-item.mdc-list-item--with-one-line {\n            height: 24px;\n        }\n    }\n}\n",
                     "styleUrl": "./search-container.scss"
                 }
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<section>\n    <ngx-search-container>\n        <input ngx-search-input type=\"text\" placeholder=\"Rechercher dans la liste\" [(ngModel)]=\"searchModel\" (ngModelChange)=\"searchQueryChanged($event)\" />\n    </ngx-search-container>\n</section>\n"
+            "templateData": "<section>\n    <ngx-search-container [clearTooltip]=\"clearTooltipLabel\">\n        <input ngx-search-input type=\"text\" [placeholder]=\"placeholder\" [(ngModel)]=\"searchModel\" (ngModelChange)=\"searchQueryChanged($event)\" />\n    </ngx-search-container>\n    <br />\n    <div class=\"listsContainer\">\n        <div class=\"fullList\">\n            <span>Liste complète</span>\n            <mat-list role=\"list\">\n                @for (animal of fullList; track $index) {\n                    <mat-list-item role=\"listitem\">{{ animal }}</mat-list-item>\n                }\n            </mat-list>\n        </div>\n        <div class=\"searchList\">\n            <span>Liste issu de la recherche</span>\n            <mat-list role=\"list\">\n                @for (animal of searchList; track $index) {\n                    <mat-list-item role=\"listitem\">{{ animal }}</mat-list-item>\n                }\n            </mat-list>\n        </div>\n    </div>\n</section>\n"
         },
         {
             "name": "StorybookUserCardComponent",
@@ -360,6 +432,15 @@
         "status": "low",
         "files": [
             {
+                "filePath": "projects/storybook/src/stories/list-loader/list-loader.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StorybookListLoaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/storybook/src/stories/numeric-stepper/numeric-stepper.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -374,7 +455,7 @@
                 "linktype": "component",
                 "name": "StorybookSearchContainerComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
