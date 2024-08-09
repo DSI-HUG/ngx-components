@@ -1,28 +1,47 @@
 import { type Meta, type StoryObj } from '@storybook/angular';
 
-import { StorybookListLoaderComponent } from './list-loader.component';
+import { NgxListLoaderComponent } from '../../../../list-loader/src/list-loader.component';
 
 
-const meta: Meta<StorybookListLoaderComponent> = {
+const meta: Meta<NgxListLoaderComponent> = {
     title: 'List loader',
-    component: StorybookListLoaderComponent,
+    component: NgxListLoaderComponent,
     tags: ['autodocs'],
     parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
-        layout: 'fullscreen'
+        docs: {
+            description: {
+                component: 'This component is a loader. Useful to display if you need to load large data behind.'
+            }
+        }
     }
 };
 
 export default meta;
-type Story = StoryObj<StorybookListLoaderComponent>;
+type Story = StoryObj<NgxListLoaderComponent>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const standard: Story = {
-
+    argTypes: {
+        label: {
+            table: {
+                type: { summary: 'string' }
+            },
+        }
+    },
+    args: {
+        label: ''
+    }
 };
 
-export const withLabel: Story = {
+export const withLabel: Story = {    
+    parameters: {
+        docs: {
+            description: {
+                story: 'You can add a custom label to this loader.'
+            }
+        }
+    },
     args: {
-        label: 'Voici mon label'
+        label: 'Here is my label'
     }
 };

@@ -8,66 +8,6 @@
     "directives": [],
     "components": [
         {
-            "name": "StorybookListLoaderComponent",
-            "id": "component-StorybookListLoaderComponent-73c278c08a20a5d7a9b4a612e0c0937ff848e54913bba268685b431c9748553008a3ceedc540c4b82effdcdd114713fb568a5a766c26dfcd4a58fdaae0881599",
-            "file": "projects/storybook/src/stories/list-loader/list-loader.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": ["ViewEncapsulation.None"],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-NgxListLoaderComponent",
-            "styleUrls": ["./list-loader.scss"],
-            "styles": [],
-            "templateUrl": ["./list-loader.component.html"],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "label",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 18,
-                    "type": "string",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": true,
-            "imports": [
-                {
-                    "name": "CommonModule",
-                    "type": "module"
-                },
-                {
-                    "name": "NgxListLoaderComponent",
-                    "type": "component"
-                }
-            ],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';\n\nimport { NgxListLoaderComponent } from '../../../../list-loader/src/list-loader.component';\n\n\n@Component({\n    selector: 'storybook-NgxListLoaderComponent',\n    templateUrl: './list-loader.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    encapsulation: ViewEncapsulation.None,\n    imports: [CommonModule, NgxListLoaderComponent],\n    styleUrls: ['./list-loader.scss']\n})\nexport class StorybookListLoaderComponent {\n    @Input()\n    public label = '';\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "// @use '@angular/material' as mat;\n// @use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n// @use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n// @use '../../../../core/src/styles/themeVariables' as themeVariables;\n// @use '../../../../core/src/styles/theme';\n// @use '../../../../list-loader/src/list-loader-theme' as listLoaderTheme;\n\n// @include listLoaderTheme.theme(themeVariables.$theme);\n// @include iconTheme.theme(themeVariables.$theme);\n// @include menuTheme.theme(themeVariables.$theme);\n\n// section {\n//     padding: 5rem;\n//     font-family: 'Roboto';\n//     display: flex;\n//     gap: 5px;\n// }\n",
-                    "styleUrl": "./list-loader.scss"
-                }
-            ],
-            "stylesData": "",
-            "extends": [],
-            "templateData": "<section>\n    <ngx-list-loader [label]=\"label\"></ngx-list-loader>\n</section>\n"
-        },
-        {
             "name": "StorybookNumericStepperComponent",
             "id": "component-StorybookNumericStepperComponent-afa5dee8a048973eb6afdcde8a079f8c31d13e8e5bf6007b8ad1c0ab683dc1dcdc51a5c9d3f28584ce99bff61319aadf7d51c0fffb9a53e7788a79b1fc916e6d",
             "file": "projects/storybook/src/stories/numeric-stepper/numeric-stepper.component.ts",
@@ -373,15 +313,6 @@
         "count": 0,
         "status": "low",
         "files": [
-            {
-                "filePath": "projects/storybook/src/stories/list-loader/list-loader.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "StorybookListLoaderComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/2",
-                "status": "low"
-            },
             {
                 "filePath": "projects/storybook/src/stories/numeric-stepper/numeric-stepper.component.ts",
                 "type": "component",

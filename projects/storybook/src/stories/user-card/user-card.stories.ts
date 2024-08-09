@@ -1,4 +1,5 @@
 import { type Meta, type StoryObj } from '@storybook/angular';
+
 import { NgxUserCardComponent } from '../../../../user-card/src/user-card.component';
 
 
@@ -12,7 +13,7 @@ const meta: Meta<NgxUserCardComponent> = {
         docs: {
             description: {
                 component: 'This component allows you to display user information'
-                        }
+            }
         }
     }
 };
@@ -23,13 +24,6 @@ type Story = StoryObj<NgxUserCardComponent>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const standard: Story = {
-    parameters: {
-        docs: {
-            description: {
-               story: 'Standard NgxUserCard component'
-            }
-        }
-    },
     argTypes: {
         user: {
             table: {
@@ -80,7 +74,7 @@ export const notExpandedUserCard: Story = {
     parameters: {
         docs: {
             description: {
-               story: 'You can set the "expanded" property to false to have a compressed UserCard with less information.'
+                story: 'You can set the "expanded" property to false to have a compressed UserCard with less information.'
             }
         }
     },
@@ -118,7 +112,7 @@ export const badgeIconColor: Story = {
     parameters: {
         docs: {
             description: {
-               story: 'Depending on the user\'s "familyCode" property given, the UserCard can have a green, blue, red or gray colored badge.<br /><ul><li>Green : <code>Médico-technique</code>, <code>Social</code>, <code>Médico-thérapeutique</code>, <code>Pharmacie</code></li><li>Blue : <code>Soins</code>, <code>Infirmier-e</code></li><li>Red : <code>Médecin dentiste</code>, <code>Médecin</code></li><li>Gray : everything else</li></ul>Below I have a user with a familyCode <code>Médecin</code>. You can see the red tag.',
+                story: 'Depending on the user\'s "familyCode" property given, the UserCard can have a green, blue, red or gray colored badge.<br /><ul><li>Green : <code>Médico-technique</code>, <code>Social</code>, <code>Médico-thérapeutique</code>, <code>Pharmacie</code></li><li>Blue : <code>Soins</code>, <code>Infirmier-e</code></li><li>Red : <code>Médecin dentiste</code>, <code>Médecin</code></li><li>Gray : everything else</li></ul>Below I have a user with a familyCode <code>Médecin</code>. You can see the red tag.'
             }
         }
     },
@@ -225,7 +219,7 @@ export const userAbbreviationTitle: Story = {
     parameters: {
         docs: {
             description: {
-               story: 'Depending on the user\'s "title" property given, the UserCard will display its abbreviation.<br /><ul><li>Docteur / Docteure : <code>Dr</code>, <code>Dre</code></li><li>Monsieur / Madame : <code>M</code>, <code>Mme</code></li><li>Professeur / Professeure : <code>Pr</code>, <code>Pre</code></li></ul>Any other text in the "title" property will be displayed entirely.<br />Below I have a user with a title <code>Professeur</code>. You can see its abbreviation <code>Pr.</code> on the UserCard.',
+                story: 'Depending on the user\'s "title" property given, the UserCard will display its abbreviation.<br /><ul><li>Docteur / Docteure : <code>Dr</code>, <code>Dre</code></li><li>Monsieur / Madame : <code>M</code>, <code>Mme</code></li><li>Professeur / Professeure : <code>Pr</code>, <code>Pre</code></li></ul>Any other text in the "title" property will be displayed entirely.<br />Below I have a user with a title <code>Professeur</code>. You can see its abbreviation <code>Pr.</code> on the UserCard.'
             }
         }
     },
