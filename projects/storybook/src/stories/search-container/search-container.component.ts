@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../../search-container/src/search-container.component';
 import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+
+import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../../search-container/src/search-container.component';
 
 @Component({
     selector: 'storybook-search-container',
@@ -11,13 +12,12 @@ import { MatListModule } from '@angular/material/list';
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     encapsulation: ViewEncapsulation.None,
-    imports: [CommonModule,         
+    imports: [CommonModule,
         MatInputModule,
         NgxSearchContainerComponent,
         NgxSearchInputDirective,
         FormsModule,
-        MatListModule
-    ],
+        MatListModule],
     styleUrls: ['./search-container.scss']
 })
 export class StorybookSearchContainerComponent {
