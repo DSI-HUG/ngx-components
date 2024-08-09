@@ -8,10 +8,3 @@
 @include userCardTheme.theme(themeVariables.$theme);
 @include iconTheme.theme(themeVariables.$theme);
 @include menuTheme.theme(themeVariables.$theme);
-
-section {
-    padding: 5rem;
-    font-family: 'Roboto';
-    display: flex;
-    gap: 5px;
-}

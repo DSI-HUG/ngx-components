@@ -59,7 +59,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../list-loader/src/list-loader-theme' as listLoaderTheme;\n\n@include listLoaderTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n\nsection {\n    padding: 5rem;\n    font-family: 'Roboto';\n    display: flex;\n    gap: 5px;\n}\n",
+                    "data": "// @use '@angular/material' as mat;\n// @use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n// @use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n// @use '../../../../core/src/styles/themeVariables' as themeVariables;\n// @use '../../../../core/src/styles/theme';\n// @use '../../../../list-loader/src/list-loader-theme' as listLoaderTheme;\n\n// @include listLoaderTheme.theme(themeVariables.$theme);\n// @include iconTheme.theme(themeVariables.$theme);\n// @include menuTheme.theme(themeVariables.$theme);\n\n// section {\n//     padding: 5rem;\n//     font-family: 'Roboto';\n//     display: flex;\n//     gap: 5px;\n// }\n",
                     "styleUrl": "./list-loader.scss"
                 }
             ],
@@ -364,74 +364,6 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<section>\n    <ngx-search-container [clearTooltip]=\"clearTooltipLabel\">\n        <input ngx-search-input type=\"text\" [placeholder]=\"placeholder\" [(ngModel)]=\"searchModel\" (ngModelChange)=\"searchQueryChanged($event)\" />\n    </ngx-search-container>\n    <br />\n    <div class=\"listsContainer\">\n        <div class=\"fullList\">\n            <span>Liste complète</span>\n            <mat-list role=\"list\">\n                @for (animal of fullList; track $index) {\n                    <mat-list-item role=\"listitem\">{{ animal }}</mat-list-item>\n                }\n            </mat-list>\n        </div>\n        <div class=\"searchList\">\n            <span>Liste issu de la recherche</span>\n            <mat-list role=\"list\">\n                @for (animal of searchList; track $index) {\n                    <mat-list-item role=\"listitem\">{{ animal }}</mat-list-item>\n                }\n            </mat-list>\n        </div>\n    </div>\n</section>\n"
-        },
-        {
-            "name": "StorybookUserCardComponent",
-            "id": "component-StorybookUserCardComponent-ad0365acdaea752834f1d8c9b7b8fa861ee09656b9f6f688900035e8866391d1f963dbfa8e8e4ae81f0141683d4109a1544d4f812062991d9322139f3ef93b61",
-            "file": "projects/storybook/src/stories/user-card/user-card.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": ["ViewEncapsulation.None"],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-user-card",
-            "styleUrls": ["./user-card.scss"],
-            "styles": [],
-            "templateUrl": ["./user-card.component.html"],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "expanded",
-                    "defaultValue": "true",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 23,
-                    "type": "boolean",
-                    "decorators": []
-                },
-                {
-                    "name": "user",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 20,
-                    "type": "NgxUserCard",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": true,
-            "imports": [
-                {
-                    "name": "CommonModule",
-                    "type": "module"
-                },
-                {
-                    "name": "NgxUserCardComponent",
-                    "type": "component"
-                }
-            ],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';\n\nimport { NgxUserCardComponent } from '../../../../user-card/src/user-card.component';\nimport type { NgxUserCard } from '../../../../user-card/src/user-card.model';\n\n\n@Component({\n    selector: 'storybook-user-card',\n    templateUrl: './user-card.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    encapsulation: ViewEncapsulation.None,\n    imports: [CommonModule, NgxUserCardComponent],\n    styleUrls: ['./user-card.scss']\n})\nexport class StorybookUserCardComponent {\n\n    @Input()\n    public user!: NgxUserCard;\n\n    @Input()\n    public expanded = true;\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../user-card/src/user-card-theme' as userCardTheme;\n\n@include userCardTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n\nsection {\n    padding: 5rem;\n    font-family: 'Roboto';\n    display: flex;\n    gap: 5px;\n}\n",
-                    "styleUrl": "./user-card.scss"
-                }
-            ],
-            "stylesData": "",
-            "extends": [],
-            "templateData": "<section>\n    <ngx-user-card [user]=\"user\" [expanded]=\"expanded\"></ngx-user-card>\n</section>\n"
         }
     ],
     "modules": [],
@@ -466,15 +398,6 @@
                 "name": "StorybookSearchContainerComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/7",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/storybook/src/stories/user-card/user-card.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "StorybookUserCardComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/3",
                 "status": "low"
             }
         ]
