@@ -1,0 +1,24 @@
+<section>
+    <ngx-search-container [clearTooltip]="clearTooltipLabel">
+        <input ngx-search-input type="text" [placeholder]="placeholder" [(ngModel)]="searchModel" (ngModelChange)="searchQueryChanged($event)" />
+    </ngx-search-container>
+    <br />
+    <div class="listsContainer">
+        <div class="fullList">
+            <span>Liste complète</span>
+            <mat-list role="list">
+                @for (animal of fullList; track $index) {
+                    <mat-list-item role="listitem">{{ animal }}</mat-list-item>
+                }
+            </mat-list>
+        </div>
+        <div class="searchList">
+            <span>Liste issu de la recherche</span>
+            <mat-list role="list">
+                @for (animal of searchList; track $index) {
+                    <mat-list-item role="listitem">{{ animal }}</mat-list-item>
+                }
+            </mat-list>
+        </div>
+    </div>
+</section>

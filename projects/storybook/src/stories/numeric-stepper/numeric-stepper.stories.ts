@@ -16,7 +16,7 @@ export default meta;
 type Story = StoryObj<StorybookNumericStepperComponent>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const basic: Story = {
+export const standard: Story = {
     argTypes: {
         value: {
             table: {

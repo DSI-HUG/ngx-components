@@ -1,0 +1,29 @@
+@use '@angular/material' as mat;
+@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;
+@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;
+@use '../../../../core/src/styles/themeVariables' as themeVariables;
+@use '../../../../core/src/styles/theme';
+@use '../../../../search-container/src/search-container-theme' as searchContainerTheme;
+
+@include searchContainerTheme.theme(themeVariables.$theme);
+@include iconTheme.theme(themeVariables.$theme);
+@include menuTheme.theme(themeVariables.$theme);
+
+section {
+    padding: 5rem;
+    font-family: 'Roboto';
+
+    .listsContainer {
+        display: flex;
+        gap: 5px;
+
+        .fullList,
+        .searchList {
+            flex: auto;
+        }
+
+        .mdc-list-item.mdc-list-item--with-one-line {
+            height: 24px;
+        }
+    }
+}

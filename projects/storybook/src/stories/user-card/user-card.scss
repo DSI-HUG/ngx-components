@@ -9,11 +9,8 @@
 @include iconTheme.theme(themeVariables.$theme);
 @include menuTheme.theme(themeVariables.$theme);
 
-storybook-user-card {
-    margin: 0;
-    font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
-
 section {
     padding: 5rem;
+    display: flex;
+    gap: 5px;
 }
