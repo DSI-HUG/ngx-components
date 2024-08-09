@@ -22,7 +22,7 @@ export const standard: Story = {
 };
 
 export const withLabel: Story = {
-args: {
-    label: 'Voici mon label'
-}
+    args: {
+        label: 'Voici mon label'
+    }
 };
