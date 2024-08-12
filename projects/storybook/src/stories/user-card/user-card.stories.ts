@@ -1,7 +1,7 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxUserCardComponent } from '../../../../user-card/src/user-card.component';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 const meta: Meta<NgxUserCardComponent> = {
@@ -10,11 +10,11 @@ const meta: Meta<NgxUserCardComponent> = {
     tags: ['autodocs'],
     decorators: [
         moduleMetadata({
-          imports: [
-            MatButtonToggleModule
-          ],
-        }),
-      ],
+            imports: [
+                MatButtonToggleModule
+            ]
+        })
+    ],
     parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
         layout: 'centered',
@@ -25,7 +25,7 @@ const meta: Meta<NgxUserCardComponent> = {
         }
     },
     argTypes: {
-        expanded: { 
+        expanded: {
             control: 'boolean',
             table: {
                 defaultValue: {
@@ -34,8 +34,8 @@ const meta: Meta<NgxUserCardComponent> = {
                 type: { summary: 'boolean' }
             },
             description: 'Set to false to have a compressed UserCard with less information.'
-         }
-    },
+        }
+    }
 };
 
 export default meta;
@@ -120,40 +120,40 @@ export const badgeIconColor: Story = {
             }
         }
     },
-    render: (args) => ({
-      props: {
-        ...args,
-        familyCodeChanged(code: string): void {
-          // Assurez-vous que les changements sont détectés et appliqués
-          this['user'] = {
-            title: 'Professeur',
-            firstname: 'Jean',
-            lastname: 'PATATE',
-            initials: 'jpat',
-            type: 'Type',
-            email: 'jean.patate@hug.ch',
-            role: 'Medecin',
-            groupFunctionLabel: 'Group',
-            familyCode: code,
-            functionSefName: 'SefNameFunction',
-            functionSefCode: 'SefCodeFunction',
-            organisation: 'HUG',
-            speciality: 'Neurochirurgie',
-            specialty1: 'Dermatologie',
-            specialty2: 'Pedicure',
-            esoN3Label: 'EsoN3Label',
-            login: 'PatateLogin',
-            phone: '+44 150 509 39',
-            bip: '8859595',
-            mobile: '+44 150 509 39',
-            address: 'Carouge, 7 Rue St Julien',
-            city: 'Carouge',
-            zipCode: '1227'
-          }
-          console.log(code)
-        }
-      },
-      template: `
+    render: args => ({
+        props: {
+            ...args,
+            familyCodeChanged(code: string): void {
+                // Assurez-vous que les changements sont détectés et appliqués
+                this['user'] = {
+                    title: 'Professeur',
+                    firstname: 'Jean',
+                    lastname: 'PATATE',
+                    initials: 'jpat',
+                    type: 'Type',
+                    email: 'jean.patate@hug.ch',
+                    role: 'Medecin',
+                    groupFunctionLabel: 'Group',
+                    familyCode: code,
+                    functionSefName: 'SefNameFunction',
+                    functionSefCode: 'SefCodeFunction',
+                    organisation: 'HUG',
+                    speciality: 'Neurochirurgie',
+                    specialty1: 'Dermatologie',
+                    specialty2: 'Pedicure',
+                    esoN3Label: 'EsoN3Label',
+                    login: 'PatateLogin',
+                    phone: '+44 150 509 39',
+                    bip: '8859595',
+                    mobile: '+44 150 509 39',
+                    address: 'Carouge, 7 Rue St Julien',
+                    city: 'Carouge',
+                    zipCode: '1227'
+                };
+                console.log(code);
+            }
+        },
+        template: `
         <section>
           <ngx-user-card [user]="user" [expanded]="false"></ngx-user-card>
           <br />
@@ -167,56 +167,15 @@ export const badgeIconColor: Story = {
           </div>
         </section>
       `,
-      styles: [`
+        styles: [`
         .matButtonContainer {
             display: flex;
             justify-content: center;}
-      `],
+      `]
     }),
     args: {
-      user: {
-        title: 'Professeur',
-        firstname: 'Jean',
-        lastname: 'PATATE',
-        initials: 'jpat',
-        type: 'Type',
-        email: 'jean.patate@hug.ch',
-        role: 'Medecin',
-        groupFunctionLabel: 'Group',
-        familyCode: 'Social',
-        functionSefName: 'SefNameFunction',
-        functionSefCode: 'SefCodeFunction',
-        organisation: 'HUG',
-        speciality: 'Neurochirurgie',
-        specialty1: 'Dermatologie',
-        specialty2: 'Pedicure',
-        esoN3Label: 'EsoN3Label',
-        login: 'PatateLogin',
-        phone: '+44 150 509 39',
-        bip: '8859595',
-        mobile: '+44 150 509 39',
-        address: 'Carouge, 7 Rue St Julien',
-        city: 'Carouge',
-        zipCode: '1227'
-      }
-    }
-  };
-
-  export const userAbbreviationTitle: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'Depending on the user\'s "title" property given, the UserCard will display its abbreviation.<br /><ul><li>Docteur / Docteure : <code>Dr</code>, <code>Dre</code></li><li>Monsieur / Madame : <code>M</code>, <code>Mme</code></li><li>Professeur / Professeure : <code>Pr</code>, <code>Pre</code></li></ul>Any other text in the "title" property will be displayed entirely.<br />Below I have a user with a title <code>Professeur</code>. You can see its abbreviation <code>Pr.</code> on the UserCard.'
-            }
-        }
-    },
-    render: (args) => ({
-      props: {
-        ...args,
-        titleChanged(code: string): void {
-          // Assurez-vous que les changements sont détectés et appliqués
-          this['user'] = {
-            title: code,
+        user: {
+            title: 'Professeur',
             firstname: 'Jean',
             lastname: 'PATATE',
             initials: 'jpat',
@@ -224,7 +183,7 @@ export const badgeIconColor: Story = {
             email: 'jean.patate@hug.ch',
             role: 'Medecin',
             groupFunctionLabel: 'Group',
-            familyCode: 'Soins',
+            familyCode: 'Social',
             functionSefName: 'SefNameFunction',
             functionSefCode: 'SefCodeFunction',
             organisation: 'HUG',
@@ -239,11 +198,52 @@ export const badgeIconColor: Story = {
             address: 'Carouge, 7 Rue St Julien',
             city: 'Carouge',
             zipCode: '1227'
-          }
-          console.log(code)
         }
-      },
-      template: `
+    }
+};
+
+export const userAbbreviationTitle: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Depending on the user\'s "title" property given, the UserCard will display its abbreviation.<br /><ul><li>Docteur / Docteure : <code>Dr</code>, <code>Dre</code></li><li>Monsieur / Madame : <code>M</code>, <code>Mme</code></li><li>Professeur / Professeure : <code>Pr</code>, <code>Pre</code></li></ul>Any other text in the "title" property will be displayed entirely.<br />Below I have a user with a title <code>Professeur</code>. You can see its abbreviation <code>Pr.</code> on the UserCard.'
+            }
+        }
+    },
+    render: args => ({
+        props: {
+            ...args,
+            titleChanged(code: string): void {
+                // Assurez-vous que les changements sont détectés et appliqués
+                this['user'] = {
+                    title: code,
+                    firstname: 'Jean',
+                    lastname: 'PATATE',
+                    initials: 'jpat',
+                    type: 'Type',
+                    email: 'jean.patate@hug.ch',
+                    role: 'Medecin',
+                    groupFunctionLabel: 'Group',
+                    familyCode: 'Soins',
+                    functionSefName: 'SefNameFunction',
+                    functionSefCode: 'SefCodeFunction',
+                    organisation: 'HUG',
+                    speciality: 'Neurochirurgie',
+                    specialty1: 'Dermatologie',
+                    specialty2: 'Pedicure',
+                    esoN3Label: 'EsoN3Label',
+                    login: 'PatateLogin',
+                    phone: '+44 150 509 39',
+                    bip: '8859595',
+                    mobile: '+44 150 509 39',
+                    address: 'Carouge, 7 Rue St Julien',
+                    city: 'Carouge',
+                    zipCode: '1227'
+                };
+                console.log(code);
+            }
+        },
+        template: `
         <section>
           <ngx-user-card [user]="user" [expanded]="false"></ngx-user-card>
           <br />
@@ -259,37 +259,37 @@ export const badgeIconColor: Story = {
           </div>
         </section>
       `,
-      styles: [`
+        styles: [`
         .matButtonContainer {
             display: flex;
             justify-content: center;}
-      `],
+      `]
     }),
     args: {
-      user: {
-        title: 'Professeur',
-        firstname: 'Jean',
-        lastname: 'PATATE',
-        initials: 'jpat',
-        type: 'Type',
-        email: 'jean.patate@hug.ch',
-        role: 'Medecin',
-        groupFunctionLabel: 'Group',
-        familyCode: 'Infirmier-e',
-        functionSefName: 'SefNameFunction',
-        functionSefCode: 'SefCodeFunction',
-        organisation: 'HUG',
-        speciality: 'Neurochirurgie',
-        specialty1: 'Dermatologie',
-        specialty2: 'Pedicure',
-        esoN3Label: 'EsoN3Label',
-        login: 'PatateLogin',
-        phone: '+44 150 509 39',
-        bip: '8859595',
-        mobile: '+44 150 509 39',
-        address: 'Carouge, 7 Rue St Julien',
-        city: 'Carouge',
-        zipCode: '1227'
+        user: {
+            title: 'Professeur',
+            firstname: 'Jean',
+            lastname: 'PATATE',
+            initials: 'jpat',
+            type: 'Type',
+            email: 'jean.patate@hug.ch',
+            role: 'Medecin',
+            groupFunctionLabel: 'Group',
+            familyCode: 'Infirmier-e',
+            functionSefName: 'SefNameFunction',
+            functionSefCode: 'SefCodeFunction',
+            organisation: 'HUG',
+            speciality: 'Neurochirurgie',
+            specialty1: 'Dermatologie',
+            specialty2: 'Pedicure',
+            esoN3Label: 'EsoN3Label',
+            login: 'PatateLogin',
+            phone: '+44 150 509 39',
+            bip: '8859595',
+            mobile: '+44 150 509 39',
+            address: 'Carouge, 7 Rue St Julien',
+            city: 'Carouge',
+            zipCode: '1227'
+        }
     }
-    }
-  };
+};
