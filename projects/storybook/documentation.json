@@ -157,6 +157,160 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<section>\n    <div ngx-numeric-stepper-container>\n        <mat-form-field [appearance]=\"appearance\">\n            <mat-label>{{ label }}</mat-label>\n            <span matTextPrefix=\"\" *ngIf=\"preffix\">{{ preffix }}</span>\n            <input matInput type=\"number\" [ngModel]=\"value\" #numericStepper=\"ngModel\" />\n            <span matTextSuffix *ngIf=\"suffix\">{{ suffix }}</span>\n            <ngx-numeric-stepper (increment)=\"value = value + increment\" (decrement)=\"value = value - decrement\" [layout]=\"layout\" showOnInit></ngx-numeric-stepper>\n        </mat-form-field>\n    </div>\n</section>\n"
+        },
+        {
+            "name": "StorybookNumericStepperComponent",
+            "id": "component-StorybookNumericStepperComponent-afa5dee8a048973eb6afdcde8a079f8c31d13e8e5bf6007b8ad1c0ab683dc1dcdc51a5c9d3f28584ce99bff61319aadf7d51c0fffb9a53e7788a79b1fc916e6d-1",
+            "file": "projects/storybook/src/stories/numeric-stepper_old/numeric-stepper.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": ["ViewEncapsulation.None"],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-numeric-stepper",
+            "styleUrls": ["./numeric-stepper.scss"],
+            "styles": [],
+            "templateUrl": ["./numeric-stepper.component.html"],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "appearance",
+                    "defaultValue": "'outline'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "MatFormFieldAppearance",
+                    "decorators": []
+                },
+                {
+                    "name": "arrowIcons",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 45,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "decrement",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "increment",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'This is my label'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "layout",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 42,
+                    "type": "NgxNumericStepperLayout",
+                    "decorators": []
+                },
+                {
+                    "name": "preffix",
+                    "defaultValue": "undefined",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "string | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "showOnInit",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 48,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "suffix",
+                    "defaultValue": "undefined",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "string | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "number",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "NgxNumericStepperComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "MatFormFieldModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatInputModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { type MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';\nimport { MatInputModule } from '@angular/material/input';\n\nimport { NgxNumericStepperComponent, NgxNumericStepperLayout } from '../../../../numeric-stepper/src/numeric-stepper.component';\n\n@Component({\n    selector: 'storybook-numeric-stepper',\n    templateUrl: './numeric-stepper.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    encapsulation: ViewEncapsulation.None,\n    imports: [CommonModule, NgxNumericStepperComponent, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule],\n    styleUrls: ['./numeric-stepper.scss']\n})\nexport class StorybookNumericStepperComponent {\n\n    @Input()\n    public value!: number;\n\n    @Input()\n    public label = 'This is my label';\n\n    @Input()\n    public preffix: string | undefined = undefined;\n\n    @Input()\n    public suffix: string | undefined = undefined;\n\n    @Input()\n    public appearance: MatFormFieldAppearance = 'outline';\n\n    @Input()\n    public increment!: number;\n\n    @Input()\n    public decrement!: number;\n\n    @Input()\n    public layout!: NgxNumericStepperLayout;\n\n    @Input()\n    public arrowIcons!: boolean;\n\n    @Input()\n    public showOnInit!: boolean;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../numeric-stepper/src/numeric-stepper-theme' as numericStepperTheme;\n\n@include numericStepperTheme.theme(themeVariables.$theme);\nsection {\n    padding: 5rem;\n    font-family: 'Roboto';\n    background-color: white;\n}\n",
+                    "styleUrl": "./numeric-stepper.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "StorybookNumericStepperComponent-1",
+            "templateData": "<section>\n    <div ngx-numeric-stepper-container>\n        <mat-form-field [appearance]=\"appearance\">\n            <mat-label>{{ label }}</mat-label>\n            <span matTextPrefix=\"\" *ngIf=\"preffix\">{{ preffix }}</span>\n            <input matInput type=\"number\" [ngModel]=\"value\" #numericStepper=\"ngModel\" />\n            <span matTextSuffix *ngIf=\"suffix\">{{ suffix }}</span>\n            <ngx-numeric-stepper (increment)=\"value = value + increment\" (decrement)=\"value = value - decrement\" [layout]=\"layout\" showOnInit></ngx-numeric-stepper>\n        </mat-form-field>\n    </div>\n</section>\n"
         }
     ],
     "modules": [],
@@ -168,6 +322,15 @@
         "files": [
             {
                 "filePath": "projects/storybook/src/stories/numeric-stepper/numeric-stepper.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StorybookNumericStepperComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/storybook/src/stories/numeric-stepper_old/numeric-stepper.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "StorybookNumericStepperComponent",

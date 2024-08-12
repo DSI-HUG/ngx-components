@@ -23,6 +23,9 @@
                     background-color: rgba(245, 245, 245);
                 }
             }
+            .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align {
+                visibility: hidden;
+            }
         }
         &[ngx-numeric-stepper-form-field='vertical'] {
             &:not(.disabled) {
@@ -107,6 +110,16 @@
             text-align: center;
         }
 
+        &[ngx-numeric-stepper-form-field='horizontal-inlay'] {
+            &:not(.disabled) {
+                &:hover {
+                    .mat-mdc-floating-label,
+                    input {
+                        z-index: 10001;
+                    }
+                }
+            }
+        }
         &:not(.disabled) {
             &:hover {
                 .arrow,
