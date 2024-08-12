@@ -4,7 +4,7 @@ import { NgxListLoaderComponent } from '../../../../list-loader/src/list-loader.
 
 
 const meta: Meta<NgxListLoaderComponent> = {
-    title: 'List loader',
+    title: 'Components/List Loader',
     component: NgxListLoaderComponent,
     tags: ['autodocs'],
     parameters: {
@@ -25,7 +25,7 @@ export const standard: Story = {
         label: {
             table: {
                 type: { summary: 'string' }
-            },
+            }
         }
     },
     args: {
@@ -33,7 +33,7 @@ export const standard: Story = {
     }
 };
 
-export const withLabel: Story = {    
+export const withLabel: Story = {
     parameters: {
         docs: {
             description: {

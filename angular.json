@@ -130,7 +130,7 @@
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "projects/storybook"],
                         "port": 6006,
-                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/storybook/src/stories/user-card/user-card.scss", "./projects/storybook/src/stories/list-loader/list-loader.scss"]
+                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/storybook/src/stories/user-card/user-card.scss", "./projects/storybook/src/stories/list-loader/list-loader.scss", "./projects/storybook/src/stories/search-container/search-container.scss"]
                     }
                 },
                 "build-storybook": {
@@ -141,7 +141,7 @@
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "projects/storybook"],
                         "outputDir": "dist/storybook/storybook",
-                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/storybook/src/stories/user-card/user-card.scss", "./projects/storybook/src/stories/list-loader/list-loader.scss"]
+                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/storybook/src/stories/user-card/user-card.scss", "./projects/storybook/src/stories/list-loader/list-loader.scss", "./projects/storybook/src/stories/search-container/search-container.scss"]
                     }
                 }
             }
@@ -173,6 +173,26 @@
                         "main": "projects/numeric-stepper/src/test.ts",
                         "tsConfig": "projects/numeric-stepper/tsconfig.spec.json",
                         "karmaConfig": "projects/numeric-stepper/karma.conf.js"
+                    }
+                },
+                "storybook": {
+                    "builder": "@storybook/angular:start-storybook",
+                    "options": {
+                        "configDir": "projects/numeric-stepper/.storybook",
+                        "browserTarget": "numeric-stepper:build",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "projects/numeric-stepper"],
+                        "port": 6006
+                    }
+                },
+                "build-storybook": {
+                    "builder": "@storybook/angular:build-storybook",
+                    "options": {
+                        "configDir": "projects/numeric-stepper/.storybook",
+                        "browserTarget": "numeric-stepper:build",
+                        "compodoc": true,
+                        "compodocArgs": ["-e", "json", "-d", "projects/numeric-stepper"],
+                        "outputDir": "dist/storybook/numeric-stepper"
                     }
                 }
             }

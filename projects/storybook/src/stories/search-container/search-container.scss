@@ -8,22 +8,3 @@
 @include searchContainerTheme.theme(themeVariables.$theme);
 @include iconTheme.theme(themeVariables.$theme);
 @include menuTheme.theme(themeVariables.$theme);
-
-section {
-    padding: 5rem;
-    font-family: 'Roboto';
-
-    .listsContainer {
-        display: flex;
-        gap: 5px;
-
-        .fullList,
-        .searchList {
-            flex: auto;
-        }
-
-        .mdc-list-item.mdc-list-item--with-one-line {
-            height: 24px;
-        }
-    }
-}

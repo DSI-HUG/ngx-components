@@ -159,82 +159,54 @@
             "templateData": "<section>\n    <div ngx-numeric-stepper-container>\n        <mat-form-field [appearance]=\"appearance\">\n            <mat-label>{{ label }}</mat-label>\n            <span matTextPrefix=\"\" *ngIf=\"preffix\">{{ preffix }}</span>\n            <input matInput type=\"number\" [ngModel]=\"value\" #numericStepper=\"ngModel\" />\n            <span matTextSuffix *ngIf=\"suffix\">{{ suffix }}</span>\n            <ngx-numeric-stepper (increment)=\"value = value + increment\" (decrement)=\"value = value - decrement\" [layout]=\"layout\" showOnInit></ngx-numeric-stepper>\n        </mat-form-field>\n    </div>\n</section>\n"
         },
         {
-            "name": "StorybookSearchContainerComponent",
-            "id": "component-StorybookSearchContainerComponent-992914362bbd08e27696e521ce95f5772d3e777e152b4351c2d891ac0c117a6cda96e6316d010cf9597f9243abec933b376d73e0d1eb2d30f5419176cf8d5e6c",
-            "file": "projects/storybook/src/stories/search-container/search-container.component.ts",
+            "name": "StorybookUserCardComponent",
+            "id": "component-StorybookUserCardComponent-4a723186c895f93031db7c9deb4dfed23b6d56b079daf4a7dbfa6ebef97b0dd7c88ffcafc3e5c54ae27fba55f3b8ee2552a99c67f4badcabb3b8dc2df34b450a",
+            "file": "projects/storybook/src/stories/user-card/user-card-wrapper.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": ["ViewEncapsulation.None"],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "storybook-search-container",
-            "styleUrls": ["./search-container.scss"],
+            "selector": "storybook-user-card",
+            "styleUrls": ["./user-card.scss"],
             "styles": [],
-            "templateUrl": ["./search-container.component.html"],
+            "templateUrl": ["./user-card-wrapper.component.html"],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "clearTooltipLabel",
-                    "defaultValue": "'Effacer la recherche'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 31,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "placeholder",
-                    "defaultValue": "'Rechercher dans la liste'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 28,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "searchModel",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 25,
-                    "type": "string",
-                    "decorators": []
-                }
-            ],
+            "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "fullList",
-                    "defaultValue": "[\n        'limace',\n        'cygne',\n        'chat',\n        'ours',\n        'faisan',\n        'dauphin',\n        'paon',\n        'furet',\n        'panda',\n        'phoque',\n        'crocodile',\n        'gorille',\n        'raie',\n        'chinchilla',\n        'cafard',\n        'faisan',\n        'corbeau',\n        'dromadaire',\n        'alpaga',\n        'aigle',\n        'espadon',\n        'canari',\n        'guépard',\n        'phoque',\n        'bison',\n        'poney',\n        'alpaga',\n        'kangourou',\n        'pingouin',\n        'raie',\n        'autruche',\n        'jaguar',\n        'chameau',\n        'oie',\n        'lama',\n        'perruche',\n        'mouche',\n        'iguane',\n        'crabe'\n\n    ]",
+                    "name": "changeDetectorRef",
+                    "defaultValue": "inject(ChangeDetectorRef)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 33,
-                    "modifierKind": [124]
+                    "line": 45,
+                    "modifierKind": [123]
                 },
                 {
-                    "name": "searchList",
-                    "defaultValue": "this.fullList",
+                    "name": "user",
+                    "defaultValue": "{\n        title: 'Professeur',\n        firstname: 'Jean',\n        lastname: 'PATATE',\n        initials: 'jpat',\n        type: 'Type',\n        email: 'jean.patate@hug.ch',\n        role: 'Medecin',\n        groupFunctionLabel: 'Group',\n        familyCode: 'Infirmier-e',\n        functionSefName: 'SefNameFunction',\n        functionSefCode: 'SefCodeFunction',\n        organisation: 'HUG',\n        speciality: 'Neurochirurgie',\n        specialty1: 'Dermatologie',\n        specialty2: 'Pedicure',\n        esoN3Label: 'EsoN3Label',\n        login: 'PatateLogin',\n        phone: '+44 150 509 39',\n        bip: '8859595',\n        mobile: '+44 150 509 39',\n        address: 'Carouge, 7 Rue St Julien',\n        city: 'Carouge',\n        zipCode: '1227'\n    }",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
+                    "type": "NgxUserCard",
                     "optional": false,
                     "description": "",
-                    "line": 76,
-                    "modifierKind": [124]
+                    "line": 19,
+                    "modifierKind": [125]
                 }
             ],
             "methodsClass": [
                 {
-                    "name": "searchQueryChanged",
+                    "name": "familyCodeChanged",
                     "args": [
                         {
-                            "name": "value",
-                            "type": "string",
+                            "name": "buttonToggle",
+                            "type": "MatButtonToggleChange",
                             "deprecated": false,
                             "deprecationMessage": ""
                         }
@@ -242,14 +214,13 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 78,
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "modifierKind": [124],
                     "jsdoctags": [
                         {
-                            "name": "value",
-                            "type": "string",
+                            "name": "buttonToggle",
+                            "type": "MatButtonToggleChange",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -270,40 +241,28 @@
                     "type": "module"
                 },
                 {
-                    "name": "MatInputModule",
+                    "name": "MatButtonToggleModule",
                     "type": "module"
                 },
                 {
-                    "name": "NgxSearchContainerComponent",
+                    "name": "NgxUserCardComponent",
                     "type": "component"
-                },
-                {
-                    "name": "NgxSearchInputDirective",
-                    "type": "directive"
-                },
-                {
-                    "name": "FormsModule",
-                    "type": "module"
-                },
-                {
-                    "name": "MatListModule",
-                    "type": "module"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatListModule } from '@angular/material/list';\n\nimport { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../../search-container/src/search-container.component';\n\n@Component({\n    selector: 'storybook-search-container',\n    templateUrl: './search-container.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    encapsulation: ViewEncapsulation.None,\n    imports: [CommonModule,\n        MatInputModule,\n        NgxSearchContainerComponent,\n        NgxSearchInputDirective,\n        FormsModule,\n        MatListModule],\n    styleUrls: ['./search-container.scss']\n})\nexport class StorybookSearchContainerComponent {\n    @Input()\n    public searchModel = '';\n\n    @Input()\n    public placeholder = 'Rechercher dans la liste';\n\n    @Input()\n    public clearTooltipLabel = 'Effacer la recherche';\n\n    protected fullList: readonly string[] = [\n        'limace',\n        'cygne',\n        'chat',\n        'ours',\n        'faisan',\n        'dauphin',\n        'paon',\n        'furet',\n        'panda',\n        'phoque',\n        'crocodile',\n        'gorille',\n        'raie',\n        'chinchilla',\n        'cafard',\n        'faisan',\n        'corbeau',\n        'dromadaire',\n        'alpaga',\n        'aigle',\n        'espadon',\n        'canari',\n        'guépard',\n        'phoque',\n        'bison',\n        'poney',\n        'alpaga',\n        'kangourou',\n        'pingouin',\n        'raie',\n        'autruche',\n        'jaguar',\n        'chameau',\n        'oie',\n        'lama',\n        'perruche',\n        'mouche',\n        'iguane',\n        'crabe'\n\n    ];\n\n    protected searchList: readonly string[] = this.fullList;\n\n    protected searchQueryChanged(value: string): void {\n        if (!value || value === '') {\n            this.searchList = this.fullList;\n        } else {\n            this.searchList = this.fullList.filter(animal => animal.includes(value));\n\n        }\n    }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, ViewEncapsulation } from '@angular/core';\n\nimport { NgxUserCardComponent } from '../../../../user-card/src/user-card.component';\nimport { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';\nimport { NgxUserCard } from '../../../../user-card/src/user-card.model';\n\n@Component({\n    selector: 'storybook-user-card',\n    templateUrl: './user-card-wrapper.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    encapsulation: ViewEncapsulation.None,\n    imports: [CommonModule, MatButtonToggleModule, NgxUserCardComponent],\n    styleUrls: ['./user-card.scss']\n})\nexport class StorybookUserCardComponent {\n\n    public user: NgxUserCard = {\n        title: 'Professeur',\n        firstname: 'Jean',\n        lastname: 'PATATE',\n        initials: 'jpat',\n        type: 'Type',\n        email: 'jean.patate@hug.ch',\n        role: 'Medecin',\n        groupFunctionLabel: 'Group',\n        familyCode: 'Infirmier-e',\n        functionSefName: 'SefNameFunction',\n        functionSefCode: 'SefCodeFunction',\n        organisation: 'HUG',\n        speciality: 'Neurochirurgie',\n        specialty1: 'Dermatologie',\n        specialty2: 'Pedicure',\n        esoN3Label: 'EsoN3Label',\n        login: 'PatateLogin',\n        phone: '+44 150 509 39',\n        bip: '8859595',\n        mobile: '+44 150 509 39',\n        address: 'Carouge, 7 Rue St Julien',\n        city: 'Carouge',\n        zipCode: '1227'\n    };\n    \n    private changeDetectorRef = inject(ChangeDetectorRef);\n\n    familyCodeChanged(buttonToggle: MatButtonToggleChange) {\n        // If search query is empty, reset searchList to fullList\n        console.log(\"ttt\", buttonToggle);\n        // args.user.familyCode = buttonToggle.value;\n        this.changeDetectorRef.detectChanges();\n      }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../search-container/src/search-container-theme' as searchContainerTheme;\n\n@include searchContainerTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n\nsection {\n    padding: 5rem;\n    font-family: 'Roboto';\n\n    .listsContainer {\n        display: flex;\n        gap: 5px;\n\n        .fullList,\n        .searchList {\n            flex: auto;\n        }\n\n        .mdc-list-item.mdc-list-item--with-one-line {\n            height: 24px;\n        }\n    }\n}\n",
-                    "styleUrl": "./search-container.scss"
+                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../user-card/src/user-card-theme' as userCardTheme;\n\n@include userCardTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n",
+                    "styleUrl": "./user-card.scss"
                 }
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<section>\n    <ngx-search-container [clearTooltip]=\"clearTooltipLabel\">\n        <input ngx-search-input type=\"text\" [placeholder]=\"placeholder\" [(ngModel)]=\"searchModel\" (ngModelChange)=\"searchQueryChanged($event)\" />\n    </ngx-search-container>\n    <br />\n    <div class=\"listsContainer\">\n        <div class=\"fullList\">\n            <span>Liste complète</span>\n            <mat-list role=\"list\">\n                @for (animal of fullList; track $index) {\n                    <mat-list-item role=\"listitem\">{{ animal }}</mat-list-item>\n                }\n            </mat-list>\n        </div>\n        <div class=\"searchList\">\n            <span>Liste issu de la recherche</span>\n            <mat-list role=\"list\">\n                @for (animal of searchList; track $index) {\n                    <mat-list-item role=\"listitem\">{{ animal }}</mat-list-item>\n                }\n            </mat-list>\n        </div>\n    </div>\n</section>\n"
+            "templateData": "<section>\n    <ngx-user-card [user]=\"user\" , [expanded]=\"false\"></ngx-user-card>\n    <br />\n    <div>\n        <mat-button-toggle-group name=\"favoriteColor\" hideSingleSelectionIndicator=\"true\" (change)=\"familyCodeChanged($event)\">\n            <mat-button-toggle value=\"Médecin dentiste\">Red</mat-button-toggle>\n            <mat-button-toggle value=\"Social\">Green</mat-button-toggle>\n            <mat-button-toggle value=\"Infirmier-e\">Blue</mat-button-toggle>\n            <mat-button-toggle value=\"a text\">Gray</mat-button-toggle>\n        </mat-button-toggle-group>\n    </div>\n</section>\n"
         }
     ],
     "modules": [],
@@ -323,12 +282,12 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/storybook/src/stories/search-container/search-container.component.ts",
+                "filePath": "projects/storybook/src/stories/user-card/user-card-wrapper.component.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "StorybookSearchContainerComponent",
+                "name": "StorybookUserCardComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/4",
                 "status": "low"
             }
         ]

@@ -69,6 +69,7 @@
         "@storybook/addon-docs": "^8.2.8",
         "@storybook/addon-essentials": "^8.2.8",
         "@storybook/addon-interactions": "^8.2.8",
+        "@storybook/addon-knobs": "^8.0.1",
         "@storybook/addon-links": "^8.2.8",
         "@storybook/addon-onboarding": "^8.2.8",
         "@storybook/angular": "^8.2.8",
