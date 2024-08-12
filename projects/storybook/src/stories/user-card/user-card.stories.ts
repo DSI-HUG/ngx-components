@@ -124,7 +124,6 @@ export const badgeIconColor: Story = {
         props: {
             ...args,
             familyCodeChanged(code: string): void {
-                // Assurez-vous que les changements sont détectés et appliqués
                 this['user'] = {
                     title: 'Professeur',
                     firstname: 'Jean',
@@ -150,7 +149,6 @@ export const badgeIconColor: Story = {
                     city: 'Carouge',
                     zipCode: '1227'
                 };
-                console.log(code);
             }
         },
         template: `
@@ -214,7 +212,6 @@ export const userAbbreviationTitle: Story = {
         props: {
             ...args,
             titleChanged(code: string): void {
-                // Assurez-vous que les changements sont détectés et appliqués
                 this['user'] = {
                     title: code,
                     firstname: 'Jean',
@@ -240,7 +237,6 @@ export const userAbbreviationTitle: Story = {
                     city: 'Carouge',
                     zipCode: '1227'
                 };
-                console.log(code);
             }
         },
         template: `
