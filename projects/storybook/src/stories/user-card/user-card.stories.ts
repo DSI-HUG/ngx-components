@@ -116,7 +116,7 @@ export const badgeIconColor: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Depending on the user\'s "familyCode" property given, the UserCard can have a green, blue, red or gray colored badge.<br /><ul><li>Green : <code>Médico-technique</code>, <code>Social</code>, <code>Médico-thérapeutique</code>, <code>Pharmacie</code></li><li>Blue : <code>Soins</code>, <code>Infirmier-e</code></li><li>Red : <code>Médecin dentiste</code>, <code>Médecin</code></li><li>Gray : everything else</li></ul>Below I have a user with a familyCode <code>Médecin</code>. You can see the red tag.'
+                story: 'Depending on the user\'s "familyCode" property given, the UserCard can have a green, blue, red or gray colored badge.<br /><ul><li>Green : <code>Médico-technique</code>, <code>Social</code>, <code>Médico-thérapeutique</code>, <code>Pharmacie</code></li><li>Blue : <code>Soins</code>, <code>Infirmier-e</code></li><li>Red : <code>Médecin dentiste</code>, <code>Médecin</code></li><li>Gray : Any other text</li><li>Nothing : Empty familyCode</li></ul>'
             }
         }
     },
@@ -160,7 +160,8 @@ export const badgeIconColor: Story = {
                 <mat-button-toggle value="Social">Social</mat-button-toggle>    
                 <mat-button-toggle value="Infirmier-e">Infirmier-e</mat-button-toggle>
                 <mat-button-toggle value="Médecin dentiste">Médecin dentiste</mat-button-toggle>
-                <mat-button-toggle value="a text">a custom familyCode</mat-button-toggle>
+                <mat-button-toggle value="a text">Custom text</mat-button-toggle>
+                <mat-button-toggle value="">Empty</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
         </section>
@@ -204,7 +205,7 @@ export const userAbbreviationTitle: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Depending on the user\'s "title" property given, the UserCard will display its abbreviation.<br /><ul><li>Docteur / Docteure : <code>Dr</code>, <code>Dre</code></li><li>Monsieur / Madame : <code>M</code>, <code>Mme</code></li><li>Professeur / Professeure : <code>Pr</code>, <code>Pre</code></li></ul>Any other text in the "title" property will be displayed entirely.<br />Below I have a user with a title <code>Professeur</code>. You can see its abbreviation <code>Pr.</code> on the UserCard.'
+                story: 'Depending on the user\'s "title" property given, the UserCard will display its abbreviation.<br /><ul><li>Docteur / Docteure : <code>Dr</code>, <code>Dre</code></li><li>Monsieur / Madame : <code>M</code>, <code>Mme</code></li><li>Professeur / Professeure : <code>Pr</code>, <code>Pre</code></li></ul>Any other text in the "title" property will be displayed entirely.'
             }
         }
     },
@@ -251,6 +252,7 @@ export const userAbbreviationTitle: Story = {
                 <mat-button-toggle value="Madame">Madame</mat-button-toggle>
                 <mat-button-toggle value="Professeur">Professeur</mat-button-toggle>
                 <mat-button-toggle value="Professeure">Professeure</mat-button-toggle>
+                <mat-button-toggle value="OtherTitle">OtherTitle</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
         </section>

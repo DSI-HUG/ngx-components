@@ -157,112 +157,6 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<section>\n    <div ngx-numeric-stepper-container>\n        <mat-form-field [appearance]=\"appearance\">\n            <mat-label>{{ label }}</mat-label>\n            <span matTextPrefix=\"\" *ngIf=\"preffix\">{{ preffix }}</span>\n            <input matInput type=\"number\" [ngModel]=\"value\" #numericStepper=\"ngModel\" />\n            <span matTextSuffix *ngIf=\"suffix\">{{ suffix }}</span>\n            <ngx-numeric-stepper (increment)=\"value = value + increment\" (decrement)=\"value = value - decrement\" [layout]=\"layout\" showOnInit></ngx-numeric-stepper>\n        </mat-form-field>\n    </div>\n</section>\n"
-        },
-        {
-            "name": "StorybookUserCardComponent",
-            "id": "component-StorybookUserCardComponent-4a723186c895f93031db7c9deb4dfed23b6d56b079daf4a7dbfa6ebef97b0dd7c88ffcafc3e5c54ae27fba55f3b8ee2552a99c67f4badcabb3b8dc2df34b450a",
-            "file": "projects/storybook/src/stories/user-card/user-card-wrapper.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": ["ViewEncapsulation.None"],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-user-card",
-            "styleUrls": ["./user-card.scss"],
-            "styles": [],
-            "templateUrl": ["./user-card-wrapper.component.html"],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "changeDetectorRef",
-                    "defaultValue": "inject(ChangeDetectorRef)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 45,
-                    "modifierKind": [123]
-                },
-                {
-                    "name": "user",
-                    "defaultValue": "{\n        title: 'Professeur',\n        firstname: 'Jean',\n        lastname: 'PATATE',\n        initials: 'jpat',\n        type: 'Type',\n        email: 'jean.patate@hug.ch',\n        role: 'Medecin',\n        groupFunctionLabel: 'Group',\n        familyCode: 'Infirmier-e',\n        functionSefName: 'SefNameFunction',\n        functionSefCode: 'SefCodeFunction',\n        organisation: 'HUG',\n        speciality: 'Neurochirurgie',\n        specialty1: 'Dermatologie',\n        specialty2: 'Pedicure',\n        esoN3Label: 'EsoN3Label',\n        login: 'PatateLogin',\n        phone: '+44 150 509 39',\n        bip: '8859595',\n        mobile: '+44 150 509 39',\n        address: 'Carouge, 7 Rue St Julien',\n        city: 'Carouge',\n        zipCode: '1227'\n    }",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "NgxUserCard",
-                    "optional": false,
-                    "description": "",
-                    "line": 19,
-                    "modifierKind": [125]
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "familyCodeChanged",
-                    "args": [
-                        {
-                            "name": "buttonToggle",
-                            "type": "MatButtonToggleChange",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 47,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "buttonToggle",
-                            "type": "MatButtonToggleChange",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": true,
-            "imports": [
-                {
-                    "name": "CommonModule",
-                    "type": "module"
-                },
-                {
-                    "name": "MatButtonToggleModule",
-                    "type": "module"
-                },
-                {
-                    "name": "NgxUserCardComponent",
-                    "type": "component"
-                }
-            ],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, ViewEncapsulation } from '@angular/core';\n\nimport { NgxUserCardComponent } from '../../../../user-card/src/user-card.component';\nimport { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';\nimport { NgxUserCard } from '../../../../user-card/src/user-card.model';\n\n@Component({\n    selector: 'storybook-user-card',\n    templateUrl: './user-card-wrapper.component.html',\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    standalone: true,\n    encapsulation: ViewEncapsulation.None,\n    imports: [CommonModule, MatButtonToggleModule, NgxUserCardComponent],\n    styleUrls: ['./user-card.scss']\n})\nexport class StorybookUserCardComponent {\n\n    public user: NgxUserCard = {\n        title: 'Professeur',\n        firstname: 'Jean',\n        lastname: 'PATATE',\n        initials: 'jpat',\n        type: 'Type',\n        email: 'jean.patate@hug.ch',\n        role: 'Medecin',\n        groupFunctionLabel: 'Group',\n        familyCode: 'Infirmier-e',\n        functionSefName: 'SefNameFunction',\n        functionSefCode: 'SefCodeFunction',\n        organisation: 'HUG',\n        speciality: 'Neurochirurgie',\n        specialty1: 'Dermatologie',\n        specialty2: 'Pedicure',\n        esoN3Label: 'EsoN3Label',\n        login: 'PatateLogin',\n        phone: '+44 150 509 39',\n        bip: '8859595',\n        mobile: '+44 150 509 39',\n        address: 'Carouge, 7 Rue St Julien',\n        city: 'Carouge',\n        zipCode: '1227'\n    };\n    \n    private changeDetectorRef = inject(ChangeDetectorRef);\n\n    familyCodeChanged(buttonToggle: MatButtonToggleChange) {\n        // If search query is empty, reset searchList to fullList\n        console.log(\"ttt\", buttonToggle);\n        // args.user.familyCode = buttonToggle.value;\n        this.changeDetectorRef.detectChanges();\n      }\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "@use '@angular/material' as mat;\n@use '../../../../core/src/styles/mixins/icon-theme' as iconTheme;\n@use '../../../../core/src/styles/mixins/menu-theme' as menuTheme;\n@use '../../../../core/src/styles/themeVariables' as themeVariables;\n@use '../../../../core/src/styles/theme';\n@use '../../../../user-card/src/user-card-theme' as userCardTheme;\n\n@include userCardTheme.theme(themeVariables.$theme);\n@include iconTheme.theme(themeVariables.$theme);\n@include menuTheme.theme(themeVariables.$theme);\n",
-                    "styleUrl": "./user-card.scss"
-                }
-            ],
-            "stylesData": "",
-            "extends": [],
-            "templateData": "<section>\n    <ngx-user-card [user]=\"user\" , [expanded]=\"false\"></ngx-user-card>\n    <br />\n    <div>\n        <mat-button-toggle-group name=\"favoriteColor\" hideSingleSelectionIndicator=\"true\" (change)=\"familyCodeChanged($event)\">\n            <mat-button-toggle value=\"Médecin dentiste\">Red</mat-button-toggle>\n            <mat-button-toggle value=\"Social\">Green</mat-button-toggle>\n            <mat-button-toggle value=\"Infirmier-e\">Blue</mat-button-toggle>\n            <mat-button-toggle value=\"a text\">Gray</mat-button-toggle>\n        </mat-button-toggle-group>\n    </div>\n</section>\n"
         }
     ],
     "modules": [],
@@ -279,15 +173,6 @@
                 "name": "StorybookNumericStepperComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/11",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/storybook/src/stories/user-card/user-card-wrapper.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "StorybookUserCardComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/4",
                 "status": "low"
             }
         ]
