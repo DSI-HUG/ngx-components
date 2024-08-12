@@ -1,12 +1,12 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-
-import { NgxNumericStepperComponent } from '../../../../numeric-stepper/src/numeric-stepper.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+
+import { NgxNumericStepperComponent } from '../../../../numeric-stepper/src/numeric-stepper.component';
 
 const meta: Meta<NgxNumericStepperComponent> = {
     title: 'Components/Numeric Stepper',
@@ -210,8 +210,8 @@ export const prefixAndSuffix: Story = {
         props: {
             ...args,
             value: 115,
-            prefix: 'My prefix',
-            suffix: 'My suffix',
+            prefix: '',
+            suffix: 'cm',
             prefixChanged(value: string): void {
                 this['prefix'] = value;
             },
