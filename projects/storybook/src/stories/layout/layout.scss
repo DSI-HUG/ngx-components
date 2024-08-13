@@ -1,0 +1,27 @@
+@use '../../../../core/src/styles/themeVariables' as themeVariables;
+@use '../../../../core/src/styles/theme';
+@use '../../../../layout/src/layout-theme' as layoutTheme;
+@use '../../../../status/src/status-theme' as statusTheme;
+@use '@angular/material' as mat;
+
+@include layoutTheme.theme(themeVariables.$theme);
+@include statusTheme.theme(themeVariables.$theme);
+section {
+    padding: 5rem;
+    font-family: 'Roboto';
+    background-color: white;
+
+    .content-container {
+        padding: 1rem;
+    }
+
+    &.moreHeight {
+        height: 100px;
+    }
+
+    .content-container {
+        display: flex;
+        flex: 1 1 auto;
+        padding: 1rem;
+    }
+}

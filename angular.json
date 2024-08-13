@@ -130,7 +130,7 @@
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "projects/storybook"],
                         "port": 6006,
-                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/storybook/src/stories/user-card/user-card.scss", "./projects/storybook/src/stories/list-loader/list-loader.scss", "./projects/storybook/src/stories/search-container/search-container.scss"]
+                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/storybook/src/stories/layout/layout.scss", "./projects/storybook/src/stories/user-card/user-card.scss", "./projects/storybook/src/stories/list-loader/list-loader.scss", "./projects/storybook/src/stories/search-container/search-container.scss"]
                     }
                 },
                 "build-storybook": {
@@ -141,7 +141,7 @@
                         "compodoc": true,
                         "compodocArgs": ["-e", "json", "-d", "projects/storybook"],
                         "outputDir": "dist/storybook/storybook",
-                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/storybook/src/stories/user-card/user-card.scss", "./projects/storybook/src/stories/list-loader/list-loader.scss", "./projects/storybook/src/stories/search-container/search-container.scss"]
+                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/storybook/src/stories/layout/layout.scss", "./projects/storybook/src/stories/user-card/user-card.scss", "./projects/storybook/src/stories/list-loader/list-loader.scss", "./projects/storybook/src/stories/search-container/search-container.scss"]
                     }
                 }
             }
