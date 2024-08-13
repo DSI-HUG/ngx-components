@@ -40,7 +40,7 @@ const meta: Meta<NgxNumericStepperComponent> = {
                 component: 'This component works with a mat-form-field containing an input.<br/>It adds a mask on hover to allow custom additions or subtractions to be made using the + and - buttons'
             }
         }
-    },
+    }
 };
 export default meta;
 type Story = StoryObj<NgxNumericStepperComponent>;
