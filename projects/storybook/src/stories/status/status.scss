@@ -17,6 +17,7 @@ section {
 
     ngx-snackbar {
         position: relative !important;
+        z-index: 4 !important;
     }
     .matButtonContainer {
         display: flex;
