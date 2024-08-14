@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-import { NgxStatusService } from '../../../../status/src/status.service';
-import { NgxStatusComponent } from '../../../../status/src/status.component';
 import { NgxSnackbarComponent } from '../../../../snackbar/src/snackbar.component';
+import { NgxStatusComponent } from '../../../../status/src/status.component';
 import { NgxStatusModule } from '../../../../status/src/status.module';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { NgxStatusService } from '../../../../status/src/status.service';
 
 const meta: Meta<NgxStatusComponent> = {
     title: 'Components/Status',
@@ -44,7 +44,7 @@ export const complete: Story = {
     },
     render: args => ({
         props: {
-            ...args,
+            ...args
         },
         template: `
         <section>
@@ -84,7 +84,7 @@ export const minimumRequired: Story = {
     },
     render: args => ({
         props: {
-            ...args,
+            ...args
         },
         template: `
         <section>
@@ -110,7 +110,7 @@ export const statusText: Story = {
     },
     render: args => ({
         props: {
-            ...args,
+            ...args
         },
         template: `
         <section>
@@ -137,7 +137,7 @@ export const statusType: Story = {
     },
     render: args => ({
         props: {
-            ...args,            
+            ...args,
             typeChanged(code: string): void {
                 this['status'] = {
                     title: 'Mon titre de status',
@@ -181,7 +181,7 @@ export const statusTechnicalText: Story = {
     },
     render: args => ({
         props: {
-            ...args,
+            ...args
         },
         template: `
         <section>
@@ -210,7 +210,7 @@ export const statusActions: Story = {
     },
     render: args => ({
         props: {
-            ...args,
+            ...args
         },
         template: `
         <section>
@@ -267,7 +267,7 @@ export const statusDuration: Story = {
     },
     render: args => ({
         props: {
-            ...args,
+            ...args
         },
         template: `
         <section>
@@ -295,7 +295,7 @@ export const statusCustomCssClass: Story = {
     },
     render: args => ({
         props: {
-            ...args,
+            ...args
         },
         template: `
         <section>
@@ -308,7 +308,7 @@ export const statusCustomCssClass: Story = {
             title: 'Mon titre',
             type: 'info',
             text: 'Attention, voici mon texte',
-            className: 'maCustomClassCss',
+            className: 'maCustomClassCss'
         }
     }
 };
