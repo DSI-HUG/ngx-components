@@ -165,12 +165,7 @@ export const badgeIconColor: Story = {
             </mat-button-toggle-group>
           </div>
         </section>
-      `,
-        styles: [`
-        .matButtonContainer {
-            display: flex;
-            justify-content: center;}
-      `]
+      `
     }),
     args: {
         user: {
@@ -256,12 +251,7 @@ export const userAbbreviationTitle: Story = {
             </mat-button-toggle-group>
           </div>
         </section>
-      `,
-        styles: [`
-        .matButtonContainer {
-            display: flex;
-            justify-content: center;}
-      `]
+      `
     }),
     args: {
         user: {

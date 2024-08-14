@@ -1,0 +1,55 @@
+<div class="layout-wrapper">
+    <ngx-layout [toolbarColor]="toolbarColor" [withBackButton]="withBackButton" backButtonLabel="Back button label" [withCloseButton]="withCloseButton" (backButtonClicked)="log('Back button clicked', $event)" (closeButtonClicked)="log('Close button clicked', $event)" (sideFilterOpened)="log('Side filter opened')" (sideFilterClosed)="log('Side filter closed')">
+        <ng-template #layoutToolbar>
+            <span toolbar-title>Accès dossier patient</span>
+            <ngx-search-container>
+                <input type="text" [(ngModel)]="search" (ngModelChange)="log('Search changed', $event)" placeholder="Search" autocomplete="off" ngx-search-input />
+            </ngx-search-container>
+
+            <button type="button" mat-icon-button matTooltip="Help" (click)="log('Help button clicked', $event)">
+                <mat-icon>help_outline</mat-icon>
+            </button>
+        </ng-template>
+
+        <!-- Primary action -->
+        <ng-template #layoutPrimaryAction>
+            <button type="button" mat-fab matTooltip="Add" (click)="log('Add button clicked', $event)">
+                <mat-icon>add</mat-icon>
+            </button>
+        </ng-template>
+
+        <!-- Actions panel -->
+        <ng-template #layoutActions>
+            <button type="button" mat-icon-button matTooltip="Refresh" (click)="log('Refresh button clicked', $event)">
+                <mat-icon>refresh</mat-icon>
+            </button>
+
+            <button type="button" mat-icon-button matTooltip="Favorite" (click)="log('Favorite button clicked', $event)">
+                <mat-icon>favorite</mat-icon>
+            </button>
+        </ng-template>
+
+        <!-- Right panel -->
+        <ng-template #layoutRight>
+            <div class="layout-right-container">
+                Layout right
+                <div filters-chip-list>
+                    <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Color selection">
+                        <mat-chip-option (click)="log('Chip 1 clicked', $event)">1</mat-chip-option>
+                        <mat-chip-option (click)="log('Chip 2 clicked', $event)">2</mat-chip-option>
+                        <mat-chip-option (click)="log('Chip 3 clicked', $event)">3</mat-chip-option>
+                    </mat-chip-listbox>
+                </div>
+            </div>
+        </ng-template>
+
+        <!-- Info boxes panel -->
+        <ng-template #layoutInfoBoxes>
+            <span class="info-box">Info box</span>
+            <span class="info-box primary">Info box primary</span>
+            <span class="info-box accent">Info box accent</span>
+        </ng-template>
+
+        <div class="content-container">Layout content</div>
+    </ngx-layout>
+</div>

@@ -18,6 +18,7 @@ ngx-status {
         }
 
         > span {
+            width: calc(100% - 24px);
             b {
                 display: block;
                 font-size: 12px;

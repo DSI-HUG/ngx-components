@@ -1,0 +1,29 @@
+@use '../../../../core/src/styles/themeVariables' as themeVariables;
+@use '../../../../core/src/styles/theme';
+@use '../../../../status/src/status-theme' as statusTheme;
+@use '../../../../message-box/src/message-box-theme' as messageBoxTheme;
+
+@include statusTheme.theme(themeVariables.$theme);
+@include messageBoxTheme.theme(themeVariables.$theme);
+
+section {
+    padding: 5rem;
+    font-family: 'Roboto';
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    ngx-snackbar {
+        position: relative !important;
+    }
+    .matButtonContainer {
+        display: flex;
+        justify-content: center;
+    }
+}
+.maCustomClassCss {
+    background-color: burlywood !important;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+}

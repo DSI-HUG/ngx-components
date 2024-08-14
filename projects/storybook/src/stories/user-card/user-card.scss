@@ -8,3 +8,8 @@
 @include userCardTheme.theme(themeVariables.$theme);
 @include iconTheme.theme(themeVariables.$theme);
 @include menuTheme.theme(themeVariables.$theme);
+
+.matButtonContainer {
+    display: flex;
+    justify-content: center;
+}
