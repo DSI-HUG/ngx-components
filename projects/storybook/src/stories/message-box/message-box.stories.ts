@@ -16,55 +16,55 @@ const meta: Meta<NgxMessageBoxComponent> = {
     tags: ['autodocs'],
     argTypes: {
         type: {
-            control:  'select',
+            control: 'select',
             options: ['info', 'primary', 'success', 'warn', 'danger'],
             description: 'Determines the type of the message box. Options include "info", "primary", "success", "warn", and "danger". This also sets the default icon if none is provided.',
             table: {
                 type: { summary: 'NgxMessageBoxType' },
-                defaultValue: { summary: 'undefined' },
-            },
+                defaultValue: { summary: 'undefined' }
+            }
         },
         title: {
-          control: 'text',
-          description: 'The title displayed in the message box. Used to provide a header or subject for the message.',
-          table: {
-            type: { summary: 'string' },
-            defaultValue: { summary: 'undefined' },
-          },
+            control: 'text',
+            description: 'The title displayed in the message box. Used to provide a header or subject for the message.',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' }
+            }
         },
         icon: {
-          control: 'text',
-          description: 'Icon associated with the message box. This can be the name of an icon or a path to an icon image. If not provided, a default icon based on the type will be used.',
-          table: {
-            type: { summary: 'string' },
-            defaultValue: { summary: 'undefined' },
-          },
+            control: 'text',
+            description: 'Icon associated with the message box. This can be the name of an icon or a path to an icon image. If not provided, a default icon based on the type will be used.',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' }
+            }
         },
         actions: {
-          control: 'object',
-          description: 'List of actions available in the message box. Each action can include text, type, icon, and an action function to execute. Allows you to customize the actions displayed in the footer of the message box.',
-          table: {
-            type: { summary: 'readonly NgxMessageBoxAction[]' },
-            defaultValue: { summary: 'undefined' },
-          },
+            control: 'object',
+            description: 'List of actions available in the message box. Each action can include text, type, icon, and an action function to execute. Allows you to customize the actions displayed in the footer of the message box.',
+            table: {
+                type: { summary: 'readonly NgxMessageBoxAction[]' },
+                defaultValue: { summary: 'undefined' }
+            }
         },
         horizontal: {
-            control:  'boolean',
+            control: 'boolean',
             description: 'Determines whether the layout of the message box is horizontal (true) or vertical (false). This affects the alignment of the title and content.',
             table: {
-              type: { summary: 'boolean' },
-              defaultValue: { summary: 'false' }
-            },
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' }
+            }
         },
         showCloseIcon: {
             control: 'boolean',
             description: 'Indicates whether the close icon should be displayed in the message box. True to show the close icon, false to hide it.',
             table: {
-              type: { summary: 'boolean' },
-              defaultValue: { summary: 'false' },
-            },
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' }
+            }
         }
-      },
+    },
     parameters: {
         docs: {
             description: {
@@ -112,7 +112,7 @@ export const complete: Story = {
             {
                 action: (): void => alert('remove action'),
                 icon: 'remove'
-            },            
+            },
             {
                 action: (): void => alert('add action'),
                 icon: 'add'
