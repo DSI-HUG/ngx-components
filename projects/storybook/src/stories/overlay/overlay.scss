@@ -1,24 +1,93 @@
-section {
+section.overlay {
     padding: 5rem;
     font-family: 'Roboto';
     background-color: white;
+    display: flex;
+    gap: 5px;
+
+    .iconOverlayContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .grouped {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .ownerContainer {
+        width: 500px;
+        text-align: right;
+        height: 700px;
+        #owner {
+            background-color: aquamarine;
+            padding: 1rem;
+        }
+    }
 }
 
-// .ngx-menu {
-//     .ngx-menu-content {
-//         display: flex;
-//         flex-direction: column;
+.myCustomContainerClass {
+    .ngx-menu-content {
+        background-color: firebrick;
+        padding: 1rem;
+        border-radius: 15px;
 
-//         &.anchor-menu,
-//         &.button-menu {
-//             .ngx-menu-item {
-//                 white-space: nowrap;
-//                 padding: 0.5rem 2rem;
-//             }
-//         }
+        button {
+            font-size: 2rem;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+        }
+    }
+}
+.myCustomBackdropClass {
+    background-color: hsl(160, 100%, 75%, 0.4);
+}
+.customContainerForWidth {
+    .cdk-overlay-pane {
+        font-family: 'Roboto';
+        background-color: bisque;
+        padding: 1rem;
+    }
+}
+.customContainerForLorem {
+    .cdk-overlay-connected-position-bounding-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-//         .mat-icon {
-//             margin-right: 0.5rem;
-//         }
-//     }
-// }
+        .cdk-overlay-pane {
+            position: initial;
+            background-color: azure;
+            width: 30vw;
+            height: 30vh;
+            padding: 1rem;
+            line-height: 1.3;
+            font-family: 'Roboto';
+            overflow: auto;
+            border-radius: 5px;
+        }
+    }
+}
+
+.ngx-menu {
+    .ngx-menu-content {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Roboto';
+
+        &.anchor-menu,
+        &.button-menu {
+            .ngx-menu-item {
+                white-space: nowrap;
+                padding: 0.5rem 2rem;
+            }
+        }
+
+        .mat-icon {
+            margin-right: 0.5rem;
+        }
+    }
+}

@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxLayoutComponent } from '../../../../layout/src/layout.component';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../../search-container/src/search-container.component';
@@ -15,9 +15,14 @@ const meta: Meta<NgxLayoutComponent> = {
     title: 'Components/Layout',
     component: NgxLayoutComponent,
     decorators: [
+        applicationConfig({
+            providers: [
+                provideAnimations(),  // Fournit les animations à l'application
+            ],
+        }),
         moduleMetadata({
             imports: [
-                CommonModule, FormsModule, NgxLayoutComponent, StorybookLayoutWrapperComponent, NgxSearchContainerComponent, MatChipsModule, MatButtonModule, MatIconModule, BrowserAnimationsModule, NgxSearchInputDirective
+                CommonModule, FormsModule, NgxLayoutComponent, StorybookLayoutWrapperComponent, NgxSearchContainerComponent, MatChipsModule, MatButtonModule, MatIconModule, NgxSearchInputDirective
             ],
             providers: [NgxStatusService]
         })

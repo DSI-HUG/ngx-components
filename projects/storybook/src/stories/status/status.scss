@@ -6,7 +6,7 @@
 @include statusTheme.theme(themeVariables.$theme);
 @include messageBoxTheme.theme(themeVariables.$theme);
 
-section {
+section.status {
     padding: 5rem;
     font-family: 'Roboto';
     background-color: white;

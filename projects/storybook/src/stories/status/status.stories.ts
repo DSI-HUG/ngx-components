@@ -47,7 +47,7 @@ export const complete: Story = {
             ...args
         },
         template: `
-        <section>
+        <section class="status">
           <ngx-status [status]="status"></ngx-status>
         </section>
       `
@@ -87,7 +87,7 @@ export const minimumRequired: Story = {
             ...args
         },
         template: `
-        <section>
+        <section class="status">
           <ngx-status [status]="status"></ngx-status>
         </section>
       `
@@ -113,7 +113,7 @@ export const statusText: Story = {
             ...args
         },
         template: `
-        <section>
+        <section class="status">
           <ngx-status [status]="status"></ngx-status>
         </section>
       `
@@ -147,7 +147,7 @@ export const statusType: Story = {
             }
         },
         template: `
-        <section>
+        <section class="status">
             <ngx-status [status]="status"></ngx-status>
             <br />
             <div class="matButtonContainer">
@@ -184,7 +184,7 @@ export const statusTechnicalText: Story = {
             ...args
         },
         template: `
-        <section>
+        <section class="status">
             <ngx-status [status]="status"></ngx-status>
         </section>
       `
@@ -213,7 +213,7 @@ export const statusActions: Story = {
             ...args
         },
         template: `
-        <section>
+        <section class="status">
           <ngx-status [status]="status"></ngx-status>
         </section>
       `
@@ -270,7 +270,7 @@ export const statusDuration: Story = {
             ...args
         },
         template: `
-        <section>
+        <section class="status">
             <ngx-status [status]="status"></ngx-status>
         </section>
       `
@@ -298,7 +298,7 @@ export const statusCustomCssClass: Story = {
             ...args
         },
         template: `
-        <section>
+        <section class="status">
             <ngx-status [status]="status"></ngx-status>
         </section>
       `
