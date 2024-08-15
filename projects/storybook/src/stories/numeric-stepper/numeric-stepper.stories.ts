@@ -14,8 +14,8 @@ const meta: Meta<NgxNumericStepperComponent> = {
     decorators: [
         applicationConfig({
             providers: [
-                provideAnimations(),  // Fournit les animations à l'application
-            ],
+                provideAnimations() // Fournit les animations à l'application
+            ]
         }),
         moduleMetadata({
             imports: [

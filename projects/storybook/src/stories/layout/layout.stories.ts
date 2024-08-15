@@ -17,8 +17,8 @@ const meta: Meta<NgxLayoutComponent> = {
     decorators: [
         applicationConfig({
             providers: [
-                provideAnimations(),  // Fournit les animations à l'application
-            ],
+                provideAnimations() // Fournit les animations à l'application
+            ]
         }),
         moduleMetadata({
             imports: [
