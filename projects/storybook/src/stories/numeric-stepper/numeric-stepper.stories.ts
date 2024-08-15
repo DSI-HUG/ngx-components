@@ -14,7 +14,7 @@ const meta: Meta<NgxNumericStepperComponent> = {
     decorators: [
         applicationConfig({
             providers: [
-                provideAnimations() // Fournit les animations à l'application
+                provideAnimations() // Provides animations to the application
             ]
         }),
         moduleMetadata({
@@ -27,12 +27,41 @@ const meta: Meta<NgxNumericStepperComponent> = {
     argTypes: {
         layout: {
             options: ['vertical', 'horizontal', 'horizontal-inlay'],
-            control: { type: 'radio' },
+            control: { type: 'select' },
+            description: 'Layout of the stepper control.',
             table: {
                 defaultValue: {
                     summary: 'vertical'
                 },
-                type: { summary: 'vertical | horizontal | horizontal-inlay' }
+                type: { summary: 'NgxNumericStepperLayout' }
+            }
+        },
+        arrowIcons: {
+            control: { type: 'boolean' },
+            description: 'Whether to show arrow icons.',
+            table: {
+                defaultValue: {
+                    summary: 'false'
+                },
+                type: { summary: 'boolean' }
+            }
+        },
+        showOnInit: {
+            control: { type: 'boolean' },
+            description: 'Whether to show the stepper on initialization.',
+            table: {
+                defaultValue: {
+                    summary: 'false'
+                },
+                type: { summary: 'boolean' }
+            }
+        },
+        input: {
+            control: { type: 'object' },
+            description: 'The form field control input to be used.',
+            table: {
+                defaultValue: { summary: undefined },
+                type: { summary: 'MatFormFieldControl<unknown>' }
             }
         }
     },
@@ -42,7 +71,7 @@ const meta: Meta<NgxNumericStepperComponent> = {
     parameters: {
         docs: {
             description: {
-                component: 'This component works with a mat-form-field containing an input.<br/>It adds a mask on hover to allow custom additions or subtractions to be made using the + and - buttons'
+                component: 'The `NgxNumericStepperComponent` integrates with a `mat-form-field` containing an input. It provides a hover mask to allow custom increments or decrements using the `+` and `-` buttons. It can be configured with various layouts and options.'
             }
         }
     }
@@ -63,7 +92,7 @@ export const standard: Story = {
                     <mat-form-field [appearance]="appearance">
                         <mat-label>This is my label</mat-label>
                         <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                        <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" [layout]="layout" showOnInit></ngx-numeric-stepper>
+                        <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" [layout]="layout" [arrowIcons]="arrowIcons" [showOnInit]="showOnInit" [input]="input" showOnInit></ngx-numeric-stepper>
                     </mat-form-field>
                 </div>
             </section>
@@ -80,7 +109,7 @@ export const layout: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This component offers the possibility of using several layouts: <ul><li><code>vertical</code></li><li><code>horizontal</code></li><li><code>horizontal-inlay</code></li></ul>'
+                story: 'This component supports several layouts: <ul><li><code>vertical</code></li><li><code>horizontal</code></li><li><code>horizontal-inlay</code></li></ul>'
             }
         }
     },
@@ -163,11 +192,70 @@ export const layout: Story = {
     }
 };
 
+export const customArrowIcons: Story = {
+    render: args => ({
+        props: {
+            ...args,
+            value: 115,
+            appearance: 'outline'
+        },
+        template: `
+            <section>
+                <div ngx-numeric-stepper-container>
+                    <mat-form-field [appearance]="appearance">
+                <mat-label>Custom Arrow Icons</mat-label>
+                        <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
+                        <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" [layout]="layout" [arrowIcons]="arrowIcons" [showOnInit]="showOnInit" [input]="input" showOnInit></ngx-numeric-stepper>
+                    </mat-form-field>
+                </div>
+            </section>
+          `,
+        styles: [`
+            section {
+                background-color: white;
+            }
+          `]
+    }),
+    args: {
+        arrowIcons: true
+    }
+};
+
+export const showOnInit: Story = {
+    tags: ['!dev', '!autodocs'], // Pour disable sur le menu à gauche !dev, et sur la doc !autodocs
+    render: args => ({
+        props: {
+            ...args,
+            value: 115,
+            appearance: 'outline'
+        },
+        template: `
+            <section>
+                <div ngx-numeric-stepper-container>
+                    <mat-form-field [appearance]="appearance">
+                <mat-label>Show On Init True</mat-label>
+                        <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
+                        <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" [layout]="layout" [arrowIcons]="arrowIcons" [showOnInit]="showOnInit" [input]="input" showOnInit></ngx-numeric-stepper>
+                    </mat-form-field>
+                </div>
+            </section>
+          `,
+        styles: [`
+            section {
+                background-color: white;
+            }
+          `]
+    }),
+    args: {
+        showOnInit: true
+    }
+};
+
 export const appearance: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This component supports the different appearances of mat-form-fields.'
+                story: 'This component supports different appearances for `mat-form-field`.'
             }
         }
     },
@@ -214,7 +302,7 @@ export const prefixAndSuffix: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'It\'s not in the component, but this section allows you to visualize the component with different mat-form-fields.'
+                story: 'This section allows you to visualize the component with different `mat-form-field` configurations, including custom prefixes and suffixes.'
             }
         }
     },

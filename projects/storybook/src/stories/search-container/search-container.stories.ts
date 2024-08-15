@@ -24,10 +24,43 @@ const meta: Meta<NgxSearchContainerComponent> = {
         })
     ],
     tags: ['autodocs'],
+    parameters: {
+        docs: {
+            description: {
+                component: 'The `NgxSearchContainerComponent` provides a flexible search interface with customizable tooltips for actions such as clearing, opening, and closing the search. It integrates with an input field via the `ngx-search-input` directive to enable search functionality.'
+            }
+        }
+    },
     argTypes: {
-        clearTooltip: { control: 'text' },
-        openSearchTooltip: { control: 'text' },
-        closeSearchTooltip: { control: 'text' }
+        clearTooltip: { 
+            control: 'text',
+            description: 'Tooltip text for the clear button in the search container. This is displayed when the user hovers over the clear button.',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'Effacer la recherche' }
+            }
+         },
+         openSearchTooltip: {
+            description: 'Tooltip text for the button that opens the search. This is displayed when the user hovers over the search button.',
+            control: 'text',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'Ouvrir la recherche' }
+            }
+        },
+        closeSearchTooltip: {
+            description: 'Tooltip text for the button that closes the search. This is displayed when the user hovers over the close button.',
+            control: 'text',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'Quitter la recherche' }
+            }
+        }
+    },
+    args: {
+        clearTooltip: 'Effacer la recherche',
+        openSearchTooltip: 'Ouvrir la recherche',
+        closeSearchTooltip: 'Quitter la recherche'
     }
 };
 export default meta;
@@ -35,6 +68,13 @@ export default meta;
     type Story = StoryObj<NgxSearchContainerComponent>;
 
 export const standard: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Displays a basic search container with default tooltips. Includes an input field for search queries.'
+            }
+        }
+    },
     render: args => ({
         props: args,
         template: `
@@ -45,15 +85,17 @@ export const standard: Story = {
               <input ngx-search-input type="text" placeholder="Rechercher dans la liste" [(ngModel)]="searchModel" />
             </ngx-search-container>
           `
-    }),
-    args: {
-        clearTooltip: 'Effacer la recherche',
-        openSearchTooltip: 'Ouvrir la recherche',
-        closeSearchTooltip: 'Quitter la recherche'
-    }
+    })
 };
 
 export const customTooltips: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Shows the search container with custom tooltip texts for clear, open, and close actions.'
+            }
+        }
+    },
     ...standard,
     args: {
         clearTooltip: 'Clear search',
@@ -63,6 +105,13 @@ export const customTooltips: Story = {
 };
 
 export const searchWithLists: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Demonstrates the search container with a full list and search functionality. The search input filters the list based on user input and displays the results in separate sections.'
+            }
+        }
+    },
     render: args => ({
         props: {
             ...args,

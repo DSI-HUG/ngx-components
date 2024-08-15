@@ -17,7 +17,7 @@ const meta: Meta<NgxLayoutComponent> = {
     decorators: [
         applicationConfig({
             providers: [
-                provideAnimations() // Fournit les animations à l'application
+                provideAnimations() // Provides animations to the application
             ]
         }),
         moduleMetadata({
@@ -31,7 +31,8 @@ const meta: Meta<NgxLayoutComponent> = {
     argTypes: {
         toolbarColor: {
             options: ['primary', 'accent'],
-            control: { type: 'radio' },
+            control: { type: 'select' },
+            description: 'Sets the color of the toolbar. Choose between primary or accent themes.',
             table: {
                 defaultValue: {
                     summary: 'primary'
@@ -47,7 +48,7 @@ const meta: Meta<NgxLayoutComponent> = {
         layout: 'fullscreen',
         docs: {
             description: {
-                component: 'This component is the default layout for applications at HUG'
+                component: 'The `NgxLayoutComponent` is a flexible layout component for creating application layouts at HUG. It includes options for toolbars, actions, and side panels, making it adaptable for various use cases.'
             }
         }
     }

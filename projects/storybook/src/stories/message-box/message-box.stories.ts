@@ -68,7 +68,7 @@ const meta: Meta<NgxMessageBoxComponent> = {
     parameters: {
         docs: {
             description: {
-                component: 'This component is used to display informations to the user'
+                component: 'The `NgxMessageBoxComponent` is used to display informations to the user'
             }
         }
     }

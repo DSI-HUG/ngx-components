@@ -20,13 +20,23 @@ const meta: Meta<NgxStatusComponent> = {
     ],
     tags: ['autodocs'],
     argTypes: {
+        status: {
+            description: 'The object containing the status details to be displayed.',
+            control: {
+                type: 'object'
+            },
+            table: {
+                type: { summary: 'NgxStatus' },
+                defaultValue: { summary: 'undefined' }
+            }
+        }
     },
     args: {
     },
     parameters: {
         docs: {
             description: {
-                component: 'This component is used to display informations to the user in a popup.<br />This component uses the NgxSnackbar component.'
+                component: 'The `NgxStatusComponent` displays informational messages in a popup, leveraging the `NgxSnackbarComponent`. It supports various types of notifications, custom actions, and detailed technical information.'
             }
         }
     }
@@ -38,7 +48,7 @@ export const complete: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Depending on the user\'s "familyCode" property given, the UserCard can have a green, blue, red or gray colored badge.<br /><ul><li>Green : <code>Médico-technique</code>, <code>Social</code>, <code>Médico-thérapeutique</code>, <code>Pharmacie</code></li><li>Blue : <code>Soins</code>, <code>Infirmier-e</code></li><li>Red : <code>Médecin dentiste</code>, <code>Médecin</code></li><li>Gray : Any other text</li><li>Nothing : Empty familyCode</li></ul>'
+                story: 'This example showcases a `NgxStatusComponent` with all available features, including title, type, text, date, duration, custom CSS class, technical text, and multiple actions. Depending on the user\'s "familyCode" property given, the UserCard can have a green, blue, red or gray colored badge.<br /><ul><li>Green : <code>Médico-technique</code>, <code>Social</code>, <code>Médico-thérapeutique</code>, <code>Pharmacie</code></li><li>Blue : <code>Soins</code>, <code>Infirmier-e</code></li><li>Red : <code>Médecin dentiste</code>, <code>Médecin</code></li><li>Gray : Any other text</li><li>Nothing : Empty familyCode</li></ul>'
             }
         }
     },
@@ -54,20 +64,21 @@ export const complete: Story = {
     }),
     args: {
         status: {
-            title: 'Mon titre de status',
+            title: 'Sample Status Title',
             type: 'info',
-            text: 'Attention, voici mon texte',
+            text: 'This is a sample status message.',
             date: new Date(),
             duration: 5000,
-            className: 'maClassCss',
-            technicalText: 'Ici mon texte technique',
+            className: 'my-custom-css-class-2',
+            technicalText: 'Technical details about the status.',
             actions: [
                 {
                     label: 'Action 1',
-                    callback: (): void => {
-                        console.log('Resultat Action 1');
-                        return;
-                    }
+                    callback: (): void => console.log('Action 1 triggered.')
+                },
+                {
+                    label: 'Action 2',
+                    callback: (): void => console.log('Action 2 triggered.')
                 }
             ]
         }
@@ -78,7 +89,7 @@ export const minimumRequired: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'You need to provide an NgxStatus object with at least a<code>title</code>and a<code>type</code>'
+                story: 'This example demonstrates the `NgxStatusComponent` with only the required fields: `title` and `type`. Additional fields are optional.'
             }
         }
     },
@@ -94,7 +105,7 @@ export const minimumRequired: Story = {
     }),
     args: {
         status: {
-            title: 'Mon titre de status',
+            title: 'Sample Status Title',
             type: 'info'
         }
     }
@@ -104,7 +115,7 @@ export const statusText: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Depending on the NgxStatus object having at least a<code>title</code>and a<code>type</code>, you can add a<code>text</code>to this object.'
+                story: 'This example demonstrates how to use the `text` property to display additional information in the status component.'
             }
         }
     },
@@ -120,9 +131,9 @@ export const statusText: Story = {
     }),
     args: {
         status: {
-            title: 'Mon titre de status',
+            title: 'Sample Status Title',
             type: 'info',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation'
+            text: 'Detailed message providing more context about the status.'
         }
     }
 };
@@ -131,18 +142,18 @@ export const statusType: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'The<code>status.type</code>can have different values: <ul><li>primary</li> <li>info</li><li>success</li><li>warn</li><li>danger</li></ul>'
+                story: 'This example illustrates the different `type` values that the `NgxStatusComponent` can have: `primary`, `info`, `success`, `warn`, and `danger`. Use the buttons to switch between types.'
             }
         }
     },
     render: args => ({
         props: {
             ...args,
-            typeChanged(code: string): void {
+            typeChanged(type: string): void {
                 this['status'] = {
-                    title: 'Mon titre de status',
-                    type: code,
-                    text: 'Attention, voici mon texte'
+                    title: 'Sample Status Title',
+                    type: type,
+                    text: 'Sample text for the status message.'
                 };
             }
         },
@@ -164,9 +175,9 @@ export const statusType: Story = {
     }),
     args: {
         status: {
-            title: 'Mon titre de status',
+            title: 'Sample Status Title',
             type: 'success',
-            text: 'Attention, voici mon texte'
+            text: 'Sample text for the status message.'
         }
     }
 };
@@ -175,7 +186,7 @@ export const statusTechnicalText: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'If you provide an NgxStatus object with a<code>technicalText</code>and a<code>date</code>, an "information" icon will be visible at the top right of the NgxStatusComponent. If you click on it, an ngx-message-box will appear to display this<code>technicalText</code>as well as the<code>date</code>'
+                story: 'This example shows how to include `technicalText` and `date` in the `NgxStatusComponent`. An info icon will appear, and clicking it will show the technical details in a dialog.'
             }
         }
     },
@@ -191,11 +202,11 @@ export const statusTechnicalText: Story = {
     }),
     args: {
         status: {
-            title: 'Mon titre Erreur',
+            title: 'Error Status',
             type: 'danger',
             date: new Date(),
-            text: 'Attention, voici mon texte erreur,',
-            technicalText: 'Ici mon texte technique'
+            text: 'This is an error message.',
+            technicalText: 'Detailed technical information about the error.'
         }
     }
 };
@@ -204,7 +215,7 @@ export const statusActions: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'You can add <code>actions</code> to the NgxStatus object'
+                story: 'This example demonstrates how to add actions to the `NgxStatusComponent`. Each action can be triggered with a callback.'
             }
         }
     },
@@ -220,37 +231,17 @@ export const statusActions: Story = {
     }),
     args: {
         status: {
-            title: 'Mon titre',
+            title: 'Sample Status Title',
             type: 'info',
-            text: 'Attention, voici mon texte',
+            text: 'Message with multiple actions.',
             actions: [
                 {
                     label: 'Action 1',
-                    callback: (): void => {
-                        console.log('Resultat Action 1');
-                        return;
-                    }
+                    callback: (): void => alert('Action 1 executed.')
                 },
                 {
                     label: 'Action 2',
-                    callback: (): void => {
-                        console.log('Resultat Action 2');
-                        return;
-                    }
-                },
-                {
-                    label: 'Action 3',
-                    callback: (): void => {
-                        console.log('Resultat Action 3');
-                        return;
-                    }
-                },
-                {
-                    label: 'Action 4',
-                    callback: (): void => {
-                        console.log('Resultat Action 4');
-                        return;
-                    }
+                    callback: (): void => alert('Action 2 executed.')
                 }
             ]
         }
@@ -261,7 +252,7 @@ export const statusDuration: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'You can add <code>duration</code> to the NgxStatus object.<br />Without a defined duration, the popup remains by default 30s for a danger type object and 8s for other types.'
+                story: 'This example demonstrates setting a custom `duration` for the `NgxStatusComponent`. By default, the duration is 30 seconds for danger types and 8 seconds for other types.'
             }
         }
     },
@@ -277,10 +268,10 @@ export const statusDuration: Story = {
     }),
     args: {
         status: {
-            title: 'Mon titre',
+            title: 'Sample Status Title',
             type: 'info',
-            text: 'Attention, voici mon texte',
-            duration: 3000
+            text: 'Message with custom duration.',
+            duration: 3000 // Duration in milliseconds
         }
     }
 };
@@ -289,7 +280,7 @@ export const statusCustomCssClass: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'You can provide the NgxStatus object with a<code>className</code>to manage your own css style.'
+                story: 'This example shows how to apply custom CSS styles to the `NgxStatusComponent` using the `className` property.'
             }
         }
     },
@@ -305,10 +296,10 @@ export const statusCustomCssClass: Story = {
     }),
     args: {
         status: {
-            title: 'Mon titre',
+            title: 'Sample Status Title',
             type: 'info',
-            text: 'Attention, voici mon texte',
-            className: 'maCustomClassCss'
+            text: 'Message with custom CSS class.',
+            className: 'my-custom-css-class'
         }
     }
 };

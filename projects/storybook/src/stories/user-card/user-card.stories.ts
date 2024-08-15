@@ -16,11 +16,10 @@ const meta: Meta<NgxUserCardComponent> = {
         })
     ],
     parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
         layout: 'centered',
         docs: {
             description: {
-                component: 'This component allows you to display user information'
+                component: 'The `NgxUserCardComponent` displays user information. The UserCard can be expanded or compressed, showing or hiding additional details based on the `expanded` input.'
             }
         }
     },
@@ -34,52 +33,13 @@ const meta: Meta<NgxUserCardComponent> = {
                 type: { summary: 'boolean' }
             },
             description: 'Set to false to have a compressed UserCard with less information.'
-        }
-    }
-};
-
-export default meta;
-
-type Story = StoryObj<NgxUserCardComponent>;
-
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const standard: Story = {
-    args: {
-        user: {
-            title: 'Docteur',
-            firstname: 'Jean',
-            lastname: 'PATATE',
-            initials: 'jpat',
-            type: 'Type',
-            email: 'jean.patate@hug.ch',
-            role: 'Medecin',
-            groupFunctionLabel: 'Group',
-            familyCode: 'Infirmier-e', // This value will influence badge color
-            functionSefName: 'SefNameFunction',
-            functionSefCode: 'SefCodeFunction',
-            organisation: 'HUG',
-            speciality: 'Neurochirurgie',
-            specialty1: 'Dermatologie',
-            specialty2: 'Pedicure',
-            esoN3Label: 'EsoN3Label',
-            login: 'PatateLogin',
-            phone: '+44 150 509 39',
-            bip: '8859595',
-            mobile: '+44 150 509 39',
-            address: 'Carouge, 7 Rue St Julien',
-            city: 'Carouge',
-            zipCode: '1227'
         },
-        expanded: true
-    }
-};
-
-export const notExpandedUserCard: Story = {
-    parameters: {
-        docs: {
-            description: {
-                story: 'You can set the "expanded" property to false to have a compressed UserCard with less information.'
-            }
+        user: {
+            control: 'object',
+            table: {
+                type: { summary: 'NgxUserCard' }
+            },
+            description: 'User information object for displaying in the card.'
         }
     },
     args: {
@@ -112,7 +72,27 @@ export const notExpandedUserCard: Story = {
     }
 };
 
-export const badgeIconColor: Story = {
+export default meta;
+
+type Story = StoryObj<NgxUserCardComponent>;
+
+export const standard: Story = {
+    args: {
+        expanded: true
+    }
+};
+
+export const notExpandedUserCard: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'You can set the "expanded" property to false to have a compressed UserCard with less information.'
+            }
+        }
+    }
+};
+
+export const dynamicBadgeColor: Story = {
     parameters: {
         docs: {
             description: {
@@ -279,5 +259,26 @@ export const userAbbreviationTitle: Story = {
             city: 'Carouge',
             zipCode: '1227'
         }
+    }
+};
+
+export const userWithMissingInfo: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Displays the component when certain user information is missing. This helps ensure that the rendering remains consistent even with incomplete data.'
+            }
+        }
+    },
+    args: {
+        user: {
+            title: 'Professor',
+            firstname: 'Jean',
+            lastname: 'PATATE',
+            initials: 'jpat',
+            email: 'jean.patate@hug.ch',
+            // Phone number and address are missing
+        },
+        expanded: true
     }
 };

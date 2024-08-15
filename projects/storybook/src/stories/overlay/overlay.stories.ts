@@ -15,7 +15,7 @@ const meta: Meta<NgxOverlayComponent> = {
     decorators: [
         applicationConfig({
             providers: [
-                provideAnimations() // Fournit les animations à l'application
+                provideAnimations() // Provides animations to the application
             ]
         }),
         moduleMetadata({
@@ -27,28 +27,33 @@ const meta: Meta<NgxOverlayComponent> = {
     tags: ['autodocs'],
     argTypes: {
         width: {
+            description: 'Defines the width of the overlay for desktop view.',
             table: {
                 type: { summary: 'string' }
             }
         },
         widthForMobile: {
+            description: 'Defines the width of the overlay for mobile view. It is only used when isMobile is true.',
             table: {
                 type: { summary: 'string' },
                 disable: true
             }
         },
         isMobile: {
+            description: 'Determines whether the overlay should use mobile-specific settings.',
             table: {
                 type: { summary: 'boolean' },
                 disable: true
             }
         },
         overlayBackdropClass: {
+            description: 'CSS class applied to the overlay backdrop. Can be used to style the backdrop.',
             table: {
                 type: { summary: 'string' }
             }
         },
         overlayContainerClass: {
+            description: 'CSS class applied to the overlay container. Allows customization of the overlay appearance.',
             table: {
                 type: { summary: 'string' }
             }
@@ -64,7 +69,7 @@ const meta: Meta<NgxOverlayComponent> = {
     parameters: {
         docs: {
             description: {
-                component: 'This component allows you to display an overlay which will be visible above your page'
+                component: 'The `NgxOverlayComponent` displays an overlay that appears above the page content. It supports custom widths, mobile-specific settings, and customizable CSS classes for both the container and backdrop.'
             }
         }
     }
@@ -107,7 +112,7 @@ export const overlayWidth: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'You can configure the width of your overlay with <code>width</code>'
+                story: 'Configure the width of the overlay using the <code>width</code> property. Adjust the input field to see changes in real-time.'
             }
         }
     },
@@ -135,7 +140,7 @@ export const overlayWidth: Story = {
 
             <div class="grouped">
                 <mat-form-field appearance="outline">
-                    <mat-label>width</mat-label>
+                    <mat-label>Width</mat-label>
                     <input matInput type="string" [ngModel]="width" (ngModelChange)="widthChanged($event)" />
                     <mat-hint><strong>try 900</strong></mat-hint>
                 </mat-form-field>
@@ -153,7 +158,7 @@ export const overlayForMobile: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'You can also set a <code>widthForMobile</code> which will be taken into account if you set <code>isMobile</code> to true.'
+                story: 'Set a <code>widthForMobile</code> that is used when <code>isMobile</code> is true to adjust the overlay width for mobile devices.'
             }
         }
     },
@@ -188,7 +193,7 @@ export const overlayClass: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'You can provide two custom css classes to the component: <ul><li><code>overlayContainerClass</code>allows you to customize the overlay itself</li><li><code>overlayBackdropClass</code>allows you to customize the overlay backdrop</li></ul>'
+                story: 'Customize the overlay appearance by applying custom CSS classes. Use <code>overlayContainerClass</code> for the overlay itself and <code>overlayBackdropClass</code> for the backdrop.'
             }
         }
     },
@@ -233,7 +238,7 @@ export const textContainerExample: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Example of the NgxOverlay component containing an entire text, with a custom style'
+                story: 'An example demonstrating the NgxOverlay component with a large block of text and a custom style.'
             }
         }
     },
