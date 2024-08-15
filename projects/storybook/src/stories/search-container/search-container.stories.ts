@@ -32,15 +32,15 @@ const meta: Meta<NgxSearchContainerComponent> = {
         }
     },
     argTypes: {
-        clearTooltip: { 
+        clearTooltip: {
             control: 'text',
             description: 'Tooltip text for the clear button in the search container. This is displayed when the user hovers over the clear button.',
             table: {
                 type: { summary: 'string' },
                 defaultValue: { summary: 'Effacer la recherche' }
             }
-         },
-         openSearchTooltip: {
+        },
+        openSearchTooltip: {
             description: 'Tooltip text for the button that opens the search. This is displayed when the user hovers over the search button.',
             control: 'text',
             table: {

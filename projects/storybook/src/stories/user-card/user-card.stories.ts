@@ -276,7 +276,7 @@ export const userWithMissingInfo: Story = {
             firstname: 'Jean',
             lastname: 'PATATE',
             initials: 'jpat',
-            email: 'jean.patate@hug.ch',
+            email: 'jean.patate@hug.ch'
             // Phone number and address are missing
         },
         expanded: true
