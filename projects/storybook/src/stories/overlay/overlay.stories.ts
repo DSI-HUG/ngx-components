@@ -33,12 +33,14 @@ const meta: Meta<NgxOverlayComponent> = {
         },
         widthForMobile: {
             table: {
-                type: { summary: 'string' }
+                type: { summary: 'string' },
+                disable: true
             }
         },
         isMobile: {
             table: {
-                type: { summary: 'boolean' }
+                type: { summary: 'boolean' },
+                disable: true
             }
         },
         overlayBackdropClass: {
