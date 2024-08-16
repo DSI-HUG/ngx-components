@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { NgxSplitterComponent } from '../../../../splitter/src/splitter.component';
-import { NgxSplitAreaDirective } from '../../../../splitter/src/split-area.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+
+import { NgxSplitAreaDirective } from '../../../../splitter/src/split-area.directive';
+import { NgxSplitterComponent } from '../../../../splitter/src/splitter.component';
 
 const meta: Meta<NgxSplitterComponent> = {
     title: 'Components/Splitter',
@@ -36,7 +37,7 @@ const meta: Meta<NgxSplitterComponent> = {
         },
         gutterSize: {
             description: 'Specifies the width of the gutter in pixels.',
-            control:  'number',
+            control: 'number',
             table: {
                 type: { summary: 'number' },
                 defaultValue: { summary: '10' }
@@ -44,7 +45,7 @@ const meta: Meta<NgxSplitterComponent> = {
         },
         disabled: {
             description: 'Determines whether the splitter is active or disabled.',
-            control:  'boolean',
+            control: 'boolean',
             table: {
                 type: { summary: 'boolean' },
                 defaultValue: { summary: 'false' }
@@ -252,10 +253,10 @@ export const customizableSplitAreas: Story = {
     render: args => ({
         props: {
             ...args,
-            firstAreaSize:50,
-            secondAreaSize:50,
-            firstAreaMinSize:100,
-            secondAreaMinSize:10,
+            firstAreaSize: 50,
+            secondAreaSize: 50,
+            firstAreaMinSize: 100,
+            secondAreaMinSize: 10,
             firstAreaSizeChanged(size: number): void {
                 if (size > 100) {
                     size = 100;
@@ -263,7 +264,7 @@ export const customizableSplitAreas: Story = {
                     size = 0;
                 }
                 this['firstAreaSize'] = size;
-                this['secondAreaSize'] = 100-size;
+                this['secondAreaSize'] = 100 - size;
             },
             secondAreaSizeChanged(size: number): void {
                 if (size > 100) {
@@ -272,7 +273,7 @@ export const customizableSplitAreas: Story = {
                     size = 0;
                 }
                 this['secondAreaSize'] = size;
-                this['firstAreaSize'] = 100-size;
+                this['firstAreaSize'] = 100 - size;
             },
             firstAreaMinSizeChanged(size: number): void {
                 this['firstAreaMinSize'] = size;
