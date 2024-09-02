@@ -144,7 +144,7 @@ const updateProjectsPeerDeps = (
                     changesDetected = true;
 
                     // Récupère le premier caractère non numérique pour conserver le préfixe
-                    const versionRange = version.match(/(^[^\d]*)\d.*/)?.[1] ?? '';
+                    const versionRange = (/(^[^\d]*)\d.*/.exec(version))?.[1] ?? '';
                     const newVersion = `${versionRange}${projectToReleaseNewVersion}`;
 
                     if (!packageJsonFiles.length) {
