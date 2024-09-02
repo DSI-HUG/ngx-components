@@ -51,7 +51,6 @@ exports.default = options =>
             // modify tsconfig.json
             .rule(({ tree }) => {
                 const paths = tree.readJson('tsconfig.json').compilerOptions.paths;
-                delete paths[options.libName]; // TODO Sert à quoi?
                 paths[`@hug/ngx-${options.libName.toLowerCase()}`] = [
                     `projects/${options.libName.toLowerCase()}/src`
                 ];
