@@ -23,8 +23,14 @@
                         "polyfills": "projects/demo-app/src/polyfills.ts",
                         "tsConfig": "projects/demo-app/tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
-                        "assets": ["projects/demo-app/src/favicon.ico", "projects/demo-app/src/assets"],
-                        "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "projects/demo-app/src/styles.scss"],
+                        "assets": [
+                            "projects/demo-app/src/favicon.ico",
+                            "projects/demo-app/src/assets"
+                        ],
+                        "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "projects/demo-app/src/styles.scss"
+                        ],
                         "scripts": []
                     },
                     "configurations": {
@@ -86,8 +92,14 @@
                         "tsConfig": "projects/demo-app/tsconfig.spec.json",
                         "karmaConfig": "projects/demo-app/karma.conf.js",
                         "inlineStyleLanguage": "scss",
-                        "assets": ["projects/demo-app/src/favicon.ico", "projects/demo-app/src/assets"],
-                        "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "projects/demo-app/src/styles.scss"],
+                        "assets": [
+                            "projects/demo-app/src/favicon.ico",
+                            "projects/demo-app/src/assets"
+                        ],
+                        "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "projects/demo-app/src/styles.scss"
+                        ],
                         "scripts": []
                     }
                 }
@@ -128,9 +140,29 @@
                         "configDir": "projects/storybook/.storybook",
                         "browserTarget": "storybook:build",
                         "compodoc": true,
-                        "compodocArgs": ["-e", "json", "-d", "projects/storybook"],
+                        "compodocArgs": [
+                            "-e",
+                            "json",
+                            "-d",
+                            "projects/storybook"
+                        ],
                         "port": 6006,
-                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/storybook/src/stories/layout/layout.scss", "./projects/storybook/src/stories/user-card/user-card.scss", "./projects/storybook/src/stories/list-loader/list-loader.scss", "./projects/storybook/src/stories/search-container/search-container.scss", "./projects/storybook/src/stories/status/status.scss", "./projects/storybook/src/stories/overlay/overlay.scss", "./projects/storybook/src/stories/message-box/message-box.scss", "./projects/storybook/src/stories/splitter/splitter.scss"]
+                        "styles": [
+                            "@angular/material/prebuilt-themes/indigo-pink.css",
+                            "@fontsource/roboto/300.css",
+                            "@fontsource/roboto/400.css",
+                            "@fontsource/roboto/500.css",
+                            "@fontsource/roboto/700.css",
+                            "@fontsource/material-icons",
+                            "./projects/storybook/src/stories/layout/layout.scss",
+                            "./projects/storybook/src/stories/user-card/user-card.scss",
+                            "./projects/storybook/src/stories/list-loader/list-loader.scss",
+                            "./projects/storybook/src/stories/search-container/search-container.scss",
+                            "./projects/storybook/src/stories/status/status.scss",
+                            "./projects/storybook/src/stories/overlay/overlay.scss",
+                            "./projects/storybook/src/stories/message-box/message-box.scss",
+                            "./projects/storybook/src/stories/splitter/splitter.scss"
+                        ]
                     }
                 },
                 "build-storybook": {
@@ -139,9 +171,29 @@
                         "configDir": "projects/storybook/.storybook",
                         "browserTarget": "storybook:build",
                         "compodoc": true,
-                        "compodocArgs": ["-e", "json", "-d", "projects/storybook"],
+                        "compodocArgs": [
+                            "-e",
+                            "json",
+                            "-d",
+                            "projects/storybook"
+                        ],
                         "outputDir": "dist/storybook/storybook",
-                        "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "@fontsource/roboto/300.css", "@fontsource/roboto/400.css", "@fontsource/roboto/500.css", "@fontsource/roboto/700.css", "@fontsource/material-icons", "./projects/storybook/src/stories/layout/layout.scss", "./projects/storybook/src/stories/user-card/user-card.scss", "./projects/storybook/src/stories/list-loader/list-loader.scss", "./projects/storybook/src/stories/search-container/search-container.scss", "./projects/storybook/src/stories/status/status.scss", "./projects/storybook/src/stories/overlay/overlay.scss", "./projects/storybook/src/stories/message-box/message-box.scss", "./projects/storybook/src/stories/splitter/splitter.scss"]
+                        "styles": [
+                            "@angular/material/prebuilt-themes/indigo-pink.css",
+                            "@fontsource/roboto/300.css",
+                            "@fontsource/roboto/400.css",
+                            "@fontsource/roboto/500.css",
+                            "@fontsource/roboto/700.css",
+                            "@fontsource/material-icons",
+                            "./projects/storybook/src/stories/layout/layout.scss",
+                            "./projects/storybook/src/stories/user-card/user-card.scss",
+                            "./projects/storybook/src/stories/list-loader/list-loader.scss",
+                            "./projects/storybook/src/stories/search-container/search-container.scss",
+                            "./projects/storybook/src/stories/status/status.scss",
+                            "./projects/storybook/src/stories/overlay/overlay.scss",
+                            "./projects/storybook/src/stories/message-box/message-box.scss",
+                            "./projects/storybook/src/stories/splitter/splitter.scss"
+                        ]
                     }
                 }
             }
@@ -181,7 +233,12 @@
                         "configDir": "projects/numeric-stepper/.storybook",
                         "browserTarget": "numeric-stepper:build",
                         "compodoc": true,
-                        "compodocArgs": ["-e", "json", "-d", "projects/numeric-stepper"],
+                        "compodocArgs": [
+                            "-e",
+                            "json",
+                            "-d",
+                            "projects/numeric-stepper"
+                        ],
                         "port": 6006
                     }
                 },
@@ -191,7 +248,12 @@
                         "configDir": "projects/numeric-stepper/.storybook",
                         "browserTarget": "numeric-stepper:build",
                         "compodoc": true,
-                        "compodocArgs": ["-e", "json", "-d", "projects/numeric-stepper"],
+                        "compodocArgs": [
+                            "-e",
+                            "json",
+                            "-d",
+                            "projects/numeric-stepper"
+                        ],
                         "outputDir": "dist/storybook/numeric-stepper"
                     }
                 }

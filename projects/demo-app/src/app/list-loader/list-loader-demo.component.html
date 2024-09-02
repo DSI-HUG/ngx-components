@@ -28,7 +28,12 @@
                 <div>
                     <mat-form-field>
                         <mat-label>Label</mat-label>
-                        <input matInput type="text" [ngModel]="label" (change)="onInput1Change$.next($event)" #matLabel="matInput" />
+                        <input
+                            matInput
+                            type="text"
+                            [ngModel]="label"
+                            (change)="onInput1Change$.next($event)"
+                            #matLabel="matInput" />
                     </mat-form-field>
                 </div>
                 <div>

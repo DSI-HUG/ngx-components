@@ -42,7 +42,11 @@
 
                     <ngx-overlay #menu overlayContainerClass="ngx-menu">
                         <div class="ngx-menu-content button-menu">
-                            <button mat-button class="ngx-menu-item" *ngFor="let item of items" (click)="select(item.text); menu.close()">
+                            <button
+                                mat-button
+                                class="ngx-menu-item"
+                                *ngFor="let item of items"
+                                (click)="select(item.text); menu.close()">
                                 {{ item.text }}
                             </button>
                         </div>
@@ -74,10 +78,40 @@
 
                     <ngx-overlay #ipsum overlayContainerClass="ngx-menu">
                         <div class="ngx-menu-content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, lacus nec imperdiet pretium, purus nisi hendrerit velit, non laoreet est velit sit amet arcu. Cras eget malesuada tortor. Aliquam vitae libero tellus. Quisque at velit sed arcu feugiat imperdiet ut quis augue. Cras laoreet eleifend tellus varius laoreet. Vestibulum vulputate sagittis sapien, eget euismod metus. Sed ut lacus at risus tristique blandit. Cras at nibh augue. Nam felis felis, facilisis sed fringilla a, porta id magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc eget velit a enim pharetra volutpat quis eget lacus. Donec imperdiet magna metus, auctor pretium nibh dictum eu. Sed pharetra tristique sodales. Nam dapibus porta imperdiet. Pellentesque elementum
-                            tristique molestie. Sed at dolor et mauris vehicula vestibulum. Maecenas cursus vulputate convallis. Quisque eu imperdiet nunc. Nunc ut feugiat eros. Integer aliquam nibh nec est sollicitudin dictum at et diam. Aliquam neque magna, condimentum non dolor in, faucibus malesuada mauris. Sed dictum massa neque, quis venenatis justo consequat sed. Fusce imperdiet purus nec neque vestibulum, vel placerat enim porta. Duis turpis purus, suscipit vitae scelerisque sed, sollicitudin a sem. Nullam orci risus, suscipit non mollis non, semper sit amet enim. In vel eros justo. Etiam gravida dolor vitae commodo tincidunt. Ut consequat id odio ac scelerisque. Phasellus fringilla et nisi at convallis. Nunc efficitur est in luctus interdum. Curabitur risus turpis, gravida in ex
-                            id, elementum convallis augue. Duis laoreet condimentum purus, sit amet vulputate dolor finibus ac. Proin consectetur ullamcorper orci ut ullamcorper. Vivamus ornare leo vel urna molestie porta. Vivamus malesuada velit eros, non rutrum urna elementum ut. Pellentesque sed lorem tempor, consectetur sem in, condimentum justo. Vivamus eu nunc interdum, mattis turpis nec, accumsan neque. Integer convallis porttitor turpis feugiat placerat. Nulla sodales ex in neque lobortis, vel mollis turpis interdum. Mauris pharetra ex a justo maximus, at semper metus feugiat. Nullam aliquet tortor nec tortor auctor venenatis. Proin id laoreet eros, id sodales mi. Vestibulum mollis orci nec orci posuere dapibus. Integer placerat, nisl id aliquam interdum, diam est vestibulum purus,
-                            non venenatis turpis lacus in felis. Vestibulum pulvinar velit tortor, ut convallis turpis condimentum ut. Nunc auctor hendrerit augue, sed malesuada quam. Etiam varius interdum risus, eget gravida libero convallis sed. Aliquam tempor orci at ex ullamcorper mollis. Fusce imperdiet ut ex in gravida. Curabitur iaculis non diam vel consequat. Praesent a magna posuere, feugiat mauris nec, sollicitudin ligula. Sed faucibus viverra velit eget porttitor. Suspendisse a sem gravida, tincidunt lacus vitae, lobortis ante. Nulla nisl quam, ultrices non nunc eget, commodo luctus metus. Curabitur nulla erat, gravida in nulla vel, commodo vestibulum ligula. Quisque quis lectus vel urna luctus gravida eget id risus.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, lacus nec imperdiet
+                            pretium, purus nisi hendrerit velit, non laoreet est velit sit amet arcu. Cras eget
+                            malesuada tortor. Aliquam vitae libero tellus. Quisque at velit sed arcu feugiat imperdiet
+                            ut quis augue. Cras laoreet eleifend tellus varius laoreet. Vestibulum vulputate sagittis
+                            sapien, eget euismod metus. Sed ut lacus at risus tristique blandit. Cras at nibh augue. Nam
+                            felis felis, facilisis sed fringilla a, porta id magna. Interdum et malesuada fames ac ante
+                            ipsum primis in faucibus. Nunc eget velit a enim pharetra volutpat quis eget lacus. Donec
+                            imperdiet magna metus, auctor pretium nibh dictum eu. Sed pharetra tristique sodales. Nam
+                            dapibus porta imperdiet. Pellentesque elementum tristique molestie. Sed at dolor et mauris
+                            vehicula vestibulum. Maecenas cursus vulputate convallis. Quisque eu imperdiet nunc. Nunc ut
+                            feugiat eros. Integer aliquam nibh nec est sollicitudin dictum at et diam. Aliquam neque
+                            magna, condimentum non dolor in, faucibus malesuada mauris. Sed dictum massa neque, quis
+                            venenatis justo consequat sed. Fusce imperdiet purus nec neque vestibulum, vel placerat enim
+                            porta. Duis turpis purus, suscipit vitae scelerisque sed, sollicitudin a sem. Nullam orci
+                            risus, suscipit non mollis non, semper sit amet enim. In vel eros justo. Etiam gravida dolor
+                            vitae commodo tincidunt. Ut consequat id odio ac scelerisque. Phasellus fringilla et nisi at
+                            convallis. Nunc efficitur est in luctus interdum. Curabitur risus turpis, gravida in ex id,
+                            elementum convallis augue. Duis laoreet condimentum purus, sit amet vulputate dolor finibus
+                            ac. Proin consectetur ullamcorper orci ut ullamcorper. Vivamus ornare leo vel urna molestie
+                            porta. Vivamus malesuada velit eros, non rutrum urna elementum ut. Pellentesque sed lorem
+                            tempor, consectetur sem in, condimentum justo. Vivamus eu nunc interdum, mattis turpis nec,
+                            accumsan neque. Integer convallis porttitor turpis feugiat placerat. Nulla sodales ex in
+                            neque lobortis, vel mollis turpis interdum. Mauris pharetra ex a justo maximus, at semper
+                            metus feugiat. Nullam aliquet tortor nec tortor auctor venenatis. Proin id laoreet eros, id
+                            sodales mi. Vestibulum mollis orci nec orci posuere dapibus. Integer placerat, nisl id
+                            aliquam interdum, diam est vestibulum purus, non venenatis turpis lacus in felis. Vestibulum
+                            pulvinar velit tortor, ut convallis turpis condimentum ut. Nunc auctor hendrerit augue, sed
+                            malesuada quam. Etiam varius interdum risus, eget gravida libero convallis sed. Aliquam
+                            tempor orci at ex ullamcorper mollis. Fusce imperdiet ut ex in gravida. Curabitur iaculis
+                            non diam vel consequat. Praesent a magna posuere, feugiat mauris nec, sollicitudin ligula.
+                            Sed faucibus viverra velit eget porttitor. Suspendisse a sem gravida, tincidunt lacus vitae,
+                            lobortis ante. Nulla nisl quam, ultrices non nunc eget, commodo luctus metus. Curabitur
+                            nulla erat, gravida in nulla vel, commodo vestibulum ligula. Quisque quis lectus vel urna
+                            luctus gravida eget id risus.
                         </div>
                     </ngx-overlay>
                 </div>

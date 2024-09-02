@@ -2,7 +2,9 @@
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "targetDefaults": {
         "build:ng": {
-            "dependsOn": ["^build:ng"]
+            "dependsOn": [
+                "^build:ng"
+            ]
         }
     },
     "release": {

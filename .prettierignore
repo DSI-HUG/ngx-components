@@ -1,14 +1,11 @@
-# Ignore all JS and TS files:
+/.angular
+/.git
+/.nx
+/node_modules
+/dist
+
+package-lock.json
+
+**/*.md
 **/*.js
 **/*.ts
-**/*.md
-
-/node_modules/
-/.angular/
-/.husky/
-/.vscode/
-/dist/
-
-/projects/**/package.json
-/projects/**/ng-package.json
-package-lock.json

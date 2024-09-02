@@ -1,12 +1,14 @@
 {
-    "trailingComma": "all",
-    "tabWidth": 4,
-    "useTabs": false,
+    "$schema": "https://json.schemastore.org/prettierrc.json",
+    "plugins": [
+        "prettier-plugin-multiline-arrays"
+    ],
+    "singleQuote": true,
     "bracketSameLine": true,
+    "tabWidth": 4,
+    "printWidth": 120,
+    "endOfLine": "lf",
     "htmlWhitespaceSensitivity": "ignore",
     "proseWrap": "never",
-    "endOfLine": "lf",
-    "singleAttributePerLine": false,
-    "printWidth": 800,
-    "singleQuote": true
+    "multilineArraysWrapThreshold": 0
 }

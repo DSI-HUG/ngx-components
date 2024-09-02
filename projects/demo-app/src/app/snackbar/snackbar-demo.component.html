@@ -51,7 +51,11 @@
             </div>
 
             <!-- simple use case, single snackbar -->
-            <ngx-snackbar *ngIf="simpleGate" alignment="top left" [duration]="2000" (onAnimationDone)="simpleGate = false">
+            <ngx-snackbar
+                *ngIf="simpleGate"
+                alignment="top left"
+                [duration]="2000"
+                (onAnimationDone)="simpleGate = false">
                 <ngx-message-box type="primary" horizontal>Hello world ! I'm a simple snackbar.</ngx-message-box>
             </ngx-snackbar>
 
@@ -64,7 +68,11 @@
                     <!-- this behavior is to be used to push message to the client for example, snackbars MUST be displosed by themself -->
                     <!-- to do so, define duration @Input and negate flag used for disposal using the onAnimationDone @Output -->
                     <ng-template ngFor let-message [ngForOf]="messages$ | async">
-                        <ngx-snackbar *ngIf="message.gate" alignment="left" [duration]="5000" (onAnimationDone)="message.gate = false">
+                        <ngx-snackbar
+                            *ngIf="message.gate"
+                            alignment="left"
+                            [duration]="5000"
+                            (onAnimationDone)="message.gate = false">
                             <ngx-message-box type="primary" horizontal>
                                 {{ message.content }}
                             </ngx-message-box>
@@ -78,7 +86,11 @@
                             <ngx-message-box type="primary" horizontal>
                                 {{ message.content }}
                                 <ng-template #actionsTemplate>
-                                    <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
+                                    <button
+                                        mat-icon-button
+                                        class="action-button"
+                                        [color]="'blank'"
+                                        (click)="message.gate = false">
                                         <mat-icon>clear</mat-icon>
                                     </button>
                                 </ng-template>
@@ -94,7 +106,11 @@
                     <ngx-message-box type="success" horizontal>
                         {{ message.content }}
                         <ng-template #actionsTemplate>
-                            <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
+                            <button
+                                mat-icon-button
+                                class="action-button"
+                                [color]="'blank'"
+                                (click)="message.gate = false">
                                 <mat-icon>clear</mat-icon>
                             </button>
                         </ng-template>
@@ -107,7 +123,11 @@
                     <ngx-message-box type="warn" horizontal>
                         {{ message.content }}
                         <ng-template #actionsTemplate>
-                            <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
+                            <button
+                                mat-icon-button
+                                class="action-button"
+                                [color]="'blank'"
+                                (click)="message.gate = false">
                                 <mat-icon>clear</mat-icon>
                             </button>
                         </ng-template>
@@ -120,7 +140,11 @@
                     <ngx-message-box type="danger" horizontal>
                         {{ message.content }}
                         <ng-template #actionsTemplate>
-                            <button mat-icon-button class="action-button" [color]="'blank'" (click)="message.gate = false">
+                            <button
+                                mat-icon-button
+                                class="action-button"
+                                [color]="'blank'"
+                                (click)="message.gate = false">
                                 <mat-icon>clear</mat-icon>
                             </button>
                         </ng-template>

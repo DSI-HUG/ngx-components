@@ -1,9 +1,6 @@
 {
     "root": true,
-    "extends": ["@hug/eslint-config/recommended"],
-    "rules": {
-        // Use destroyRef and takeUntilDestroyed
-        "rxjs-angular/prefer-takeuntil": "off"
-        // "deprecation/deprecation": "warn"
-    }
+    "extends": [
+        "@hug/eslint-config/recommended"
+    ]
 }

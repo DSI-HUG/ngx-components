@@ -18,7 +18,13 @@
                     <mat-form-field appearance="fill">
                         <mat-label>Write text and input will autosize</mat-label>
                         <span matTextPrefix>This is my preffix</span>
-                        <input matInput type="text" #dateTimePickerInput="matInput" required formControlName="myText" ngx-input-autosize />
+                        <input
+                            matInput
+                            type="text"
+                            #dateTimePickerInput="matInput"
+                            required
+                            formControlName="myText"
+                            ngx-input-autosize />
                         <span matTextSuffix>This is my suffix</span>
                     </mat-form-field>
                 </form>

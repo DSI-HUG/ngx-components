@@ -1,14 +1,50 @@
 <!-- Hours -->
-<mat-form-field [appearance]="appearance" class="hours" [class.disabled]="disabled || mode === 'fullTimeWithHoursDisabled'" [style.display]="mode === 'minutesOnly' ? 'none' : 'block'">
-    <input #hours matInput type="text" [ngModel]="hoursValue | number: '2.'" (change)="onHoursChange$.next($event)" (keydown)="onKeyDown($event, 'hours')" [disabled]="disabled || mode === 'fullTimeWithHoursDisabled'" [maxLength]="2" autocomplete="off" [placeholder]="defaultPlaceholderHours" (click)="onClick('hours')" />
-    <ngx-numeric-stepper (increment)="incrementValue('hours')" (decrement)="decrementValue('hours')"></ngx-numeric-stepper>
+<mat-form-field
+    [appearance]="appearance"
+    class="hours"
+    [class.disabled]="disabled || mode === 'fullTimeWithHoursDisabled'"
+    [style.display]="mode === 'minutesOnly' ? 'none' : 'block'">
+    <input
+        #hours
+        matInput
+        type="text"
+        [ngModel]="hoursValue | number: '2.'"
+        (change)="onHoursChange$.next($event)"
+        (keydown)="onKeyDown($event, 'hours')"
+        [disabled]="disabled || mode === 'fullTimeWithHoursDisabled'"
+        [maxLength]="2"
+        autocomplete="off"
+        [placeholder]="defaultPlaceholderHours"
+        (click)="onClick('hours')" />
+    <ngx-numeric-stepper
+        (increment)="incrementValue('hours')"
+        (decrement)="decrementValue('hours')"></ngx-numeric-stepper>
 </mat-form-field>
 
 <!-- Separator -->
-<span class="time-separator" [style.display]="mode === 'minutesOnly' || mode === 'hoursOnly' ? 'none' : 'block'">:</span>
+<span class="time-separator" [style.display]="mode === 'minutesOnly' || mode === 'hoursOnly' ? 'none' : 'block'">
+    :
+</span>
 
 <!-- Minutes -->
-<mat-form-field [appearance]="appearance" class="minutes" [class.disabled]="disabled || mode === 'fullTimeWithMinutesDisabled'" [style.display]="mode === 'hoursOnly' ? 'none' : 'block'">
-    <input #minutes matInput type="text" [ngModel]="minutesValue | number: '2.'" (change)="onMinutesChange$.next($event)" (keydown)="onKeyDown($event, 'minutes')" [disabled]="disabled || mode === 'fullTimeWithMinutesDisabled'" [maxLength]="2" autocomplete="off" [placeholder]="defaultPlaceholderMinutes" (click)="onClick('minutes')" />
-    <ngx-numeric-stepper (increment)="incrementValue('minutes')" (decrement)="decrementValue('minutes')"></ngx-numeric-stepper>
+<mat-form-field
+    [appearance]="appearance"
+    class="minutes"
+    [class.disabled]="disabled || mode === 'fullTimeWithMinutesDisabled'"
+    [style.display]="mode === 'hoursOnly' ? 'none' : 'block'">
+    <input
+        #minutes
+        matInput
+        type="text"
+        [ngModel]="minutesValue | number: '2.'"
+        (change)="onMinutesChange$.next($event)"
+        (keydown)="onKeyDown($event, 'minutes')"
+        [disabled]="disabled || mode === 'fullTimeWithMinutesDisabled'"
+        [maxLength]="2"
+        autocomplete="off"
+        [placeholder]="defaultPlaceholderMinutes"
+        (click)="onClick('minutes')" />
+    <ngx-numeric-stepper
+        (increment)="incrementValue('minutes')"
+        (decrement)="decrementValue('minutes')"></ngx-numeric-stepper>
 </mat-form-field>

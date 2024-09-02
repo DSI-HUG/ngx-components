@@ -17,14 +17,20 @@
                 <div>
                     <h3>Without initial hours and minutes (null)</h3>
                     <div class="flex-layout-center">
-                        <ngx-time-picker [ngModel]="date0" (ngModelChange)="date0Changed($event)" mode="fullTime"></ngx-time-picker>
+                        <ngx-time-picker
+                            [ngModel]="date0"
+                            (ngModelChange)="date0Changed($event)"
+                            mode="fullTime"></ngx-time-picker>
                     </div>
                     <p>Selected : {{ date0 | date: 'HH:mm' }}</p>
                 </div>
                 <div>
                     <h3>With initial hours and minutes (09:05)</h3>
                     <div class="flex-layout-center">
-                        <ngx-time-picker [ngModel]="date1" (ngModelChange)="date1Changed($event)" mode="fullTime"></ngx-time-picker>
+                        <ngx-time-picker
+                            [ngModel]="date1"
+                            (ngModelChange)="date1Changed($event)"
+                            mode="fullTime"></ngx-time-picker>
                     </div>
                     <p>Selected : {{ date1 | date: 'HH:mm' }}</p>
                 </div>
@@ -40,28 +46,42 @@
                 <div>
                     <h3>With hours disabled</h3>
                     <div class="flex-layout-center">
-                        <ngx-time-picker [ngModel]="date2" (ngModelChange)="date2Changed($event)" [step]="5" mode="fullTimeWithHoursDisabled"></ngx-time-picker>
+                        <ngx-time-picker
+                            [ngModel]="date2"
+                            (ngModelChange)="date2Changed($event)"
+                            [step]="5"
+                            mode="fullTimeWithHoursDisabled"></ngx-time-picker>
                     </div>
                     <p>Selected date : {{ date2 | date: 'HH:mm' }}</p>
                 </div>
                 <div>
                     <h3>With minutes disabled</h3>
                     <div class="flex-layout-center">
-                        <ngx-time-picker [ngModel]="date3" (ngModelChange)="date3Changed($event)" mode="fullTimeWithMinutesDisabled"></ngx-time-picker>
+                        <ngx-time-picker
+                            [ngModel]="date3"
+                            (ngModelChange)="date3Changed($event)"
+                            mode="fullTimeWithMinutesDisabled"></ngx-time-picker>
                     </div>
                     <p>Selected date : {{ date3 | date: 'HH:mm' }}</p>
                 </div>
                 <div>
                     <h3>With hours displayed only</h3>
                     <div class="flex-layout-center">
-                        <ngx-time-picker [ngModel]="date4" (ngModelChange)="date4Changed($event)" mode="hoursOnly"></ngx-time-picker>
+                        <ngx-time-picker
+                            [ngModel]="date4"
+                            (ngModelChange)="date4Changed($event)"
+                            mode="hoursOnly"></ngx-time-picker>
                     </div>
                     <p>Selected date : {{ date4 | date: 'HH:mm' }}</p>
                 </div>
                 <div>
                     <h3>With minutes displayed only inline in a form</h3>
                     <div class="flex-layout-center">
-                        <ngx-time-picker inform [ngModel]="date5" (ngModelChange)="date5Changed($event)" mode="minutesOnly"></ngx-time-picker>
+                        <ngx-time-picker
+                            inform
+                            [ngModel]="date5"
+                            (ngModelChange)="date5Changed($event)"
+                            mode="minutesOnly"></ngx-time-picker>
                         <mat-form-field appearance="outline">
                             <input matInput name="fakeInput" [(ngModel)]="fakeInput" />
                         </mat-form-field>
@@ -80,7 +100,10 @@
                 <div>
                     <h3>Time Picker disabled</h3>
                     <div class="flex-layout-center">
-                        <ngx-time-picker [ngModel]="date6" (ngModelChange)="date6Changed($event)" [disabled]="disable6"></ngx-time-picker>
+                        <ngx-time-picker
+                            [ngModel]="date6"
+                            (ngModelChange)="date6Changed($event)"
+                            [disabled]="disable6"></ngx-time-picker>
                     </div>
                     <p>
                         <mat-checkbox name="disable-checkbox" [(ngModel)]="disable6">Disable time-picker</mat-checkbox>

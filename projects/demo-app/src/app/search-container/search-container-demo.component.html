@@ -15,7 +15,12 @@
         <mat-card-content>
             <div class="flex-layout">
                 <ngx-search-container>
-                    <input ngx-search-input type="text" placeholder="Rechercher dans la liste" [(ngModel)]="searchModel" (ngModelChange)="searchQueryChanged($event)" />
+                    <input
+                        ngx-search-input
+                        type="text"
+                        placeholder="Rechercher dans la liste"
+                        [(ngModel)]="searchModel"
+                        (ngModelChange)="searchQueryChanged($event)" />
                 </ngx-search-container>
                 <br />
                 <div class="listsContainer">

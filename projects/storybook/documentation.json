@@ -12,15 +12,21 @@
             "id": "component-StorybookLayoutWrapperComponent-a1670bb5559d6e35440f7f55aad9c7b01c73a03a700759394486445a314400bc239b21c7218ba419bd42047db271156e5cd620c070dfefb7dc35784312a35260",
             "file": "projects/storybook/src/stories/layout/layout-wrapper.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": ["ViewEncapsulation.None"],
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
             "selector": "storybook-layout-wrapper",
-            "styleUrls": ["./layout-wrapper.component.scss"],
+            "styleUrls": [
+                "./layout-wrapper.component.scss"
+            ],
             "styles": [],
-            "templateUrl": ["./layout-wrapper.component.html"],
+            "templateUrl": [
+                "./layout-wrapper.component.html"
+            ],
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [
@@ -45,7 +51,9 @@
                     "optional": false,
                     "description": "",
                     "line": 41,
-                    "modifierKind": [123]
+                    "modifierKind": [
+                        123
+                    ]
                 },
                 {
                     "name": "search",
@@ -55,7 +63,9 @@
                     "optional": false,
                     "description": "",
                     "line": 39,
-                    "modifierKind": [124]
+                    "modifierKind": [
+                        124
+                    ]
                 },
                 {
                     "name": "withBackButton",
@@ -66,7 +76,9 @@
                     "optional": false,
                     "description": "",
                     "line": 37,
-                    "modifierKind": [124]
+                    "modifierKind": [
+                        124
+                    ]
                 },
                 {
                     "name": "withCloseButton",
@@ -77,7 +89,9 @@
                     "optional": false,
                     "description": "",
                     "line": 38,
-                    "modifierKind": [124]
+                    "modifierKind": [
+                        124
+                    ]
                 }
             ],
             "methodsClass": [
@@ -104,7 +118,9 @@
                     "line": 43,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "modifierKind": [124],
+                    "modifierKind": [
+                        124
+                    ],
                     "jsdoctags": [
                         {
                             "name": "msg",

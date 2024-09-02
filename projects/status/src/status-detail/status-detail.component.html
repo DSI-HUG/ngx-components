@@ -1,5 +1,9 @@
 @if (status) {
-    <ngx-message-box [type]="messageBoxType" [title]="status.title || ''" showCloseIcon="true" (close)="dialogRef.close()">
+    <ngx-message-box
+        [type]="messageBoxType"
+        [title]="status.title || ''"
+        showCloseIcon="true"
+        (close)="dialogRef.close()">
         <p>{{ status.text }}</p>
         <p class="detail-error-title">Détails de l'erreur:</p>
         <div class="detail-error-container">
@@ -9,7 +13,12 @@
 
         <ng-template #actionsTemplate>
             @if (status.technicalText) {
-                <button mat-icon-button (click)="copyToClipboard(fullTextError)" type="button" [color]="'blank'" class="info">
+                <button
+                    mat-icon-button
+                    (click)="copyToClipboard(fullTextError)"
+                    type="button"
+                    [color]="'blank'"
+                    class="info">
                     <mat-icon>content_copy</mat-icon>
                 </button>
             }

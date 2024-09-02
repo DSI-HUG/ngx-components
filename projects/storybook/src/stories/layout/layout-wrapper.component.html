@@ -1,9 +1,23 @@
 <div class="layout-wrapper">
-    <ngx-layout [toolbarColor]="toolbarColor" [withBackButton]="withBackButton" backButtonLabel="Back button label" [withCloseButton]="withCloseButton" (backButtonClicked)="log('Back button clicked', $event)" (closeButtonClicked)="log('Close button clicked', $event)" (sideFilterOpened)="log('Side filter opened')" (sideFilterClosed)="log('Side filter closed')">
+    <ngx-layout
+        [toolbarColor]="toolbarColor"
+        [withBackButton]="withBackButton"
+        backButtonLabel="Back button label"
+        [withCloseButton]="withCloseButton"
+        (backButtonClicked)="log('Back button clicked', $event)"
+        (closeButtonClicked)="log('Close button clicked', $event)"
+        (sideFilterOpened)="log('Side filter opened')"
+        (sideFilterClosed)="log('Side filter closed')">
         <ng-template #layoutToolbar>
             <span toolbar-title>Accès dossier patient</span>
             <ngx-search-container>
-                <input type="text" [(ngModel)]="search" (ngModelChange)="log('Search changed', $event)" placeholder="Search" autocomplete="off" ngx-search-input />
+                <input
+                    type="text"
+                    [(ngModel)]="search"
+                    (ngModelChange)="log('Search changed', $event)"
+                    placeholder="Search"
+                    autocomplete="off"
+                    ngx-search-input />
             </ngx-search-container>
 
             <button type="button" mat-icon-button matTooltip="Help" (click)="log('Help button clicked', $event)">
@@ -24,7 +38,11 @@
                 <mat-icon>refresh</mat-icon>
             </button>
 
-            <button type="button" mat-icon-button matTooltip="Favorite" (click)="log('Favorite button clicked', $event)">
+            <button
+                type="button"
+                mat-icon-button
+                matTooltip="Favorite"
+                (click)="log('Favorite button clicked', $event)">
                 <mat-icon>favorite</mat-icon>
             </button>
         </ng-template>
