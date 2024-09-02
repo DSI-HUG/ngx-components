@@ -1,10 +1,18 @@
-<div *ngIf="mediaService.isHandset$ | async; else noHandsetTpl" class="ngx-search-container-mobile mobile" [class.active]="activeSearch$ | async" #mobileSearch>
+<div
+    *ngIf="mediaService.isHandset$ | async; else noHandsetTpl"
+    class="ngx-search-container-mobile mobile"
+    [class.active]="activeSearch$ | async"
+    #mobileSearch>
     <ng-container *ngIf="activeSearch$ | async; else noActiveSearchTpl">
-        <mat-icon class="icon-close-search" [matTooltip]="closeSearchTooltip" (click)="activeSearch$.next(false)">arrow_back</mat-icon>
+        <mat-icon class="icon-close-search" [matTooltip]="closeSearchTooltip" (click)="activeSearch$.next(false)">
+            arrow_back
+        </mat-icon>
         <ng-container *ngTemplateOutlet="searchContainerTpl"></ng-container>
     </ng-container>
     <ng-template #noActiveSearchTpl>
-        <mat-icon class="icon-open-search" [matTooltip]="openSearchTooltip" (click)="activeSearch$.next(true)">search</mat-icon>
+        <mat-icon class="icon-open-search" [matTooltip]="openSearchTooltip" (click)="activeSearch$.next(true)">
+            search
+        </mat-icon>
     </ng-template>
 </div>
 
@@ -16,7 +24,9 @@
     <div class="ngx-search-container">
         <mat-icon>search</mat-icon>
         <ng-content></ng-content>
-        <mat-icon *ngIf="searchInputValue$ | async" class="icon-clear" [matTooltip]="clearTooltip" (click)="reset()">close</mat-icon>
+        <mat-icon *ngIf="searchInputValue$ | async" class="icon-clear" [matTooltip]="clearTooltip" (click)="reset()">
+            close
+        </mat-icon>
         <ng-container *ngTemplateOutlet="right"></ng-container>
     </div>
 </ng-template>

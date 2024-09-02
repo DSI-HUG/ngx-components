@@ -1,122 +1,103 @@
 ## 1.1.11 (2024-07-25)
 
-
 ### 🐛 Fixes
 
-- **ngx-numeric-stepper:** update patch version ([7b749f9](https://github.com/DSI-HUG/ngx-components/commit/7b749f9))
-
+-   **ngx-numeric-stepper:** update patch version ([7b749f9](https://github.com/DSI-HUG/ngx-components/commit/7b749f9))
 
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.14 ([12ee5d4](https://github.com/DSI-HUG/ngx-components/commit/12ee5d4))
+-   **@hug/ngx-core:** upgrade to v1.1.14 ([12ee5d4](https://github.com/DSI-HUG/ngx-components/commit/12ee5d4))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
-- Serge
+-   dsi-hug-bot @dsi-hug-bot
+-   Serge
 
 ## 1.1.10 (2024-07-25)
 
-
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.13 ([15e11d7](https://github.com/DSI-HUG/ngx-components/commit/15e11d7))
+-   **@hug/ngx-core:** upgrade to v1.1.13 ([15e11d7](https://github.com/DSI-HUG/ngx-components/commit/15e11d7))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
+-   dsi-hug-bot @dsi-hug-bot
 
 ## 1.1.9 (2024-07-24)
 
-
 ### 🐛 Fixes
 
-- **ngx-numeric-stepper:** update patch version ([fb42146](https://github.com/DSI-HUG/ngx-components/commit/fb42146))
-
+-   **ngx-numeric-stepper:** update patch version ([fb42146](https://github.com/DSI-HUG/ngx-components/commit/fb42146))
 
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.12 ([78a2936](https://github.com/DSI-HUG/ngx-components/commit/78a2936))
+-   **@hug/ngx-core:** upgrade to v1.1.12 ([78a2936](https://github.com/DSI-HUG/ngx-components/commit/78a2936))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
-- Serge
+-   dsi-hug-bot @dsi-hug-bot
+-   Serge
 
 ## 1.1.8 (2024-07-24)
 
-
 ### 🐛 Fixes
 
-- **ngx-numeric-stepper:** update patch version ([8355ec4](https://github.com/DSI-HUG/ngx-components/commit/8355ec4))
+-   **ngx-numeric-stepper:** update patch version ([8355ec4](https://github.com/DSI-HUG/ngx-components/commit/8355ec4))
 
-- **ngx-numeric-stepper:** update patch version ([dd12853](https://github.com/DSI-HUG/ngx-components/commit/dd12853))
-
+-   **ngx-numeric-stepper:** update patch version ([dd12853](https://github.com/DSI-HUG/ngx-components/commit/dd12853))
 
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.11 ([bda1d8c](https://github.com/DSI-HUG/ngx-components/commit/bda1d8c))
+-   **@hug/ngx-core:** upgrade to v1.1.11 ([bda1d8c](https://github.com/DSI-HUG/ngx-components/commit/bda1d8c))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
-- Serge
+-   dsi-hug-bot @dsi-hug-bot
+-   Serge
 
 ## 1.1.7 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-numeric-stepper:** compile path ([08bcf91](https://github.com/DSI-HUG/ngx-components/commit/08bcf91))
-
+-   **ngx-numeric-stepper:** compile path ([08bcf91](https://github.com/DSI-HUG/ngx-components/commit/08bcf91))
 
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.9 ([3692c68](https://github.com/DSI-HUG/ngx-components/commit/3692c68))
+-   **@hug/ngx-core:** upgrade to v1.1.9 ([3692c68](https://github.com/DSI-HUG/ngx-components/commit/3692c68))
 
-- **@hug/ngx-core:** upgrade to v1.1.10 ([78dbe21](https://github.com/DSI-HUG/ngx-components/commit/78dbe21))
+-   **@hug/ngx-core:** upgrade to v1.1.10 ([78dbe21](https://github.com/DSI-HUG/ngx-components/commit/78dbe21))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
-- Serge
+-   dsi-hug-bot @dsi-hug-bot
+-   Serge
 
 ## 1.1.6 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-numeric-stepper:** ngx prefix ([73ab7bb](https://github.com/DSI-HUG/ngx-components/commit/73ab7bb))
+-   **ngx-numeric-stepper:** ngx prefix ([73ab7bb](https://github.com/DSI-HUG/ngx-components/commit/73ab7bb))
 
-- **ngx-numeric-stepper:** ngx prefix ([0fc6cb9](https://github.com/DSI-HUG/ngx-components/commit/0fc6cb9))
+-   **ngx-numeric-stepper:** ngx prefix ([0fc6cb9](https://github.com/DSI-HUG/ngx-components/commit/0fc6cb9))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.5 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-numeric-stepper:** use inject ([db6ed86](https://github.com/DSI-HUG/ngx-components/commit/db6ed86))
-
+-   **ngx-numeric-stepper:** use inject ([db6ed86](https://github.com/DSI-HUG/ngx-components/commit/db6ed86))
 
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.8 ([26f0d10](https://github.com/DSI-HUG/ngx-components/commit/26f0d10))
+-   **@hug/ngx-core:** upgrade to v1.1.8 ([26f0d10](https://github.com/DSI-HUG/ngx-components/commit/26f0d10))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
-- Serge
+-   dsi-hug-bot @dsi-hug-bot
+-   Serge
 
 ## 1.1.4 (2024-07-08)
 

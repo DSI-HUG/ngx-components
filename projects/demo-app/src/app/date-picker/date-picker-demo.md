@@ -14,10 +14,12 @@ Documentation officielle : https://material.angular.io/components/datepicker/ove
 ### Gestion des dates et heures
 
 Le format de la date affichée et traitée dans l'`input form` peut être customisé via des directives que l'on peut appliquer à `mat-form-field`, par exemple :
+
 ```html
-<mat-form-field date-time-format>
+<mat-form-field date-time-format></mat-form-field>
 ```
-Vous trouverez un exemple de directive `date-time-format` pour afficher et parser la date avec les heures et les minutes ici : [custom-date-format.directive.ts](https://raw.githubusercontent.com/DSI-HUG/dejajs-components/develop/src/app/date-picker-material/custom-date-format.directive.ts) 
+
+Vous trouverez un exemple de directive `date-time-format` pour afficher et parser la date avec les heures et les minutes ici : [custom-date-format.directive.ts](https://raw.githubusercontent.com/DSI-HUG/dejajs-components/develop/src/app/date-picker-material/custom-date-format.directive.ts)
 
 > Dans les exemples ci-dessous, les opérations sur les dates (format, parsing...) se font via la lib [date-fns](https://date-fns.org/)
 
@@ -25,6 +27,7 @@ Vous trouverez un exemple de directive `date-time-format` pour afficher et parse
 
 Si vous utilisez un thème Material custom, il se peut que vous ayez un bug dans l'affichage de la popup de calendrier du Datepicker Material.  
 Pour corriger ce problème, vous pouvez ajouter ce style :
+
 ```scss
 // fix conflict with custom material theme in date picker calendar popup
 .mat-calendar-body-cell-content.mat-focus-indicator {
@@ -40,7 +43,7 @@ Pour corriger ce problème, vous pouvez ajouter ce style :
 <form [formGroup]="dateForm">
     <mat-form-field appearance="fill" date-format>
         <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="datePicker" formControlName="date">
+        <input matInput [matDatepicker]="datePicker" formControlName="date" />
         <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
         <mat-datepicker #datePicker></mat-datepicker>
     </mat-form-field>
@@ -78,8 +81,8 @@ Au niveau du formulaire, on a deux champs pour gérer la date de début et la da
     <mat-form-field appearance="fill" date-format>
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [rangePicker]="dateRangePicker">
-            <input matStartDate placeholder="Start date" formControlName="from">
-            <input matEndDate placeholder="End date" formControlName="to">
+            <input matStartDate placeholder="Start date" formControlName="from" />
+            <input matEndDate placeholder="End date" formControlName="to" />
         </mat-date-range-input>
         <mat-datepicker-toggle matSuffix [for]="dateRangePicker"></mat-datepicker-toggle>
         <mat-date-range-picker #dateRangePicker></mat-date-range-picker>
@@ -110,7 +113,7 @@ public constructor(fb: FormBuilder) {
 
 ## Date time picker
 
-Le TimePicker de DejaJS peut être intégré à la popup du calendrier de Datepicker Material en l'insérant dans la partie `<mat-datepicker-actions>` du datepicker.  
+Le TimePicker de DejaJS peut être intégré à la popup du calendrier de Datepicker Material en l'insérant dans la partie `<mat-datepicker-actions>` du datepicker.
 
 La valeur du Timepicker est stockée dans une variable `time` du formulaire et des fonctions doivent être ajoutées dans le composant pour le lier au champ `date` lors de l'event `opened` et lors du click sur le bouton `OK`
 
@@ -123,7 +126,7 @@ La valeur du Timepicker est stockée dans une variable `time` du formulaire et d
     <mat-form-field appearance="fill" date-time-format>
         <mat-label>Choose a date and time</mat-label>
         <mat-hint>Format : dd.MM.yyyy HH:mm</mat-hint>
-        <input matInput [matDatepicker]="dateTimePicker" formControlName="date">
+        <input matInput [matDatepicker]="dateTimePicker" formControlName="date" />
         <mat-datepicker-toggle matSuffix [for]="dateTimePicker"></mat-datepicker-toggle>
         <mat-datepicker #dateTimePicker (opened)="onDateTimeOpened()">
             <mat-datepicker-actions>
@@ -203,8 +206,8 @@ C'est un mix entre le date time picker et le date range picker, avec deux variab
         <mat-label>Enter a date range</mat-label>
         <mat-hint>Format : dd.MM.yyyy HH:mm - dd.MM.yyyy HH:mm</mat-hint>
         <mat-date-range-input [rangePicker]="dateTimeRangePicker">
-            <input matStartDate placeholder="Start date" formControlName="from">
-            <input matEndDate placeholder="End date" formControlName="to">
+            <input matStartDate placeholder="Start date" formControlName="from" />
+            <input matEndDate placeholder="End date" formControlName="to" />
         </mat-date-range-input>
         <mat-datepicker-toggle matSuffix [for]="dateTimeRangePicker"></mat-datepicker-toggle>
         <mat-date-range-picker #dateTimeRangePicker (opened)="onDateTimeRangeOpened()">

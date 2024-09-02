@@ -23,8 +23,14 @@
                         "polyfills": "projects/demo-app/src/polyfills.ts",
                         "tsConfig": "projects/demo-app/tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
-                        "assets": ["projects/demo-app/src/favicon.ico", "projects/demo-app/src/assets"],
-                        "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "projects/demo-app/src/styles.scss"],
+                        "assets": [
+                            "projects/demo-app/src/favicon.ico",
+                            "projects/demo-app/src/assets"
+                        ],
+                        "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "projects/demo-app/src/styles.scss"
+                        ],
                         "scripts": []
                     },
                     "configurations": {
@@ -86,8 +92,14 @@
                         "tsConfig": "projects/demo-app/tsconfig.spec.json",
                         "karmaConfig": "projects/demo-app/karma.conf.js",
                         "inlineStyleLanguage": "scss",
-                        "assets": ["projects/demo-app/src/favicon.ico", "projects/demo-app/src/assets"],
-                        "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "projects/demo-app/src/styles.scss"],
+                        "assets": [
+                            "projects/demo-app/src/favicon.ico",
+                            "projects/demo-app/src/assets"
+                        ],
+                        "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "projects/demo-app/src/styles.scss"
+                        ],
                         "scripts": []
                     }
                 }

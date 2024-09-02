@@ -2,7 +2,13 @@
 
 <ng-template #content>
     <div class="main-content">
-        <span class="primary-action-container" [class.bottom]="mediaService.isHandset$ | async" *ngIf="layoutPrimaryAction && !((layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false)">
+        <span
+            class="primary-action-container"
+            [class.bottom]="mediaService.isHandset$ | async"
+            *ngIf="
+                layoutPrimaryAction &&
+                !((layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false)
+            ">
             <ng-template [ngTemplateOutlet]="layoutPrimaryAction"></ng-template>
         </span>
         <ng-content></ng-content>
@@ -13,8 +19,16 @@
 </ng-template>
 
 <ng-template #actionsToolbar>
-    <mat-toolbar id="actions-toolbar" class="actions" [color]="toolbarColor" [class.bottom]="mediaService.isHandset$ | async">
-        <span class="primary-action-container" *ngIf="layoutPrimaryAction && (layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false">
+    <mat-toolbar
+        id="actions-toolbar"
+        class="actions"
+        [color]="toolbarColor"
+        [class.bottom]="mediaService.isHandset$ | async">
+        <span
+            class="primary-action-container"
+            *ngIf="
+                layoutPrimaryAction && (layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false
+            ">
             <ng-template [ngTemplateOutlet]="layoutPrimaryAction"></ng-template>
         </span>
         <ng-container *ngIf="layoutActions">
@@ -28,10 +42,21 @@
 
 <ng-template #filter>
     <mat-toolbar id="toolbar" [color]="toolbarColor" *ngIf="layoutToolbar || layoutRight">
-        <button type="button" id="sidenav-button" mat-icon-button *ngIf="withSidenav && (mediaService.isHandset$ | async) && (sidenavService.openChanged$ | async) === false" (click)="sidenavService.toggle()">
+        <button
+            type="button"
+            id="sidenav-button"
+            mat-icon-button
+            *ngIf="withSidenav && (mediaService.isHandset$ | async) && (sidenavService.openChanged$ | async) === false"
+            (click)="sidenavService.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        <button type="button" id="back-button" mat-icon-button *ngIf="withBackButton" (click)="this.backButtonClicked.emit($event)" [matTooltip]="backButtonLabel">
+        <button
+            type="button"
+            id="back-button"
+            mat-icon-button
+            *ngIf="withBackButton"
+            (click)="this.backButtonClicked.emit($event)"
+            [matTooltip]="backButtonLabel">
             <mat-icon>arrow_back</mat-icon>
         </button>
         <div id="toolbar-content-container">
@@ -39,10 +64,22 @@
                 <ng-template [ngTemplateOutlet]="layoutToolbar"></ng-template>
             </ng-container>
         </div>
-        <button type="button" id="filter-button" mat-icon-button (click)="sideFilter.toggle()" *ngIf="sideFilter && (keepFilterButtonDisplayed || (mediaService.isHandset$ | async)) && layoutRight" matTooltip="Afficher/Masquer les filtres">
+        <button
+            type="button"
+            id="filter-button"
+            mat-icon-button
+            (click)="sideFilter.toggle()"
+            *ngIf="sideFilter && (keepFilterButtonDisplayed || (mediaService.isHandset$ | async)) && layoutRight"
+            matTooltip="Afficher/Masquer les filtres">
             <mat-icon>tune</mat-icon>
         </button>
-        <button type="button" id="close-button" mat-icon-button *ngIf="withCloseButton" (click)="this.closeButtonClicked.emit($event)" [matTooltip]="closeButtonLabel">
+        <button
+            type="button"
+            id="close-button"
+            mat-icon-button
+            *ngIf="withCloseButton"
+            (click)="this.closeButtonClicked.emit($event)"
+            [matTooltip]="closeButtonLabel">
             <mat-icon>close</mat-icon>
         </button>
     </mat-toolbar>
@@ -53,7 +90,16 @@
         <mat-drawer-content>
             <ng-container *ngTemplateOutlet="content"></ng-container>
         </mat-drawer-content>
-        <mat-drawer id="side-filter" #sideFilter (closed)="sideFilterClosed.emit()" (openedChange)="sideFilterOpened.emit()" class="right" position="end" [attr.role]="(mediaService.isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(mediaService.isHandset$ | async) ? 'over' : 'side'" [opened]="(mediaService.isHandset$ | async) === false">
+        <mat-drawer
+            id="side-filter"
+            #sideFilter
+            (closed)="sideFilterClosed.emit()"
+            (openedChange)="sideFilterOpened.emit()"
+            class="right"
+            position="end"
+            [attr.role]="(mediaService.isHandset$ | async) ? 'dialog' : 'navigation'"
+            [mode]="(mediaService.isHandset$ | async) ? 'over' : 'side'"
+            [opened]="(mediaService.isHandset$ | async) === false">
             <ng-template [ngTemplateOutlet]="layoutRight"></ng-template>
         </mat-drawer>
     </mat-drawer-container>

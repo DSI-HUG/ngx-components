@@ -17,6 +17,8 @@
             "type": "string"
         }
     },
-    "required": ["libName"],
+    "required": [
+        "libName"
+    ],
     "additionalProperties": false
 }

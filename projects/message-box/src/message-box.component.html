@@ -14,10 +14,21 @@
     </mat-card-content>
     <mat-card-actions *ngIf="actions">
         <span *ngFor="let action of actions">
-            <button mat-button type="button" *ngIf="action.text" (click)="action.action()" class="with-icon" [attr.data-icon]="action.icon">
+            <button
+                mat-button
+                type="button"
+                *ngIf="action.text"
+                (click)="action.action()"
+                class="with-icon"
+                [attr.data-icon]="action.icon">
                 {{ action.text }}
             </button>
-            <button mat-icon-button type="button" *ngIf="!action.text && action.icon as icon" [class.action-button]="!action.type" (click)="action.action()">
+            <button
+                mat-icon-button
+                type="button"
+                *ngIf="!action.text && action.icon as icon"
+                [class.action-button]="!action.type"
+                (click)="action.action()">
                 <mat-icon>{{ icon }}</mat-icon>
             </button>
         </span>
