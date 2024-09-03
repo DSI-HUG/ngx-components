@@ -35,11 +35,11 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">= 14",
-        "@angular/core": ">= 14",
-        "@angular/forms": ">= 14",
-        "@angular/material": ">= 14",
-        "rxjs": ">= 7.0.0",
+        "@angular/common": ">=18",
+        "@angular/core": ">=18",
+        "@angular/forms": ">=18",
+        "@angular/material": ">=18",
+        "rxjs": ">= 7.4.0",
         "@hug/ngx-core": "^1.1.14"
     },
     "dependencies": {

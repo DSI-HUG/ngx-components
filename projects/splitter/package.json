@@ -35,10 +35,10 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">= 14",
-        "@angular/core": ">= 14",
-        "@angular/cdk": ">= 14",
-        "rxjs": ">= 7.0.0",
+        "@angular/common": ">=18",
+        "@angular/core": ">=18",
+        "@angular/cdk": ">=18",
+        "rxjs": ">= 7.4.0",
         "@hug/ngx-core": "^1.1.14"
     },
     "dependencies": {

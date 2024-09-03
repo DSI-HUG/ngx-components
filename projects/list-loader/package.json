@@ -35,8 +35,8 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">= 14",
-        "@angular/core": ">= 14"
+        "@angular/common": ">=18",
+        "@angular/core": ">=18"
     },
     "dependencies": {
         "tslib": "^2.7.0"
