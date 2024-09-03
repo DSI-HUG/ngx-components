@@ -222,9 +222,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/core/src/test.ts",
                         "tsConfig": "projects/core/tsconfig.spec.json",
-                        "karmaConfig": "projects/core/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -253,9 +255,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/list-loader/src/test.ts",
                         "tsConfig": "projects/list-loader/tsconfig.spec.json",
-                        "karmaConfig": "projects/list-loader/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -284,9 +288,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/message-box/src/test.ts",
                         "tsConfig": "projects/message-box/tsconfig.spec.json",
-                        "karmaConfig": "projects/message-box/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -315,9 +321,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/numeric-stepper/src/test.ts",
                         "tsConfig": "projects/numeric-stepper/tsconfig.spec.json",
-                        "karmaConfig": "projects/numeric-stepper/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -346,9 +354,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/overlay/src/test.ts",
                         "tsConfig": "projects/overlay/tsconfig.spec.json",
-                        "karmaConfig": "projects/overlay/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -377,9 +387,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/snackbar/src/test.ts",
                         "tsConfig": "projects/snackbar/tsconfig.spec.json",
-                        "karmaConfig": "projects/snackbar/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -408,9 +420,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/splitter/src/test.ts",
                         "tsConfig": "projects/splitter/tsconfig.spec.json",
-                        "karmaConfig": "projects/splitter/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -439,9 +453,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/status/src/test.ts",
                         "tsConfig": "projects/status/tsconfig.spec.json",
-                        "karmaConfig": "projects/status/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -470,9 +486,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/time-picker/src/test.ts",
                         "tsConfig": "projects/time-picker/tsconfig.spec.json",
-                        "karmaConfig": "projects/time-picker/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -501,9 +519,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/tooltip/src/test.ts",
                         "tsConfig": "projects/tooltip/tsconfig.spec.json",
-                        "karmaConfig": "projects/tooltip/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -532,9 +552,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/sidenav/src/test.ts",
                         "tsConfig": "projects/sidenav/tsconfig.spec.json",
-                        "karmaConfig": "projects/sidenav/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -563,9 +585,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/layout/src/test.ts",
                         "tsConfig": "projects/layout/tsconfig.spec.json",
-                        "karmaConfig": "projects/layout/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -594,9 +618,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/user-card/src/test.ts",
                         "tsConfig": "projects/user-card/tsconfig.spec.json",
-                        "karmaConfig": "projects/user-card/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -625,9 +651,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/user-tooltip/src/test.ts",
                         "tsConfig": "projects/user-tooltip/tsconfig.spec.json",
-                        "karmaConfig": "projects/user-tooltip/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -656,9 +684,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/search-container/src/test.ts",
                         "tsConfig": "projects/search-container/tsconfig.spec.json",
-                        "karmaConfig": "projects/search-container/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -687,9 +717,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/message-box-dialog/src/test.ts",
                         "tsConfig": "projects/message-box-dialog/tsconfig.spec.json",
-                        "karmaConfig": "projects/message-box-dialog/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
@@ -718,9 +750,11 @@
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "projects/date-picker/src/test.ts",
                         "tsConfig": "projects/date-picker/tsconfig.spec.json",
-                        "karmaConfig": "projects/date-picker/karma.conf.js"
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ]
                     }
                 }
             }
