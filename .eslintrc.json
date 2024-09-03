@@ -2,5 +2,38 @@
     "root": true,
     "extends": [
         "@hug/eslint-config/recommended"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "**/*.ts"
+            ],
+            "excludedFiles": [
+                "e2e/**/*.ts"
+            ],
+            "parser": "@typescript-eslint/parser",
+            "plugins": [
+                "deprecation"
+            ],
+            "rules": {
+                "deprecation/deprecation": "warn",
+                "rxjs-angular/prefer-takeuntil": [
+                    "error",
+                    {
+                        "alias": [
+                            "takeUntilDestroyed"
+                        ],
+                        "checkDecorators": [
+                            "Component",
+                            "Directive",
+                            "Pipe",
+                            "Service"
+                        ],
+                        "checkComplete": false, // Until https://github.com/cartant/eslint-plugin-rxjs-angular/issues/16 is implemented
+                        "checkDestroy": false
+                    }
+                ]
+            }
+        }
     ]
 }
