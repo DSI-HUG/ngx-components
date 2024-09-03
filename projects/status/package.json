@@ -45,7 +45,7 @@
         "@hug/ngx-message-box": "^1.1.8"
     },
     "dependencies": {
-        "tslib": "^2.6.3"
+        "tslib": "^2.7.0"
     },
     "publishConfig": {
         "access": "public"

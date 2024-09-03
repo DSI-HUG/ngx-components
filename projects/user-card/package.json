@@ -41,12 +41,9 @@
         "@angular/material": ">= 14"
     },
     "dependencies": {
-        "tslib": "^2.6.3"
+        "tslib": "^2.7.0"
     },
     "publishConfig": {
         "access": "public"
-    },
-    "devDependencies": {
-        "@storybook/addon-themes": "^8.2.8"
     }
 }

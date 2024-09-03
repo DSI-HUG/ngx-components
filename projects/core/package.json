@@ -59,12 +59,12 @@
         "@angular/material": ">= 14",
         "rxjs": ">= 7.0.0",
         "date-fns": "^2.30.0",
-        "@fontsource-variable/material-symbols-outlined": "~5.0.19",
+        "@fontsource-variable/material-symbols-outlined": "~5.0.40",
         "@fontsource/material-icons": "4.5.4",
         "@fontsource/roboto": "4.5.8"
     },
     "dependencies": {
-        "tslib": "^2.6.3"
+        "tslib": "^2.7.0"
     },
     "publishConfig": {
         "access": "public"
