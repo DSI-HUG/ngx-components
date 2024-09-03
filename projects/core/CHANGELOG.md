@@ -1,88 +1,74 @@
 ## 1.1.14 (2024-07-25)
 
-
 ### 🐛 Fixes
 
-- **ngx-core:** update patch version ([67e4749](https://github.com/DSI-HUG/ngx-components/commit/67e4749))
+-   **ngx-core:** update patch version ([67e4749](https://github.com/DSI-HUG/ngx-components/commit/67e4749))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.13 (2024-07-25)
 
-
 ### 🐛 Fixes
 
-- **ngx-core:** update patch version ([b6f7a50](https://github.com/DSI-HUG/ngx-components/commit/b6f7a50))
+-   **ngx-core:** update patch version ([b6f7a50](https://github.com/DSI-HUG/ngx-components/commit/b6f7a50))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.12 (2024-07-24)
 
-
 ### 🐛 Fixes
 
-- **ngx-core:** update patch version ([a2c7f2b](https://github.com/DSI-HUG/ngx-components/commit/a2c7f2b))
+-   **ngx-core:** update patch version ([a2c7f2b](https://github.com/DSI-HUG/ngx-components/commit/a2c7f2b))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.11 (2024-07-24)
 
-
 ### 🐛 Fixes
 
-- **ngx-core:** update patch version ([fdf2e81](https://github.com/DSI-HUG/ngx-components/commit/fdf2e81))
+-   **ngx-core:** update patch version ([fdf2e81](https://github.com/DSI-HUG/ngx-components/commit/fdf2e81))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.10 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-core:** ngx prefix ([e827f2d](https://github.com/DSI-HUG/ngx-components/commit/e827f2d))
+-   **ngx-core:** ngx prefix ([e827f2d](https://github.com/DSI-HUG/ngx-components/commit/e827f2d))
 
-- **ngx-core:** compile path ([e6adb11](https://github.com/DSI-HUG/ngx-components/commit/e6adb11))
+-   **ngx-core:** compile path ([e6adb11](https://github.com/DSI-HUG/ngx-components/commit/e6adb11))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.9 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-core:** ngx prefix ([e08e71a](https://github.com/DSI-HUG/ngx-components/commit/e08e71a))
+-   **ngx-core:** ngx prefix ([e08e71a](https://github.com/DSI-HUG/ngx-components/commit/e08e71a))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.8 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-chore:** ngx prefix ([ea89d67](https://github.com/DSI-HUG/ngx-components/commit/ea89d67))
+-   **ngx-chore:** ngx prefix ([ea89d67](https://github.com/DSI-HUG/ngx-components/commit/ea89d67))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.7 (2024-07-05)
 

@@ -1,4 +1,5 @@
-# @hug/ngx-time-picker
+@hug/ngx-time-picker
+=======
 
 The sources for this package are in the main [DSI-HUG/ngx-components](https://github.com/dsi-hug/ngx-components) repo. Please file issues and pull requests against that repo.
 

@@ -19,7 +19,7 @@ export class NgxUserTooltipService extends NgxTooltipService<NgxUserCard> {
         } as MatDialogConfig<NgxUserCard>);
     }
 
-    protected override getModule(): Promise<Type<NgxAbstractLazyModule<NgxTooltipComponentInterface>>> {
-        return import('./user-tooltip.module').then(m => m.NgxUserTooltipModule);
+    protected override async getModule(): Promise<Type<NgxAbstractLazyModule<NgxTooltipComponentInterface>>> {
+        return (await import('./user-tooltip.module')).NgxUserTooltipModule;
     }
 }

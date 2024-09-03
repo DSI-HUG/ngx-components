@@ -198,67 +198,6 @@
                 }
             }
         },
-        "numeric-stepper": {
-            "projectType": "library",
-            "root": "projects/numeric-stepper",
-            "sourceRoot": "projects/numeric-stepper/src",
-            "prefix": "numeric-stepper",
-            "architect": {
-                "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": {
-                        "project": "projects/numeric-stepper/ng-package.json"
-                    },
-                    "configurations": {
-                        "production": {
-                            "tsConfig": "projects/numeric-stepper/tsconfig.lib.prod.json"
-                        },
-                        "development": {
-                            "tsConfig": "projects/numeric-stepper/tsconfig.lib.json"
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
-                    "options": {
-                        "main": "projects/numeric-stepper/src/test.ts",
-                        "tsConfig": "projects/numeric-stepper/tsconfig.spec.json",
-                        "karmaConfig": "projects/numeric-stepper/karma.conf.js"
-                    }
-                },
-                "storybook": {
-                    "builder": "@storybook/angular:start-storybook",
-                    "options": {
-                        "configDir": "projects/numeric-stepper/.storybook",
-                        "browserTarget": "numeric-stepper:build",
-                        "compodoc": true,
-                        "compodocArgs": [
-                            "-e",
-                            "json",
-                            "-d",
-                            "projects/numeric-stepper"
-                        ],
-                        "port": 6006
-                    }
-                },
-                "build-storybook": {
-                    "builder": "@storybook/angular:build-storybook",
-                    "options": {
-                        "configDir": "projects/numeric-stepper/.storybook",
-                        "browserTarget": "numeric-stepper:build",
-                        "compodoc": true,
-                        "compodocArgs": [
-                            "-e",
-                            "json",
-                            "-d",
-                            "projects/numeric-stepper"
-                        ],
-                        "outputDir": "dist/storybook/numeric-stepper"
-                    }
-                }
-            }
-        },
         "core": {
             "projectType": "library",
             "root": "projects/core",
@@ -348,6 +287,37 @@
                         "main": "projects/message-box/src/test.ts",
                         "tsConfig": "projects/message-box/tsconfig.spec.json",
                         "karmaConfig": "projects/message-box/karma.conf.js"
+                    }
+                }
+            }
+        },
+        "numeric-stepper": {
+            "projectType": "library",
+            "root": "projects/numeric-stepper",
+            "sourceRoot": "projects/numeric-stepper/src",
+            "prefix": "numeric-stepper",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "project": "projects/numeric-stepper/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/numeric-stepper/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "projects/numeric-stepper/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/numeric-stepper/src/test.ts",
+                        "tsConfig": "projects/numeric-stepper/tsconfig.spec.json",
+                        "karmaConfig": "projects/numeric-stepper/karma.conf.js"
                     }
                 }
             }

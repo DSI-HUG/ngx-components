@@ -12,10 +12,12 @@
         (detach)="close()"
         [cdkConnectedOverlayPositions]="positionPairs"
         [cdkConnectedOverlayWidth]="overlayInfos.width">
+        <!-- prettier-ignore -->
         <ng-template
             *ngIf="contentTemplate; else noContentTemplate"
             [ngTemplateOutlet]="contentTemplate"
-            [ngTemplateOutletContext]="{ $implicit: overlayInfos.context }"></ng-template>
+            [ngTemplateOutletContext]="{ $implicit: overlayInfos.context }">
+        </ng-template>
         <ng-template #noContentTemplate>
             <ng-content></ng-content>
         </ng-template>

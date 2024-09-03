@@ -1,23 +1,21 @@
 {
     "private": true,
     "scripts": {
-        "ncu": "npx npm-check-updates -i --target=minor --dep=dev,peer,optional,prod --format=group --packageFile='{,projects/**/}package.json'",
+        "ncu": "npx npm-check-updates -i --dep=dev,peer,optional,prod --format=group --packageFile='{,projects/**/}package.json'",
         "prepare": "husky || true",
         "new-package": "ng g .:new-package",
         "lint": "nx run-many -t lint",
+        "prettier": "prettier . --write",
         "test:ci": "nx run-many -t test:ci",
         "build": "nx run-many -t build:ng --verbose",
         "release": "node -r @swc-node/register ./scripts/release.ts --verbose",
         "release:dry-run": "npm run release -- --dry-run",
-        "postinstall": "patch-package",
-        "start": "ng serve",
-        "prettier": "npx prettier . --write",
-        "demo": "ng run storybook:storybook",
-        "nx": "nx"
+        "postinstall": "patch-package"
     },
     "workspaces": [
         "projects/core",
         "projects/date-picker",
+        "projects/demo-app",
         "projects/layout",
         "projects/list-loader",
         "projects/message-box",
@@ -34,68 +32,34 @@
         "projects/user-card",
         "projects/user-tooltip"
     ],
-    "dependencies": {
-        "@angular/animations": "~18.1.3",
-        "@angular/cdk": "~18.1.3",
-        "@angular/common": "~18.1.3",
-        "@angular/compiler": "~18.1.3",
-        "@angular/core": "~18.1.3",
-        "@angular/forms": "~18.1.3",
-        "@angular/material": "~18.1.3",
-        "@angular/material-date-fns-adapter": "18.1.3",
-        "@angular/platform-browser": "~18.1.3",
-        "@angular/platform-browser-dynamic": "~18.1.3",
-        "@angular/router": "~18.1.3",
-        "@fontsource-variable/material-symbols-outlined": "~5.0.19",
-        "@fontsource/material-icons": "4.5.4",
-        "@fontsource/roboto": "4.5.8",
-        "date-fns": "~2.30.0",
-        "lodash-es": "~4.17.21",
-        "rxjs": "~7.8.1",
-        "tslib": "~2.6.3",
-        "zone.js": "~0.14.8"
-    },
     "devDependencies": {
-        "@angular-devkit/build-angular": "~18.1.3",
-        "@angular/cli": "~18.1.3",
-        "@angular/compiler-cli": "~18.1.3",
-        "@chromatic-com/storybook": "^1.6.1",
-        "@commitlint/cli": "~18.6.1",
-        "@commitlint/config-conventional": "~18.6.3",
-        "@compodoc/compodoc": "^1.1.25",
-        "@hug/eslint-config": "~17.0.3",
+        "@angular-devkit/build-angular": "~14.2.13",
+        "@angular/cli": "~14.2.13",
+        "@angular/compiler-cli": "~14.3.0",
+        "@commitlint/cli": "~19.4.1",
+        "@commitlint/config-conventional": "~19.4.1",
+        "@hug/eslint-config": "~20.2.1",
         "@hug/ngx-schematics-utilities": "^7.0.0",
-        "@nx/js": "^19.3.2",
-        "@storybook/addon-docs": "^8.2.8",
-        "@storybook/addon-essentials": "^8.2.8",
-        "@storybook/addon-interactions": "^8.2.8",
-        "@storybook/addon-knobs": "^8.0.1",
-        "@storybook/addon-links": "^8.2.8",
-        "@storybook/angular": "^8.2.8",
-        "@storybook/blocks": "^8.2.8",
-        "@storybook/test": "^8.2.8",
-        "@swc-node/register": "^1.9.2",
-        "@swc/core": "^1.6.5",
+        "@nx/js": "^19.6.4",
+        "@swc-node/register": "^1.10.9",
+        "@swc/core": "^1.7.22",
         "@types/jasmine": "~5.1.4",
         "@types/lodash-es": "^4.17.12",
         "detect-indent": "^7.0.1",
-        "eslint-plugin-deprecation": "~1.5.0",
-        "eslint-plugin-storybook": "^0.8.0",
-        "husky": "~9.0.11",
+        "husky": "~9.1.5",
         "jasmine-core": "~4.6.1",
-        "karma": "~6.4.3",
+        "karma": "~6.4.4",
         "karma-chrome-launcher": "~3.2.0",
         "karma-coverage": "~2.2.1",
         "karma-jasmine": "~5.1.0",
         "karma-jasmine-html-reporter": "~2.1.0",
-        "lint-staged": "~15.2.7",
-        "ng-packagr": "~18.1.0",
-        "nx": "^19.3.2",
+        "lint-staged": "~15.2.10",
+        "ng-packagr": "~14.2.2",
+        "nx": "^19.6.4",
         "patch-package": "^8.0.0",
         "prettier": "3.3.3",
         "prettier-plugin-multiline-arrays": "^3.0.6",
-        "storybook": "^8.2.8",
-        "typescript": "~5.4.5"
+        "typescript": "~4.7.4"
     },
     "schematics": "./scripts/new-package/collection.json",
     "commitlint": {
@@ -124,11 +88,11 @@
         }
     },
     "lint-staged": {
-        "**/*.{js,json,ts,html}": [
+        "**/*.{js,ts,html,json}": [
             "eslint --fix"
         ],
-        "**/*.{html,scss,json}": [
-            "npx prettier . --check"
+        "**/*.{scss,html,json}": [
+            "prettier . --check"
         ]
     }
 }

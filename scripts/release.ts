@@ -92,14 +92,14 @@ const updateProjectsDists = (
         const projectNewVersion = projectsVersionData[project].newVersion ?? '';
         const distPackageJsonPath = join('dist', `ngx-${projectName}`, 'package.json');
         const distChangelogPath = join('dist', `ngx-${projectName}`, 'CHANGELOG.md');
-        const wspacePackageJsonPath = join(projectRoot, 'package.json');
-        const wspacePackageJson = JSON.parse(readFileSync(join(workspaceRoot, wspacePackageJsonPath), 'utf8')) as PackageJson;
+        const workspacePackageJsonPath = join(projectRoot, 'package.json');
+        const workspacePackageJson = JSON.parse(readFileSync(join(workspaceRoot, workspacePackageJsonPath), 'utf8')) as PackageJson;
 
         console.log(`\n${cyan(projects[project].name ?? '')} New version ${projectNewVersion} written to ${distPackageJsonPath}`);
         if (!options.dryRun) {
             const distPackageJson = JSON.parse(readFileSync(join(workspaceRoot, distPackageJsonPath), 'utf8')) as PackageJson;
             distPackageJson.version = projectNewVersion;
-            distPackageJson.peerDependencies = wspacePackageJson.peerDependencies;
+            distPackageJson.peerDependencies = workspacePackageJson.peerDependencies;
             writeFileSync(join(workspaceRoot, distPackageJsonPath), JSON.stringify(distPackageJson, null, 4), { encoding: 'utf8' });
         }
 
@@ -144,7 +144,7 @@ const updateProjectsPeerDeps = (
                     changesDetected = true;
 
                     // Récupère le premier caractère non numérique pour conserver le préfixe
-                    const versionRange = version.match(/(^[^\d]*)\d.*/)?.[1] ?? '';
+                    const versionRange = (/(^[^\d]*)\d.*/.exec(version))?.[1] ?? '';
                     const newVersion = `${versionRange}${projectToReleaseNewVersion}`;
 
                     if (!packageJsonFiles.length) {

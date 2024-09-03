@@ -1,74 +1,62 @@
 ## 1.1.9 (2024-07-25)
 
-
 ### 🐛 Fixes
 
-- **ngx-list-loader:** update patch version ([ce42f49](https://github.com/DSI-HUG/ngx-components/commit/ce42f49))
+-   **ngx-list-loader:** update patch version ([ce42f49](https://github.com/DSI-HUG/ngx-components/commit/ce42f49))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.8 (2024-07-24)
 
-
 ### 🐛 Fixes
 
-- **ngx-list-loader:** update patch version ([399f094](https://github.com/DSI-HUG/ngx-components/commit/399f094))
+-   **ngx-list-loader:** update patch version ([399f094](https://github.com/DSI-HUG/ngx-components/commit/399f094))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.7 (2024-07-24)
 
-
 ### 🐛 Fixes
 
-- **ngx-list-loader:** update patch version ([a4ffd7e](https://github.com/DSI-HUG/ngx-components/commit/a4ffd7e))
+-   **ngx-list-loader:** update patch version ([a4ffd7e](https://github.com/DSI-HUG/ngx-components/commit/a4ffd7e))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.6 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-list-loader:** compile path ([83be3fa](https://github.com/DSI-HUG/ngx-components/commit/83be3fa))
+-   **ngx-list-loader:** compile path ([83be3fa](https://github.com/DSI-HUG/ngx-components/commit/83be3fa))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.5 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-list-loader:** ngx prefix ([5128b8f](https://github.com/DSI-HUG/ngx-components/commit/5128b8f))
+-   **ngx-list-loader:** ngx prefix ([5128b8f](https://github.com/DSI-HUG/ngx-components/commit/5128b8f))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.4 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-list-loader:** improve encapsulation ([550e79a](https://github.com/DSI-HUG/ngx-components/commit/550e79a))
+-   **ngx-list-loader:** improve encapsulation ([550e79a](https://github.com/DSI-HUG/ngx-components/commit/550e79a))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.3 (2024-07-08)
 

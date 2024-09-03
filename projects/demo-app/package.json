@@ -6,5 +6,22 @@
         "test": "ng test demo-app",
         "test:ci": "ng test demo-app --watch=false --browsers=ChromeHeadless",
         "build": "ng build demo-app -c production"
+    },
+    "dependencies": {
+        "@angular/animations": "~14.3.0",
+        "@angular/cdk": "~14.2.7",
+        "@angular/common": "~14.3.0",
+        "@angular/compiler": "~14.3.0",
+        "@angular/core": "~14.3.0",
+        "@angular/forms": "~14.3.0",
+        "@angular/material": "~14.2.7",
+        "@angular/material-date-fns-adapter": "14.2.7",
+        "@angular/platform-browser": "~14.3.0",
+        "@angular/platform-browser-dynamic": "~14.3.0",
+        "@angular/router": "~14.3.0",
+        "date-fns": "~2.30.0",
+        "rxjs": "~7.8.1",
+        "tslib": "~2.6.3",
+        "zone.js": "~0.11.4"
     }
 }

@@ -101,7 +101,7 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
     public _step = 1;
 
     protected changeDetectorRef = inject(ChangeDetectorRef);
-    protected control = inject(NgControl, { self: true, optional: true });
+    protected control = inject(NgControl, { optional: true, self: true });
     private destroyRef = inject(DestroyRef);
 
     private _disabled = false;

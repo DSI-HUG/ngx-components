@@ -1,6 +1,10 @@
 const { schematic, spawn, replaceInFile, workspace, modifyJsonFile, library, createOrUpdateFile } = require('@hug/ngx-schematics-utilities');
 const { noop } = require('@angular-devkit/schematics');
 
+// ----
+// This was introduced in @hug/ngx-schematics-utilities@9.2.0 but manually backported here as 7.x is used
+// TODO: remove this once @hug/ngx-schematics-utilities >= 9.2.x is installed
+//
 const scheduledTasks = {};
 const runAtEnd = cb =>
     (tree, context) => {
@@ -18,6 +22,7 @@ const runAtEnd = cb =>
         // Schedule the task
         scheduledTasks[name] = context.addTask({ toConfiguration: () => ({ name }) }, Object.values(scheduledTasks));
     };
+// ----
 
 exports.default = options =>
     schematic('new-package', [
@@ -46,7 +51,6 @@ exports.default = options =>
             // modify tsconfig.json
             .rule(({ tree }) => {
                 const paths = tree.readJson('tsconfig.json').compilerOptions.paths;
-                delete paths[options.libName]; // TODO Sert à quoi?
                 paths[`@hug/ngx-${options.libName.toLowerCase()}`] = [
                     `projects/${options.libName.toLowerCase()}/src`
                 ];

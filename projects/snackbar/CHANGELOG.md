@@ -1,126 +1,106 @@
 ## 1.1.10 (2024-07-25)
 
-
 ### 🐛 Fixes
 
-- **ngx-snackbar:** update patch version ([a17067f](https://github.com/DSI-HUG/ngx-components/commit/a17067f))
-
+-   **ngx-snackbar:** update patch version ([a17067f](https://github.com/DSI-HUG/ngx-components/commit/a17067f))
 
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.14 ([12ee5d4](https://github.com/DSI-HUG/ngx-components/commit/12ee5d4))
+-   **@hug/ngx-core:** upgrade to v1.1.14 ([12ee5d4](https://github.com/DSI-HUG/ngx-components/commit/12ee5d4))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
-- Serge
+-   dsi-hug-bot @dsi-hug-bot
+-   Serge
 
 ## 1.1.9 (2024-07-25)
 
-
 ### 🐛 Fixes
 
-- **ngx-snackbar:** update patch version ([0231d7a](https://github.com/DSI-HUG/ngx-components/commit/0231d7a))
-
+-   **ngx-snackbar:** update patch version ([0231d7a](https://github.com/DSI-HUG/ngx-components/commit/0231d7a))
 
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.13 ([15e11d7](https://github.com/DSI-HUG/ngx-components/commit/15e11d7))
+-   **@hug/ngx-core:** upgrade to v1.1.13 ([15e11d7](https://github.com/DSI-HUG/ngx-components/commit/15e11d7))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
-- Serge
+-   dsi-hug-bot @dsi-hug-bot
+-   Serge
 
 ## 1.1.8 (2024-07-24)
 
-
 ### 🐛 Fixes
 
-- **ngx-snackbar:** update patch version ([a9211e5](https://github.com/DSI-HUG/ngx-components/commit/a9211e5))
-
+-   **ngx-snackbar:** update patch version ([a9211e5](https://github.com/DSI-HUG/ngx-components/commit/a9211e5))
 
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.12 ([78a2936](https://github.com/DSI-HUG/ngx-components/commit/78a2936))
+-   **@hug/ngx-core:** upgrade to v1.1.12 ([78a2936](https://github.com/DSI-HUG/ngx-components/commit/78a2936))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
-- Serge
+-   dsi-hug-bot @dsi-hug-bot
+-   Serge
 
 ## 1.1.7 (2024-07-24)
 
-
 ### 🐛 Fixes
 
-- **ngx-snackbar:** update patch version ([1330cc3](https://github.com/DSI-HUG/ngx-components/commit/1330cc3))
-
+-   **ngx-snackbar:** update patch version ([1330cc3](https://github.com/DSI-HUG/ngx-components/commit/1330cc3))
 
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.11 ([bda1d8c](https://github.com/DSI-HUG/ngx-components/commit/bda1d8c))
+-   **@hug/ngx-core:** upgrade to v1.1.11 ([bda1d8c](https://github.com/DSI-HUG/ngx-components/commit/bda1d8c))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
-- Serge
+-   dsi-hug-bot @dsi-hug-bot
+-   Serge
 
 ## 1.1.6 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-snackbar:** compile path ([05ec079](https://github.com/DSI-HUG/ngx-components/commit/05ec079))
-
+-   **ngx-snackbar:** compile path ([05ec079](https://github.com/DSI-HUG/ngx-components/commit/05ec079))
 
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.9 ([3692c68](https://github.com/DSI-HUG/ngx-components/commit/3692c68))
+-   **@hug/ngx-core:** upgrade to v1.1.9 ([3692c68](https://github.com/DSI-HUG/ngx-components/commit/3692c68))
 
-- **@hug/ngx-core:** upgrade to v1.1.10 ([78dbe21](https://github.com/DSI-HUG/ngx-components/commit/78dbe21))
+-   **@hug/ngx-core:** upgrade to v1.1.10 ([78dbe21](https://github.com/DSI-HUG/ngx-components/commit/78dbe21))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
-- Serge
+-   dsi-hug-bot @dsi-hug-bot
+-   Serge
 
 ## 1.1.5 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-snackbar:** ngx prefix ([99e8231](https://github.com/DSI-HUG/ngx-components/commit/99e8231))
+-   **ngx-snackbar:** ngx prefix ([99e8231](https://github.com/DSI-HUG/ngx-components/commit/99e8231))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- Serge
+-   Serge
 
 ## 1.1.4 (2024-07-23)
 
-
 ### 🐛 Fixes
 
-- **ngx-snackbar:** use inject ([042cf24](https://github.com/DSI-HUG/ngx-components/commit/042cf24))
+-   **ngx-snackbar:** use inject ([042cf24](https://github.com/DSI-HUG/ngx-components/commit/042cf24))
 
-- **ngx-snackbar:** use inject ([eb835c1](https://github.com/DSI-HUG/ngx-components/commit/eb835c1))
-
+-   **ngx-snackbar:** use inject ([eb835c1](https://github.com/DSI-HUG/ngx-components/commit/eb835c1))
 
 ### 🌱 Dependencies
 
-- **@hug/ngx-core:** upgrade to v1.1.8 ([26f0d10](https://github.com/DSI-HUG/ngx-components/commit/26f0d10))
+-   **@hug/ngx-core:** upgrade to v1.1.8 ([26f0d10](https://github.com/DSI-HUG/ngx-components/commit/26f0d10))
 
+### ❤️ Thank You
 
-### ❤️  Thank You
-
-- dsi-hug-bot @dsi-hug-bot
-- Serge
+-   dsi-hug-bot @dsi-hug-bot
+-   Serge
 
 ## 1.1.3 (2024-07-08)
 
