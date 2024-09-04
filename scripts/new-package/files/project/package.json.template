@@ -26,15 +26,15 @@
         "test:ci": "ng test <%= libName %> --watch=false --browsers=ChromeHeadless",
         "build:ng": "ng build <%= libName %> -c=production",
         "build": "nx build:ng @hug/ngx-<%= libName %> --verbose",
-        "release": "nx release -p=@hug/ngx-<%= libName %> --yes --verbose",
-        "release:dry-run": "nx release -p=@hug/ngx-<%= libName %> --verbose --dry-run"
+        "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-<%= libName %> --verbose",
+        "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">= 14",
-        "@angular/core": ">= 14"
+        "@angular/common": ">= 18",
+        "@angular/core": ">= 18"
     },
     "dependencies": {
-        "tslib": "^2.6.3"
+        "tslib": "^2.7.0"
     },
     "publishConfig": {
         "access": "public"
