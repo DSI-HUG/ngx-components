@@ -1,3 +1,15 @@
+## 1.1.11 (2024-09-04)
+
+
+### 🐛 Fixes
+
+- **overlay:** compiling issue due to prettier ([1e6dfb3](https://github.com/DSI-HUG/ngx-components/commit/1e6dfb3))
+
+
+### ❤️  Thank You
+
+- Badisi
+
 ## 1.1.10 (2024-07-25)
 
 ### 🐛 Fixes

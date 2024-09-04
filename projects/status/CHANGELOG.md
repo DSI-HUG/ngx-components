@@ -1,3 +1,15 @@
+## 1.1.13 (2024-09-04)
+
+
+### 🐛 Fixes
+
+- **status:** graphical issues ([a9d4744](https://github.com/DSI-HUG/ngx-components/commit/a9d4744))
+
+
+### ❤️  Thank You
+
+- Badisi
+
 ## 1.1.12 (2024-07-25)
 
 ### 🐛 Fixes
