@@ -1,11 +1,11 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, NgIf, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ContentChild, EventEmitter, HostBinding, inject, Input, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatDrawer, MatDrawerContainer, MatDrawerContent } from '@angular/material/sidenav';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatTooltip } from '@angular/material/tooltip';
 import { NgxMediaService } from '@hug/ngx-core';
 import { NgxSidenavService } from '@hug/ngx-sidenav';
 
@@ -17,12 +17,16 @@ import { NgxSidenavService } from '@hug/ngx-sidenav';
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        CommonModule,
-        MatButtonModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        MatTooltipModule
+        NgIf,
+        NgTemplateOutlet,
+        AsyncPipe,
+        MatIconButton,
+        MatIcon,
+        MatDrawer,
+        MatDrawerContainer,
+        MatDrawerContent,
+        MatToolbar,
+        MatTooltip
     ]
 })
 export class NgxLayoutComponent {
