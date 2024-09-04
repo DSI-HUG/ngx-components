@@ -1,5 +1,5 @@
 {
-    "extends": "../../tsconfig.base.json",
+    "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "./out-tsc/app",
         "types": [
@@ -12,10 +12,14 @@
         "./src/**/*.spec.ts"
     ],
     "include": [
-        "./src/**/*.stories.*",
+        "./src/**/*.stories.ts",
+        "./typings.d.ts",
         "./preview.ts"
     ],
     "files": [
-        "./typings.d.ts"
+        // --- Not part of the compilation but needed to avoid eslint complaining about it
+        "main.ts",
+        "manager.ts"
+        // ---
     ]
 }

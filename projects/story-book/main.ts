@@ -26,6 +26,9 @@ const config: StorybookConfig = {
         name: getAbsolutePath('@storybook/angular'),
         options: {}
     },
+    staticDirs: [
+        './public'
+    ],
     core: {
         disableTelemetry: true
     }
