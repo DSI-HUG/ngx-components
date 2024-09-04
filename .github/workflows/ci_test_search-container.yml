@@ -2,7 +2,8 @@ name: Test search-container
 
 on:
     workflow_dispatch:
-    workflow_call:
+    repository_dispatch:
+        types: [test_search-container]
     push:
         branches:
             - '**'

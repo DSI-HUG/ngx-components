@@ -2,7 +2,8 @@ name: Test overlay
 
 on:
     workflow_dispatch:
-    workflow_call:
+    repository_dispatch:
+        types: [test_overlay]
     push:
         branches:
             - '**'

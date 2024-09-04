@@ -2,7 +2,8 @@ name: Test status
 
 on:
     workflow_dispatch:
-    workflow_call:
+    repository_dispatch:
+        types: [test_status]
     push:
         branches:
             - '**'

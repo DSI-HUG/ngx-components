@@ -2,6 +2,8 @@ name: Test core
 
 on:
     workflow_dispatch:
+    repository_dispatch:
+        types: [test_core]
     push:
         branches:
             - '**'
@@ -16,7 +18,7 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
-    ci_test_core:
+    ci_test-core:
         uses: dsi-hug/actions/.github/workflows/action.yml@v2
         with:
             working-directory: projects/core
@@ -25,62 +27,78 @@ jobs:
             lint: true
             test: true
 
-    #
-    # Not needed here because it will be triggered by `ci_test_sidenav`
-    #
-    # ci_test_layout:
-    #   needs: ci_test_core
-    #   uses: ./.github/workflows/ci_test_layout.yml
+    ci_test_deps:
+        needs: ci_test-core
+        runs-on: 'ubuntu-latest'
+        steps:
+            #
+            # Not needed here because it will be triggered by `ci_test_sidenav`
+            #
+            # - name: Test test_layout
+            #   uses: peter-evans/repository-dispatch@v3
+            #   with:
+            #       event-type: test_test_layout
 
-    ci_test_message-box-dialog:
-        needs: ci_test_core
-        uses: ./.github/workflows/ci_test_message-box-dialog.yml
+            - name: Test message-box-dialog
+              uses: peter-evans/repository-dispatch@v3
+              with:
+                  event-type: test_message-box-dialog
 
-    ci_test_numeric-stepper:
-        needs: ci_test_core
-        uses: ./.github/workflows/ci_test_numeric-stepper.yml
+            - name: Test numeric-stepper
+              uses: peter-evans/repository-dispatch@v3
+              with:
+                  event-type: test_numeric-stepper
 
-    ci_test_overlay:
-        needs: ci_test_core
-        uses: ./.github/workflows/ci_test_overlay.yml
+            - name: Test overlay
+              uses: peter-evans/repository-dispatch@v3
+              with:
+                  event-type: test_overlay
 
-    ci_test_search-container:
-        needs: ci_test_core
-        uses: ./.github/workflows/ci_test_search-container.yml
+            - name: Test search-container
+              uses: peter-evans/repository-dispatch@v3
+              with:
+                  event-type: test_search-container
 
-    ci_test_sidenav:
-        needs: ci_test_core
-        uses: ./.github/workflows/ci_test_sidenav.yml
+            - name: Test sidenav
+              uses: peter-evans/repository-dispatch@v3
+              with:
+                  event-type: test_sidenav
 
-    ci_test_snackbar:
-        needs: ci_test_core
-        uses: ./.github/workflows/ci_test_snackbar.yml
+            - name: Test snackbar
+              uses: peter-evans/repository-dispatch@v3
+              with:
+                  event-type: test_snackbar
 
-    ci_test_splitter:
-        needs: ci_test_core
-        uses: ./.github/workflows/ci_test_splitter.yml
+            - name: Test splitter
+              uses: peter-evans/repository-dispatch@v3
+              with:
+                  event-type: test_splitter
 
-    #
-    # Not needed here because it will be triggered by `ci_test_snackbar`
-    #
-    # ci_test_status:
-    #   needs: ci_test_core
-    #   uses: ./.github/workflows/ci_test_status.yml
+            #
+            # Not needed here because it will be triggered by `ci_test_snackbar`
+            #
+            # - name: Test t_status
+            #   uses: peter-evans/repository-dispatch@v3
+            #   with:
+            #     event-type: test_status
 
-    #
-    # Not needed here because it will be triggered by `ci_test_numeric-stepper`
-    #
-    # ci_test_time-picker:
-    #   needs: ci_test_core
-    #   uses: ./.github/workflows/ci_test_time-picker.yml
+            #
+            # Not needed here because it will be triggered by `ci_test_numeric-stepper`
+            #
+            # - name: Test t_time-picker
+            #   uses: peter-evans/repository-dispatch@v3
+            #   with:
+            #     event-type: test_time-picker
 
-    ci_test_tooltip:
-        needs: ci_test_core
-        uses: ./.github/workflows/ci_test_tooltip.yml
+            - name: Test tooltip
+              uses: peter-evans/repository-dispatch@v3
+              with:
+                  event-type: test_tooltip
 
-    #
-    # Not needed here because it will be triggered by `ci_test_tooltip`
-    #
-    # ci_test_user-tooltip:
-    #   needs: ci_test_core
-    #   uses: ./.github/workflows/ci_test_user-tooltip.yml
+            #
+            # Not needed here because it will be triggered by `ci_test_tooltip`
+            #
+            # - name: Test t_user-tooltip
+            #   uses: peter-evans/repository-dispatch@v3
+            #   with:
+            #     event-type: test_user-tooltip

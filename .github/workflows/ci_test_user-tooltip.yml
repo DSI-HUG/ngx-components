@@ -2,7 +2,8 @@ name: Test user-tooltip
 
 on:
     workflow_dispatch:
-    workflow_call:
+    repository_dispatch:
+        types: [test_user-tooltip]
     push:
         branches:
             - '**'

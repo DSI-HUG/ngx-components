@@ -2,7 +2,8 @@ name: Test tooltip
 
 on:
     workflow_dispatch:
-    workflow_call:
+    repository_dispatch:
+        types: [test_tooltip]
     push:
         branches:
             - '**'
@@ -26,6 +27,11 @@ jobs:
             lint: true
             test: true
 
-    ci_test_user-tooltip:
+    ci_test_deps:
         needs: ci_test_tooltip
-        uses: ./.github/workflows/ci_test_user-tooltip.yml
+        runs-on: 'ubuntu-latest'
+        steps:
+            - name: Test user-tooltip
+              uses: peter-evans/repository-dispatch@v3
+              with:
+                  event-type: test_user-tooltip

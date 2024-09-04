@@ -2,6 +2,8 @@ name: Test list-loader
 
 on:
     workflow_dispatch:
+    repository_dispatch:
+        types: [test_list-loader]
     push:
         branches:
             - '**'
