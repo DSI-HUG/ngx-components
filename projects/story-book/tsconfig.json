@@ -13,8 +13,7 @@
     ],
     "include": [
         "./src/**/*.stories.*",
-        "./preview.ts",
-        "./main.ts"
+        "./preview.ts"
     ],
     "files": [
         "./typings.d.ts"
