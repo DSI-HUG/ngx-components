@@ -1,0 +1,22 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "./out-tsc/app",
+        "types": [
+            "node"
+        ],
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true
+    },
+    "exclude": [
+        "./src/**/*.spec.ts"
+    ],
+    "include": [
+        "./src/**/*.stories.*",
+        "./preview.ts",
+        "./main.ts"
+    ],
+    "files": [
+        "./typings.d.ts"
+    ]
+}

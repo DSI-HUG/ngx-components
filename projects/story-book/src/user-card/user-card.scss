@@ -1,0 +1,15 @@
+@use '@angular/material' as mat;
+@use '../../../core/src/styles/theme';
+@use '../../../core/src/styles/mixins/icon-theme' as iconTheme;
+@use '../../../core/src/styles/mixins/menu-theme' as menuTheme;
+@use '../../../core/src/styles/themeVariables' as themeVariables;
+@use '../../../user-card/src/user-card-theme' as userCardTheme;
+
+@include userCardTheme.theme(themeVariables.$theme);
+@include iconTheme.theme(themeVariables.$theme);
+@include menuTheme.theme(themeVariables.$theme);
+
+.matButtonContainer {
+    display: flex;
+    justify-content: center;
+}

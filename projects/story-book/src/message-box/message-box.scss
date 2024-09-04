@@ -1,0 +1,12 @@
+@use '../../../core/src/styles/theme';
+@use '../../../core/src/styles/themeVariables' as themeVariables;
+@use '../../../message-box/src/message-box-theme' as messageBoxTheme;
+
+@include messageBoxTheme.theme(themeVariables.$theme);
+
+section.message-box {
+    padding: 1rem;
+    font-family: 'Roboto';
+    background-color: white;
+    width: 40vw;
+}

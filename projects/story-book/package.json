@@ -1,0 +1,17 @@
+{
+    "private": true,
+    "scripts": {
+        "start": "cd ../../ && ng serve story-book",
+        "lint": "eslint . --fix",
+        "build": "cd ../../ && ng build story-book",
+        "upgrade": "npx storybook@latest upgrade"
+    },
+    "devDependencies": {
+        "@compodoc/compodoc": "^1.1.25",
+        "@storybook/addon-essentials": "^8.2.9",
+        "@storybook/addon-themes": "^8.2.9",
+        "@storybook/addon-links": "^8.2.9",
+        "@storybook/angular": "^8.2.9",
+        "storybook": "^8.2.9"
+    }
+}

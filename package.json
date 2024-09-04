@@ -6,8 +6,8 @@
         "new-package": "ng g .:new-package",
         "lint": "nx run-many -t lint",
         "prettier": "prettier . --write",
-        "test:ci": "nx run-many -t test:ci",
-        "build": "nx run-many -t build:ng --verbose",
+        "test:ci": "nx run-many -t test:ci --exclude=storybook",
+        "build": "nx run-many -t build:ng --exclude=storybook ----verbose",
         "release": "node -r @swc-node/register ./scripts/release.ts --verbose",
         "release:dry-run": "npm run release -- --dry-run",
         "postinstall": "patch-package"
@@ -26,6 +26,7 @@
         "projects/snackbar",
         "projects/splitter",
         "projects/status",
+        "projects/story-book",
         "projects/time-picker",
         "projects/tooltip",
         "projects/user-card",
@@ -39,7 +40,7 @@
         "@commitlint/config-conventional": "~19.4.1",
         "@hug/eslint-config": "~20.2.1",
         "@hug/ngx-schematics-utilities": "^10.1.2",
-        "@nx/js": "^19.6.4",
+        "@nx/js": "^19.6.5",
         "@swc-node/register": "^1.10.9",
         "@swc/core": "^1.7.23",
         "@types/jasmine": "~5.1.4",
@@ -55,13 +56,14 @@
         "karma-jasmine-html-reporter": "~2.1.0",
         "lint-staged": "~15.2.10",
         "ng-packagr": "~18.2.1",
-        "nx": "^19.6.4",
+        "nx": "^19.6.5",
         "patch-package": "^8.0.0",
         "prettier": "3.3.3",
         "prettier-plugin-multiline-arrays": "^3.0.6",
         "typescript": "~5.5.4"
     },
     "schematics": "./scripts/new-package/collection.json",
+    "packageManager": "npm@10.8.3",
     "commitlint": {
         "extends": [
             "@commitlint/config-conventional"
@@ -94,6 +96,5 @@
         "**/*.{scss,html,json}": [
             "prettier . --check"
         ]
-    },
-    "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
+    }
 }
