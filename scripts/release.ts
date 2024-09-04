@@ -11,7 +11,7 @@ import { ProjectsConfigurations } from 'nx/src/config/workspace-json-project-jso
 import { createProjectGraphAsync, readProjectsConfigurationFromProjectGraph } from 'nx/src/project-graph/project-graph';
 import { PackageJson } from 'nx/src/utils/package-json';
 import { workspaceRoot } from 'nx/src/utils/workspace-root';
-import * as yargs from 'yargs';
+import yargs from 'yargs';
 
 const { yellow, blue, red, green, gray, white, cyan, bgBlue } = chalk;
 
