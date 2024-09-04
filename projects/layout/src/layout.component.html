@@ -2,20 +2,18 @@
 
 <ng-template #content>
     <div class="main-content">
-        <span
-            class="primary-action-container"
-            [class.bottom]="mediaService.isHandset$ | async"
-            *ngIf="
-                layoutPrimaryAction &&
-                !((layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false)
-            ">
-            <ng-template [ngTemplateOutlet]="layoutPrimaryAction"></ng-template>
-        </span>
+        @if (
+            layoutPrimaryAction && !((layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false)
+        ) {
+            <span class="primary-action-container" [class.bottom]="mediaService.isHandset$ | async">
+                <ng-template [ngTemplateOutlet]="layoutPrimaryAction"></ng-template>
+            </span>
+        }
         <ng-content></ng-content>
     </div>
-    <ng-container *ngIf="(mediaService.isHandset$ | async) && actionsToolbar">
+    @if ((mediaService.isHandset$ | async) && actionsToolbar) {
         <ng-container *ngTemplateOutlet="actionsToolbar"></ng-container>
-    </ng-container>
+    }
 </ng-template>
 
 <ng-template #actionsToolbar>
@@ -24,83 +22,90 @@
         class="actions"
         [color]="toolbarColor"
         [class.bottom]="mediaService.isHandset$ | async">
-        <span
-            class="primary-action-container"
-            *ngIf="
-                layoutPrimaryAction && (layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false
-            ">
-            <ng-template [ngTemplateOutlet]="layoutPrimaryAction"></ng-template>
-        </span>
+        @if (layoutPrimaryAction && (layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false) {
+            <span class="primary-action-container">
+                <ng-template [ngTemplateOutlet]="layoutPrimaryAction"></ng-template>
+            </span>
+        }
         <ng-container *ngIf="layoutActions">
             <ng-template [ngTemplateOutlet]="layoutActions"></ng-template>
         </ng-container>
-        <div class="info-boxes-container" *ngIf="layoutInfoBoxes && (mediaService.isHandset$ | async) === false">
-            <ng-template [ngTemplateOutlet]="layoutInfoBoxes"></ng-template>
-        </div>
+        @if (layoutInfoBoxes && (mediaService.isHandset$ | async) === false) {
+            <div class="info-boxes-container">
+                <ng-template [ngTemplateOutlet]="layoutInfoBoxes"></ng-template>
+            </div>
+        }
     </mat-toolbar>
 </ng-template>
 
 <ng-template #filter>
-    <mat-toolbar id="toolbar" [color]="toolbarColor" *ngIf="layoutToolbar || layoutRight">
-        <button
-            type="button"
-            id="sidenav-button"
-            mat-icon-button
-            *ngIf="withSidenav && (mediaService.isHandset$ | async) && (sidenavService.openChanged$ | async) === false"
-            (click)="sidenavService.toggle()">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <button
-            type="button"
-            id="back-button"
-            mat-icon-button
-            *ngIf="withBackButton"
-            (click)="this.backButtonClicked.emit($event)"
-            [matTooltip]="backButtonLabel">
-            <mat-icon>arrow_back</mat-icon>
-        </button>
-        <div id="toolbar-content-container">
-            <ng-container *ngIf="layoutToolbar">
-                <ng-template [ngTemplateOutlet]="layoutToolbar"></ng-template>
-            </ng-container>
-        </div>
-        <button
-            type="button"
-            id="filter-button"
-            mat-icon-button
-            (click)="sideFilter.toggle()"
-            *ngIf="sideFilter && (keepFilterButtonDisplayed || (mediaService.isHandset$ | async)) && layoutRight"
-            matTooltip="Afficher/Masquer les filtres">
-            <mat-icon>tune</mat-icon>
-        </button>
-        <button
-            type="button"
-            id="close-button"
-            mat-icon-button
-            *ngIf="withCloseButton"
-            (click)="this.closeButtonClicked.emit($event)"
-            [matTooltip]="closeButtonLabel">
-            <mat-icon>close</mat-icon>
-        </button>
-    </mat-toolbar>
-    <ng-container *ngIf="(layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false">
+    @if (layoutToolbar || layoutRight) {
+        <mat-toolbar id="toolbar" [color]="toolbarColor">
+            @if (withSidenav && (mediaService.isHandset$ | async) && (sidenavService.openChanged$ | async) === false) {
+                <button type="button" id="sidenav-button" mat-icon-button (click)="sidenavService.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            }
+            @if (withBackButton) {
+                <button
+                    type="button"
+                    id="back-button"
+                    mat-icon-button
+                    (click)="this.backButtonClicked.emit($event)"
+                    [matTooltip]="backButtonLabel">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+            }
+            <div id="toolbar-content-container">
+                @if (layoutToolbar) {
+                    <ng-template [ngTemplateOutlet]="layoutToolbar"></ng-template>
+                }
+            </div>
+            @if (sideFilter && (keepFilterButtonDisplayed || (mediaService.isHandset$ | async)) && layoutRight) {
+                <button
+                    type="button"
+                    id="filter-button"
+                    mat-icon-button
+                    (click)="sideFilter.toggle()"
+                    matTooltip="Afficher/Masquer les filtres">
+                    <mat-icon>tune</mat-icon>
+                </button>
+            }
+            @if (withCloseButton) {
+                <button
+                    type="button"
+                    id="close-button"
+                    mat-icon-button
+                    (click)="this.closeButtonClicked.emit($event)"
+                    [matTooltip]="closeButtonLabel">
+                    <mat-icon>close</mat-icon>
+                </button>
+            }
+        </mat-toolbar>
+    }
+
+    @if ((layoutActions || layoutInfoBoxes) && (mediaService.isHandset$ | async) === false) {
         <ng-container *ngTemplateOutlet="actionsToolbar"></ng-container>
-    </ng-container>
-    <mat-drawer-container *ngIf="layoutRight; else content" autosize="true">
-        <mat-drawer-content>
-            <ng-container *ngTemplateOutlet="content"></ng-container>
-        </mat-drawer-content>
-        <mat-drawer
-            id="side-filter"
-            #sideFilter
-            (closed)="sideFilterClosed.emit()"
-            (openedChange)="sideFilterOpened.emit()"
-            class="right"
-            position="end"
-            [attr.role]="(mediaService.isHandset$ | async) ? 'dialog' : 'navigation'"
-            [mode]="(mediaService.isHandset$ | async) ? 'over' : 'side'"
-            [opened]="(mediaService.isHandset$ | async) === false">
-            <ng-template [ngTemplateOutlet]="layoutRight"></ng-template>
-        </mat-drawer>
-    </mat-drawer-container>
+    }
+    @if (layoutRight) {
+        <mat-drawer-container autosize="true">
+            <mat-drawer-content>
+                <ng-container *ngTemplateOutlet="content"></ng-container>
+            </mat-drawer-content>
+            <mat-drawer
+                id="side-filter"
+                #sideFilter
+                (closed)="sideFilterClosed.emit()"
+                (openedChange)="sideFilterOpened.emit()"
+                class="right"
+                position="end"
+                [attr.role]="(mediaService.isHandset$ | async) ? 'dialog' : 'navigation'"
+                [mode]="(mediaService.isHandset$ | async) ? 'over' : 'side'"
+                [opened]="(mediaService.isHandset$ | async) === false">
+                <ng-template [ngTemplateOutlet]="layoutRight"></ng-template>
+            </mat-drawer>
+        </mat-drawer-container>
+    } @else {
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    }
 </ng-template>
