@@ -1,28 +1,7 @@
-const { schematic, spawn, replaceInFile, workspace, modifyJsonFile, library, createOrUpdateFile } = require('@hug/ngx-schematics-utilities');
+const {
+    schematic, spawn, replaceInFile, workspace, modifyJsonFile, library, createOrUpdateFile, runAtEnd
+} = require('@hug/ngx-schematics-utilities');
 const { noop } = require('@angular-devkit/schematics');
-
-// ----
-// This was introduced in @hug/ngx-schematics-utilities@9.2.0 but manually backported here as 7.x is used
-// TODO: remove this once @hug/ngx-schematics-utilities >= 9.2.x is installed
-//
-const scheduledTasks = {};
-const runAtEnd = cb =>
-    (tree, context) => {
-        const name = `__task_${Object.keys(scheduledTasks).length}__`;
-
-        // Register the task
-        if (!scheduledTasks[name]) {
-            context.engine._host.registerTaskExecutor({
-                name, create: async () => new Promise(resolve => resolve(() => Promise.resolve(cb(tree, context))))
-            });
-        } else {
-            throw new Error(`Task with name '${name}' already registered.`);
-        }
-
-        // Schedule the task
-        scheduledTasks[name] = context.addTask({ toConfiguration: () => ({ name }) }, Object.values(scheduledTasks));
-    };
-// ----
 
 exports.default = options =>
     schematic('new-package', [
