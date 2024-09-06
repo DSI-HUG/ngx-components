@@ -29,6 +29,13 @@ const config: StorybookConfig = {
     staticDirs: [
         './public'
     ],
+    webpackFinal: webpackConfig => {
+        webpackConfig.performance = (typeof webpackConfig.performance === 'object') ? webpackConfig.performance : {};
+        webpackConfig.performance.hints = false;
+        webpackConfig.performance.maxEntrypointSize = 512000;
+        webpackConfig.performance.maxAssetSize = 512000;
+        return webpackConfig;
+    },
     core: {
         disableTelemetry: true
     }
