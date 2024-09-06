@@ -1,0 +1,38 @@
+name: Deploy story-book
+
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+        tags-ignore:
+            - '**'
+        paths:
+            - '.github/workflows/ci_story-book.yml'
+            - 'projects/story-book/**'
+
+env:
+    HUSKY: 0
+
+concurrency:
+    group: deploy-story-book-group-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    ci_story-book:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup
+              uses: dsi-hug/actions/setup@v2
+
+            - name: Build story-book
+              working-directory: projects/story-book
+              run: npm run build
+
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.DSI_HUG_BOT_GITHUB_TOKEN }}
+                  publish_dir: ./dist/story-book
+                  user_name: dsi-hug-bot
+                  user_email: 'dsi-hug-bot@users.noreply.github.com'
