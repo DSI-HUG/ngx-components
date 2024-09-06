@@ -40,7 +40,6 @@ export class NgxMultiFormatDateAdapter extends DateAdapter<TypeForAdapter, Local
 
     public constructor(
         @Optional() @Inject(MAT_DATE_LOCALE) matDateLocale: Record<string, unknown>
-
     ) {
         super();
         this.locale = matDateLocale;
@@ -236,4 +235,3 @@ export class NgxMultiFormatDateAdapter extends DateAdapter<TypeForAdapter, Local
         return fn(parsed);
     }
 }
-
