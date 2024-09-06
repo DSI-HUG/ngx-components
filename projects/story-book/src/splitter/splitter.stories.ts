@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
@@ -20,7 +19,7 @@ const meta: Meta<NgxSplitterComponent> = {
         }),
         moduleMetadata({
             imports: [
-                CommonModule, MatButtonToggleModule, NgxSplitAreaDirective, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule
+                NgxSplitAreaDirective
             ]
         })
     ],
@@ -167,6 +166,13 @@ export const disabledSplitter: Story = {
 };
 
 export const gutterSizeControl: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                MatButtonToggleGroup, MatButtonToggle
+            ]
+        })
+    ],
     parameters: {
         docs: {
             description: {
@@ -243,6 +249,13 @@ export const combinedSplitters: Story = {
 
 
 export const customizableSplitAreas: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                MatFormField, MatLabel, FormsModule, MatInput, ReactiveFormsModule
+            ]
+        })
+    ],
     parameters: {
         docs: {
             description: {

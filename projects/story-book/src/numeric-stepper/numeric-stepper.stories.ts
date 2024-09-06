@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
@@ -19,7 +18,7 @@ const meta: Meta<NgxNumericStepperComponent> = {
         }),
         moduleMetadata({
             imports: [
-                CommonModule, NgxNumericStepperComponent, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule, MatButtonToggleModule
+                MatLabel, MatInput, MatPrefix, MatSuffix, MatFormField, ReactiveFormsModule, FormsModule
             ]
         })
     ],
@@ -252,6 +251,14 @@ export const showOnInit: Story = {
 };
 
 export const appearance: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                MatButtonToggle,
+                MatButtonToggleGroup
+            ]
+        })
+    ],
     parameters: {
         docs: {
             description: {
@@ -325,18 +332,26 @@ export const prefixAndSuffix: Story = {
                     <div ngx-numeric-stepper-container>
                         <mat-form-field appearance="outline">
                             <mat-label>vertical layout</mat-label>
-                            <span matTextPrefix="" *ngIf="prefix">{{ prefix }}</span>
+                            @if(prefix) {
+                                <span matTextPrefix>{{ prefix }}</span>
+                            }
                             <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <span matTextSuffix *ngIf="suffix">{{ suffix }}</span>
+                            @if(suffix) {
+                                <span matTextSuffix>{{ suffix }}</span>
+                            }
                             <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="vertical" showOnInit></ngx-numeric-stepper>
                         </mat-form-field>
                     </div>
                      <div ngx-numeric-stepper-container>
                         <mat-form-field appearance="fill">
                             <mat-label>vertical layout</mat-label>
-                            <span matTextPrefix="" *ngIf="prefix">{{ prefix }}</span>
+                            @if(prefix) {
+                                <span matTextPrefix>{{ prefix }}</span>
+                            }
                             <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <span matTextSuffix *ngIf="suffix">{{ suffix }}</span>
+                            @if(suffix) {
+                                <span matTextSuffix>{{ suffix }}</span>
+                            }
                             <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="vertical" showOnInit></ngx-numeric-stepper>
                         </mat-form-field>
                     </div>
@@ -346,18 +361,26 @@ export const prefixAndSuffix: Story = {
                     <div ngx-numeric-stepper-container>
                         <mat-form-field appearance="outline">
                             <mat-label>horizontal layout</mat-label>
-                            <span matTextPrefix="" *ngIf="prefix">{{ prefix }}</span>
+                            @if(prefix) {
+                                <span matTextPrefix>{{ prefix }}</span>
+                            }
                             <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <span matTextSuffix *ngIf="suffix">{{ suffix }}</span>
+                            @if(suffix) {
+                                <span matTextSuffix>{{ suffix }}</span>
+                            }
                             <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal" showOnInit></ngx-numeric-stepper>
                         </mat-form-field>
                     </div>
                     <div ngx-numeric-stepper-container>
                         <mat-form-field appearance="fill">
                             <mat-label>horizontal layout</mat-label>
-                            <span matTextPrefix="" *ngIf="prefix">{{ prefix }}</span>
+                            @if(prefix) {
+                                <span matTextPrefix>{{ prefix }}</span>
+                            }
                             <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <span matTextSuffix *ngIf="suffix">{{ suffix }}</span>
+                            @if(suffix) {
+                                <span matTextSuffix>{{ suffix }}</span>
+                            }
                             <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal" showOnInit></ngx-numeric-stepper>
                         </mat-form-field>
                     </div>
@@ -367,18 +390,26 @@ export const prefixAndSuffix: Story = {
                     <div ngx-numeric-stepper-container>
                         <mat-form-field appearance="outline">
                             <mat-label>horizontal-inlay layout</mat-label>
-                            <span matTextPrefix="" *ngIf="prefix">{{ prefix }}</span>
+                            @if(prefix) {
+                                <span matTextPrefix>{{ prefix }}</span>
+                            }
                             <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <span matTextSuffix *ngIf="suffix">{{ suffix }}</span>
+                            @if(suffix) {
+                                <span matTextSuffix>{{ suffix }}</span>
+                            }
                             <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal-inlay" showOnInit></ngx-numeric-stepper>
                         </mat-form-field>
                     </div>
                     <div ngx-numeric-stepper-container>
                         <mat-form-field appearance="fill">
                             <mat-label>horizontal-inlay layout</mat-label>
-                            <span matTextPrefix="" *ngIf="prefix">{{ prefix }}</span>
+                            @if(prefix) {
+                                <span matTextPrefix>{{ prefix }}</span>
+                            }
                             <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <span matTextSuffix *ngIf="suffix">{{ suffix }}</span>
+                            @if(suffix) {
+                                <span matTextSuffix>{{ suffix }}</span>
+                            }
                             <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal-inlay" showOnInit></ngx-numeric-stepper>
                         </mat-form-field>
                     </div>

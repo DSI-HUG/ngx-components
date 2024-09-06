@@ -1,13 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
+import { MatFabButton, MatIconButton } from '@angular/material/button';
+import { MatChipListbox, MatChipOption } from '@angular/material/chips';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
-
+import { NgxSearchContainerComponent, NgxSearchInputDirective } from 'projects/search-container/src/search-container.component';
 import { NgxLayoutComponent } from '../../../layout/src/layout.component';
-import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../search-container/src/search-container.component';
 import { NgxStatusService } from '../../../status/src/status.service';
 import { StorybookLayoutWrapperComponent } from './layout-wrapper.component';
 
@@ -22,15 +21,7 @@ const meta: Meta<NgxLayoutComponent> = {
         }),
         moduleMetadata({
             imports: [
-                CommonModule,
-                FormsModule,
-                NgxLayoutComponent,
-                StorybookLayoutWrapperComponent,
-                NgxSearchContainerComponent,
-                MatChipsModule,
-                MatButtonModule,
-                MatIconModule,
-                NgxSearchInputDirective
+                FormsModule
             ],
             providers: [NgxStatusService]
         })
@@ -65,6 +56,13 @@ export default meta;
 type Story = StoryObj<NgxLayoutComponent>;
 
 export const completeLayout: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                StorybookLayoutWrapperComponent
+            ]
+        })
+    ],
     parameters: {
         docs: {
             description: {
@@ -80,6 +78,17 @@ export const completeLayout: Story = {
 
 
 export const layoutToolbar: Story = {
+    args: {
+        toolbarColor: 'accent'
+    },
+    decorators: [
+        moduleMetadata({
+            imports: [
+                NgxSearchInputDirective,
+                NgxSearchContainerComponent
+            ]
+        })
+    ],
     parameters: {
         docs: {
             description: {
@@ -91,7 +100,6 @@ export const layoutToolbar: Story = {
         props: {
             ...args,
             search: '',
-            toolbarColor: 'accent',
             log: (msg: string, event?: Event): void => {
                 console.log(msg, event);
             }
@@ -113,6 +121,16 @@ export const layoutToolbar: Story = {
 };
 
 export const actionsToolbar: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                MatFabButton,
+                MatIconButton,
+                MatTooltip,
+                MatIcon
+            ]
+        })
+    ],
     parameters: {
         docs: {
             description: {
@@ -123,30 +141,30 @@ export const actionsToolbar: Story = {
     render: args => ({
         props: {
             ...args,
-            log: (msg: string, event?: Event): void => {
-                console.log(msg, event);
+            log: (msg: string): void => {
+                alert(msg);
             }
         },
         template: `
             <section>
-                <ngx-layout>
+                <ngx-layout [toolbarColor]="toolbarColor">
                     <ng-template #layoutToolbar>
                     </ng-template>
 
                     <!-- Primary action -->
                     <ng-template #layoutPrimaryAction>
-                        <button type="button" mat-fab matTooltip="Add" (click)="log('Add button clicked', $event)">
+                        <button type="button" mat-fab matTooltip="Add" (click)="log('Add button clicked')">
                             <mat-icon>add</mat-icon>
                         </button>
                     </ng-template>
 
                     <!-- Actions panel -->
                     <ng-template #layoutActions>
-                        <button type="button" mat-icon-button matTooltip="Refresh" (click)="log('Refresh button clicked', $event)">
+                        <button type="button" mat-icon-button matTooltip="Refresh" (click)="log('Refresh button clicked')">
                             <mat-icon>refresh</mat-icon>
                         </button>
 
-                        <button type="button" mat-icon-button matTooltip="Favorite" (click)="log('Favorite button clicked', $event)">
+                        <button type="button" mat-icon-button matTooltip="Favorite" (click)="log('Favorite button clicked')">
                             <mat-icon>favorite</mat-icon>
                         </button>
                     </ng-template>
@@ -158,6 +176,14 @@ export const actionsToolbar: Story = {
 };
 
 export const rightPanel: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                MatChipListbox,
+                MatChipOption
+            ]
+        })
+    ],
     parameters: {
         docs: {
             description: {
@@ -167,14 +193,11 @@ export const rightPanel: Story = {
     },
     render: args => ({
         props: {
-            ...args,
-            log: (msg: string, event?: Event): void => {
-                console.log(msg, event);
-            }
+            ...args
         },
         template: `
             <section class="moreHeight">
-                <ngx-layout>
+                <ngx-layout [toolbarColor]="toolbarColor">
                     <ng-template #layoutToolbar>
                     </ng-template>
 
@@ -210,14 +233,11 @@ export const infosBoxes: Story = {
     },
     render: args => ({
         props: {
-            ...args,
-            log: (msg: string, event?: Event): void => {
-                console.log(msg, event);
-            }
+            ...args
         },
         template: `
             <section>
-                <ngx-layout>
+                <ngx-layout [toolbarColor]="toolbarColor">
                     <ng-template #layoutToolbar>
                     </ng-template>
 

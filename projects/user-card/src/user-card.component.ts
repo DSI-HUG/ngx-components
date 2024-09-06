@@ -1,8 +1,7 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIcon } from '@angular/material/icon';
 
 import { NgxUserCard } from './user-card.model';
 
@@ -33,9 +32,8 @@ interface DisplayableUserCard {
     encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [
-        CommonModule,
-        MatCardModule,
-        MatIconModule
+        NgClass,
+        MatIcon
     ]
 })
 export class NgxUserCardComponent implements OnChanges {

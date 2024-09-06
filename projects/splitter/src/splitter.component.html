@@ -1,10 +1,11 @@
 <ng-content></ng-content>
-<ng-template ngFor let-area [ngForOf]="areas" let-index="index" let-last="last">
-    <div
-        class="ngx-split-gutter"
-        *ngIf="last === false"
-        [style.order]="index * 2 + 1"
-        [style.flex-basis.px]="gutterSize"
-        (mousedown)="startDragging$.next({ event: $event, index: index * 2 + 1 })"
-        (touchstart)="startDragging$.next({ event: $event, index: index * 2 + 1 })"></div>
-</ng-template>
+@for (area of areas; track $index; let index = $index, last = $last) {
+    @if (last === false) {
+        <div
+            class="ngx-split-gutter"
+            [style.order]="index * 2 + 1"
+            [style.flex-basis.px]="gutterSize"
+            (mousedown)="startDragging$.next({ event: $event, index: index * 2 + 1 })"
+            (touchstart)="startDragging$.next({ event: $event, index: index * 2 + 1 })"></div>
+    }
+}

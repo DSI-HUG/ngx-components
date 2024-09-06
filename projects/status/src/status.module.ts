@@ -1,20 +1,18 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { NgxAbstractLazyModule } from '@hug/ngx-core';
 import { NgxSnackbarComponent } from '@hug/ngx-snackbar';
 
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 import { NgxStatusComponent } from './status.component';
 
 @NgModule({
     declarations: [NgxStatusComponent],
     exports: [NgxStatusComponent],
     imports: [
-        CommonModule,
-        MatButtonModule,
-        MatIconModule,
-        NgxSnackbarComponent
+        NgxSnackbarComponent,
+        MatIcon,
+        MatButton
     ]
 })
 export class NgxStatusModule extends NgxAbstractLazyModule<NgxStatusComponent> {

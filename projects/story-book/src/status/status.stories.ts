@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxSnackbarComponent } from '../../../snackbar/src/snackbar.component';
@@ -13,7 +12,7 @@ const meta: Meta<NgxStatusComponent> = {
     decorators: [
         moduleMetadata({
             imports: [
-                CommonModule, NgxSnackbarComponent, NgxStatusModule, MatButtonToggleModule
+                NgxSnackbarComponent, NgxStatusModule
             ],
             providers: [NgxStatusService]
         })
@@ -139,6 +138,13 @@ export const statusText: Story = {
 };
 
 export const statusType: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                MatButtonToggleGroup, MatButtonToggle
+            ]
+        })
+    ],
     parameters: {
         docs: {
             description: {

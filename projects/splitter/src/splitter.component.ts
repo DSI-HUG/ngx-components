@@ -1,5 +1,4 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
-import { NgFor, NgForOf, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, DestroyRef, ElementRef, EventEmitter, HostBinding, inject, Input, Output, QueryList, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
@@ -23,12 +22,7 @@ interface DraggingEvent {
     selector: 'ngx-splitter',
     styleUrls: ['./splitter.component.scss'],
     templateUrl: './splitter.component.html',
-    standalone: true,
-    imports: [
-        NgIf,
-        NgFor,
-        NgForOf
-    ]
+    standalone: true
 })
 export class NgxSplitterComponent {
     /**

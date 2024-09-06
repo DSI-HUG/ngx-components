@@ -4,8 +4,8 @@
         [withBackButton]="withBackButton"
         backButtonLabel="Back button label"
         [withCloseButton]="withCloseButton"
-        (backButtonClicked)="log('Back button clicked', $event)"
-        (closeButtonClicked)="log('Close button clicked', $event)"
+        (backButtonClicked)="log('Back button clicked')"
+        (closeButtonClicked)="log('Close button clicked')"
         (sideFilterOpened)="log('Side filter opened')"
         (sideFilterClosed)="log('Side filter closed')">
         <ng-template #layoutToolbar>
@@ -14,35 +14,31 @@
                 <input
                     type="text"
                     [(ngModel)]="search"
-                    (ngModelChange)="log('Search changed', $event)"
+                    (ngModelChange)="log('Search changed')"
                     placeholder="Search"
                     autocomplete="off"
                     ngx-search-input />
             </ngx-search-container>
 
-            <button type="button" mat-icon-button matTooltip="Help" (click)="log('Help button clicked', $event)">
+            <button type="button" mat-icon-button matTooltip="Help" (click)="log('Help button clicked')">
                 <mat-icon>help_outline</mat-icon>
             </button>
         </ng-template>
 
         <!-- Primary action -->
         <ng-template #layoutPrimaryAction>
-            <button type="button" mat-fab matTooltip="Add" (click)="log('Add button clicked', $event)">
+            <button type="button" mat-fab matTooltip="Add" (click)="log('Add button clicked')">
                 <mat-icon>add</mat-icon>
             </button>
         </ng-template>
 
         <!-- Actions panel -->
         <ng-template #layoutActions>
-            <button type="button" mat-icon-button matTooltip="Refresh" (click)="log('Refresh button clicked', $event)">
+            <button type="button" mat-icon-button matTooltip="Refresh" (click)="log('Refresh button clicked')">
                 <mat-icon>refresh</mat-icon>
             </button>
 
-            <button
-                type="button"
-                mat-icon-button
-                matTooltip="Favorite"
-                (click)="log('Favorite button clicked', $event)">
+            <button type="button" mat-icon-button matTooltip="Favorite" (click)="log('Favorite button clicked')">
                 <mat-icon>favorite</mat-icon>
             </button>
         </ng-template>
@@ -53,9 +49,9 @@
                 Layout right
                 <div filters-chip-list>
                     <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Color selection">
-                        <mat-chip-option (click)="log('Chip 1 clicked', $event)">1</mat-chip-option>
-                        <mat-chip-option (click)="log('Chip 2 clicked', $event)">2</mat-chip-option>
-                        <mat-chip-option (click)="log('Chip 3 clicked', $event)">3</mat-chip-option>
+                        <mat-chip-option (click)="log('Chip 1 clicked')">1</mat-chip-option>
+                        <mat-chip-option (click)="log('Chip 2 clicked')">2</mat-chip-option>
+                        <mat-chip-option (click)="log('Chip 3 clicked')">3</mat-chip-option>
                     </mat-chip-listbox>
                 </div>
             </div>

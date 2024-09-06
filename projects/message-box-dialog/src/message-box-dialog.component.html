@@ -13,71 +13,40 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button
-        type="button"
-        id="cancelbtn"
-        mat-button
-        mat-dialog-close="cancel"
-        *ngIf="hasControl('CANCEL')"
-        color="primary"
-        data-cy="cancel">
-        Annuler
-    </button>
-    <button
-        type="button"
-        mat-button
-        mat-dialog-close="ignore"
-        *ngIf="hasControl('IGNORE')"
-        color="primary"
-        data-cy="ignore">
-        Ignorer
-    </button>
-    <button
-        type="button"
-        mat-stroked-button
-        default
-        mat-dialog-close="retry"
-        *ngIf="hasControl('RETRY')"
-        color="primary"
-        data-cy="retry">
-        Recommencer
-    </button>
-    <button
-        type="button"
-        id="okbtn"
-        mat-stroked-button
-        mat-dialog-close="ok"
-        *ngIf="hasControl('OK')"
-        color="primary"
-        data-cy="ok"
-        cdkFocusInitial>
-        Ok
-    </button>
-    <button
-        type="button"
-        mat-stroked-button
-        mat-dialog-close="yes"
-        *ngIf="hasControl('YES')"
-        color="primary"
-        data-cy="yes">
-        Oui
-    </button>
-    <button
-        type="button"
-        mat-stroked-button
-        mat-dialog-close="no"
-        *ngIf="hasControl('NO')"
-        color="primary"
-        data-cy="no">
-        Non
-    </button>
-    <button
-        type="button"
-        mat-stroked-button
-        mat-dialog-close="continue"
-        *ngIf="hasControl('CONTINUE')"
-        color="primary"
-        data-cy="continue">
-        Continuer
-    </button>
+    @if (hasControl('CANCEL')) {
+        <button type="button" id="cancelbtn" mat-button mat-dialog-close="cancel" color="primary" data-cy="cancel">
+            Annuler
+        </button>
+    }
+    @if (hasControl('IGNORE')) {
+        <button type="button" mat-button mat-dialog-close="ignore" color="primary" data-cy="ignore">Ignorer</button>
+    }
+    @if (hasControl('RETRY')) {
+        <button type="button" mat-stroked-button default mat-dialog-close="retry" color="primary" data-cy="retry">
+            Recommencer
+        </button>
+    }
+    @if (hasControl('OK')) {
+        <button
+            type="button"
+            id="okbtn"
+            mat-stroked-button
+            mat-dialog-close="ok"
+            color="primary"
+            data-cy="ok"
+            cdkFocusInitial>
+            Ok
+        </button>
+    }
+    @if (hasControl('YES')) {
+        <button type="button" mat-stroked-button mat-dialog-close="yes" color="primary" data-cy="yes">Oui</button>
+    }
+    @if (hasControl('NO')) {
+        <button type="button" mat-stroked-button mat-dialog-close="no" color="primary" data-cy="no">Non</button>
+    }
+    @if (hasControl('CONTINUE')) {
+        <button type="button" mat-stroked-button mat-dialog-close="continue" color="primary" data-cy="continue">
+            Continuer
+        </button>
+    }
 </mat-dialog-actions>

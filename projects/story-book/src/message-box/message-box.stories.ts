@@ -1,18 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { type Meta, type StoryObj } from '@storybook/angular';
 
 import { NgxMessageBoxComponent } from '../../../message-box/src/message-box.component';
 
 const meta: Meta<NgxMessageBoxComponent> = {
     title: 'Components/MessageBox',
     component: NgxMessageBoxComponent,
-    decorators: [
-        moduleMetadata({
-            imports: [
-                CommonModule
-            ]
-        })
-    ],
     tags: ['autodocs'],
     argTypes: {
         type: {

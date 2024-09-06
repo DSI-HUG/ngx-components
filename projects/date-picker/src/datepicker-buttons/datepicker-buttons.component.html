@@ -1,25 +1,27 @@
-<button
-    *ngIf="!hideClear"
-    data-cy="dtp-clear"
-    [disabled]="forInput.disabled"
-    mat-icon-button
-    class="ngx-date-picker-button"
-    matTooltip="effacer"
-    type="button"
-    (click)="setValue($event, false)">
-    <mat-icon>close</mat-icon>
-</button>
-<button
-    *ngIf="!hideToday"
-    data-cy="dtp-today"
-    [disabled]="forInput.disabled"
-    mat-icon-button
-    class="ngx-date-picker-button"
-    matTooltip="aujourd'hui"
-    type="button"
-    (click)="setValue($event, true)">
-    <mat-icon>today</mat-icon>
-</button>
+@if (!hideClear) {
+    <button
+        data-cy="dtp-clear"
+        [disabled]="forInput.disabled"
+        mat-icon-button
+        class="ngx-date-picker-button"
+        matTooltip="effacer"
+        type="button"
+        (click)="setValue($event, false)">
+        <mat-icon>close</mat-icon>
+    </button>
+}
+@if (!hideToday) {
+    <button
+        data-cy="dtp-today"
+        [disabled]="forInput.disabled"
+        mat-icon-button
+        class="ngx-date-picker-button"
+        matTooltip="aujourd'hui"
+        type="button"
+        (click)="setValue($event, true)">
+        <mat-icon>today</mat-icon>
+    </button>
+}
 <button
     data-cy="dtp-open"
     [disabled]="forInput.disabled"

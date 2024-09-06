@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgxAbstractLazyModule } from '@hug/ngx-core';
 import { NgxUserCardComponent } from '@hug/ngx-user-card';
@@ -9,7 +8,6 @@ import { NgxUserTooltipComponent } from './user-tooltip.component';
     declarations: [NgxUserTooltipComponent],
     exports: [NgxUserTooltipComponent],
     imports: [
-        CommonModule,
         NgxUserCardComponent
     ]
 })

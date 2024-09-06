@@ -1,43 +1,49 @@
 <div class="ngx-user-card-header">
-    <span class="header-badge" *ngIf="userCard.badgeColor as badgeColor" [ngClass]="badgeColor + '-badge'"></span>
+    @if (userCard.badgeColor; as badgeColor) {
+        <span class="header-badge" [ngClass]="badgeColor + '-badge'"></span>
+    }
     <div class="header-infos">
         <div class="header-fullname">
             {{ userCard.fullname }}
-            <span class="header-initials" *ngIf="userCard.initials as initials">
-                {{ ' - ' + initials }}
-            </span>
+            @if (userCard.initials; as initials) {
+                <span class="header-initials">
+                    {{ ' - ' + initials }}
+                </span>
+            }
         </div>
         <div class="header-function">
             {{ userCard.function }}{{ userCard.specialty ? ' - ' + userCard.specialty : '' }}
         </div>
     </div>
 </div>
-<div class="ngx-user-card-wrapper" *ngIf="expanded">
-    <hr />
-    <div class="ngx-user-card-content">
-        <div class="content-service">
-            <div class="label">Service</div>
-            <div class="value">{{ userCard.service ?? '-' }}</div>
-        </div>
-        <div class="content-type">
-            <div class="label">Type</div>
-            <div class="value">{{ userCard.type ?? '-' }}</div>
-        </div>
-        <div class="content-phone">
-            <div class="label">Téléphone</div>
-            <div class="value">{{ userCard.phoneNumber ?? '-' }}</div>
-        </div>
-        <div class="content-mobile">
-            <div class="label">Mobile</div>
-            <div class="value">{{ userCard.mobileNumber ?? '-' }}</div>
-        </div>
-        <div class="content-email">
-            <div class="label">Email</div>
-            <div class="value">{{ userCard.email ?? '-' }}</div>
-        </div>
-        <div class="content-address">
-            <div class="label">Adresse</div>
-            <div class="value" [innerHTML]="userCard.address ?? '-'"></div>
+@if (expanded) {
+    <div class="ngx-user-card-wrapper">
+        <hr />
+        <div class="ngx-user-card-content">
+            <div class="content-service">
+                <div class="label">Service</div>
+                <div class="value">{{ userCard.service ?? '-' }}</div>
+            </div>
+            <div class="content-type">
+                <div class="label">Type</div>
+                <div class="value">{{ userCard.type ?? '-' }}</div>
+            </div>
+            <div class="content-phone">
+                <div class="label">Téléphone</div>
+                <div class="value">{{ userCard.phoneNumber ?? '-' }}</div>
+            </div>
+            <div class="content-mobile">
+                <div class="label">Mobile</div>
+                <div class="value">{{ userCard.mobileNumber ?? '-' }}</div>
+            </div>
+            <div class="content-email">
+                <div class="label">Email</div>
+                <div class="value">{{ userCard.email ?? '-' }}</div>
+            </div>
+            <div class="content-address">
+                <div class="label">Adresse</div>
+                <div class="value" [innerHTML]="userCard.address ?? '-'"></div>
+            </div>
         </div>
     </div>
-</div>
+}

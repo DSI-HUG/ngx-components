@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Input, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatFabButton, MatIconButton } from '@angular/material/button';
+import { MatChipListbox, MatChipOption } from '@angular/material/chips';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutComponent } from '../../../layout/src/layout.component';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../search-container/src/search-container.component';
@@ -18,15 +17,16 @@ import { NgxStatusService } from '../../../status/src/status.service';
     encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [
-        CommonModule,
-        FormsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatTooltipModule,
-        MatChipsModule,
+        MatIcon,
+        MatIconButton,
+        MatFabButton,
+        MatChipListbox,
+        MatChipOption,
+        MatTooltip,
         NgxSearchContainerComponent,
         NgxSearchInputDirective,
-        NgxLayoutComponent
+        NgxLayoutComponent,
+        FormsModule // todo: voir comment supprimer ce dernier module
     ]
 })
 export class StorybookLayoutWrapperComponent {
@@ -40,8 +40,7 @@ export class StorybookLayoutWrapperComponent {
 
     private ngxStatusService = inject(NgxStatusService);
 
-    protected log(msg: string, event?: Event): void {
-        console.log(msg, event);
+    protected log(msg: string): void {
         this.ngxStatusService.showStatus({
             title: msg,
             type: 'info',

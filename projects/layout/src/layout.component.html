@@ -27,9 +27,9 @@
                 <ng-template [ngTemplateOutlet]="layoutPrimaryAction"></ng-template>
             </span>
         }
-        <ng-container *ngIf="layoutActions">
+        @if (layoutActions) {
             <ng-template [ngTemplateOutlet]="layoutActions"></ng-template>
-        </ng-container>
+        }
         @if (layoutInfoBoxes && (mediaService.isHandset$ | async) === false) {
             <div class="info-boxes-container">
                 <ng-template [ngTemplateOutlet]="layoutInfoBoxes"></ng-template>

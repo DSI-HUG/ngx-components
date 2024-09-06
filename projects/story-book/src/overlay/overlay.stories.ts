@@ -1,9 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
@@ -20,7 +19,7 @@ const meta: Meta<NgxOverlayComponent> = {
         }),
         moduleMetadata({
             imports: [
-                CommonModule, MatButtonModule, MatIconModule, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule
+                MatIcon, MatIconButton, MatButton
             ]
         })
     ],
@@ -100,7 +99,9 @@ export const standard: Story = {
 
             <ngx-overlay #menu overlayContainerClass="ngx-menu" [width]="width" [widthForMobile]="widthForMobile" [isMobile]="isMobile">
                 <div class="ngx-menu-content button-menu">
-                    <button mat-button class="ngx-menu-item" *ngFor="let item of items" (click)="select(item.text); menu.close()">{{ item.text }}</button>
+                    @for (item of items; track $index) {
+                        <button mat-button class="ngx-menu-item" (click)="select(item.text); menu.close()">{{ item.text }}</button>
+                    }
                 </div>
             </ngx-overlay>
         </section>
@@ -109,6 +110,13 @@ export const standard: Story = {
 };
 
 export const overlayWidth: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                MatFormField, MatLabel, MatHint, FormsModule, MatInput, ReactiveFormsModule
+            ]
+        })
+    ],
     parameters: {
         docs: {
             description: {
@@ -222,7 +230,9 @@ export const overlayClass: Story = {
 
             <ngx-overlay #menu [overlayContainerClass]="overlayContainerClass" [overlayBackdropClass]="overlayBackdropClass">
                 <div class="ngx-menu-content button-menu">
-                    <button mat-button class="ngx-menu-item" *ngFor="let item of items" (click)="select(item.text); menu.close()">{{ item.text }}</button>
+                    @for (item of items; track $index) {
+                        <button mat-button class="ngx-menu-item" (click)="select(item.text); menu.close()">{{ item.text }}</button>
+                    }
                 </div>
             </ngx-overlay>
         </section>
@@ -325,7 +335,9 @@ export const ownerElement: Story = {
 
             <ngx-overlay #menu [overlayContainerClass]="overlayContainerClass" [overlayBackdropClass]="overlayBackdropClass" [ownerElement]="owner">
                 <div class="ngx-menu-content button-menu">
-                    <button mat-button class="ngx-menu-item" *ngFor="let item of items" (click)="select(item.text); menu.close()">{{ item.text }}</button>
+                    @for (item of items; track $index) {
+                        <button mat-button class="ngx-menu-item" (click)="select(item.text); menu.close()">{{ item.text }}</button>
+                    }                
                 </div>
             </ngx-overlay>
         </section>
@@ -369,7 +381,9 @@ export const navigationExample: Story = {
             </span>
             <ngx-overlay #anchorMenu overlayContainerClass="ngx-menu" positions="start top start bottom">
                 <div class="ngx-menu-content anchor-menu">
-                    <a class="ngx-menu-item" *ngFor="let item of items" href="http://www.google.com" target="_blank">{{ item.text }}</a>
+                    @for (item of items; track $index) {
+                        <a class="ngx-menu-item" href="http://www.google.com" target="_blank">{{ item.text }}</a>
+                    }
                 </div>
             </ngx-overlay>
         </section>

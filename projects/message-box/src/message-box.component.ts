@@ -1,10 +1,10 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
 
+import { NgTemplateOutlet } from '@angular/common';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
 import { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
 
 @Component({
@@ -15,10 +15,15 @@ import { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
     templateUrl: './message-box.component.html',
     standalone: true,
     imports: [
-        CommonModule,
-        MatButtonModule,
-        MatCardModule,
-        MatIconModule
+        NgTemplateOutlet,
+        MatCard,
+        MatCardHeader,
+        MatCardTitle,
+        MatCardContent,
+        MatCardActions,
+        MatIcon,
+        MatIconButton,
+        MatButton
     ]
 })
 export class NgxMessageBoxComponent implements OnInit {

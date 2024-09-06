@@ -1,7 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { MatList, MatListItem } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
@@ -14,12 +12,9 @@ const meta: Meta<NgxSearchContainerComponent> = {
     decorators: [
         moduleMetadata({
             imports: [
-                CommonModule,
                 NgxSearchInputDirective,
-                FormsModule,
-                MatIconModule,
-                MatListModule,
-                MatTooltipModule
+                MatTooltipModule,
+                FormsModule
             ]
         })
     ],
@@ -105,6 +100,13 @@ export const customTooltips: Story = {
 };
 
 export const searchWithLists: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                MatList, MatListItem
+            ]
+        })
+    ],
     parameters: {
         docs: {
             description: {
@@ -166,13 +168,17 @@ export const searchWithLists: Story = {
                 <div class="fullList">
                   <span>Liste complète</span>
                   <mat-list role="list">
-                    <mat-list-item role="listitem" *ngFor="let animal of fullList">{{ animal }}</mat-list-item>
+                    @for (animal of fullList; track $index) {
+                        <mat-list-item role="listitem">{{ animal }}</mat-list-item>
+                    }
                   </mat-list>
                 </div>
                 <div class="searchList">
                   <span>Liste issue de la recherche</span>
                   <mat-list role="list">
-                    <mat-list-item role="listitem" *ngFor="let animal of searchList">{{ animal }}</mat-list-item>
+                    @for (animal of searchList; track $index) {
+                        <mat-list-item role="listitem">{{ animal }}</mat-list-item>
+                    }
                   </mat-list>
                 </div>
               </div>

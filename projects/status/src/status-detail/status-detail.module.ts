@@ -1,19 +1,19 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 import { NgxAbstractLazyModule } from '@hug/ngx-core';
 import { NgxMessageBoxComponent } from '@hug/ngx-message-box';
 
+import { DatePipe } from '@angular/common';
 import { NgxStatusDetailComponent } from './status-detail.component';
 
 @NgModule({
     declarations: [NgxStatusDetailComponent],
     exports: [NgxStatusDetailComponent],
     imports: [
-        CommonModule,
-        MatButtonModule,
-        MatIconModule,
+        DatePipe,
+        MatIconButton,
+        MatIcon,
         NgxMessageBoxComponent
     ]
 })

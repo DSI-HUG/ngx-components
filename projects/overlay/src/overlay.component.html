@@ -1,4 +1,4 @@
-<ng-container *ngIf="overlayInfos$ | async as overlayInfos">
+@if (overlayInfos$ | async; as overlayInfos) {
     <ng-template
         #overlayCmp
         cdk-connected-overlay
@@ -13,13 +13,14 @@
         [cdkConnectedOverlayPositions]="positionPairs"
         [cdkConnectedOverlayWidth]="overlayInfos.width">
         <!-- prettier-ignore -->
-        <ng-template
-            *ngIf="contentTemplate; else noContentTemplate"
+        @if (contentTemplate) {
+            <ng-template
             [ngTemplateOutlet]="contentTemplate"
             [ngTemplateOutletContext]="{ $implicit: overlayInfos.context }">
-        </ng-template>
-        <ng-template #noContentTemplate>
+            </ng-template>
+         }
+        @else {
             <ng-content></ng-content>
-        </ng-template>
+        }
     </ng-template>
-</ng-container>
+}

@@ -2,15 +2,21 @@ import { ChangeDetectionStrategy, Component, DestroyRef, EventEmitter, inject, I
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, EMPTY, Subject, switchMap, throttleTime } from 'rxjs';
 
-import { NgxStatus, NgxStatusAction, NgxStatusType } from './status.model';
 import { NgxStatusDetailDialogService } from './status-detail/status-detail-dialog.service';
+import { NgxStatus, NgxStatusAction, NgxStatusType } from './status.model';
 
 @Component({
     selector: 'ngx-status',
     styleUrls: ['./status.component.scss'],
     templateUrl: './status.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    // standalone: true,
+    // imports: [
+    //     MatButton,
+    //     MatIcon,
+    //     NgxSnackbarComponent
+    // ]
 })
 export class NgxStatusComponent {
 

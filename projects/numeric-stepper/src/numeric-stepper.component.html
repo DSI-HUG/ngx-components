@@ -1,25 +1,28 @@
-<mat-icon
-    *ngIf="leftUp !== null"
-    class="arrow noselect increment"
-    [attr.disabled]="disableUp || null"
-    [style.left.px]="leftUp"
-    [style.top.px]="topUp"
-    (click)="clickArrow$.next(true)">
-    {{ (!arrowIcons && 'add') || (layout === 'vertical' && 'keyboard_arrow_up') || 'keyboard_arrow_right' }}
-</mat-icon>
-<mat-icon
-    *ngIf="leftDown !== null"
-    class="arrow noselect decrement"
-    [attr.disabled]="disableDown || null"
-    [style.left.px]="leftDown"
-    [style.top.px]="topDown"
-    (click)="clickArrow$.next(false)">
-    {{ (!arrowIcons && 'remove') || (layout === 'vertical' && 'keyboard_arrow_down') || 'keyboard_arrow_left' }}
-</mat-icon>
-<div
-    *ngIf="widthShadow !== null"
-    class="shadow"
-    [style.left.px]="leftShadow"
-    [style.width.px]="widthShadow"
-    [style.top.px]="topShadow"
-    [style.height.px]="heightShadow"></div>
+@if (leftUp !== null) {
+    <mat-icon
+        class="arrow noselect increment"
+        [attr.disabled]="disableUp || null"
+        [style.left.px]="leftUp"
+        [style.top.px]="topUp"
+        (click)="clickArrow$.next(true)">
+        {{ (!arrowIcons && 'add') || (layout === 'vertical' && 'keyboard_arrow_up') || 'keyboard_arrow_right' }}
+    </mat-icon>
+}
+@if (leftDown !== null) {
+    <mat-icon
+        class="arrow noselect decrement"
+        [attr.disabled]="disableDown || null"
+        [style.left.px]="leftDown"
+        [style.top.px]="topDown"
+        (click)="clickArrow$.next(false)">
+        {{ (!arrowIcons && 'remove') || (layout === 'vertical' && 'keyboard_arrow_down') || 'keyboard_arrow_left' }}
+    </mat-icon>
+}
+@if (widthShadow !== null) {
+    <div
+        class="shadow"
+        [style.left.px]="leftShadow"
+        [style.width.px]="widthShadow"
+        [style.top.px]="topShadow"
+        [style.height.px]="heightShadow"></div>
+}

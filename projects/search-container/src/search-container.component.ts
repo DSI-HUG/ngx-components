@@ -1,9 +1,9 @@
-import { AsyncPipe, NgIf, NgTemplateOutlet } from '@angular/common';
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, DestroyRef, Directive, ElementRef, EventEmitter, inject, Input, NgZone, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgControl } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 import { NgxMediaService } from '@hug/ngx-core';
 import { BehaviorSubject, distinctUntilChanged, first, Observable, shareReplay, switchMap, tap } from 'rxjs';
 
@@ -34,10 +34,9 @@ export class NgxSearchInputDirective {
     standalone: true,
     imports: [
         AsyncPipe,
-        NgIf,
         NgTemplateOutlet,
-        MatIconModule,
-        MatTooltipModule
+        MatIcon,
+        MatTooltip
     ]
 })
 export class NgxSearchContainerComponent implements AfterContentInit {

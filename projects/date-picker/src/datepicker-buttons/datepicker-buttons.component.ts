@@ -1,14 +1,13 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
 import { MatDatepicker, MatDateRangeInput, MatDateRangePicker } from '@angular/material/datepicker';
 import { MatFormFieldControl } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 import { set } from 'date-fns';
 import { filter, ReplaySubject, switchMap, tap } from 'rxjs';
 
@@ -20,10 +19,9 @@ import { filter, ReplaySubject, switchMap, tap } from 'rxjs';
     encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [
-        NgIf,
-        MatButtonModule,
-        MatIconModule,
-        MatTooltipModule
+        MatIcon,
+        MatIconButton,
+        MatTooltip
     ]
 })
 export class NgxDatepickerButtonsComponent implements OnInit {
