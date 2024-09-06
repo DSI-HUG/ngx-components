@@ -6,6 +6,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from 'projects/search-container/src/search-container.component';
+
 import { NgxLayoutComponent } from '../../../layout/src/layout.component';
 import { NgxStatusService } from '../../../status/src/status.service';
 import { StorybookLayoutWrapperComponent } from './layout-wrapper.component';

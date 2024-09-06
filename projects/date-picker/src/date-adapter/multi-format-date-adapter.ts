@@ -2,8 +2,8 @@ import { Inject, inject, Injectable, InjectionToken, Optional, Type } from '@ang
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { format, isValid, Locale, setHours, setMinutes, setSeconds } from 'date-fns';
 
-import { DateTimeAdapter } from './date-time-adapter';
 import { validateAndParseDateStr } from './date.util';
+import { DateTimeAdapter } from './date-time-adapter';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const ACCEPTED_NON_DATE_VALUES = new InjectionToken<readonly (string | RegExp)[]>('ACCEPTED_NON_DATE_VALUES');
@@ -33,13 +33,13 @@ export class NgxMultiFormatDateAdapter extends DateAdapter<TypeForAdapter, Local
 
     private delegate: DateAdapter<Date>;
 
-    private acceptedDateFormats = inject<ReadonlyArray<string>>(MULTI_FORMAT_ACCEPTED_FORMATS);
+    private acceptedDateFormats = inject<readonly string[]>(MULTI_FORMAT_ACCEPTED_FORMATS);
     private delegateType = inject<Type<DateAdapter<Date>>>(MULTI_FORMAT_DATE_DELEGATE);
     // private matDateLocale = inject<Record<string, unknown>>(MAT_DATE_LOCALE, { optional: true }); //todo
-    private acceptedValues = inject<ReadonlyArray<string | RegExp>>(ACCEPTED_NON_DATE_VALUES, { optional: true });
+    private acceptedValues = inject<readonly (string | RegExp)[]>(ACCEPTED_NON_DATE_VALUES, { optional: true });
 
     public constructor(
-        @Optional() @Inject(MAT_DATE_LOCALE) matDateLocale: Record<string, unknown>,
+        @Optional() @Inject(MAT_DATE_LOCALE) matDateLocale: Record<string, unknown>
 
     ) {
         super();

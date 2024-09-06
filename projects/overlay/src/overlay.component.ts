@@ -1,10 +1,10 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, OverlayContainer, OverlayRef } from '@angular/cdk/overlay';
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, inject, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgxMediaService } from '@hug/ngx-core';
 import { BehaviorSubject, combineLatestWith, distinctUntilChanged, EMPTY, map, mergeWith, Observable, of, ReplaySubject, shareReplay, startWith, Subject, switchMap, take } from 'rxjs';
 
-import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { defaultConnectionPositionPair, NgxOverlayConnectionPositionPair } from './connection-position-pair';
 
 interface ShowParams {
