@@ -1,5 +1,5 @@
 import { ComponentType } from '@angular/cdk/portal';
-import { ɵcreateInjector as createInjector, inject, Injectable, Injector, Type } from '@angular/core';
+import { inject, Injectable, Injector, ɵcreateInjector as createInjector, Type } from '@angular/core';
 import { from, map, Observable } from 'rxjs';
 
 export interface LoadModuleInfos<T> {

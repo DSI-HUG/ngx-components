@@ -5,8 +5,8 @@ import { NgxAbstractLazyModule, NgxLazyLoaderService, subscribeWith } from '@hug
 import { merge } from 'lodash-es';
 import { debounceTime, delay, EMPTY, filter, fromEvent, map, mergeWith, Observable, shareReplay, Subject, switchMap, tap, withLatestFrom } from 'rxjs';
 
-import { NgxTooltipComponentInterface } from './tooltip-component.interface';
 import { NgxTooltipConfig } from './tooltip.model';
+import { NgxTooltipComponentInterface } from './tooltip-component.interface';
 
 export abstract class NgxTooltipService<D> {
     protected close$ = new Subject<void>();

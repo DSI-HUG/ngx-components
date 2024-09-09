@@ -2,8 +2,8 @@ import { inject, Injectable, InjectionToken, Type } from '@angular/core';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { format, isValid, Locale, setHours, setMinutes, setSeconds } from 'date-fns';
 
-import { DateTimeAdapter } from './date-time-adapter';
 import { validateAndParseDateStr } from './date.util';
+import { DateTimeAdapter } from './date-time-adapter';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const ACCEPTED_NON_DATE_VALUES = new InjectionToken<readonly (string | RegExp)[]>('ACCEPTED_NON_DATE_VALUES');

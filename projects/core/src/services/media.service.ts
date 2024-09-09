@@ -98,7 +98,7 @@ export class NgxMediaService implements OnDestroy {
     public mql = {} as Record<string, MediaQueryList>;
 
     private zone = inject(NgZone);
-    private mediaDefinitions? = inject<Array<NgxMediaQueryDefinition>>(mediaQueryDefinitions, { optional: true });
+    private mediaDefinitions? = inject<NgxMediaQueryDefinition[]>(mediaQueryDefinitions, { optional: true });
 
 
     public constructor() {
