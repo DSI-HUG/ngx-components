@@ -15,6 +15,8 @@
         <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome" /></a>
     <a href="https://github.com/dsi-hug/ngx-components/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/license-GPLv3-ff69b4.svg" alt="license GPLv3" /></a>
+    <a href="https://dsi-hug.github.io/ngx-components">
+        <img src="https://img.shields.io/badge/docs-storybook-429cf6" alt="story-book" /></a>
 </p>
 
 <hr/>
@@ -47,6 +49,13 @@ Package | Version | Downloads | Tests
 
 This library provide a large set of components and utilities that can be used while developing for Angular.
 
+👉 Learn about it on the 📚 [Storybook][story-book].
+
+#### > Versioning
+
+- `Angular >= 14 < 18` : use version `v1.x` of any package
+- `Angular >= 18` : use version `v2.x` of any package
+
 
 ## Development
 
@@ -77,6 +86,7 @@ Copyright (C) 2024 [HUG - Hôpitaux Universitaires Genève][dsi-hug]
 
 [license]: https://github.com/dsi-hug/ngx-components/blob/main/LICENSE
 [developer]: https://github.com/dsi-hug/ngx-components/blob/main/DEVELOPER.md
+[story-book]: https://dsi-hug.github.io/ngx-components
 [contributing]: https://github.com/dsi-hug/ngx-components/blob/main/CONTRIBUTING.md
 [codeofconduct]: https://github.com/dsi-hug/ngx-components/blob/main/CODE_OF_CONDUCT.md
 [dsi-hug]: https://github.com/dsi-hug
