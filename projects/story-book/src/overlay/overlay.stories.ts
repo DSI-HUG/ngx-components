@@ -1,4 +1,4 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
@@ -113,7 +113,7 @@ export const overlayWidth: Story = {
     decorators: [
         moduleMetadata({
             imports: [
-                MatFormField, MatLabel, MatHint, FormsModule, MatInput, ReactiveFormsModule
+                MatFormField, MatLabel, MatHint, FormsModule, MatInput
             ]
         })
     ],

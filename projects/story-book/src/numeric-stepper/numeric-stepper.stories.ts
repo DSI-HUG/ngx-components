@@ -1,4 +1,4 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -18,7 +18,7 @@ const meta: Meta<NgxNumericStepperComponent> = {
         }),
         moduleMetadata({
             imports: [
-                MatLabel, MatInput, MatPrefix, MatSuffix, MatFormField, ReactiveFormsModule, FormsModule
+                MatLabel, MatInput, MatPrefix, MatSuffix, MatFormField, FormsModule
             ]
         })
     ],

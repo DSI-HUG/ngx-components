@@ -1,4 +1,4 @@
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonToggle } from '@angular/material/button-toggle';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxUserCardComponent } from '../../../user-card/src/user-card.component';
@@ -11,7 +11,7 @@ const meta: Meta<NgxUserCardComponent> = {
     decorators: [
         moduleMetadata({
             imports: [
-                MatButtonToggleModule
+                MatButtonToggle
             ]
         })
     ],

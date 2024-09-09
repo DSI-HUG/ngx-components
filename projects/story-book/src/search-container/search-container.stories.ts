@@ -1,6 +1,6 @@
 import { FormsModule } from '@angular/forms';
 import { MatList, MatListItem } from '@angular/material/list';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTooltip } from '@angular/material/tooltip';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../search-container/src/search-container.component';
@@ -13,7 +13,7 @@ const meta: Meta<NgxSearchContainerComponent> = {
         moduleMetadata({
             imports: [
                 NgxSearchInputDirective,
-                MatTooltipModule,
+                MatTooltip,
                 FormsModule
             ]
         })
