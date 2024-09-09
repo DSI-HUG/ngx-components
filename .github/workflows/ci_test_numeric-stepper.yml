@@ -26,12 +26,3 @@ jobs:
             node-versions: '[18, 20]'
             lint: true
             test: true
-
-    ci_test_deps:
-        needs: ci_test_numeric-stepper
-        runs-on: 'ubuntu-latest'
-        steps:
-            - name: Test numeric-stepper
-              uses: peter-evans/repository-dispatch@v3
-              with:
-                  event-type: test_numeric-stepper
