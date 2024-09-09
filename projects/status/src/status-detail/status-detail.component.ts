@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Inject, ViewEncapsulation } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxMessageBoxType } from '@hug/ngx-message-box';
 
 import { NgxStatus } from '../status.model';
@@ -15,13 +15,12 @@ export class NgxStatusDetailComponent {
     protected fullTextError: string;
     protected messageBoxType: NgxMessageBoxType;
 
-    public constructor(
-        protected dialogRef: MatDialogRef<NgxStatusDetailComponent, void>,
-        @Inject(MAT_DIALOG_DATA) protected status: NgxStatus
-    ) {
-        this.fullTextError = `Error Date: ${(status.date ?? new Date()).toUTCString()}\n${status.technicalText || ''}`;
+    protected status = inject<NgxStatus>(MAT_DIALOG_DATA);
 
-        switch (status.type) {
+    public constructor() {
+        this.fullTextError = `Error Date: ${(this.status.date ?? new Date()).toUTCString()}\n${this.status.technicalText || ''}`;
+
+        switch (this.status.type) {
             case 'primary':
                 this.messageBoxType = 'primary';
                 break;

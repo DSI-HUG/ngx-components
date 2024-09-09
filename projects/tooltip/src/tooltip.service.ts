@@ -1,12 +1,12 @@
 import { ConnectedPosition } from '@angular/cdk/overlay';
-import { Type } from '@angular/core';
+import { inject, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { NgxAbstractLazyModule, NgxLazyLoaderService, subscribeWith } from '@hug/ngx-core';
 import { merge } from 'lodash-es';
 import { debounceTime, delay, EMPTY, filter, fromEvent, map, mergeWith, Observable, shareReplay, Subject, switchMap, tap, withLatestFrom } from 'rxjs';
 
-import { NgxTooltipConfig } from './tooltip.model';
 import { NgxTooltipComponentInterface } from './tooltip-component.interface';
+import { NgxTooltipConfig } from './tooltip.model';
 
 export abstract class NgxTooltipService<D> {
     protected close$ = new Subject<void>();
@@ -76,11 +76,10 @@ export abstract class NgxTooltipService<D> {
         }
     ];
 
-    public constructor(
-        private lazyLoaderService: NgxLazyLoaderService,
-        private dialog: MatDialog,
-        private tooltipConfig?: MatDialogConfig<D>
-    ) {
+    protected lazyLoaderService = inject(NgxLazyLoaderService);
+    protected dialog = inject(MatDialog);
+
+    public constructor(private tooltipConfig?: MatDialogConfig<D>) {
         if (!this.tooltipConfig) {
             this.tooltipConfig = new MatDialogConfig();
         }

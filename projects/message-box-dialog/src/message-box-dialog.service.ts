@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { NgxAbstractLazyModule, NgxDialogService, NgxLazyLoaderService } from '@hug/ngx-core';
+import { MatDialogConfig } from '@angular/material/dialog';
+import { NgxAbstractLazyModule, NgxDialogService } from '@hug/ngx-core';
 import { Observable, take } from 'rxjs';
 
 import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData, NgxMessageBoxDialogResponse } from './message-box-dialog.model';
@@ -9,11 +9,9 @@ import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData, NgxMessageBoxDialo
     providedIn: 'root'
 })
 export class NgxMessageBoxDialogService extends NgxDialogService<NgxMessageBoxDialogResponse, NgxMessageBoxDialogData | string> {
-    public constructor(
-        lazyLoaderService: NgxLazyLoaderService,
-        dialog: MatDialog
-    ) {
-        super(lazyLoaderService, dialog, {
+
+    public constructor() {
+        super({
             panelClass: 'no-padding-dialog'
         } as MatDialogConfig<NgxMessageBoxDialogData>);
     }

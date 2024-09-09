@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { NgxAbstractLazyModule, NgxLazyLoaderService } from '@hug/ngx-core';
+import { MatDialogConfig } from '@angular/material/dialog';
+import { NgxAbstractLazyModule } from '@hug/ngx-core';
 import { NgxTooltipComponentInterface, NgxTooltipService } from '@hug/ngx-tooltip';
 import { NgxUserCard } from '@hug/ngx-user-card';
 
@@ -8,11 +8,8 @@ import { NgxUserCard } from '@hug/ngx-user-card';
     providedIn: 'root'
 })
 export class NgxUserTooltipService extends NgxTooltipService<NgxUserCard> {
-    public constructor(
-        lazyLoaderService: NgxLazyLoaderService,
-        dialog: MatDialog
-    ) {
-        super(lazyLoaderService, dialog, {
+    public constructor() {
+        super({
             width: 'auto',
             minWidth: '16px',
             panelClass: 'no-padding-dialog'

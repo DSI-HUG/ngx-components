@@ -1,4 +1,4 @@
-import { Inject, Injectable, InjectionToken, NgZone, OnDestroy, Optional } from '@angular/core';
+import { inject, Injectable, InjectionToken, NgZone, OnDestroy } from '@angular/core';
 import { BehaviorSubject, distinctUntilChanged, map, Observable, shareReplay } from 'rxjs';
 
 export interface NgxMediaQueryDefinition {
@@ -97,15 +97,16 @@ export class NgxMediaService implements OnDestroy {
     public mediaChanged$ = new BehaviorSubject('lg');
     public mql = {} as Record<string, MediaQueryList>;
 
-    public constructor(
-        private zone: NgZone,
-        @Optional() @Inject(mediaQueryDefinitions) mediaDefinitions?: NgxMediaQueryDefinition[]
-    ) {
-        if (!mediaDefinitions) {
-            mediaDefinitions = simplifiedMediaQueryDefinitions;
+    private zone = inject(NgZone);
+    private mediaDefinitions? = inject<Array<NgxMediaQueryDefinition>>(mediaQueryDefinitions, { optional: true });
+
+
+    public constructor() {
+        if (!this.mediaDefinitions) {
+            this.mediaDefinitions = simplifiedMediaQueryDefinitions;
         }
 
-        mediaDefinitions.forEach(mediaDefinition => {
+        this.mediaDefinitions.forEach(mediaDefinition => {
             const { alias, mediaQuery } = mediaDefinition;
             this.mql[alias] = window.matchMedia(mediaQuery);
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
