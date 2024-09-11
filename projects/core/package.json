@@ -59,7 +59,7 @@
         "@angular/material": ">=18 <19",
         "rxjs": ">= 7.4.0",
         "date-fns": "^2.30.0",
-        "@fontsource-variable/material-symbols-outlined": "~5.0.40",
+        "@fontsource-variable/material-symbols-outlined": "~5.0.41",
         "@fontsource/material-icons": "4.5.4",
         "@fontsource/roboto": "4.5.8"
     },

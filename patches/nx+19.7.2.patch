@@ -1,8 +1,5 @@
-diff --git a/node_modules/nx/bin/nx-cloud.js b/node_modules/nx/bin/nx-cloud.js
-old mode 100755
-new mode 100644
 diff --git a/node_modules/nx/src/command-line/release/changelog.js b/node_modules/nx/src/command-line/release/changelog.js
-index 581a949..09ddf00 100644
+index d3768da..b4b9658 100644
 --- a/node_modules/nx/src/command-line/release/changelog.js
 +++ b/node_modules/nx/src/command-line/release/changelog.js
 @@ -354,6 +354,7 @@ function createAPI(overrideReleaseConfig) {
@@ -14,10 +11,10 @@ index 581a949..09ddf00 100644
                          const { fileMap } = await (0, file_map_utils_1.createFileMapUsingProjectGraph)(projectGraph);
                          const fileToProjectMap = createFileToProjectMap(fileMap.projectFileMap);
 diff --git a/node_modules/nx/src/command-line/release/utils/git.js b/node_modules/nx/src/command-line/release/utils/git.js
-index 7cac027..6756477 100644
+index 8eb2464..4aae4f4 100644
 --- a/node_modules/nx/src/command-line/release/utils/git.js
 +++ b/node_modules/nx/src/command-line/release/utils/git.js
-@@ -307,7 +307,8 @@ function getAllAuthorsForCommit(commit) {
+@@ -309,7 +309,8 @@ function getAllAuthorsForCommit(commit) {
  }
  // https://www.conventionalcommits.org/en/v1.0.0/
  // https://regex101.com/r/FSfNvA/1

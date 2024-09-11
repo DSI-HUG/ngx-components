@@ -265,7 +265,7 @@ void (async (): Promise<void> => {
     const needReUpdate = updateProjectsPeerDeps(updates.projectsToRelease, projects, updates.projectsVersionData, options);
 
     /**
-     *   If multiple projects were be released, synchronizing inter peer dependencies might have affected some of them.
+     *   If multiple projects were to be released, synchronizing inter peer dependencies might have affected some of them.
      *   So we need to resolve new versions of projects once more.
      *
      *   8. Resolve new versions of projects using semantic versioning
