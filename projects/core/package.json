@@ -53,10 +53,10 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">=18",
-        "@angular/core": ">=18",
-        "@angular/cdk": ">=18",
-        "@angular/material": ">=18",
+        "@angular/common": ">=18 <19",
+        "@angular/core": ">=18 <19",
+        "@angular/cdk": ">=18 <19",
+        "@angular/material": ">=18 <19",
         "rxjs": ">= 7.4.0",
         "date-fns": "^2.30.0",
         "@fontsource-variable/material-symbols-outlined": "~5.0.40",

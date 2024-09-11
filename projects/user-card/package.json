@@ -35,10 +35,10 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/cdk": ">=18",
-        "@angular/common": ">=18",
-        "@angular/core": ">=18",
-        "@angular/material": ">=18"
+        "@angular/cdk": ">=18 <19",
+        "@angular/common": ">=18 <19",
+        "@angular/core": ">=18 <19",
+        "@angular/material": ">=18 <19"
     },
     "dependencies": {
         "tslib": "^2.7.0"
