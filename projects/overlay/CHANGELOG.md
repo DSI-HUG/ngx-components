@@ -1,3 +1,35 @@
+# 2.0.0 (2024-09-11)
+
+
+### 🚀 Features
+
+- update to angular 15 - FC-67 ([6bad712](https://github.com/DSI-HUG/ngx-components/commit/6bad712))
+
+- prettier ([2aa36f0](https://github.com/DSI-HUG/ngx-components/commit/2aa36f0))
+
+- **ng18:** remove no more necessary files ([54c46a1](https://github.com/DSI-HUG/ngx-components/commit/54c46a1))
+
+
+### 🐛 Fixes
+
+- correctif passage compelt ng18 ([3fe864e](https://github.com/DSI-HUG/ngx-components/commit/3fe864e))
+
+- lint ([86469ca](https://github.com/DSI-HUG/ngx-components/commit/86469ca))
+
+- **ci:** tests ([9387ba8](https://github.com/DSI-HUG/ngx-components/commit/9387ba8))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v2.0.0 ([ce6226c](https://github.com/DSI-HUG/ngx-components/commit/ce6226c))
+
+
+### ❤️  Thank You
+
+- Badisi
+- dsi-hug-bot @dsi-hug-bot
+- rfrt
+
 ## 1.1.11 (2024-09-04)
 
 

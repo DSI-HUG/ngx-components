@@ -1,3 +1,57 @@
+# 2.0.0 (2024-09-11)
+
+
+### 🚀 Features
+
+- update to angular 15 - FC-67 ([6bad712](https://github.com/DSI-HUG/ngx-components/commit/6bad712))
+
+- update material to angular 15 - FC-67 ([44406c1](https://github.com/DSI-HUG/ngx-components/commit/44406c1))
+
+- update material to angular 15 - FC-67 ([5af2c75](https://github.com/DSI-HUG/ngx-components/commit/5af2c75))
+
+- apply angular material 18 ([f65d64c](https://github.com/DSI-HUG/ngx-components/commit/f65d64c))
+
+- remove NgxDetroy ([c64d8bb](https://github.com/DSI-HUG/ngx-components/commit/c64d8bb))
+
+- test storybook ([4a3209b](https://github.com/DSI-HUG/ngx-components/commit/4a3209b))
+
+- clear old storybook ([453f180](https://github.com/DSI-HUG/ngx-components/commit/453f180))
+
+- numeric stepper storybook ([e7dc6be](https://github.com/DSI-HUG/ngx-components/commit/e7dc6be))
+
+- prettier ([2aa36f0](https://github.com/DSI-HUG/ngx-components/commit/2aa36f0))
+
+- **ng18:** remove no more necessary files ([54c46a1](https://github.com/DSI-HUG/ngx-components/commit/54c46a1))
+
+
+### 🐛 Fixes
+
+- numericstepper angular15 ([dc4a2bd](https://github.com/DSI-HUG/ngx-components/commit/dc4a2bd))
+
+- numeric stepper filled ([dccbefe](https://github.com/DSI-HUG/ngx-components/commit/dccbefe))
+
+- overlay angular15 ([03f114e](https://github.com/DSI-HUG/ngx-components/commit/03f114e))
+
+- lint ([b2c8a88](https://github.com/DSI-HUG/ngx-components/commit/b2c8a88))
+
+- angular16 ([7f7fa8e](https://github.com/DSI-HUG/ngx-components/commit/7f7fa8e))
+
+- correctif passage compelt ng18 ([3fe864e](https://github.com/DSI-HUG/ngx-components/commit/3fe864e))
+
+- **ci:** tests ([9387ba8](https://github.com/DSI-HUG/ngx-components/commit/9387ba8))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v2.0.0 ([ce6226c](https://github.com/DSI-HUG/ngx-components/commit/ce6226c))
+
+
+### ❤️  Thank You
+
+- Badisi
+- dsi-hug-bot @dsi-hug-bot
+- rfrt
+
 ## 1.1.11 (2024-07-25)
 
 ### 🐛 Fixes

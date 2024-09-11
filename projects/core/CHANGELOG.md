@@ -1,3 +1,55 @@
+# 2.0.0 (2024-09-11)
+
+
+### 🚀 Features
+
+- update to angular 15 - FC-67 ([6bad712](https://github.com/DSI-HUG/ngx-components/commit/6bad712))
+
+- update material to angular 15 - FC-67 ([44406c1](https://github.com/DSI-HUG/ngx-components/commit/44406c1))
+
+- messageBoxDialog angular15 ([7ab3e59](https://github.com/DSI-HUG/ngx-components/commit/7ab3e59))
+
+- datepicker angular15 ([fc101f9](https://github.com/DSI-HUG/ngx-components/commit/fc101f9))
+
+- upgrade material to 17 ([af15ca2](https://github.com/DSI-HUG/ngx-components/commit/af15ca2))
+
+- apply angular material 18 ([f65d64c](https://github.com/DSI-HUG/ngx-components/commit/f65d64c))
+
+- remove NgxDetroy ([c64d8bb](https://github.com/DSI-HUG/ngx-components/commit/c64d8bb))
+
+- demo input autosize ([4fe126f](https://github.com/DSI-HUG/ngx-components/commit/4fe126f))
+
+- prettier ([2aa36f0](https://github.com/DSI-HUG/ngx-components/commit/2aa36f0))
+
+- story-book ([153918f](https://github.com/DSI-HUG/ngx-components/commit/153918f))
+
+- **ng18:** remove no more necessary files ([54c46a1](https://github.com/DSI-HUG/ngx-components/commit/54c46a1))
+
+
+### 🐛 Fixes
+
+- yarn lint ([d17a8de](https://github.com/DSI-HUG/ngx-components/commit/d17a8de))
+
+- lint ([d1b0e84](https://github.com/DSI-HUG/ngx-components/commit/d1b0e84))
+
+- angular style ([4e25336](https://github.com/DSI-HUG/ngx-components/commit/4e25336))
+
+- angular17 ([fed5657](https://github.com/DSI-HUG/ngx-components/commit/fed5657))
+
+- lint ([6c397b0](https://github.com/DSI-HUG/ngx-components/commit/6c397b0))
+
+- remove all injector from constructor ([5213c93](https://github.com/DSI-HUG/ngx-components/commit/5213c93))
+
+- lint ([d370d66](https://github.com/DSI-HUG/ngx-components/commit/d370d66))
+
+- **ci:** tests ([9387ba8](https://github.com/DSI-HUG/ngx-components/commit/9387ba8))
+
+
+### ❤️  Thank You
+
+- Badisi
+- rfrt
+
 ## 1.1.14 (2024-07-25)
 
 ### 🐛 Fixes

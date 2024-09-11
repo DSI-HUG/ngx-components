@@ -1,3 +1,49 @@
+# 2.0.0 (2024-09-11)
+
+
+### 🚀 Features
+
+- update to angular 15 - FC-67 ([6bad712](https://github.com/DSI-HUG/ngx-components/commit/6bad712))
+
+- update material to angular 15 - FC-67 ([44406c1](https://github.com/DSI-HUG/ngx-components/commit/44406c1))
+
+- update material to angular 15 - FC-67 ([5af2c75](https://github.com/DSI-HUG/ngx-components/commit/5af2c75))
+
+- layout angular15 ([02777f7](https://github.com/DSI-HUG/ngx-components/commit/02777f7))
+
+- apply angular material 18 ([f65d64c](https://github.com/DSI-HUG/ngx-components/commit/f65d64c))
+
+- layout storybook ([6ae63c1](https://github.com/DSI-HUG/ngx-components/commit/6ae63c1))
+
+- prettier ([2aa36f0](https://github.com/DSI-HUG/ngx-components/commit/2aa36f0))
+
+- format to ng18 ([3b78bdf](https://github.com/DSI-HUG/ngx-components/commit/3b78bdf))
+
+- **ng18:** remove no more necessary files ([54c46a1](https://github.com/DSI-HUG/ngx-components/commit/54c46a1))
+
+
+### 🐛 Fixes
+
+- layout css button ([f042a32](https://github.com/DSI-HUG/ngx-components/commit/f042a32))
+
+- correctif passage compelt ng18 ([3fe864e](https://github.com/DSI-HUG/ngx-components/commit/3fe864e))
+
+- **ci:** tests ([9387ba8](https://github.com/DSI-HUG/ngx-components/commit/9387ba8))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-sidenav:** upgrade to v2.0.0 ([243d31f](https://github.com/DSI-HUG/ngx-components/commit/243d31f))
+
+- **@hug/ngx-core:** upgrade to v2.0.0 ([ce6226c](https://github.com/DSI-HUG/ngx-components/commit/ce6226c))
+
+
+### ❤️  Thank You
+
+- Badisi
+- dsi-hug-bot @dsi-hug-bot
+- rfrt
+
 ## 1.1.11 (2024-07-26)
 
 ### 🐛 Fixes

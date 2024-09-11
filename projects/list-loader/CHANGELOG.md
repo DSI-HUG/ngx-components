@@ -1,3 +1,33 @@
+# 2.0.0 (2024-09-11)
+
+
+### 🚀 Features
+
+- update to angular 15 - FC-67 ([6bad712](https://github.com/DSI-HUG/ngx-components/commit/6bad712))
+
+- apply angular material 18 ([f65d64c](https://github.com/DSI-HUG/ngx-components/commit/f65d64c))
+
+- prettier ([2aa36f0](https://github.com/DSI-HUG/ngx-components/commit/2aa36f0))
+
+- format to ng18 ([3b78bdf](https://github.com/DSI-HUG/ngx-components/commit/3b78bdf))
+
+- **ng18:** remove no more necessary files ([54c46a1](https://github.com/DSI-HUG/ngx-components/commit/54c46a1))
+
+
+### 🐛 Fixes
+
+- list-loader storybook ([c4baad1](https://github.com/DSI-HUG/ngx-components/commit/c4baad1))
+
+- correctif passage compelt ng18 ([3fe864e](https://github.com/DSI-HUG/ngx-components/commit/3fe864e))
+
+- **ci:** tests ([9387ba8](https://github.com/DSI-HUG/ngx-components/commit/9387ba8))
+
+
+### ❤️  Thank You
+
+- Badisi
+- rfrt
+
 ## 1.1.9 (2024-07-25)
 
 ### 🐛 Fixes

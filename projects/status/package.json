@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-status",
-    "version": "1.1.13",
+    "version": "2.0.0",
     "description": "HUG Angular - status component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -40,9 +40,9 @@
         "@angular/cdk": ">=18 <19",
         "@angular/material": ">=18 <19",
         "rxjs": ">= 7.4.0",
-        "@hug/ngx-core": "^1.1.14",
-        "@hug/ngx-snackbar": "^1.1.10",
-        "@hug/ngx-message-box": "^1.1.8"
+        "@hug/ngx-core": "^2.0.0",
+        "@hug/ngx-snackbar": "^2.0.0",
+        "@hug/ngx-message-box": "^2.0.0"
     },
     "dependencies": {
         "tslib": "^2.7.0"
