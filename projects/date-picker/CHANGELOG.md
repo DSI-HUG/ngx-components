@@ -1,3 +1,53 @@
+# 2.0.0 (2024-09-11)
+
+
+### 🚀 Features
+
+- update to angular 15 - FC-67 ([6bad712](https://github.com/DSI-HUG/ngx-components/commit/6bad712))
+
+- update material to angular 15 - FC-67 ([44406c1](https://github.com/DSI-HUG/ngx-components/commit/44406c1))
+
+- update material to angular 15 - FC-67 ([5af2c75](https://github.com/DSI-HUG/ngx-components/commit/5af2c75))
+
+- datepicker angular15 ([fc101f9](https://github.com/DSI-HUG/ngx-components/commit/fc101f9))
+
+- remove NgxDetroy ([c64d8bb](https://github.com/DSI-HUG/ngx-components/commit/c64d8bb))
+
+- prettier ([2aa36f0](https://github.com/DSI-HUG/ngx-components/commit/2aa36f0))
+
+- **ng18:** remove no more necessary files ([54c46a1](https://github.com/DSI-HUG/ngx-components/commit/54c46a1))
+
+
+### 🐛 Fixes
+
+- lint ([d1b0e84](https://github.com/DSI-HUG/ngx-components/commit/d1b0e84))
+
+- lint ([6c397b0](https://github.com/DSI-HUG/ngx-components/commit/6c397b0))
+
+- correctif passage compelt ng18 ([3fe864e](https://github.com/DSI-HUG/ngx-components/commit/3fe864e))
+
+- lint ([86469ca](https://github.com/DSI-HUG/ngx-components/commit/86469ca))
+
+- remove all injector from constructor ([5213c93](https://github.com/DSI-HUG/ngx-components/commit/5213c93))
+
+- lint ([d370d66](https://github.com/DSI-HUG/ngx-components/commit/d370d66))
+
+- **ci:** tests ([9387ba8](https://github.com/DSI-HUG/ngx-components/commit/9387ba8))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker:** upgrade to v2.0.0 ([11452cd](https://github.com/DSI-HUG/ngx-components/commit/11452cd))
+
+- **@hug/ngx-core:** upgrade to v2.0.0 ([ce6226c](https://github.com/DSI-HUG/ngx-components/commit/ce6226c))
+
+
+### ❤️  Thank You
+
+- Badisi
+- dsi-hug-bot @dsi-hug-bot
+- rfrt
+
 ## 1.0.13 (2024-08-03)
 
 ### 🌱 Dependencies

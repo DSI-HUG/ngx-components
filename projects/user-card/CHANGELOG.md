@@ -1,3 +1,37 @@
+# 2.0.0 (2024-09-11)
+
+
+### 🚀 Features
+
+- update to angular 15 - FC-67 ([6bad712](https://github.com/DSI-HUG/ngx-components/commit/6bad712))
+
+- apply angular material 18 ([f65d64c](https://github.com/DSI-HUG/ngx-components/commit/f65d64c))
+
+- test storybook ([4a3209b](https://github.com/DSI-HUG/ngx-components/commit/4a3209b))
+
+- generate storybook project to contain all ([1917014](https://github.com/DSI-HUG/ngx-components/commit/1917014))
+
+- add user-card in storybook ([a946da0](https://github.com/DSI-HUG/ngx-components/commit/a946da0))
+
+- prettier ([2aa36f0](https://github.com/DSI-HUG/ngx-components/commit/2aa36f0))
+
+- **ng18:** remove no more necessary files ([54c46a1](https://github.com/DSI-HUG/ngx-components/commit/54c46a1))
+
+
+### 🐛 Fixes
+
+- user-card storybook ([f74370d](https://github.com/DSI-HUG/ngx-components/commit/f74370d))
+
+- correctif passage compelt ng18 ([3fe864e](https://github.com/DSI-HUG/ngx-components/commit/3fe864e))
+
+- **ci:** tests ([9387ba8](https://github.com/DSI-HUG/ngx-components/commit/9387ba8))
+
+
+### ❤️  Thank You
+
+- Badisi
+- rfrt
+
 ## 1.1.8 (2024-07-25)
 
 ### 🐛 Fixes
