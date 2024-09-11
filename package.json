@@ -33,9 +33,10 @@
         "projects/user-tooltip"
     ],
     "devDependencies": {
+        "@angular/platform-browser-dynamic": "~18.2.4",
         "@angular-devkit/build-angular": "~18.2.4",
         "@angular/cli": "~18.2.4",
-        "@angular/compiler-cli": "~18.2.3",
+        "@angular/compiler-cli": "~18.2.4",
         "@commitlint/cli": "~19.5.0",
         "@commitlint/config-conventional": "~19.5.0",
         "@hug/eslint-config": "~20.3.1",
