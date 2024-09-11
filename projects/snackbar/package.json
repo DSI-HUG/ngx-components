@@ -33,7 +33,7 @@
         "@angular/common": ">=18",
         "@angular/core": ">=18",
         "rxjs": ">= 7.4.0",
-        "@hug/ngx-core": "^1.1.14"
+        "@hug/ngx-core": "^2.0.0"
     },
     "dependencies": {
         "tslib": "^2.7.0"
