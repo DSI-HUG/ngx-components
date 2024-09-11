@@ -1,5 +1,5 @@
 import { ComponentType } from '@angular/cdk/portal';
-import { Injectable, Injector, ɵcreateInjector as createInjector, Type } from '@angular/core';
+import { inject, Injectable, Injector, ɵcreateInjector as createInjector, Type } from '@angular/core';
 import { from, map, Observable } from 'rxjs';
 
 export interface LoadModuleInfos<T> {
@@ -17,9 +17,7 @@ export abstract class NgxAbstractLazyModule<Component> {
     providedIn: 'root'
 })
 export class NgxLazyLoaderService {
-    public constructor(
-        private injector: Injector
-    ) {}
+    private injector = inject(Injector);
 
     public loadModule$<T extends NgxAbstractLazyModule<unknown>>(path: Promise<Type<T>>, parentInjector?: Injector): Observable<LoadModuleInfos<T>> {
         return from(path).pipe(

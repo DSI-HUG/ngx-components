@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { NgxAbstractLazyModule, NgxDialogService, NgxLazyLoaderService } from '@hug/ngx-core';
+import { MatDialogConfig } from '@angular/material/dialog';
+import { NgxAbstractLazyModule, NgxDialogService } from '@hug/ngx-core';
 
 import { NgxStatus } from '../status.model';
 
@@ -8,11 +8,8 @@ import { NgxStatus } from '../status.model';
     providedIn: 'root'
 })
 export class NgxStatusDetailDialogService extends NgxDialogService<void, NgxStatus> {
-    public constructor(
-        lazyLoaderService: NgxLazyLoaderService,
-        dialog: MatDialog
-    ) {
-        super(lazyLoaderService, dialog, {
+    public constructor() {
+        super({
             disableClose: false,
             hasBackdrop: true,
             width: '700px',

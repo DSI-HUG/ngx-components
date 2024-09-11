@@ -1,4 +1,4 @@
-import { Type } from '@angular/core';
+import { inject, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Observable, ReplaySubject, switchMap, take, throttleTime } from 'rxjs';
 
@@ -9,11 +9,10 @@ export abstract class NgxDialogService<ReturnType, DataType> {
     protected dialogResponse$: Observable<ReturnType | undefined>;
     protected dialogRef!: MatDialogRef<unknown, ReturnType>;
 
-    public constructor(
-        private lazyLoaderService: NgxLazyLoaderService,
-        private dialog: MatDialog,
-        matDialogConfig?: MatDialogConfig<DataType>
-    ) {
+    protected lazyLoaderService = inject(NgxLazyLoaderService);
+    protected dialog = inject(MatDialog);
+
+    public constructor(matDialogConfig?: MatDialogConfig<DataType>) {
         this.dialogResponse$ = this.openDialogSub$.pipe(
             throttleTime(11),
             take(1),

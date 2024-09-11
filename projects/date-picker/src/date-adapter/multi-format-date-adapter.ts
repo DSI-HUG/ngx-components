@@ -1,4 +1,4 @@
-import { Inject, inject, Injectable, InjectionToken, Optional, Type } from '@angular/core';
+import { inject, Injectable, InjectionToken, Type } from '@angular/core';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { format, isValid, Locale, setHours, setMinutes, setSeconds } from 'date-fns';
 
@@ -37,13 +37,12 @@ export class NgxMultiFormatDateAdapter extends DateAdapter<TypeForAdapter, Local
     private delegateType = inject<Type<DateAdapter<Date>>>(MULTI_FORMAT_DATE_DELEGATE);
     // private matDateLocale = inject<Record<string, unknown>>(MAT_DATE_LOCALE, { optional: true }); //todo
     private acceptedValues = inject<readonly (string | RegExp)[]>(ACCEPTED_NON_DATE_VALUES, { optional: true });
+    private matDateLocale = inject<Record<string, unknown>>(MAT_DATE_LOCALE);
 
-    public constructor(
-        @Optional() @Inject(MAT_DATE_LOCALE) matDateLocale: Record<string, unknown>
-    ) {
+    public constructor() {
         super();
-        this.locale = matDateLocale;
-        this.delegate = new this.delegateType(matDateLocale);
+        this.locale = this.matDateLocale;
+        this.delegate = new this.delegateType(this.matDateLocale);
     }
 
     public getYear(date: TypeForAdapter): number {
