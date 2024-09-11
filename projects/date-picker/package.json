@@ -33,7 +33,7 @@
         "@angular/common": ">=18",
         "@angular/core": ">=18",
         "@hug/ngx-core": "^1.1.14",
-        "@hug/ngx-time-picker": "^1.1.13",
+        "@hug/ngx-time-picker": "^2.0.0",
         "rxjs": ">= 7.4.0",
         "date-fns": "^2.30.0",
         "lodash-es": "^4.17.21"
