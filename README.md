@@ -54,7 +54,7 @@ This library provide a large set of components and utilities that can be used wh
 #### > Versioning
 
 - `Angular >= 14 < 18` : use version `v1.x` of any package
-- `Angular >= 18` : use version `v2.x` of any package
+- `Angular >= 18 < 19` : use version `v2.x` of any package
 
 
 ## Development
