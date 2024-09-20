@@ -7,7 +7,7 @@
     "bracketSameLine": true,
     "tabWidth": 4,
     "printWidth": 120,
-    "endOfLine": "lf",
+    "endOfLine": "auto",
     "htmlWhitespaceSensitivity": "ignore",
     "proseWrap": "never",
     "multilineArraysWrapThreshold": 0
