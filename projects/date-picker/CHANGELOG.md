@@ -1,3 +1,15 @@
+## 2.0.1 (2024-09-25)
+
+
+### 🐛 Fixes
+
+- **ngx-date-picker:** add missing imports ([cf86f3f](https://github.com/DSI-HUG/ngx-components/commit/cf86f3f))
+
+
+### ❤️  Thank You
+
+- Maxime F.
+
 # 2.0.0 (2024-09-11)
 
 

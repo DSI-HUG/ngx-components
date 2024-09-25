@@ -1,3 +1,15 @@
+## 2.0.1 (2024-09-25)
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-numeric-stepper:** upgrade to v2.0.1 ([0af4397](https://github.com/DSI-HUG/ngx-components/commit/0af4397))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+
 # 2.0.0 (2024-09-11)
 
 

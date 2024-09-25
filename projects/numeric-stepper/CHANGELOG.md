@@ -1,3 +1,15 @@
+## 2.0.1 (2024-09-25)
+
+
+### 🐛 Fixes
+
+- **ngx-numeric-stepper:** fix numeric stepper style when displayed without wrapper ([330d165](https://github.com/DSI-HUG/ngx-components/commit/330d165))
+
+
+### ❤️  Thank You
+
+- Maxime F.
+
 # 2.0.0 (2024-09-11)
 
 
