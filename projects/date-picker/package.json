@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-date-picker",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "HUG Angular - date-picker component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
