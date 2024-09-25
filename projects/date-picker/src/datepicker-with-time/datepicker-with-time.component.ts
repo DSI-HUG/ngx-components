@@ -3,7 +3,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementR
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButton } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
-import { MatDatepicker, MatDatepickerInput, MatDateSelectionModel } from '@angular/material/datepicker';
+import { MatDatepicker, MatDatepickerApply, MatDatepickerInput, MatDateSelectionModel } from '@angular/material/datepicker';
 import { NgxDateOrDuration, NgxTimePickerComponent } from '@hug/ngx-time-picker';
 import { cloneDeep } from 'lodash-es';
 import { delay, filter, map, tap } from 'rxjs';
@@ -21,7 +21,8 @@ import { DATE_TIME_ADAPTER, DateTimeAdapter } from '../date-adapter/date-time-ad
     imports: [
         MatButton,
         NgxTimePickerComponent,
-        MatDatepicker
+        MatDatepicker,
+        MatDatepickerApply
     ]
 })
 export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy {

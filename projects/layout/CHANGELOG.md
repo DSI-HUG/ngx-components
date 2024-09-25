@@ -1,3 +1,15 @@
+## 2.0.1 (2024-09-20)
+
+
+### 🐛 Fixes
+
+- **ngx-layout:** remove hardcoded backcolor ([36b052e](https://github.com/DSI-HUG/ngx-components/commit/36b052e))
+
+
+### ❤️  Thank You
+
+- Serge
+
 # 2.0.0 (2024-09-11)
 
 
