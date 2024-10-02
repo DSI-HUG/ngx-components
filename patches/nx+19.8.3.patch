@@ -76,3 +76,16 @@ index 2ace40e..c415390 100644
 +    // return JSON.stringify(input, null, options?.spaces ?? 2);
 +    return JSON.stringify(input, null, options?.indent ?? 2);
  }
+diff --git a/node_modules/nx/src/utils/package-manager.js b/node_modules/nx/src/utils/package-manager.js
+index a8ef2b8..f29027d 100644
+--- a/node_modules/nx/src/utils/package-manager.js
++++ b/node_modules/nx/src/utils/package-manager.js
+@@ -132,7 +132,7 @@ function getPackageManagerCommand(packageManager = detectPackageManager(), root
+         },
+         npm: () => {
+             // TODO: Remove this
+-            process.env.npm_config_legacy_peer_deps ??= 'true';
++            // process.env.npm_config_legacy_peer_deps ??= 'true';
+             return {
+                 install: 'npm install',
+                 ciInstall: 'npm ci --legacy-peer-deps',
