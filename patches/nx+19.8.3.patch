@@ -1,3 +1,88 @@
+diff --git a/node_modules/nx/src/command-line/migrate/migrate.js b/node_modules/nx/src/command-line/migrate/migrate.js
+index 2334703..1c1bb6c 100644
+--- a/node_modules/nx/src/command-line/migrate/migrate.js
++++ b/node_modules/nx/src/command-line/migrate/migrate.js
+@@ -102,14 +102,14 @@ class Migrator {
+                 return [];
+             return Object.entries(generators)
+                 .filter(([, migration]) => migration.version &&
+-                this.gt(migration.version, currentVersion) &&
+-                this.lte(migration.version, version) &&
+-                this.areMigrationRequirementsMet(packageName, migration))
++                    this.gt(migration.version, currentVersion) &&
++                    this.lte(migration.version, version) &&
++                    this.areMigrationRequirementsMet(packageName, migration))
+                 .map(([migrationName, migration]) => ({
+-                ...migration,
+-                package: packageName,
+-                name: migrationName,
+-            }));
++                    ...migration,
++                    package: packageName,
++                    name: migrationName,
++                }));
+         }));
+         return migrations.flat();
+     }
+@@ -178,7 +178,7 @@ class Migrator {
+             .filter((pkgs) => pkgs.length)
+             .flat()
+             .sort((pkgUpdate1, pkgUpdate2) => packageGroupOrder.indexOf(pkgUpdate1.package) -
+-            packageGroupOrder.indexOf(pkgUpdate2.package));
++                packageGroupOrder.indexOf(pkgUpdate2.package));
+     }
+     getPackageJsonUpdatesFromMigrationConfig(packageName, targetVersion, migrationConfig) {
+         const packageGroupOrder = this.getPackageJsonUpdatesFromPackageGroup(packageName, targetVersion, migrationConfig);
+@@ -528,24 +528,24 @@ function createFetcher() {
+         const cacheKey = packageName + '-' + packageVersion;
+         return Promise.resolve(resolvedVersionCache[cacheKey])
+             .then((cachedResolvedVersion) => {
+-            if (cachedResolvedVersion) {
+-                return cachedResolvedVersion;
+-            }
+-            resolvedVersionCache[cacheKey] = (0, package_manager_1.resolvePackageVersionUsingRegistry)(packageName, packageVersion);
+-            return resolvedVersionCache[cacheKey];
+-        })
++                if (cachedResolvedVersion) {
++                    return cachedResolvedVersion;
++                }
++                resolvedVersionCache[cacheKey] = (0, package_manager_1.resolvePackageVersionUsingRegistry)(packageName, packageVersion);
++                return resolvedVersionCache[cacheKey];
++            })
+             .then((resolvedVersion) => {
+-            if (resolvedVersion !== packageVersion &&
+-                migrationsCache[`${packageName}-${resolvedVersion}`]) {
+-                return migrationsCache[`${packageName}-${resolvedVersion}`];
+-            }
+-            setCache(packageName, resolvedVersion);
+-            return getPackageMigrationsUsingRegistry(packageName, resolvedVersion);
+-        })
++                if (resolvedVersion !== packageVersion &&
++                    migrationsCache[`${packageName}-${resolvedVersion}`]) {
++                    return migrationsCache[`${packageName}-${resolvedVersion}`];
++                }
++                setCache(packageName, resolvedVersion);
++                return getPackageMigrationsUsingRegistry(packageName, resolvedVersion);
++            })
+             .catch(() => {
+-            logger_1.logger.info(`Fetching ${packageName}@${packageVersion}`);
+-            return getPackageMigrationsUsingInstall(packageName, packageVersion);
+-        });
++                logger_1.logger.info(`Fetching ${packageName}@${packageVersion}`);
++                return getPackageMigrationsUsingInstall(packageName, packageVersion);
++            });
+     }
+     return function nxMigrateFetcher(packageName, packageVersion) {
+         if (migrationsCache[`${packageName}-${packageVersion}`]) {
+@@ -881,7 +881,7 @@ function runInstall() {
+     const pmCommands = (0, package_manager_1.getPackageManagerCommand)();
+     // TODO: remove this
+     if ((0, package_manager_1.detectPackageManager)() === 'npm') {
+-        process.env.npm_config_legacy_peer_deps ??= 'true';
++        // process.env.npm_config_legacy_peer_deps ??= 'true';
+     }
+     output_1.output.log({
+         title: `Running '${pmCommands.install}' to make sure necessary packages are installed`,
 diff --git a/node_modules/nx/src/command-line/release/changelog.js b/node_modules/nx/src/command-line/release/changelog.js
 index 5f462f8..88fdcc4 100644
 --- a/node_modules/nx/src/command-line/release/changelog.js
@@ -77,10 +162,10 @@ index 2ace40e..c415390 100644
 +    return JSON.stringify(input, null, options?.indent ?? 2);
  }
 diff --git a/node_modules/nx/src/utils/package-manager.js b/node_modules/nx/src/utils/package-manager.js
-index a8ef2b8..f29027d 100644
+index a8ef2b8..1c3d8b5 100644
 --- a/node_modules/nx/src/utils/package-manager.js
 +++ b/node_modules/nx/src/utils/package-manager.js
-@@ -132,7 +132,7 @@ function getPackageManagerCommand(packageManager = detectPackageManager(), root
+@@ -132,10 +132,10 @@ function getPackageManagerCommand(packageManager = detectPackageManager(), root
          },
          npm: () => {
              // TODO: Remove this
@@ -88,4 +173,8 @@ index a8ef2b8..f29027d 100644
 +            // process.env.npm_config_legacy_peer_deps ??= 'true';
              return {
                  install: 'npm install',
-                 ciInstall: 'npm ci --legacy-peer-deps',
+-                ciInstall: 'npm ci --legacy-peer-deps',
++                ciInstall: 'npm ci', // --legacy-peer-deps',
+                 updateLockFile: 'npm install --package-lock-only',
+                 add: 'npm install',
+                 addDev: 'npm install -D',
