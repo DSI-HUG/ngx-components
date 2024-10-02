@@ -168,7 +168,7 @@ const updateProjectsPeerDeps = (
         });
 
         if (packageJsonFiles.length) {
-            exec('\nUpdating npm lock file:', 'npm', ['install'], options);
+            exec('\nUpdating npm lock file:', 'npm', ['install', '--package-lock-only', '--ignore-scripts'], options);
             exec('\nStaging changed files with git:', 'git', ['add', 'package-lock.json', ...packageJsonFiles], options);
             exec(
                 '\nComitting changes with git:',
