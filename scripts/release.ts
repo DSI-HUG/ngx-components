@@ -202,6 +202,9 @@ const updateProjectsVersions = async (gitCommitMessage: string, options: Options
         stageChanges: true,
         gitCommit: true,
         gitCommitMessage,
+        generatorOptionsOverrides: {
+            installIgnoreScripts: true
+        },
         dryRun: options.dryRun,
         verbose: options.verbose
     });
