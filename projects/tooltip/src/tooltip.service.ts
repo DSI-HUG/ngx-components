@@ -1,14 +1,14 @@
-import { ConnectedPosition } from '@angular/cdk/overlay';
-import { inject, Type } from '@angular/core';
+import { ComponentType, ConnectedPosition } from '@angular/cdk/overlay';
+import { inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { NgxAbstractLazyModule, NgxLazyLoaderService, subscribeWith } from '@hug/ngx-core';
+import { subscribeWith } from '@hug/ngx-core';
 import { merge } from 'lodash-es';
-import { debounceTime, delay, EMPTY, filter, fromEvent, map, mergeWith, Observable, shareReplay, Subject, switchMap, tap, withLatestFrom } from 'rxjs';
+import { debounceTime, delay, EMPTY, filter, fromEvent, map, mergeWith, Observable, shareReplay, Subject, switchMap, take, tap, withLatestFrom } from 'rxjs';
 
 import { NgxTooltipConfig } from './tooltip.model';
 import { NgxTooltipComponentInterface } from './tooltip-component.interface';
 
-export abstract class NgxTooltipService<D> {
+export abstract class NgxTooltipService<D, T extends NgxTooltipComponentInterface> {
     protected close$ = new Subject<void>();
 
     protected positions: readonly ConnectedPosition[] = [
@@ -76,7 +76,6 @@ export abstract class NgxTooltipService<D> {
         }
     ];
 
-    protected lazyLoaderService = inject(NgxLazyLoaderService);
     protected dialog = inject(MatDialog);
 
     public constructor(private tooltipConfig?: MatDialogConfig<D>) {
@@ -147,20 +146,20 @@ export abstract class NgxTooltipService<D> {
     }
 
     protected openRef$(tooltipData: D, triggerElement: HTMLElement, tooltipConfig: Partial<NgxTooltipConfig<D>>): Observable<MatDialogRef<NgxTooltipComponentInterface, void>> {
-        return this.lazyLoaderService.loadModule$(this.getModule()).pipe(
-            switchMap(moduleInfos => {
+        return this.loadComponent$().pipe(
+            take(1),
+            switchMap(component => {
                 const config = merge({}, this.tooltipConfig, tooltipConfig || {} as Partial<MatDialogConfig<D>>);
                 config.data = tooltipData || {} as D;
                 config.minWidth = config.minWidth || '100px';
-                config.injector = moduleInfos.injector;
 
-                const dialogRef = this.dialog.open<NgxTooltipComponentInterface, D, void>(moduleInfos.module.componentType, config);
+                const dialogRef = this.dialog.open<NgxTooltipComponentInterface, D, void>(component, config);
                 return dialogRef.afterOpened().pipe(
                     map(() => dialogRef)
                 );
             }),
-            tap(dialogRef => {
-                const componentInstance = dialogRef.componentInstance;
+            tap(tooltipRef => {
+                const componentInstance = tooltipRef.componentInstance;
                 const tooltipBounds = componentInstance.elementRef?.nativeElement.parentElement?.getBoundingClientRect();
                 const triggerBounds = triggerElement?.getBoundingClientRect();
                 const bodyBounds = document.body.getBoundingClientRect();
@@ -238,11 +237,11 @@ export abstract class NgxTooltipService<D> {
                             left = bodyBounds.left;
                         }
 
-                        dialogRef.updatePosition({
+                        tooltipRef.updatePosition({
                             left: `${left}px`,
                             top: `${top}px`
                         });
-                        dialogRef.addPanelClass('ngx-tooltip-opened');
+                        tooltipRef.addPanelClass('ngx-tooltip-opened');
 
                         return true;
                     });
@@ -253,5 +252,5 @@ export abstract class NgxTooltipService<D> {
         );
     }
 
-    protected abstract getModule(): Promise<Type<NgxAbstractLazyModule<NgxTooltipComponentInterface>>>;
+    protected abstract loadComponent$(): Observable<ComponentType<T>>;
 }

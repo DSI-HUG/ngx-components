@@ -1,6 +1,6 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ContentChild, EventEmitter, HostBinding, inject, Input, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, EventEmitter, inject, Input, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatDrawer, MatDrawerContainer, MatDrawerContent } from '@angular/material/sidenav';
@@ -52,12 +52,11 @@ export class NgxLayoutComponent {
     @ContentChild('layoutInfoBoxes') protected layoutInfoBoxesContent?: TemplateRef<unknown>;
     @ContentChild('layoutRight') protected layoutRightContent?: TemplateRef<unknown>;
 
-    @HostBinding('class.no-right') protected noRight = false;
-
     @ViewChild('sideFilter') protected sideFilter?: MatDrawer;
 
     protected mediaService = inject(NgxMediaService);
     protected sidenavService = inject(NgxSidenavService);
+    protected elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
     public get layoutToolbar(): TemplateRef<unknown> | undefined {
         return this.layoutToolbarExternal ?? this.layoutToolbarContent;
@@ -77,7 +76,11 @@ export class NgxLayoutComponent {
 
     public get layoutRight(): TemplateRef<unknown> | undefined {
         const value = this.layoutRightExternal ?? this.layoutRightContent;
-        this.noRight = !value;
+        if (!value) {
+            this.elementRef.nativeElement.setAttribute('no-right', 'true');
+        } else {
+            this.elementRef.nativeElement.removeAttribute('no-right');
+        }
         return value;
     }
 

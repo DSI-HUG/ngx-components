@@ -1,13 +1,16 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
-import { NgxAbstractLazyModule } from '@hug/ngx-core';
-import { NgxTooltipComponentInterface, NgxTooltipService } from '@hug/ngx-tooltip';
+import { NgxTooltipService } from '@hug/ngx-tooltip';
 import { NgxUserCard } from '@hug/ngx-user-card';
+import { from, map, Observable } from 'rxjs';
+
+import { NgxUserTooltipComponent } from './user-tooltip.component';
 
 @Injectable({
     providedIn: 'root'
 })
-export class NgxUserTooltipService extends NgxTooltipService<NgxUserCard> {
+export class NgxUserTooltipService extends NgxTooltipService<NgxUserCard, NgxUserTooltipComponent> {
+
     public constructor() {
         super({
             width: 'auto',
@@ -16,7 +19,9 @@ export class NgxUserTooltipService extends NgxTooltipService<NgxUserCard> {
         } as MatDialogConfig<NgxUserCard>);
     }
 
-    protected override async getModule(): Promise<Type<NgxAbstractLazyModule<NgxTooltipComponentInterface>>> {
-        return (await import('./user-tooltip.module')).NgxUserTooltipModule;
+    protected override loadComponent$(): Observable<typeof NgxUserTooltipComponent> {
+        return from(import('./user-tooltip.component')).pipe(
+            map(ref => ref.NgxUserTooltipComponent)
+        );
     }
 }

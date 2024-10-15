@@ -1,8 +1,7 @@
 import { DOCUMENT } from '@angular/common';
-import { ApplicationRef, ComponentFactoryResolver, DestroyRef, EmbeddedViewRef, inject, Injectable, Injector } from '@angular/core';
+import { ApplicationRef, DestroyRef, EmbeddedViewRef, inject, Injectable, Injector, ViewContainerRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NgxLazyLoaderService } from '@hug/ngx-core';
-import { mergeWith, switchMap, take, tap, timer } from 'rxjs';
+import { from, mergeWith, switchMap, take, tap, timer } from 'rxjs';
 
 import { NgxStatus, NgxStatusAction } from './status.model';
 
@@ -23,10 +22,9 @@ const durationShort = 8_000;
 export class NgxStatusService {
 
     protected document = inject<Document>(DOCUMENT);
-    protected lazyLoaderService = inject(NgxLazyLoaderService);
     protected injector = inject(Injector);
-    protected resolver = inject(ComponentFactoryResolver);
     private destroyRef = inject(DestroyRef);
+    private applicationRef = inject(ApplicationRef);
 
     /**
      * Display an information message to the screen.
@@ -57,13 +55,13 @@ export class NgxStatusService {
     }
 
     public showStatus(status: NgxStatus): void {
-        this.lazyLoaderService.loadModule$(
-            import('./status.module').then(m => m.NgxStatusModule)
-        ).pipe(
+        from(import('./status.component')).pipe(
             take(1),
-            switchMap(moduleInfos => {
-                const factory = this.resolver.resolveComponentFactory(moduleInfos.module.componentType);
-                const componentRef = factory.create(this.injector);
+            switchMap(component => {
+                // Get the root view container ref of the application by injecting it into the root component
+                const rootViewContainerRef = this.applicationRef.components[0].injector.get(ViewContainerRef);
+                // Insert the modal component into the root view container
+                const componentRef = rootViewContainerRef.createComponent(component.NgxStatusComponent);
                 componentRef.instance.status = status;
                 const applicationRef = this.injector.get(ApplicationRef);
                 applicationRef.attachView(componentRef.hostView);

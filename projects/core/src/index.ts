@@ -1,5 +1,3 @@
-export * from './services/lazy-loader.service';
-export * from './services/dialog.service';
 export * from './services/media.service';
 export * from './directives/input-autosize.directive';
 export * from './directives/single-click.directive';

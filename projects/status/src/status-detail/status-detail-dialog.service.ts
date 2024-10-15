@@ -1,23 +1,29 @@
-import { Injectable, Type } from '@angular/core';
-import { MatDialogConfig } from '@angular/material/dialog';
-import { NgxAbstractLazyModule, NgxDialogService } from '@hug/ngx-core';
+import { inject, Injectable } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { from, Observable, switchMap, take } from 'rxjs';
 
 import { NgxStatus } from '../status.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class NgxStatusDetailDialogService extends NgxDialogService<void, NgxStatus> {
-    public constructor() {
-        super({
-            disableClose: false,
-            hasBackdrop: true,
-            width: '700px',
-            panelClass: 'ngx-status-panel'
-        } as MatDialogConfig<NgxStatus>);
-    }
+export class NgxStatusDetailDialogService {
+    private dialog = inject(MatDialog);
 
-    protected getModule(): Promise<Type<NgxAbstractLazyModule<unknown>>> {
-        return import('./status-detail.module').then(m => m.NgxStatusDetailModule);
+    public open$(dialogData: NgxStatus): Observable<void | undefined> {
+        return from(import('./status-detail.component')).pipe(
+            take(1),
+            switchMap(dialogComponent => {
+                const dialogConfig = {
+                    disableClose: false,
+                    hasBackdrop: true,
+                    width: '700px',
+                    panelClass: 'ngx-status-panel',
+                    data: dialogData
+                } as MatDialogConfig<NgxStatus>;
+
+                return this.dialog.open<unknown, NgxStatus, void>(dialogComponent.NgxStatusDetailComponent, dialogConfig).afterClosed();
+            })
+        );
     }
 }
