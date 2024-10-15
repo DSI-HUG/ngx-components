@@ -8,10 +8,10 @@
     },
     "devDependencies": {
         "@compodoc/compodoc": "^1.1.25",
-        "@storybook/addon-essentials": "^8.3.0",
-        "@storybook/addon-themes": "^8.3.0",
-        "@storybook/addon-links": "^8.3.0",
-        "@storybook/angular": "^8.3.0",
-        "storybook": "^8.3.0"
+        "@storybook/addon-essentials": "^8.3.4",
+        "@storybook/addon-themes": "^8.3.4",
+        "@storybook/addon-links": "^8.3.4",
+        "@storybook/angular": "^8.3.4",
+        "storybook": "^8.3.4"
     }
 }
