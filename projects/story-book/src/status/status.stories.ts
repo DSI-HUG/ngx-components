@@ -3,7 +3,6 @@ import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxSnackbarComponent } from '../../../snackbar/src/snackbar.component';
 import { NgxStatusComponent } from '../../../status/src/status.component';
-import { NgxStatusModule } from '../../../status/src/status.module';
 import { NgxStatusService } from '../../../status/src/status.service';
 
 const meta: Meta<NgxStatusComponent> = {
@@ -12,7 +11,7 @@ const meta: Meta<NgxStatusComponent> = {
     decorators: [
         moduleMetadata({
             imports: [
-                NgxSnackbarComponent, NgxStatusModule
+                NgxSnackbarComponent
             ],
             providers: [NgxStatusService]
         })

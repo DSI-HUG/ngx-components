@@ -1,6 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
+import { MatIconButton } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { NgxMessageBoxType } from '@hug/ngx-message-box';
+import { MatIcon } from '@angular/material/icon';
+import { NgxMessageBoxComponent, NgxMessageBoxType } from '@hug/ngx-message-box';
 
 import { NgxStatus } from '../status.model';
 
@@ -9,7 +12,14 @@ import { NgxStatus } from '../status.model';
     styleUrls: ['./status-detail.component.scss'],
     templateUrl: './status-detail.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [
+        DatePipe,
+        MatIcon,
+        MatIconButton,
+        NgxMessageBoxComponent
+    ]
 })
 export class NgxStatusDetailComponent {
     protected fullTextError: string;
