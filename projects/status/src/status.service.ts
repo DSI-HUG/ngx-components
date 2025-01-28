@@ -5,7 +5,6 @@ import { mergeWith, switchMap, take, takeUntil, tap, timer } from 'rxjs';
 
 import { NgxStatus, NgxStatusAction } from './status.model';
 
-
 const durationLong = 30_000;
 const durationShort = 8_000;
 

@@ -16,6 +16,10 @@ ngx-status {
             font-size: 2rem;
         }
 
+        > .mat-icon {
+            overflow: visible;
+        }
+
         > span {
             b {
                 display: block;

@@ -41,11 +41,27 @@
                 <button mat-raised-button background="success" (click)="push.emit('success')">Success</button>
                 <button mat-raised-button background="info" (click)="push.emit('info')">Info</button>
                 <button mat-raised-button class="spaced" (click)="simpleGate = true">Simple</button>
+                <br />
+                <br />
                 <button mat-raised-button background="danger" (click)="showStatus('danger')">Status Danger</button>
                 <button mat-raised-button background="warning" (click)="showStatus('warn')">Status Warn</button>
                 <button mat-raised-button background="success" (click)="showStatus('success')">Status Success</button>
                 <button mat-raised-button background="primary" (click)="showStatus('primary')">Status Primary</button>
                 <button mat-raised-button (click)="showStatus('info')">Status Info</button>
+                <br />
+                <br />
+                <button
+                    mat-raised-button
+                    background="warning"
+                    (click)="
+                        showStatus(
+                            'warn',
+                            'Test with long text',
+                            'Duis laoreet condimentum purus, sit amet vulputate dolor finibus ac. Proin consectetur ullamcorper orci ut ullamcorper. Vivamus ornare leo vel urna molestie porta. Vivamus malesuada velit eros, non rutrum urna elementum ut'
+                        )
+                    ">
+                    Status Long Text
+                </button>
             </div>
 
             <!-- simple use case, single snackbar -->
