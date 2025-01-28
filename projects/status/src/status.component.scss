@@ -17,6 +17,10 @@ ngx-status {
             font-size: 2rem;
         }
 
+        > .mat-icon {
+            overflow: visible;
+        }
+
         > span {
             width: calc(100% - 24px);
             b {
