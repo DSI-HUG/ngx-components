@@ -63,7 +63,6 @@
         "typescript": "~5.5.4"
     },
     "schematics": "./scripts/new-package/collection.json",
-    "packageManager": "npm@10.8.3",
     "commitlint": {
         "extends": [
             "@commitlint/config-conventional"
@@ -96,5 +95,9 @@
         "**/*.{scss,html,json}": [
             "prettier . --check"
         ]
-    }
+    },
+    "engines": {
+        "yarn": "Please use Npm instead of Yarn."
+    },
+    "packageManager": "npm@10.8.3"
 }

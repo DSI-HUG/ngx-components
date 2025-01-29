@@ -8,6 +8,8 @@
     "tabWidth": 4,
     "printWidth": 120,
     "endOfLine": "auto",
+    "trailingComma": "none",
+    "arrowParens": "avoid",
     "htmlWhitespaceSensitivity": "ignore",
     "proseWrap": "never",
     "multilineArraysWrapThreshold": 0
