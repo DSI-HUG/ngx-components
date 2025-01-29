@@ -7,11 +7,11 @@
         "upgrade": "npx storybook@latest upgrade"
     },
     "devDependencies": {
-        "@compodoc/compodoc": "^1.1.25",
-        "@storybook/addon-essentials": "^8.3.4",
-        "@storybook/addon-themes": "^8.3.4",
-        "@storybook/addon-links": "^8.3.4",
-        "@storybook/angular": "^8.3.4",
-        "storybook": "^8.3.4"
+        "@compodoc/compodoc": "^1.1.26",
+        "@storybook/addon-essentials": "^8.5.2",
+        "@storybook/addon-themes": "^8.5.2",
+        "@storybook/addon-links": "^8.5.2",
+        "@storybook/angular": "^8.5.2",
+        "storybook": "^8.5.2"
     }
 }
