@@ -24,6 +24,8 @@ jobs:
         steps:
             - name: Setup
               uses: dsi-hug/actions/setup@v2
+              with:
+                  node-version: 22
 
             - name: Build story-book
               working-directory: projects/story-book
