@@ -1,3 +1,15 @@
+## 2.0.1 (2025-01-29)
+
+
+### 🐛 Fixes
+
+- **status:** fix left icon overflow display ([e83915a](https://github.com/DSI-HUG/ngx-components/commit/e83915a))
+
+
+### ❤️  Thank You
+
+- damien-guillermet
+
 # 2.0.0 (2024-09-11)
 
 
