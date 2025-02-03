@@ -13,7 +13,6 @@ import { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
     selector: 'ngx-message-box',
     styleUrls: ['./message-box.component.scss'],
     templateUrl: './message-box.component.html',
-    standalone: true,
     imports: [
         NgTemplateOutlet,
         MatCard,

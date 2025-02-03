@@ -195,7 +195,7 @@ export const gutterSizeControl: Story = {
             </ngx-splitter>
             <br />
             <div class="matButtonContainer">
-                <mat-button-toggle-group name="gutterSize" hideSingleSelectionIndicator="true" (change)="changeGutterSize($event.value)" [value]="gutterSize">
+                <mat-button-toggle-group name="gutterSize" (change)="changeGutterSize($event.value)" [value]="gutterSize">
                     <mat-button-toggle value="5">5px</mat-button-toggle>
                     <mat-button-toggle value="10">10px</mat-button-toggle>
                     <mat-button-toggle value="45">45px</mat-button-toggle>

@@ -178,7 +178,7 @@ export class NgxMultiFormatDateAdapter extends DateAdapter<TypeForAdapter, Local
         return this.appyOnParsed(date, parsed => setSeconds(parsed, seconds || 0), date);
     }
 
-    public setTime(date: TypeForAdapter, hours: number, minutes: number, seconds: number): TypeForAdapter {
+    public override setTime(date: TypeForAdapter, hours: number, minutes: number, seconds: number): TypeForAdapter {
         date = this.setHours(date, hours);
         date = this.setMinutes(date, minutes);
         date = this.setSeconds(date, seconds);
