@@ -47,6 +47,7 @@ jobs:
         with:
             working-directory: ${{ (inputs.package == '-- all --') && '.' || format('projects/{0}', inputs.package) }}
             dry-run: ${{ inputs.dry-run }}
+            node-versions: '[22]'
             lint: true
             test: true
             build: true
