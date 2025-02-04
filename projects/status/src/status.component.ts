@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, EventEmitter, inject, Input, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { NgxSnackbarComponent } from '@hug/ngx-snackbar';
 import { catchError, EMPTY, Subject, switchMap, throttleTime } from 'rxjs';
 
 import { NgxStatus, NgxStatusAction, NgxStatusType } from './status.model';
@@ -10,13 +13,13 @@ import { NgxStatusDetailDialogService } from './status-detail/status-detail-dial
     styleUrls: ['./status.component.scss'],
     templateUrl: './status.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
-    // standalone: true,
-    // imports: [
-    //     MatButton,
-    //     MatIcon,
-    //     NgxSnackbarComponent
-    // ]
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [
+        MatButton,
+        MatIcon,
+        NgxSnackbarComponent
+    ]
 })
 export class NgxStatusComponent {
 
@@ -45,7 +48,7 @@ export class NgxStatusComponent {
 
         this.displayDetailedStatus$.pipe(
             throttleTime(1000),
-            switchMap(status => this.statusDetailDialogService.openDialog$(status).pipe(
+            switchMap(status => this.statusDetailDialogService.open$(status).pipe(
                 catchError(err => {
                     console.error('Failed to open status detail dialog', err);
                     return EMPTY;

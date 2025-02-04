@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData } from './message-box-dialog.model';
 
@@ -8,7 +11,14 @@ import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData } from './message-b
     templateUrl: './message-box-dialog.component.html',
     styleUrls: ['./message-box-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [
+        MatButtonModule,
+        MatDialogModule,
+        MatIconModule,
+        MatToolbarModule
+    ]
 })
 export class NgxMessageBoxDialogComponent {
 
