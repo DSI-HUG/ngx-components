@@ -1,7 +1,8 @@
 {
+    "name": "ngx-components-workspace",
     "private": true,
     "scripts": {
-        "ncu": "npx npm-check-updates -i --dep=dev,peer,optional,prod --format=group --packageFile='{,projects/**/}package.json'",
+        "ncu": "npx npm-check-updates -i --dep=dev,peer,optional,prod --format=group --packageFile='{,projects/**/}package.json' --no-deprecated",
         "prepare": "husky || true",
         "new-package": "ng g .:new-package",
         "lint": "nx run-many -t lint",
