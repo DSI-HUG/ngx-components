@@ -17,7 +17,6 @@ import { filter, ReplaySubject, switchMap, tap } from 'rxjs';
     styleUrls: ['./datepicker-buttons.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         MatIcon,
         MatIconButton,

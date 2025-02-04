@@ -14,7 +14,6 @@ export type NgxNumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-in
     selector: 'ngx-numeric-stepper',
     styleUrls: ['./numeric-stepper.component.scss'],
     templateUrl: './numeric-stepper.component.html',
-    standalone: true,
     imports: [
         MatIcon
     ],

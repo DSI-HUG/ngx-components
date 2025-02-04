@@ -167,7 +167,7 @@ export const statusType: Story = {
             <ngx-status [status]="status"></ngx-status>
             <br />
             <div class="matButtonContainer">
-                <mat-button-toggle-group name="type" hideSingleSelectionIndicator="true" (change)="typeChanged($event.value)" [value]="status.type">
+                <mat-button-toggle-group name="type" (change)="typeChanged($event.value)" [value]="status.type">
                     <mat-button-toggle value="primary">primary</mat-button-toggle>
                     <mat-button-toggle value="info">info</mat-button-toggle>
                     <mat-button-toggle value="success">success</mat-button-toggle>

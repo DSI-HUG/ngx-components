@@ -35,8 +35,8 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">=18 <19",
-        "@angular/core": ">=18 <19",
+        "@angular/common": ">=19 <20",
+        "@angular/core": ">=19 <20",
         "rxjs": ">= 7.4.0",
         "@hug/ngx-core": "^2.0.0"
     },

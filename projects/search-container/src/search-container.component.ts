@@ -31,7 +31,6 @@ export class NgxSearchInputDirective {
     styleUrls: ['./search-container.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         AsyncPipe,
         NgTemplateOutlet,

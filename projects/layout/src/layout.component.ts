@@ -15,7 +15,6 @@ import { NgxSidenavService } from '@hug/ngx-sidenav';
     styleUrls: ['./layout.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         NgTemplateOutlet,
         AsyncPipe,

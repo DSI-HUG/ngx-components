@@ -28,7 +28,6 @@ export interface OverlayInfos {
     selector: 'ngx-overlay',
     styleUrls: ['./overlay.component.scss'],
     templateUrl: './overlay.component.html',
-    standalone: true,
     imports: [
         AsyncPipe,
         NgTemplateOutlet,

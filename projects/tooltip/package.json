@@ -30,10 +30,10 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">=18 <19",
-        "@angular/core": ">=18 <19",
-        "@angular/cdk": ">=18 <19",
-        "@angular/material": ">=18 <19",
+        "@angular/common": ">=19 <20",
+        "@angular/core": ">=19 <20",
+        "@angular/cdk": ">=19 <20",
+        "@angular/material": ">=19 <20",
         "rxjs": ">= 7.4.0",
         "lodash-es": "^4.17.21",
         "@hug/ngx-core": "^2.0.0"

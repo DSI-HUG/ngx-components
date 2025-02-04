@@ -30,7 +30,6 @@ interface DisplayableUserCard {
     templateUrl: './user-card.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         NgClass,
         MatIcon

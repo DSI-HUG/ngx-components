@@ -285,7 +285,7 @@ export const appearance: Story = {
                     </mat-form-field>
                 </div>
                 <div class="matButtonContainer">
-                    <mat-button-toggle-group name="appearance" hideSingleSelectionIndicator="true" (change)="appearanceChanged($event.value)" [value]="appearance">
+                    <mat-button-toggle-group name="appearance" (change)="appearanceChanged($event.value)" [value]="appearance">
                         <mat-button-toggle value="fill">Fill</mat-button-toggle>
                         <mat-button-toggle value="outline">Outline</mat-button-toggle>
                     </mat-button-toggle-group>

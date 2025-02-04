@@ -1,4 +1,4 @@
-import { MatButtonToggle } from '@angular/material/button-toggle';
+import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxUserCardComponent } from '../../../user-card/src/user-card.component';
@@ -11,7 +11,7 @@ const meta: Meta<NgxUserCardComponent> = {
     decorators: [
         moduleMetadata({
             imports: [
-                MatButtonToggle
+                MatButtonToggleGroup, MatButtonToggle
             ]
         })
     ],
@@ -134,9 +134,9 @@ export const dynamicBadgeColor: Story = {
         template: `
         <section>
           <ngx-user-card [user]="user" [expanded]="false"></ngx-user-card>
-          <br />
+          <br/>
           <div class="matButtonContainer">
-            <mat-button-toggle-group name="favoriteColor" hideSingleSelectionIndicator="true" (change)="familyCodeChanged($event.value)" [value]="user.familyCode">
+            <mat-button-toggle-group name="familyCode" (change)="familyCodeChanged($event.value)" [value]="user.familyCode">
                 <mat-button-toggle value="Social">Social</mat-button-toggle>
                 <mat-button-toggle value="Infirmier-e">Infirmier-e</mat-button-toggle>
                 <mat-button-toggle value="Médecin dentiste">Médecin dentiste</mat-button-toggle>
@@ -220,7 +220,7 @@ export const userAbbreviationTitle: Story = {
           <ngx-user-card [user]="user" [expanded]="false"></ngx-user-card>
           <br />
           <div class="matButtonContainer">
-            <mat-button-toggle-group name="title" hideSingleSelectionIndicator="true" (change)="titleChanged($event.value)" [value]="user.title">
+            <mat-button-toggle-group name="title" (change)="titleChanged($event.value)" [value]="user.title">
                 <mat-button-toggle value="Docteur">Docteur</mat-button-toggle>
                 <mat-button-toggle value="Docteure">Docteure</mat-button-toggle>
                 <mat-button-toggle value="Monsieur">Monsieur</mat-button-toggle>

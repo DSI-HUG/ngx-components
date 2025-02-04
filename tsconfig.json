@@ -1,6 +1,7 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
+        "esModuleInterop": true,
         "paths": {
             "@hug/ngx-core": [
                 "projects/core/src"

@@ -12,7 +12,6 @@ import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData } from './message-b
     styleUrls: ['./message-box-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         MatButtonModule,
         MatDialogModule,

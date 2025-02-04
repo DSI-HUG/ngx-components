@@ -24,7 +24,6 @@ type FieldType = 'hours' | 'minutes';
     styleUrls: ['./time-picker.component.scss'],
     templateUrl: './time-picker.component.html',
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         DecimalPipe,
         FormsModule,
