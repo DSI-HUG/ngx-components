@@ -38,7 +38,7 @@ env:
 
 jobs:
     ci_release:
-        uses: dsi-hug/actions/.github/workflows/action.yml@v2
+        uses: dsi-hug/actions/.github/workflows/action.yml@v3
         secrets:
             GIT_USER_NAME: 'dsi-hug-bot'
             GIT_USER_EMAIL: 'dsi-hug-bot@users.noreply.github.com'
@@ -47,7 +47,6 @@ jobs:
         with:
             working-directory: ${{ (inputs.package == '-- all --') && '.' || format('projects/{0}', inputs.package) }}
             dry-run: ${{ inputs.dry-run }}
-            node-versions: '[22]'
             lint: true
             test: true
             build: true
