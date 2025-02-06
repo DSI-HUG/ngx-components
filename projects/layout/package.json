@@ -40,7 +40,7 @@
         "@angular/cdk": ">=19 <20",
         "@angular/material": ">=19 <20",
         "@hug/ngx-core": "^3.0.0",
-        "@hug/ngx-sidenav": "^2.0.0"
+        "@hug/ngx-sidenav": "^3.0.0"
     },
     "dependencies": {
         "tslib": "^2.7.0"
