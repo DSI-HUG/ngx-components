@@ -1,3 +1,18 @@
+# 3.0.0 (2025-02-06)
+
+### 🚀 Features
+
+- ⚠️ migrate to Angular 19 ([d186ab2](https://github.com/DSI-HUG/ngx-components/commit/d186ab2))
+
+### 🐛 Fixes
+
+- ngx-core dependency no more required ([a4bfdaf](https://github.com/DSI-HUG/ngx-components/commit/a4bfdaf))
+
+### ❤️ Thank You
+
+- Badisi @Badisi
+- damien-guillermet @damien-guillermet
+
 # 2.0.0 (2024-09-11)
 
 

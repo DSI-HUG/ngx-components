@@ -1,3 +1,15 @@
+# 3.0.0 (2025-02-06)
+
+### 🚀 Features
+
+- ⚠️ migrate to Angular 19 ([d186ab2](https://github.com/DSI-HUG/ngx-components/commit/d186ab2))
+- ⚠️ remove useless DialogService and TooltipService ([481d2d2](https://github.com/DSI-HUG/ngx-components/commit/481d2d2))
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+- Serge @serge
+
 # 2.0.0 (2024-09-11)
 
 

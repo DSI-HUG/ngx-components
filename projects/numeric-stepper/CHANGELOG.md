@@ -1,3 +1,18 @@
+# 3.0.0 (2025-02-06)
+
+### 🚀 Features
+
+- ⚠️ migrate to Angular 19 ([d186ab2](https://github.com/DSI-HUG/ngx-components/commit/d186ab2))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v3.0.0 ([b945bd6](https://github.com/DSI-HUG/ngx-components/commit/b945bd6))
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+- dsi-hug-bot @dsi-hug-bot
+
 ## 2.0.1 (2024-09-25)
 
 

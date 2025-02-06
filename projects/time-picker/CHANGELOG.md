@@ -1,3 +1,23 @@
+# 3.0.0 (2025-02-06)
+
+### 🚀 Features
+
+- ⚠️ migrate to Angular 19 ([d186ab2](https://github.com/DSI-HUG/ngx-components/commit/d186ab2))
+
+### 🐛 Fixes
+
+- ngx-core dependency no more required ([a4bfdaf](https://github.com/DSI-HUG/ngx-components/commit/a4bfdaf))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-numeric-stepper:** upgrade to v3.0.0 ([405c1b5](https://github.com/DSI-HUG/ngx-components/commit/405c1b5))
+
+### ❤️ Thank You
+
+- Badisi @Badisi
+- damien-guillermet @damien-guillermet
+- dsi-hug-bot @dsi-hug-bot
+
 ## 2.0.1 (2024-09-25)
 
 

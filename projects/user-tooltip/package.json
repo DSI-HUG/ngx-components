@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-user-tooltip",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "description": "HUG Angular - user-tooltip component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -33,8 +33,8 @@
         "@angular/common": ">=19 <20",
         "@angular/core": ">=19 <20",
         "@angular/material": ">=19 <20",
-        "@hug/ngx-tooltip": "^2.0.0",
-        "@hug/ngx-user-card": "^2.0.0"
+        "@hug/ngx-tooltip": "^3.0.0",
+        "@hug/ngx-user-card": "^3.0.0"
     },
     "dependencies": {
         "tslib": "^2.7.0"
