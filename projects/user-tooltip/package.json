@@ -33,7 +33,6 @@
         "@angular/common": ">=19 <20",
         "@angular/core": ">=19 <20",
         "@angular/material": ">=19 <20",
-        "@hug/ngx-core": "^2.0.0",
         "@hug/ngx-tooltip": "^2.0.0",
         "@hug/ngx-user-card": "^2.0.0"
     },
