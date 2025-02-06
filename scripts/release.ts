@@ -2,7 +2,7 @@
 
 import chalk from 'chalk';
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { releaseChangelog, releasePublish, releaseVersion } from 'nx/release';
 import { PublishOptions } from 'nx/src/command-line/release/command-object';
@@ -55,14 +55,15 @@ const publishProjects = async (
     if (!options.dryRun) {
         for (const project of projectsToRelease) {
             const projectName = projects[project].root.substring('projects/'.length);
-            const publishStatus = await releasePublish({
+            const args = {
                 __overrides_unparsed__: `--packageRoot=./dist/ngx-${projectName}`,
                 projects: [project],
                 dryRun: options.dryRun,
                 verbose: options.verbose
-            } as PublishOptions);
-            if (publishStatus !== 0) {
-                processStatus = publishStatus;
+            } as PublishOptions;
+            const publishResult = await releasePublish(args);
+            if (publishResult[project].code !== 0) {
+                processStatus = publishResult[project].code;
             }
         }
     } else {
@@ -88,7 +89,7 @@ const updateProjectsDists = (
     console.log(`\n${bgBlue(' HUG ')}  ${blue('Synchronizing dist packages')}${options.dryRun ? yellow(' [dry-run]') : ''}`);
     projectsToRelease.forEach(project => {
         const projectRoot = projects[project].root;
-        const projectName = projectRoot.substring('projects/'.length);
+        const projectName = projects[project].name ?? '';
         const projectNewVersion = projectsVersionData[project].newVersion ?? '';
         const distPackageJsonPath = join('dist', `ngx-${projectName}`, 'package.json');
         const distChangelogPath = join('dist', `ngx-${projectName}`, 'CHANGELOG.md');
@@ -135,34 +136,36 @@ const updateProjectsPeerDeps = (
 
         Object.values(projects).forEach(project => {
             const packageJsonPath = join(project.root, 'package.json');
-            const packageJson = JSON.parse(readFileSync(join(workspaceRoot, packageJsonPath), 'utf8')) as PackageJson;
-            const peerDependencies = packageJson.peerDependencies ?? {};
+            if (existsSync(packageJsonPath)) {
+                const packageJson = JSON.parse(readFileSync(join(workspaceRoot, packageJsonPath), 'utf8')) as PackageJson;
+                const peerDependencies = packageJson.peerDependencies ?? {};
 
-            if (Object.prototype.hasOwnProperty.call(peerDependencies, projectToRelease)) {
-                const version = peerDependencies[projectToRelease];
-                if (!version.includes(projectToReleaseNewVersion)) {
-                    changesDetected = true;
+                if (Object.prototype.hasOwnProperty.call(peerDependencies, projectToRelease)) {
+                    const version = peerDependencies[projectToRelease];
+                    if (!version.includes(projectToReleaseNewVersion)) {
+                        changesDetected = true;
 
-                    // Récupère le premier caractère non numérique pour conserver le préfixe
-                    const versionRange = (/(^[^\d]*)\d.*/.exec(version))?.[1] ?? '';
-                    const newVersion = `${versionRange}${projectToReleaseNewVersion}`;
+                        // Récupère le premier caractère non numérique pour conserver le préfixe
+                        const versionRange = /(^[^\d]*)\d.*/.exec(version)?.[1] ?? '';
+                        const newVersion = `${versionRange}${projectToReleaseNewVersion}`;
 
-                    if (!packageJsonFiles.length) {
-                        console.log(blue(`\n- ${projectToRelease}`));
+                        if (!packageJsonFiles.length) {
+                            console.log(blue(`\n- ${projectToRelease}`));
+                        }
+
+                        console.log(`\n${white('UPDATE')} ${packageJsonPath}${options.dryRun ? yellow(' [dry-run]') : ''}\n`);
+                        console.log(gray('  "peerDependencies": {'));
+                        console.log(red(`-    "${projectToRelease}": "${version}"`));
+                        console.log(green(`+    "${projectToRelease}": "${newVersion}"`));
+                        console.log(gray('  }'));
+                        if (!options.dryRun) {
+                            peerDependencies[projectToRelease] = newVersion;
+                            packageJson.peerDependencies = peerDependencies;
+                            writeFileSync(join(workspaceRoot, packageJsonPath), JSON.stringify(packageJson, null, 4), { encoding: 'utf8' });
+                        }
+
+                        packageJsonFiles.push(packageJsonPath);
                     }
-
-                    console.log(`\n${white('UPDATE')} ${packageJsonPath}${options.dryRun ? yellow(' [dry-run]') : ''}\n`);
-                    console.log(gray('  "peerDependencies": {'));
-                    console.log(red(`-    "${projectToRelease}": "${version}"`));
-                    console.log(green(`+    "${projectToRelease}": "${newVersion}"`));
-                    console.log(gray('  }'));
-                    if (!options.dryRun) {
-                        peerDependencies[projectToRelease] = newVersion;
-                        packageJson.peerDependencies = peerDependencies;
-                        writeFileSync(join(workspaceRoot, packageJsonPath), JSON.stringify(packageJson, null, 4), { encoding: 'utf8' });
-                    }
-
-                    packageJsonFiles.push(packageJsonPath);
                 }
             }
         });
@@ -210,7 +213,7 @@ const updateProjectsVersions = async (gitCommitMessage: string, options: Options
     });
     const projectsToRelease = Object.keys(projectsVersionData).filter(key => {
         const { newVersion, currentVersion } = projectsVersionData[key];
-        return (newVersion && (newVersion !== currentVersion));
+        return newVersion && newVersion !== currentVersion;
     });
     if (projectsToRelease.length === 0) {
         console.log('No affected projects found to be published');
@@ -222,7 +225,7 @@ const updateProjectsVersions = async (gitCommitMessage: string, options: Options
 void (async (): Promise<void> => {
     const projectGraph = await createProjectGraphAsync({ exitOnError: true });
     const { projects } = readProjectsConfigurationFromProjectGraph(projectGraph);
-    const options = await yargs
+    const options = await yargs(process.argv)
         .version(false)
         .option('projects', {
             description: 'Projects filter to use for the release script',
@@ -268,8 +271,8 @@ void (async (): Promise<void> => {
     const needReUpdate = updateProjectsPeerDeps(updates.projectsToRelease, projects, updates.projectsVersionData, options);
 
     /**
-     *   If multiple projects were to be released, synchronizing inter peer dependencies might have affected some of them.
-     *   So we need to resolve new versions of projects once more.
+     *  If multiple projects were to be released, synchronizing inter peer dependencies might have affected some of them.
+     *  So we need to resolve new versions of projects once more.
      *
      *   8. Resolve new versions of projects using semantic versioning
      *   9. Update every projects `package.json` file with their new version
@@ -280,7 +283,7 @@ void (async (): Promise<void> => {
      *        - project: @hug/ngx-abc 1.2.3
      *        - project: @hug/ngx-xyz 4.5.6
      */
-    if (needReUpdate && (options.projects?.length !== 1)) {
+    if (needReUpdate && options.projects?.length !== 1) {
         updates = await updateProjectsVersions('chore(release): re-update projects versions [skip ci]', options);
     }
 
