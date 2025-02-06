@@ -34,7 +34,7 @@
         "@angular/core": ">=19 <20",
         "@angular/material": ">=19 <20",
         "@hug/ngx-tooltip": "^2.0.0",
-        "@hug/ngx-user-card": "^2.0.0"
+        "@hug/ngx-user-card": "^3.0.0"
     },
     "dependencies": {
         "tslib": "^2.7.0"
