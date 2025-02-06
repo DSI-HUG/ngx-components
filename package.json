@@ -11,6 +11,7 @@
         "build": "nx run-many -t build:ng --exclude=story-book ----verbose",
         "release": "node -r @swc-node/register ./scripts/release.ts --verbose",
         "release:dry-run": "npm run release -- --dry-run",
+        "migrate": "nx migrate latest",
         "postinstall": "patch-package"
     },
     "workspaces": [
@@ -34,21 +35,21 @@
         "projects/user-tooltip"
     ],
     "devDependencies": {
-        "@angular/platform-browser-dynamic": "~19.1.4",
         "@angular-devkit/build-angular": "~19.1.5",
         "@angular/animations": "~19.1.4",
         "@angular/cdk": "~19.1.2",
         "@angular/cli": "~19.1.5",
-        "@angular/core": "~19.1.4",
         "@angular/common": "~19.1.4",
         "@angular/compiler-cli": "~19.1.4",
+        "@angular/core": "~19.1.4",
         "@angular/forms": "~19.1.4",
         "@angular/material": "~19.1.2",
+        "@angular/platform-browser-dynamic": "~19.1.4",
         "@commitlint/cli": "~19.6.1",
         "@commitlint/config-conventional": "~19.6.0",
         "@hug/eslint-config": "~20.3.3",
         "@hug/ngx-schematics-utilities": "^10.1.4",
-        "@nx/js": "^20.4.0",
+        "@nx/js": "^20.5.0-beta.1",
         "@swc-node/register": "^1.10.9",
         "@swc/helpers": "^0.5.15",
         "@types/jasmine": "~5.1.5",
@@ -63,11 +64,11 @@
         "karma-jasmine-html-reporter": "~2.1.0",
         "lint-staged": "~15.4.3",
         "ng-packagr": "~19.1.2",
-        "nx": "^20.4.0",
+        "nx": "20.5.0-beta.1",
         "patch-package": "^8.0.0",
         "prettier": "3.4.2",
         "prettier-plugin-multiline-arrays": "^4.0.2",
-        "typescript": "~5.5.4"
+        "typescript": "5.7.3"
     },
     "schematics": "./scripts/new-package/collection.json",
     "commitlint": {
