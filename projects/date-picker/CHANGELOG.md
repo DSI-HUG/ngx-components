@@ -1,3 +1,25 @@
+# 3.0.0 (2025-02-06)
+
+### 🚀 Features
+
+- ⚠️ migrate to Angular 19 ([d186ab2](https://github.com/DSI-HUG/ngx-components/commit/d186ab2))
+
+### 🐛 Fixes
+
+- package-lock ([a1c33ca](https://github.com/DSI-HUG/ngx-components/commit/a1c33ca))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker:** upgrade to v3.0.0 ([6466890](https://github.com/DSI-HUG/ngx-components/commit/6466890))
+- **@hug/ngx-core:** upgrade to v3.0.0 ([b945bd6](https://github.com/DSI-HUG/ngx-components/commit/b945bd6))
+- **@hug/ngx-time-picker:** upgrade to v2.0.1 ([d855c49](https://github.com/DSI-HUG/ngx-components/commit/d855c49))
+
+### ❤️ Thank You
+
+- Badisi @Badisi
+- damien-guillermet @damien-guillermet
+- dsi-hug-bot @dsi-hug-bot
+
 ## 2.0.1 (2024-09-25)
 
 

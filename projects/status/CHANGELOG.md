@@ -1,3 +1,26 @@
+# 3.0.0 (2025-02-06)
+
+### 🚀 Features
+
+- ⚠️ migrate to Angular 19 ([d186ab2](https://github.com/DSI-HUG/ngx-components/commit/d186ab2))
+- ⚠️ remove useless DialogService and TooltipService ([481d2d2](https://github.com/DSI-HUG/ngx-components/commit/481d2d2))
+
+### 🐛 Fixes
+
+- ngx-core dependency no more required ([a4bfdaf](https://github.com/DSI-HUG/ngx-components/commit/a4bfdaf))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-snackbar:** upgrade to v3.0.0 ([95ebbbe](https://github.com/DSI-HUG/ngx-components/commit/95ebbbe))
+- **@hug/ngx-message-box:** upgrade to v3.0.0 ([0e1dfd5](https://github.com/DSI-HUG/ngx-components/commit/0e1dfd5))
+
+### ❤️ Thank You
+
+- Badisi @Badisi
+- damien-guillermet @damien-guillermet
+- dsi-hug-bot @dsi-hug-bot
+- Serge @serge
+
 ## 2.0.1 (2025-01-29)
 
 
