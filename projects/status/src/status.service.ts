@@ -21,10 +21,9 @@ const durationShort = 8_000;
 })
 export class NgxStatusService {
 
-    protected document = inject<Document>(DOCUMENT);
-    protected injector = inject(Injector);
-    private destroyRef = inject(DestroyRef);
-    private applicationRef = inject(ApplicationRef);
+    protected readonly document = inject<Document>(DOCUMENT);
+    protected readonly injector = inject(Injector);
+    private readonly destroyRef = inject(DestroyRef);
 
     /**
      * Display an information message to the screen.
@@ -59,11 +58,11 @@ export class NgxStatusService {
             take(1),
             switchMap(component => {
                 // Get the root view container ref of the application by injecting it into the root component
-                const rootViewContainerRef = this.applicationRef.components[0].injector.get(ViewContainerRef);
+                const applicationRef = this.injector.get(ApplicationRef);
+                const rootViewContainerRef = applicationRef.components[0].injector.get(ViewContainerRef);
                 // Insert the modal component into the root view container
                 const componentRef = rootViewContainerRef.createComponent(component.NgxStatusComponent);
                 componentRef.instance.status = status;
-                const applicationRef = this.injector.get(ApplicationRef);
                 applicationRef.attachView(componentRef.hostView);
 
                 const domElement = (componentRef.hostView as EmbeddedViewRef<unknown>).rootNodes[0] as HTMLElement;
