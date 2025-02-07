@@ -59,7 +59,6 @@ export class NgxSearchContainerComponent implements AfterContentInit {
 
     protected searchInputValue$: Observable<string> | undefined;
 
-
     @ContentChild(NgxSearchInputDirective)
     public set searchInput(searchInput: NgxSearchInputDirective) {
         if (!searchInput) {
@@ -71,7 +70,6 @@ export class NgxSearchContainerComponent implements AfterContentInit {
         this._searchInput = searchInput;
     }
 
-
     @Input()
     public set right(value: TemplateRef<unknown> | null) {
         this._right = value;
@@ -81,25 +79,26 @@ export class NgxSearchContainerComponent implements AfterContentInit {
         return this._right;
     }
 
-    protected mediaService = inject(NgxMediaService);
-    private zone = inject(NgZone);
-    private destroyRef = inject(DestroyRef);
+    protected readonly mediaService = inject(NgxMediaService);
+    private readonly zone = inject(NgZone);
+    private readonly destroyRef = inject(DestroyRef);
 
     private _searchInput: NgxSearchInputDirective | undefined;
 
     private _right: TemplateRef<unknown> | null = null;
 
+    private _resetWhenInactiveSearch = false;
 
     public constructor() {
-
         this.activeSearch$.pipe(
             switchMap(activeSearch => this.zone.onStable.pipe(
                 first(),
                 tap(() => {
-                    if (!activeSearch) {
+                    if (!activeSearch && this._resetWhenInactiveSearch) {
                         this.reset();
                     }
                     this._searchInput?.focus();
+                    this._resetWhenInactiveSearch = true;
                 })
             )),
             takeUntilDestroyed(this.destroyRef)

@@ -44,7 +44,7 @@
             }
 
             input {
-                color: mat.m2-get-color-from-palette($background, background, 0.8);
+                color: mat.m2-get-color-from-palette($foreground, text, 0.8);
 
                 &::placeholder {
                     color: mat.m2-get-color-from-palette($background, background, 0.8);
