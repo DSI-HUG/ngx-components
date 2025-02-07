@@ -24,6 +24,10 @@ const meta: Meta<NgxSearchContainerComponent> = {
             description: {
                 component: 'The `NgxSearchContainerComponent` provides a flexible search interface with customizable tooltips for actions such as clearing, opening, and closing the search. It integrates with an input field via the `ngx-search-input` directive to enable search functionality.'
             }
+        },
+        backgrounds: {
+            // Set default background value for all component stories
+            default: 'Dark'
         }
     },
     argTypes: {
@@ -188,6 +192,7 @@ export const searchWithLists: Story = {
             section {
               padding: 5rem;
               font-family: 'Roboto';
+              background-color: initial;
             }
 
             .listsContainer {
@@ -208,4 +213,40 @@ export const searchWithLists: Story = {
     args: {
         clearTooltip: 'Effacer la recherche'
     }
+};
+
+export const initialValue: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'Demonstrates the search container with an initial value.'
+            }
+        }
+    },
+    render: args => ({
+        props: {
+            ...args,
+            search: 'My initial search',
+            log: (event: string): void => {
+                console.log(event);
+            }
+        },
+        template: `
+            <section>
+              <ngx-search-container clearTooltip="Clear search">
+                <input ngx-search-input type="text" placeholder="Search..." [(ngModel)]="search" (ngModelChange)="log($event)" />
+              </ngx-search-container>
+              <br />
+              <span>Current value:</span>
+              <pre>{{search}}</pre>
+            </section>
+          `,
+        styles: [`
+            section {
+              padding: 5rem;
+              font-family: 'Roboto';
+              background-color: initial;
+            }
+          `]
+    })
 };

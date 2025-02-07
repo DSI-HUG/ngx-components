@@ -12,7 +12,17 @@ const preview: Preview = {
                 date: /Date$/i
             }
         },
-        layout: 'centered'
+        layout: 'centered',
+        backgrounds: {
+            values: [
+                // Default values
+                { name: 'Dark', value: '#333' },
+                { name: 'Light', value: '#fff' },
+                { name: 'Lightblue', value: '#b5d8ff' }
+            ],
+            // Specify which background is shown by default
+            default: 'Light'
+        }
     }
 };
 
