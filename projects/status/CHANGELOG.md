@@ -1,3 +1,13 @@
+## 3.0.1 (2025-02-07)
+
+### 🐛 Fixes
+
+- **NgxStatusService:** lazily inject ApplicationRef ([029d3dc](https://github.com/DSI-HUG/ngx-components/commit/029d3dc))
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+
 # 3.0.0 (2025-02-06)
 
 ### 🚀 Features
