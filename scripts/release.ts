@@ -89,7 +89,7 @@ const updateProjectsDists = (
     console.log(`\n${bgBlue(' HUG ')}  ${blue('Synchronizing dist packages')}${options.dryRun ? yellow(' [dry-run]') : ''}`);
     projectsToRelease.forEach(project => {
         const projectRoot = projects[project].root;
-        const projectName = projects[project].name ?? '';
+        const projectName = projectRoot.substring('projects/'.length);
         const projectNewVersion = projectsVersionData[project].newVersion ?? '';
         const distPackageJsonPath = join('dist', `ngx-${projectName}`, 'package.json');
         const distChangelogPath = join('dist', `ngx-${projectName}`, 'CHANGELOG.md');
