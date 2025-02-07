@@ -1,3 +1,15 @@
+## 3.0.1 (2025-02-07)
+
+### 🐛 Fixes
+
+- **#NGXCPTS-7:** fix color of placeholder ([69aa6f8](https://github.com/DSI-HUG/ngx-components/commit/69aa6f8))
+- **#NGXCPTS-6:** do not reset value initially + add story to demonstrate ([808e4e2](https://github.com/DSI-HUG/ngx-components/commit/808e4e2))
+- **#NGXCPTS-7:** fix color of input ([9125f78](https://github.com/DSI-HUG/ngx-components/commit/9125f78))
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+
 # 3.0.0 (2025-02-06)
 
 ### 🚀 Features
