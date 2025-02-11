@@ -5,7 +5,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material
 import { filterMap, KeyCodes, NgxDestroy, subscribeWith } from '@hug/ngx-core';
 import { addDays, addHours, addMinutes, addMonths, addSeconds, addYears, isValid, parse, set } from 'date-fns';
 import { isNil } from 'lodash-es';
-import { delay, EMPTY, filter, fromEvent, mergeWith, of, startWith, switchMap, takeUntil, tap, timeInterval } from 'rxjs';
+import { delay, EMPTY, filter, from, fromEvent, map, mergeWith, of, startWith, switchMap, takeUntil, tap, timeInterval } from 'rxjs';
 
 import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.service';
 
@@ -50,16 +50,16 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
     private _formatExpression?: string;
     private maskValue = '';
 
-    private formatCharRegExp = /[mdyhs]/i;
-    private forwardToInputKeyCodes = ['LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow', 'PageDown', 'PageUp', 'End', 'Home', 'Tab'];
+    private readonly formatCharRegExp = /[mdyhs]/i;
+    private readonly forwardToInputKeyCodes = ['LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow', 'PageDown', 'PageUp', 'End', 'Home', 'Tab'];
 
     public constructor(
-        @Optional() @Inject(MAT_DATE_FORMATS) private dateFormats: MatDateFormats,
-        private elementRef: ElementRef<HTMLInputElement>,
-        private ngControl: NgControl,
-        private renderer: Renderer2,
-        private validator: NgxDatepickerMaskValidatorService,
-        private dateAdapter: DateAdapter<unknown>
+        @Optional() @Inject(MAT_DATE_FORMATS) private readonly dateFormats: MatDateFormats,
+        private readonly elementRef: ElementRef<HTMLInputElement>,
+        private readonly ngControl: NgControl,
+        private readonly renderer: Renderer2,
+        private readonly validator: NgxDatepickerMaskValidatorService,
+        private readonly dateAdapter: DateAdapter<unknown>
     ) {
         super();
 
@@ -153,175 +153,185 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
         });
 
         fromEvent<KeyboardEvent>(elementRef.nativeElement, 'keydown').pipe(
-            takeUntil(this.destroyed$)
-        ).subscribe(e => {
-            const formatExpression = this._formatExpression;
-            if (!this.maskValue || !formatExpression) {
-                return undefined;
-            }
-
-            const el = e.target as HTMLInputElement;
-            const start = el.selectionStart;
-            const end = el.selectionEnd;
-
-            if (start === null || end === null) {
-                return undefined;
-            }
-
-            const getPosition = (pos: number, direction: -1 | 1): number | undefined => {
-                const offset = direction === -1 ? -1 : 0;
-                let formatChar = formatExpression[pos + offset];
-                // eslint-disable-next-line no-loops/no-loops
-                while (formatChar) {
-                    if (this.formatCharRegExp.exec(formatChar) ?? formatChar === this._placeHolderCharacter) {
-                        break;
-                    }
-                    pos += direction;
-                    formatChar = formatExpression[pos + offset];
+            switchMap(e => {
+                const formatExpression = this._formatExpression;
+                if (!this.maskValue || !formatExpression) {
+                    return of(undefined);
                 }
 
-                return formatChar ? pos : undefined;
-            };
+                const el = e.target as HTMLInputElement;
+                const start = el.selectionStart;
+                const end = el.selectionEnd;
 
-            const replaceRange = (value: string, from: number, to: number, mask: string): string => Array.from(value).map((c, index) => index >= from && index <= to ? mask[index] : c).join('');
-            const replaceAt = (value: string, index: number, char: string): string => value.substring(0, index) + char + value.substring(index + char.length);
+                if (start === null || end === null) {
+                    return of(undefined);
+                }
 
-            if ((e.code === 'UpArrow' || e.code === 'DownArrow') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
-                if (this.ngControl.value instanceof Date) {
-                    const date = this.ngControl.value;
-                    const step = e.code === 'UpArrow' ? 1 : -1;
-                    let formatChar = formatExpression[start];
-                    if (!formatChar || !this.formatCharRegExp.exec(formatChar)) {
-                        formatChar = formatExpression[start - 1];
-                    }
-                    if (this.formatCharRegExp.exec(formatChar)) {
-                        let newDate: Date | undefined;
-                        switch (formatChar) {
-                            case 'y':
-                            case 'Y':
-                                newDate = addYears(date, step);
-                                break;
-                            case 'M':
-                                newDate = addMonths(date, step);
-                                newDate.setFullYear(date.getFullYear());
-                                break;
-                            case 'd':
-                            case 'D':
-                                newDate = addDays(date, step);
-                                newDate.setMonth(date.getMonth());
-                                break;
-                            case 'h':
-                            case 'H':
-                                newDate = addHours(date, step);
-                                newDate.setDate(date.getDate());
-                                break;
-                            case 'm':
-                                newDate = addMinutes(date, step);
-                                newDate.setHours(date.getHours());
-                                break;
-                            case 's':
-                            case 'S':
-                                newDate = addSeconds(date, step);
-                                newDate.setMinutes(date.getMinutes());
-                                break;
-                            default:
+                const getPosition = (pos: number, direction: -1 | 1): number | undefined => {
+                    const offset = direction === -1 ? -1 : 0;
+                    let formatChar = formatExpression[pos + offset];
+                    // eslint-disable-next-line no-loops/no-loops
+                    while (formatChar) {
+                        if (this.formatCharRegExp.exec(formatChar) ?? formatChar === this._placeHolderCharacter) {
+                            break;
                         }
-
-                        this.setValue(newDate);
-                        this.elementRef.nativeElement.setSelectionRange(start, start);
+                        pos += direction;
+                        formatChar = formatExpression[pos + offset];
                     }
-                }
 
-            } else if (e.code === 'Backspace') {
-                let value = this.elementRef.nativeElement.value;
-                const char = value.substring(start - 1, (end - start) || 1);
-
-                const selectPreviousChar = (): void => {
-                    let previousStart = getPosition(start, -1);
-                    if (previousStart === undefined) {
-                        previousStart = 0;
-                    }
-                    this.elementRef.nativeElement.setSelectionRange(previousStart, previousStart);
+                    return formatChar ? pos : undefined;
                 };
 
-                if (this.maskValue && (/[0-9]+/.exec(char) ?? char === this._placeHolderCharacter)) {
+                const replaceRange = (value: string, begin: number, to: number, mask: string): string => Array.from(value).map((c, index) => index >= begin && index <= to ? mask[index] : c).join('');
+                const replaceAt = (value: string, index: number, char: string): string => value.substring(0, index) + char + value.substring(index + char.length);
+
+                if ((e.code === 'UpArrow' || e.code === 'DownArrow') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
+                    if (this.ngControl.value instanceof Date) {
+                        const date = this.ngControl.value;
+                        const step = e.code === 'UpArrow' ? 1 : -1;
+                        let formatChar = formatExpression[start];
+                        if (!formatChar || !this.formatCharRegExp.exec(formatChar)) {
+                            formatChar = formatExpression[start - 1];
+                        }
+                        if (this.formatCharRegExp.exec(formatChar)) {
+                            let newDate: Date | undefined;
+                            switch (formatChar) {
+                                case 'y':
+                                case 'Y':
+                                    newDate = addYears(date, step);
+                                    break;
+                                case 'M':
+                                    newDate = addMonths(date, step);
+                                    newDate.setFullYear(date.getFullYear());
+                                    break;
+                                case 'd':
+                                case 'D':
+                                    newDate = addDays(date, step);
+                                    newDate.setMonth(date.getMonth());
+                                    break;
+                                case 'h':
+                                case 'H':
+                                    newDate = addHours(date, step);
+                                    newDate.setDate(date.getDate());
+                                    break;
+                                case 'm':
+                                    newDate = addMinutes(date, step);
+                                    newDate.setHours(date.getHours());
+                                    break;
+                                case 's':
+                                case 'S':
+                                    newDate = addSeconds(date, step);
+                                    newDate.setMinutes(date.getMinutes());
+                                    break;
+                                default:
+                            }
+
+                            this.setValue(newDate);
+                            this.elementRef.nativeElement.setSelectionRange(start, start);
+                        }
+                    }
+
+                } else if (e.code === 'Backspace') {
+                    let value = this.elementRef.nativeElement.value;
+                    const char = value.substring(start - 1, (end - start) || 1);
                     let newStart = start;
                     let newEnd = end;
-                    if (start === end) {
-                        newStart -= 1;
-                        newEnd = newStart;
-                    } else {
-                        newEnd -= 1;
-                    }
 
-                    value = replaceRange(value, newStart, newEnd, this.maskValue);
-                    this.setValue(new Date(NaN));
-                    void Promise.resolve().then(() => {
-                        this.renderer.setProperty(this.elementRef.nativeElement, 'value', value);
-                        if (newStart === newEnd) {
-                            selectPreviousChar();
-                        } else {
-                            this.elementRef.nativeElement.setSelectionRange(newStart, newStart);
+                    const selectPreviousChar = (): void => {
+                        let previousStart = getPosition(newStart, -1);
+                        if (previousStart === undefined) {
+                            previousStart = 0;
                         }
-                    });
-                } else {
-                    selectPreviousChar();
-                }
+                        this.elementRef.nativeElement.setSelectionRange(previousStart, previousStart);
+                    };
 
-            } else if (e.code === 'Delete') {
-                this.setValue(undefined);
-                this.applyMask();
+                    if (this.maskValue && (/[0-9]+/.exec(char) ?? char === this._placeHolderCharacter)) {
+                        if (start === end) {
+                            newStart -= 1;
+                            newEnd = newStart;
+                        } else {
+                            newEnd -= 1;
+                        }
 
-            } else if ((e.code === 'KeyA' && e.ctrlKey) || (e.code === 'KeyA' && e.metaKey)) { // Ctrl+ A + Cmd + A (Mac)
-                this.elementRef.nativeElement.setSelectionRange(0, -1);
+                        value = replaceRange(value, newStart, newEnd, this.maskValue);
+                        this.setValue(new Date(NaN));
 
-            } else if (/^[0-9]$/.exec(e.key)) {
-                let value = this.elementRef.nativeElement.value;
-                if (end > start) {
-                    value = replaceRange(value, start, end, this.maskValue);
-                }
-
-                const newStart = getPosition(start, 1);
-                if (newStart === undefined) {
-                    e.preventDefault();
-                    return false;
-                }
-
-                value = replaceAt(value, newStart, e.key);
-
-                const selectNextChar = (): void => {
-                    let nextStart = getPosition(newStart + 1, 1);
-                    if (nextStart === undefined) {
-                        nextStart = -1;
+                        return from(Promise.resolve()).pipe(
+                            map(() => {
+                                this.renderer.setProperty(this.elementRef.nativeElement, 'value', value);
+                                if (newStart === newEnd) {
+                                    selectPreviousChar();
+                                } else {
+                                    this.elementRef.nativeElement.setSelectionRange(newStart, newStart);
+                                }
+                                e.preventDefault();
+                                return false;
+                            })
+                        );
+                    } else {
+                        selectPreviousChar();
                     }
-                    this.elementRef.nativeElement.setSelectionRange(nextStart, nextStart);
-                };
 
-                const newDate = this.parseAndSetValue(value);
-                if (isValid(newDate)) {
-                    selectNextChar();
-                } else {
-                    void Promise.resolve().then(() => {
-                        this.renderer.setProperty(this.elementRef.nativeElement, 'value', value);
+                } else if (e.code === 'Delete') {
+                    this.setValue(undefined);
+                    this.applyMask();
+
+                } else if ((e.code === 'KeyA' && e.ctrlKey) || (e.code === 'KeyA' && e.metaKey)) { // Ctrl+ A + Cmd + A (Mac)
+                    this.elementRef.nativeElement.setSelectionRange(0, -1);
+
+                } else if (/^[0-9]$/.exec(e.key)) {
+                    let value = this.elementRef.nativeElement.value;
+                    if (end > start) {
+                        value = replaceRange(value, start, end, this.maskValue);
+                    }
+
+                    const newStart = getPosition(start, 1);
+                    if (newStart === undefined) {
+                        e.preventDefault();
+                        return of(false);
+                    }
+
+                    value = replaceAt(value, newStart, e.key);
+
+                    const selectNextChar = (): void => {
+                        let nextStart = getPosition(newStart + 1, 1);
+                        if (nextStart === undefined) {
+                            nextStart = -1;
+                        }
+                        this.elementRef.nativeElement.setSelectionRange(nextStart, nextStart);
+                    };
+
+                    const newDate = this.parseAndSetValue(value);
+                    if (isValid(newDate)) {
                         selectNextChar();
-                    });
+                    } else {
+                        return from(Promise.resolve()).pipe(
+                            map(() => {
+                                this.renderer.setProperty(this.elementRef.nativeElement, 'value', value);
+                                selectNextChar();
+                                e.preventDefault();
+                                return false;
+                            })
+                        );
+                    }
+
+                } else if (e.code === 'KeyD') {
+                    const today = set(new Date(), { seconds: 0, milliseconds: 0 });
+                    this.setValue(today);
+                    this.elementRef.nativeElement.setSelectionRange(0, -1);
+
+                } else if (this.forwardToInputKeyCodes.includes(e.key as KeyCodes)) {
+                    return of(undefined);
+
+                } else {
+                    console.log('DatepickerMaskDirective ignored code', e.code);
                 }
 
-            } else if (e.code === 'KeyD') {
-                const today = set(new Date(), { seconds: 0, milliseconds: 0 });
-                this.setValue(today);
-                this.elementRef.nativeElement.setSelectionRange(0, -1);
-
-            } else if (this.forwardToInputKeyCodes.includes(e.key as KeyCodes)) {
-                return undefined;
-
-            } else {
-                console.log('DatepickerMaskDirective ignored code', e.code);
-            }
-
-            e.preventDefault();
-            return false;
-        });
+                e.preventDefault();
+                return of(false);
+            }),
+            takeUntil(this.destroyed$)
+        ).subscribe();
     }
 
     public ngOnInit(): void {
