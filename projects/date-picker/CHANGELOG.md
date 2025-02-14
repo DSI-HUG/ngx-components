@@ -1,3 +1,15 @@
+## 1.0.14 (2025-02-14)
+
+
+### 🐛 Fixes
+
+- **datepicker:** repare manuel entry ([b24976e](https://github.com/DSI-HUG/ngx-components/commit/b24976e))
+
+
+### ❤️  Thank You
+
+- dgio
+
 ## 1.0.13 (2024-08-03)
 
 ### 🌱 Dependencies
