@@ -35,12 +35,12 @@
         "@angular/cdk": ">=19 <20",
         "@angular/forms": ">=19 <20",
         "@angular/material": ">=19 <20",
-        "rxjs": ">= 7.4.0",
-        "date-fns": "^2.30.0",
+        "rxjs": ">=7.8.1",
+        "date-fns": "^4.1.0",
         "@hug/ngx-numeric-stepper": "^3.0.0"
     },
     "dependencies": {
-        "tslib": "^2.7.0"
+        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public"

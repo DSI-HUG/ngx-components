@@ -37,7 +37,7 @@ export class NgxMultiFormatDateAdapter extends DateAdapter<TypeForAdapter, Local
     private delegateType = inject<Type<DateAdapter<Date>>>(MULTI_FORMAT_DATE_DELEGATE);
     // private matDateLocale = inject<Record<string, unknown>>(MAT_DATE_LOCALE, { optional: true }); //todo
     private acceptedValues = inject<readonly (string | RegExp)[]>(ACCEPTED_NON_DATE_VALUES, { optional: true });
-    private matDateLocale = inject<Record<string, unknown>>(MAT_DATE_LOCALE);
+    private matDateLocale = inject<Locale>(MAT_DATE_LOCALE);
 
     public constructor() {
         super();

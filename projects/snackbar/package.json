@@ -32,10 +32,10 @@
     "peerDependencies": {
         "@angular/common": ">=19 <20",
         "@angular/core": ">=19 <20",
-        "rxjs": ">= 7.4.0"
+        "rxjs": ">=7.8.1"
     },
     "dependencies": {
-        "tslib": "^2.7.0"
+        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public"
