@@ -6,7 +6,7 @@ import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 import { MatFormField, MatFormFieldAppearance } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
-import { isSameHour, set } from 'date-fns';
+import { Duration, isSameHour, set } from 'date-fns';
 import { debounce, distinctUntilChanged, map, Subject, timer } from 'rxjs';
 
 export type NgxTimePickerDisplayMode = 'fullTime' | 'fullTimeWithHoursDisabled' | 'fullTimeWithMinutesDisabled' | 'hoursOnly' | 'minutesOnly';

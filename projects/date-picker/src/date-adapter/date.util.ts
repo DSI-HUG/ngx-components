@@ -1,4 +1,4 @@
-import { isMatch as isMatchFns, isValid, parse, toDate } from 'date-fns';
+import { isMatch as isMatchFns, isValid, Locale, parse, toDate } from 'date-fns';
 
 const yearFormat = 'yyyy';
 const yearPattern = '[0-9]{4}';
