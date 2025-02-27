@@ -2550,23 +2550,56 @@ ngx-layout .editor-toolbar-wrapper {
 }
 
 ngx-status .ngx-snackbar {
-  color: white;
+  color: rgba(0, 0, 0, 0.87);
 }
 ngx-status .ngx-snackbar.ngx-snackbar-success {
-  background: #4caf50;
+  background: #e8f5e9;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
 }
+ngx-status .ngx-snackbar.ngx-snackbar-success mat-icon.status-icon,
+ngx-status .ngx-snackbar.ngx-snackbar-success .user-defined-actions button:not(:last-child) {
+  color: #1b5e20;
+}
+ngx-status .ngx-snackbar.ngx-snackbar-success .user-defined-actions button:last-child {
+  background: #c8e6c9;
+  color: rgba(0, 0, 0, 0.87);
+}
 ngx-status .ngx-snackbar.ngx-snackbar-primary, ngx-status .ngx-snackbar.ngx-snackbar-info {
-  background: #428bca;
+  background: #e8f1f9;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(66, 139, 202, 0.4);
 }
+ngx-status .ngx-snackbar.ngx-snackbar-primary mat-icon.status-icon,
+ngx-status .ngx-snackbar.ngx-snackbar-primary .user-defined-actions button:not(:last-child), ngx-status .ngx-snackbar.ngx-snackbar-info mat-icon.status-icon,
+ngx-status .ngx-snackbar.ngx-snackbar-info .user-defined-actions button:not(:last-child) {
+  color: #1d5bab;
+}
+ngx-status .ngx-snackbar.ngx-snackbar-primary .user-defined-actions button:last-child, ngx-status .ngx-snackbar.ngx-snackbar-info .user-defined-actions button:last-child {
+  background: #c6dcef;
+  color: #000000;
+}
 ngx-status .ngx-snackbar.ngx-snackbar-warn {
-  background: #ff9800;
+  background: #fff3e0;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4);
 }
+ngx-status .ngx-snackbar.ngx-snackbar-warn mat-icon.status-icon,
+ngx-status .ngx-snackbar.ngx-snackbar-warn .user-defined-actions button:not(:last-child) {
+  color: #e65100;
+}
+ngx-status .ngx-snackbar.ngx-snackbar-warn .user-defined-actions button:last-child {
+  background: #ffe0b2;
+  color: rgba(0, 0, 0, 0.87);
+}
 ngx-status .ngx-snackbar.ngx-snackbar-danger {
-  background: #f44336;
+  background: #ffebee;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
+}
+ngx-status .ngx-snackbar.ngx-snackbar-danger mat-icon.status-icon,
+ngx-status .ngx-snackbar.ngx-snackbar-danger .user-defined-actions button:not(:last-child) {
+  color: #b71c1c;
+}
+ngx-status .ngx-snackbar.ngx-snackbar-danger .user-defined-actions button:last-child {
+  background: #b71c1c;
+  color: white;
 }
 
 section {
@@ -10301,7 +10334,7 @@ ngx-search-container .ngx-search-container input {
   color: rgba(0, 0, 0, 0.8);
 }
 ngx-search-container .ngx-search-container input::placeholder {
-  color: rgba(250, 250, 250, 0.8);
+  color: rgba(0, 0, 0, 0.8);
 }
 ngx-search-container .ngx-search-container-mobile.active {
   background-color: #fafafa;
@@ -15391,23 +15424,56 @@ body#hug-ngx .mat-icon {
 }
 
 ngx-status .ngx-snackbar {
-  color: white;
+  color: rgba(0, 0, 0, 0.87);
 }
 ngx-status .ngx-snackbar.ngx-snackbar-success {
-  background: #4caf50;
+  background: #e8f5e9;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
 }
+ngx-status .ngx-snackbar.ngx-snackbar-success mat-icon.status-icon,
+ngx-status .ngx-snackbar.ngx-snackbar-success .user-defined-actions button:not(:last-child) {
+  color: #1b5e20;
+}
+ngx-status .ngx-snackbar.ngx-snackbar-success .user-defined-actions button:last-child {
+  background: #c8e6c9;
+  color: rgba(0, 0, 0, 0.87);
+}
 ngx-status .ngx-snackbar.ngx-snackbar-primary, ngx-status .ngx-snackbar.ngx-snackbar-info {
-  background: #428bca;
+  background: #e8f1f9;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(66, 139, 202, 0.4);
 }
+ngx-status .ngx-snackbar.ngx-snackbar-primary mat-icon.status-icon,
+ngx-status .ngx-snackbar.ngx-snackbar-primary .user-defined-actions button:not(:last-child), ngx-status .ngx-snackbar.ngx-snackbar-info mat-icon.status-icon,
+ngx-status .ngx-snackbar.ngx-snackbar-info .user-defined-actions button:not(:last-child) {
+  color: #1d5bab;
+}
+ngx-status .ngx-snackbar.ngx-snackbar-primary .user-defined-actions button:last-child, ngx-status .ngx-snackbar.ngx-snackbar-info .user-defined-actions button:last-child {
+  background: #c6dcef;
+  color: #000000;
+}
 ngx-status .ngx-snackbar.ngx-snackbar-warn {
-  background: #ff9800;
+  background: #fff3e0;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4);
 }
+ngx-status .ngx-snackbar.ngx-snackbar-warn mat-icon.status-icon,
+ngx-status .ngx-snackbar.ngx-snackbar-warn .user-defined-actions button:not(:last-child) {
+  color: #e65100;
+}
+ngx-status .ngx-snackbar.ngx-snackbar-warn .user-defined-actions button:last-child {
+  background: #ffe0b2;
+  color: rgba(0, 0, 0, 0.87);
+}
 ngx-status .ngx-snackbar.ngx-snackbar-danger {
-  background: #f44336;
+  background: #ffebee;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
+}
+ngx-status .ngx-snackbar.ngx-snackbar-danger mat-icon.status-icon,
+ngx-status .ngx-snackbar.ngx-snackbar-danger .user-defined-actions button:not(:last-child) {
+  color: #b71c1c;
+}
+ngx-status .ngx-snackbar.ngx-snackbar-danger .user-defined-actions button:last-child {
+  background: #b71c1c;
+  color: white;
 }
 
 ngx-message-box[horizontal] .ngx-message-box.info .mat-card-actions, ngx-message-box[horizontal] .ngx-message-box.primary .mat-card-actions, ngx-message-box[horizontal] .ngx-message-box.danger .mat-card-actions, ngx-message-box[horizontal] .ngx-message-box.success .mat-card-actions, ngx-message-box[horizontal] .ngx-message-box.warn .mat-card-actions {
