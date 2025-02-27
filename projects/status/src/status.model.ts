@@ -9,6 +9,7 @@ export interface NgxStatusAction {
 
 export interface NgxStatus {
     title?: string;
+    subtitle?: string;
     type?: NgxStatusType;
     text?: string;
     technicalText?: string;
