@@ -1,3 +1,13 @@
+## 3.1.0 (2025-02-27)
+
+### 🚀 Features
+
+- **NgxStatusComponent:** new guidelines for status component + m3 theme and docs ([4f62721](https://github.com/DSI-HUG/ngx-components/commit/4f62721))
+
+### ❤️ Thank You
+
+- Maxime F.
+
 ## 3.0.1 (2025-02-07)
 
 ### 🐛 Fixes
