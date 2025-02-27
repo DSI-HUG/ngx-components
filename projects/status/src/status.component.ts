@@ -75,11 +75,11 @@ export class NgxStatusComponent {
             case 'warn':
                 return 'warning';
             case 'danger':
-                return 'error_outline';
+                return 'release_alert';
             case 'primary':
                 return 'notifications';
             default:
-                return 'info';
+                return 'notifications';
         }
     }
 }

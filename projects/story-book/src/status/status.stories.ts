@@ -46,7 +46,7 @@ export const complete: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This example showcases a `NgxStatusComponent` with all available features, including title, type, text, date, duration, custom CSS class, technical text, and multiple actions. Depending on the user\'s "familyCode" property given, the UserCard can have a green, blue, red or gray colored badge.<br /><ul><li>Green : <code>Médico-technique</code>, <code>Social</code>, <code>Médico-thérapeutique</code>, <code>Pharmacie</code></li><li>Blue : <code>Soins</code>, <code>Infirmier-e</code></li><li>Red : <code>Médecin dentiste</code>, <code>Médecin</code></li><li>Gray : Any other text</li><li>Nothing : Empty familyCode</li></ul>'
+                story: 'This example showcases a `NgxStatusComponent` with all available features, including title, type, text, date, duration, custom CSS class, technical text, and multiple actions.'
             }
         }
     },
@@ -63,6 +63,7 @@ export const complete: Story = {
     args: {
         status: {
             title: 'Sample Status Title',
+            subtitle: 'A big subtitle to add some more context to this small toast',
             type: 'info',
             text: 'This is a sample status message.',
             date: new Date(),

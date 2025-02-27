@@ -11,35 +11,138 @@
 
     ngx-status {
         .ngx-snackbar {
-            color: mat.m2-get-color-from-palette($primary, default-contrast);
+            color: mat.m2-get-color-from-palette($foreground, text);
 
             &.ngx-snackbar-success {
-                background: mat.m2-get-color-from-palette($success);
+                background: mat.m2-get-color-from-palette($success, 50);
                 box-shadow:
                     0 4px 20px 0 rgba(0, 0, 0, 0.14),
                     0 7px 10px -5px rgba(mat.m2-get-color-from-palette($success), 0.4);
+
+                mat-icon.status-icon,
+                .user-defined-actions button:not(:last-child) {
+                    color: mat.m2-get-color-from-palette($success, 900);
+                }
+
+                .user-defined-actions button:last-child {
+                    background: mat.m2-get-color-from-palette($success, 100);
+                    color: mat.m2-get-contrast-color-from-palette($success, 100);
+                }
             }
 
             &.ngx-snackbar-primary,
             &.ngx-snackbar-info {
-                background: mat.m2-get-color-from-palette($primary);
+                background: mat.m2-get-color-from-palette($primary, 50);
                 box-shadow:
                     0 4px 20px 0 rgba(0, 0, 0, 0.14),
                     0 7px 10px -5px rgba(mat.m2-get-color-from-palette($primary), 0.4);
+
+                mat-icon.status-icon,
+                .user-defined-actions button:not(:last-child) {
+                    color: mat.m2-get-color-from-palette($primary, 900);
+                }
+
+                .user-defined-actions button:last-child {
+                    background: mat.m2-get-color-from-palette($primary, 100);
+                    color: mat.m2-get-contrast-color-from-palette($primary, 100);
+                }
             }
 
             &.ngx-snackbar-warn {
-                background: mat.m2-get-color-from-palette($warn);
+                background: mat.m2-get-color-from-palette($warn, 50);
                 box-shadow:
                     0 4px 20px 0 rgba(0, 0, 0, 0.14),
                     0 7px 10px -5px rgba(mat.m2-get-color-from-palette($warn), 0.4);
+
+                mat-icon.status-icon,
+                .user-defined-actions button:not(:last-child) {
+                    color: mat.m2-get-color-from-palette($warn, 900);
+                }
+
+                .user-defined-actions button:last-child {
+                    background: mat.m2-get-color-from-palette($warn, 100);
+                    color: mat.m2-get-contrast-color-from-palette($warn, 100);
+                }
             }
 
             &.ngx-snackbar-danger {
-                background: mat.m2-get-color-from-palette($danger);
+                background: mat.m2-get-color-from-palette($danger, 50);
                 box-shadow:
                     0 4px 20px 0 rgba(0, 0, 0, 0.14),
                     0 7px 10px -5px rgba(mat.m2-get-color-from-palette($danger), 0.4);
+
+                mat-icon.status-icon,
+                .user-defined-actions button:not(:last-child) {
+                    color: mat.m2-get-color-from-palette($danger, 900);
+                }
+
+                .user-defined-actions button:last-child {
+                    background: mat.m2-get-color-from-palette($danger, 900);
+                    color: mat.m2-get-contrast-color-from-palette($danger, 900);
+                }
+            }
+        }
+    }
+}
+
+@mixin m3-theme() {
+    ngx-status {
+        .ngx-snackbar {
+            color: var(--mat-sys-on-surface-variant);
+
+            background: var(--mat-sys-surface-container-low);
+            box-shadow:
+                0 4px 20px 0 rgba(0, 0, 0, 0.14),
+                0 7px 10px -5px rgba(var(--mat-sys-surface-container-low), 0.4);
+
+            mat-icon.status-icon,
+            .user-defined-actions button:not(:last-child) {
+                color: var(--mat-sys-primary);
+            }
+
+            .user-defined-actions button:last-child {
+                background: var(--mat-sys-primary-container);
+                color: var(--mat-sys-on-primary-container);
+            }
+
+            &.ngx-snackbar-success {
+                @include mat.theme-overrides(
+                    (
+                        surface-container-low: map-get(mat.$green-palette, 98),
+                        primary: map-get(mat.$green-palette, 50),
+                        primary-container: map-get(mat.$green-palette, 90),
+                        on-primary-container: map-get(mat.$green-palette, contrast, 90)
+                    )
+                );
+            }
+
+            &.ngx-snackbar-warn {
+                @include mat.theme-overrides(
+                    (
+                        surface-container-low: map-get(mat.$orange-palette, 98),
+                        primary: map-get(mat.$orange-palette, 50),
+                        primary-container: map-get(mat.$orange-palette, 90),
+                        on-primary-container: map-get(mat.$orange-palette, contrast, 90)
+                    )
+                );
+            }
+
+            &.ngx-snackbar-danger {
+                background: var(--mat-sys-error-container);
+                box-shadow:
+                    0 4px 20px 0 rgba(0, 0, 0, 0.14),
+                    0 7px 10px -5px rgba(var(--mat-sys-error-container), 0.4);
+                color: var(--mat-sys-on-error-container);
+
+                mat-icon.status-icon,
+                .user-defined-actions button:not(:last-child) {
+                    color: var(--mat-sys-error);
+                }
+
+                .user-defined-actions button:last-child {
+                    background: var(--mat-sys-error);
+                    color: var(--mat-sys-on-error);
+                }
             }
         }
     }

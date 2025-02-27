@@ -1,55 +1,92 @@
 ngx-status {
     .ngx-snackbar {
-        font-family: 'Roboto';
-        display: flex;
         border: 0;
-        border-radius: 3px;
-        line-height: 20px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Roboto';
+        font-size: 14px;
+        gap: 4px;
         min-width: 250px;
         overflow: hidden;
-        padding: 1rem;
-        width: 30vw;
+        padding: 16px;
+        width: clamp(400px, 30vw, 600px);
         z-index: 1010;
-        align-items: center;
-        gap: 1rem;
 
-        &:before {
-            font-size: 2rem;
-        }
+        .header {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
 
-        > .mat-icon {
-            overflow: visible;
-        }
+            .title {
+                flex: 1 1 100%;
+                overflow: hidden;
 
-        > span {
-            width: calc(100% - 24px);
-            b {
-                display: block;
-                font-size: 12px;
-                font-weight: 500;
-                padding-right: 2.5rem;
-                text-transform: uppercase;
+                b {
+                    display: block;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 12px;
+                    padding-right: 2.5rem;
+                }
+
+                p {
+                    font-size: 11px;
+                    font-weight: 400;
+                    line-height: 12px;
+                    margin: 0;
+                    margin-top: 0.2rem;
+                    opacity: 0.35;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
             }
 
+            .action-container {
+                flex: 0 0 auto;
+
+                mat-icon {
+                    cursor: pointer;
+                    margin-left: 0.5rem;
+                    opacity: 0.8;
+                    transition: opacity 200ms ease;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .mat-icon {
+                flex: 0 0 auto;
+                font-size: 18px;
+                height: 18px;
+                line-height: 18px;
+                overflow: visible;
+                width: 18px;
+            }
+        }
+
+        .content {
+            padding: 8px 26px;
+
             p {
+                margin: 0;
                 font-weight: 300;
             }
         }
 
-        .action-container {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
+        .user-defined-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
 
-            mat-icon {
-                cursor: pointer;
-                margin-left: 0.5rem;
-                opacity: 0.8;
-                transition: opacity 200ms ease;
-
-                &:hover {
-                    opacity: 1;
-                }
+            button {
+                font-weight: normal;
+                border-radius: 99px;
+                padding: 10px 24px;
             }
         }
     }

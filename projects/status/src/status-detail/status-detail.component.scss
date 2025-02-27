@@ -29,7 +29,7 @@ ngx-status-detail {
 
             .detail-error-container {
                 overflow: scroll;
-                background-color: #e3ecf0;
+                backdrop-filter: brightness(1.5);
                 color: rgba(0, 0, 0, 0.94);
                 padding: 1rem;
                 overflow: auto;

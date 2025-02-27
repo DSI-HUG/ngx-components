@@ -3,29 +3,36 @@
         alignment="bottom right"
         [class.hasInfo]="!!status.technicalText"
         class="ngx-snackbar ngx-snackbar-{{ status.type }} {{ status.className }}">
-        @if (statusIcon) {
-            <mat-icon>{{ statusIcon }}</mat-icon>
-        }
-        <span>
-            <b>{{ status.title }}</b>
-            @if (status.text; as text) {
-                <p [innerHTML]="text"></p>
+        <div class="header">
+            @if (statusIcon) {
+                <mat-icon class="status-icon">{{ statusIcon }}</mat-icon>
             }
-            @if (status.actions?.length) {
-                <div class="user-defined-actions">
-                    @for (action of status.actions; track $index) {
-                        <button type="button" mat-button (click)="executeAction(action)" [class]="action.className">
-                            {{ action.label }}
-                        </button>
-                    }
-                </div>
-            }
-            <span class="action-container">
+            <div class="title">
+                <b>{{ status.title }}</b>
+                @if (!!status.subtitle) {
+                    <p>{{ status.subtitle }}</p>
+                }
+            </div>
+            <div class="action-container">
                 @if (status.technicalText) {
                     <mat-icon class="info" inline (click)="displayDetailedStatus$.next(status)">info</mat-icon>
                 }
                 <mat-icon class="close" inline (click)="close.next()">close</mat-icon>
-            </span>
-        </span>
+            </div>
+        </div>
+        @if (status.text; as text) {
+            <div class="content">
+                <p [innerHTML]="text"></p>
+            </div>
+        }
+        @if (status.actions?.length) {
+            <div class="user-defined-actions">
+                @for (action of status.actions; track $index) {
+                    <button type="button" mat-button (click)="executeAction(action)" [class]="action.className">
+                        {{ action.label }}
+                    </button>
+                }
+            </div>
+        }
     </ngx-snackbar>
 }
