@@ -51,7 +51,7 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
     private maskValue = '';
 
     private readonly formatCharRegExp = /[mdyhs]/i;
-    private readonly forwardToInputKeyCodes = ['LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow', 'PageDown', 'PageUp', 'End', 'Home', 'Tab'];
+    private readonly forwardToInputKeyCodes = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'PageDown', 'PageUp', 'End', 'Home', 'Tab'];
 
     public constructor(
         @Optional() @Inject(MAT_DATE_FORMATS) private readonly dateFormats: MatDateFormats,
@@ -185,10 +185,25 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
                 const replaceRange = (value: string, begin: number, to: number, mask: string): string => Array.from(value).map((c, index) => index >= begin && index <= to ? mask[index] : c).join('');
                 const replaceAt = (value: string, index: number, char: string): string => value.substring(0, index) + char + value.substring(index + char.length);
 
-                if ((e.code === 'UpArrow' || e.code === 'DownArrow') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
+                if ((e.code === 'ArrowLeft' || e.code === 'ArrowRight') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
+                    if (e.code === 'ArrowLeft') {
+                        let newStart = getPosition(start, -1);
+                        if (newStart === undefined) {
+                            newStart = 1;
+                        }
+                        newStart -= 1;
+                        this.elementRef.nativeElement.setSelectionRange(newStart, newStart);
+                    } else {
+                        let newStart = getPosition(end + 1, 1);
+                        if (newStart === undefined) {
+                            newStart = 9999;
+                        }
+                        this.elementRef.nativeElement.setSelectionRange(newStart, newStart);
+                    }
+                } else if ((e.code === 'ArrowUp' || e.code === 'ArrowDown') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
                     if (this.ngControl.value instanceof Date) {
                         const date = this.ngControl.value;
-                        const step = e.code === 'UpArrow' ? 1 : -1;
+                        const step = e.code === 'ArrowUp' ? 1 : -1;
                         let formatChar = formatExpression[start];
                         if (!formatChar || !this.formatCharRegExp.exec(formatChar)) {
                             formatChar = formatExpression[start - 1];
@@ -233,7 +248,7 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
 
                 } else if (e.code === 'Backspace') {
                     let value = this.elementRef.nativeElement.value;
-                    const char = value.substring(start - 1, (end - start) || 1);
+                    const char = value.substring(start - 1, end);
                     let newStart = start;
                     let newEnd = end;
 
@@ -375,7 +390,7 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
             }
 
             this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.maskValue);
-            this.elementRef.nativeElement.setSelectionRange(0, 0);
+            // this.elementRef.nativeElement.setSelectionRange(0, 0);
         });
     }
 
