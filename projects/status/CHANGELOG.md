@@ -1,3 +1,13 @@
+## 3.2.0 (2025-03-03)
+
+### 🚀 Features
+
+- **NgxStatusService:** add support for subtitle + fix "component already have attached view" error ([f57e4c6](https://github.com/DSI-HUG/ngx-components/commit/f57e4c6))
+
+### ❤️ Thank You
+
+- Maxime F.
+
 ## 3.1.0 (2025-02-27)
 
 ### 🚀 Features
