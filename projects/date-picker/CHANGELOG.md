@@ -1,3 +1,15 @@
+## 1.0.16 (2025-03-03)
+
+
+### 🐛 Fixes
+
+- **datepicker-mask.directive.ts:** fix keyboard navigation ([f1ed0fe](https://github.com/DSI-HUG/ngx-components/commit/f1ed0fe))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.0.15 (2025-03-03)
 
 
