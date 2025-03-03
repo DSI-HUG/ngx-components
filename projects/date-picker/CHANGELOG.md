@@ -1,3 +1,15 @@
+## 1.0.15 (2025-03-03)
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker:** upgrade to v1.1.14 ([6e80c5b](https://github.com/DSI-HUG/ngx-components/commit/6e80c5b))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+
 ## 1.0.14 (2025-02-14)
 
 

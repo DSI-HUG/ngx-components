@@ -1,3 +1,15 @@
+## 1.1.14 (2025-03-03)
+
+
+### 🐛 Fixes
+
+- **ngx-time-picker:** améliorer le time-picker pour qu'il soit accessible via cypress FC-95 ([ced57e7](https://github.com/DSI-HUG/ngx-components/commit/ced57e7))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.1.13 (2024-08-03)
 
 ### 🐛 Fixes
