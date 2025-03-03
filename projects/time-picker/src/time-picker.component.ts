@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NgxDestroy } from '@hug/ngx-core';
 import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
 import { isSameHour, set } from 'date-fns';
-import { debounce, distinctUntilChanged, map, Subject, takeUntil, timer } from 'rxjs';
+import { distinctUntilChanged, map, mergeWith, Subject, takeUntil, tap } from 'rxjs';
 
 export type NgxTimePickerDisplayMode = 'fullTime' | 'fullTimeWithHoursDisabled' | 'fullTimeWithMinutesDisabled' | 'hoursOnly' | 'minutesOnly';
 
@@ -17,7 +17,6 @@ type DataType = 'date' | 'duration';
 
 type FieldType = 'hours' | 'minutes';
 
-// TODO sdil refactor rxjs flows
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'ngx-time-picker',
@@ -98,10 +97,10 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
 
     public onHoursChange$ = new Subject<Event | number>();
     public onMinutesChange$ = new Subject<Event | number>();
-    public _step = 1;
 
     protected changeDetectorRef = inject(ChangeDetectorRef);
     protected control = inject(NgControl, { optional: true, self: true });
+    protected _step = 1;
 
     private _disabled = false;
     private _value?: NgxDateOrDuration;
@@ -114,8 +113,7 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
             this.control.valueAccessor = this;
         }
 
-        this.onHoursChange$.pipe(
-            debounce(hours => timer(typeof hours === 'object' ? 0 : 10)),
+        const onHoursChange$ = this.onHoursChange$.pipe(
             distinctUntilChanged(),
             map(hours => {
                 if (typeof hours === 'object') {
@@ -124,35 +122,34 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
                 }
                 return [!isNaN(hours) ? hours : 0, false] as const;
             }),
-            takeUntil(this.destroyed$)
-        ).subscribe(([hours, isEvent]) => {
-            if (!this.value) {
-                this.value = this.dataType === 'date' ? set(new Date(), { hours, minutes: 0, seconds: 0, milliseconds: 0 }) : { hours, minutes: 0 } as Duration;
-            } else if (this.value instanceof Date) {
-                const value = this.value?.getTime();
-                const clone = new Date(value);
-                if (hours !== undefined) {
-                    clone.setHours(hours);
+            tap(([hours, isEvent]) => {
+                if (!this.value) {
+                    this.value = this.dataType === 'date' ? set(new Date(), { hours, minutes: 0, seconds: 0, milliseconds: 0 }) : { hours, minutes: 0 } as Duration;
+                } else if (this.value instanceof Date) {
+                    const value = this.value?.getTime();
+                    const clone = new Date(value);
+                    if (hours !== undefined) {
+                        clone.setHours(hours);
+                    }
+                    this.value = clone;
+                } else {
+                    this.value = {
+                        hours: hours && hours < 0 ? 0 : hours,
+                        minutes: this.value.minutes
+                    };
                 }
-                this.value = clone;
-            } else {
-                this.value = {
-                    hours: hours && hours < 0 ? 0 : hours,
-                    minutes: this.value.minutes
-                };
-            }
-            this.changeDetectorRef.markForCheck();
+                this.changeDetectorRef.markForCheck();
 
-            if (isEvent && this._autoFocus && this.minutes) {
-                this.minutes.nativeElement.focus({
-                    preventScroll: true
-                });
-                this.minutes.nativeElement.select();
-            }
-        });
+                if (isEvent && this._autoFocus && this.minutes) {
+                    this.minutes.nativeElement.focus({
+                        preventScroll: true
+                    });
+                    this.minutes.nativeElement.select();
+                }
+            })
+        );
 
-        this.onMinutesChange$.pipe(
-            debounce(minutes => timer(typeof minutes === 'object' ? 0 : 10)),
+        const onMinutesChange$ = this.onMinutesChange$.pipe(
             distinctUntilChanged(),
             map(event => {
                 let minutes: number | undefined;
@@ -164,110 +161,35 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
                 }
                 return minutes && !isNaN(minutes) && minutes || 0;
             }),
-            takeUntil(this.destroyed$)
-        ).subscribe(minutes => {
-            if (!this.value) {
-                this.value = this.dataType === 'date' ? set(new Date(), { hours: 0, minutes, seconds: 0, milliseconds: 0 }) : { hours: 0, minutes } as Duration;
-            } else if (this.value instanceof Date) {
-                const newValue = new Date(this.value.getTime());
-                if (minutes < 0) {
-                    minutes += 60;
-                } else if (minutes >= 60) {
-                    minutes -= 60;
-                }
-                newValue.setMinutes(minutes);
+            tap(minutes => {
+                if (!this.value) {
+                    this.value = this.dataType === 'date' ? set(new Date(), { hours: 0, minutes, seconds: 0, milliseconds: 0 }) : { hours: 0, minutes } as Duration;
+                } else if (this.value instanceof Date) {
+                    const newValue = new Date(this.value.getTime());
+                    if (minutes < 0) {
+                        minutes += 60;
+                    } else if (minutes >= 60) {
+                        minutes -= 60;
+                    }
+                    newValue.setMinutes(minutes);
 
-                if (this.mode !== 'fullTimeWithHoursDisabled' || (this.mode === 'fullTimeWithHoursDisabled' && isSameHour(this.value, newValue))) {
-                    this.value = newValue;
-                }
-            } else {
-                this.value = {
-                    hours: this.value.hours,
-                    minutes: minutes < 0 || minutes >= 60 ? 0 : minutes
-                };
-            }
-            this.changeDetectorRef.markForCheck();
-        });
-    }
-
-    public onKeyDown($event: KeyboardEvent, mode: 'hours' | 'minutes'): void {
-        // Get input element
-        const inputElement = mode === 'hours' ? this.hours?.nativeElement : this.minutes?.nativeElement;
-        if ($event.key?.toLowerCase() === 'd') {
-            $event.stopPropagation();
-            $event.preventDefault();
-            this.value = new Date();
-        } else if (inputElement) {
-            if ($event.key?.toLowerCase() === 'a' && $event.ctrlKey) {
-                inputElement.select();
-            } else if ($event.key && !['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Tab', 'Enter', 'Control', 'Shift'].includes($event.key)) {
-                // Set regex for input format validation (differs if we are dealing with a date or a duration)
-                let regex;
-                if (mode === 'hours') {
-                    regex = this.dataType === 'date' ? /^(\d|[01]\d|2[0-3])$/ : /^(\d+)$/;
+                    if (this.mode !== 'fullTimeWithHoursDisabled' || (this.mode === 'fullTimeWithHoursDisabled' && isSameHour(this.value, newValue))) {
+                        this.value = newValue;
+                    }
                 } else {
-                    regex = /^(\d|[0-5]\d)$/;
+                    this.value = {
+                        hours: this.value.hours,
+                        minutes: minutes < 0 || minutes >= 60 ? 0 : minutes
+                    };
                 }
+                this.changeDetectorRef.markForCheck();
+            })
+        );
 
-                // Get the selection in input element
-                const [selectionStart, selectionEnd] = [inputElement.selectionStart || 0, inputElement.selectionEnd || 0].sort((a, b) => a - b);
-                const selectionDiff = selectionEnd - selectionStart;
-
-                // Get the current value in input element and update it with the new touched key
-                const inputValue = inputElement.value || '';
-                const inputValueArr = Array.from(inputValue);
-                inputValueArr.splice(selectionStart, selectionDiff, $event.key);
-                const newInputValue = inputValueArr.join('');
-
-                // Prevent event if the time is not valid
-                if (!regex.test(newInputValue)) {
-                    $event.stopPropagation();
-                    $event.preventDefault();
-                } else if (this._autoFocus && mode === 'hours' && ((this.dataType === 'date' && parseFloat(newInputValue) >= 3) || newInputValue.length === 2)) {
-                    this.onHoursChange$.next($event);
-                }
-            }
-        }
-    }
-
-    public get hoursValue(): number | undefined {
-        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithMinutesDisabled' && !!this.control?.pristine)) {
-            return undefined;
-        }
-        return this.value instanceof Date ? this.value.getHours() : this.value.hours;
-    }
-
-    public get minutesValue(): number | undefined {
-        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithHoursDisabled' && !!this.control?.pristine)) {
-            return undefined;
-        }
-        return this.value instanceof Date ? this.value.getMinutes() : this.value.minutes;
-    }
-
-    public incrementValue(fieldType: FieldType): void {
-        if (fieldType === 'hours') {
-            this.onHoursChange$.next((this.hoursValue || 0) + 1);
-        } else {
-            this.onMinutesChange$.next((this.minutesValue || 0) + this._step);
-        }
-    }
-
-    public decrementValue(fieldType: FieldType): void {
-        if (fieldType === 'hours') {
-            this.onHoursChange$.next((this.hoursValue || 0) - 1);
-        } else {
-            this.onMinutesChange$.next((this.minutesValue || 0) - this._step);
-        }
-    }
-
-    public onClick(mode: 'hours' | 'minutes'): void {
-        if (this._autoFocus) {
-            if (mode === 'hours') {
-                this.hours?.nativeElement.select();
-            } else {
-                this.minutes?.nativeElement.select();
-            }
-        }
+        onHoursChange$.pipe(
+            mergeWith(onMinutesChange$),
+            takeUntil(this.destroyed$)
+        ).subscribe();
     }
 
     // ************* ControlValueAccessor Implementation **************
@@ -312,6 +234,70 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
         this.disabled = isDisabled;
     }
     // ************* End of ControlValueAccessor Implementation **************
+
+    protected onKeyDown($event: KeyboardEvent, fieldType: FieldType): void {
+        // Get input element
+        const inputElement = fieldType === 'hours' ? this.hours?.nativeElement : this.minutes?.nativeElement;
+        if ($event.key?.toLowerCase() === 'd') {
+            $event.stopPropagation();
+            $event.preventDefault();
+            this.value = new Date();
+        } else if (inputElement) {
+            if ($event.key?.toLowerCase() === 'a' && $event.ctrlKey) {
+                inputElement.select();
+            } else if ($event.key && !['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Tab', 'Enter', 'Control', 'Shift'].includes($event.key)) {
+                // Set regex for input format validation (differs if we are dealing with a date or a duration)
+                let regex;
+                if (fieldType === 'hours') {
+                    regex = this.dataType === 'date' ? /^(\d|[01]\d|2[0-3])$/ : /^(\d+)$/;
+                } else {
+                    regex = /^(\d|[0-5]\d)$/;
+                }
+
+                // Get the selection in input element
+                const [selectionStart, selectionEnd] = [inputElement.selectionStart || 0, inputElement.selectionEnd || 0].sort((a, b) => a - b);
+                const selectionDiff = selectionEnd - selectionStart;
+
+                // Get the current value in input element and update it with the new touched key
+                const inputValue = inputElement.value || '';
+                const inputValueArr = Array.from(inputValue);
+                inputValueArr.splice(selectionStart, selectionDiff, $event.key);
+                const newInputValue = inputValueArr.join('');
+
+                // Prevent event if the time is not valid
+                if (!regex.test(newInputValue)) {
+                    $event.stopPropagation();
+                    $event.preventDefault();
+                } else if (this._autoFocus && fieldType === 'hours' && ((this.dataType === 'date' && parseFloat(newInputValue) >= 3) || newInputValue.length === 2)) {
+                    this.onHoursChange$.next($event);
+                }
+            }
+        }
+    }
+
+    protected get hoursValue(): number | undefined {
+        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithMinutesDisabled' && !!this.control?.pristine)) {
+            return undefined;
+        }
+        return this.value instanceof Date ? this.value.getHours() : this.value.hours;
+    }
+
+    protected get minutesValue(): number | undefined {
+        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithHoursDisabled' && !!this.control?.pristine)) {
+            return undefined;
+        }
+        return this.value instanceof Date ? this.value.getMinutes() : this.value.minutes;
+    }
+
+    protected onClick(fieldType: FieldType): void {
+        if (this._autoFocus) {
+            if (fieldType === 'hours') {
+                this.hours?.nativeElement.select();
+            } else {
+                this.minutes?.nativeElement.select();
+            }
+        }
+    }
 
     protected onChangeCallback = (_a: unknown): void => undefined;
     protected onTouchedCallback = (): void => undefined;
