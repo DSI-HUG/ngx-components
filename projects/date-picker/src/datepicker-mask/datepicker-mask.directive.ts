@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Directive, ElementRef, forwardRef, Inject, Input, OnInit, Optional, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, forwardRef, Inject, Input, Optional, Renderer2 } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, NgControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
-import { filterMap, KeyCodes, NgxDestroy, subscribeWith } from '@hug/ngx-core';
+import { filterMap, KeyCodes, NgxDestroy } from '@hug/ngx-core';
 import { addDays, addHours, addMinutes, addMonths, addSeconds, addYears, isValid, parse, set } from 'date-fns';
 import { isNil } from 'lodash-es';
-import { delay, EMPTY, filter, from, fromEvent, map, mergeWith, of, startWith, switchMap, takeUntil, tap, timeInterval } from 'rxjs';
+import { delay, EMPTY, filter, from, fromEvent, map, mergeWith, of, shareReplay, startWith, Subject, switchMap, takeUntil, tap, timeInterval } from 'rxjs';
 
 import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.service';
 
@@ -22,7 +22,9 @@ import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.s
     ],
     standalone: true
 })
-export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
+export class NgxDatepickerMaskDirective extends NgxDestroy {
+    private applyMask$ = new Subject<void>();
+
     // eslint-disable-next-line @angular-eslint/no-input-rename
     @Input('dateTimeFormat')
     public set dateTimeFormat(value: string) {
@@ -37,13 +39,13 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
 
     private set formatExpression(value: string) {
         this._formatExpression = value;
-        this.applyMask();
+        this.applyMask$.next();
     }
 
     @Input()
     public set placeHolderCharacter(value: string) {
         this._placeHolderCharacter = value || '_';
-        this.applyMask();
+        this.applyMask$.next();
     }
 
     private _placeHolderCharacter = '_';
@@ -65,11 +67,6 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
 
         elementRef.nativeElement.setAttribute('autocomplete', 'off');
 
-        const dblClick$ = fromEvent<Event>(elementRef.nativeElement, 'mousedown').pipe(
-            timeInterval(),
-            filter(intervalEvent => intervalEvent.interval < 400)
-        );
-
         const selectAll$ = fromEvent<FocusEvent>(elementRef.nativeElement, 'focus').pipe(
             delay(400),
             mergeWith(fromEvent<KeyboardEvent>(elementRef.nativeElement, 'keydown')),
@@ -89,20 +86,22 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
             })
         );
 
-        fromEvent<ClipboardEvent>(elementRef.nativeElement, 'paste').pipe(
-            takeUntil(this.destroyed$)
-        ).subscribe(event => {
-            // Get pasted data via clipboard
-            const pastedData = event.clipboardData?.getData('Text');
-            if (!pastedData) {
-                return undefined;
-            }
-            this.parseAndSetValue(pastedData);
-            event.preventDefault();
-            return false;
-        });
+        const paste$ = fromEvent<ClipboardEvent>(elementRef.nativeElement, 'paste').pipe(
+            tap(event => {
+                // Get pasted data via clipboard
+                const pastedData = event.clipboardData?.getData('Text');
+                if (!pastedData) {
+                    return undefined;
+                }
+                this.parseAndSetValue(pastedData);
+                event.preventDefault();
+                return false;
+            })
+        );
 
-        dblClick$.pipe(
+        const dblClick$ = fromEvent<Event>(elementRef.nativeElement, 'mousedown').pipe(
+            timeInterval(),
+            filter(intervalEvent => intervalEvent.interval < 400),
             switchMap(intervalEvent => {
                 // Double click
                 if (!this._formatExpression) {
@@ -141,18 +140,52 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
                 return of([intervalEvent.value, start, end] as const);
             }),
             delay(1),
-            subscribeWith(selectAll$),
-            takeUntil(this.destroyed$)
-        ).subscribe(([event, start, end]) => {
-            if (start !== undefined && end !== undefined) {
-                this.elementRef.nativeElement.setSelectionRange(start, end);
-            }
+            tap(([event, start, end]) => {
+                if (start !== undefined && end !== undefined) {
+                    this.elementRef.nativeElement.setSelectionRange(start, end);
+                }
 
-            event.preventDefault();
-            return false;
-        });
+                event.preventDefault();
+                return false;
+            })
+        );
 
-        fromEvent<KeyboardEvent>(elementRef.nativeElement, 'keydown').pipe(
+        const keyDown$ = fromEvent<KeyboardEvent>(elementRef.nativeElement, 'keydown').pipe(
+            shareReplay(1)
+        );
+
+        const focus$ = fromEvent<FocusEvent>(this.elementRef.nativeElement, 'focus').pipe(
+            shareReplay(1)
+        );
+
+        const applyMaskOnFocus$ = focus$.pipe(
+            filter(() => !this.elementRef.nativeElement.value)
+        );
+
+        const maskApplied$ = keyDown$.pipe(
+            filter(e => e.code === 'Delete'),
+            tap(() => this.setValue(undefined)),
+            mergeWith(this.applyMask$, applyMaskOnFocus$),
+            filter(() => {
+                this.maskValue = this._formatExpression?.replace(/[ymdhs]/gi, this._placeHolderCharacter) || '';
+
+                const modelIsValid = (): boolean => {
+                    const value = this.ngControl.value as unknown;
+                    if (!value || !(value instanceof Date)) {
+                        return false;
+                    }
+                    return isValid(value);
+                };
+
+                return !!this._formatExpression && !!this._placeHolderCharacter && !modelIsValid();
+            }),
+            tap(() => {
+                this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.maskValue);
+                this.elementRef.nativeElement.setSelectionRange(0, 0);
+            })
+        );
+
+        const keyApplied$ = keyDown$.pipe(
             switchMap(e => {
                 const formatExpression = this._formatExpression;
                 if (!this.maskValue || !formatExpression) {
@@ -287,10 +320,6 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
                         selectPreviousChar();
                     }
 
-                } else if (e.code === 'Delete') {
-                    this.setValue(undefined);
-                    this.applyMask();
-
                 } else if ((e.code === 'KeyA' && e.ctrlKey) || (e.code === 'KeyA' && e.metaKey)) { // Ctrl+ A + Cmd + A (Mac)
                     this.elementRef.nativeElement.setSelectionRange(0, -1);
 
@@ -344,54 +373,34 @@ export class NgxDatepickerMaskDirective extends NgxDestroy implements OnInit {
 
                 e.preventDefault();
                 return of(false);
-            }),
-            takeUntil(this.destroyed$)
-        ).subscribe();
-    }
+            })
+        );
 
-    public ngOnInit(): void {
         // Assure que le valueChange est toujours enregistré au focus au cas ou la form aurait changé.
         // En cas de réassignation d'une nouvelle form, le valueChange n'est pas renouvelé et l'événement
         // n'est plus jamais levé.
-        fromEvent<FocusEvent>(this.elementRef.nativeElement, 'focus').pipe(
-            tap(() => {
-                if (this.elementRef.nativeElement.value === '') {
-                    this.applyMask();
-                }
-            }),
+        const markAsValid$ = focus$.pipe(
             startWith(undefined),
             filterMap(() => this.ngControl.valueChanges),
-            switchMap(valueChanges$ => valueChanges$.pipe(
-                tap(value => {
-                    if (value) {
-                        this.validator.markAsValid();
-                    }
-                    this.applyMask();
-                })
-            )),
+            switchMap(valueChanges$ => {
+                if (!valueChanges$) {
+                    return EMPTY;
+                }
+
+                return valueChanges$.pipe(
+                    tap(value => {
+                        if (value) {
+                            this.validator.markAsValid();
+                        }
+                    })
+                );
+            })
+        );
+
+        markAsValid$.pipe(
+            mergeWith(keyApplied$, maskApplied$, paste$, selectAll$, dblClick$),
             takeUntil(this.destroyed$)
         ).subscribe();
-    }
-
-    private modelIsValid(): boolean {
-        const value = this.ngControl.value as unknown;
-        if (!value || !(value instanceof Date)) {
-            return false;
-        }
-
-        return isValid(value);
-    }
-
-    private applyMask(): void {
-        this.maskValue = this._formatExpression?.replace(/[ymdhs]/gi, this._placeHolderCharacter) || '';
-        void Promise.resolve().then(() => {
-            if (!this._formatExpression || !this._placeHolderCharacter || this.modelIsValid()) {
-                return;
-            }
-
-            this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.maskValue);
-            // this.elementRef.nativeElement.setSelectionRange(0, 0);
-        });
     }
 
     private parseAndSetValue(str: string): Date {
