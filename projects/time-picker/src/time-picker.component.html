@@ -12,16 +12,17 @@
         [attr.hours]="hoursValue"
         type="text"
         [ngModel]="hoursValue | number: '2.'"
-        (ngModelChange)="onHoursChange$.next($event)"
-        (keydown)="onKeyDown($event, 'hours')"
+        (ngModelChange)="hoursChange$.next($event)"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        (keydown)="hoursKeyDown$.next($event)"
         [disabled]="disabled || mode === 'fullTimeWithHoursDisabled'"
         [maxLength]="2"
         autocomplete="off"
         [placeholder]="defaultPlaceholderHours"
         (click)="onClick('hours')" />
     <ngx-numeric-stepper
-        (increment)="onHoursChange$.next((hoursValue || 0) + 1)"
-        (decrement)="onHoursChange$.next((hoursValue || 0) - 1)"></ngx-numeric-stepper>
+        (increment)="hoursChange$.next((hoursValue || 0) + 1)"
+        (decrement)="hoursChange$.next((hoursValue || 0) - 1)"></ngx-numeric-stepper>
 </mat-form-field>
 
 <!-- Separator -->
@@ -43,14 +44,14 @@
         [attr.minutes]="minutesValue"
         type="text"
         [ngModel]="minutesValue | number: '2.'"
-        (ngModelChange)="onMinutesChange$.next($event)"
-        (keydown)="onKeyDown($event, 'minutes')"
+        (ngModelChange)="minutesChange$.next($event)"
+        [ngModelOptions]="{ updateOn: 'blur' }"
         [disabled]="disabled || mode === 'fullTimeWithMinutesDisabled'"
         [maxLength]="2"
         autocomplete="off"
         [placeholder]="defaultPlaceholderMinutes"
         (click)="onClick('minutes')" />
     <ngx-numeric-stepper
-        (increment)="onMinutesChange$.next((minutesValue || 0) + _step)"
-        (decrement)="onMinutesChange$.next((minutesValue || 0) - _step)"></ngx-numeric-stepper>
+        (increment)="minutesChange$.next((minutesValue || 0) + _step)"
+        (decrement)="minutesChange$.next((minutesValue || 0) - _step)"></ngx-numeric-stepper>
 </mat-form-field>

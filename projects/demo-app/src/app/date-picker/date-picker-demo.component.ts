@@ -6,7 +6,7 @@
  *  found in the LICENSE file at https://github.com/DSI-HUG/dejajs-components/blob/master/LICENSE
  */
 
-import { AsyncPipe, DatePipe, NgIf, registerLocaleData } from '@angular/common';
+import { NgIf, registerLocaleData } from '@angular/common';
 import localeFrCh from '@angular/common/locales/fr-CH';
 import { ChangeDetectionStrategy, Component, Injectable, LOCALE_ID, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
@@ -88,8 +88,6 @@ const dejaDateTimeFormats: DejaDateFormats = {
     standalone: true,
     imports: [
         NgIf,
-        DatePipe,
-        AsyncPipe,
         NgxDatepickerButtonsComponent,
         NgxDatepickerMaskDirective,
         NgxDatepickerWithTimeComponent,
