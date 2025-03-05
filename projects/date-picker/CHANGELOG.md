@@ -1,3 +1,21 @@
+## 1.0.17 (2025-03-05)
+
+
+### 🐛 Fixes
+
+- wrong applymask call with sendKeys on the input ([4556b9c](https://github.com/DSI-HUG/ngx-components/commit/4556b9c))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker:** upgrade to v1.1.15 ([585177e](https://github.com/DSI-HUG/ngx-components/commit/585177e))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.0.16 (2025-03-03)
 
 
