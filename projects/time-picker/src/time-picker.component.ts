@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NgxDestroy } from '@hug/ngx-core';
 import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
 import { isSameHour, set } from 'date-fns';
-import { distinctUntilChanged, map, mergeWith, Subject, takeUntil, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, mergeWith, Subject, takeUntil, tap } from 'rxjs';
 
 export type NgxTimePickerDisplayMode = 'fullTime' | 'fullTimeWithHoursDisabled' | 'fullTimeWithMinutesDisabled' | 'hoursOnly' | 'minutesOnly';
 
@@ -95,8 +95,9 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
         return this._disabled;
     }
 
-    public onHoursChange$ = new Subject<Event | number>();
-    public onMinutesChange$ = new Subject<Event | number>();
+    public hoursChange$ = new Subject<Event | number>();
+    public minutesChange$ = new Subject<Event | number>();
+    public hoursKeyDown$ = new Subject<KeyboardEvent>();
 
     protected changeDetectorRef = inject(ChangeDetectorRef);
     protected control = inject(NgControl, { optional: true, self: true });
@@ -113,7 +114,7 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
             this.control.valueAccessor = this;
         }
 
-        const onHoursChange$ = this.onHoursChange$.pipe(
+        const hoursChange$ = this.hoursChange$.pipe(
             distinctUntilChanged(),
             map(hours => {
                 if (typeof hours === 'object') {
@@ -122,7 +123,7 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
                 }
                 return [!isNaN(hours) ? hours : 0, false] as const;
             }),
-            tap(([hours, isEvent]) => {
+            tap(([hours, _isEvent]) => {
                 if (!this.value) {
                     this.value = this.dataType === 'date' ? set(new Date(), { hours, minutes: 0, seconds: 0, milliseconds: 0 }) : { hours, minutes: 0 } as Duration;
                 } else if (this.value instanceof Date) {
@@ -139,17 +140,10 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
                     };
                 }
                 this.changeDetectorRef.markForCheck();
-
-                if (isEvent && this._autoFocus && this.minutes) {
-                    this.minutes.nativeElement.focus({
-                        preventScroll: true
-                    });
-                    this.minutes.nativeElement.select();
-                }
             })
         );
 
-        const onMinutesChange$ = this.onMinutesChange$.pipe(
+        const minutesChange$ = this.minutesChange$.pipe(
             distinctUntilChanged(),
             map(event => {
                 let minutes: number | undefined;
@@ -186,8 +180,28 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
             })
         );
 
-        onHoursChange$.pipe(
-            mergeWith(onMinutesChange$),
+        const setFocusToNextInput$ = this.hoursKeyDown$.pipe(
+            debounceTime(200),
+            tap(event => {
+                const inputElement = this.hours?.nativeElement;
+                if (!inputElement) {
+                    return;
+                }
+
+                if (event.key && !event.ctrlKey && !event.shiftKey && !event.altKey && !['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Tab', 'Enter', 'Control', 'Shift'].includes(event.key)) {
+                    const regex = this.dataType === 'date' ? /^(\d|[01]\d|2[0-3])$/ : /^(\d+)$/;
+                    const [selectionStart, selectionEnd] = [inputElement.selectionStart || 0, inputElement.selectionEnd || 0].sort((a, b) => a - b);
+                    const inputValue = inputElement.value || '';
+                    if (regex.test(inputValue) && this._autoFocus && inputValue.length === 2 && this.minutes?.nativeElement && inputElement === document.activeElement && selectionStart === 2 && selectionEnd === 2) {
+                        this.minutes.nativeElement.focus();
+                        this.minutes?.nativeElement.select();
+                    }
+                }
+            })
+        );
+
+        hoursChange$.pipe(
+            mergeWith(minutesChange$, setFocusToNextInput$),
             takeUntil(this.destroyed$)
         ).subscribe();
     }
@@ -234,46 +248,6 @@ export class NgxTimePickerComponent extends NgxDestroy implements ControlValueAc
         this.disabled = isDisabled;
     }
     // ************* End of ControlValueAccessor Implementation **************
-
-    protected onKeyDown($event: KeyboardEvent, fieldType: FieldType): void {
-        // Get input element
-        const inputElement = fieldType === 'hours' ? this.hours?.nativeElement : this.minutes?.nativeElement;
-        if ($event.key?.toLowerCase() === 'd') {
-            $event.stopPropagation();
-            $event.preventDefault();
-            this.value = new Date();
-        } else if (inputElement) {
-            if ($event.key?.toLowerCase() === 'a' && $event.ctrlKey) {
-                inputElement.select();
-            } else if ($event.key && !['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Tab', 'Enter', 'Control', 'Shift'].includes($event.key)) {
-                // Set regex for input format validation (differs if we are dealing with a date or a duration)
-                let regex;
-                if (fieldType === 'hours') {
-                    regex = this.dataType === 'date' ? /^(\d|[01]\d|2[0-3])$/ : /^(\d+)$/;
-                } else {
-                    regex = /^(\d|[0-5]\d)$/;
-                }
-
-                // Get the selection in input element
-                const [selectionStart, selectionEnd] = [inputElement.selectionStart || 0, inputElement.selectionEnd || 0].sort((a, b) => a - b);
-                const selectionDiff = selectionEnd - selectionStart;
-
-                // Get the current value in input element and update it with the new touched key
-                const inputValue = inputElement.value || '';
-                const inputValueArr = Array.from(inputValue);
-                inputValueArr.splice(selectionStart, selectionDiff, $event.key);
-                const newInputValue = inputValueArr.join('');
-
-                // Prevent event if the time is not valid
-                if (!regex.test(newInputValue)) {
-                    $event.stopPropagation();
-                    $event.preventDefault();
-                } else if (this._autoFocus && fieldType === 'hours' && ((this.dataType === 'date' && parseFloat(newInputValue) >= 3) || newInputValue.length === 2)) {
-                    this.onHoursChange$.next($event);
-                }
-            }
-        }
-    }
 
     protected get hoursValue(): number | undefined {
         if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithMinutesDisabled' && !!this.control?.pristine)) {
