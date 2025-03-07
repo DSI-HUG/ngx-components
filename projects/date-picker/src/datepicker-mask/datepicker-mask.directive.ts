@@ -2,10 +2,10 @@
 import { Directive, ElementRef, forwardRef, Inject, Input, Optional, Renderer2 } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, NgControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
-import { filterMap, KeyCodes, NgxDestroy } from '@hug/ngx-core';
+import { KeyCodes, NgxDestroy } from '@hug/ngx-core';
 import { addDays, addHours, addMinutes, addMonths, addSeconds, addYears, isValid, parse, set } from 'date-fns';
 import { isNil } from 'lodash-es';
-import { delay, EMPTY, filter, from, fromEvent, map, mergeWith, of, shareReplay, startWith, Subject, switchMap, takeUntil, tap, timeInterval } from 'rxjs';
+import { delay, EMPTY, filter, from, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, takeUntil, tap, timeInterval } from 'rxjs';
 
 import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.service';
 
@@ -60,15 +60,19 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
         private readonly elementRef: ElementRef<HTMLInputElement>,
         private readonly ngControl: NgControl,
         private readonly renderer: Renderer2,
-        private readonly validator: NgxDatepickerMaskValidatorService,
+        // private readonly validator: NgxDatepickerMaskValidatorService,
         private readonly dateAdapter: DateAdapter<unknown>
     ) {
         super();
 
         elementRef.nativeElement.setAttribute('autocomplete', 'off');
 
-        const selectAll$ = fromEvent<FocusEvent>(elementRef.nativeElement, 'focus').pipe(
-            delay(400),
+        const focus$ = fromEvent<FocusEvent>(this.elementRef.nativeElement, 'focus').pipe(
+            shareReplay(1)
+        );
+
+        const selectAll$ = focus$.pipe(
+            delay(100),
             mergeWith(fromEvent<KeyboardEvent>(elementRef.nativeElement, 'keydown')),
             timeInterval(),
             tap(intervalEvent => {
@@ -80,9 +84,16 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
 
                 const relatedTarget = intervalEvent.value.relatedTarget as HTMLElement;
                 const isDatePickerButton = relatedTarget?.classList.contains('date-picker-button');
-                if (this.ngControl.control?.value && !isDatePickerButton) {
-                    this.elementRef.nativeElement.setSelectionRange(0, -1);
+                if (isDatePickerButton) {
+                    return;
                 }
+
+                if (this.ngControl.control?.value) {
+                    this.elementRef.nativeElement.setSelectionRange(0, -1);
+                    return;
+                }
+
+                this.elementRef.nativeElement.setSelectionRange(0, 0);
             })
         );
 
@@ -154,8 +165,14 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
             shareReplay(1)
         );
 
-        const focus$ = fromEvent<FocusEvent>(this.elementRef.nativeElement, 'focus').pipe(
+        const blur$ = fromEvent<FocusEvent>(this.elementRef.nativeElement, 'blur').pipe(
             shareReplay(1)
+        );
+
+        const validateOnBlur$ = blur$.pipe(
+            tap(() => {
+                this.parseAndSetValue(this.elementRef.nativeElement.value);
+            })
         );
 
         const applyMaskOnFocus$ = focus$.pipe(
@@ -181,7 +198,6 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
             }),
             tap(() => {
                 this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.maskValue);
-                this.elementRef.nativeElement.setSelectionRange(0, 0);
             })
         );
 
@@ -364,6 +380,9 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
                     this.setValue(today);
                     this.elementRef.nativeElement.setSelectionRange(0, -1);
 
+                } else if (e.code === 'Enter') {
+                    this.parseAndSetValue(this.elementRef.nativeElement.value);
+
                 } else if (this.forwardToInputKeyCodes.includes(e.key as KeyCodes)) {
                     return of(undefined);
 
@@ -376,29 +395,8 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
             })
         );
 
-        // Assure que le valueChange est toujours enregistré au focus au cas ou la form aurait changé.
-        // En cas de réassignation d'une nouvelle form, le valueChange n'est pas renouvelé et l'événement
-        // n'est plus jamais levé.
-        const markAsValid$ = focus$.pipe(
-            startWith(undefined),
-            filterMap(() => this.ngControl.valueChanges),
-            switchMap(valueChanges$ => {
-                if (!valueChanges$) {
-                    return EMPTY;
-                }
-
-                return valueChanges$.pipe(
-                    tap(value => {
-                        if (value) {
-                            this.validator.markAsValid();
-                        }
-                    })
-                );
-            })
-        );
-
-        markAsValid$.pipe(
-            mergeWith(keyApplied$, maskApplied$, paste$, selectAll$, dblClick$),
+        keyApplied$.pipe(
+            mergeWith(maskApplied$, paste$, selectAll$, dblClick$, validateOnBlur$),
             takeUntil(this.destroyed$)
         ).subscribe();
     }
@@ -424,10 +422,8 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
         };
 
         if (isNil(date) || isValid(date)) {
-            this.validator.markAsValid();
             updateDateControl(this.ngControl.control, date, this.dateAdapter);
         } else {
-            this.validator.markAsInvalid();
             updateDateControl(this.ngControl.control, null, this.dateAdapter);
         }
     }
