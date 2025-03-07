@@ -19,7 +19,7 @@
         [maxLength]="2"
         autocomplete="off"
         [placeholder]="defaultPlaceholderHours"
-        (click)="onClick('hours')" />
+        (click)="hours.select()" />
     <ngx-numeric-stepper
         (increment)="hoursChange$.next((hoursValue || 0) + 1)"
         (decrement)="hoursChange$.next((hoursValue || 0) - 1)"></ngx-numeric-stepper>
@@ -50,7 +50,7 @@
         [maxLength]="2"
         autocomplete="off"
         [placeholder]="defaultPlaceholderMinutes"
-        (click)="onClick('minutes')" />
+        (click)="minutes.select()" />
     <ngx-numeric-stepper
         (increment)="minutesChange$.next((minutesValue || 0) + _step)"
         (decrement)="minutesChange$.next((minutesValue || 0) - _step)"></ngx-numeric-stepper>
