@@ -86,9 +86,15 @@ export class NgxDatepickerButtonsComponent extends NgxDestroy implements OnInit 
 
     public setValue(event: Event, today: boolean): boolean {
         const updateDateControl = (control: AbstractControl | undefined, date: unknown, dateAdpater: DateAdapter<unknown>): void => {
-            if (!control || !control.value && !date) {
+            if (!control) {
                 return;
             }
+
+            if (!control.value && !date) {
+                this.forInput.value = undefined;
+                return;
+            }
+
             if (!dateAdpater.sameDate(control.value, date)) {
                 control.setValue(date);
                 control.markAsDirty();
