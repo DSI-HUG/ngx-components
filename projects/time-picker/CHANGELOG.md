@@ -1,3 +1,7 @@
+## 1.1.16 (2025-03-07)
+
+This was a version bump only for @hug/ngx-time-picker to align it with other projects, there were no code changes.
+
 ## 1.1.15 (2025-03-05)
 
 

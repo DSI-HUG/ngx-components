@@ -1,3 +1,21 @@
+## 1.0.18 (2025-03-07)
+
+
+### 🐛 Fixes
+
+- date-picker-mask directive issues ([bfc56a9](https://github.com/DSI-HUG/ngx-components/commit/bfc56a9))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker:** upgrade to v1.1.16 ([7b39bb9](https://github.com/DSI-HUG/ngx-components/commit/7b39bb9))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- Serge
+
 ## 1.0.17 (2025-03-05)
 
 
