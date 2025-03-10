@@ -5,7 +5,7 @@ import { isValid } from 'date-fns';
 @Injectable()
 export class NgxDatepickerMaskValidatorService implements Validator {
     public validate({ value }: FormControl<Date>): ValidationErrors | null {
-        if (isValid(value)) {
+        if (!value || isValid(value)) {
             return null;
         }
 
