@@ -1,3 +1,15 @@
+## 1.0.19 (2025-03-10)
+
+
+### 🐛 Fixes
+
+- datepicker-mask-validator.service.ts ([f5d4436](https://github.com/DSI-HUG/ngx-components/commit/f5d4436))
+
+
+### ❤️  Thank You
+
+- Serge
+
 ## 1.0.18 (2025-03-07)
 
 
