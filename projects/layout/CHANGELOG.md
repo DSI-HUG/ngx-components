@@ -1,3 +1,15 @@
+## 1.1.12 (2025-03-11)
+
+
+### 🐛 Fixes
+
+- **layout:** fix layout right class set method (#NGXCPTS-14) ([accdd81](https://github.com/DSI-HUG/ngx-components/commit/accdd81))
+
+
+### ❤️  Thank You
+
+- dgui
+
 ## 1.1.11 (2024-07-26)
 
 ### 🐛 Fixes

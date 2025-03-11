@@ -1,3 +1,15 @@
+## 1.1.17 (2025-03-11)
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-numeric-stepper:** upgrade to v1.1.12 ([91140c1](https://github.com/DSI-HUG/ngx-components/commit/91140c1))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+
 ## 1.1.16 (2025-03-07)
 
 This was a version bump only for @hug/ngx-time-picker to align it with other projects, there were no code changes.
