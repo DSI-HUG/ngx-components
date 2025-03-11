@@ -180,7 +180,7 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
         );
 
         const maskApplied$ = keyDown$.pipe(
-            filter(e => e.code === 'Delete'),
+            filter(e => (e.code || e.key) === 'Delete'),
             tap(() => this.setValue(undefined)),
             mergeWith(this.applyMask$, applyMaskOnFocus$),
             filter(() => {
@@ -233,9 +233,10 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
 
                 const replaceRange = (value: string, begin: number, to: number, mask: string): string => Array.from(value).map((c, index) => index >= begin && index <= to ? mask[index] : c).join('');
                 const replaceAt = (value: string, index: number, char: string): string => value.substring(0, index) + char + value.substring(index + char.length);
+                const keyCode = (e.code || e.key) as KeyCodes;
 
-                if ((e.code === 'ArrowLeft' || e.code === 'ArrowRight') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
-                    if (e.code === 'ArrowLeft') {
+                if ((keyCode === 'ArrowLeft' || keyCode === 'ArrowRight') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
+                    if (keyCode === 'ArrowLeft') {
                         let newStart = getPosition(start, -1);
                         if (newStart === undefined) {
                             newStart = 1;
@@ -249,10 +250,10 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
                         }
                         this.elementRef.nativeElement.setSelectionRange(newStart, newStart);
                     }
-                } else if ((e.code === 'ArrowUp' || e.code === 'ArrowDown') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
+                } else if ((keyCode === 'ArrowUp' || keyCode === 'ArrowDown') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
                     if (this.ngControl.value instanceof Date) {
                         const date = this.ngControl.value;
-                        const step = e.code === 'ArrowUp' ? 1 : -1;
+                        const step = keyCode === 'ArrowUp' ? 1 : -1;
                         let formatChar = formatExpression[start];
                         if (!formatChar || !this.formatCharRegExp.exec(formatChar)) {
                             formatChar = formatExpression[start - 1];
@@ -295,7 +296,7 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
                         }
                     }
 
-                } else if (e.code === 'Backspace') {
+                } else if (keyCode === 'Backspace') {
                     let value = this.elementRef.nativeElement.value;
                     const char = value.substring(start - 1, end);
                     let newStart = start;
@@ -336,7 +337,7 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
                         selectPreviousChar();
                     }
 
-                } else if ((e.code === 'KeyA' && e.ctrlKey) || (e.code === 'KeyA' && e.metaKey)) { // Ctrl+ A + Cmd + A (Mac)
+                } else if ((keyCode === 'KeyA' && e.ctrlKey) || (keyCode === 'KeyA' && e.metaKey)) { // Ctrl+ A + Cmd + A (Mac)
                     this.elementRef.nativeElement.setSelectionRange(0, -1);
 
                 } else if (/^[0-9]$/.exec(e.key)) {
@@ -375,19 +376,19 @@ export class NgxDatepickerMaskDirective extends NgxDestroy {
                         );
                     }
 
-                } else if (e.code === 'KeyD') {
+                } else if (keyCode === 'KeyD') {
                     const today = set(new Date(), { seconds: 0, milliseconds: 0 });
                     this.setValue(today);
                     this.elementRef.nativeElement.setSelectionRange(0, -1);
 
-                } else if (e.code === 'Enter') {
+                } else if (keyCode === 'Enter') {
                     this.parseAndSetValue(this.elementRef.nativeElement.value);
 
                 } else if (this.forwardToInputKeyCodes.includes(e.key as KeyCodes)) {
                     return of(undefined);
 
                 } else {
-                    console.log('DatepickerMaskDirective ignored code', e.code);
+                    console.log('DatepickerMaskDirective ignored code', keyCode);
                 }
 
                 e.preventDefault();
