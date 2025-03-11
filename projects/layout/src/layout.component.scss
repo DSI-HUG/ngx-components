@@ -7,7 +7,7 @@ ngx-layout {
     bottom: 0;
     left: 0;
 
-    &.no-left.no-right .main-content {
+    &.no-left[no-right='true'] .main-content {
         padding: 0;
     }
 
