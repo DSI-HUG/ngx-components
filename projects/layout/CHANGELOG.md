@@ -1,3 +1,19 @@
+## 3.0.1 (2025-03-13)
+
+### 🐛 Fixes
+
+- **layout:** width of right side panel (#NGXCPTS-8) ([9732cd9](https://github.com/DSI-HUG/ngx-components/commit/9732cd9))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-sidenav:** upgrade to v3.0.1 ([69b59bf](https://github.com/DSI-HUG/ngx-components/commit/69b59bf))
+- **@hug/ngx-core:** upgrade to v3.0.1 ([78b3172](https://github.com/DSI-HUG/ngx-components/commit/78b3172))
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+- dsi-hug-bot @dsi-hug-bot
+
 # 3.0.0 (2025-02-06)
 
 ### 🚀 Features

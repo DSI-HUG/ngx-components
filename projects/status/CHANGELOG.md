@@ -1,3 +1,14 @@
+## 3.2.1 (2025-03-13)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-snackbar:** upgrade to v3.0.1 ([c8c2a49](https://github.com/DSI-HUG/ngx-components/commit/c8c2a49))
+- **@hug/ngx-message-box:** upgrade to v3.0.1 ([9232c1e](https://github.com/DSI-HUG/ngx-components/commit/9232c1e))
+
+### ❤️ Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+
 ## 3.2.0 (2025-03-03)
 
 ### 🚀 Features

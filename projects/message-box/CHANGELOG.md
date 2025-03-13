@@ -1,3 +1,7 @@
+## 3.0.1 (2025-03-13)
+
+This was a version bump only for @hug/ngx-message-box to align it with other projects, there were no code changes.
+
 # 3.0.0 (2025-02-06)
 
 ### 🚀 Features

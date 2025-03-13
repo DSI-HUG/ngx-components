@@ -1,3 +1,14 @@
+## 3.0.1 (2025-03-13)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-tooltip:** upgrade to v3.0.1 ([dbea08c](https://github.com/DSI-HUG/ngx-components/commit/dbea08c))
+- **@hug/ngx-user-card:** upgrade to v3.0.1 ([6cd6284](https://github.com/DSI-HUG/ngx-components/commit/6cd6284))
+
+### ❤️ Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+
 # 3.0.0 (2025-02-06)
 
 ### 🚀 Features
