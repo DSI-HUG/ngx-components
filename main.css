@@ -10331,10 +10331,10 @@ ngx-search-container .ngx-search-container .icon-clear :hover {
   color: #fafafa;
 }
 ngx-search-container .ngx-search-container input {
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(250, 250, 250, 0.8);
 }
 ngx-search-container .ngx-search-container input::placeholder {
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(250, 250, 250, 0.8);
 }
 ngx-search-container .ngx-search-container-mobile.active {
   background-color: #fafafa;
