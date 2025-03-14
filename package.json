@@ -105,5 +105,9 @@
         "**/*.{scss,html,json}": [
             "prettier . --check"
         ]
-    }
+    },
+    "engines": {
+        "yarn": "Please use Npm instead of Yarn."
+    },
+    "packageManager": "npm@11.2.0"
 }
