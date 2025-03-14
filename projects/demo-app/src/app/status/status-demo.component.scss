@@ -1,0 +1,61 @@
+app-status-demo {
+    .container {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 300px;
+        width: 100%;
+
+        .status-container,
+        .status-type-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+
+            ngx-status ngx-snackbar {
+                position: unset;
+            }
+        }
+    }
+
+    .mat-tab-group {
+        display: flex;
+        height: 100%;
+
+        .mat-tab-body-wrapper {
+            flex: 1;
+
+            .mat-tab-body {
+                .mat-tab-body-content {
+                    display: flex;
+                    flex-direction: column;
+
+                    .mat-card {
+                        flex: 1 1 100%;
+                        overflow: hidden;
+                        min-height: 300px;
+                    }
+                }
+
+                &.fixed-height {
+                    overflow: hidden;
+
+                    .mat-tab-body-content {
+                        overflow: hidden;
+
+                        .mat-card {
+                            height: calc(100% - 10px);
+                            margin: 0;
+                            display: flex;
+                            flex-direction: column;
+
+                            .mat-card-content {
+                                flex: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

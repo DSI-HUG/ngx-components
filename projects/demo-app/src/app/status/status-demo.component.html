@@ -1,0 +1,29 @@
+<mat-tab-group [selectedIndex]="2">
+    <mat-tab label="API REFERENCE">
+        <mat-card class="demo-card demo-basic"></mat-card>
+    </mat-tab>
+    <mat-tab label="EXAMPLES" class="demo-content">
+        <mat-card class="demo-card">
+            <mat-toolbar color="primary">Status</mat-toolbar>
+            <mat-card-content class="no-padding">
+                <div class="container" *ngIf="status$ | async as status">
+                    <div class="status-container">
+                        <ngx-status [status]="status"></ngx-status>
+                    </div>
+                    <div class="status-type-container">
+                        <mat-button-toggle-group
+                            name="type"
+                            (change)="typeChanged$.next($event.value)"
+                            [value]="status.type">
+                            <mat-button-toggle value="primary">primary</mat-button-toggle>
+                            <mat-button-toggle value="info">info</mat-button-toggle>
+                            <mat-button-toggle value="success">success</mat-button-toggle>
+                            <mat-button-toggle value="warn">warn</mat-button-toggle>
+                            <mat-button-toggle value="danger">danger</mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>

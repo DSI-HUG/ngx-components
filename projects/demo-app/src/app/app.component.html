@@ -6,7 +6,7 @@
         <h1 class="demo-app-name">hug/ngx-components Demo</h1>
     </mat-toolbar>
 
-    <mat-sidenav-container class="demo-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav-container class="demo-sidenav-container" [style.margin-top.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav
             #snav
             [mode]="mobileQuery.matches ? 'over' : 'side'"
@@ -18,47 +18,37 @@
                     <mat-icon mat-list-icon>date_range</mat-icon>
                     <span mat-line>Date Picker</span>
                 </mat-list-item>
-            </mat-nav-list>
-            <mat-nav-list>
+                <mat-list-item title="Layout" routerLink="/layout" routerLinkActive="active">
+                    <mat-icon mat-list-icon>dashboard</mat-icon>
+                    <span mat-line>Layout</span>
+                </mat-list-item>
                 <mat-list-item title="Message Box" routerLink="/message-box" routerLinkActive="active">
                     <mat-icon mat-list-icon>message</mat-icon>
                     <span mat-line>Message Box</span>
                 </mat-list-item>
-            </mat-nav-list>
-            <mat-nav-list>
                 <mat-list-item title="Numeric Stepper" routerLink="/numeric-stepper" routerLinkActive="active">
                     <mat-icon mat-list-icon>filter_9_plus</mat-icon>
                     <span mat-line>Numeric Stepper</span>
                 </mat-list-item>
-            </mat-nav-list>
-            <mat-nav-list>
                 <mat-list-item title="Overlay" routerLink="/overlay" routerLinkActive="active">
                     <mat-icon mat-list-icon>menu</mat-icon>
                     <span mat-line>Overlay</span>
                 </mat-list-item>
-            </mat-nav-list>
-            <mat-nav-list>
                 <mat-list-item title="Snackbar" routerLink="/snackbar" routerLinkActive="active">
                     <mat-icon mat-list-icon>home</mat-icon>
                     <span mat-line>Snackbar</span>
                 </mat-list-item>
-            </mat-nav-list>
-            <mat-nav-list>
                 <mat-list-item title="Splitter" routerLink="/splitter" routerLinkActive="active">
                     <mat-icon mat-list-icon>call_split</mat-icon>
                     <span mat-line>Splitter</span>
                 </mat-list-item>
-            </mat-nav-list>
-            <mat-nav-list>
-                <mat-list-item title="Timpe Picker" routerLink="/time-picker" routerLinkActive="active">
-                    <mat-icon mat-list-icon>access_time</mat-icon>
-                    <span mat-line>Timpe Picker</span>
+                <mat-list-item title="Status" routerLink="/status" routerLinkActive="active">
+                    <mat-icon mat-list-icon>campaign</mat-icon>
+                    <span mat-line>Status</span>
                 </mat-list-item>
-            </mat-nav-list>
-            <mat-nav-list>
-                <mat-list-item title="Layout" routerLink="/layout" routerLinkActive="active">
-                    <mat-icon mat-list-icon>dashboard</mat-icon>
-                    <span mat-line>Layout</span>
+                <mat-list-item title="Time Picker" routerLink="/time-picker" routerLinkActive="active">
+                    <mat-icon mat-list-icon>access_time</mat-icon>
+                    <span mat-line>Time Picker</span>
                 </mat-list-item>
             </mat-nav-list>
         </mat-sidenav>
