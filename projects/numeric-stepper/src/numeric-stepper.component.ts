@@ -244,8 +244,8 @@ export class NgxNumericStepperComponent implements OnInit {
         linkedElements$.pipe(
             filterMap(([_, formFieldElement]) => formFieldElement),
             switchMap(formFieldElement => fromEvent<KeyboardEvent>(formFieldElement, 'keydown')),
-            filter(event => {
-                const keyCode = event.code as KeyCodes;
+            filter(e => {
+                const keyCode = (e.code || e.key) as KeyCodes;
                 if (keyCode === 'ArrowUp' || keyCode === 'ArrowDown') {
                     this.clickArrow$.next(keyCode === 'ArrowUp');
                     return true;

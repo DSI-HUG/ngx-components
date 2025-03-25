@@ -5,20 +5,23 @@
     [class.disabled]="disabled || mode === 'fullTimeWithHoursDisabled'"
     [style.display]="mode === 'minutesOnly' ? 'none' : 'block'">
     <input
+        aria-label="hours"
         #hours
         matInput
+        [attr.hours]="hoursValue"
         type="text"
         [ngModel]="hoursValue | number: '2.'"
-        (change)="onHoursChange$.next($event)"
-        (keydown)="onKeyDown($event, 'hours')"
+        (ngModelChange)="hoursChange$.next($event)"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        (keydown)="hoursKeyDown$.next($event)"
         [disabled]="disabled || mode === 'fullTimeWithHoursDisabled'"
         [maxLength]="2"
         autocomplete="off"
         [placeholder]="defaultPlaceholderHours"
-        (click)="onClick('hours')" />
+        (click)="hours.select()" />
     <ngx-numeric-stepper
-        (increment)="incrementValue('hours')"
-        (decrement)="decrementValue('hours')"></ngx-numeric-stepper>
+        (increment)="hoursChange$.next((hoursValue || 0) + 1)"
+        (decrement)="hoursChange$.next((hoursValue || 0) - 1)"></ngx-numeric-stepper>
 </mat-form-field>
 
 <!-- Separator -->
@@ -33,18 +36,20 @@
     [class.disabled]="disabled || mode === 'fullTimeWithMinutesDisabled'"
     [style.display]="mode === 'hoursOnly' ? 'none' : 'block'">
     <input
+        aria-label="minutes"
         #minutes
         matInput
+        [attr.minutes]="minutesValue"
         type="text"
         [ngModel]="minutesValue | number: '2.'"
-        (change)="onMinutesChange$.next($event)"
-        (keydown)="onKeyDown($event, 'minutes')"
+        (ngModelChange)="minutesChange$.next($event)"
+        [ngModelOptions]="{ updateOn: 'blur' }"
         [disabled]="disabled || mode === 'fullTimeWithMinutesDisabled'"
         [maxLength]="2"
         autocomplete="off"
         [placeholder]="defaultPlaceholderMinutes"
-        (click)="onClick('minutes')" />
+        (click)="minutes.select()" />
     <ngx-numeric-stepper
-        (increment)="incrementValue('minutes')"
-        (decrement)="decrementValue('minutes')"></ngx-numeric-stepper>
+        (increment)="minutesChange$.next((minutesValue || 0) + _step)"
+        (decrement)="minutesChange$.next((minutesValue || 0) - _step)"></ngx-numeric-stepper>
 </mat-form-field>
