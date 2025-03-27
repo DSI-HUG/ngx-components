@@ -1,6 +1,4 @@
-@use '@fontsource-variable/material-symbols-outlined/scss/mixins' as matSymbols;
-
-@include matSymbols.faces($axes: all);
+@use '@fontsource-variable/material-symbols-outlined/full.css';
 
 $fontFamily: 'Material Symbols Outlined Variable';
 
