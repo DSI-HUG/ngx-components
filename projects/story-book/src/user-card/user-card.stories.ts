@@ -2,6 +2,7 @@ import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxUserCardComponent } from '../../../user-card/src/user-card.component';
+import { UserTooltipWrapperComponent } from './user-tooltip-wrapper/user-tooltip-wrapper.component';
 
 
 const meta: Meta<NgxUserCardComponent> = {
@@ -282,3 +283,52 @@ export const userWithMissingInfo: Story = {
         expanded: true
     }
 };
+
+export const userTooltip: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                UserTooltipWrapperComponent
+            ]
+        })
+    ],
+    parameters: {
+        docs: {
+            description: {
+                story: 'Displays the user card inside a user-tooltip'
+            }
+        }
+    },
+    render: args => ({
+        props: args,
+        template: '<user-tooltip-wrapper [user]="user"></user-tooltip-wrapper>',
+        args: {
+            user: {
+                title: 'Professeur',
+                firstname: 'Jean',
+                lastname: 'PATATE',
+                initials: 'jpat',
+                type: 'Type',
+                email: 'jean.patate@hug.ch',
+                role: 'Medecin',
+                groupFunctionLabel: 'Group',
+                familyCode: 'Social',
+                functionSefName: 'SefNameFunction',
+                functionSefCode: 'SefCodeFunction',
+                organisation: 'HUG',
+                speciality: 'Neurochirurgie',
+                specialty1: 'Dermatologie',
+                specialty2: 'Pedicure',
+                esoN3Label: 'EsoN3Label',
+                login: 'PatateLogin',
+                phone: '+44 150 509 39',
+                bip: '8859595',
+                mobile: '+44 150 509 39',
+                address: 'Carouge, 7 Rue St Julien',
+                city: 'Carouge',
+                zipCode: '1227'
+            }
+        }
+    })
+};
+
