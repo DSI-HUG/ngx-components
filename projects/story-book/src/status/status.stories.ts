@@ -13,10 +13,14 @@ const meta: Meta<NgxStatusComponent> = {
             imports: [
                 NgxSnackbarComponent
             ],
-            providers: [NgxStatusService]
+            providers: [
+                NgxStatusService
+            ]
         })
     ],
-    tags: ['autodocs'],
+    tags: [
+        'autodocs'
+    ],
     argTypes: {
         status: {
             description: 'The object containing the status details to be displayed.',
@@ -29,12 +33,12 @@ const meta: Meta<NgxStatusComponent> = {
             }
         }
     },
-    args: {
-    },
+    args: {},
     parameters: {
         docs: {
             description: {
-                component: 'The `NgxStatusComponent` displays informational messages in a popup, leveraging the `NgxSnackbarComponent`. It supports various types of notifications, custom actions, and detailed technical information.'
+                component:
+                    'The `NgxStatusComponent` displays informational messages in a popup, leveraging the `NgxSnackbarComponent`. It supports various types of notifications, custom actions, and detailed technical information.'
             }
         }
     }
@@ -141,7 +145,8 @@ export const statusType: Story = {
     decorators: [
         moduleMetadata({
             imports: [
-                MatButtonToggleGroup, MatButtonToggle
+                MatButtonToggleGroup,
+                MatButtonToggle
             ]
         })
     ],

@@ -1,0 +1,208 @@
+.ngx-nav-button {
+    // # Variables
+    --private-width: var(--ngx-nav-button-width, 88px);
+    --private-text-color: var(--ngx-nav-button-text-color, var(--mat-sys-on-surface));
+    --private-fx-color: var(--ngx-nav-button-fx-color, var(--private-text-color));
+    --private-icon-color: var(--ngx-nav-button-icon-color, var(--ngx-nav-button-text-color, var(--mat-sys-on-surface)));
+    --private-icon-label-padding: var(--ngx-nav-button-icon-label-padding, 0.3rem 1rem);
+    --private-icon-only-padding: var(--ngx-nav-button-icon-only-padding, 0.5rem);
+    --private-loading-color: var(
+        --ngx-nav-button-loading-color,
+        var(--ngx-nav-button-text-color, var(--mat-sys-on-surface))
+    );
+
+    --private-selected-color: var(--ngx-nav-button-selected-color, var(--mat-sys-primary-fixed-dim));
+    --private-on-selected-color: var(--ngx-nav-button-on-selected-color, var(--mat-sys-on-primary-container));
+    --private-fx-selected-color: var(--ngx-nav-button-fx-selected-color, var(--mat-sys-on-primary));
+
+    --private-container-color: var(--ngx-nav-button-container-color, transparent);
+
+    // ## Theme
+    &.ngx-nav-button-light-theme {
+        --private-text-color: var(--ngx-nav-button-text-color, var(--mat-sys-secondary));
+        --private-icon-color: var(
+            --ngx-nav-button-icon-color,
+            var(--ngx-nav-item-text-color, var(--mat-sys-secondary))
+        );
+        --private-loading-color: var(
+            --ngx-nav-button-loading-color,
+            var(--ngx-nav-item-text-color, var(--mat-sys-primary))
+        );
+        --private-container-color: var(--ngx-nav-button-container-color, var(--mat-sys-surface-container));
+    }
+
+    &.ngx-nav-button-dark-theme {
+        --private-text-color: var(--ngx-nav-button-text-color, var(--mat-sys-on-primary));
+        --private-icon-color: var(
+            --ngx-nav-button-icon-color,
+            var(--ngx-nav-item-text-color, var(--mat-sys-on-primary))
+        );
+        --private-loading-color: var(
+            --ngx-nav-button-loading-color,
+            var(--ngx-nav-item-text-color, var(--mat-sys-on-primary))
+        );
+        --private-container-color: var(--ngx-nav-button-container-color, var(--mat-sys-primary));
+    }
+
+    --private-mix-color: var(--private-container-color);
+    --private-default-bg-color: var(--ngx-nav-button-default-bg-color, transparent);
+    // by default combine mix-color with fx-color
+    --private-hover-bg-color: color-mix(in oklch, var(--private-mix-color), var(--private-fx-color) 8%);
+    --private-pressed-bg-color: color-mix(in oklch, var(--private-mix-color), var(--private-fx-color) 15%);
+
+    // # FILL style
+    &.ngx-nav-fill-style,
+    &.ngx-nav-no-style.active-link,
+    &.ngx-nav-no-style.ngx-nav-state-selected {
+        --private-icon-color: var(--private-on-selected-color);
+        --private-fx-color: var(--private-fx-selected-color);
+        // on ngx-nav-fill-style combine selected-color with fx-color to get private-mix-color
+        --private-mix-color: color-mix(in oklch, var(--private-selected-color), var(--private-fx-color) 50%);
+
+        // on fill combine mix-color with selected-color
+        --private-default-bg-color: color-mix(in oklch, var(--private-mix-color), var(--private-selected-color) 100%);
+        // Hover
+        &.ngx-nav-state-hovered,
+        &:hover {
+            --private-hover-bg-color: color-mix(in oklch, var(--private-mix-color), var(--private-selected-color) 60%);
+        }
+
+        // Pressed
+        &.ngx-nav-state-pressed,
+        &:active {
+            --private-pressed-bg-color: color-mix(
+                in oklch,
+                var(--private-mix-color),
+                var(--private-selected-color) 30%
+            );
+        }
+    }
+
+    // change children component css
+    --mdc-circular-progress-active-indicator-color: var(--private-loading-color);
+    --mat-icon-button-state-layer-color: var(--private-text-color);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    background-color: unset;
+    border: unset;
+    padding: 0;
+    text-align: center;
+    font: var(--mat-sys-body-medium);
+    color: var(--private-text-color);
+
+    &.active-link,
+    &.ngx-nav-state-selected {
+        font-weight: bold;
+    }
+
+    .mat-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--private-icon-color);
+        background: var(--private-default-bg-color);
+    }
+
+    &:hover {
+        .mat-icon {
+            font-weight: 600;
+            transition: all 200ms ease-out;
+        }
+    }
+
+    &.mousedown {
+        .mat-icon {
+            font-weight: 300;
+            transition: all 40ms ease-in;
+        }
+    }
+
+    &.mouseover {
+        font-variation-settings: 'FILL' 1;
+    }
+
+    &.ngx-nav-icon-text-button {
+        .mat-icon {
+            border-radius: var(--mat-sys-corner-large);
+            padding: var(--private-icon-label-padding);
+        }
+
+        width: var(--private-width);
+        min-width: var(--private-width);
+    }
+
+    &.ngx-nav-icon-only-button {
+        .mat-icon {
+            border-radius: var(--mat-sys-corner-extra-large);
+            padding: var(--private-icon-only-padding);
+        }
+    }
+
+    // # Loading
+    &.ngx-nav-button-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        font: var(--mat-sys-body-medium);
+        color: var(--private-text-color);
+
+        .ngx-nav-button-spinner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+
+        &.ngx-nav-icon-text-button {
+            .mat-icon {
+                display: none !important;
+            }
+
+            .ngx-nav-button-spinner {
+                padding: var(--private-icon-label-padding);
+            }
+        }
+
+        &.ngx-nav-icon-only-button {
+            position: relative;
+
+            .ngx-nav-button-spinner {
+                position: absolute;
+                width: 38px;
+                height: 38px;
+                padding: var(--private-icon-only-padding);
+            }
+        }
+    }
+
+    // State : Hover
+    &.ngx-nav-state-hovered,
+    &:hover {
+        .mat-icon {
+            background: var(--private-hover-bg-color);
+        }
+    }
+
+    // State : Pressed
+    &.ngx-nav-state-pressed,
+    &:active {
+        .mat-icon {
+            background: var(--private-pressed-bg-color);
+        }
+    }
+
+    // # State : Disabled
+    &.ngx-nav-state-disabled {
+        opacity: 0.38;
+
+        .mat-icon {
+            background: var(--private-default-bg-color) !important;
+        }
+    }
+}

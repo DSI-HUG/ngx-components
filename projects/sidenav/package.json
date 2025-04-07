@@ -1,13 +1,13 @@
 {
     "name": "@hug/ngx-sidenav",
-    "version": "3.0.1",
+    "version": "19.0.0",
     "description": "HUG Angular - sidenav component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
     "author": "HUG - Hôpitaux Universitaires Genève",
     "contributors": [
-        "badisi (https://github.com/badisi)",
-        "vapkse (https://github.com/vapkse)"
+        "maxouhell (https://github.com/maxouhell)",
+        "alexandre-guesnerot (https://github.com/alexandre-guesnerot)"
     ],
     "repository": {
         "type": "git",
@@ -22,7 +22,8 @@
     "sideEffects": false,
     "exports": {
         ".": {
-            "sass": "./_sidenav-theme.scss"
+            "scss": "./index.scss",
+            "m3-panel": "./styles/m3-panel.scss"
         }
     },
     "scripts": {
@@ -37,8 +38,7 @@
     "peerDependencies": {
         "@angular/common": ">=19 <20",
         "@angular/core": ">=19 <20",
-        "rxjs": ">= 7.4.0",
-        "@hug/ngx-core": "^3.0.1"
+        "rxjs": ">= 7.4.0"
     },
     "dependencies": {
         "tslib": "^2.7.0"

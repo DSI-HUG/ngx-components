@@ -41,10 +41,8 @@
 <ng-template #filter>
     @if (layoutToolbar || layoutRight) {
         <mat-toolbar id="toolbar" [color]="toolbarColor">
-            @if (withSidenav && (mediaService.isHandset$ | async) && (sidenavService.openChanged$ | async) === false) {
-                <button type="button" id="sidenav-button" mat-icon-button (click)="sidenavService.toggle()">
-                    <mat-icon>menu</mat-icon>
-                </button>
+            @if (withSidenav && (mediaService.isHandset$ | async)) {
+                <mat-icon>menu</mat-icon>
             }
             @if (withBackButton) {
                 <button

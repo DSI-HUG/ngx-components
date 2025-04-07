@@ -1,0 +1,136 @@
+$horizontal-gap: 0.1rem;
+
+/*
+ * .ngx-nav-panel (red): position relative
+ *   > .ngx-nav-panel-container (blue) : position (fixed, absolute, relative)
+ *      > .ngx-nav-panel-wrapper (green) : scroll content, corner, mask the shadow and add a margin to see it (left or right)
+ *         > .ngx-nav-panel-content (orange) : display the content
+ */
+//.ngx-nav-panel {
+//    border: solid 1px red !important;
+//
+//    .ngx-nav-panel-container {
+//        border: solid 1px blue !important;
+//
+//        .ngx-nav-panel-wrapper {
+//            border: solid 1px green !important;
+//
+//            .ngx-nav-panel-content {
+//                border: solid 1px orange !important;
+//            }
+//        }
+//    }
+//}
+
+.m3-panel {
+    // # Variables
+    --ngx-nav-panel-content-padding: 0.5rem;
+    --private-h-gap: 0.1rem;
+
+    // child component
+    --mat-expansion-container-background-color: transparent;
+    --mat-expansion-header-expanded-state-height: 48px;
+    --mat-list-active-indicator-shape: var(--mat-sys-corner-extra-large);
+
+    min-height: 100px;
+
+    // # Panel
+    .ngx-nav-panel-wrapper {
+        padding: var(--private-padding-top) var(--private-padding-right) var(--private-padding-bottom)
+            var(--private-padding-left) !important;
+    }
+
+    .ngx-nav-panel-content {
+        padding: 0;
+    }
+
+    // # List
+
+    .mat-mdc-nav-list {
+        display: flex;
+        box-sizing: border-box;
+    }
+
+    // # Accordion / Expansion Panel
+    .mat-mdc-list,
+    .mat-accordion {
+        display: block;
+        box-sizing: border-box;
+    }
+
+    .mat-accordion,
+    .mat-mdc-list {
+        .mat-accordion,
+        .mat-mdc-nav-list,
+        .mat-mdc-list {
+            margin: 0 !important;
+        }
+    }
+
+    .mat-expansion-panel {
+        margin: 0 !important;
+        box-shadow: none !important;
+
+        .mat-expansion-panel-header {
+            border-radius: var(--mat-sys-corner-extra-large);
+
+            .mat-expansion-panel-header-title {
+                font: var(--mat-sys-body-medium) !important;
+            }
+        }
+
+        .mat-expansion-panel-body {
+            display: flex;
+            flex-direction: column;
+            padding-top: 2px !important;
+            padding-bottom: 0 !important;
+            padding-right: 0 !important;
+            padding-left: 0.8rem !important;
+        }
+    }
+
+    // ## Arrow icon
+    .mat-expansion-indicator::after {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background-color: var(--mat-sys-on-primary-container);
+        opacity: 70%;
+        color: unset;
+        clip-path: polygon(0 50%, 100% 50%, 50% 100%);
+        transform: rotate(180deg);
+        vertical-align: middle;
+        padding: 0;
+    }
+
+    // ## Active Link
+    .active-link {
+        > .mat-expansion-panel-header {
+            background-color: var(--mat-sys-surface-container-highest) !important;
+        }
+    }
+
+    // # Nav List
+    .mat-mdc-nav-list {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        gap: var(--private-h-gap);
+    }
+
+    .mat-mdc-list-item {
+        .mdc-list-item__primary-text {
+            font: var(--mat-sys-body-medium) !important;
+        }
+
+        // ## Active Link
+        &.active-link {
+            background-color: var(--mat-sys-primary-container);
+
+            .mdc-list-item__primary-text {
+                color: var(--mat-sys-on-primary-container);
+            }
+        }
+    }
+}

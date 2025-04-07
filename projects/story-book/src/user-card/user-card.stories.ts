@@ -4,15 +4,17 @@ import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 import { NgxUserCardComponent } from '../../../user-card/src/user-card.component';
 import { UserTooltipWrapperComponent } from './user-tooltip-wrapper/user-tooltip-wrapper.component';
 
-
 const meta: Meta<NgxUserCardComponent> = {
     title: 'Components/User Card',
     component: NgxUserCardComponent,
-    tags: ['autodocs'],
+    tags: [
+        'autodocs'
+    ],
     decorators: [
         moduleMetadata({
             imports: [
-                MatButtonToggleGroup, MatButtonToggle
+                MatButtonToggleGroup,
+                MatButtonToggle
             ]
         })
     ],
@@ -20,7 +22,8 @@ const meta: Meta<NgxUserCardComponent> = {
         layout: 'centered',
         docs: {
             description: {
-                component: 'The `NgxUserCardComponent` displays user information. The UserCard can be expanded or compressed, showing or hiding additional details based on the `expanded` input.'
+                component:
+                    'The `NgxUserCardComponent` displays user information. The UserCard can be expanded or compressed, showing or hiding additional details based on the `expanded` input.'
             }
         }
     },
@@ -331,4 +334,3 @@ export const userTooltip: Story = {
         }
     })
 };
-

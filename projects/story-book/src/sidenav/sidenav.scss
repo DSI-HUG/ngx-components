@@ -1,0 +1,4 @@
+@use './styles/m3-theme';
+@use './styles/section.sidenav' as sidenav-section;
+@use '../../../sidenav/src' as sidenav;
+@use '../../../sidenav/src/styles/m3-panel' as m3-panel;

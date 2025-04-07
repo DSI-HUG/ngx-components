@@ -1,0 +1,32 @@
+@use './theme' as theme;
+@use '@angular/material' as mat;
+
+html {
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+
+    @include mat.theme(
+        (
+            color: (
+                theme-type: light,
+                primary: theme.$blue-palette,
+                tertiary: mat.$red-palette
+            ),
+            typography: Roboto,
+            density: 0
+        )
+    );
+}
+
+.dark-theme {
+    @include mat.theme(
+        (
+            color: (
+                theme-type: dark,
+                primary: theme.$blue-palette,
+                tertiary: mat.$red-palette
+            ),
+            typography: Roboto,
+            density: 0
+        )
+    );
+}

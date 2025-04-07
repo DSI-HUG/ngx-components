@@ -5,7 +5,7 @@
         "CHANGELOG.md",
         {
             "input": "src/",
-            "glob": "_sidenav-theme.scss",
+            "glob": "./styles/panel.m3.scss",
             "output": "."
         }
     ],

@@ -7,7 +7,6 @@ import { MatDrawer, MatDrawerContainer, MatDrawerContent } from '@angular/materi
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatTooltip } from '@angular/material/tooltip';
 import { NgxMediaService } from '@hug/ngx-core';
-import { NgxSidenavService } from '@hug/ngx-sidenav';
 
 @Component({
     selector: 'ngx-layout',
@@ -54,7 +53,6 @@ export class NgxLayoutComponent {
     @ViewChild('sideFilter') protected sideFilter?: MatDrawer;
 
     protected mediaService = inject(NgxMediaService);
-    protected sidenavService = inject(NgxSidenavService);
     protected elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
     public get layoutToolbar(): TemplateRef<unknown> | undefined {
