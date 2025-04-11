@@ -1,34 +1,28 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { DecimalPipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
-import { MatFormField, MatFormFieldAppearance } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
+import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
-import { isSameHour, set } from 'date-fns';
-import { debounce, distinctUntilChanged, map, Subject, timer } from 'rxjs';
+import { set } from 'date-fns';
+import { debounceTime, distinctUntilChanged, EMPTY, map, mergeWith, Subject, switchMap, tap, timer } from 'rxjs';
 
 export type NgxTimePickerDisplayMode = 'fullTime' | 'fullTimeWithHoursDisabled' | 'fullTimeWithMinutesDisabled' | 'hoursOnly' | 'minutesOnly';
 
-export type NgxDateOrDuration = Date | Duration;
-
-type DataType = 'date' | 'duration';
-
-type FieldType = 'hours' | 'minutes';
-
-// TODO sdil refactor rxjs flows
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'ngx-time-picker',
     styleUrls: ['./time-picker.component.scss'],
     templateUrl: './time-picker.component.html',
     encapsulation: ViewEncapsulation.None,
+    standalone: true,
     imports: [
         DecimalPipe,
         FormsModule,
-        MatFormField,
-        MatInput,
+        MatFormFieldModule,
+        MatInputModule,
         NgxNumericStepperComponent
     ]
 })
@@ -36,13 +30,10 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
     @ViewChild('hours') public hours?: ElementRef<HTMLInputElement>;
     @ViewChild('minutes') public minutes?: ElementRef<HTMLInputElement>;
 
-    @Output() public readonly timeChange = new EventEmitter<NgxDateOrDuration>();
+    @Output() public readonly timeChange = new EventEmitter<Date>();
 
     /** Display mode for the time-picker */
     @Input() public mode: NgxTimePickerDisplayMode = 'fullTime';
-
-    /** Data type to manage (Date or Duration) */
-    @Input() public dataType: DataType = 'date';
 
     /**
      * Force the hour or minute to be null (only if the other field is disabled)
@@ -63,11 +54,11 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
     @Input() public defaultPlaceholderMinutes = '_ _';
 
     @Input()
-    public set time(value: NgxDateOrDuration | undefined) {
+    public set time(value: Date | undefined) {
         this.writeValue(value);
     }
 
-    public get time(): NgxDateOrDuration | undefined {
+    public get time(): Date | undefined {
         return this.value;
     }
 
@@ -95,16 +86,16 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
         return this._disabled;
     }
 
-    public onHoursChange$ = new Subject<Event | number>();
-    public onMinutesChange$ = new Subject<Event | number>();
-    public _step = 1;
+    public readonly hoursChange$ = new Subject<Event | number>();
+    public readonly minutesChange$ = new Subject<Event | number>();
+    public readonly hoursKeyDown$ = new Subject<KeyboardEvent>();
 
     protected changeDetectorRef = inject(ChangeDetectorRef);
     protected control = inject(NgControl, { optional: true, self: true });
-    private destroyRef = inject(DestroyRef);
+    protected _step = 1;
 
     private _disabled = false;
-    private _value?: NgxDateOrDuration;
+    private _value?: Date;
     private _autoFocus = true;
 
     public constructor() {
@@ -112,8 +103,7 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
             this.control.valueAccessor = this;
         }
 
-        this.onHoursChange$.pipe(
-            debounce(hours => timer(typeof hours === 'object' ? 0 : 10)),
+        const hoursChange$ = this.hoursChange$.pipe(
             distinctUntilChanged(),
             map(hours => {
                 if (typeof hours === 'object') {
@@ -122,35 +112,22 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                 }
                 return [!isNaN(hours) ? hours : 0, false] as const;
             }),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe(([hours, isEvent]) => {
-            if (!this.value) {
-                this.value = this.dataType === 'date' ? set(new Date(), { hours, minutes: 0, seconds: 0, milliseconds: 0 }) : { hours, minutes: 0 } as Duration;
-            } else if (this.value instanceof Date) {
-                const value = this.value?.getTime();
-                const clone = new Date(value);
+            tap(([hours, _isEvent]) => {
+                const newValue = this.value ? new Date(this.value.getTime()) : new Date();
+
                 if (hours !== undefined) {
-                    clone.setHours(hours);
+                    newValue.setHours(hours);
                 }
-                this.value = clone;
-            } else {
-                this.value = {
-                    hours: hours && hours < 0 ? 0 : hours,
-                    minutes: this.value.minutes
-                };
-            }
-            this.changeDetectorRef.markForCheck();
 
-            if (isEvent && this._autoFocus && this.minutes) {
-                this.minutes.nativeElement.focus({
-                    preventScroll: true
-                });
-                this.minutes.nativeElement.select();
-            }
-        });
+                if (this.mode === 'fullTime' || this.mode === 'fullTimeWithMinutesDisabled' || this.mode === 'hoursOnly') {
+                    this.value = newValue;
+                }
 
-        this.onMinutesChange$.pipe(
-            debounce(minutes => timer(typeof minutes === 'object' ? 0 : 10)),
+                this.changeDetectorRef.markForCheck();
+            })
+        );
+
+        const minutesChange$ = this.minutesChange$.pipe(
             distinctUntilChanged(),
             map(event => {
                 let minutes: number | undefined;
@@ -160,14 +137,12 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                 } else {
                     minutes = event;
                 }
+
                 return minutes && !isNaN(minutes) && minutes || 0;
             }),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe(minutes => {
-            if (!this.value) {
-                this.value = this.dataType === 'date' ? set(new Date(), { hours: 0, minutes, seconds: 0, milliseconds: 0 }) : { hours: 0, minutes } as Duration;
-            } else if (this.value instanceof Date) {
-                const newValue = new Date(this.value.getTime());
+            tap(minutes => {
+                const newValue = this.value ? new Date(this.value.getTime()) : new Date();
+
                 if (minutes < 0) {
                     minutes += 60;
                 } else if (minutes >= 60) {
@@ -175,102 +150,49 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                 }
                 newValue.setMinutes(minutes);
 
-                if (this.mode !== 'fullTimeWithHoursDisabled' || (this.mode === 'fullTimeWithHoursDisabled' && isSameHour(this.value, newValue))) {
+                if (this.mode === 'fullTime' || this.mode === 'fullTimeWithHoursDisabled' || this.mode === 'minutesOnly') {
                     this.value = newValue;
                 }
-            } else {
-                this.value = {
-                    hours: this.value.hours,
-                    minutes: minutes < 0 || minutes >= 60 ? 0 : minutes
-                };
-            }
-            this.changeDetectorRef.markForCheck();
-        });
-    }
 
-    public onKeyDown($event: KeyboardEvent, mode: 'hours' | 'minutes'): void {
-        // Get input element
-        const inputElement = mode === 'hours' ? this.hours?.nativeElement : this.minutes?.nativeElement;
-        if ($event.key?.toLowerCase() === 'd') {
-            $event.stopPropagation();
-            $event.preventDefault();
-            this.value = new Date();
-        } else if (inputElement) {
-            if ($event.key?.toLowerCase() === 'a' && $event.ctrlKey) {
-                inputElement.select();
-            } else if ($event.key && !['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Tab', 'Enter', 'Control', 'Shift'].includes($event.key)) {
-                // Set regex for input format validation (differs if we are dealing with a date or a duration)
-                let regex;
-                if (mode === 'hours') {
-                    regex = this.dataType === 'date' ? /^(\d|[01]\d|2[0-3])$/ : /^(\d+)$/;
-                } else {
-                    regex = /^(\d|[0-5]\d)$/;
+                this.changeDetectorRef.markForCheck();
+            })
+        );
+
+        const setFocusToNextInput$ = this.hoursKeyDown$.pipe(
+            debounceTime(200),
+            switchMap(event => {
+                const inputElement = this.hours?.nativeElement;
+                if (!inputElement) {
+                    return EMPTY;
                 }
 
-                // Get the selection in input element
-                const [selectionStart, selectionEnd] = [inputElement.selectionStart || 0, inputElement.selectionEnd || 0].sort((a, b) => a - b);
-                const selectionDiff = selectionEnd - selectionStart;
-
-                // Get the current value in input element and update it with the new touched key
-                const inputValue = inputElement.value || '';
-                const inputValueArr = Array.from(inputValue);
-                inputValueArr.splice(selectionStart, selectionDiff, $event.key);
-                const newInputValue = inputValueArr.join('');
-
-                // Prevent event if the time is not valid
-                if (!regex.test(newInputValue)) {
-                    $event.stopPropagation();
-                    $event.preventDefault();
-                } else if (this._autoFocus && mode === 'hours' && ((this.dataType === 'date' && parseFloat(newInputValue) >= 3) || newInputValue.length === 2)) {
-                    this.onHoursChange$.next($event);
+                if (event.key && !event.ctrlKey && !event.shiftKey && !event.altKey && !['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Backspace', 'Delete', 'Tab', 'Enter', 'Control', 'Shift'].includes(event.key)) {
+                    const regex = /^(\d|[01]\d|2[0-3])$/;
+                    const [selectionStart, selectionEnd] = [inputElement.selectionStart || 0, inputElement.selectionEnd || 0].sort((a, b) => a - b);
+                    const inputValue = inputElement.value || '';
+                    if (regex.test(inputValue) && this._autoFocus && inputValue.length === 2 && this.minutes?.nativeElement && inputElement === document.activeElement && selectionStart === 2 && selectionEnd === 2) {
+                        this.minutes.nativeElement.focus();
+                        return timer(0).pipe(
+                            tap(() => {
+                                this.minutes?.nativeElement.select();
+                            })
+                        );
+                    }
                 }
-            }
-        }
-    }
 
-    public get hoursValue(): number | undefined {
-        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithMinutesDisabled' && !!this.control?.pristine)) {
-            return undefined;
-        }
-        return this.value instanceof Date ? this.value.getHours() : this.value.hours;
-    }
+                return EMPTY;
+            })
+        );
 
-    public get minutesValue(): number | undefined {
-        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithHoursDisabled' && !!this.control?.pristine)) {
-            return undefined;
-        }
-        return this.value instanceof Date ? this.value.getMinutes() : this.value.minutes;
-    }
-
-    public incrementValue(fieldType: FieldType): void {
-        if (fieldType === 'hours') {
-            this.onHoursChange$.next((this.hoursValue || 0) + 1);
-        } else {
-            this.onMinutesChange$.next((this.minutesValue || 0) + this._step);
-        }
-    }
-
-    public decrementValue(fieldType: FieldType): void {
-        if (fieldType === 'hours') {
-            this.onHoursChange$.next((this.hoursValue || 0) - 1);
-        } else {
-            this.onMinutesChange$.next((this.minutesValue || 0) - this._step);
-        }
-    }
-
-    public onClick(mode: 'hours' | 'minutes'): void {
-        if (this._autoFocus) {
-            if (mode === 'hours') {
-                this.hours?.nativeElement.select();
-            } else {
-                this.minutes?.nativeElement.select();
-            }
-        }
+        hoursChange$.pipe(
+            mergeWith(minutesChange$, setFocusToNextInput$),
+            takeUntilDestroyed()
+        ).subscribe();
     }
 
     // ************* ControlValueAccessor Implementation **************
     /** set accessor including call the onchange callback */
-    public set value(v: NgxDateOrDuration | undefined) {
+    public set value(v: Date | undefined) {
         if (v !== this._value) {
             this.writeValue(v);
             this.onChangeCallback(v);
@@ -279,12 +201,12 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
     }
 
     /** get accessor */
-    public get value(): NgxDateOrDuration | undefined {
+    public get value(): Date | undefined {
         return this._value;
     }
 
     /** From ControlValueAccessor interface */
-    public writeValue(value: NgxDateOrDuration | undefined): void {
+    public writeValue(value: Date | undefined): void {
         if ((value ?? null) !== (this._value ?? null)) {
             if (value instanceof Date) {
                 this._value = value ? new Date(value.getTime()) : set(new Date(), { hours: 0, minutes: 0, seconds: 0 });
@@ -310,6 +232,20 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
         this.disabled = isDisabled;
     }
     // ************* End of ControlValueAccessor Implementation **************
+
+    protected get hoursValue(): number | undefined {
+        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithMinutesDisabled' && !!this.control?.pristine)) {
+            return undefined;
+        }
+        return this.value.getHours();
+    }
+
+    protected get minutesValue(): number | undefined {
+        if (!this.value || (this.forceNullValue && this.mode === 'fullTimeWithHoursDisabled' && !!this.control?.pristine)) {
+            return undefined;
+        }
+        return this.value.getMinutes();
+    }
 
     protected onChangeCallback = (_a: unknown): void => undefined;
     protected onTouchedCallback = (): void => undefined;

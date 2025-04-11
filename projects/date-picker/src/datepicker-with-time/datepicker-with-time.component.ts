@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButton } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
 import { MatDatepicker, MatDatepickerApply, MatDatepickerInput, MatDateSelectionModel } from '@angular/material/datepicker';
-import { NgxDateOrDuration, NgxTimePickerComponent } from '@hug/ngx-time-picker';
+import { NgxTimePickerComponent } from '@hug/ngx-time-picker';
 import { cloneDeep } from 'lodash-es';
 import { delay, filter, map, tap } from 'rxjs';
 
@@ -32,7 +32,7 @@ export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy 
     @ViewChild(NgxTimePickerComponent, { read: ElementRef, static: false })
     private timePickerElement?: ElementRef<HTMLElement>;
 
-    protected time?: NgxDateOrDuration;
+    protected time?: Date;
 
     protected datepicker = inject<MatDatepicker<unknown>>(MatDatepicker);
     protected viewContainerRef = inject(ViewContainerRef);
@@ -60,25 +60,12 @@ export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy 
     }
 
     public onDateTimeClosed(): void {
-        let date = cloneDeep(this.globalModel.selection) || new Date() as unknown;
+        const date = cloneDeep(this.globalModel.selection) as Date || new Date();
         if (this.time) {
-            let hours: number;
-            let minutes: number;
-            let seconds: number;
-            if (this.time instanceof Date) {
-                hours = this.time.getHours();
-                minutes = this.time.getMinutes();
-                seconds = this.time.getSeconds();
-            } else {
-                hours = this.time.hours || 0;
-                minutes = this.time.minutes || 0;
-                seconds = this.time.seconds || 0;
-            }
-            if (date instanceof Date) {
-                date.setHours(hours, minutes, seconds);
-            } else if (this.dateAdapter) {
-                date = this.dateAdapter.setTime(date, hours, minutes, seconds);
-            }
+            const hours = this.time.getHours();
+            const minutes = this.time.getMinutes();
+            const seconds = this.time.getSeconds();
+            date.setHours(hours, minutes, seconds);
         }
         this.globalModel.updateSelection(date, this);
         const datePickerInput = this.datepicker.datepickerInput as MatDatepickerInput<unknown>;
