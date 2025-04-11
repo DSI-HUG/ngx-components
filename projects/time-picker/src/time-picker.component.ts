@@ -1,5 +1,5 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
-import { CommonModule } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
@@ -19,7 +19,7 @@ export type NgxTimePickerDisplayMode = 'fullTime' | 'fullTimeWithHoursDisabled' 
     encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [
-        CommonModule,
+        DecimalPipe,
         FormsModule,
         MatFormFieldModule,
         MatInputModule,
@@ -86,9 +86,9 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
         return this._disabled;
     }
 
-    public hoursChange$ = new Subject<Event | number>();
-    public minutesChange$ = new Subject<Event | number>();
-    public hoursKeyDown$ = new Subject<KeyboardEvent>();
+    public readonly hoursChange$ = new Subject<Event | number>();
+    public readonly minutesChange$ = new Subject<Event | number>();
+    public readonly hoursKeyDown$ = new Subject<KeyboardEvent>();
 
     protected changeDetectorRef = inject(ChangeDetectorRef);
     protected control = inject(NgControl, { optional: true, self: true });
