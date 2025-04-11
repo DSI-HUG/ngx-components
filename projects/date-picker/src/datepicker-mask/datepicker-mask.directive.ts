@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import { Directive, ElementRef, forwardRef, Inject, Input, Optional, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, forwardRef, inject, Input, Renderer2 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl, NG_VALIDATORS, NgControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
@@ -9,7 +8,6 @@ import { isNil } from 'lodash-es';
 import { delay, EMPTY, filter, from, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, tap, timeInterval } from 'rxjs';
 
 import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.service';
-
 
 @Directive({
     selector: '[matDatepicker][dateFormat],[matDatepicker][dateTimeFormat],[matStartDate][dateFormat],[matEndDate][dateFormat],[matStartDate][dateTimeFormat],[matEndDate][dateTimeFormat]',
@@ -24,18 +22,16 @@ import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.s
     standalone: true
 })
 export class NgxDatepickerMaskDirective {
-    private applyMask$ = new Subject<void>();
+    private readonly applyMask$ = new Subject<void>();
 
-    // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input('dateTimeFormat')
+    @Input()
     public set dateTimeFormat(value: string) {
-        this.formatExpression = value || this.dateFormats.display.dateInput as string;
+        this.formatExpression = value || this.dateFormats?.display?.dateInput as string;
     }
 
-    // eslint-disable-next-line @angular-eslint/no-input-rename
-    @Input('dateFormat')
+    @Input()
     public set dateFormat(value: string) {
-        this.formatExpression = value || this.dateFormats.display.dateInput as string;
+        this.formatExpression = value || this.dateFormats?.display?.dateInput as string;
     }
 
     private set formatExpression(value: string) {
@@ -56,15 +52,15 @@ export class NgxDatepickerMaskDirective {
     private readonly formatCharRegExp = /[mdyhs]/i;
     private readonly forwardToInputKeyCodes = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'PageDown', 'PageUp', 'End', 'Home', 'Tab'];
 
+    private readonly dateFormats = inject<MatDateFormats>(MAT_DATE_FORMATS, { optional: true });
+    private readonly elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
+    private readonly ngControl = inject(NgControl);
+    private readonly renderer = inject(Renderer2);
+    private readonly dateAdapter = inject<DateAdapter<unknown>>(DateAdapter);
+
     public constructor(
-        @Optional() @Inject(MAT_DATE_FORMATS) private readonly dateFormats: MatDateFormats,
-        private readonly elementRef: ElementRef<HTMLInputElement>,
-        private readonly ngControl: NgControl,
-        private readonly renderer: Renderer2,
-        // private readonly validator: NgxDatepickerMaskValidatorService,
-        private readonly dateAdapter: DateAdapter<unknown>
     ) {
-        elementRef.nativeElement.setAttribute('autocomplete', 'off');
+        this.elementRef.nativeElement.setAttribute('autocomplete', 'off');
 
         const focus$ = fromEvent<FocusEvent>(this.elementRef.nativeElement, 'focus').pipe(
             shareReplay(1)
@@ -72,7 +68,7 @@ export class NgxDatepickerMaskDirective {
 
         const selectAll$ = focus$.pipe(
             delay(100),
-            mergeWith(fromEvent<KeyboardEvent>(elementRef.nativeElement, 'keydown')),
+            mergeWith(fromEvent<KeyboardEvent>(this.elementRef.nativeElement, 'keydown')),
             timeInterval(),
             tap(intervalEvent => {
                 const selectionStart = this.elementRef.nativeElement.selectionStart;
@@ -96,7 +92,7 @@ export class NgxDatepickerMaskDirective {
             })
         );
 
-        const paste$ = fromEvent<ClipboardEvent>(elementRef.nativeElement, 'paste').pipe(
+        const paste$ = fromEvent<ClipboardEvent>(this.elementRef.nativeElement, 'paste').pipe(
             tap(event => {
                 // Get pasted data via clipboard
                 const pastedData = event.clipboardData?.getData('Text');
@@ -109,7 +105,7 @@ export class NgxDatepickerMaskDirective {
             })
         );
 
-        const dblClick$ = fromEvent<Event>(elementRef.nativeElement, 'mousedown').pipe(
+        const dblClick$ = fromEvent<Event>(this.elementRef.nativeElement, 'mousedown').pipe(
             timeInterval(),
             filter(intervalEvent => intervalEvent.interval < 400),
             switchMap(intervalEvent => {
@@ -160,7 +156,7 @@ export class NgxDatepickerMaskDirective {
             })
         );
 
-        const keyDown$ = fromEvent<KeyboardEvent>(elementRef.nativeElement, 'keydown').pipe(
+        const keyDown$ = fromEvent<KeyboardEvent>(this.elementRef.nativeElement, 'keydown').pipe(
             shareReplay(1)
         );
 
