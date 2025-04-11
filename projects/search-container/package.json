@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-search-container",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "HUG Angular - search-container component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -40,7 +40,7 @@
         "@angular/forms": ">=19 <20",
         "@angular/material": ">=19 <20",
         "rxjs": ">= 7.4.0",
-        "@hug/ngx-core": "^3.0.0"
+        "@hug/ngx-core": "^3.0.1"
     },
     "dependencies": {
         "tslib": "^2.7.0"

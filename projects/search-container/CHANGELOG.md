@@ -1,3 +1,18 @@
+## 3.0.2 (2025-03-13)
+
+### 🐛 Fixes
+
+- **Layout:** search bar style (NGXCPTS-12) ([de5207b](https://github.com/DSI-HUG/ngx-components/commit/de5207b))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v3.0.1 ([78b3172](https://github.com/DSI-HUG/ngx-components/commit/78b3172))
+
+### ❤️ Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+- pdth @pdth
+
 ## 3.0.1 (2025-02-07)
 
 ### 🐛 Fixes

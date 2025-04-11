@@ -107,5 +107,5 @@
     "engines": {
         "yarn": "Please use Npm instead of Yarn."
     },
-    "packageManager": "npm@10.8.3"
+    "packageManager": "npm@11.2.0"
 }
