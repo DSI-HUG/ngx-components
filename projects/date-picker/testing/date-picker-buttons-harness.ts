@@ -1,6 +1,6 @@
 import { BaseHarnessFilters, ComponentHarness, HarnessPredicate } from '@angular/cdk/testing';
 
-/** Harness for interacting with a ngx time picker in tests. */
+/** Harness for interacting with a ngx date picker in tests. */
 export class NgxDatePickerButtonsHarness extends ComponentHarness {
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
