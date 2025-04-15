@@ -1,7 +1,7 @@
 import { HarnessPredicate } from '@angular/cdk/testing';
 import { InputHarnessFilters, MatInputHarness } from '@angular/material/input/testing';
 
-/** Harness for interacting with a ngx time picker in tests. */
+/** Harness for interacting with a ngx date picker in tests. */
 export class NgxDatePickerInputHarness extends MatInputHarness {
     public static override with(options?: InputHarnessFilters): HarnessPredicate<NgxDatePickerInputHarness> {
         return new HarnessPredicate(NgxDatePickerInputHarness, options ?? {});
