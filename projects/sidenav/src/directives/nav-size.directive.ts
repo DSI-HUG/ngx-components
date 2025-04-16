@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/member-ordering */
-import { computed, Directive, HostBinding, input } from '@angular/core';
+import { computed, Directive, HostBinding, input, InputSignal } from '@angular/core';
 
 import { NavSize } from '../enums';
 
@@ -13,20 +13,19 @@ export class NavSizeDirective {
         return this.sizeClass();
     }
 
-    public readonly size = input.required<NavSize>({ alias: 'navSize' });
-
+    public readonly size: InputSignal<NavSize> = input.required<NavSize>({ alias: 'navSize' });
     protected readonly sizeClass = computed(() => {
         const size = this.size();
         switch (size) {
-            case NavSize.XS:
+            case 'XS':
                 return 'ngx-nav-size-xs';
-            case NavSize.S:
+            case 'S':
                 return 'ngx-nav-size-s';
-            case NavSize.L:
+            case 'L':
                 return 'ngx-nav-size-l';
-            case NavSize.XL:
+            case 'XL':
                 return 'ngx-nav-size-xl';
-            case NavSize.M:
+            case 'M':
             default:
                 return 'ngx-nav-size-m';
         }

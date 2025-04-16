@@ -1,4 +1,4 @@
-import { NavPanelComponent, PanelTheme, PanelType } from '@hug/ngx-sidenav';
+import { NavPanelComponent, PANEL_THEMES, PANEL_TYPES } from '@hug/ngx-sidenav';
 import { StoryObj } from '@storybook/angular';
 
 import { ContentType } from '../enums/content.type';
@@ -9,7 +9,7 @@ export const navPanelArgs: StoryObj<NgxNavPanelComponentType> = {
     argTypes: {
         panelType: {
             control: { type: 'select' },
-            options: Object.values(PanelType),
+            options: PANEL_TYPES,
             table: {
                 defaultValue: { summary: 'OPEN_RIGHT' },
                 type: { summary: 'PanelType' }
@@ -17,7 +17,7 @@ export const navPanelArgs: StoryObj<NgxNavPanelComponentType> = {
         },
         panelTheme: {
             control: { type: 'select' },
-            options: Object.values(PanelTheme),
+            options: PANEL_THEMES,
             table: {
                 defaultValue: { summary: 'MATERIAL_3' },
                 type: { summary: 'PanelType' }
@@ -34,8 +34,8 @@ export const navPanelArgs: StoryObj<NgxNavPanelComponentType> = {
         }
     },
     args: {
-        panelType: PanelType.OPEN_RIGHT,
-        panelTheme: PanelTheme.MATERIAL_3,
+        panelType: 'open-right',
+        panelTheme: 'm3',
         expanded: true,
         content: ContentType.NAV_LIST_1
     }

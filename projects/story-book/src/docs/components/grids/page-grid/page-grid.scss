@@ -1,0 +1,31 @@
+@use '../grid.scss' as *;
+@use '@angular/material' as mat;
+@use '../../../scss/theme' as theme;
+
+$theme: theme.$theme;
+
+.page-grid {
+    display: grid;
+    grid-template-columns: $grid-colums-large;
+    gap: $grid-gap;
+
+    .page-content {
+        .highlight {
+            color: mat.get-theme-color($theme, tertiary, 50);
+        }
+    }
+}
+
+// Responsive behaviors
+html[window-width='small'] {
+    .page-grid {
+        grid-template-columns: $grid-colums-small;
+    }
+}
+
+html[window-width='medium'] {
+    .page-grid {
+        grid-template-columns: $grid-colums-medium;
+        gap: var(--item-gap);
+    }
+}

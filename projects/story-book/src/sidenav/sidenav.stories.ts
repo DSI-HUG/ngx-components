@@ -10,10 +10,10 @@ import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/an
 import { NgxSidenavComponentType } from './args/sidenav.args';
 import { sidenavRoutes } from './helpers/sidenav.routes';
 import { sidenavAlign } from './stories/sidenav.align';
+import { sidenavBasic } from './stories/sidenav.basic';
 import { sidenavGroups } from './stories/sidenav.groups';
 import { sidenavHorizontal } from './stories/sidenav.horizontal';
 import { sidenavScroll } from './stories/sidenav.scroll';
-import { sidenavStandard } from './stories/sidenav.standard';
 import { sidenavToggle } from './stories/sidenav.toggle';
 
 const meta: Meta<SidenavComponent> = {
@@ -37,9 +37,6 @@ const meta: Meta<SidenavComponent> = {
             ]
         })
     ],
-    tags: [
-        'autodocs'
-    ],
     argTypes: {},
     parameters: {
         docs: {
@@ -52,7 +49,7 @@ const meta: Meta<SidenavComponent> = {
 };
 export default meta;
 
-export const standard: StoryObj<NgxSidenavComponentType> = sidenavStandard;
+export const basic: StoryObj<NgxSidenavComponentType> = sidenavBasic;
 export const horizontal: StoryObj<NgxSidenavComponentType> = sidenavHorizontal;
 export const toggle: StoryObj<NgxSidenavComponentType> = sidenavToggle;
 export const groups: StoryObj<NgxSidenavComponentType> = sidenavGroups;

@@ -22,19 +22,19 @@ const templateOneLineComponent = (): string => `
 const contentWrapper = (content: string): Parameters<typeof sidenavSubpart>[1] => [
     {
         contentTitle: 'Default',
-        value: `<ngx-sidenav [location]="SidebarLocation.TOP">
+        value: `<ngx-sidenav location="top">
             ${content}
         </ngx-sidenav>`
     },
     {
         contentTitle: 'Light',
-        value: `<ngx-sidenav [location]="SidebarLocation.TOP" [theme]="SidebarTheme.LIGHT">
+        value: `<ngx-sidenav location="top" theme="light">
             ${content}
         </ngx-sidenav>`
     },
     {
         contentTitle: 'Dark',
-        value: `<ngx-sidenav [location]="SidebarLocation.TOP" [theme]="SidebarTheme.DARK">
+        value: `<ngx-sidenav location="top" theme="dark">
             ${content}
         </ngx-sidenav>`
     }

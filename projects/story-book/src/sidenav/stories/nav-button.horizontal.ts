@@ -47,22 +47,22 @@ const templateTwoLineCutComponent = (): string => `
                 <mat-icon>add_circle</mat-icon> <span text-ellipsis>icon with two line</span>
             </button>`;
 
-const contentWrapper = (content: string, size = 'NavSize.S'): Parameters<typeof sidenavSubpart>[1] => [
+const contentWrapper = (content: string, size = 'S'): Parameters<typeof sidenavSubpart>[1] => [
     {
         contentTitle: 'Default',
-        value: `<ngx-sidenav [location]="SidebarLocation.TOP" [navSize]="${size}">
+        value: `<ngx-sidenav location="top" navSize="${size}">
             ${content}
         </ngx-sidenav>`
     },
     {
         contentTitle: 'Light',
-        value: `<ngx-sidenav [location]="SidebarLocation.TOP" [theme]="SidebarTheme.LIGHT" [navSize]="${size}">
+        value: `<ngx-sidenav location="top" theme="light" navSize="${size}">
             ${content}
         </ngx-sidenav>`
     },
     {
         contentTitle: 'Dark',
-        value: `<ngx-sidenav [location]="SidebarLocation.TOP" [theme]="SidebarTheme.DARK" [navSize]="${size}">
+        value: `<ngx-sidenav location="top" theme="dark" navSize="${size}">
             ${content}
         </ngx-sidenav>`
     }
@@ -115,11 +115,11 @@ export const navButtonHorizontal: StoryObj<NavButtonComponentArgs> = {
                     subpart: [
                         {
                             subpartTitle: 'Directive',
-                            content: contentWrapper(templateTwoLineDirective(), 'NavSize.M')
+                            content: contentWrapper(templateTwoLineDirective(), 'M')
                         },
                         {
                             subpartTitle: 'Component',
-                            content: contentWrapper(templateTwoLineComponent(), 'NavSize.M')
+                            content: contentWrapper(templateTwoLineComponent(), 'M')
                         }
                     ]
                 }

@@ -29,7 +29,7 @@ export const sidenavScroll: StoryObj<NgxSidenavComponentType> = {
         <!-- Menu Left -->
         <div class="flex flex-row">
             <!-- # Sidenav -->
-            <ngx-sidenav [theme]="SidebarTheme.DARK" [location]="SidebarLocation.RIGHT">
+            <ngx-sidenav theme="dark" location="right">
                 @for(item of [${list.map(v => `"${v}"`).join(',')}]; track $index) {
                     <button nav-button>
                         <mat-icon>all_inclusive</mat-icon> {{item}}
@@ -39,7 +39,7 @@ export const sidenavScroll: StoryObj<NgxSidenavComponentType> = {
         </div>
         <div class="flex flex-column flex-auto">
             <!-- Menu Top -->
-            <ngx-sidenav [theme]="SidebarTheme.LIGHT" [location]="SidebarLocation.TOP">
+            <ngx-sidenav theme="light" location="top">
                 @for(item of [${list.map(v => `"${v}"`).join(',')}]; track $index) {
                     <button nav-icon-button [matTooltip]="item">
                         <mat-icon>all_inclusive</mat-icon>

@@ -1,0 +1,71 @@
+@use '../card.scss' as *;
+@use '@angular/material' as mat;
+@use '../../../scss/theme' as theme;
+@use '../../chip/chip.scss';
+
+$theme: theme.$theme;
+
+$card-title-font-weight: 400;
+
+.grid-item-card {
+    border-radius: var(--item-border-radius);
+    outline: var(--item-border);
+    outline-color: mat.get-theme-color($theme, outline-variant);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    &:hover,
+    &.highlight {
+        outline: var(--item-border-fatter);
+
+        &.new {
+            outline-color: mat.get-theme-color($theme, tertiary, 80);
+        }
+
+        &.ready {
+            outline-color: mat.get-theme-color($theme, primary, 80);
+        }
+    }
+
+    &.planned {
+        outline-color: mat.get-theme-color($theme, neutral, 95);
+        user-select: none;
+
+        &.highlight {
+            outline: var(--item-border-fatter);
+            outline-color: mat.get-theme-color($theme, outline-variant);
+        }
+
+        .card-title,
+        .card-description {
+            color: mat.get-theme-color($theme, neutral, 80);
+        }
+    }
+
+    .card-image {
+        display: block;
+    }
+
+    .card-content {
+        color: mat.get-theme-color($theme, neutral, 10);
+
+        > .card-header {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            gap: var(--item-gap-small);
+
+            > .card-title {
+                margin: 0;
+                pointer-events: none;
+                font-size: mat.get-theme-typography($theme, title-large, font-size);
+                font-weight: $card-title-font-weight;
+            }
+        }
+
+        > .card-description {
+            margin: 0;
+        }
+    }
+}

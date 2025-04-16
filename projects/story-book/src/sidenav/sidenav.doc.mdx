@@ -1,0 +1,197 @@
+import { Controls, Description, Canvas, Source, Meta, Story, Primary, Stories } from '@storybook/blocks';
+
+import { PageGrid, Icon, CardsGrid, ComponentsGrid, Image, Iframe } from '../docs/components/components';
+
+import * as SidenavStories from './sidenav.stories';
+
+<Meta of={SidenavStories} />
+
+<PageGrid maxSummaryDepth="3">
+# `Sidenav`
+
+    ## <Icon name="info"/> Coup d'oeil
+        <Iframe
+            widthIframe="100%"
+            heightIframe="250"
+            srcIframe="/iframe.html?viewMode=story&id=components-sidenav-sidenav--basic&args=pageSize&globals="/>
+
+        La `sidenav` permet d'afficher les boutons de navigation (`nav-button` et `nav-icon-button`).
+
+        Les boutons de navigation permettent :
+        - De rediriger vers les pages de l'application.
+        - D'afficher des `nav-panels` contenant des informations.
+        - Etc.
+
+        La `sidenav` peut :
+        - S'afficher en **horizontal** ou en **vertical**.
+        - Être localisée à **gauche**, **droite**, **haut** ou **bas**.
+
+        Trois **thèmes** peuvent être appliqués : **dark**, **light** et **none**.
+        Ils peuvent ensuite être modifiés à l'aide des **tokens CSS**.
+        Cela permet de commencer sur une base sombre, claire ou neutre. Les thèmes par défaut sont ceux utilisés par les applications du HUG.
+
+        Enfin, la `sidenav` peut être **activée** ou **désactivée**.
+
+        Toutes ces informations sont disponibles pour que le composant `layout` puisse positionner les différents éléments.
+        Les composants `sidenav`, `panels`, ainsi que les éléments des vues **mobile** et **écran large**, sont dissociés afin d'être facilement positionnés par le `layout`.
+
+    ##  <Icon name="display_settings"/> Démo
+        <Primary />
+        <Controls of={SidenavStories.basic} />
+
+    ## <Icon name="css"/> Tokens CSS
+
+    <table class="docblock-argstable sb-unstyled css-v2ifgj">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Default</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>--ngx-nav-size</strong></td>
+                <td>Taille de la sidenav (largeur en mode vertical, hauteur en mode horizontal)</td>
+                <td>`88px`</td>
+            </tr>
+            <tr>
+                <td><strong>--ngx-nav-color</strong></td>
+                <td>Couleur du texte</td>
+                <td>`on-surface`</td>
+            </tr>
+            <tr>
+                <td><strong>--ngx-nav-bg-color</strong></td>
+                <td>Couleur de fond</td>
+                <td>`transparent`</td>
+            </tr>
+            <tr>
+                <td><strong>--ngx-nav-border-color</strong></td>
+                <td>Couleur de la bordure</td>
+                <td>`12%` de `on-surface`</td>
+            </tr>
+            <tr>
+                <td><strong>--ngx-nav-scroll-width</strong></td>
+                <td>Largeur de la barre de défilement</td>
+                <td>`4px`</td>
+            </tr>
+            <tr>
+                <td><strong>--ngx-nav-scroll-height</strong></td>
+                <td>Hauteur de la barre de défilement</td>
+                <td>`8px`</td>
+            </tr>
+            <tr>
+                <td><strong>--ngx-nav-scroll-bg-color</strong></td>
+                <td>Couleur de fond de la barre de défilement</td>
+                <td>`12%` de `on-surface`</td>
+            </tr>
+            <tr>
+                <td><strong>--ngx-nav-scroll-color</strong></td>
+                <td>Couleur de la barre de défilement</td>
+                <td>`20%` de `on-surface`</td>
+            </tr>
+            <tr>
+                <td><strong>--ngx-nav-scroll-hover</strong></td>
+                <td>Couleur de la barre de défilement au survol</td>
+                <td>`40%` de `on-surface`</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    ## <Icon name="code"/> Code
+        Importation du composant `ngx-sidenav`:
+        <Source dark language="typescript" code={`import { SidenavComponent } from '@hug/ngx-sidenav';`}/>
+
+        Exemple de code html de contenu pour le `ngx-sidenav` :
+        <Source dark language="typescript" code={`<ngx-sidenav #sidenav
+            [location]="location"
+            [theme]="theme"
+            [disabled]="disabled">
+            <!-- Ajouter votre contenu ici -->
+
+</ngx-sidenav>`}/>
+
+        Fonction permettant l'ouverture d'un `mat-dialog`:
+        <Source dark language="typescript" code={
+
+`readonly dialog = inject(MatDialog); openDialog() {     // TODO : Add demo config to show how it's done     this.dialog.open(DialogElements); }` }/>
+
+        Code html du composant appelant le `mat-dialog`:
+        <Source dark language="html" code={`<button mat-raised-button (click)="openDialog()">Invalider</button>`} language="html"/>
+
+    ## <Icon name="alt_route"/> Exemple d'utilisation
+        ### Confirmation
+            <Canvas of={SidenavStories.basic} />
+
+    ## <Icon name="data_usage"/> Usages
+        La `dialog` doit être utilisé pour vous assurer que **l'utilisateur agit en tenant compte des informations nécessaires**.
+        Idéalement, elle doit être dédiée à **l'accomplissement d'une seule tâche**.
+        Son utilisation la plus courante est pour **confirmer une actions à haut risque** telle que l'effacement d’un élément.
+
+    ## <Icon name="tile_medium"/> Anatomie
+        La `dialog` contient 3 éléments principaux : le `header`, le `contenu` et le `footer`.
+
+        <Image linkImage="./images/components/dialog/dialog-anatomy.png" />
+
+    ## <Icon name="design_services"/> Règles de design
+        La `dialog` se base sur les `guidelines` de **Material 3**.
+
+        Material Dialogs Guidelines : [Material - Dialogs - Guidelines](https://m3.material.io/components/dialogs/guidelines)
+
+        ### <Icon name="styler"/> Style visuel et couleurs
+            -   Le `container` de la `dialog` adopte une teinte `primary` claire.
+            -   L’action **principale** est mise en avant par la couleur `primary` et un style de bouton `filled`/`flat`.
+            -   Le `header` ne surcharge pas la couleur de fond du `container`.
+
+        ### <Icon name="dashboard"/> Contenu et layout
+            -   La `dialog` doit toujours avoir **au minimum un bouton visible** pour la fermer.
+            -   La `dialog` doit **toujours avoir un contenu**.
+            -   Le `header` et le `footer` de la `dialog` doivent **toujours être visibles**.
+            -   La `dialog` **peut avoir** un scroll horizontal pour **son contenu**, mais dans la mesure du possible il faut l'éviter.
+            -   La `dialog` **ne peut pas être tronquée** en dépassant de l'écran.
+            -   La hauteur et la largeur de la `dialog` basique ne **peuvent pas dépasser 90%** de la largeur et de la hauteur de l'écran.
+
+        ### <Icon name="ads_click"/> Actions de la `dialog`
+
+            #### Positionnement des actions
+                -   Les actions se trouvent dans le `footer`.
+                    -   Le `header` ne peut pas contenir d'action.
+                -   L’action **principale** liée au workflow de la `dialog` (ex. « Signer », « Invalider ») est le bouton le plus à droite.
+                -   La fermeture en cliquant sur le `backdrop` est autorisée au cas par cas selon des critères définis (exemple: aucun positionnement attendu de la part de l'utilisateur).
+
+            #### Style des boutons actions
+                - Le type :
+                    - L'action **principale** en `flat`/`filled`
+                    - L'action **secondaire** en `basic`/`text`.
+                    - L'action de **fermeture standard** en `basic`/`text`.
+                -   Si plusieurs actions de même importance : toutes en `text`.
+                -   La **confirmation/validation** utilise un style plus accentué que la fermeture.
+                -   Recommandation **d’utiliser différents styles** pour communiquer la hiérarchie d’actions
+                    -   `flat`>`stroked`>`basic`
+                    -   `filled`>`outlined`>`text`
+                -   S’il n’y a pas de saisie d’information, il est possible de **désactiver par défaut l’action de confirmation** de la `dialog` si les conditions nécessaires ne sont pas remplies (exemple: ).
+                    -   En cas de saisie d’information, on recommande de ne pas désactiver les actions mais d'informer l'état de validation au `click` sur les actions.
+
+            #### Superposition
+                - Une `dialog` peut s'ouvrir sur une autre `dialog` dans le cas spécifique d’une confirmation ou d’une action sur une `dialog` mais ce comportement est **limité à maximum 2** `dialogs` superposées.
+                    - En cas de superposition, il est recommandé de ne pas superposer les backdrops.
+
+    ## <Icon name="accessibility_new"/> Accessibilité
+        ### Navigation clavier
+            - La navigation au clavier doit permettre:
+                - **Ouvrir et fermer** une `dialog`
+                - **Naviguer** dans la `dialog` pour accéder à l'entièreté de son contenu
+
+        ### Focus
+            - Le focus inital doit être le **premier élément intéractif** de la `dialog`
+                -  Idéalement il ne faut pas le mettre sur l'action de confirmation du worflow.
+
+        ### Contenu
+            - Une `dialog` doit toujours avoir un `role=dialog`
+            - Une `dialog` doit toujours avoir un `aria-label` ou `aria-labelledby`
+
+    ## <Icon name="linked_services"/> Composants liés
+        <ComponentsGrid componentsList="button, menu, icône" />
+
+</PageGrid>

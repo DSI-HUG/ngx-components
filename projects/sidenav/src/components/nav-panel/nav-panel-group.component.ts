@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/member-ordering, @angular-eslint/prefer-on-push-component-change-detection */
-import { Component, input } from '@angular/core';
+/* eslint-disable @typescript-eslint/member-ordering */
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { PanelTheme } from '../../enums';
 import { provideOpenableTokens } from '../../tokens/openable.tokens';
@@ -12,9 +12,10 @@ import { NavPanelComponent } from './nav-panel.component';
     providers: [
         provideOpenableTokens(NavPanelGroupComponent)
     ],
-    animations: navPanelAnimations
+    animations: navPanelAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavPanelGroupComponent extends NavPanelComponent {
     protected override readonly id: string = 'ngx-nav-panel ngx-nav-panel-group';
-    public override readonly panelTheme = input<PanelTheme>(PanelTheme.NONE);
+    public override readonly panelTheme = input<PanelTheme>('none');
 }

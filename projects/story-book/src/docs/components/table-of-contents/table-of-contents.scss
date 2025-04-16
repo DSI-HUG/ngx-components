@@ -1,0 +1,72 @@
+@use '@angular/material' as mat;
+@use '../../scss/theme' as theme;
+
+$theme: theme.$theme;
+$top-position: 4rem;
+$expended-top-position: 105px;
+$max-width: 300px;
+$right: 1.3rem;
+
+button.toggle-toc {
+    display: flex;
+    position: sticky;
+    top: $top-position;
+}
+
+.table-of-contents {
+    z-index: 2;
+    position: sticky;
+    right: 0;
+    top: $top-position;
+    font-size: mat.get-theme-typography($theme, title-medium, font-size);
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(100dvh - $top-position - var(--item-padding));
+    max-width: $max-width;
+
+    .list-title {
+        font-size: mat.get-theme-typography($theme, label-small, font-size);
+        padding-left: var(--item-padding);
+        color: mat.get-theme-color($theme, neutral, 50);
+        margin-top: var(--item-margin);
+    }
+}
+
+html[window-width='small'] {
+    .table-of-contents,
+    button.toggle-toc {
+        display: none;
+    }
+}
+
+html[window-width='medium'] {
+    .table-of-contents {
+        display: none;
+
+        &.expanded {
+            display: block;
+            position: fixed;
+            max-height: calc(100dvh - $expended-top-position - var(--item-padding-large) - var(--item-padding));
+            top: $expended-top-position;
+            padding: var(--item-padding);
+            background-color: mat.get-theme-color($theme, neutral, 100);
+            outline: var(--item-border) mat.get-theme-color($theme, neutral, 90);
+            @include mat.elevation(3);
+            right: $right;
+            border-radius: var(--item-border-radius);
+            width: auto;
+        }
+    }
+}
+
+html[window-width='large'] {
+    button.toggle-toc {
+        display: none;
+    }
+}
+
+html[window-width='extra-large'] {
+    button.toggle-toc {
+        display: none;
+    }
+}

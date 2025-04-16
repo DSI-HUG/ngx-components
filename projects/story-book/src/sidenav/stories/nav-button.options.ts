@@ -62,25 +62,25 @@ export const navButtonOptions: StoryObj<NavButtonComponentArgs> = {
                         },
                         {
                             contentTitle: 'Light',
-                            value: `<ngx-sidenav [theme]="SidebarTheme.LIGHT">
+                            value: `<ngx-sidenav theme="light">
                             ${buttonOptions()}
                         </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Light Color',
-                            value: `<ngx-sidenav [theme]="SidebarTheme.LIGHT">
+                            value: `<ngx-sidenav theme="light">
                             ${buttonOptions()}
                         </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Dark',
-                            value: `<ngx-sidenav [theme]="SidebarTheme.DARK">
+                            value: `<ngx-sidenav theme="dark">
                             ${buttonOptions()}
                         </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Dark Color',
-                            value: `<ngx-sidenav [theme]="SidebarTheme.DARK">
+                            value: `<ngx-sidenav theme="dark">
                             ${buttonOptions()}
                         </ngx-sidenav>`
                         }

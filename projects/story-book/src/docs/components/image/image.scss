@@ -1,0 +1,14 @@
+@use '@angular/material' as mat;
+@use '../../scss/theme' as theme;
+
+$theme: theme.$theme;
+
+img.illustration-image {
+    display: flex;
+    justify-self: center;
+    border-radius: var(--item-border-radius);
+    aspect-ratio: var(--image-aspect-ratio);
+    object-fit: cover;
+    @include mat.elevation(2);
+    margin-bottom: var(--item-margin);
+}

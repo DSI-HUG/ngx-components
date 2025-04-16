@@ -2,12 +2,12 @@
     // # Variables
     --private-size: var(--ngx-nav-size, 88px);
     --private-bg-color: var(--ngx-nav-bg-color, transparent);
-    --private-border-color: var(--ngx-nav-border-color, color-mix(in oklch, transparent, var(--private-color) 12%));
     --private-color: var(--ngx-nav-color, var(--mat-sys-on-surface));
-    --private-scroll-width: var(--ngx-nav-size, 4px);
-    --private-scroll-height: var(--ngx-nav-size, 8px);
+    --private-border-color: var(--ngx-nav-border-color, color-mix(in oklch, transparent, var(--private-color) 12%));
+    --private-scroll-width: var(--ngx-nav-scroll-width, 4px);
+    --private-scroll-height: var(--ngx-nav-scroll-height, 8px);
     --private-scroll-color: var(--ngx-nav-scroll-color, color-mix(in oklch, transparent, var(--private-color) 20%));
-    --private-scroll-hover: var(--ngx-nav-scroll-bg-color, color-mix(in oklch, transparent, var(--private-color) 40%));
+    --private-scroll-hover: var(--ngx-nav-scroll-hover, color-mix(in oklch, transparent, var(--private-color) 40%));
     --private-scroll-bg-color: var(
         --ngx-nav-scroll-bg-color,
         color-mix(in oklch, var(--private-bg-color), var(--private-color) 20%)
@@ -114,9 +114,9 @@
     box-sizing: border-box;
 
     // .ngx-sidenav (host): relative container — defines the required size
-    // .ngx-sidenav-layer: absolute overlay — prevents page scrolling and hides transparent background when scrolling
-    // .ngx-sidenav-content: alignment container — uses a CSS variable to stay within max 100%, ensuring scrollbar appears when aligned to 'end'
-    // .ngx-sidenav-wrapper: content container — handles scroll and padding, displays scrollbar if needed
+    //      > .ngx-sidenav-layer: absolute overlay — prevents page scrolling and hides transparent background when scrolling
+    //          > .ngx-sidenav-content: alignment container — uses a CSS variable to stay within max 100%, ensuring scrollbar appears when aligned to 'end'
+    //              > .ngx-sidenav-wrapper: content container — handles scroll and padding, displays scrollbar if needed
 
     .ngx-nav-button-group {
         display: flex;
@@ -124,7 +124,7 @@
         border: var(--private-border);
     }
 
-    .ngx-sidenav-layer {
+    > .ngx-sidenav-layer {
         // (red)
         //border: solid 3px red !important; // To debug alignment
         display: flex;
@@ -138,7 +138,7 @@
         justify-content: start;
         align-items: center;
 
-        .ngx-sidenav-content {
+        > .ngx-sidenav-content {
             // (orange)
             //border: solid 3px orange !important; // To debug alignment
             display: flex;
@@ -147,7 +147,7 @@
             justify-content: start;
             max-width: 100%;
 
-            .ngx-sidenav-wrapper {
+            > .ngx-sidenav-wrapper {
                 // (blue)
                 //border: solid 3px blue !important; // To debug alignment
                 flex-direction: row;
@@ -164,7 +164,7 @@
         width: var(--private-size);
         min-width: var(--private-size);
 
-        .ngx-sidenav-layer {
+        > .ngx-sidenav-layer {
             // (red)
             flex-direction: column;
             overflow-x: hidden;
@@ -173,7 +173,7 @@
             justify-content: var(--private-justify-content);
             align-items: center;
 
-            .ngx-sidenav-wrapper {
+            > .ngx-sidenav-content > .ngx-sidenav-wrapper {
                 // (blue)
                 flex-direction: column;
                 gap: var(--private-gap);
@@ -199,7 +199,7 @@
             border-radius: var(--mat-sys-corner-extra-large);
         }
 
-        .ngx-sidenav-layer {
+        > .ngx-sidenav-layer {
             // (red)
             flex-direction: row;
             overflow-x: auto;
@@ -224,7 +224,7 @@
 
     // # Scrollbar
 
-    .ngx-sidenav-layer {
+    > .ngx-sidenav-layer {
         &::-webkit-scrollbar {
             width: var(--private-scroll-width);
             height: var(--private-scroll-height);

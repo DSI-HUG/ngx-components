@@ -1,0 +1,48 @@
+@use '../grid.scss' as *;
+
+.cards-grid {
+    display: grid;
+    grid-gap: $grid-gap;
+
+    &.small-density {
+        grid-template-columns: $grid-repeat-medium;
+    }
+
+    &.medium-density {
+        grid-template-columns: $grid-repeat-large;
+    }
+
+    &.large-density {
+        grid-template-columns: $grid-repeat-extra-large;
+    }
+}
+
+// Responsive behaviors
+html[window-width='small'] {
+    .cards-grid.responsive {
+        grid-template-columns: $grid-repeat-small;
+    }
+}
+
+html[window-width='medium'] {
+    .cards-grid {
+        &.responsive {
+            &.medium-density,
+            &.large-density {
+                grid-template-columns: $grid-repeat-medium;
+            }
+        }
+    }
+}
+
+html[window-width='large'] {
+    .cards-grid.large-density.responsive {
+        grid-template-columns: $grid-repeat-large;
+    }
+}
+
+html[window-width='extra-large'] {
+    .cards-grid.large-density.responsive {
+        grid-template-columns: $grid-repeat-extra-large;
+    }
+}

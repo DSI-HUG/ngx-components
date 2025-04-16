@@ -1,0 +1,6 @@
+@use '@angular/material' as mat;
+@use '../../app/scss/m3-themes' as m3;
+
+@include mat.core();
+
+$theme: m3.$light-theme;

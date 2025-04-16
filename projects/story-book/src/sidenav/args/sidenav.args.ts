@@ -1,4 +1,12 @@
-import { NavJustify, NavSize, SidebarLocation, SidebarTheme, SidenavComponent } from '@hug/ngx-sidenav';
+import {
+    NAV_JUSTIFY,
+    NAV_SIZES,
+    NavJustify,
+    NavSize,
+    SIDEBAR_LOCATIONS,
+    SIDEBAR_THEMES,
+    SidenavComponent
+} from '@hug/ngx-sidenav';
 import { StoryObj } from '@storybook/angular';
 import { pick } from 'lodash-es';
 
@@ -8,13 +16,14 @@ export type NgxSidenavComponentType = SidenavComponent & {
     content: ContentType;
     navSize: NavSize;
     navJustify: NavJustify;
+    pageSize: string;
 };
 
 export const sidenavArgs: StoryObj<NgxSidenavComponentType> = {
     argTypes: {
         location: {
             control: { type: 'select' },
-            options: Object.values(SidebarLocation),
+            options: SIDEBAR_LOCATIONS,
             table: {
                 defaultValue: { summary: 'RIGHT' },
                 type: { summary: 'SidebarLocation' }
@@ -22,7 +31,7 @@ export const sidenavArgs: StoryObj<NgxSidenavComponentType> = {
         },
         theme: {
             control: { type: 'select' },
-            options: Object.values(SidebarTheme),
+            options: SIDEBAR_THEMES,
             table: {
                 defaultValue: { summary: 'NONE' },
                 type: { summary: 'SidebarTheme' }
@@ -32,12 +41,14 @@ export const sidenavArgs: StoryObj<NgxSidenavComponentType> = {
             table: {
                 defaultValue: { summary: 'false' }
             }
-        }
+        },
+        pageSize: { table: { disable: true } }
     },
     args: {
-        location: SidebarLocation.LEFT,
-        theme: SidebarTheme.DARK,
-        disabled: false
+        location: 'left',
+        theme: 'dark',
+        disabled: false,
+        pageSize: 'min600x400'
     }
 };
 export const sidenavContentArgs: StoryObj<NgxSidenavComponentType> = {
@@ -62,15 +73,15 @@ export const sidenavContentArgs: StoryObj<NgxSidenavComponentType> = {
 export const sidenavSizeArgs = ({ navSize, pick: pPick }: {
     navSize?: NavSize; pick?: string[];
 } = {
-    navSize: NavSize.M
+    navSize: 'M'
 }): StoryObj<NgxSidenavComponentType> => {
-    navSize = navSize ?? NavSize.M;
+    navSize = navSize ?? 'M';
     const args = {
         argTypes: {
             navSize: {
                 name: 'Size',
                 control: { type: 'select' },
-                options: Object.values(NavSize),
+                options: NAV_SIZES,
                 table: {
                     defaultValue: { summary: 'M' },
                     type: { summary: 'NavSize' }
@@ -79,7 +90,7 @@ export const sidenavSizeArgs = ({ navSize, pick: pPick }: {
             theme: {
                 name: 'Test / Theme',
                 control: { type: 'select' },
-                options: Object.values(SidebarTheme),
+                options: SIDEBAR_THEMES,
                 table: {
                     defaultValue: { summary: 'NONE' },
                     type: { summary: 'SidebarTheme' }
@@ -88,7 +99,7 @@ export const sidenavSizeArgs = ({ navSize, pick: pPick }: {
             location: {
                 name: 'Test / Location',
                 control: { type: 'select' },
-                options: Object.values(SidebarLocation),
+                options: SIDEBAR_LOCATIONS,
                 table: {
                     defaultValue: { summary: 'RIGHT' },
                     type: { summary: 'SidebarLocation' }
@@ -97,8 +108,8 @@ export const sidenavSizeArgs = ({ navSize, pick: pPick }: {
         },
         args: {
             navSize,
-            location: SidebarLocation.LEFT,
-            theme: SidebarTheme.DARK
+            location: 'left',
+            theme: 'dark'
         }
     } as StoryObj<NgxSidenavComponentType>;
     if (pPick) {
@@ -114,15 +125,15 @@ export const sidenavSizeArgs = ({ navSize, pick: pPick }: {
 export const sidenavJustifyArgs = ({ navJustify, pick: pPick }: {
     navJustify?: NavJustify; pick?: string[];
 } = {
-    navJustify: NavJustify.START
+    navJustify: 'start'
 }): StoryObj<NgxSidenavComponentType> => {
-    navJustify = navJustify ?? NavJustify.START;
+    navJustify = navJustify ?? 'start';
     const args = {
         argTypes: {
             navJustify: {
                 name: 'Justify',
                 control: { type: 'select' },
-                options: Object.values(NavJustify),
+                options: NAV_JUSTIFY,
                 table: {
                     defaultValue: { summary: 'START' },
                     type: { summary: 'NavJustify' }
@@ -131,7 +142,7 @@ export const sidenavJustifyArgs = ({ navJustify, pick: pPick }: {
             theme: {
                 name: 'Test / Theme',
                 control: { type: 'select' },
-                options: Object.values(SidebarTheme),
+                options: SIDEBAR_THEMES,
                 table: {
                     defaultValue: { summary: 'NONE' },
                     type: { summary: 'SidebarTheme' }
@@ -140,7 +151,7 @@ export const sidenavJustifyArgs = ({ navJustify, pick: pPick }: {
             location: {
                 name: 'Test / Location',
                 control: { type: 'select' },
-                options: Object.values(SidebarLocation),
+                options: SIDEBAR_LOCATIONS,
                 table: {
                     defaultValue: { summary: 'RIGHT' },
                     type: { summary: 'SidebarLocation' }
@@ -149,8 +160,8 @@ export const sidenavJustifyArgs = ({ navJustify, pick: pPick }: {
         },
         args: {
             navJustify,
-            location: SidebarLocation.LEFT,
-            theme: SidebarTheme.DARK
+            location: 'left',
+            theme: 'dark'
         }
     } as StoryObj<NgxSidenavComponentType>;
     if (pPick) {

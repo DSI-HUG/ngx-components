@@ -1,0 +1,88 @@
+@use './hug-components/fab-button' as *;
+@use './hug-components/slide-toggle' as *;
+@use './hug-components/mat-icon' as *;
+@use '@angular/material' as mat;
+@use './m3-themes' as m3;
+@use './components';
+@use './symbols';
+@use './fonts';
+
+//// Enable CSS variables generation
+$use-system-color-variables: true;
+$use-system-typography-variables: true;
+
+$light-theme: m3.$light-theme;
+$dark-theme: m3.$dark-theme;
+
+@mixin app-theming($theme, $type) {
+    background-color: mat.get-theme-color($theme, surface);
+    scrollbar-color: mat.get-theme-color($theme, outline-variant) mat.get-theme-color($theme, surface);
+
+    @if ($type == theme) {
+        @include mat.core-theme($theme);
+        @include mat.button-theme($theme);
+        @include mat.icon-button-theme($theme);
+        @include mat.tooltip-theme($theme);
+        @include mat.dialog-theme($theme);
+        @include mat.button-toggle-theme($theme);
+        @include mat.card-theme($theme);
+        @include mat.chips-theme($theme);
+        @include mat.form-field-theme($theme);
+        @include mat.select-theme($theme);
+        @include mat.datepicker-theme($theme);
+        @include mat.autocomplete-theme($theme);
+        @include mat.menu-theme($theme);
+        @include mat.timepicker-theme($theme);
+        @include mat.icon-theme($theme);
+
+        @include hug-fab-button($theme, 'theme');
+        @include hug-slide-toggle($theme, 'theme');
+    } @else {
+        @include mat.core-color($theme);
+        @include mat.button-color($theme);
+        @include mat.icon-button-color($theme);
+        @include mat.tooltip-color($theme);
+        @include mat.dialog-color($theme);
+        @include mat.button-toggle-color($theme);
+        @include mat.card-color($theme);
+        @include mat.chips-color($theme);
+        @include mat.form-field-color($theme);
+        @include mat.select-color($theme);
+        @include mat.datepicker-color($theme);
+        @include mat.autocomplete-color($theme);
+        @include mat.menu-color($theme);
+        @include mat.timepicker-color($theme);
+        @include mat.icon-color($theme);
+
+        @include hug-fab-button($theme, 'color');
+        @include hug-slide-toggle($theme, 'color');
+    }
+
+    @include size-mat-icon($theme);
+    @include mat.system-level-shape($theme);
+    @include mat.system-level-colors($theme);
+    @include mat.system-level-typography($theme);
+    @include mat.system-level-elevation($theme);
+
+    .example-custom-date-class {
+        background: mat.get-theme-color($theme, primary, 90);
+        border-radius: 100%;
+    }
+
+    storybook-root,
+    .docs-story,
+    .sb-story {
+        background-color: mat.get-theme-color($theme, surface);
+        color: mat.get-theme-color($theme, on-surface);
+    }
+}
+
+html {
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+
+    @include app-theming($light-theme, 'theme');
+
+    &.dark {
+        @include app-theming($dark-theme, 'color');
+    }
+}

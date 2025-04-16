@@ -26,28 +26,28 @@ ${sidenavParts(
                     content: [
                         {
                             contentTitle: 'Size XS',
-                            value: `<ngx-sidenav [navSize]="NavSize.XS" [location]="SidebarLocation.LEFT" [theme]="SidebarTheme.LIGHT">
+                            value: `<ngx-sidenav [navSize]="XS" location="left" theme="light">
                                         <button nav-icon-button matTooltip="raven"><mat-icon>raven</mat-icon></button>
                                         <button nav-icon-button matTooltip="nature"><mat-icon>emoji_nature</mat-icon></button>
                                     </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Size S',
-                            value: `<ngx-sidenav [navSize]="NavSize.S" [location]="SidebarLocation.LEFT" [theme]="SidebarTheme.LIGHT">
+                            value: `<ngx-sidenav [navSize]="S" location="left" theme="light">
                                         <button nav-icon-button matTooltip="raven"><mat-icon>raven</mat-icon></button>
                                         <button nav-icon-button matTooltip="nature"><mat-icon>emoji_nature</mat-icon></button>
                                     </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Size M',
-                            value: `<ngx-sidenav [navSize]="NavSize.M" [location]="SidebarLocation.LEFT" [theme]="SidebarTheme.LIGHT">
+                            value: `<ngx-sidenav [navSize]="M" location="left" theme="light">
                                         <button nav-button><mat-icon>raven</mat-icon>raven</button>
                                         <button nav-button><mat-icon>emoji_nature</mat-icon>nature</button>
                                     </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Size L',
-                            value: `<ngx-sidenav [navSize]="NavSize.L" [location]="SidebarLocation.LEFT" [theme]="SidebarTheme.LIGHT">
+                            value: `<ngx-sidenav [navSize]="L" location="left" theme="light">
                                         <button nav-button><mat-icon>raven</mat-icon>raven</button>
                                         <button nav-button><mat-icon>emoji_nature</mat-icon>nature</button>
                                     </ngx-sidenav>`

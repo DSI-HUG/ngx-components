@@ -1,4 +1,3 @@
-import { NavJustify } from '@hug/ngx-sidenav';
 import { StoryObj } from '@storybook/angular';
 
 import { NgxSidenavComponentType, sidenavJustifyArgs } from '../args/sidenav.args';
@@ -26,7 +25,7 @@ export const sidenavJustifyHorizontal: StoryObj<NgxSidenavComponentType> = {
                     partTitle: 'Horizontal',
                     content: [
                         {
-                            value: `<ngx-sidenav [location]="SidebarLocation.TOP" [theme]="SidebarTheme.LIGHT" [navJustify]="navJustify">
+                            value: `<ngx-sidenav location="top" theme="light" [navJustify]="navJustify">
                                         <button nav-icon-button matTooltip="raven"><mat-icon>raven</mat-icon></button>
                                         <button nav-icon-button matTooltip="nature"><mat-icon>emoji_nature</mat-icon></button>
                                     </ngx-sidenav>`
@@ -38,5 +37,5 @@ export const sidenavJustifyHorizontal: StoryObj<NgxSidenavComponentType> = {
         )}
 </section>`
     }),
-    ...sidenavJustifyArgs({ pick: ['navJustify'], navJustify: NavJustify.END })
+    ...sidenavJustifyArgs({ pick: ['navJustify'], navJustify: 'end' })
 };

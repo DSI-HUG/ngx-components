@@ -44,8 +44,8 @@
         "@angular/core": "~19.1.5",
         "@angular/forms": "~19.1.5",
         "@angular/material": "~19.1.5",
-        "@angular/router": "~19.1.5",
         "@angular/platform-browser-dynamic": "~19.1.5",
+        "@angular/router": "~19.1.5",
         "@commitlint/cli": "~19.6.1",
         "@commitlint/config-conventional": "~19.6.0",
         "@hug/eslint-config": "~20.3.3",
@@ -102,6 +102,7 @@
             "eslint --fix"
         ],
         "**/*.{scss,html,json}": [
+            "prettier . --write",
             "prettier . --check"
         ]
     },

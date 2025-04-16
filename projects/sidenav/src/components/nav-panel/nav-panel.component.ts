@@ -1,10 +1,21 @@
-/* eslint-disable @typescript-eslint/member-ordering, @angular-eslint/prefer-on-push-component-change-detection */
-import { Component, computed, effect, HostBinding, HostListener, input, signal } from '@angular/core';
+/* eslint-disable @typescript-eslint/member-ordering */
+import {
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    effect,
+    HostBinding,
+    HostListener,
+    input,
+    InputSignal,
+    Signal,
+    signal
+} from '@angular/core';
 import { compact } from 'lodash-es';
 
 import { PanelTheme, PanelType, SidebarLocation, SidebarPosition } from '../../enums';
 import { provideOpenableTokens } from '../../tokens/openable.tokens';
-import { DynamicContentComponent } from './generics/dynamic-content.component';
+import { DynamicContentComponent } from './extends/dynamic-content.component';
 import { navPanelAnimations } from './nav-panel.animations';
 
 @Component({
@@ -13,7 +24,8 @@ import { navPanelAnimations } from './nav-panel.animations';
     providers: [
         provideOpenableTokens(NavPanelComponent)
     ],
-    animations: navPanelAnimations
+    animations: navPanelAnimations,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavPanelComponent extends DynamicContentComponent {
     protected readonly id: string = 'ngx-nav-panel';
@@ -23,66 +35,65 @@ export class NavPanelComponent extends DynamicContentComponent {
     public hostClass = '';
 
     // # Inputs
-    public readonly panelType = input<PanelType>(PanelType.OPEN_RIGHT);
-    public readonly panelTheme = input<PanelTheme>(PanelTheme.MATERIAL_3);
+    public readonly panelType: InputSignal<PanelType> = input<PanelType>('open-right');
+    public readonly panelTheme: InputSignal<PanelTheme> = input<PanelTheme>('m3');
 
     // # Signals
     protected readonly panelVisibleClass = signal<'visible' | 'hidden' | 'visible-end' | 'hidden-end'>('hidden');
+    public readonly location: Signal<SidebarLocation> = computed(() => {
+        const theme = this.panelType();
+        switch (theme) {
+            case 'overlay-open-left':
+            case 'fixed-open-left':
+            case 'open-left':
+                return 'right';
+            case 'overlay-open-right':
+            case 'fixed-open-right':
+            case 'open-right':
+            default:
+                return 'left';
+        }
+    });
+
+    public readonly position: Signal<SidebarPosition> = computed(() => {
+        const theme = this.panelType();
+        switch (theme) {
+            case 'overlay-open-left':
+            case 'overlay-open-right':
+                return 'overlay';
+            case 'fixed-open-left':
+            case 'fixed-open-right':
+                return 'fixed';
+            case 'open-left':
+            case 'open-right':
+            default:
+                return 'relative';
+        }
+    });
 
     protected readonly typeClass = computed(() => {
         const theme = this.panelType();
         switch (theme) {
-            case PanelType.OVERLAY_OPEN_RIGHT:
+            case 'overlay-open-right':
                 return 'ngx-nav-panel-overlay-open-right';
-            case PanelType.OVERLAY_OPEN_LEFT:
+            case 'overlay-open-left':
                 return 'ngx-nav-panel-overlay-open-left';
-            case PanelType.FIXED_OPEN_RIGHT:
+            case 'fixed-open-right':
                 return 'ngx-nav-panel-fixed-open-right';
-            case PanelType.FIXED_OPEN_LEFT:
+            case 'fixed-open-left':
                 return 'ngx-nav-panel-fixed-open-left';
-            case PanelType.OPEN_LEFT:
+            case 'open-left':
                 return 'ngx-nav-panel-open-left';
-            case PanelType.OPEN_RIGHT:
+            case 'open-right':
             default:
                 return 'ngx-nav-panel-open-right';
-        }
-    });
-
-    public readonly location = computed(() => {
-        const theme = this.panelType();
-        switch (theme) {
-            case PanelType.OVERLAY_OPEN_LEFT:
-            case PanelType.FIXED_OPEN_LEFT:
-            case PanelType.OPEN_LEFT:
-                return SidebarLocation.RIGHT;
-            case PanelType.OVERLAY_OPEN_RIGHT:
-            case PanelType.FIXED_OPEN_RIGHT:
-            case PanelType.OPEN_RIGHT:
-            default:
-                return SidebarLocation.LEFT;
-        }
-    });
-
-    public readonly position = computed(() => {
-        const theme = this.panelType();
-        switch (theme) {
-            case PanelType.OVERLAY_OPEN_LEFT:
-            case PanelType.OVERLAY_OPEN_RIGHT:
-                return SidebarPosition.OVERLAY;
-            case PanelType.FIXED_OPEN_LEFT:
-            case PanelType.FIXED_OPEN_RIGHT:
-                return SidebarPosition.FIXED;
-            case PanelType.OPEN_LEFT:
-            case PanelType.OPEN_RIGHT:
-            default:
-                return SidebarPosition.RELATIVE;
         }
     });
 
     protected readonly themeClass = computed(() => {
         const theme = this.panelTheme();
         switch (theme) {
-            case PanelTheme.MATERIAL_3:
+            case 'm3':
                 return 'm3-panel';
             default:
                 return undefined;

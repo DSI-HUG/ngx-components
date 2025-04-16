@@ -23,9 +23,9 @@ export const navPanelTwoPanel: StoryObj<NgxNavPanelComponentType> = {
             locationClass: (panelType: PanelType) =>
                 includes(
                     [
-                        PanelType.OPEN_RIGHT,
-                        PanelType.OVERLAY_OPEN_RIGHT,
-                        PanelType.FIXED_OPEN_RIGHT
+                        'open-right',
+                        'overlay-open-right',
+                        'fixed-open-right'
                     ],
                     panelType
                 )
@@ -34,10 +34,10 @@ export const navPanelTwoPanel: StoryObj<NgxNavPanelComponentType> = {
             needGroup: (panelType: PanelType) =>
                 includes(
                     [
-                        PanelType.OVERLAY_OPEN_RIGHT,
-                        PanelType.OVERLAY_OPEN_LEFT,
-                        PanelType.FIXED_OPEN_RIGHT,
-                        PanelType.FIXED_OPEN_LEFT
+                        'overlay-open-right',
+                        'overlay-open-left',
+                        'fixed-open-right',
+                        'fixed-open-left'
                     ],
                     panelType
                 )

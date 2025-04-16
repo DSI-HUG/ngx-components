@@ -1,0 +1,48 @@
+@use '@angular/material' as mat;
+
+html {
+    .exempleCenterStory {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: var(--item-gap);
+        padding: var(--item-padding-large);
+    }
+
+    .exempleGapStory {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--item-gap);
+    }
+
+    .example-card {
+        max-width: 400px;
+    }
+
+    .example-container-auto-hiding-tooltip {
+        height: 200px;
+        width: 600px;
+        overflow: auto;
+        border: var(--item-border) #ccc;
+    }
+
+    .example-button-margin {
+        display: block;
+        margin: 80px auto 400px;
+    }
+
+    .mat-mdc-chip-set-stacked {
+        max-width: 200px;
+    }
+
+    .datepicker-with-button-container {
+        margin-right: var(--item-margin);
+    }
+
+    .example-header-image {
+        background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+        background-size: cover;
+    }
+}

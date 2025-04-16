@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/member-ordering, @angular-eslint/prefer-on-push-component-change-detection */
+/* eslint-disable @typescript-eslint/member-ordering */
 import {
     AfterViewInit,
+    ChangeDetectionStrategy,
     Component,
     computed,
     effect,
@@ -24,14 +25,15 @@ import { PARENT_OPENABLE, provideOpenableTokens } from '../../../tokens/openable
     ],
     template: `
         <ng-content></ng-content>
-    `
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OpenableComponent implements OnDestroy, AfterViewInit {
     // # Injection
     protected readonly groupService = inject<NavPanelGroupService>(NavPanelGroupService);
     public readonly parent = inject<OpenableComponent | null>(PARENT_OPENABLE);
     // # Inputs
-    public readonly _name = input<string>(''); // To de bug
+    public readonly _name = input<string>(''); // To debug
     /** Force to define the GroupIds himself */
     public readonly childrenGroupIds = input<number[] | undefined>(undefined);
     /** Force to define the groupId himself */
@@ -40,7 +42,6 @@ export class OpenableComponent implements OnDestroy, AfterViewInit {
     public readonly isContainer = input<boolean>(false, { alias: 'navContainer' });
     /** Force open or close  */
     public readonly expanded = input<boolean | undefined>(undefined);
-    public styleOrigin!: { display: string };
     // # Signal
     public readonly onAfterViewInit = signal<boolean>(false);
     /** The Child OpenableComponent index themselves in this Array */
@@ -51,6 +52,9 @@ export class OpenableComponent implements OnDestroy, AfterViewInit {
         const parentOpenable = this.parent;
         return parentOpenable?.isContainer() ? parentOpenable : undefined;
     });
+
+    // # Properties
+    public styleOrigin!: { display: string };
 
     /** Group Identifier */
     public readonly groupInfo = computed<GroupInfo>(

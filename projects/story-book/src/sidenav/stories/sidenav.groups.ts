@@ -21,18 +21,18 @@ export const sidenavGroups: StoryObj<NgxSidenavComponentType> = {
         template: sidenavTemplate({
             buttons: `<button nav-button
                         [navPanel]="panelOpenLeft1"
-                        [navAction]="NavAction.OPEN">
+                        navAction="open">
                         <mat-icon>group</mat-icon> Panel 1
                     </button>
                     <button nav-button
                         [navPanel]="panelOpenLeft2"
-                        [navAction]="NavAction.OPEN">
+                        navAction="open">
                         <mat-icon>group</mat-icon> Panel 2
                     </button>`,
-            panels: `<ngx-nav-panel #panelOpenLeft1 [panelType]="PanelType.OPEN_LEFT" [navGroup]="1">
+            panels: `<ngx-nav-panel #panelOpenLeft1 panelType="open-left" [navGroup]="1">
                         ${getDynamicContent('ContentType.TITLE_TEXT')}
                     </ngx-nav-panel>
-                    <ngx-nav-panel #panelOpenLeft2 [panelType]="PanelType.OPEN_LEFT" [navGroup]="1">
+                    <ngx-nav-panel #panelOpenLeft2 panelType="open-left" [navGroup]="1">
                         ${getDynamicContent('ContentType.NAV_LIST_1')}
                     </ngx-nav-panel>`
         })

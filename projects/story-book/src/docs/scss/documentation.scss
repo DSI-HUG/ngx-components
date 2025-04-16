@@ -1,0 +1,76 @@
+@use '../components/grids/cards-grid/cards-grid.scss';
+@use '../components/cards/component-card/component-card.scss';
+@use '../components/grids/page-grid/page-grid.scss';
+@use '../components/cards/recommendation-card/recommendation-card.scss';
+@use '../components/table-of-contents/table-of-contents.scss';
+@use '../components/summary-entry/summary-entry.scss';
+@use '../components/grids/components-grid/components-grid.scss';
+@use '../components/image/image.scss';
+@use '../components/iframe/iframe.scss';
+@use './variables';
+@use '@angular/material' as mat;
+@use './theme' as theme;
+
+$theme: theme.$theme;
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding: var(--item-padding-small);
+
+    .sbdocs.sbdocs-content {
+        max-width: 1275px;
+    }
+
+    button.mat-icon-button {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        border: none;
+        width: min-content;
+        height: min-content;
+        padding: var(--item-padding-small);
+        align-items: center;
+        background-color: transparent;
+
+        &:hover {
+            border-radius: var(--item-border-radius-small);
+            background-color: mat.get-theme-color($theme, neutral, 95);
+        }
+    }
+
+    .material-symbols-outlined {
+        font-size: mat.get-theme-typography($theme, headline-small, font-size);
+    }
+
+    h3.title-story {
+        color: mat.get-theme-color($theme, neutral, 50);
+        font-size: 1rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        > a {
+            display: none;
+        }
+
+        .material-symbols-outlined {
+            color: mat.get-theme-color($theme, primary);
+        }
+    }
+
+    h3 {
+        .material-symbols-outlined {
+            color: mat.get-theme-color($theme, tertiary);
+        }
+    }
+}

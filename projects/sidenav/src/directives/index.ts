@@ -4,3 +4,4 @@ export * from './nav-button-group.directive';
 export * from './text-ellipsis.directive';
 export * from './nav-size.directive';
 export * from './nav-justify.directive';
+export * from './nav-item-style.directive';

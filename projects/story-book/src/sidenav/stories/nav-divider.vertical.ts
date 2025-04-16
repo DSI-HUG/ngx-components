@@ -27,19 +27,19 @@ ${sidenavParts(
                     content: [
                         {
                             contentTitle: 'Default',
-                            value: `<ngx-sidenav [location]="SidebarLocation.LEFT">
+                            value: `<ngx-sidenav location="left">
                         <ngx-nav-divider></ngx-nav-divider>
                     </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Light',
-                            value: `<ngx-sidenav [theme]="SidebarTheme.LIGHT" [location]="SidebarLocation.LEFT">
+                            value: `<ngx-sidenav theme="light" location="left">
                         <ngx-nav-divider></ngx-nav-divider>
                     </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Dark',
-                            value: `<ngx-sidenav [theme]="SidebarTheme.DARK" [location]="SidebarLocation.LEFT">
+                            value: `<ngx-sidenav theme="dark" location="left">
                     <ngx-nav-divider></ngx-nav-divider>
                 </ngx-sidenav>`
                         }

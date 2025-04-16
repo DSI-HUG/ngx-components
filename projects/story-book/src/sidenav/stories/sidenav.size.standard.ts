@@ -1,4 +1,3 @@
-import { NavSize } from '@hug/ngx-sidenav';
 import { StoryObj } from '@storybook/angular';
 
 import { NgxSidenavComponentType, sidenavSizeArgs } from '../args/sidenav.args';
@@ -18,7 +17,7 @@ export const sidenavSizeStandard: StoryObj<NgxSidenavComponentType> = {
             ...args,
             ...sidebarEnums
         },
-        template: sidenavTemplate({ navSize: NavSize.M })
+        template: sidenavTemplate({ navSize: 'M' })
     }),
     ...sidenavSizeArgs()
 };

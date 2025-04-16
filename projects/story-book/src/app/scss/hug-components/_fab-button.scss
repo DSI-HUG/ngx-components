@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+@mixin hug-fab-button($theme, $type) {
+    @if ($type == theme) {
+        @include mat.fab-theme($theme);
+    } @else {
+        @include mat.fab-color($theme);
+    }
+
+    .tertiary-fab-button {
+        @include mat.fab-color($theme, $color-variant: tertiary);
+    }
+}

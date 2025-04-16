@@ -22,10 +22,10 @@ export const sidenavJustifyVertical: StoryObj<NgxSidenavComponentType> = {
 ${sidenavParts(
             [
                 {
-                    partTitle: 'Horizontal',
+                    partTitle: 'Vertical',
                     content: [
                         {
-                            value: `<ngx-sidenav [location]="SidebarLocation.LEFT" [theme]="SidebarTheme.LIGHT" [navJustify]="navJustify">
+                            value: `<ngx-sidenav location="left" theme="light" [navJustify]="navJustify">
                                         <button nav-button><mat-icon>raven</mat-icon>raven</button>
                                         <button nav-button><mat-icon>emoji_nature</mat-icon>nature</button>
                                     </ngx-sidenav>`

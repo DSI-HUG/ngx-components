@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/member-ordering */
-import { computed, Directive, HostBinding, input } from '@angular/core';
+import { computed, Directive, HostBinding, input, InputSignal } from '@angular/core';
 
 import { NavJustify } from '../enums';
 
@@ -7,15 +7,15 @@ import { NavJustify } from '../enums';
     selector: '[navJustify]'
 })
 export class NavJustifyDirective {
-    public readonly align = input.required<NavJustify>({ alias: 'navJustify' });
+    public readonly align: InputSignal<NavJustify> = input.required<NavJustify>({ alias: 'navJustify' });
     protected readonly sizeClass = computed(() => {
         const align = this.align();
         switch (align) {
-            case NavJustify.END:
+            case 'end':
                 return 'ngx-nav-justify-end';
-            case NavJustify.CENTER:
+            case 'center':
                 return 'ngx-nav-justify-center';
-            case NavJustify.START:
+            case 'start':
             default:
                 return 'ngx-nav-justify-start';
         }

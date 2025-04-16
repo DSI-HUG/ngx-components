@@ -24,7 +24,7 @@ export const sidenavToggle: StoryObj<NgxSidenavComponentType> = {
                         [routerLinkActiveOptions]="{exact: false}"
                         [navPanel]="panelOpenLeft"
                         [navPanelContent]="contentAccordion1"
-                        [navAction]="NavAction.TOGGLE">
+                        navAction="toggle">
                         <mat-icon>toggle_on</mat-icon> Toggle 1
                     </button>
                     <button nav-button
@@ -33,11 +33,11 @@ export const sidenavToggle: StoryObj<NgxSidenavComponentType> = {
                         [routerLinkActiveOptions]="{exact: false}"
                         [navPanel]="panelFixedOpenLeft"
                         [navPanelContent]="contentAccordion2"
-                        [navAction]="NavAction.TOGGLE">
+                        navAction="toggle">
                         <mat-icon>toggle_on</mat-icon> Toggle 2
                     </button>`,
-            panels: `<ngx-nav-panel #panelOpenLeft [panelType]="PanelType.OPEN_LEFT"></ngx-nav-panel>
-                    <ngx-nav-panel #panelFixedOpenLeft [panelType]="PanelType.FIXED_OPEN_LEFT"></ngx-nav-panel>`
+            panels: `<ngx-nav-panel #panelOpenLeft panelType="open-left"></ngx-nav-panel>
+                    <ngx-nav-panel #panelFixedOpenLeft panelType="fixed-open-left"></ngx-nav-panel>`
         })
     }),
     ...sidenavArgs

@@ -1,5 +1,14 @@
-/* eslint-disable @typescript-eslint/member-ordering, @angular-eslint/prefer-on-push-component-change-detection */
-import { Component, computed, effect, HostBinding, inject, input } from '@angular/core';
+/* eslint-disable @typescript-eslint/member-ordering */
+import {
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    effect,
+    HostBinding,
+    inject,
+    input,
+    InputSignal
+} from '@angular/core';
 
 import { SidebarDirection, SidebarTheme } from '../../enums';
 import { SidenavComponent } from '../sidenav/sidenav.component';
@@ -9,7 +18,8 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
     host: {
         class: 'ngx-nav-divider'
     },
-    template: '<div class="ngx-nav-divider-wrapper"></div>'
+    template: '<div class="ngx-nav-divider-wrapper"></div>',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavDividerComponent {
     @HostBinding('class')
@@ -19,33 +29,32 @@ export class NavDividerComponent {
     private nav: SidenavComponent | null = inject(SidenavComponent, { host: true, optional: true });
 
     // # Inputs
-    public readonly direction = input<SidebarDirection | undefined>(undefined);
-    public readonly theme = input<SidebarTheme | undefined>(undefined);
-
-    // # Computed
-    protected readonly directionClass = computed(() => {
+    public readonly direction: InputSignal<SidebarDirection | undefined> = input<SidebarDirection | undefined>(undefined);
+    public readonly theme: InputSignal<SidebarTheme | undefined> = input<SidebarTheme | undefined>(undefined);
+    protected readonly directionClass = computed<SidebarDirection>(() => {
         const direction = this.direction() ?? this.nav?.direction();
         switch (direction) {
-            case SidebarDirection.HORIZONTAL:
-                return SidebarDirection.HORIZONTAL;
-            case SidebarDirection.VERTICAL:
+            case 'horizontal':
+                return 'horizontal';
+            case 'vertical':
             default:
-                return SidebarDirection.VERTICAL;
+                return 'vertical';
         }
     });
 
     protected readonly themeClass = computed(() => {
         const theme = this.theme() ?? this.nav?.theme();
         switch (theme) {
-            case SidebarTheme.DARK:
+            case 'dark':
                 return 'ngx-nav-divider-dark-theme';
-            case SidebarTheme.LIGHT:
+            case 'light':
                 return 'ngx-nav-divider-light-theme';
-            case SidebarTheme.NONE:
+            case 'none':
             default:
                 return undefined;
         }
     });
+
 
     public constructor() {
         effect(() => {

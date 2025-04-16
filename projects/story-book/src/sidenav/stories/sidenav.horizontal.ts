@@ -1,4 +1,3 @@
-import { SidebarLocation } from '@hug/ngx-sidenav';
 import { StoryObj } from '@storybook/angular';
 
 import { NgxSidenavComponentType, sidenavArgs } from '../args/sidenav.args';
@@ -24,7 +23,7 @@ export const sidenavHorizontal: StoryObj<NgxSidenavComponentType> = {
         ...sidenavArgs,
         args: {
             ...sidenavArgs.args,
-            location: SidebarLocation.TOP
+            location: 'top'
         }
     }
 };

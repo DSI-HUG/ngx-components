@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+@mixin hug-slide-toggle($theme, $type) {
+    @if ($type == theme) {
+        @include mat.slide-toggle-theme($theme);
+    } @else {
+        @include mat.slide-toggle-color($theme);
+    }
+
+    .tertiary-slide-toggle {
+        @include mat.slide-toggle-color($theme, $color-variant: tertiary);
+    }
+}

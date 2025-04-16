@@ -1,0 +1,14 @@
+$card-image-border-radius: var(--item-border-radius) var(--item-border-radius) 0px 0px;
+$card-content-border-radius: 0px 0px var(--item-border-radius) var(--item-border-radius);
+
+img.card-image {
+    border-radius: $card-image-border-radius;
+    width: 100%;
+    aspect-ratio: var(--image-aspect-ratio);
+    object-fit: cover;
+}
+
+.card-content {
+    padding: var(--item-padding);
+    border-radius: $card-content-border-radius;
+}

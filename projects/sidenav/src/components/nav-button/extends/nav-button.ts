@@ -1,8 +1,19 @@
 /* eslint-disable @typescript-eslint/member-ordering */
-import { computed, Directive, ElementRef, HostListener, inject, input, Renderer2, Signal, signal } from '@angular/core';
+import {
+    computed,
+    Directive,
+    ElementRef,
+    HostListener,
+    inject,
+    input,
+    InputSignal,
+    Renderer2,
+    Signal,
+    signal
+} from '@angular/core';
 import { compact } from 'lodash-es';
 
-import { NavItemState, NavItemStyle, SidebarTheme } from '../../../enums';
+import { NavItemState, SidebarTheme } from '../../../enums';
 import { provideNavButtonTokens } from '../../../tokens/nav-button.tokens';
 import { SidenavComponent } from '../../sidenav/sidenav.component';
 import { NavButtonService } from '../nav-button.service';
@@ -20,18 +31,26 @@ export abstract class NavButton {
     protected readonly navButtonService = inject(NavButtonService);
     protected sidenav: SidenavComponent | null = inject(SidenavComponent, { host: true, optional: true });
     // # Input
-    public readonly _name = input<string>(''); // To de bug
-    public readonly state = input<NavItemState | undefined>();
-    public readonly style = input<NavItemStyle>(NavItemStyle.NONE);
+    public readonly _name = input<string>(''); // To debug
+    public readonly state: InputSignal<NavItemState | undefined> = input<NavItemState | undefined>();
     public readonly disabled = input<boolean>(false);
 
     // # Signals
     public readonly isMouseDown = signal<boolean>(false);
     public readonly isMouseOver = signal<boolean>(false);
     protected parent: NavButton | null = inject(NavButton, { host: true, optional: true });
-
     // ## Theme
-    public readonly theme = input<SidebarTheme | undefined>(undefined);
+    public readonly theme: InputSignal<SidebarTheme | undefined> = input<SidebarTheme | undefined>(undefined);
+    public readonly getTheme: Signal<SidebarTheme> = computed<SidebarTheme>(
+        () => this.theme() ?? this.parent?.getTheme() ?? this.sidenav?.getTheme() ?? 'none'
+    );
+
+    // ## Selected
+    private readonly _setSelected = signal<boolean>(false);
+    public readonly getSelected = computed(() => this.isSelected() ?? this._setSelected());
+
+    public readonly setSelected = (value: boolean): void => this._setSelected.set(value);
+
     // # Computed
     public readonly navButtonClass = computed(() =>
         compact([
@@ -41,47 +60,29 @@ export abstract class NavButton {
                 id: this.id,
                 disable: this.disabled(),
                 isSelected: this.getSelected(),
-                style: this.style(),
                 state: this.state(),
                 theme: this.getTheme()
             })
         ])
     );
 
-    public readonly getTheme: Signal<SidebarTheme> = computed<SidebarTheme>(
-        () => this.theme() ?? this.parent?.getTheme() ?? this.sidenav?.getTheme() ?? SidebarTheme.NONE
-    );
-
-    private readonly _setSelected = signal<boolean>(false);
-    public readonly getSelected = computed(() => {
-        if ([
-            'counter_1',
-            'counter_2'
-        ].includes(this._name())) {
-            console.error(this._name(), 'isOpen isSelected:', this.isSelected(), '_setSelected:', this._setSelected());
-        }
-        return this.isSelected() ?? this._setSelected();
-    });
-
-    public readonly setSelected = (value: boolean): void => this._setSelected.set(value);
-
     @HostListener('mousedown')
-    public handelMousedown(): void {
+    public handleMousedown(): void {
         this.isMouseDown.set(true);
     }
 
     @HostListener('mouseup')
-    public handelMouseUp(): void {
+    public handleMouseUp(): void {
         this.isMouseDown.set(false);
     }
 
     @HostListener('mouseover')
-    public handelMouseover(): void {
+    public handleMouseover(): void {
         this.isMouseOver.set(true);
     }
 
     @HostListener('mouseleave')
-    public handelMouseleave(): void {
+    public handleMouseleave(): void {
         this.isMouseOver.set(false);
         this.isMouseDown.set(false);
     }

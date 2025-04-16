@@ -1,0 +1,87 @@
+@use '@angular/material' as mat;
+@use '../../scss/theme' as theme;
+
+$theme: theme.$theme;
+$border-radius: var(--item-border-radius-small);
+$list-entry-margin: 0.2rem;
+
+ul.childrens-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    // Except headline
+    &:not(.depth-1) {
+        padding-left: var(--item-padding);
+
+        > .list-entry {
+            border-left: var(--item-border) mat.get-theme-color($theme, neutral, 95);
+            transition: border-left var(--transition-time);
+
+            &.active {
+                border-left: var(--item-border) mat.get-theme-color($theme, primary, 50);
+            }
+
+            > .entry-content {
+                border-radius: 0 $border-radius $border-radius 0;
+            }
+        }
+    }
+
+    // headline
+    &.depth-1 {
+        > .list-entry > .entry-content > a.entry-label > span {
+            color: mat.get-theme-color($theme, neutral, 10);
+            font-weight: bold;
+        }
+    }
+
+    // Titles
+    &.depth-2,
+    &.depth-3 {
+        > .list-entry > .entry-content > a.entry-label > span {
+            color: mat.get-theme-color($theme, neutral, 10);
+        }
+    }
+
+    // Common
+    > .list-entry {
+        display: flex;
+        flex-direction: column;
+        margin-top: $list-entry-margin;
+
+        &.active {
+            > .entry-content {
+                background-color: mat.get-theme-color($theme, primary, 95);
+
+                > a.entry-label > span {
+                    color: mat.get-theme-color($theme, primary, 50);
+                }
+            }
+        }
+
+        > .entry-content {
+            padding: 0 var(--item-padding);
+            border-radius: $border-radius;
+            transition: background-color var(--transition-time);
+
+            &:hover {
+                background-color: mat.get-theme-color($theme, neutral, 95);
+            }
+
+            > a.entry-label {
+                display: flex;
+                flex: 1 0 0;
+
+                > span {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    color: mat.get-theme-color($theme, neutral, 50);
+                    font-size: mat.get-theme-typography($theme, title-small, font-size);
+                    transition: color var(--transition-time);
+                }
+            }
+        }
+    }
+}

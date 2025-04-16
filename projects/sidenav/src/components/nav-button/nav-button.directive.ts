@@ -2,7 +2,7 @@
 import { Directive, effect } from '@angular/core';
 
 import { provideNavButtonTokens } from '../../tokens/nav-button.tokens';
-import { NavButton } from './generics/nav-button';
+import { NavButton } from './extends/nav-button';
 
 @Directive({
     selector: '[nav-button]',

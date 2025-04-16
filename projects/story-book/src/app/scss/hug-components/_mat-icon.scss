@@ -1,0 +1,33 @@
+@use '@angular/material' as mat;
+
+$size-icon-large: 'headline-large';
+$size-icon-small: 'title-large';
+$size-icon-extra-small: 'title-medium';
+
+@mixin size-mat-icon($theme) {
+    mat-icon {
+        &.large {
+            $icon-size-large: mat.get-theme-typography($theme, $size-icon-large, font-size);
+
+            width: $icon-size-large;
+            height: $icon-size-large;
+            font-size: $icon-size-large;
+        }
+
+        &.small {
+            $icon-size-small: mat.get-theme-typography($theme, $size-icon-small, font-size);
+
+            width: $icon-size-small;
+            height: $icon-size-small;
+            font-size: $icon-size-small;
+        }
+
+        &.extra-small {
+            $icon-size-extra-small: mat.get-theme-typography($theme, $size-icon-extra-small, font-size);
+
+            width: $icon-size-extra-small;
+            height: $icon-size-extra-small;
+            font-size: $icon-size-extra-small;
+        }
+    }
+}

@@ -1,9 +1,10 @@
 import { InputSignal } from '@angular/core';
-import { NavButtonComponent, NavItemState, NavItemStyle, SidebarTheme } from '@hug/ngx-sidenav';
+import { NAV_ITEM_STATES, NAV_ITEM_STYLES, NavButtonComponent, NavItemStyle, SIDEBAR_THEMES } from '@hug/ngx-sidenav';
 import { StoryObj } from '@storybook/angular';
 import { omit } from 'lodash-es';
 
 export type NavButtonComponentArgs = NavButtonComponent & {
+    style: InputSignal<NavItemStyle>;
     selected: InputSignal<boolean>;
     loading: InputSignal<boolean>;
 };
@@ -15,7 +16,7 @@ export const navButtonComponentArgs: StoryObj<NavButtonComponentArgs> = {
             control: { type: 'select' },
             options: [
                 undefined,
-                ...Object.values(NavItemState)
+                ...NAV_ITEM_STATES
             ],
             table: {
                 defaultValue: { summary: 'undefined' },
@@ -27,7 +28,7 @@ export const navButtonComponentArgs: StoryObj<NavButtonComponentArgs> = {
             control: { type: 'select' },
             options: [
                 undefined,
-                ...Object.values(SidebarTheme)
+                ...SIDEBAR_THEMES
             ],
             table: {
                 defaultValue: { summary: 'undefined' },
@@ -37,7 +38,7 @@ export const navButtonComponentArgs: StoryObj<NavButtonComponentArgs> = {
         style: {
             description: 'to select a style (Fill)',
             control: { type: 'select' },
-            options: Object.values(NavItemStyle),
+            options: NAV_ITEM_STYLES,
             table: {
                 defaultValue: { summary: 'OPEN_RIGHT' },
                 type: { summary: 'NavItemStyle' }
@@ -65,7 +66,7 @@ export const navButtonComponentArgs: StoryObj<NavButtonComponentArgs> = {
     args: {
         state: undefined,
         theme: undefined,
-        style: NavItemStyle.NONE,
+        style: 'none',
         disabled: false,
         selected: false,
         loading: true

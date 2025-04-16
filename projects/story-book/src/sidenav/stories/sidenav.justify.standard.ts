@@ -1,4 +1,3 @@
-import { NavJustify } from '@hug/ngx-sidenav';
 import { StoryObj } from '@storybook/angular';
 
 import { NgxSidenavComponentType, sidenavJustifyArgs } from '../args/sidenav.args';
@@ -18,7 +17,7 @@ export const sidenavJustifyStandard: StoryObj<NgxSidenavComponentType> = {
             ...args,
             ...sidebarEnums
         },
-        template: sidenavTemplate({ navJustify: NavJustify.START })
+        template: sidenavTemplate({ navJustify: 'start' })
     }),
     ...sidenavJustifyArgs()
 };

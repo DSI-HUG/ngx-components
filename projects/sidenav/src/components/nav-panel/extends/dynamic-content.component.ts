@@ -1,5 +1,14 @@
-/* eslint-disable @typescript-eslint/member-ordering, @angular-eslint/prefer-on-push-component-change-detection */
-import { Component, computed, effect, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+/* eslint-disable @typescript-eslint/member-ordering */
+import {
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    effect,
+    Signal,
+    TemplateRef,
+    viewChild,
+    ViewContainerRef
+} from '@angular/core';
 import { isArray } from 'lodash-es';
 
 import { provideOpenableTokens } from '../../../tokens/openable.tokens';
@@ -13,11 +22,11 @@ import { OpenableComponent } from './openable.component';
     template: `
         <ng-content></ng-content>
         <ng-container #dynamicContainer></ng-container>
-    `
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicContentComponent extends OpenableComponent {
-    @ViewChild('dynamicContainer', { read: ViewContainerRef, static: true })
-    private dynamicContainer!: ViewContainerRef;
+    private dynamicContainer: Signal<ViewContainerRef> = viewChild.required('dynamicContainer', { read: ViewContainerRef });
 
     // # Computed
     public readonly contents = computed<TemplateRef<unknown>[]>(() =>
@@ -32,10 +41,13 @@ export class DynamicContentComponent extends OpenableComponent {
         // Resolve content
         const content = this._contents;
         effect(() => {
-            this.dynamicContainer.clear();
-            (content ?? this.contents()).forEach((template: TemplateRef<unknown>) =>
-                this.dynamicContainer.createEmbeddedView(template)
-            );
+            const dynamicContainer = this.dynamicContainer();
+            if (dynamicContainer) {
+                dynamicContainer.clear();
+                (content ?? this.contents()).forEach((template: TemplateRef<unknown>) =>
+                    dynamicContainer.createEmbeddedView(template)
+                );
+            }
         });
     }
 

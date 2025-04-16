@@ -1,0 +1,36 @@
+@use '@angular/material' as mat;
+@use '../../scss/theme' as theme;
+
+$theme: theme.$theme;
+
+$chips-padding: 2px 0.4rem;
+$chips-height: 1rem;
+
+.chip {
+    display: inline-flex;
+    padding: $chips-padding;
+    height: $chips-height;
+    border-radius: var(--item-border-radius-small);
+    margin: 0;
+    text-transform: capitalize;
+    align-items: center;
+    border: var(--item-border);
+
+    &.ready {
+        border-color: mat.get-theme-color($theme, primary, 80);
+        background-color: mat.get-theme-color($theme, primary, 95);
+        color: mat.get-theme-color($theme, primary);
+    }
+
+    &.new {
+        border-color: mat.get-theme-color($theme, tertiary, 80);
+        background-color: mat.get-theme-color($theme, tertiary, 98);
+        color: mat.get-theme-color($theme, tertiary);
+    }
+
+    &.planned {
+        border-color: mat.get-theme-color($theme, neutral, 90);
+        background-color: mat.get-theme-color($theme, neutral, 98);
+        color: mat.get-theme-color($theme, neutral, 70);
+    }
+}

@@ -1,0 +1,56 @@
+@use '../card.scss' as *;
+@use '@angular/material' as mat;
+@use '../../../scss/theme' as theme;
+
+$theme: theme.$theme;
+
+.recommendation-card {
+    .card-content {
+        display: flex;
+        align-items: start;
+        text-align: start;
+        flex-direction: row;
+        gap: var(--item-gap-small);
+
+        &.do {
+            background-color: mat.m2-get-color-from-palette(mat.$green-palette, 95);
+
+            > .material-symbols-outlined {
+                color: mat.m2-get-color-from-palette(mat.$green-palette, 50);
+            }
+
+            > .card-justification {
+                color: mat.m2-get-color-from-palette(mat.$green-palette, 20);
+            }
+        }
+
+        &.dont {
+            background-color: mat.m2-get-color-from-palette(mat.$red-palette, 80);
+
+            > .material-symbols-outlined {
+                color: mat.m2-get-color-from-palette(mat.$red-palette, 40);
+            }
+
+            > .card-justification {
+                color: mat.m2-get-color-from-palette(mat.$red-palette, 10);
+            }
+        }
+
+        &.caution {
+            background-color: mat.m2-get-color-from-palette(mat.$yellow-palette, 98);
+
+            > .material-symbols-outlined {
+                color: mat.m2-get-color-from-palette(mat.$yellow-palette, 50);
+            }
+
+            > .card-justification {
+                color: mat.m2-get-color-from-palette(mat.$yellow-palette, 20);
+            }
+        }
+
+        > .card-justification {
+            width: 100%;
+            margin: 0;
+        }
+    }
+}

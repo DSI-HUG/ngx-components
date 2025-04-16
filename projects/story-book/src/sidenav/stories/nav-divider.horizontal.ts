@@ -27,19 +27,19 @@ export const navDividerHorizontal: StoryObj<NavDividerComponent> = {
                     content: [
                         {
                             contentTitle: 'Default',
-                            value: `<ngx-sidenav [location]="SidebarLocation.TOP">
+                            value: `<ngx-sidenav location="top">
                         <ngx-nav-divider></ngx-nav-divider>
                     </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Light',
-                            value: `<ngx-sidenav [theme]="SidebarTheme.LIGHT" [location]="SidebarLocation.TOP">
+                            value: `<ngx-sidenav theme="light" location="top">
                         <ngx-nav-divider></ngx-nav-divider>
                     </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Dark',
-                            value: `<ngx-sidenav [theme]="SidebarTheme.DARK" [location]="SidebarLocation.TOP">
+                            value: `<ngx-sidenav theme="dark" location="top">
                     <ngx-nav-divider></ngx-nav-divider>
                 </ngx-sidenav>`
                         }

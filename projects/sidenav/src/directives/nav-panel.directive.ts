@@ -7,7 +7,9 @@ import {
     ElementRef,
     inject,
     input,
+    InputSignal,
     OnDestroy,
+    Signal,
     TemplateRef
 } from '@angular/core';
 import { compact, every, get, isArray } from 'lodash-es';
@@ -26,12 +28,13 @@ export class NavPanelDirective implements OnDestroy, AfterViewInit {
     private readonly groupService = inject(NavPanelGroupService);
     private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
     // # Inputs
+    public readonly routerLink = input<string | undefined>();
+    public readonly action: InputSignal<NavAction> = input<NavAction>('toggle', { alias: 'navAction' });
     public readonly _openable = input<OpenableComponent[] | OpenableComponent | undefined>(undefined, {
         alias: 'navPanel'
     });
 
-    // # Computed
-    public readonly openables = computed(() => {
+    public readonly openables: Signal<OpenableComponent[]> = computed(() => {
         const openable = this._openable();
         return compact(
             isArray(openable) ? openable : [
@@ -40,22 +43,20 @@ export class NavPanelDirective implements OnDestroy, AfterViewInit {
         );
     });
 
-    public readonly routerLink = input<string | undefined>();
-    public readonly _groupId = input<number | number[]>(undefined, { alias: 'navPanelGroup' });
-    public readonly _content = input<TemplateRef<unknown> | TemplateRef<unknown>[]>(undefined, {
-        alias: 'navPanelContent'
+    public readonly _triggerMode = input<PanelTriggerMode | undefined>(undefined, { alias: 'navTriggerMode' });
+    public readonly triggerMode: Signal<PanelTriggerMode> = computed(() => {
+        const triggerMode = this._triggerMode();
+        if (!triggerMode) {
+            return this.action() === 'open' ? 'hover' : 'click';
+        } else {
+            return triggerMode;
+        }
     });
 
-    public readonly action = input<NavAction>(NavAction.TOGGLE, { alias: 'navAction' });
-    public readonly _triggerMode = input<PanelTriggerMode | undefined>(undefined, { alias: 'navTriggerMode' });
-    private readonly navButton = inject<NavButton>(NAV_BUTTON);
-    public readonly groupInfos = computed(() => {
-        const panels = this.openables();
-        const contents = this.contents();
-        return panels.map((panel, index) => {
-            const content = get(contents, index);
-            return { panel, content, groupId: panel.groupId() } as GroupInfo;
-        });
+    public readonly _groupId = input<number | number[]>(undefined, { alias: 'navPanelGroup' });
+
+    public readonly _content = input<TemplateRef<unknown> | TemplateRef<unknown>[]>(undefined, {
+        alias: 'navPanelContent'
     });
 
     public readonly contents = computed(() => {
@@ -67,13 +68,14 @@ export class NavPanelDirective implements OnDestroy, AfterViewInit {
         );
     });
 
-    public readonly triggerMode = computed(() => {
-        const triggerMode = this._triggerMode();
-        if (!triggerMode) {
-            return this.action() === NavAction.OPEN ? PanelTriggerMode.HOVER : PanelTriggerMode.CLICK;
-        } else {
-            return triggerMode;
-        }
+    // # Computed
+    public readonly groupInfos = computed(() => {
+        const panels = this.openables();
+        const contents = this.contents();
+        return panels.map((panel, index) => {
+            const content = get(contents, index);
+            return { panel, content, groupId: panel.groupId() } as GroupInfo;
+        });
     });
 
     public readonly groupIds = computed(() => {
@@ -84,6 +86,8 @@ export class NavPanelDirective implements OnDestroy, AfterViewInit {
             ]
         );
     });
+
+    private readonly navButton = inject<NavButton>(NAV_BUTTON);
 
     // # Properties
     private readonly isTouchDevice: boolean = false;
@@ -102,9 +106,9 @@ export class NavPanelDirective implements OnDestroy, AfterViewInit {
     public ngAfterViewInit(): void {
         const nativeElement = this.element.nativeElement;
         const triggerMode = this.triggerMode();
-        if (this.isTouchDevice || triggerMode === PanelTriggerMode.CLICK) {
+        if (this.isTouchDevice || triggerMode === 'click') {
             nativeElement.addEventListener('click', this.click);
-        } else if (triggerMode === PanelTriggerMode.HOVER) {
+        } else if (triggerMode === 'hover') {
             nativeElement.addEventListener('mouseenter', this.mouseenter);
         }
     }
@@ -119,16 +123,16 @@ export class NavPanelDirective implements OnDestroy, AfterViewInit {
         const groupIds = this.groupIds();
         const groupInfos = this.groupInfos();
         switch (this.action()) {
-            case NavAction.CLOSE_ALL:
+            case 'close-all':
                 this.groupService.closeAllGroup();
                 break;
-            case NavAction.CLOSE_GROUP:
+            case 'close-group':
                 if (!groupIds.length) {
                     throw new Error('navPanelGroup @Directive is required for navPanelAction CLOSE_GROUP');
                 }
                 this.groupService.closeGroup(groupInfos);
                 break;
-            case NavAction.OPEN: {
+            case 'open': {
                 if (!groupInfos.length) {
                     throw new Error('navPanelTriggerFor @Directive is required for navPanelAction OPEN');
                 }
@@ -139,14 +143,14 @@ export class NavPanelDirective implements OnDestroy, AfterViewInit {
                 }
                 break;
             }
-            case NavAction.CLOSE: {
+            case 'close': {
                 if (!groupInfos.length) {
                     throw new Error('navPanelTriggerFor @Directive is required for navPanelAction CLOSE');
                 }
                 this.groupService.closePanel(groupInfos);
                 break;
             }
-            case NavAction.TOGGLE:
+            case 'toggle':
             default: {
                 if (!groupInfos.length) {
                     throw new Error('navPanelTriggerFor @Directive is required for navPanelAction TOGGLE');

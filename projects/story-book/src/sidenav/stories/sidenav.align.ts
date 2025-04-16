@@ -26,7 +26,7 @@ export const sidenavAlign: StoryObj<NgxSidenavComponentType> = {
         <!-- Menu Left -->
         <div class="flex flex-row">
             <!-- # Sidenav -->
-            <ngx-sidenav [theme]="SidebarTheme.DARK" [location]="SidebarLocation.RIGHT">
+            <ngx-sidenav theme="dark" location="right">
                 <button nav-button [matTooltip]="item">
                     <mat-icon>looks_one</mat-icon> alignement
                 </button>
@@ -34,7 +34,7 @@ export const sidenavAlign: StoryObj<NgxSidenavComponentType> = {
         </div>
         <div class="flex flex-column flex-auto">
             <!-- Menu Top -->
-            <ngx-sidenav [theme]="SidebarTheme.LIGHT" [location]="SidebarLocation.TOP">
+            <ngx-sidenav theme="light" location="top">
                 <button nav-icon-button>
                     <mat-icon matTooltip="one">looks_one</mat-icon>
                 </button>

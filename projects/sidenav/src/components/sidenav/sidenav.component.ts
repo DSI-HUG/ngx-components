@@ -1,5 +1,14 @@
-/* eslint-disable @typescript-eslint/member-ordering, @angular-eslint/prefer-on-push-component-change-detection, @angular-eslint/component-max-inline-declarations*/
-import { Component, computed, effect, HostBinding, input } from '@angular/core';
+/* eslint-disable @typescript-eslint/member-ordering, @angular-eslint/component-max-inline-declarations*/
+import {
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    effect,
+    HostBinding,
+    input,
+    InputSignal,
+    Signal
+} from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { compact } from 'lodash-es';
@@ -14,48 +23,49 @@ import { SidebarDirection, SidebarLocation, SidebarTheme } from '../../enums';
         MatIconModule
     ],
     template: `
-        <div class="ngx-sidenav-layer">
+        <nav class="ngx-sidenav-layer">
             <div class="ngx-sidenav-content">
                 <div class="ngx-sidenav-wrapper">
                     <ng-content></ng-content>
                 </div>
             </div>
-        </div>
-    `
+        </nav>
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidenavComponent {
     @HostBinding('class')
     public hostClass = '';
 
     // # Input
-    public readonly location = input<SidebarLocation>(SidebarLocation.LEFT);
-    public readonly theme = input<SidebarTheme>(SidebarTheme.NONE);
-    public readonly getTheme = computed<SidebarTheme>(() => this.theme());
+    public readonly location: InputSignal<SidebarLocation> = input<SidebarLocation>('left');
+    public readonly theme: InputSignal<SidebarTheme> = input<SidebarTheme>('none');
+    public readonly getTheme: Signal<SidebarTheme> = computed<SidebarTheme>(() => this.theme());
     public readonly disabled = input(false);
     // # Computed
-    public readonly direction = computed(() => {
+    public readonly direction: Signal<SidebarDirection> = computed<SidebarDirection>(() => {
         const location = this.location();
         switch (location) {
-            case SidebarLocation.BOTTOM:
-            case SidebarLocation.TOP:
-                return SidebarDirection.HORIZONTAL;
-            case SidebarLocation.RIGHT:
-            case SidebarLocation.LEFT:
+            case 'bottom':
+            case 'top':
+                return 'horizontal';
+            case 'right':
+            case 'left':
             default:
-                return SidebarDirection.VERTICAL;
+                return 'vertical';
         }
     });
 
     protected readonly locationClass = computed(() => {
         const location = this.location();
         switch (location) {
-            case SidebarLocation.RIGHT:
+            case 'right':
                 return 'ngx-nav-location-right';
-            case SidebarLocation.TOP:
+            case 'top':
                 return 'ngx-nav-location-top';
-            case SidebarLocation.BOTTOM:
+            case 'bottom':
                 return 'ngx-nav-location-bottom';
-            case SidebarLocation.LEFT:
+            case 'left':
             default:
                 return 'ngx-nav-location-left';
         }
@@ -64,9 +74,9 @@ export class SidenavComponent {
     protected readonly directionClass = computed(() => {
         const direction = this.direction();
         switch (direction) {
-            case SidebarDirection.VERTICAL:
+            case 'vertical':
                 return 'ngx-nav-direction-vertical';
-            case SidebarDirection.HORIZONTAL:
+            case 'horizontal':
             default:
                 return 'ngx-nav-direction-horizontal';
         }
@@ -74,11 +84,11 @@ export class SidenavComponent {
 
     protected readonly themeClass = computed(() => {
         switch (this.theme()) {
-            case SidebarTheme.DARK:
+            case 'dark':
                 return 'ngx-nav-dark-theme';
-            case SidebarTheme.LIGHT:
+            case 'light':
                 return 'ngx-nav-light-theme';
-            case SidebarTheme.NONE:
+            case 'none':
             default:
                 return undefined;
         }

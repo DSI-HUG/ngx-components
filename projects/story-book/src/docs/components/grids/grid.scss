@@ -1,0 +1,10 @@
+$grid-gap: 1.3rem;
+
+$grid-repeat-extra-large: repeat(4, 1fr);
+$grid-repeat-large: repeat(3, 1fr);
+$grid-repeat-medium: repeat(2, 1fr);
+$grid-repeat-small: repeat(1, 1fr);
+
+$grid-colums-small: 1fr;
+$grid-colums-medium: $grid-colums-small auto;
+$grid-colums-large: $grid-colums-small 250px;
