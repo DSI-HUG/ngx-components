@@ -1,3 +1,4 @@
+import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -6,11 +7,17 @@ import { provideRouter, RouterModule } from '@angular/router';
 import { NavModule, NavPanelComponent } from '@hug/ngx-sidenav';
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
-import { NgxNavPanelComponentType } from './args/nav-panel.args';
+import { NavPanelComponentType } from './args/nav-panel.args';
+import { NgxSidenavComponentType } from './args/sidenav.args';
+import { ContentTemplatesComponent } from './helpers/content-templates/content-templates.component';
 import { sidenavRoutes } from './helpers/sidenav.routes';
+import { navPanelComponentDynamicContent } from './stories/nav-panel.component.dynamic-content';
+import { navPanelComponentOpenable } from './stories/nav-panel.component.openable';
+import { navPanelComponentPanelGroup } from './stories/nav-panel.component.panel-group';
+import { navPanelDemo } from './stories/nav-panel.demo';
+import { navPanelDirectiveExpandLink } from './stories/nav-panel.directive.expand-link';
+import { navPanelGroupId } from './stories/nav-panel.group-id';
 import { navPanelScroll } from './stories/nav-panel.scroll';
-import { navPanelStandard } from './stories/nav-panel.standard';
-import { navPanelTwoPanel } from './stories/nav-panel.two-panel';
 
 const meta: Meta<NavPanelComponent> = {
     title: 'Components/Sidenav/NavPanel',
@@ -24,16 +31,15 @@ const meta: Meta<NavPanelComponent> = {
         }),
         moduleMetadata({
             imports: [
+                ContentTemplatesComponent,
                 MatIconModule,
                 MatListModule,
                 MatExpansionModule,
                 RouterModule,
-                NavModule
+                MatButtonModule,
+                NavModule.forRoot()
             ]
         })
-    ],
-    tags: [
-        'autodocs'
     ],
     argTypes: {},
     parameters: {
@@ -47,6 +53,16 @@ const meta: Meta<NavPanelComponent> = {
 };
 export default meta;
 
-export const standard: StoryObj<NgxNavPanelComponentType> = navPanelStandard;
-export const twoPanel: StoryObj<NgxNavPanelComponentType> = navPanelTwoPanel;
-export const scroll: StoryObj<NgxNavPanelComponentType> = navPanelScroll;
+export const demo: StoryObj<NavPanelComponentType> = navPanelDemo;
+export const scroll: StoryObj<NavPanelComponentType> = navPanelScroll;
+// # Feature
+
+export const featureGroupId: StoryObj<NgxSidenavComponentType> = navPanelGroupId;
+
+// # Directive
+export const directiveExpandLink: StoryObj<NavPanelComponentType> = navPanelDirectiveExpandLink;
+
+// # Component
+export const componentPanelGroup: StoryObj<NavPanelComponentType> = navPanelComponentPanelGroup;
+export const componentOpenable: StoryObj<NavPanelComponentType> = navPanelComponentOpenable;
+export const componentDynamicContent: StoryObj<NavPanelComponentType> = navPanelComponentDynamicContent;

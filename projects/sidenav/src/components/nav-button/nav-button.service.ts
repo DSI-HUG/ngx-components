@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { compact } from 'lodash-es';
 
-import { NavItemState, SidebarTheme } from '../../enums';
+import { NavButtonState, SidebarTheme } from '../../enums';
 
 @Injectable()
 export class NavButtonService {
@@ -16,7 +16,7 @@ export class NavButtonService {
         id: string;
         disable: boolean;
         isSelected: boolean;
-        state?: NavItemState;
+        state?: NavButtonState;
         theme?: SidebarTheme;
     }): string[] {
         return compact([
@@ -39,7 +39,7 @@ export class NavButtonService {
         }
     }
 
-    private stateClass(isSelected: boolean, isDisable: boolean, state?: NavItemState): string {
+    private stateClass(isSelected: boolean, isDisable: boolean, state?: NavButtonState): string {
         if (isDisable) {
             return 'ngx-nav-state-disabled';
         }

@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import {
     AfterViewInit,
+    booleanAttribute,
     ChangeDetectionStrategy,
     Component,
     computed,
     effect,
     ElementRef,
+    HostBinding,
     inject,
     input,
+    InputSignalWithTransform,
     OnDestroy,
     Renderer2,
     signal
@@ -16,6 +19,7 @@ import { clone, pick } from 'lodash-es';
 
 import { GroupInfo } from '../../../models';
 import { NavPanelGroupService } from '../../../services';
+import { PanelRegistry } from '../../../services/panel.registry';
 import { PARENT_OPENABLE, provideOpenableTokens } from '../../../tokens/openable.tokens';
 
 @Component({
@@ -29,19 +33,44 @@ import { PARENT_OPENABLE, provideOpenableTokens } from '../../../tokens/openable
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OpenableComponent implements OnDestroy, AfterViewInit {
+    /** Force to define the GroupIds himself */
+    /** Force to define the GroupIds himself */
+    public readonly childrenGroupIds = input<number[] | undefined>(undefined);
+    /** Force to define the groupId himself */
+    public readonly groupId = input<number | undefined>(undefined);
+
     // # Injection
     protected readonly groupService = inject<NavPanelGroupService>(NavPanelGroupService);
     public readonly parent = inject<OpenableComponent | null>(PARENT_OPENABLE);
     // # Inputs
     public readonly _name = input<string>(''); // To debug
-    /** Force to define the GroupIds himself */
-    public readonly childrenGroupIds = input<number[] | undefined>(undefined);
-    /** Force to define the groupId himself */
-    public readonly groupId = input<number | undefined>(undefined, { alias: 'navGroup' });
+    public readonly panelId = input<string | undefined>(undefined);
+    protected readonly panelService = inject(PanelRegistry);
     /** Flag the openable as a container */
-    public readonly isContainer = input<boolean>(false, { alias: 'navContainer' });
+    public readonly isContainer: InputSignalWithTransform<boolean, unknown> = input(false, { transform: booleanAttribute });
     /** Force open or close  */
-    public readonly expanded = input<boolean | undefined>(undefined);
+    public readonly isExpanded: InputSignalWithTransform<boolean, unknown> = input(false, {
+        transform: booleanAttribute,
+        alias: 'expanded'
+    });
+
+    public readonly isCurrentOpen = computed<boolean>(() => {
+        const isExpanded = this.isExpanded();
+        if (isExpanded) {
+            return isExpanded;
+        }
+        const isPanelOpen = this.groupService.isPanelOpen(this.groupInfo());
+        if (isPanelOpen) {
+            return isPanelOpen;
+        }
+        return false;
+    });
+
+    @HostBinding('class.aria-expanded')
+    protected get ariaExpanded(): boolean {
+        return this.isExpanded();
+    }
+
     // # Signal
     public readonly onAfterViewInit = signal<boolean>(false);
     /** The Child OpenableComponent index themselves in this Array */
@@ -96,18 +125,6 @@ export class OpenableComponent implements OnDestroy, AfterViewInit {
         return false;
     });
 
-    public readonly isCurrentOpen = computed<boolean>(() => {
-        const expanded = this.expanded();
-        if (expanded) {
-            return expanded;
-        }
-        const isPanelOpen = this.groupService.isPanelOpen(this.groupInfo());
-        if (isPanelOpen) {
-            return isPanelOpen;
-        }
-        return false;
-    });
-
     public readonly isOpen = computed(() =>
         this.isContainer() ? this.isCurrentOpen() || this.isChildrenOpen() : this.isCurrentOpen()
     );
@@ -123,10 +140,23 @@ export class OpenableComponent implements OnDestroy, AfterViewInit {
     // # Properties
     /** Let the animation take care of the visibility  */
     protected readonly autoHide: boolean = true;
+    private _lastPanelId?: string;
     private readonly element = inject<ElementRef<HTMLInputElement>>(ElementRef);
     private readonly renderer = inject(Renderer2);
 
     public constructor() {
+        effect(() => {
+            const panelId = this.panelId();
+            if (panelId !== this._lastPanelId) {
+                if (this._lastPanelId) {
+                    this.panelService.unregister(this._lastPanelId);
+                }
+                if (panelId) {
+                    this.panelService.register(panelId, this);
+                }
+            }
+            this._lastPanelId = panelId;
+        });
         // Show or Hide
         effect(() => {
             if (this.onAfterViewInit()) {
@@ -175,6 +205,7 @@ export class OpenableComponent implements OnDestroy, AfterViewInit {
     public ngOnDestroy(): void {
         // remove his reference in parent component
         this.parentContainer()?.children.update(v => v.filter(o => o.child !== this));
+        this.panelService.unregister(this);
     }
 
     // # Actions

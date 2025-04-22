@@ -121,6 +121,10 @@ $horizontal-gap: 0.1rem;
 
     .mat-mdc-list-item {
         .mdc-list-item__primary-text {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.5rem;
             font: var(--mat-sys-body-medium) !important;
         }
 

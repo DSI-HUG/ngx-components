@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/member-ordering, @angular-eslint/component-max-inline-declarations*/
 import {
+    booleanAttribute,
     ChangeDetectionStrategy,
     Component,
     computed,
@@ -7,6 +8,7 @@ import {
     HostBinding,
     input,
     InputSignal,
+    InputSignalWithTransform,
     Signal
 } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
@@ -39,9 +41,10 @@ export class SidenavComponent {
 
     // # Input
     public readonly location: InputSignal<SidebarLocation> = input<SidebarLocation>('left');
-    public readonly theme: InputSignal<SidebarTheme> = input<SidebarTheme>('none');
+    public readonly theme = input<SidebarTheme>('none');
     public readonly getTheme: Signal<SidebarTheme> = computed<SidebarTheme>(() => this.theme());
-    public readonly disabled = input(false);
+    public readonly border: InputSignalWithTransform<boolean, unknown> = input(true, { transform: booleanAttribute });
+    public readonly disabled: InputSignalWithTransform<boolean, unknown> = input(false, { transform: booleanAttribute });
     // # Computed
     public readonly direction: Signal<SidebarDirection> = computed<SidebarDirection>(() => {
         const location = this.location();
@@ -94,11 +97,20 @@ export class SidenavComponent {
         }
     });
 
+    protected readonly borderClass = computed(() => {
+        if (this.border()) {
+            return 'ngx-nav-border';
+        } else {
+            return undefined;
+        }
+    });
+
     public constructor() {
         effect(() => {
             const disabled = this.disabled() ? 'disabled' : undefined;
             this.hostClass = compact([
                 'ngx-sidenav',
+                this.borderClass(),
                 this.locationClass(),
                 this.directionClass(),
                 this.themeClass(),

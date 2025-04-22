@@ -1,102 +1,34 @@
 [
     {
-        "img": "tooltip",
-        "alt": "Representation of the tooltip",
-        "name": "Tooltip",
-        "status": "ready",
-        "description": "Displays floating content when an object is hovered.",
-        "link": "components-tooltip--docs"
+        "img": "sidenav",
+        "alt": "Representation of the sidenav",
+        "name": "Sidenav",
+        "status": "new",
+        "description": "Permet d'afficher des menus.",
+        "link": "components-sidenav-sidenav--docs"
     },
     {
-        "img": "button-toggle",
-        "alt": "Representation of button toggle",
-        "name": "Button Toggle",
-        "status": "ready",
-        "description": "A groupable on/off toggle for enabling and disabling options.",
+        "img": "nav-divider",
+        "alt": "Representation of the nav-divider",
+        "name": "Nav Divider",
+        "status": "new",
+        "description": "Utilisé pour séparer les boutons de navigation",
+        "link": "components-sidenav-navdivider--docs"
+    },
+    {
+        "img": "nav-button",
+        "alt": "Representation of the nav-button",
+        "name": "Nav Button",
+        "status": "new",
+        "description": "Bouton stylisé selon le thème Material 3",
         "link": "components-button-toggle--docs"
     },
     {
-        "img": "card",
-        "alt": "Representation of the card",
-        "name": "Card",
-        "status": "ready",
-        "description": "A styled container for pieces of itemized content.",
-        "link": "components-card--docs"
-    },
-    {
-        "img": "datepicker",
-        "alt": "Representation of the datepicker",
-        "name": "Datepicker",
-        "status": "ready",
-        "description": "Captures dates, agnostic about their internal representation.",
-        "link": "components-datepicker--docs"
-    },
-    {
-        "img": "formfield",
-        "alt": "Representation of the form field",
-        "name": "Form field",
-        "status": "ready",
-        "description": "Wraps input field so they are displayed consistently.",
-        "link": "components-form-field--docs"
-    },
-    {
-        "img": "icon",
-        "alt": "Representation of the icon",
-        "name": "Icône",
-        "status": "ready",
-        "description": "Affiche une icône spécifiée.",
-        "link": "components-icon--docs"
-    },
-    {
-        "img": "menu",
-        "alt": "Representation of the menu",
-        "name": "Menu",
-        "status": "ready",
-        "description": "Un panneau flottant d'options imbriquées.",
-        "link": "components-menu--docs"
-    },
-    {
-        "img": "slidetoggle",
-        "alt": "Representation of the slide toggle",
-        "name": "Slide toggle",
+        "img": "nav-panel",
+        "alt": "Representation of the nav-panel",
+        "name": "Nav Panel",
         "status": "new",
-        "description": "Captures boolean values as a clickables and draggable switch.",
-        "link": "components-slide-toggle--docs"
-    },
-    {
-        "img": "dialog",
-        "alt": "Representation of the dialog",
-        "name": "Dialog",
-        "status": "new",
-        "description": "A configurable modal that displays dynamic content.",
-        "link": "components-dialog--docs"
-    },
-    {
-        "img": "timepicker",
-        "alt": "Representation of the time picker",
-        "name": "Time picker",
-        "status": "new",
-        "description": "Allows the user to select a time of the day.",
-        "link": "components-time-picker--docs"
-    },
-    {
-        "img": "buttons",
-        "alt": "Representation of the different buttons",
-        "name": "Button",
-        "status": "new",
-        "description": "An interactive button with a range of presentation options.",
-        "link": "components-buttons--docs"
-    },
-    {
-        "alt": "Image waiting for component representation",
-        "name": "Badge",
-        "status": "planned",
-        "description": "A small value indicator that can be overlaid on another object."
-    },
-    {
-        "alt": "Image waiting for component representation",
-        "name": "Progress bar",
-        "status": "planned",
-        "description": "A linear progress indicator."
+        "description": "Conteneur servant à afficher un menu",
+        "link": "components-button-toggle--docs"
     }
 ]

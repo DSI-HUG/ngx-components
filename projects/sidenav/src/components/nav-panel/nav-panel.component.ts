@@ -35,59 +35,30 @@ export class NavPanelComponent extends DynamicContentComponent {
     public hostClass = '';
 
     // # Inputs
-    public readonly panelType: InputSignal<PanelType> = input<PanelType>('open-right');
+    public readonly panelType: InputSignal<PanelType> = input<PanelType>('open-right-overlay');
     public readonly panelTheme: InputSignal<PanelTheme> = input<PanelTheme>('m3');
 
     // # Signals
     protected readonly panelVisibleClass = signal<'visible' | 'hidden' | 'visible-end' | 'hidden-end'>('hidden');
     public readonly location: Signal<SidebarLocation> = computed(() => {
         const theme = this.panelType();
-        switch (theme) {
-            case 'overlay-open-left':
-            case 'fixed-open-left':
-            case 'open-left':
-                return 'right';
-            case 'overlay-open-right':
-            case 'fixed-open-right':
-            case 'open-right':
-            default:
-                return 'left';
-        }
+        return theme.includes('open-left') ? 'right' : 'left';
     });
 
     public readonly position: Signal<SidebarPosition> = computed(() => {
         const theme = this.panelType();
-        switch (theme) {
-            case 'overlay-open-left':
-            case 'overlay-open-right':
-                return 'overlay';
-            case 'fixed-open-left':
-            case 'fixed-open-right':
-                return 'fixed';
-            case 'open-left':
-            case 'open-right':
-            default:
-                return 'relative';
+        if (theme.includes('overlay')) {
+            return 'overlay';
+        } else if (theme.includes('fixed')) {
+            return 'fixed';
+        } else {
+            return 'relative';
         }
     });
 
     protected readonly typeClass = computed(() => {
         const theme = this.panelType();
-        switch (theme) {
-            case 'overlay-open-right':
-                return 'ngx-nav-panel-overlay-open-right';
-            case 'overlay-open-left':
-                return 'ngx-nav-panel-overlay-open-left';
-            case 'fixed-open-right':
-                return 'ngx-nav-panel-fixed-open-right';
-            case 'fixed-open-left':
-                return 'ngx-nav-panel-fixed-open-left';
-            case 'open-left':
-                return 'ngx-nav-panel-open-left';
-            case 'open-right':
-            default:
-                return 'ngx-nav-panel-open-right';
-        }
+        return `ngx-nav-panel-${theme}`;
     });
 
     protected readonly themeClass = computed(() => {
@@ -102,6 +73,7 @@ export class NavPanelComponent extends DynamicContentComponent {
 
     public constructor() {
         super();
+
         // Resolve Host classes
         effect(() => {
             this.hostClass = compact([

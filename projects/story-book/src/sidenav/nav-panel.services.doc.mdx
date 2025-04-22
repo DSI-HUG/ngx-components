@@ -1,0 +1,44 @@
+import { Controls, Description, Canvas, Source, Meta, Story, Primary, Stories } from '@storybook/blocks';
+
+import { PageGrid, Icon, CardsGrid, ComponentsGrid, Image, Iframe, Table } from '../docs/components/components';
+
+import { tokenTableFormater } from './helpers/table-formater/token-table.formater';
+import { methodsTableFormater } from './helpers/table-formater/methods-table.formater';
+import * as NavPanelStories from './nav-panel.stories';
+
+<Meta of={NavPanelStories} name="Services" />
+
+<PageGrid maxSummaryDepth="3">
+# `Services`
+
+## <Icon name="developer_guide"/> PanelRegistry
+
+Le service `PanelRegistry` répertorie les panels : **panels**, **dynamic-content**, **openable**, qui ont été identifiés avec un `panelId`.
+
+Cela permet de les retrouver depuis un autre composant en injectant ce service.
+
+### Méthodes
+
+Le `nav-panel` propose différentes méthodes :
+
+    <Table  format={methodsTableFormater}
+            header={{
+                name:'Method',
+                description: 'Description'
+            }}
+            body={[
+                {
+                    name:'get(key: string): OpenableComponent | undefined',
+                    description: 'Enregistre un panel.'
+                },
+                {
+                    name:'register(key: string, ref: OpenableComponent): void',
+                    description: 'Récupère un panel précédemment enregistré.'
+                },
+                {
+                    name:'unregister(param: string | OpenableComponent): void',
+                    description: 'Supprime un panel de la liste.'
+                }
+            ]}/>
+
+</PageGrid>

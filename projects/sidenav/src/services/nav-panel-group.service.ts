@@ -56,6 +56,14 @@ export class NavPanelGroupService<T extends OpenableComponent = OpenableComponen
     }
 
     /**
+     * Closes all hover panel (in group -1).
+     *
+     */
+    public closeAllHoverPanel(): void {
+        this.openGroups.update(v => v.filter(group => group.id !== -1));
+    }
+
+    /**
      * Opens one or multiple panels associated with the given group information.
      *
      * @param pParams - The group information used to identify the resource(s).
@@ -105,6 +113,7 @@ export class NavPanelGroupService<T extends OpenableComponent = OpenableComponen
         // Resolve existing group ang group corresponding parameters
         const groupSelection = this.resolveExistingGroup(params);
         // close PanelContent in of the list
+        console.log('groupList', groupSelection.groupList, groupSelection);
         const groups = this.removePanelContentInGroupInsideSelection(groupSelection.groupList);
         // remove empty group only at the end if they are remain empty
         this.removeEmptyGroup(groups);

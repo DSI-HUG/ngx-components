@@ -10,13 +10,14 @@ import {
 import { StoryObj } from '@storybook/angular';
 import { pick } from 'lodash-es';
 
-import { ContentType } from '../enums/content.type';
+import { ContentType } from '../helpers/content-templates/content-templates.component';
 
 export type NgxSidenavComponentType = SidenavComponent & {
     content: ContentType;
     navSize: NavSize;
     navJustify: NavJustify;
     pageSize: string;
+    navButtonType: 'nav-button' | 'nav-icon-button';
 };
 
 export const sidenavArgs: StoryObj<NgxSidenavComponentType> = {
@@ -24,20 +25,27 @@ export const sidenavArgs: StoryObj<NgxSidenavComponentType> = {
         location: {
             control: { type: 'select' },
             options: SIDEBAR_LOCATIONS,
+            description: 'Oriente le sens de la **sidebar** selon la position souhaitée.',
             table: {
-                defaultValue: { summary: 'RIGHT' },
+                defaultValue: { summary: '"left"' },
                 type: { summary: 'SidebarLocation' }
             }
         },
         theme: {
             control: { type: 'select' },
             options: SIDEBAR_THEMES,
+            description: `Définit un style par défaut pour la **sidebar** :
+
+- **dark** : fond sombre
+- **light** : fond clair
+- **none** : aucun style appliqué`,
             table: {
-                defaultValue: { summary: 'NONE' },
+                defaultValue: { summary: '"none"' },
                 type: { summary: 'SidebarTheme' }
             }
         },
         disabled: {
+            description: 'Permet de désactiver l’affichage de la **sidebar**.',
             table: {
                 defaultValue: { summary: 'false' }
             }
@@ -51,24 +59,6 @@ export const sidenavArgs: StoryObj<NgxSidenavComponentType> = {
         pageSize: 'min600x400'
     }
 };
-export const sidenavContentArgs: StoryObj<NgxSidenavComponentType> = {
-    argTypes: {
-        content: {
-            name: 'Tests / Content',
-            control: { type: 'select' },
-            options: Object.values(ContentType),
-            table: {
-                defaultValue: { summary: 'TITLE_TEXT' },
-                type: { summary: 'ContentType' }
-            }
-        },
-        ...sidenavArgs.argTypes
-    },
-    args: {
-        content: ContentType.TITLE_TEXT,
-        ...sidenavArgs.args
-    }
-};
 
 export const sidenavSizeArgs = ({ navSize, pick: pPick }: {
     navSize?: NavSize; pick?: string[];
@@ -78,36 +68,47 @@ export const sidenavSizeArgs = ({ navSize, pick: pPick }: {
     navSize = navSize ?? 'M';
     const args = {
         argTypes: {
+            navButtonType: {
+                name: 'Type de Buttons',
+                control: { type: 'select' },
+                options: ['nav-button', 'nav-icon-button'],
+                table: {
+                    category: 'Test',
+                    type: { summary: '"nav-button" | "nav-icon-button"' }
+                }
+            },
             navSize: {
                 name: 'Size',
                 control: { type: 'select' },
                 options: NAV_SIZES,
                 table: {
-                    defaultValue: { summary: 'M' },
+                    category: '[Size]',
+                    defaultValue: { summary: '"M"' },
                     type: { summary: 'NavSize' }
                 }
             },
             theme: {
-                name: 'Test / Theme',
+                name: 'Theme',
                 control: { type: 'select' },
                 options: SIDEBAR_THEMES,
                 table: {
-                    defaultValue: { summary: 'NONE' },
+                    category: 'Sidebar',
                     type: { summary: 'SidebarTheme' }
                 }
             },
             location: {
-                name: 'Test / Location',
+                name: 'Location',
                 control: { type: 'select' },
                 options: SIDEBAR_LOCATIONS,
                 table: {
-                    defaultValue: { summary: 'RIGHT' },
+                    category: 'Sidebar',
                     type: { summary: 'SidebarLocation' }
                 }
             }
         },
         args: {
             navSize,
+            navButtonType: 'nav-button',
             location: 'left',
             theme: 'dark'
         }
@@ -135,25 +136,26 @@ export const sidenavJustifyArgs = ({ navJustify, pick: pPick }: {
                 control: { type: 'select' },
                 options: NAV_JUSTIFY,
                 table: {
-                    defaultValue: { summary: 'START' },
+                    category: '[Justify]',
+                    defaultValue: { summary: '"start"' },
                     type: { summary: 'NavJustify' }
                 }
             },
             theme: {
-                name: 'Test / Theme',
+                name: 'Theme',
                 control: { type: 'select' },
                 options: SIDEBAR_THEMES,
                 table: {
-                    defaultValue: { summary: 'NONE' },
+                    category: 'Sidenav',
                     type: { summary: 'SidebarTheme' }
                 }
             },
             location: {
-                name: 'Test / Location',
+                name: 'Location',
                 control: { type: 'select' },
                 options: SIDEBAR_LOCATIONS,
                 table: {
-                    defaultValue: { summary: 'RIGHT' },
+                    category: 'Sidenav',
                     type: { summary: 'SidebarLocation' }
                 }
             }

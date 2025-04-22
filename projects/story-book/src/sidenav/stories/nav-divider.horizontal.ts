@@ -1,15 +1,14 @@
-import { NavDividerComponent } from '@hug/ngx-sidenav';
 import { StoryObj } from '@storybook/angular';
 
-import { navDividerArgs } from '../args/nav-divider.args';
+import { navDividerArgs, NavDividerComponentArgs } from '../args/nav-divider.args';
 import { sidebarEnums } from '../enums/sidebar.enums';
-import { sidenavParts } from '../templates/sidenav.horizontal.content.template';
+import { sidenavParts } from '../renders/templates/sidenav.horizontal.content.template';
 
-export const navDividerHorizontal: StoryObj<NavDividerComponent> = {
+export const navDividerHorizontal: StoryObj<NavDividerComponentArgs> = {
     parameters: {
         docs: {
             description: {
-                story: 'This story demonstrates the standard usage of `NgxNavIconButtonComponent`.'
+                story: 'Cette *story* permet de vérifier le rendu du `nav-divider` dans les différents thèmes en orientation horizontale.'
             }
         }
     },
@@ -19,11 +18,11 @@ export const navDividerHorizontal: StoryObj<NavDividerComponent> = {
             ...sidebarEnums
         },
         template: `
-<section class="sidenav nav-divider">
+<section class="sidenav nav-divider" [class]="pageSize">
     ${sidenavParts(
             [
                 {
-                    partTitle: 'Horizontal',
+                    partTitle: 'Horizontale',
                     content: [
                         {
                             contentTitle: 'Default',

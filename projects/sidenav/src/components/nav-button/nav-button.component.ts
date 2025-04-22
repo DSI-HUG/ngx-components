@@ -1,6 +1,15 @@
 /* eslint-disable @typescript-eslint/member-ordering, @typescript-eslint/naming-convention */
-import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, HostBinding, input, Signal } from '@angular/core';
+import {
+    booleanAttribute,
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    effect,
+    HostBinding,
+    input,
+    InputSignalWithTransform,
+    Signal
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -10,19 +19,14 @@ import { compact } from 'lodash-es';
 import { SidebarTheme } from '../../enums';
 import { provideNavButtonTokens } from '../../tokens/nav-button.tokens';
 import { NavButton } from './extends/nav-button';
-import { NavButtonDirective, NavIconButtonDirective } from './nav-button.directive';
 import { NavButtonService } from './nav-button.service';
 
 const IMPORTS = [
     RouterModule,
-    NgTemplateOutlet,
     // Material
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinner,
-    // Nav
-    NavButtonDirective,
-    NavIconButtonDirective
+    MatProgressSpinner
 ];
 const PROVIDERS = [
     NavButtonService
@@ -45,7 +49,11 @@ export class NavButtonComponent extends NavButton {
     public hostClass = '';
 
     // # Input
-    public readonly isLoading = input<boolean>(false, { alias: 'loading' });
+    public readonly isLoading: InputSignalWithTransform<boolean, unknown> = input(false, {
+        transform: booleanAttribute,
+        alias: 'loading'
+    });
+
     public override readonly getTheme: Signal<SidebarTheme> = computed(
         () => this.theme() ?? this.sidenav?.theme() ?? 'none'
     );

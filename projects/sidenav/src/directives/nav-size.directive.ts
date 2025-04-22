@@ -23,8 +23,6 @@ export class NavSizeDirective {
                 return 'ngx-nav-size-s';
             case 'L':
                 return 'ngx-nav-size-l';
-            case 'XL':
-                return 'ngx-nav-size-xl';
             case 'M':
             default:
                 return 'ngx-nav-size-m';

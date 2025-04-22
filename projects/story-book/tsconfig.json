@@ -18,12 +18,12 @@
         "./src/**/*.tsx",
         "./src/**/*.stories.ts",
         "./typings.d.ts",
-        "./preview.ts"
+        "./preview.tsx"
     ],
     "files": [
         // --- Not part of the compilation but needed to avoid eslint complaining about it
         "main.ts",
-        "manager.ts"
+        "manager.tsx"
         // ---
     ]
 }

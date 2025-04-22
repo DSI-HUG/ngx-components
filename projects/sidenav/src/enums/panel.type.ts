@@ -1,9 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const PANEL_TYPES = [
-    'overlay-open-right',
-    'overlay-open-left',
-    'fixed-open-right',
-    'fixed-open-left',
+    'open-right-overlay',
+    'open-left-overlay',
+    'open-right-fixed',
+    'open-left-fixed',
+    'open-right-border',
+    'open-left-border',
+    'open-right-m3',
+    'open-left-m3',
     'open-right',
     'open-left'
 ] as const;

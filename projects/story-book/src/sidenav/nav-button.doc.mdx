@@ -1,0 +1,296 @@
+import { Controls, Description, Canvas, Source, Meta, Story, Primary, Stories } from '@storybook/blocks';
+
+import { PageGrid, Icon, CardsGrid, ComponentsGrid, Image, Iframe, Table } from '../docs/components/components';
+
+import { tokenTableFormater } from './helpers/table-formater/token-table.formater';
+
+import * as NavButtonStories from './nav-button.stories';
+import * as SidenavStories from './sidenav.stories';
+
+<Meta of={NavButtonStories} />
+
+<PageGrid maxSummaryDepth="3">
+# `NavButton`
+
+    ## <Icon name="info"/> Coup d'oeil
+        <Iframe
+            widthIframe="100%"
+            heightIframe="250"
+            srcIframe="/iframe.html?viewMode=story&id=components-sidenav-navbutton--directive&args=pageSize:fullscreen;selected:!true&globals=backgrounds.value:!hex(b5d8ff);"/>
+
+
+
+        Les `nav-buttons` fonctionnent de la même manière que les `mat-button`. Ils sont composés de deux types :
+
+        - Le `nav-button` : il correspond à l’affichage avec une icône en haut sur un fond rectangulaire arrondi, et un texte en bas.
+        - Le `nav-icon-button` : il correspond à l’affichage "réduit" et n’affiche qu’une icône. Il est préférable de l’accompagner d’un *tooltip*.
+    ## <Icon name="skeleton"/> Anatomie
+        Les `nav-buttons` sont des directives que l'on applique sur un élément bouton.
+
+        Les `nav-buttons` sont à utiliser sous forme de composants lorsque l'on souhaite ajouter des fonctionnalités telles que la gestion du chargement, qui sont liées à l'affichage du bouton.
+
+        Les fonctionnalités supplémentaires telles que `routerLink` ou `matTooltip` doivent être ajoutées sur l’élément bouton de manière standard.
+        À noter qu’il est préférable d’ajouter `matBadge` au `matIcon` du contenu pour un meilleur rendu visuel.
+
+    ## <Icon name="design_services"/> Règles de design
+        La `sidenav` se base sur les `guidelines` de **Material 3**.
+
+        Material Dialogs Guidelines : [Material - Dialogs - Guidelines](https://m3.material.io/components/dialogs/guidelines)
+
+        ### <Icon name="styler"/> Style visuel et couleurs
+            Trois **thèmes** peuvent être appliqués : **dark**, **light** et **none**.
+            Ils peuvent ensuite être modifiés à l'aide des **tokens CSS**, ce qui permet de commencer sur une base sombre, claire ou neutre.
+
+            Les thèmes par défaut sont ceux utilisés par les applications du HUG.
+
+        ### <Icon name="dashboard"/> Contenu et layout
+
+            L’icône et le texte doivent être placés à l’intérieur de la balise.
+
+            Si aucun **thème** n’est défini, le `nav-button` tentera d’utiliser le même thème que la `sidebar` qui le contient.
+
+
+    ## <Icon name="accessibility_new"/> Accessibilité
+        Pour garantir une bonne accessibilité, certaines balises et attributs doivent être ajoutés **manuellement** sur le `nav-button` ou son contenu.
+        Ces éléments **ne sont pas gérés automatiquement** par le composant.
+
+        Voici les pratiques recommandées :
+
+        - **`aria-label`** : à utiliser lorsqu’il n’y a pas de texte visible, pour décrire l’action du bouton.
+        - **`matTooltip`** ou **`title`** : permettent d’afficher une info-bulle, utile pour les icônes seules ou les boutons réduits.
+        - **`aria-hidden="true"`** : à appliquer sur les éléments purement décoratifs (comme certaines icônes).
+        - **`aria-current="page"`** : à utiliser dans le cadre d’une navigation pour indiquer que le bouton correspond à la page active.
+        - **`tabindex="0"`** : permet d’ajouter un élément non-focusable au parcours clavier, si nécessaire.
+
+        ### Exemple :
+
+            <Source dark language="html" code={
+
+`<button nav-icon-button aria-label="Ouvrir le menu" matTooltip="Menu"> <mat-icon aria-hidden="true">menu</mat-icon>
+
+</button>`
+            }/>
+
+    ##  <Icon name="display_settings"/> Démo
+        <Primary />
+        <Controls of={NavButtonStories.demo} />
+
+    ## <Icon name="css"/> Tokens CSS
+    <Table  format={tokenTableFormater}
+            header={{
+                name:'Name',
+                description: 'Description',
+                defaultValue: 'Default'
+            }}
+            body={[
+                    {
+                      name: '--ngx-nav-button-width',
+                      description: 'Largeur du nav-button.',
+                      defaultValue: '88px'
+                    },
+                    {
+                      name: '--ngx-nav-button-text-color',
+                      description: 'Couleur du texte.',
+                      defaultValue: 'on-surface'
+                    },
+                    {
+                      name: '--ngx-nav-button-fx-color',
+                      description: 'Couleur de l’effet au survol (hover).',
+                      defaultValue: 'on-surface'
+                    },
+                    {
+                      name: '--ngx-nav-button-icon-color',
+                      description: 'Couleur de l’icône.',
+                      defaultValue: 'on-surface'
+                    },
+                    {
+                      name: '--ngx-nav-button-icon-label-padding',
+                      description: 'Espacement interne (padding) entre l’icône et le label dans un nav-button.',
+                      defaultValue: '0.3rem 1rem'
+                    },
+                    {
+                      name: '--ngx-nav-button-icon-only-padding',
+                      description: 'Espacement interne (padding) pour un bouton avec icône seule (`nav-icon-button`).',
+                      defaultValue: '0.5rem'
+                    },
+                    {
+                      name: '--ngx-nav-button-loading-color',
+                      description: 'Couleur de l’animation de chargement.',
+                      defaultValue: 'on-surface'
+                    },
+                    {
+                      name: '--private-selected-color',
+                      description: 'Couleur de fond du bouton lorsqu’il est sélectionné.',
+                      defaultValue: 'primary-fixed-dim'
+                    },
+                    {
+                      name: '--ngx-nav-button-on-selected-color',
+                      description: 'Couleur du contenu (texte, icône) lorsque le bouton est sélectionné.',
+                      defaultValue: 'on-primary-container'
+                    },
+                    {
+                      name: '--private-fx-selected-color',
+                      description: 'Couleur de l’effet (ripple) sur un bouton sélectionné.',
+                      defaultValue: 'on-primary'
+                    },
+                    {
+                      name: '--ngx-nav-button-container-color',
+                      description: 'Couleur de fond du bouton. Sert au calcul des effets `hover`, `active`, etc.',
+                      defaultValue: 'transparent'
+                    },
+                    {
+                      name: '--ngx-nav-button-default-bg-color',
+                      description: 'Couleur de fond de l’icône, qui peut changer lors d’une sélection.',
+                      defaultValue: 'transparent'
+                    }
+                  ]}/>
+
+    ## <Icon name="code"/> Code
+        Importation du composant `nav-button`:
+        <Source dark language="typescript" code={`
+
+// La Directive NavButton import { NavButtonDirective } from '@hug/ngx-sidenav';
+
+// Le Component NavButton import { NgxNavButtonComponent } from '@hug/ngx-sidenav';
+
+// La Directive NavIconButton import { NavIconButtonDirective } from '@hug/ngx-sidenav';
+
+// Le Component NavIconButton import { NavIconButtonComponent } from '@hug/ngx-sidenav'; `}/>
+
+        Exemple de code html de contenu pour le `nav-button` :
+        <Source dark language="html" code={`
+
+<!-- La Directive NavButton -->
+
+<button nav-button theme="light" selected="false" disabled="false">
+    <mat-icon>code</mat-icon> label
+</button>
+
+<!-- Le Component NavButton -->
+
+<ngx-nav-button theme="dark"
+                selected="false"
+                disabled="false"
+                loading="false"> <mat-icon>code</mat-icon> label </ngx-nav-button> `}/>
+
+    ## <Icon name="extension"/> Fonctionnalités
+        ### Directive
+            <Description of={NavButtonStories.directive} />
+            <Canvas of={NavButtonStories.directive} />
+
+            Exemple de code html de contenu pour le `nav-button` :
+            <Source dark language="html" code={`
+
+<!-- La Directive NavButton -->
+
+<button nav-button>
+    <mat-icon>code</mat-icon> label
+</button>
+
+<!-- La Directive NavIconButton -->
+
+<button nav-icon-button>
+    <mat-icon>code</mat-icon> label
+</button>
+`}/>
+
+        ### Component
+            <Description of={NavButtonStories.component} />
+                        <Canvas of={NavButtonStories.component} />
+
+                        Exemple de code html de contenu pour le `nav-button` :
+                        <Source dark language="html" code={`
+
+<!-- Le Component NavButton -->
+
+<ngx-nav-button>
+    <mat-icon>code</mat-icon> label
+</ngx-nav-button>
+
+<!-- Le Component NavIconButton -->
+
+<ngx-nav-icon-button>
+    <mat-icon>code</mat-icon> label
+</ngx-nav-icon-button>
+`}/>
+
+        ### Options
+            <Description of={NavButtonStories.featureList} />
+            <Canvas of={NavButtonStories.featureList} />
+
+        ### States
+            <Description of={NavButtonStories.featureStates} />
+            <Canvas of={NavButtonStories.featureStates} />
+
+    ## <Icon name="code_blocks"/> Directives
+
+        ### Action
+            <Description of={NavButtonStories.directiveAction} />
+            <Canvas of={NavButtonStories.directiveAction} />
+            <Controls of={NavButtonStories.directiveAction} />
+             Importation de la directive `[navAction]` :
+             <Source dark language="typescript" code={
+                 `import { NavActionDirective } from '@hug/ngx-sidenav';`
+             }/>
+
+             Exemple de code de la directive `[navAction]` :
+             <Source dark language="typescript" code={`
+
+<button nav-button
+        navAction="open"
+        [navActionContainer]="panelLeft"
+        [navActionContent]="templateHelloWorld">
+    <mat-icon>palette</mat-icon> Palette
+</button>`
+             }/>
+
+        ### Style
+            <Description of={NavButtonStories.directiveButtonStyle} />
+            <Canvas of={NavButtonStories.directiveButtonStyle} />
+            <Controls of={NavButtonStories.directiveButtonStyle} />
+             Importation de la directive `[navButtonStyle]` :
+             <Source dark language="typescript" code={
+                 `import { NavButtonStyleDirective } from '@hug/ngx-sidenav';`
+             }/>
+
+             Exemple de code de la directive `[navButtonButtonStyle]` :
+             <Source dark language="typescript" code={`
+
+<button nav-icon-button [state]="state"
+                        [theme]="theme"
+                        [selected]="selected"
+                        [disabled]="disabled"
+                        matTooltip="nav icon button">
+                            <mat-icon>menu_open</mat-icon>
+</button>`
+             }/>
+
+        ### Group
+            <Description of={NavButtonStories.directiveButtonGroup} />
+            <Canvas of={NavButtonStories.directiveButtonGroup} />
+            <Controls of={NavButtonStories.directiveButtonGroup} />
+             Importation de la directive `[navButtonGroup]` :
+             <Source dark language="typescript" code={
+                 `import { NavButtonGroupDirective } from '@hug/ngx-sidenav';`
+             }/>
+
+             Exemple de code de la directive `[navButtonGroup]` :
+             <Source dark language="typescript" code={`
+
+<button nav-icon-button [state]="state"
+                        [theme]="theme"
+                        [selected]="selected"
+                        [disabled]="disabled"
+                        matTooltip="nav icon button">
+                            <mat-icon>menu_open</mat-icon>
+</button>`
+             }/>
+
+    ## <Icon name="alt_route"/> Exemple : Toggle
+        <Description of={NavButtonStories.exampleToggle} />
+        <Canvas of={NavButtonStories.exampleToggle} />
+
+    ## <Icon name="linked_services"/> Composants liés
+        <ComponentsGrid componentsList="Sidenav, Nav Panel, Nav Divider" />
+
+</PageGrid>

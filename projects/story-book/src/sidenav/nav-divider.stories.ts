@@ -4,9 +4,10 @@ import { provideRouter, RouterModule } from '@angular/router';
 import { NavDividerComponent, NavModule } from '@hug/ngx-sidenav';
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
+import { NavDividerComponentArgs } from './args/nav-divider.args';
 import { sidenavRoutes } from './helpers/sidenav.routes';
+import { navDividerDemo } from './stories/nav-divider.demo';
 import { navDividerHorizontal } from './stories/nav-divider.horizontal';
-import { navDividerStandard } from './stories/nav-divider.standard';
 import { navDividerVertical } from './stories/nav-divider.vertical';
 
 const meta: Meta<NavDividerComponent> = {
@@ -23,12 +24,9 @@ const meta: Meta<NavDividerComponent> = {
             imports: [
                 MatIconModule,
                 RouterModule,
-                NavModule
+                NavModule.forRoot()
             ]
         })
-    ],
-    tags: [
-        'autodocs'
     ],
     argTypes: {},
     parameters: {
@@ -42,6 +40,6 @@ const meta: Meta<NavDividerComponent> = {
 };
 export default meta;
 
-export const standard: StoryObj<NavDividerComponent> = navDividerStandard;
-export const vertical: StoryObj<NavDividerComponent> = navDividerVertical;
-export const horizontal: StoryObj<NavDividerComponent> = navDividerHorizontal;
+export const demo: StoryObj<NavDividerComponentArgs> = navDividerDemo;
+export const featureVertical: StoryObj<NavDividerComponentArgs> = navDividerVertical;
+export const featureHorizontal: StoryObj<NavDividerComponentArgs> = navDividerHorizontal;

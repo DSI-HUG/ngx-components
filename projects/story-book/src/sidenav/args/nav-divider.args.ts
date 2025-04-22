@@ -1,7 +1,12 @@
 import { NavDividerComponent, SIDEBAR_DIRECTIONS, SIDEBAR_THEMES } from '@hug/ngx-sidenav';
 import { StoryObj } from '@storybook/angular';
 
-export const navDividerArgs: StoryObj<NavDividerComponent> = {
+export type NavDividerComponentArgs = NavDividerComponent & {
+    pageSize: string;
+};
+
+
+export const navDividerArgs: StoryObj<NavDividerComponentArgs> = {
     argTypes: {
         direction: {
             description: 'to select the orientation (Horizontal or Vertical)',
@@ -20,10 +25,13 @@ export const navDividerArgs: StoryObj<NavDividerComponent> = {
                 defaultValue: { summary: 'undefined' },
                 type: { summary: 'SidebarTheme' }
             }
-        }
+        },
+        pageSize: { table: { disable: true } }
     },
     args: {
         direction: undefined,
-        theme: undefined
+        theme: 'light',
+        pageSize: 'min300x300'
     }
 };
+

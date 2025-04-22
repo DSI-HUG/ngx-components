@@ -4,11 +4,29 @@ section.sidenav {
     align-items: center;
     padding: 0;
     box-sizing: border-box;
+    background-color: transparent;
 
     &.size100x100 {
         width: 100px;
         height: 100px;
         position: relative;
+    }
+
+    &.size300x300 {
+        width: 300px;
+        height: 300px;
+        position: relative;
+    }
+
+    &.min600x400 {
+        width: 600px;
+        height: 400px;
+        position: relative;
+    }
+
+    &.min300x300 {
+        min-width: 300px;
+        min-height: 300px;
     }
 
     &.min300x400 {
@@ -27,8 +45,11 @@ section.sidenav {
     }
 
     &.fullscreen {
-        width: 100%;
+        top: 0;
+        left: 0;
         height: 100%;
+        width: 100%;
+        position: absolute;
     }
 
     &.theme-light {
@@ -48,7 +69,7 @@ section.sidenav {
 
         display: flex;
         flex-direction: row;
-        background-color: var(--mat-sys-surface);
+        background-color: var(--mat-sys-surface-container-lowest);
         color: var(--mat-sys-on-surface);
 
         &.location-top {
@@ -172,6 +193,7 @@ section.sidenav {
         .content-list.sidenav {
             display: flex;
             flex-direction: row;
+            gap: 1rem;
 
             .ngx-sidenav {
                 height: 500px;
@@ -183,13 +205,21 @@ section.sidenav {
         .content-list.sidenav {
             display: flex;
             flex-direction: column;
+            gap: 1rem;
 
             > div {
                 display: flex;
                 flex-direction: row;
 
                 .sidenav-title {
-                    width: 80px;
+                    width: 100px;
+                }
+
+                .sidenav-content {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex: 1 1 auto;
                 }
 
                 .ngx-sidenav {
@@ -215,6 +245,11 @@ section.sidenav {
 
     .w-full {
         width: 100%;
+        box-sizing: border-box;
+    }
+
+    .h-full {
+        height: 100%;
         box-sizing: border-box;
     }
 

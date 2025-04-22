@@ -11,6 +11,7 @@
         "@storybook/addon-essentials": "^8.5.2",
         "@storybook/addon-themes": "^8.5.2",
         "@storybook/addon-links": "^8.5.2",
+        "@storybook/addon-docs": "^8.5.2",
         "@storybook/angular": "^8.5.2",
         "storybook": "^8.5.2"
     }

@@ -1,0 +1,235 @@
+import { Controls, Description, Canvas, Source, Meta, Story, Primary, Stories } from '@storybook/blocks';
+
+import { PageGrid, Icon, CardsGrid, ComponentsGrid, Image, Iframe, Table } from '../docs/components/components';
+
+import { tokenTableFormater } from './helpers/table-formater/token-table.formater';
+import * as NavPanelStories from './nav-panel.stories';
+
+<Meta of={NavPanelStories} />
+
+<PageGrid maxSummaryDepth="3">
+# `Nav Panel`
+
+    ## <Icon name="info"/> Coup d'oeil
+        <Iframe
+            widthIframe="100%"
+            heightIframe="250"
+            srcIframe="/iframe.html?viewMode=story&id=components-sidenav-navpanel--demo&args=pageSize&globals="/>
+
+
+
+        Le `nav-panel` est le conteneur. Il contient le contenu, qui peut être présent directement ou ajouté dynamiquement à l’aide du système de templates.
+
+    ## <Icon name="skeleton"/> Anatomie
+        Le composant hérite des fonctionnalités de deux composants qui peuvent être utilisés individuellement :
+        - `ngx-dynamic-content` : Permet d’ajouter du contenu dynamiquement à l’aide de la fonctionnalité `<ng-content>` ou à l’aide de la directive `[navAction]`.
+            - `ngx-openable` : Permet d’ouvrir et de fermer un élément contenant un contenu.
+
+
+    ## <Icon name="design_services"/> Règles de design
+        La `sidenav` se base sur les `guidelines` de **Material 3**.
+
+        Material Dialogs Guidelines : [Material - Dialogs - Guidelines](https://m3.material.io/components/dialogs/guidelines)
+
+        ### <Icon name="styler"/> Style visuel et couleurs
+            Trois **thèmes** peuvent être appliqués : **dark**, **light** et **none**.
+            Ils peuvent ensuite être modifiés à l'aide des **tokens CSS**.
+            Cela permet de commencer sur une base sombre, claire ou neutre. Les thèmes par défaut sont ceux utilisés par les applications du HUG.
+
+
+        ### <Icon name="dashboard"/> Contenu et layout
+            Le `nav-panel` propose différents styles d’affichage :
+                - **open-right-overlay** : Le panneau est positionné de manière relative, il s’ouvre par-dessus le contenu vers la droite.
+                - **open-left-overlay** : Le panneau est positionné de manière relative, il s’ouvre par-dessus le contenu vers la gauche.
+                - **open-right-fixed** : Le panneau est fixe, il prend toute la hauteur et s’ouvre vers la droite.
+                - **open-left-fixed** : Le panneau est fixe, il prend toute la hauteur et s’ouvre vers la gauche.
+                - **open-right-m3** : Le panneau est relatif, s’ouvre vers la droite et utilise le style M3 (avec coins arrondis).
+                - **open-left-m3** : Le panneau est relatif, s’ouvre vers la gauche et utilise le style M3 (avec coins arrondis).
+                - **open-right-border** : Le panneau est relatif et s’ouvre en poussant le contenu vers la droite avec une bordure.
+                - **open-left-border** : Le panneau est relatif et s’ouvre en poussant le contenu vers la gauche avec une bordure.
+                - **open-right** : Le panneau est relatif et s’ouvre en poussant le contenu vers la droite.
+                - **open-left** : Le panneau est relatif et s’ouvre en poussant le contenu vers la gauche.
+
+    ## <Icon name="accessibility_new"/> Accessibilité
+        ### Contenu
+            Les attributs `aria-expanded` et `aria-hidden` sont ajoutés automatiquement pour gérer l’état du panneau.
+
+            L’attribut `role="navigation"` peut être précisé manuellement si le contenu du panneau correspond à une zone de navigation.
+
+
+    ##  <Icon name="display_settings"/> Démo
+        <Primary />
+        <Controls of={NavPanelStories.demo} />
+
+    ## <Icon name="css"/> Tokens CSS
+    <Table  format={tokenTableFormater}
+            header={{
+                name:'Name',
+                description: 'Description',
+                defaultValue: 'Default'
+            }}
+            body={[
+                {
+                    name:'--ngx-nav-size',
+                    description: 'Taille de la sidenav (largeur en mode vertical, hauteur en mode horizontal)',
+                    defaultValue: '88px'
+                },
+                {
+                    name:'--ngx-nav-color',
+                    description: 'Couleur du texte',
+                    defaultValue: 'on-surface'
+                },
+                {
+                    name:'--ngx-nav-bg-color',
+                    description: 'Couleur de fond',
+                    defaultValue: 'transparent'
+                },
+                {
+                    name:'--ngx-nav-scroll-width',
+                    description: 'Largeur de la barre de défilement',
+                    defaultValue: '4px'
+                },
+                {
+                    name:'--ngx-nav-scroll-height',
+                    description: 'Hauteur de la barre de défilement',
+                    defaultValue: '8px'
+                },
+                {
+                    name:'--ngx-nav-scroll-bg-color',
+                    description: 'Couleur de fond de la barre de défilement',
+                    defaultValue: '12% de on-surface'
+                },
+                {
+                    name:'--ngx-nav-scroll-color',
+                    description: 'Couleur de la barre de défilement',
+                    defaultValue: '20% de on-surface'
+                },
+                {
+                    name:'--ngx-nav-scroll-hover',
+                    description: 'Couleur de la barre de défilement au survol',
+                    defaultValue: '40% de on-surface'
+                }
+            ]}/>
+
+    ## <Icon name="code"/> Code
+        Importation du composant `ngx-sidenav`:
+        <Source dark language="typescript" code={`import { SidenavComponent } from '@hug/ngx-sidenav';`}/>
+
+        Exemple de code html de contenu pour le `ngx-sidenav` :
+        <Source dark language="typescript" code={`<ngx-sidenav location="left" theme="dark" disabled="false">
+
+    <!-- Ajouter le contenu ici -->
+
+</ngx-sidenav>`}/>
+
+    ## Scroll
+        <Description of={NavPanelStories.scroll} />
+        <Canvas of={NavPanelStories.scroll} />
+
+    ## <Icon name="extension"/> Fonctionnalités
+
+        ### GroupId
+            <Description of={NavPanelStories.featureGroupId} />
+            <Canvas of={NavPanelStories.featureGroupId} />
+
+            Exemple de code html de contenu pour le `ngx-sidenav` :
+            <Source dark language="html" code={
+                `<-- Buttons -->
+
+<button nav-button navAction="open" [navActionContainer]="panel1">
+ <mat-icon>group</mat-icon> Panel 1
+</button>
+<button nav-button navAction="open" [navActionContainer]="panel2">
+ <mat-icon>group</mat-icon> Panel 2
+</button>
+ ...
+ <-- Panels -->
+<ngx-nav-panel #panel1 groupId="1">
+   <h4>Panel 1</h4>
+ </ngx-nav-panel>
+ <ngx-nav-panel #panel2 groupId="1">
+   <h4>Panel 2</h4>
+ </ngx-nav-panel>`
+            }/>
+
+    ## <Icon name="code_blocks"/> Directives
+
+        ### ExpandLink
+            <Description of={NavPanelStories.directiveExpandLink} />
+            <Canvas of={NavPanelStories.directiveExpandLink} />
+            <Controls of={NavPanelStories.directiveExpandLink} />
+             Importation de la directive `[expandLink]` :
+             <Source dark language="typescript" code={
+                 `import { ExpansionPanelExpandLinkDirective } from '@hug/ngx-sidenav';`
+             }/>
+
+             Exemple de code de la directive `[expandLink]` :
+             <Source dark language="typescript" code={
+                 `<mat-expansion-panel expandLink="/item1/group1">...</mat-expansion-panel>`
+             }/>
+
+
+    ## <Icon name="code_blocks"/> Components
+
+        ### PanelGroup
+            <Description of={NavPanelStories.componentPanelGroup} />
+            <Canvas of={NavPanelStories.componentPanelGroup} />
+
+             Importation du composant `ngx-nav-panel-group` :
+             <Source dark language="typescript" code={
+                 `import { NavPanelGroup } from '@hug/ngx-sidenav';`
+             }/>
+
+             Exemple de code du composant `ngx-nav-panel-group` :
+             <Source dark language="typescript" code={
+                 `<ngx-nav-panel-group [expanded]="expanded"></ngx-nav-panel-group>`
+             }/>
+
+        ### Openable
+            <Description of={NavPanelStories.componentOpenable} />
+            <Canvas of={NavPanelStories.componentOpenable} />
+            <Controls of={NavPanelStories.componentOpenable} />
+             Importation du composant `ngx-openable` :
+             <Source dark language="typescript" code={
+                 `import { OpenableComponent } from '@hug/ngx-sidenav';`
+             }/>
+
+             Exemple de code du composant `ngx-openable` :
+             <Source dark language="typescript" code={
+                 `
+
+<ngx-openable [expanded]="true"> <h4>Openable panel</h4> </ngx-openable>` }/>
+
+        ### Dynamic Content
+            <Description of={NavPanelStories.componentDynamicContent} />
+            <Canvas of={NavPanelStories.componentDynamicContent} />
+            <Controls of={NavPanelStories.componentDynamicContent} />
+             Importation de la directive `ngx-dynamic-content` :
+             <Source dark language="typescript" code={
+                 `import { DynamicContentComponent } from '@hug/ngx-sidenav';`
+             }/>
+
+             Exemple de code de la directive `ngx-dynamic-content` :
+             <Source dark language="html" code={
+                 `
+
+<!-- Button -->
+
+<button nav-button
+        [navActionContainer]="container"
+        [navActionContent]="templates.contentAccordion1()">
+    <mat-icon>tune</mat-icon> Open
+</button>
+
+<!-- Container -->
+
+<ngx-dynamic-content #container navSize="M"></ngx-dynamic-content>
+
+<!-- Templates -->
+
+<content-templates #templates></content-templates>` }/>
+
+    ## <Icon name="linked_services"/> Composants liés
+        <ComponentsGrid componentsList="Sidenav, Nav Button, Nav Divider" />
+
+</PageGrid>

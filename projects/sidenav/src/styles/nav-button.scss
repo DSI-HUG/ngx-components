@@ -51,12 +51,12 @@
     --private-pressed-bg-color: color-mix(in oklch, var(--private-mix-color), var(--private-fx-color) 15%);
 
     // # FILL style
-    &.ngx-nav-fill-style,
-    &.ngx-nav-no-style.active-link,
-    &.ngx-nav-no-style.ngx-nav-state-selected {
+    &.ngx-nav-style-fill,
+    &.active-link,
+    &.ngx-nav-state-selected {
         --private-icon-color: var(--private-on-selected-color);
         --private-fx-color: var(--private-fx-selected-color);
-        // on ngx-nav-fill-style combine selected-color with fx-color to get private-mix-color
+        // on ngx-nav-style-fill combine selected-color with fx-color to get private-mix-color
         --private-mix-color: color-mix(in oklch, var(--private-selected-color), var(--private-fx-color) 50%);
 
         // on fill combine mix-color with selected-color
@@ -104,6 +104,7 @@
         justify-content: center;
         color: var(--private-icon-color);
         background: var(--private-default-bg-color);
+        box-sizing: content-box;
     }
 
     &:hover {

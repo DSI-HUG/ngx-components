@@ -2,13 +2,68 @@ import { StoryObj } from '@storybook/angular';
 
 import { NgxSidenavComponentType } from '../args/sidenav.args';
 import { sidebarEnums } from '../enums/sidebar.enums';
-import { getDynamicContent, getDynamicContentTemplates } from '../templates/sidenav.content-dynamic.template';
+import { sidenavContentTitleText } from '../helpers/content-templates/templates/sidenav.content.text.template';
 
 export const sidenavExampleTwoColumnNested: StoryObj<NgxSidenavComponentType> = {
     parameters: {
         docs: {
             description: {
-                story: 'This story demonstrates the standard usage of `SidenavComponent`.'
+                story: `Dans cet exemple, nous avons trois sidebars :
+
+---
+
+### 1️⃣ Première sidebar
+
+Elle contient :
+- un premier bouton *settings* qui permet d'ouvrir le \`nav-panel\`.
+- un deuxième bouton *filtre* qui est un raccourci pour ouvrir le panel et afficher le **contenu 1**.
+
+---
+
+### 2️⃣ Deuxième sidebar (à l’intérieur du panel)
+
+Elle contient :
+- un bouton *filtre* pour afficher le **contenu 1**
+- un bouton *paramètre* pour afficher le **contenu 2**
+
+➡️ Les deux contenus peuvent être affichés **simultanément**.
+
+---
+
+### 3️⃣ Troisième sidebar (également à l’intérieur du panel)
+
+Elle contient :
+- un bouton *1* pour afficher le **contenu 3**
+- un bouton *2* pour afficher le **contenu 4**
+
+➡️ Ces deux contenus s’affichent **alternativement** (l’un ou l’autre).
+
+---
+
+### ⚙️ Fonctionnement des groupes
+
+Pour créer ces comportements différents, il suffit d’utiliser les **groupes**.
+
+Il faut ajouter l’attribut suivant sur **le contenant** :
+
+\`\`\`html
+<ngx-dynamic-content groupId="1" ...>
+\`\`\`
+
+---
+
+### 📌 Note
+
+Les contenants peuvent être de type :
+
+- \`ngx-dynamic-content\`
+- \`ngx-openable\`
+- \`ngx-panel\`
+- \`ngx-panel-group\`
+
+La différence entre ces types est expliquée [ici](#).
+
+Les boutons s’activent automatiquement lorsque le contenu auquel ils sont liés est affiché.`
             }
         }
     },
@@ -21,46 +76,23 @@ export const sidenavExampleTwoColumnNested: StoryObj<NgxSidenavComponentType> = 
 <section class="sidenav nav-sidenav min600x400">
     <!-- Page -->
     <div class="page">
-        <!-- # Sidenav -->
-        <ngx-sidenav theme="light" >
-            <button nav-button
-                routerLink="/item1"
-                routerLinkActive="ngx-nav-state-selected"
-                [routerLinkActiveOptions]="{exact: false}"
-                [navPanel]="panelRight"
-                [navPanelContent]="contentAccordion1"
-                navAction="open">
-                <mat-icon>home</mat-icon> open 1
-            </button>
-            <button nav-button
-                routerLink="/item2"
-                routerLinkActive="ngx-nav-state-selected"
-                [routerLinkActiveOptions]="{exact: false}"
-                [navPanel]="panelRight"
-                [navPanelContent]="contentAccordion2"
-                navAction="open">
-                <mat-icon>countertops</mat-icon> open 2
-            </button>
-        </ngx-sidenav>
-        <!-- # Panels Left -->
-        <ngx-nav-panel #panelRight panelType="overlay-open-right"></ngx-nav-panel>
         <div class="flex flex-column flex-auto">
             <!-- # Sidenav -->
             <ngx-sidenav theme="none"
                          location="top">
                 <button nav-icon-button
-                    matTooltip="Filter"
-                    [navPanel]="[panelFilter, panelLeft]"
-                    [navPanelContent]="[contentAccordion2]"
-                    navAction="toggle">
-                    <mat-icon>filter_alt</mat-icon>
+                    matTooltip="Prameters"
+                    navAction="toggle"
+                    [navActionContainer]="panelLeft">
+                    <mat-icon>settings</mat-icon>
                 </button>
                 <ngx-nav-divider></ngx-nav-divider>
                 <button nav-icon-button
-                    matTooltip="Prameters"
-                    [navPanel]="panelLeft"
-                    navAction="toggle">
-                    <mat-icon>settings</mat-icon>
+                    matTooltip="Filter"
+                    navAction="toggle"
+                    [navActionContainer]="[panelFilter, panelLeft]"
+                    [navActionContent]="[templates.contentAccordion2()]">
+                    <mat-icon>filter_alt</mat-icon>
                 </button>
             </ngx-sidenav>
             <div class="flex flex-row flex-auto">
@@ -68,7 +100,7 @@ export const sidenavExampleTwoColumnNested: StoryObj<NgxSidenavComponentType> = 
                 <div class="page-container">
                     <!-- # Content -->
                     <div class="content">
-                        ${getDynamicContent('ContentType.TITLE_TEXT')}
+                        ${sidenavContentTitleText()}
                     </div>
                 </div>
                 <!-- # Panels Right () -->
@@ -79,54 +111,52 @@ export const sidenavExampleTwoColumnNested: StoryObj<NgxSidenavComponentType> = 
                                  location="top">
                         <button nav-icon-button
                             matTooltip="Filter"
-                            [navPanel]="panelFilter"
-                            [navPanelContent]="contentAccordion2"
-                            navAction="toggle">
+                            navAction="toggle"
+                            [navActionContainer]="panelFilter"
+                            [navActionContent]="templates.contentAccordion2()">
                             <mat-icon>filter_alt</mat-icon>
                         </button>
                         <button nav-icon-button
                             matTooltip="Prameters"
-                            [navPanel]="panelTune"
-                            [navPanelContent]="contentAccordion1"
-                            navAction="toggle">
+                            navAction="toggle"
+                            [navActionContainer]="panelTune"
+                            [navActionContent]="templates.contentAccordion1()">
                             <mat-icon>tune</mat-icon>
                         </button>
                     </ngx-sidenav>
-                    <ngx-dynamic-content [navContainer]="true">
+                    <ngx-openable isContainer="true">
                         <div class="flex flex-column w-full gap-4">
                             <div class="px-4"><h4>Settings 1</h4></div>
                             <ngx-dynamic-content #panelFilter></ngx-dynamic-content>
                             <ngx-dynamic-content #panelTune></ngx-dynamic-content>
                         </div>
-                    </ngx-dynamic-content>
+                    </ngx-openable>
                     <ngx-sidenav theme="none"
                                  location="top">
                         <div nav-button-group>
                             <button nav-icon-button
-                                _name="counter_1"
                                 matTooltip="Filter"
-                                [navPanel]="history"
-                                [navPanelContent]="contentAccordion1"
-                                navAction="toggle">
+                                navAction="toggle"
+                                [navActionContainer]="history"
+                                [navActionContent]="templates.contentAccordion1()">
                                 <mat-icon>counter_1</mat-icon>
                             </button>
                             <button nav-icon-button
-                                _name="counter_2"
                                 matTooltip="Prameters"
-                                [navPanel]="comment"
-                                [navPanelContent]="contentAccordion2"
-                                navAction="toggle">
+                                navAction="toggle"
+                                [navActionContainer]="comment"
+                                [navActionContent]="templates.contentAccordion2()">
                                 <mat-icon>counter_2</mat-icon>
                             </button>
                         </div>
                     </ngx-sidenav>
-                    <ngx-dynamic-content [navContainer]="true" _name='settings-2'>
+                    <ngx-dynamic-content isContainer="true">
                         <div class="flex flex-column w-full gap-4 px-4">
                             <h4>Settings 2</h4>
-                            <ngx-dynamic-content #history _name='history' [navGroup]="1">
+                            <ngx-dynamic-content #history groupId="1">
                                 <h4>History</h4>
                             </ngx-dynamic-content>
-                            <ngx-dynamic-content #comment _name='comment' [navGroup]="1">
+                            <ngx-dynamic-content #comment groupId="1">
                                 <h4>Comment</h4>
                             </ngx-dynamic-content>
                         </div>
@@ -139,6 +169,6 @@ export const sidenavExampleTwoColumnNested: StoryObj<NgxSidenavComponentType> = 
 </section>
 
 <!-- # Templates -->
-${getDynamicContentTemplates()}`
+<content-templates #templates></content-templates>`
     })
 };

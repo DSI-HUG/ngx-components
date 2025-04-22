@@ -1,12 +1,4 @@
-@use '../components/grids/cards-grid/cards-grid.scss';
-@use '../components/cards/component-card/component-card.scss';
-@use '../components/grids/page-grid/page-grid.scss';
-@use '../components/cards/recommendation-card/recommendation-card.scss';
-@use '../components/table-of-contents/table-of-contents.scss';
-@use '../components/summary-entry/summary-entry.scss';
-@use '../components/grids/components-grid/components-grid.scss';
-@use '../components/image/image.scss';
-@use '../components/iframe/iframe.scss';
+@use '../components';
 @use './variables';
 @use '@angular/material' as mat;
 @use './theme' as theme;

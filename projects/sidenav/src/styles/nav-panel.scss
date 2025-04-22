@@ -79,24 +79,41 @@
     // ## Type
     &.ngx-nav-panel-open-right {
         --private-justify-content: end;
+        min-width: var(--private-width);
+        width: var(--private-width);
+    }
+
+    &.ngx-nav-panel-open-right-border {
+        --private-justify-content: end;
         --private-border-right: solid 1px color-mix(in oklch, transparent, var(--mat-sys-outline) 15%);
         min-width: var(--private-width);
         width: var(--private-width);
     }
 
-    &.ngx-nav-panel-overlay-open-right {
-        --private-position: absolute;
+    &.ngx-nav-panel-open-right-m3 {
         --private-justify-content: end;
         --private-border-radius: 0 var(--mat-sys-corner-large) var(--mat-sys-corner-large) 0;
         --private-margin: 0 1rem 0 0;
         --private-z-index: 2;
+        --private-border-right: solid 1px color-mix(in oklch, transparent, var(--mat-sys-outline) 15%);
+        min-width: var(--private-width);
+        width: var(--private-width);
 
         &:hover {
             --private-box-shadow: var(--ngx-nav-panel-box-shadow, var(--mat-sys-level3));
         }
     }
 
-    &.ngx-nav-panel-fixed-open-right {
+    &.ngx-nav-panel-open-right-overlay {
+        --private-position: absolute;
+        --private-justify-content: end;
+        --private-border-radius: 0 var(--mat-sys-corner-large) var(--mat-sys-corner-large) 0;
+        --private-margin: 0 1rem 0 0;
+        --private-z-index: 2;
+        --private-box-shadow: var(--ngx-nav-panel-box-shadow, var(--mat-sys-level3));
+    }
+
+    &.ngx-nav-panel-open-right-fixed {
         --private-position: fixed;
         --private-justify-content: end;
         --private-top: 0;
@@ -105,31 +122,47 @@
         --private-margin: 0 1rem 0 0;
         --private-box-shadow: var(--ngx-nav-panel-box-shadow, var(--mat-sys-level3));
         --private-z-index: 3;
+    }
+
+    &.ngx-nav-panel-open-left {
+        --private-justify-content: start;
         min-width: var(--private-width);
         width: var(--private-width);
     }
 
-    &.ngx-nav-panel-open-left {
+    &.ngx-nav-panel-open-left-border {
         --private-justify-content: start;
         --private-border-left: solid 1px color-mix(in oklch, transparent, var(--mat-sys-outline) 15%);
         min-width: var(--private-width);
         width: var(--private-width);
     }
 
-    &.ngx-nav-panel-overlay-open-left {
-        --private-position: absolute;
+    &.ngx-nav-panel-open-left-m3 {
         --private-justify-content: start;
         --private-right: 0;
         --private-border-radius: var(--mat-sys-corner-large) 0 0 var(--mat-sys-corner-large);
         --private-margin: 0 0 0 1rem;
         --private-z-index: 2;
+        --private-border-left: solid 1px color-mix(in oklch, transparent, var(--mat-sys-outline) 15%);
+        min-width: var(--private-width);
+        width: var(--private-width);
 
         &:hover {
             --private-box-shadow: var(--ngx-nav-panel-box-shadow, var(--mat-sys-level3));
         }
     }
 
-    &.ngx-nav-panel-fixed-open-left {
+    &.ngx-nav-panel-open-left-overlay {
+        --private-position: absolute;
+        --private-justify-content: start;
+        --private-right: 0;
+        --private-border-radius: var(--mat-sys-corner-large) 0 0 var(--mat-sys-corner-large);
+        --private-margin: 0 0 0 1rem;
+        --private-z-index: 2;
+        --private-box-shadow: var(--ngx-nav-panel-box-shadow, var(--mat-sys-level3));
+    }
+
+    &.ngx-nav-panel-open-left-fixed {
         --private-position: fixed;
         --private-justify-content: start;
         --private-top: 0;
@@ -138,8 +171,6 @@
         --private-margin: 0 0 0 1rem;
         --private-box-shadow: var(--ngx-nav-panel-box-shadow, var(--mat-sys-level3));
         --private-z-index: 3;
-        min-width: var(--private-width);
-        width: var(--private-width);
     }
 
     // # Properties
@@ -219,12 +250,32 @@
     }
 
     &.ngx-nav-panel-group {
-        > .ngx-nav-panel-container {
-            > .ngx-nav-panel-wrapper {
-                width: unset;
+        width: unset;
+        min-width: unset;
 
-                > .ngx-nav-panel-content {
-                    flex-direction: row;
+        > .ngx-nav-panel-container {
+            position: relative;
+
+            > .ngx-nav-panel-mask {
+                width: unset;
+                min-width: unset;
+
+                > .ngx-nav-panel-wrapper {
+                    > .ngx-nav-panel-content {
+                        display: flex;
+                        flex-direction: row;
+
+                        > .ngx-nav-panel {
+                            border-right: var(
+                                --ngx-nav-panel-border,
+                                solid 1px color-mix(in oklch, transparent, var(--mat-sys-outline) 15%)
+                            );
+
+                            &:last-child {
+                                border-right: none;
+                            }
+                        }
+                    }
                 }
             }
         }

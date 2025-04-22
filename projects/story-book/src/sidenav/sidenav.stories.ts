@@ -7,17 +7,23 @@ import { provideRouter, RouterModule } from '@angular/router';
 import { NavModule, SidenavComponent } from '@hug/ngx-sidenav';
 import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
+import { NavButtonComponentArgs } from './args/nav-button.args';
 import { NgxSidenavComponentType } from './args/sidenav.args';
+import { ContentTemplatesComponent } from './helpers/content-templates/content-templates.component';
 import { sidenavRoutes } from './helpers/sidenav.routes';
-import { sidenavAlign } from './stories/sidenav.align';
-import { sidenavBasic } from './stories/sidenav.basic';
-import { sidenavGroups } from './stories/sidenav.groups';
+import { sidenavExampleTwoColumnNested } from './stories/sidenav.example.two-column.nested';
+import { sidenavExampleTwoColumnStandard } from './stories/sidenav.example.two-column.standard';
 import { sidenavHorizontal } from './stories/sidenav.horizontal';
+import { sidenavHorizontalButtons } from './stories/sidenav.horizontal.buttons';
+import { sidenavJustify } from './stories/sidenav.justify';
+import { sidenavJustifyByDefault } from './stories/sidenav.justify.by-default';
 import { sidenavScroll } from './stories/sidenav.scroll';
-import { sidenavToggle } from './stories/sidenav.toggle';
+import { sidenavSize } from './stories/sidenav.size';
+import { sidenavSizeHorizontal } from './stories/sidenav.size.horizontal';
+import { sidenavSizeVertical } from './stories/sidenav.size.vertical';
+import { sidenavVertical } from './stories/sidenav.vertical';
 
 const meta: Meta<SidenavComponent> = {
-    title: 'Components/Sidenav/Sidenav',
     component: SidenavComponent,
     decorators: [
         applicationConfig({
@@ -28,30 +34,44 @@ const meta: Meta<SidenavComponent> = {
         }),
         moduleMetadata({
             imports: [
+                ContentTemplatesComponent,
                 MatExpansionModule,
                 MatIconModule,
                 MatListModule,
                 MatTooltipModule,
-                NavModule,
+                NavModule.forRoot(),
                 RouterModule
             ]
         })
     ],
-    argTypes: {},
+    title: 'Components/Sidenav/Sidenav',
     parameters: {
         docs: {
             description: {
                 component: 'The `SidenavComponent` allow you to create sidebar menu.'
             }
         }
-    },
-    args: {}
+    }
 };
 export default meta;
 
-export const basic: StoryObj<NgxSidenavComponentType> = sidenavBasic;
-export const horizontal: StoryObj<NgxSidenavComponentType> = sidenavHorizontal;
-export const toggle: StoryObj<NgxSidenavComponentType> = sidenavToggle;
-export const groups: StoryObj<NgxSidenavComponentType> = sidenavGroups;
-export const scroll: StoryObj<NgxSidenavComponentType> = sidenavScroll;
-export const alignment: StoryObj<NgxSidenavComponentType> = sidenavAlign;
+// # Features
+export const featureVertical: StoryObj<NgxSidenavComponentType> = sidenavVertical;
+export const featureHorizontal: StoryObj<NgxSidenavComponentType> = sidenavHorizontal;
+export const featureHorizontalButtons: StoryObj<NavButtonComponentArgs> = sidenavHorizontalButtons;
+export const featureScroll: StoryObj<NgxSidenavComponentType> = sidenavScroll;
+
+// # Directive
+// ## Justify
+export const directiveJustify: StoryObj<NgxSidenavComponentType> = sidenavJustify;
+export const directiveJustifyByDefault: StoryObj<NgxSidenavComponentType> = sidenavJustifyByDefault;
+
+// ## Size
+export const directiveSize: StoryObj<NgxSidenavComponentType> = sidenavSize;
+export const directiveSizeHorizontal: StoryObj<NgxSidenavComponentType> = sidenavSizeHorizontal;
+export const directiveSizeVertical: StoryObj<NgxSidenavComponentType> = sidenavSizeVertical;
+
+// # Example
+export const exampleTwoColumn: StoryObj<NgxSidenavComponentType> = sidenavExampleTwoColumnStandard;
+export const exampleNested: StoryObj<NgxSidenavComponentType> = sidenavExampleTwoColumnNested;
+

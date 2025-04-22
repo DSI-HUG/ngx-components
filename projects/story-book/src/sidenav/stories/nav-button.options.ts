@@ -1,8 +1,9 @@
 import { StoryObj } from '@storybook/angular';
+import { includes } from 'lodash-es';
 
-import { NavButtonComponentArgs } from '../args/nav-button.args';
+import { NavButtonComponentArgs, navButtonVersionArgs } from '../args/nav-button.args';
 import { sidebarEnums } from '../enums/sidebar.enums';
-import { sidenavParts } from '../templates/sidenav.horizontal.content.template';
+import { sidenavParts } from '../renders/templates/sidenav.horizontal.content.template';
 
 const buttonOptions = (): string => `
             <ngx-nav-button [loading]="true" >
@@ -10,7 +11,7 @@ const buttonOptions = (): string => `
                 loading
              </ngx-nav-button>
             <ngx-nav-button>
-                <mat-icon [matBadge]="5">menu_open</mat-icon>
+                <mat-icon [matBadge]="5" >menu_open</mat-icon>
                 badge
             </ngx-nav-button>
             <ngx-nav-button [disabled]="true">
@@ -28,25 +29,55 @@ const buttonOptions = (): string => `
                 routerLink
             </ngx-nav-button>`;
 
+const buttonIconOptions = (): string => `
+            <ngx-nav-icon-button [loading]="true" matTooltip="loading">
+                <mat-icon>menu_open</mat-icon>
+             </ngx-nav-icon-button>
+            <ngx-nav-icon-button matTooltip="badge">
+                <mat-icon [matBadge]="5">menu_open</mat-icon>
+            </ngx-nav-icon-button>
+            <ngx-nav-icon-button [disabled]="true" matTooltip="disable">
+                <mat-icon>menu_open</mat-icon>
+            </ngx-nav-icon-button>
+            <ngx-nav-icon-button [selected]="true" matTooltip="selected">
+                <mat-icon>menu_open</mat-icon>
+            </ngx-nav-icon-button>
+            <ngx-nav-icon-button
+                routerLink="/page1"
+                routerLinkActive="ngx-nav-state-selected"
+                matTooltip="routerLink">
+                <mat-icon>menu_open</mat-icon>
+            </ngx-nav-icon-button>`;
+
 export const navButtonOptions: StoryObj<NavButtonComponentArgs> = {
     parameters: {
         docs: {
             description: {
-                story: 'This story demonstrates the standard usage of `NgxNavIconButtonComponent`.'
+                story: `Le composant \`nav-button\` prend en charge un ensemble complet de fonctionnalités intégrées, notamment :
+
+- La gestion de l’état de **chargement** (affichage d’un spinner)
+- L’affichage d’un **badge**
+- La **désactivation** du bouton (\`disabled\`)
+- La **sélection** du bouton
+- La compatibilité avec **\`routerLink\`**
+
+> 💡 Ces fonctionnalités sont directement intégrées au composant, ce qui simplifie son utilisation dans les cas d’usage courants.`
             }
         }
     },
     render: args => ({
         props: {
             ...args,
-            ...sidebarEnums
+            ...sidebarEnums,
+            includes
         },
         template: `
 <section class="sidenav nav-button">
     ${sidenavParts(
             [
                 {
-                    partTitle: 'Options',
+                    partTitle: 'MatButton > Options',
+                    if: 'includes(["all", "nav-button"], navButtonVersion)',
                     content: [
                         {
                             contentTitle: 'Default',
@@ -85,10 +116,52 @@ export const navButtonOptions: StoryObj<NavButtonComponentArgs> = {
                         </ngx-sidenav>`
                         }
                     ]
+                }, {
+                    partTitle: 'MatIconButton > Options',
+                    if: 'includes(["all", "nav-icon-button"], navButtonVersion)',
+                    content: [
+                        {
+                            contentTitle: 'Default',
+                            value: `<ngx-sidenav>
+                            ${buttonIconOptions()}
+                        </ngx-sidenav>`
+                        },
+                        {
+                            contentTitle: 'Color',
+                            value: `<ngx-sidenav>
+                            ${buttonIconOptions()}
+                        </ngx-sidenav>`
+                        },
+                        {
+                            contentTitle: 'Light',
+                            value: `<ngx-sidenav theme="light">
+                            ${buttonIconOptions()}
+                        </ngx-sidenav>`
+                        },
+                        {
+                            contentTitle: 'Light Color',
+                            value: `<ngx-sidenav theme="light">
+                            ${buttonIconOptions()}
+                        </ngx-sidenav>`
+                        },
+                        {
+                            contentTitle: 'Dark',
+                            value: `<ngx-sidenav theme="dark">
+                            ${buttonIconOptions()}
+                        </ngx-sidenav>`
+                        },
+                        {
+                            contentTitle: 'Dark Color',
+                            value: `<ngx-sidenav theme="dark">
+                            ${buttonIconOptions()}
+                        </ngx-sidenav>`
+                        }
+                    ]
                 }
             ],
             'vertical'
         )}
 </section>`
-    })
+    }),
+    ...navButtonVersionArgs
 };

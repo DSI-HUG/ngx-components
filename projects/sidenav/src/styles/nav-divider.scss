@@ -3,7 +3,7 @@
     --private-color: var(--ngx-nav-divider-color, var(--mat-sys-secondary));
     --private-opacity: var(--ngx-nav-divider-opacity, 0.12);
     --private-weight: var(--ngx-nav-divider-weight, 1px);
-    --private-size: var(--ngx-nav-divider-width, 100%);
+    --private-size: var(--ngx-nav-divider-width, 80%);
 
     &.ngx-nav-divider-light-theme {
         --private-color: var(--ngx-nav-divider-color, var(--mat-sys-on-surface));
@@ -19,25 +19,23 @@
     justify-content: center;
     opacity: var(--private-opacity);
 
-    .ngx-nav-divider-wrapper {
-        position: absolute;
-    }
-
     &.horizontal {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+
         .ngx-nav-divider-wrapper {
-            position: absolute;
-            top: 0;
-            bottom: 0;
             border-left: var(--private-weight) solid var(--private-color);
             height: var(--private-size);
         }
     }
 
     &.vertical {
+        position: absolute;
+        left: 0;
+        right: 0;
+
         .ngx-nav-divider-wrapper {
-            position: absolute;
-            left: 0;
-            right: 0;
             border-top: var(--private-weight) solid var(--private-color);
             width: var(--private-size);
         }

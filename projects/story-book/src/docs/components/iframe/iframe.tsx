@@ -35,7 +35,6 @@ const Iframe: React.FC<ImageParams> = params => {
         return () => classLightOrDark.disconnect();
     }, []);
 
-    console.error('srcLightDark:', srcLightDark);
     return (
         <iframe
             className="iframe-document"

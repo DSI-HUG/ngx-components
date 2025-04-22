@@ -2,13 +2,13 @@ import { StoryObj } from '@storybook/angular';
 
 import { NgxSidenavComponentType } from '../args/sidenav.args';
 import { sidebarEnums } from '../enums/sidebar.enums';
-import { sidenavParts } from '../templates/sidenav.horizontal.content.template';
+import { sidenavParts } from '../renders/templates/sidenav.horizontal.content.template';
 
 export const sidenavSizeHorizontal: StoryObj<NgxSidenavComponentType> = {
     parameters: {
         docs: {
             description: {
-                story: 'This story demonstrates the standard usage of `NgxNavIconButtonComponent`.'
+                story: 'Les tailles standard des sidebars `horizontales` dans les applications du HUG sont : **\'XS\'**, **\'S\'**, **\'M\'**, **\'L\'**.'
             }
         }
     },
@@ -26,28 +26,28 @@ export const sidenavSizeHorizontal: StoryObj<NgxSidenavComponentType> = {
                     content: [
                         {
                             contentTitle: 'Size XS',
-                            value: `<ngx-sidenav [navSize]="XS" location="top" theme="light">
+                            value: `<ngx-sidenav navSize="XS" location="top" theme="light">
                                         <button nav-icon-button matTooltip="raven"><mat-icon>raven</mat-icon></button>
                                         <button nav-icon-button matTooltip="nature"><mat-icon>emoji_nature</mat-icon></button>
                                     </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Size S',
-                            value: `<ngx-sidenav [navSize]="S" location="top" theme="light">
+                            value: `<ngx-sidenav navSize="S" location="top" theme="light">
                                         <button nav-icon-button matTooltip="raven"><mat-icon>raven</mat-icon></button>
                                         <button nav-icon-button matTooltip="nature"><mat-icon>emoji_nature</mat-icon></button>
                                     </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Size M',
-                            value: `<ngx-sidenav [navSize]="M" location="top" theme="light">
+                            value: `<ngx-sidenav navSize="M" location="top" theme="light">
                                         <button nav-button><mat-icon>raven</mat-icon>raven</button>
                                         <button nav-button><mat-icon>emoji_nature</mat-icon>nature</button>
                                     </ngx-sidenav>`
                         },
                         {
                             contentTitle: 'Size L',
-                            value: `<ngx-sidenav [navSize]="L" location="top" theme="light">
+                            value: `<ngx-sidenav navSize="L" location="top" theme="light">
                                         <button nav-button><mat-icon>raven</mat-icon>raven</button>
                                         <button nav-button><mat-icon>emoji_nature</mat-icon>a bee with a flower</button>
                                     </ngx-sidenav>`

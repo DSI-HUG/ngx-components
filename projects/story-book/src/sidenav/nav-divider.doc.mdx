@@ -1,0 +1,126 @@
+import { Controls, Description, Canvas, Source, Meta, Story, Primary, Stories } from '@storybook/blocks';
+
+import { PageGrid, Icon, CardsGrid, ComponentsGrid, Image, Iframe, Table } from '../docs/components/components';
+
+import { tokenTableFormater } from './helpers/table-formater/token-table.formater';
+import * as SidenavStories from './sidenav.stories';
+import * as NavDividerStories from './nav-divider.stories';
+
+<Meta of={NavDividerStories} />
+
+<PageGrid maxSummaryDepth="3">
+# `Nav Divider`
+
+    ## <Icon name="info"/> Coup d'oeil
+        <Iframe
+            widthIframe="100%"
+            heightIframe="250"
+            srcIframe="/iframe.html?viewMode=story&id=components-sidenav-navdivider--demo&args=pageSize&globals=backgrounds.value:!hex(b5d8ff);"/>
+
+
+
+        Les `nav-divider` permettent de **séparer visuellement** les `nav-button` dans une `sidenav`.
+
+        Ils peuvent être positionnés aussi bien **verticalement** que **horizontalement**, selon l’orientation de la barre de navigation.
+
+        > 💡 Utilisez-les pour structurer visuellement vos groupes de boutons et améliorer la lisibilité de la navigation.
+
+    ## <Icon name="design_services"/> Règles de design
+        La `sidenav` se base sur les `guidelines` de **Material 3**.
+
+        Material Dialogs Guidelines : [Material - Dialogs - Guidelines](https://m3.material.io/components/dialogs/guidelines)
+
+### <Icon name="styler"/> Style visuel et couleurs
+
+            Deux valeurs peuvent être appliquées à la propriété **direction** : **horizontal** ou **vertical**.
+
+            Si **direction** n'est pas définie, le `nav-divider` essaiera d'utiliser la **direction** de la `sidebar` qui le contient.
+
+            Trois valeurs peuvent être appliquées à la propriété **thème** : **dark**, **light** et **none**.
+            Ces thèmes peuvent ensuite être personnalisés à l'aide des **tokens CSS**, ce qui permet de démarrer sur une base sombre, claire ou neutre.
+
+            Si **thème** n'est pas défini, le `nav-divider` essaiera d'utiliser celui de la `sidebar` qui le contient.
+
+            Les thèmes par défaut sont ceux utilisés par les applications du HUG.
+
+        ### <Icon name="dashboard"/> Contenu et layout
+
+                    L’icône et le texte doivent être placés à l’intérieur de la balise.
+
+                    Si aucun **thème** n’est défini, le `nav-divider` tentera d’utiliser le même thème que la `sidebar` qui le contient.
+
+
+    ## <Icon name="accessibility_new"/> Accessibilité
+        Pour garantir une bonne accessibilité, certaines balises et attributs doivent être ajoutés **manuellement** sur le `nav-button` ou son contenu.
+        Ces éléments **ne sont pas gérés automatiquement** par le composant.
+
+        Voici les pratiques recommandées :
+
+        - **`aria-hidden="true"`** : à appliquer sur les éléments purement décoratifs (comme certaines icônes).
+
+
+
+    ##  <Icon name="display_settings"/> Démo
+        <Primary />
+        <Controls of={NavDividerStories.demo} />
+
+    ## <Icon name="css"/> Tokens CSS
+    <Table  format={tokenTableFormater}
+            header={{
+                name:'Name',
+                description: 'Description',
+                defaultValue: 'Default'
+            }}
+            body={[
+                    {
+                      name: '--ngx-nav-divider-color',
+                      description: 'Couleur du séparateur.',
+                      defaultValue: 'secondary'
+                    },
+                    {
+                      name: '--ngx-nav-divider-opacity',
+                      description: 'Opacité du séparateur.',
+                      defaultValue: '0.12'
+                    },
+                    {
+                      name: '--ngx-nav-divider-weight',
+                      description: 'Epaisseur du trai du séparateur.',
+                      defaultValue: '1px'
+                    },
+                    {
+                        name:'--ngx-nav-divider-width',
+                        description: 'Largeur du trai du séparateur.',
+                        defaultValue: '80%'
+                    }
+                ]}/>
+
+    ## <Icon name="code"/> Code
+        Importation du composant `ngx-sidenav`:
+        <Source dark language="typescript" code={`import { NavDividerComponent } from '@hug/ngx-sidenav';`}/>
+
+        Exemple de code html de contenu pour le `ngx-sidenav` :
+        <Source dark language="typescript" code={`<ngx-nav-divider></ngx-nav-divider>`}/>
+
+    ## <Icon name="extension"/> Fonctionnalités
+        ### Verticale
+            <Description of={NavDividerStories.featureVertical} />
+            <Canvas of={NavDividerStories.featureVertical} />
+
+            Exemple de code html de contenu pour le `ngx-nav-divider` :
+            <Source dark language="typescript" code={
+                `<ngx-nav-divider location="left"></ngx-nav-divider>`
+            }/>
+
+        ### Horizontale
+            <Description of={NavDividerStories.featureHorizontal} />
+            <Canvas of={NavDividerStories.featureHorizontal} />
+
+            Exemple de code html de contenu pour le `ngx-nav-divider` :
+            <Source dark language="typescript" code={
+                `<ngx-nav-divider location="top"></ngx-nav-divider>`
+            }/>
+
+    ## <Icon name="linked_services"/> Composants liés
+        <ComponentsGrid componentsList="Sidenav, Nav Button, Nav Panel" />
+
+</PageGrid>

@@ -15,7 +15,7 @@ export class ExpansionPanelExpandLinkDirective implements OnInit {
     private readonly routerLinkService = inject(RouterLinkService);
     // # Inputs
     public readonly expandLink = input.required<string | string[]>();
-    public readonly activeClass = input<string>('active-link');
+    public readonly activeClass = input<string>('active-link', { alias: 'expandLinkActive' });
     // # Signal
     public readonly onInit = signal(false);
 

@@ -39,7 +39,7 @@
 
     &.ngx-nav-direction-horizontal {
         --private-size: var(--ngx-nav-size, 63px);
-        --private-gap: var(--ngx-nav-gap, 1rem);
+        --private-gap: var(--ngx-nav-gap, 0.5rem);
         --private-justify-content: var(--ngx-nav-justify-content, end);
 
         // # Nav Sizes
@@ -83,20 +83,22 @@
         --private-color: var(--mat-sys-on-primary);
     }
 
-    &.ngx-nav-location-left {
-        border-right: 1px solid var(--private-border-color);
-    }
+    &.ngx-nav-border {
+        &.ngx-nav-location-left {
+            border-right: 1px solid var(--private-border-color);
+        }
 
-    &.ngx-nav-location-right {
-        border-left: 1px solid var(--private-border-color);
-    }
+        &.ngx-nav-location-right {
+            border-left: 1px solid var(--private-border-color);
+        }
 
-    &.ngx-nav-location-top {
-        border-bottom: 1px solid var(--private-border-color);
-    }
+        &.ngx-nav-location-top {
+            border-bottom: 1px solid var(--private-border-color);
+        }
 
-    &.ngx-nav-location-bottom {
-        border-top: 1px solid var(--private-border-color);
+        &.ngx-nav-location-bottom {
+            border-top: 1px solid var(--private-border-color);
+        }
     }
 
     // # Properties
@@ -170,23 +172,29 @@
             overflow-x: hidden;
             overflow-y: auto;
 
-            justify-content: var(--private-justify-content);
             align-items: center;
 
-            > .ngx-sidenav-content > .ngx-sidenav-wrapper {
-                // (blue)
-                flex-direction: column;
-                gap: var(--private-gap);
+            > .ngx-sidenav-content {
+                // (orange)
+                height: 100%;
 
-                --private-padding: var(--ngx-nav-padding, 2rem 0);
-                padding: var(--private-padding);
-                box-sizing: border-box;
+                > .ngx-sidenav-wrapper {
+                    // (blue)
+                    flex-direction: column;
+                    justify-content: var(--private-justify-content);
+                    gap: var(--private-gap);
+                    height: 100%;
+
+                    --private-padding: var(--ngx-nav-padding, 2rem 0);
+                    padding: var(--private-padding);
+                    box-sizing: border-box;
+                }
             }
         }
     }
 
     &.ngx-nav-direction-horizontal {
-        flex-direction: column; // inversion des values de justify-content & align-items
+        flex-direction: column; // invert values of justify-content & align-items
 
         width: 100%;
         min-width: 100px;
@@ -205,19 +213,22 @@
             overflow-x: auto;
             overflow-y: hidden;
             height: var(--private-size);
-
-            justify-content: var(--private-justify-content);
             align-items: center;
 
-            .ngx-sidenav-wrapper {
-                // (blue)
-                flex-direction: row;
-                align-items: start;
-                gap: var(--private-gap);
+            > .ngx-sidenav-content {
+                width: 100%;
 
-                --private-padding: var(--ngx-nav-padding, 0.5rem 1rem);
-                padding: var(--private-padding);
-                box-sizing: border-box;
+                > .ngx-sidenav-wrapper {
+                    // (blue)
+                    flex-direction: row;
+                    justify-content: var(--private-justify-content);
+                    gap: var(--private-gap);
+                    width: 100%;
+
+                    --private-padding: var(--ngx-nav-padding, 0.5rem 1rem);
+                    padding: var(--private-padding);
+                    box-sizing: border-box;
+                }
             }
         }
     }
