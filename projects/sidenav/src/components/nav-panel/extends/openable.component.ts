@@ -11,6 +11,7 @@ import {
     inject,
     input,
     InputSignalWithTransform,
+    numberAttribute,
     OnDestroy,
     Renderer2,
     signal
@@ -37,7 +38,7 @@ export class OpenableComponent implements OnDestroy, AfterViewInit {
     /** Force to define the GroupIds himself */
     public readonly childrenGroupIds = input<number[] | undefined>(undefined);
     /** Force to define the groupId himself */
-    public readonly groupId = input<number | undefined>(undefined);
+    public readonly groupId: InputSignalWithTransform<number | undefined, unknown> = input(undefined, { transform: (value: unknown, fallbackValue?: number) => value === undefined ? undefined : numberAttribute(value, fallbackValue) });
 
     // # Injection
     protected readonly groupService = inject<NavPanelGroupService>(NavPanelGroupService);

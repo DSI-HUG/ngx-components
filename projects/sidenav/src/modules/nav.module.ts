@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
+import { EnvironmentProviders, makeEnvironmentProviders, ModuleWithProviders, NgModule } from '@angular/core';
 
 import {
     DynamicContentComponent,
@@ -48,12 +48,15 @@ const ELEMENTS = [
     NavButtonStyleDirective
 ];
 
-export const provideNavModule = (): Provider[] => [
+const PROVIDERS = [
     NavButtonService,
     NavPanelGroupService,
     PanelRegistry,
     RouterLinkService
 ];
+
+
+export const provideNavModule = (): EnvironmentProviders => makeEnvironmentProviders(PROVIDERS);
 
 
 @NgModule({
@@ -64,7 +67,7 @@ export class NavModule {
     public static forRoot(): ModuleWithProviders<NavModule> {
         return {
             ngModule: NavModule,
-            providers: provideNavModule()
+            providers: PROVIDERS
         };
     }
 }
