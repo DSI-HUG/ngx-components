@@ -1,3 +1,15 @@
+## 1.1.15 (2025-05-02)
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-message-box:** upgrade to v1.1.9 ([5934a58](https://github.com/DSI-HUG/ngx-components/commit/5934a58))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+
 ## 1.1.14 (2025-01-29)
 
 

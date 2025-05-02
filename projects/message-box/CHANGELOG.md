@@ -1,3 +1,7 @@
+## 1.1.9 (2025-05-02)
+
+This was a version bump only for @hug/ngx-message-box to align it with other projects, there were no code changes.
+
 ## 1.1.8 (2024-07-25)
 
 ### 🐛 Fixes

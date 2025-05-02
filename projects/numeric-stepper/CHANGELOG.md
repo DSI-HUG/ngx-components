@@ -1,3 +1,7 @@
+## 1.1.13 (2025-05-02)
+
+This was a version bump only for @hug/ngx-numeric-stepper to align it with other projects, there were no code changes.
+
 ## 1.1.12 (2025-03-11)
 
 
