@@ -42,7 +42,7 @@
         "rxjs": ">= 7.0.0",
         "@hug/ngx-core": "^1.1.14",
         "@hug/ngx-snackbar": "^1.1.10",
-        "@hug/ngx-message-box": "^1.1.8"
+        "@hug/ngx-message-box": "^1.1.9"
     },
     "dependencies": {
         "tslib": "^2.6.3"
