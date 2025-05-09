@@ -57,8 +57,8 @@
         "@angular/core": ">=19 <20",
         "@angular/cdk": ">=19 <20",
         "@angular/material": ">=19 <20",
-        "rxjs": ">= 7.4.0",
-        "date-fns": "^2.30.0",
+        "rxjs": ">=7.8.2",
+        "date-fns": "^4.1.0",
         "@fontsource-variable/material-symbols-outlined": "~5.2.10",
         "@fontsource/material-icons": "~5.2.5",
         "@fontsource/roboto": "~5.2.5"
