@@ -1,3 +1,13 @@
+## 3.0.2 (2025-05-12)
+
+### 🐛 Fixes
+
+- fix harness sendKeys ([e6330d7](https://github.com/DSI-HUG/ngx-components/commit/e6330d7))
+
+### ❤️ Thank You
+
+- Serge
+
 ## 3.0.1 (2025-03-13)
 
 ### 🌱 Dependencies
