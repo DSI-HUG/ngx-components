@@ -1,4 +1,4 @@
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, delay, Observable, throwError } from 'rxjs';
 
 export interface NgxCacheEntry<T> {
     timeStamp: number;
@@ -52,6 +52,7 @@ export class NgxObservableCache<T, K = string> extends NgxCache<Observable<T>, K
             return throwError(() => new Error(`Fail too get cache for key ${String(key)}, defaultValueFn not specified`));
         }
         return data$.pipe(
+            delay(0), // Avoid synchronous response
             catchError((err: unknown) => {
                 // Clear cache entry in case of observable failure
                 this.delete(key);
