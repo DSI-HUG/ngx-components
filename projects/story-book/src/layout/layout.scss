@@ -11,17 +11,15 @@ section {
     font-family: 'Roboto';
     background-color: white;
 
-    .content-container {
-        padding: 1rem;
-    }
-
     &.moreHeight {
         height: 100px;
     }
 
     .content-container {
         display: flex;
+        flex-direction: column;
         flex: 1 1 auto;
         padding: 1rem;
+        overflow: auto;
     }
 }
