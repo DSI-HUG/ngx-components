@@ -1,3 +1,13 @@
+## 3.0.3 (2025-06-04)
+
+### 🐛 Fixes
+
+- **ngx-layout:** title shrinks when content is scrollable and no lateral filters (NGXCPTS-20) ([d62a8ea](https://github.com/DSI-HUG/ngx-components/commit/d62a8ea))
+
+### ❤️ Thank You
+
+- pdth
+
 ## 3.0.2 (2025-05-12)
 
 ### 🐛 Fixes
