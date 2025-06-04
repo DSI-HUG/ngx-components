@@ -1,0 +1,16 @@
+@use '../../../core/src/styles/theme';
+@use '../../../core/src/styles/themeVariables' as themeVariables;
+@use '../../../status/src/status-theme' as statusTheme;
+@use '../../../message-box/src/message-box-theme' as messageBoxTheme;
+
+@include statusTheme.theme(themeVariables.$theme);
+@include messageBoxTheme.theme(themeVariables.$theme);
+
+section.snack {
+    padding: 5rem;
+    width: 100%;
+    font-family: 'Roboto';
+    background-color: white;
+    width: 500px;
+    align-items: center;
+}
