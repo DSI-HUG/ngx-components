@@ -2607,16 +2607,15 @@ section {
   font-family: "Roboto";
   background-color: white;
 }
-section .content-container {
-  padding: 1rem;
-}
 section.moreHeight {
   height: 100px;
 }
 section .content-container {
   display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   padding: 1rem;
+  overflow: auto;
 }
 
 /* material-symbols-outlined-latin-full-normal */
