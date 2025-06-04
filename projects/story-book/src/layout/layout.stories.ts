@@ -150,6 +150,7 @@ export const actionsToolbar: Story = {
             <section>
                 <ngx-layout [toolbarColor]="toolbarColor">
                     <ng-template #layoutToolbar>
+                        <span toolbarTitle>Layout with content to scroll</span>
                     </ng-template>
 
                     <!-- Primary action -->
@@ -169,7 +170,9 @@ export const actionsToolbar: Story = {
                             <mat-icon>favorite</mat-icon>
                         </button>
                     </ng-template>
-                    <div class="content-container">Layout content</div>
+                    <div class="content-container">
+                        @for(value of [1, 2, 3, 4, 5]; track value) { <li>{{value}}</li> }
+                    </div>
                 </ngx-layout>
             </section>
           `
