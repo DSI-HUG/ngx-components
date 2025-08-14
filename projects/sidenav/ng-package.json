@@ -5,7 +5,12 @@
         "CHANGELOG.md",
         {
             "input": "src/",
-            "glob": "./styles/panel.m3.scss",
+            "glob": "./styles/**/*",
+            "output": "."
+        },
+        {
+            "input": "src/",
+            "glob": "./index.scss",
             "output": "."
         }
     ],

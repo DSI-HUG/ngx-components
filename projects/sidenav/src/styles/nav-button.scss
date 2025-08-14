@@ -158,6 +158,7 @@
             justify-content: center;
             width: 24px;
             height: 24px;
+            box-sizing: content-box;
         }
 
         &.ngx-nav-icon-text-button {

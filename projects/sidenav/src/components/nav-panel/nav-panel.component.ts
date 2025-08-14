@@ -8,6 +8,7 @@ import {
     HostListener,
     input,
     InputSignal,
+    OnDestroy,
     Signal,
     signal
 } from '@angular/core';
@@ -27,9 +28,10 @@ import { navPanelAnimations } from './nav-panel.animations';
     animations: navPanelAnimations,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavPanelComponent extends DynamicContentComponent {
+export class NavPanelComponent extends DynamicContentComponent implements OnDestroy {
     protected readonly id: string = 'ngx-nav-panel';
     protected override readonly autoHide = false;
+    private timeoutLeave?: ReturnType<typeof setTimeout>;
 
     @HostBinding('class')
     public hostClass = '';
@@ -94,6 +96,8 @@ export class NavPanelComponent extends DynamicContentComponent {
                     } else { // the group was already open
                         this.panelVisibleClass.set('visible-end');
                     }
+                    clearTimeout(this.timeoutLeave);
+                    this.timeoutLeave = setTimeout(() => this.groupService.closeHoverPanel(this.groupInfo()), 4000);
                 } else if (group) { // same group stay open
                     this.panelVisibleClass.set('hidden-end');
                 } else {
@@ -102,6 +106,11 @@ export class NavPanelComponent extends DynamicContentComponent {
                 lastIsOpen = isOpen;
             }
         });
+    }
+
+    public override ngOnDestroy(): void {
+        clearTimeout(this.timeoutLeave);
+        super.ngOnDestroy();
     }
 
 
@@ -113,5 +122,10 @@ export class NavPanelComponent extends DynamicContentComponent {
     @HostListener('mouseleave')
     public closePanel(): void {
         this.groupService.closeHoverPanel(this.groupInfo());
+    }
+
+    @HostListener('mouseenter')
+    public enterPanel(): void {
+        clearTimeout(this.timeoutLeave);
     }
 }
