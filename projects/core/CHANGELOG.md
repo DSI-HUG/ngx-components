@@ -1,3 +1,13 @@
+## 3.0.2 (2025-09-25)
+
+### 🐛 Fixes
+
+- **ngx-core:** remove restriction on date-fns version ([9a50d54](https://github.com/DSI-HUG/ngx-components/commit/9a50d54))
+
+### ❤️ Thank You
+
+- Maxime F. @Maxouhell
+
 ## 3.0.1 (2025-03-13)
 
 This was a version bump only for @hug/ngx-core to align it with other projects, there were no code changes.
