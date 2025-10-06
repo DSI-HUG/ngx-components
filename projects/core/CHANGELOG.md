@@ -1,3 +1,14 @@
+## 3.0.3 (2025-10-06)
+
+### 🐛 Fixes
+
+- **core:** fix the axis (#NGXCPTS-29) ([e9b34f6](https://github.com/DSI-HUG/ngx-components/commit/e9b34f6))
+- **core:** fix the material icons import (#NGXCPTS-29) ([a9b79d5](https://github.com/DSI-HUG/ngx-components/commit/a9b79d5))
+
+### ❤️ Thank You
+
+- damien-guillermet
+
 ## 3.0.2 (2025-09-25)
 
 ### 🐛 Fixes
