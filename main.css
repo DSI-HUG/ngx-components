@@ -29,7 +29,6 @@
   font-style: normal;
   font-display: swap;
   font-weight: 100 700;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('material-symbols-outlined-latin-full-normal.woff2') format("woff2-variations");
 }
 /* roboto-latin-100-normal*/
@@ -2433,11 +2432,8 @@ html {
   --mat-timepicker-container-background-color: white;
 }
 
-.mat-icon {
-  font-family: "Material Symbols Outlined Variable";
-}
-
 .mat-icon.material-icons, .mat-icon.material-symbols-outlined {
+  font-family: "Material Symbols Outlined Variable", monospace;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -2467,10 +2463,6 @@ body#hug-ngx {
   margin: 0;
   font-size: 14px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-
-body#hug-ngx .mat-icon {
-  font-family: "Material Symbols Outlined Variable";
 }
 
 ngx-layout > .mat-toolbar.mat-primary {
@@ -2624,7 +2616,6 @@ section .content-container {
   font-style: normal;
   font-display: swap;
   font-weight: 100 700;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('material-symbols-outlined-latin-full-normal.woff2') format("woff2-variations");
 }
 /* roboto-latin-100-normal*/
@@ -5028,11 +5019,8 @@ html {
   --mat-timepicker-container-background-color: white;
 }
 
-.mat-icon {
-  font-family: "Material Symbols Outlined Variable";
-}
-
 .mat-icon.material-icons, .mat-icon.material-symbols-outlined {
+  font-family: "Material Symbols Outlined Variable", monospace;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -5062,10 +5050,6 @@ body#hug-ngx {
   margin: 0;
   font-size: 14px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-
-body#hug-ngx .mat-icon {
-  font-family: "Material Symbols Outlined Variable";
 }
 
 ngx-list-loader > .container > .spinner > .bounce1 {
@@ -5194,7 +5178,6 @@ fa-icon:not([secondary]) svg.fa-w-12, fa-icon:not([secondary]) svg.fa-w-14, fa-i
   font-style: normal;
   font-display: swap;
   font-weight: 100 700;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('material-symbols-outlined-latin-full-normal.woff2') format("woff2-variations");
 }
 /* roboto-latin-100-normal*/
@@ -7598,11 +7581,8 @@ html {
   --mat-timepicker-container-background-color: white;
 }
 
-.mat-icon {
-  font-family: "Material Symbols Outlined Variable";
-}
-
 .mat-icon.material-icons, .mat-icon.material-symbols-outlined {
+  font-family: "Material Symbols Outlined Variable", monospace;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -7632,10 +7612,6 @@ body#hug-ngx {
   margin: 0;
   font-size: 14px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-
-body#hug-ngx .mat-icon {
-  font-family: "Material Symbols Outlined Variable";
 }
 
 ngx-message-box[horizontal] .ngx-message-box.info .mat-card-actions, ngx-message-box[horizontal] .ngx-message-box.primary .mat-card-actions, ngx-message-box[horizontal] .ngx-message-box.danger .mat-card-actions, ngx-message-box[horizontal] .ngx-message-box.success .mat-card-actions, ngx-message-box[horizontal] .ngx-message-box.warn .mat-card-actions {
@@ -7859,7 +7835,6 @@ section.overlay .ownerContainer #owner {
   font-style: normal;
   font-display: swap;
   font-weight: 100 700;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('material-symbols-outlined-latin-full-normal.woff2') format("woff2-variations");
 }
 /* roboto-latin-100-normal*/
@@ -10263,11 +10238,8 @@ html {
   --mat-timepicker-container-background-color: white;
 }
 
-.mat-icon {
-  font-family: "Material Symbols Outlined Variable";
-}
-
 .mat-icon.material-icons, .mat-icon.material-symbols-outlined {
+  font-family: "Material Symbols Outlined Variable", monospace;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -10297,10 +10269,6 @@ body#hug-ngx {
   margin: 0;
   font-size: 14px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-
-body#hug-ngx .mat-icon {
-  font-family: "Material Symbols Outlined Variable";
 }
 
 ngx-search-container .ngx-search-container {
@@ -10462,7 +10430,6 @@ fa-icon:not([secondary]) svg.fa-w-12, fa-icon:not([secondary]) svg.fa-w-14, fa-i
   font-style: normal;
   font-display: swap;
   font-weight: 100 700;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('material-symbols-outlined-latin-full-normal.woff2') format("woff2-variations");
 }
 /* roboto-latin-100-normal*/
@@ -12866,11 +12833,8 @@ html {
   --mat-timepicker-container-background-color: white;
 }
 
-.mat-icon {
-  font-family: "Material Symbols Outlined Variable";
-}
-
 .mat-icon.material-icons, .mat-icon.material-symbols-outlined {
+  font-family: "Material Symbols Outlined Variable", monospace;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -12900,10 +12864,6 @@ body#hug-ngx {
   margin: 0;
   font-size: 14px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-
-body#hug-ngx .mat-icon {
-  font-family: "Material Symbols Outlined Variable";
 }
 
 ngx-splitter .ngx-split-gutter {
@@ -12978,7 +12938,6 @@ section.splitter .matButtonContainer {
   font-style: normal;
   font-display: swap;
   font-weight: 100 700;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('material-symbols-outlined-latin-full-normal.woff2') format("woff2-variations");
 }
 /* roboto-latin-100-normal*/
@@ -15382,11 +15341,8 @@ html {
   --mat-timepicker-container-background-color: white;
 }
 
-.mat-icon {
-  font-family: "Material Symbols Outlined Variable";
-}
-
 .mat-icon.material-icons, .mat-icon.material-symbols-outlined {
+  font-family: "Material Symbols Outlined Variable", monospace;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -15416,10 +15372,6 @@ body#hug-ngx {
   margin: 0;
   font-size: 14px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-
-body#hug-ngx .mat-icon {
-  font-family: "Material Symbols Outlined Variable";
 }
 
 ngx-status .ngx-snackbar {
@@ -15633,7 +15585,6 @@ section.status .matButtonContainer {
   font-style: normal;
   font-display: swap;
   font-weight: 100 700;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('material-symbols-outlined-latin-full-normal.woff2') format("woff2-variations");
 }
 /* roboto-latin-100-normal*/
@@ -18037,11 +17988,8 @@ html {
   --mat-timepicker-container-background-color: white;
 }
 
-.mat-icon {
-  font-family: "Material Symbols Outlined Variable";
-}
-
 .mat-icon.material-icons, .mat-icon.material-symbols-outlined {
+  font-family: "Material Symbols Outlined Variable", monospace;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -18071,10 +18019,6 @@ body#hug-ngx {
   margin: 0;
   font-size: 14px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-}
-
-body#hug-ngx .mat-icon {
-  font-family: "Material Symbols Outlined Variable";
 }
 
 ngx-user-card {
