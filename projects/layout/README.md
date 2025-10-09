@@ -4,7 +4,7 @@
 #### > Breaking changes
 
 `closeButtonLabel` and `backButtonLabel` inputs are removed.
-You can override the translation provided by creating a custom provider for `NgxLayoutIntl`.
+You can override the translation provided by creating a custom provider for `NgxLayoutIntl` as show below or in demo-app.
 
 #### > Configuration for internationalization
 
@@ -18,7 +18,7 @@ First of all you have to import the asset translation files like:
     "assets": [
         ...
         {
-            "input": "node_modules/@hug/ngx-layout/assets/translations",
+            "input": "node_modules/@hug/ngx-layout/src/assets/translations",
             "glob": "**/*",
             "output": "assets/translations/ngx-layout"
         }
@@ -31,7 +31,7 @@ You can choose another output path, but you will need to override the default va
 Then you have to provide `provideNgxLayout()` ; you call provide it globally in your main `ApplicationConfig` like:
 
 ```typescript
-import { NgxLayoutIntl, provideNgxLauyout } from '@hug/ngx-layout';
+import { NgxLayoutIntl, provideNgxLayout } from '@hug/ngx-layout';
 
 export const appConfig: ApplicationConfig = {
     providers: [
