@@ -31,7 +31,7 @@ You can choose another output path, but you will need to override the default va
 Then you have to provide `provideNgxLayout()` ; you call provide it globally in your main `ApplicationConfig` like:
 
 ```typescript
-import { NgxLayoutIntl, provideNgxLauyout } from '@hug/ngx-layout';
+import { NgxLayoutIntl, provideNgxLayout } from '@hug/ngx-layout';
 
 export const appConfig: ApplicationConfig = {
     providers: [

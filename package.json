@@ -1,4 +1,7 @@
 {
+    "dependencies": {
+        "@angular/material-date-fns-adapter": "^14.0.0"
+    },
     "name": "ngx-components-workspace",
     "private": true,
     "scripts": {
