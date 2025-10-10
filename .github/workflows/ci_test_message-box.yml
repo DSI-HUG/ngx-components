@@ -2,6 +2,8 @@ name: Test message-box
 
 on:
     workflow_dispatch:
+    repository_dispatch:
+        types: [test_message-box]
     push:
         branches:
             - '**'
@@ -17,7 +19,7 @@ concurrency:
 
 jobs:
     ci_test_message-box:
-        uses: dsi-hug/actions/.github/workflows/action.yml@v2
+        uses: dsi-hug/actions/.github/workflows/action.yml@v3
         with:
             working-directory: projects/message-box
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
@@ -25,6 +27,11 @@ jobs:
             lint: true
             test: true
 
-    ci_test_status:
+    ci_test_deps:
         needs: ci_test_message-box
-        uses: ./.github/workflows/ci_test_status.yml
+        runs-on: 'ubuntu-latest'
+        steps:
+            - name: Test status
+              uses: peter-evans/repository-dispatch@v3
+              with:
+                  event-type: test_status

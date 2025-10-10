@@ -2,7 +2,8 @@ name: Test overlay
 
 on:
     workflow_dispatch:
-    workflow_call:
+    repository_dispatch:
+        types: [test_overlay]
     push:
         branches:
             - '**'
@@ -18,7 +19,7 @@ concurrency:
 
 jobs:
     ci_test_overlay:
-        uses: dsi-hug/actions/.github/workflows/action.yml@v2
+        uses: dsi-hug/actions/.github/workflows/action.yml@v3
         with:
             working-directory: projects/overlay
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'

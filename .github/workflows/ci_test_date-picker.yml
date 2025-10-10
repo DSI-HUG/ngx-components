@@ -2,7 +2,8 @@ name: Test date-picker
 
 on:
     workflow_dispatch:
-    workflow_call:
+    repository_dispatch:
+        types: [test_date-picker]
     push:
         branches:
             - '**'
@@ -18,7 +19,7 @@ concurrency:
 
 jobs:
     ci_test_date-picker:
-        uses: dsi-hug/actions/.github/workflows/action.yml@v2
+        uses: dsi-hug/actions/.github/workflows/action.yml@v3
         with:
             working-directory: projects/date-picker
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
