@@ -3,9 +3,7 @@ import { APP_INITIALIZER, LOCALE_ID, Provider, Type } from '@angular/core';
 export const provideNgxIntl = <T extends NgxAbstractIntl<T>>(filesPath: string, type: Type<T>): Provider =>
     ({
         provide: APP_INITIALIZER,
-        useFactory: (intl: T, localeId: string) => async () => await intl.init(localeId, filesPath, type).then(
-            v => console.log(v)
-        ),
+        useFactory: (intl: T, localeId: string) => async () => await intl.init(localeId, filesPath, type),
         deps: [type, LOCALE_ID],
         multi: true
     });
