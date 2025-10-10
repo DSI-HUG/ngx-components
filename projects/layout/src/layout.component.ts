@@ -9,6 +9,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxMediaService } from '@hug/ngx-core';
 import { NgxSidenavService } from '@hug/ngx-sidenav';
 
+import { NgxLayoutIntl } from './providers';
+
 @Component({
     selector: 'ngx-layout',
     templateUrl: './layout.component.html',
@@ -29,9 +31,6 @@ export class NgxLayoutComponent {
     @Input() public toolbarColor = 'primary';
     @Input() public editorToolbarId = 'editor-toolbar';
 
-    @Input() public closeButtonLabel = 'Fermer';
-    @Input() public backButtonLabel = 'Retour';
-
     @Input() public layoutToolbarExternal?: TemplateRef<unknown>;
     @Input() public layoutPrimaryActionExternal?: TemplateRef<unknown>;
     @Input() public layoutActionsExternal?: TemplateRef<unknown>;
@@ -50,6 +49,8 @@ export class NgxLayoutComponent {
     @ContentChild('layoutRight') protected layoutRightContent?: TemplateRef<unknown>;
 
     @ViewChild('sideFilter') protected sideFilter?: MatDrawer;
+
+    protected readonly intl = inject(NgxLayoutIntl);
 
     protected mediaService = inject(NgxMediaService);
     protected sidenavService = inject(NgxSidenavService);

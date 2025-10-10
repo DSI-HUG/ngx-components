@@ -7,6 +7,11 @@
             "input": "src/",
             "glob": "_layout-theme.scss",
             "output": "."
+        },
+        {
+            "input": "src/assets/translations",
+            "glob": "**/*.json",
+            "output": "assets/translations"
         }
     ],
     "lib": {
