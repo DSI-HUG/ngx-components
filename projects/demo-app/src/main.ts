@@ -12,6 +12,7 @@ import { NgxLayoutIntl, provideNgxLayout } from '@hug/ngx-layout';
 
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
+import { CustomNgxLayoutIntl } from './app/layout/providers/custom-ngx-layout-intl';
 import { environment } from './environments/environment';
 
 if (environment.production) {
@@ -32,7 +33,10 @@ bootstrapApplication(AppComponent, {
             withDateFnsMaterial(),
             withInterceptor()
         ),
-        NgxLayoutIntl,
+        {
+            provide: NgxLayoutIntl,
+            useClass: CustomNgxLayoutIntl
+        },
         provideNgxLayout()
     ]
 }).catch(err => console.error(err));
