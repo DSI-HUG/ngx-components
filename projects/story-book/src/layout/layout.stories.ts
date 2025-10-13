@@ -5,6 +5,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { NgxLayoutIntl, provideNgxLayout } from 'projects/layout/src/providers';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from 'projects/search-container/src/search-container.component';
 
 import { NgxLayoutComponent } from '../../../layout/src/layout.component';
@@ -17,7 +18,9 @@ const meta: Meta<NgxLayoutComponent> = {
     decorators: [
         applicationConfig({
             providers: [
-                provideAnimations() // Provides animations to the application
+                provideAnimations(), // Provides animations to the application
+                NgxLayoutIntl,
+                provideNgxLayout()
             ]
         }),
         moduleMetadata({
