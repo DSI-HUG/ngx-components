@@ -33,6 +33,11 @@
                                 "input": "node_modules/@hug/ngx-layout/src/assets/translations",
                                 "glob": "**/*",
                                 "output": "assets/translations/ngx-layout"
+                            },
+                            {
+                                "input": "node_modules/@hug/ngx-status/src/assets/translations",
+                                "glob": "**/*",
+                                "output": "assets/translations/ngx-status"
                             }
                         ],
                         "styles": [

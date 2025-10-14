@@ -9,10 +9,12 @@ import { provideG11n, withInterceptor } from '@hug/ngx-g11n/legacy';
 import { withDefaultLocales } from '@hug/ngx-g11n/locales';
 import { withDateFnsMaterial } from '@hug/ngx-g11n/material';
 import { NgxLayoutIntl, provideNgxLayout } from '@hug/ngx-layout';
+import { NgxStatusIntl, provideNgxStatus } from '@hug/ngx-status';
 
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
 import { CustomNgxLayoutIntl } from './app/layout/providers/custom-ngx-layout-intl';
+import { CustomNgxStatusIntl } from './app/status/providers/custom-ngx-status-intl';
 import { environment } from './environments/environment';
 
 if (environment.production) {
@@ -37,6 +39,11 @@ bootstrapApplication(AppComponent, {
             provide: NgxLayoutIntl,
             useClass: CustomNgxLayoutIntl
         },
-        provideNgxLayout()
+        provideNgxLayout(),
+        {
+            provide: NgxStatusIntl,
+            useClass: CustomNgxStatusIntl
+        },
+        provideNgxStatus()
     ]
 }).catch(err => console.error(err));

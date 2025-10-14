@@ -6,7 +6,7 @@
     (close)="dialogRef.close()">
     <p>{{ status.text }}</p>
 
-    <p class="detail-error-title">Détails de l'erreur:</p>
+    <p class="detail-error-title">{{ intl.errorDetails }}</p>
     <div class="detail-error-container">
         {{ status.date | date: 'medium' }}
         <pre>{{ status.technicalText }}</pre>

@@ -2,9 +2,10 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgxStatus, NgxStatusModule, NgxStatusType } from '@hug/ngx-status';
+import { NgxStatus, NgxStatusDetailComponent, NgxStatusDetailModule, NgxStatusModule, NgxStatusType } from '@hug/ngx-status';
 import { BehaviorSubject, distinctUntilChanged, map, Observable, shareReplay } from 'rxjs';
 
 @Component({
@@ -21,6 +22,7 @@ import { BehaviorSubject, distinctUntilChanged, map, Observable, shareReplay } f
         MatTabsModule,
         MatToolbarModule,
         NgxStatusModule,
+        NgxStatusDetailModule,
         MatButtonToggleModule,
         NgIf,
         AsyncPipe
@@ -31,7 +33,7 @@ export class StatusDemoComponent {
     protected readonly status$: Observable<NgxStatus>;
     protected readonly typeChanged$ = new BehaviorSubject<NgxStatusType>('primary');
 
-    public constructor() {
+    public constructor(private dialog: MatDialog) {
         this.status$ = this.typeChanged$.pipe(
             distinctUntilChanged(),
             map<NgxStatusType, NgxStatus>(type => ({
@@ -51,5 +53,18 @@ export class StatusDemoComponent {
             })),
             shareReplay({ bufferSize: 1, refCount: false })
         );
+    }
+
+    public openStatusDetail(): void {
+        const status: NgxStatus = {
+            title: 'Sample Status Title',
+            type: 'info',
+            text: 'Sample text for the status message'
+        };
+
+        this.dialog.open(NgxStatusDetailComponent, {
+            width: '600px',
+            data: status
+        });
     }
 }

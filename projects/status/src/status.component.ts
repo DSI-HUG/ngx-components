@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, ViewEn
 import { NgxDestroy } from '@hug/ngx-core';
 import { catchError, EMPTY, Subject, switchMap, takeUntil, throttleTime } from 'rxjs';
 
+import { NgxStatusIntl } from './providers';
 import { NgxStatus, NgxStatusAction, NgxStatusType } from './status.model';
 import { NgxStatusDetailDialogService } from './status-detail/status-detail-dialog.service';
 
@@ -30,6 +31,8 @@ export class NgxStatusComponent extends NgxDestroy {
 
     protected readonly displayDetailedStatus$ = new Subject<NgxStatus>();
 
+    protected readonly intl = inject(NgxStatusIntl);
+
     private statusDetailDialogService = inject(NgxStatusDetailDialogService);
 
     private _status?: NgxStatus;
@@ -41,7 +44,7 @@ export class NgxStatusComponent extends NgxDestroy {
             throttleTime(1000),
             switchMap(status => this.statusDetailDialogService.openDialog$(status).pipe(
                 catchError(err => {
-                    console.error('Failed to open status detail dialog', err);
+                    console.error(this.intl.openStatusDetailDialogFailed, err);
                     return EMPTY;
                 })
             )),
