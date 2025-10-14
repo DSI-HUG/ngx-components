@@ -52,7 +52,7 @@
                     id="back-button"
                     mat-icon-button
                     (click)="this.backButtonClicked.emit($event)"
-                    [matTooltip]="backButtonLabel">
+                    [matTooltip]="intl.backLabel">
                     <mat-icon>arrow_back</mat-icon>
                 </button>
             }
@@ -67,7 +67,7 @@
                     id="filter-button"
                     mat-icon-button
                     (click)="sideFilter.toggle()"
-                    matTooltip="Afficher/Masquer les filtres">
+                    [matTooltip]="intl.sideFilterLabel">
                     <mat-icon>tune</mat-icon>
                 </button>
             }
@@ -77,7 +77,7 @@
                     id="close-button"
                     mat-icon-button
                     (click)="this.closeButtonClicked.emit($event)"
-                    [matTooltip]="closeButtonLabel">
+                    [matTooltip]="intl.closeLabel">
                     <mat-icon>close</mat-icon>
                 </button>
             }

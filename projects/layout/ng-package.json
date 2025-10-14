@@ -7,7 +7,8 @@
             "input": "src/",
             "glob": "_layout-theme.scss",
             "output": "."
-        }
+        },
+        "public/**/*"
     ],
     "lib": {
         "entryFile": "src/index.ts"

@@ -1,11 +1,14 @@
 import type { StorybookConfig } from '@storybook/angular';
-import { dirname, join } from 'path';
+import { dirname, join, resolve } from 'path';
 
 /**
  * This function is used to resolve the absolute path of a package.
  * It is needed in projects that use Yarn PnP or are set up within a monorepo.
  */
 const getAbsolutePath = (value: string): string => dirname(require.resolve(join(value, 'package.json')));
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const config: StorybookConfig = {
     stories: [
@@ -34,6 +37,18 @@ const config: StorybookConfig = {
         webpackConfig.performance.hints = false;
         webpackConfig.performance.maxEntrypointSize = 512000;
         webpackConfig.performance.maxAssetSize = 512000;
+
+        webpackConfig.plugins = webpackConfig?.plugins ?? [];
+        const pluginInstance = new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: resolve(__dirname, '../layout/public/translations'),
+                    to: 'public/translations/ngx-layout'
+                }
+            ]
+        });
+        webpackConfig.plugins.push(pluginInstance);
+
         return webpackConfig;
     },
     core: {
