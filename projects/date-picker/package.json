@@ -32,7 +32,7 @@
     "peerDependencies": {
         "@angular/common": ">= 14",
         "@angular/core": ">= 14",
-        "@hug/ngx-core": "^1.1.14",
+        "@hug/ngx-core": "^1.2.0",
         "@hug/ngx-time-picker": "^1.1.18",
         "rxjs": ">= 7.0.0",
         "date-fns": "^2.30.0",
