@@ -1,3 +1,23 @@
+## 1.2.0 (2025-10-14)
+
+
+### 🚀 Features
+
+- **ngx-layout:** abstract ngx providers and intl service + internationalize demo-app (#NGXCPTS-24) ([900e030](https://github.com/DSI-HUG/ngx-components/commit/900e030))
+
+- **ngx-layout:** abstract ngx providers and intl service + internationalize demo-app (#NGXCPTS-24) ([d51d979](https://github.com/DSI-HUG/ngx-components/commit/d51d979))
+
+
+### 🐛 Fixes
+
+- avoid synchronous response when data is cached ([03b2f31](https://github.com/DSI-HUG/ngx-components/commit/03b2f31))
+
+
+### ❤️  Thank You
+
+- dgui
+- Serge
+
 ## 1.1.14 (2024-07-25)
 
 ### 🐛 Fixes

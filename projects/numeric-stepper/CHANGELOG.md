@@ -1,3 +1,15 @@
+## 1.1.14 (2025-10-14)
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.2.0 ([9bdcdd3](https://github.com/DSI-HUG/ngx-components/commit/9bdcdd3))
+
+
+### ❤️  Thank You
+
+- dsi-hug-bot @dsi-hug-bot
+
 ## 1.1.13 (2025-05-02)
 
 This was a version bump only for @hug/ngx-numeric-stepper to align it with other projects, there were no code changes.

@@ -1,3 +1,26 @@
+## 1.2.0 (2025-10-14)
+
+
+### 🚀 Features
+
+- **ngx-layout:** internationalize ngx-layout (#NGXCPTS-24) ([9a1cb3d](https://github.com/DSI-HUG/ngx-components/commit/9a1cb3d))
+
+- **ngx-layout:** abstract ngx providers and intl service + internationalize demo-app (#NGXCPTS-24) ([900e030](https://github.com/DSI-HUG/ngx-components/commit/900e030))
+
+- **ngx-layout:** abstract ngx providers and intl service + internationalize demo-app (#NGXCPTS-24) ([d51d979](https://github.com/DSI-HUG/ngx-components/commit/d51d979))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.2.0 ([9bdcdd3](https://github.com/DSI-HUG/ngx-components/commit/9bdcdd3))
+
+
+### ❤️  Thank You
+
+- dgui
+- dsi-hug-bot @dsi-hug-bot
+- Mathieu VALENTIN
+
 ## 1.1.12 (2025-03-11)
 
 
