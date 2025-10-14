@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-numeric-stepper",
-    "version": "3.0.4",
+    "version": "3.0.5",
     "description": "HUG Angular - numeric stepper component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -40,7 +40,7 @@
         "@angular/cdk": ">=19 <20",
         "@angular/material": ">=19 <20",
         "rxjs": ">= 7.4.0",
-        "@hug/ngx-core": "^3.0.3"
+        "@hug/ngx-core": "^3.1.0"
     },
     "dependencies": {
         "tslib": "^2.7.0"

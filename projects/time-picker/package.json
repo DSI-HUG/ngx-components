@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-time-picker",
-    "version": "3.0.4",
+    "version": "3.0.5",
     "description": "HUG Angular - time picker component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -37,7 +37,7 @@
         "@angular/material": ">=19 <20",
         "rxjs": ">= 7.4.0",
         "date-fns": "^2.30.0",
-        "@hug/ngx-numeric-stepper": "^3.0.4"
+        "@hug/ngx-numeric-stepper": "^3.0.5"
     },
     "dependencies": {
         "tslib": "^2.7.0"
