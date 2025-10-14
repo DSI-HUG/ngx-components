@@ -1,3 +1,13 @@
+## 3.1.0 (2025-10-14)
+
+### 🚀 Features
+
+- **ngx-layout:** internationalize ngx-layout for ng19 (#NGXCPTS-24) ([297ab69](https://github.com/DSI-HUG/ngx-components/commit/297ab69))
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+
 ## 3.0.3 (2025-10-06)
 
 ### 🐛 Fixes
