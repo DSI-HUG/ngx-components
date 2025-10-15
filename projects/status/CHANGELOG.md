@@ -1,3 +1,21 @@
+## 1.2.0 (2025-10-15)
+
+
+### 🚀 Features
+
+- **status:** internationalisation (#NGXCPTS-25) ([03fa338](https://github.com/DSI-HUG/ngx-components/commit/03fa338))
+
+
+### 🐛 Fixes
+
+- **i18n:** relative imports in layout and status (#NGXCPTS-25) ([ca7af74](https://github.com/DSI-HUG/ngx-components/commit/ca7af74))
+
+
+### ❤️  Thank You
+
+- Aniata Lehartel
+- dgui
+
 ## 1.1.16 (2025-10-14)
 
 

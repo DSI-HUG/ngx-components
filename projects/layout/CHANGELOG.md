@@ -1,3 +1,15 @@
+## 1.2.1 (2025-10-15)
+
+
+### 🐛 Fixes
+
+- **i18n:** relative imports in layout and status (#NGXCPTS-25) ([ca7af74](https://github.com/DSI-HUG/ngx-components/commit/ca7af74))
+
+
+### ❤️  Thank You
+
+- dgui
+
 ## 1.2.0 (2025-10-14)
 
 
