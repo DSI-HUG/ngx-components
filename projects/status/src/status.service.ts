@@ -3,6 +3,7 @@ import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, inject, Inje
 import { NgxDestroy, NgxLazyLoaderService } from '@hug/ngx-core';
 import { mergeWith, switchMap, take, takeUntil, tap, timer } from 'rxjs';
 
+import { NgxStatusIntl } from './providers';
 import { NgxStatus, NgxStatusAction } from './status.model';
 
 const durationLong = 30_000;
@@ -24,6 +25,7 @@ export class NgxStatusService extends NgxDestroy {
     protected lazyLoaderService = inject(NgxLazyLoaderService);
     protected injector = inject(Injector);
     protected resolver = inject(ComponentFactoryResolver);
+    protected readonly intl = inject(NgxStatusIntl);
 
     /**
      * Display an information message to the screen.
@@ -42,14 +44,14 @@ export class NgxStatusService extends NgxDestroy {
     /**
      * Display a warning message to the screen.
      */
-    public warning(text: string, title = 'Attention', technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
+    public warning(text: string, title = this.intl.warn, technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
         this.showStatus({ type: 'warn', title, text, duration, technicalText, actions });
     }
 
     /**
      * Display an error message to the screen and send it to HugLog.
      */
-    public error(text: string, title = 'Erreur', technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
+    public error(text: string, title = this.intl.error, technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
         this.showStatus({ type: 'danger', title, text, duration, technicalText, actions });
     }
 

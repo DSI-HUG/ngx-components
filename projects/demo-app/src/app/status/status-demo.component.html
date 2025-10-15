@@ -25,5 +25,15 @@
                 </div>
             </mat-card-content>
         </mat-card>
+        <mat-card class="demo-card">
+            <mat-toolbar color="primary">Status détail</mat-toolbar>
+            <mat-card-content class="no-padding">
+                <div class="container" *ngIf="status$ | async as status">
+                    <button mat-raised-button color="primary" (click)="openStatusDetail()">
+                        Ouvrir le détail du statut
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
     </mat-tab>
 </mat-tab-group>

@@ -1,0 +1,8 @@
+{
+    "errorDetails": "Détails de l'erreur:",
+    "copyToClipboard": "'Copier dans le presse-papiers: Ctrl+C, Entrer'",
+    "dateError": "Date d'erreur: ",
+    "openStatusDetailDialogFailed": "Échec de l'ouverture de la fenêtre de détail du statut",
+    "warn": "Attention",
+    "error": "Erreur"
+}
