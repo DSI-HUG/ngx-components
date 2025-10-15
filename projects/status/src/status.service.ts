@@ -3,6 +3,7 @@ import { ApplicationRef, DestroyRef, EmbeddedViewRef, EventEmitter, inject, Inje
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { from, mergeWith, switchMap, take, tap, timer } from 'rxjs';
 
+import { NgxStatusIntl } from './providers';
 import { NgxStatus, NgxStatusAction } from './status.model';
 
 const durationLong = 30_000;
@@ -22,6 +23,7 @@ export class NgxStatusService {
 
     protected readonly document = inject<Document>(DOCUMENT);
     protected readonly injector = inject(Injector);
+    protected readonly intl = inject(NgxStatusIntl);
     private readonly destroyRef = inject(DestroyRef);
 
     /**
@@ -45,7 +47,7 @@ export class NgxStatusService {
     /**
      * Display a warning message to the screen.
      */
-    public warning(text: string, title: string | { title: string; subtitle: string } = 'Attention', technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
+    public warning(text: string, title: string | { title: string; subtitle: string } = this.intl.warn, technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
         const { title: mainTitle, subtitle = '' } = typeof title === 'string' ? { title } : title;
 
         this.showStatus({ type: 'warn', title: mainTitle, subtitle, text, duration, technicalText, actions });
@@ -54,7 +56,7 @@ export class NgxStatusService {
     /**
      * Display an error message to the screen and send it to HugLog.
      */
-    public error(text: string, title: string | { title: string; subtitle: string } = 'Erreur', technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
+    public error(text: string, title: string | { title: string; subtitle: string } = this.intl.error, technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
         const { title: mainTitle, subtitle = '' } = typeof title === 'string' ? { title } : title;
 
         this.showStatus({ type: 'danger', title: mainTitle, subtitle, text, duration, technicalText, actions });

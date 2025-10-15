@@ -4,6 +4,7 @@ import { MatIconButton } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { NgxMessageBoxComponent, NgxMessageBoxType } from '@hug/ngx-message-box';
+import { NgxStatusIntl } from 'projects/status/src/providers';
 
 import { NgxStatus } from '../status.model';
 
@@ -22,15 +23,17 @@ import { NgxStatus } from '../status.model';
     ]
 })
 export class NgxStatusDetailComponent {
+
     protected fullTextError: string;
     protected messageBoxType: NgxMessageBoxType;
+    protected readonly intl = inject(NgxStatusIntl);
 
     protected status = inject<NgxStatus>(MAT_DIALOG_DATA);
 
     protected dialogRef = inject<MatDialogRef<NgxStatusDetailComponent, void>>(MatDialogRef);
 
     public constructor() {
-        this.fullTextError = `Error Date: ${(this.status.date ?? new Date()).toUTCString()}\n${this.status.technicalText || ''}`;
+        this.fullTextError = `${this.intl.dateError}${(this.status.date ?? new Date()).toUTCString()}\n${this.status.technicalText || ''}`;
 
         switch (this.status.type) {
             case 'primary':
@@ -52,6 +55,6 @@ export class NgxStatusDetailComponent {
     }
 
     public copyToClipboard(text: string): void {
-        window.prompt('Copy to clipboard: Ctrl+C, Enter', text);
+        window.prompt(this.intl.copyToClipboard, text);
     }
 }

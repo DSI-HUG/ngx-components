@@ -39,15 +39,19 @@ const config: StorybookConfig = {
         webpackConfig.performance.maxAssetSize = 512000;
 
         webpackConfig.plugins = webpackConfig?.plugins ?? [];
-        const pluginInstance = new CopyWebpackPlugin({
+        const pluginAssetsTranslation = new CopyWebpackPlugin({
             patterns: [
                 {
                     from: resolve(__dirname, '../layout/public/translations'),
                     to: 'public/translations/ngx-layout'
+                },
+                {
+                    from: resolve(__dirname, '../status/public/translations'),
+                    to: 'public/translations/ngx-status'
                 }
             ]
         });
-        webpackConfig.plugins.push(pluginInstance);
+        webpackConfig.plugins.push(pluginAssetsTranslation);
 
         return webpackConfig;
     },

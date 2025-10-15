@@ -7,6 +7,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 import { NgxLayoutIntl, provideNgxLayout } from 'projects/layout/src/providers';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from 'projects/search-container/src/search-container.component';
+import { NgxStatusIntl, provideNgxStatus } from 'projects/status/src/providers';
 
 import { NgxLayoutComponent } from '../../../layout/src/layout.component';
 import { NgxStatusService } from '../../../status/src/status.service';
@@ -20,7 +21,9 @@ const meta: Meta<NgxLayoutComponent> = {
             providers: [
                 provideAnimations(), // Provides animations to the application
                 NgxLayoutIntl,
-                provideNgxLayout()
+                provideNgxLayout(),
+                provideNgxStatus(),
+                NgxStatusIntl
             ]
         }),
         moduleMetadata({
