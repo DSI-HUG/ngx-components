@@ -4,8 +4,8 @@ import { MatIconButton } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { NgxMessageBoxComponent, NgxMessageBoxType } from '@hug/ngx-message-box';
-import { NgxStatusIntl } from 'projects/status/src/providers';
 
+import { NgxStatusIntl } from '../providers';
 import { NgxStatus } from '../status.model';
 
 @Component({
@@ -28,9 +28,9 @@ export class NgxStatusDetailComponent {
     protected messageBoxType: NgxMessageBoxType;
     protected readonly intl = inject(NgxStatusIntl);
 
-    protected status = inject<NgxStatus>(MAT_DIALOG_DATA);
+    protected readonly status = inject<NgxStatus>(MAT_DIALOG_DATA);
 
-    protected dialogRef = inject<MatDialogRef<NgxStatusDetailComponent, void>>(MatDialogRef);
+    protected readonly dialogRef = inject<MatDialogRef<NgxStatusDetailComponent, void>>(MatDialogRef);
 
     public constructor() {
         this.fullTextError = `${this.intl.dateError}${(this.status.date ?? new Date()).toUTCString()}\n${this.status.technicalText || ''}`;

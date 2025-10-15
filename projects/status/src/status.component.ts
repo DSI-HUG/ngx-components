@@ -42,8 +42,8 @@ export class NgxStatusComponent {
 
     protected readonly intl = inject(NgxStatusIntl);
 
-    private statusDetailDialogService = inject(NgxStatusDetailDialogService);
-    private destroyRef = inject(DestroyRef);
+    private readonly statusDetailDialogService = inject(NgxStatusDetailDialogService);
+    private readonly destroyRef = inject(DestroyRef);
 
     private _status?: NgxStatus;
 

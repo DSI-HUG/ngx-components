@@ -21,9 +21,9 @@ const durationShort = 8_000;
 })
 export class NgxStatusService {
 
-    protected readonly document = inject<Document>(DOCUMENT);
-    protected readonly injector = inject(Injector);
-    protected readonly intl = inject(NgxStatusIntl);
+    private readonly document = inject<Document>(DOCUMENT);
+    private readonly injector = inject(Injector);
+    private readonly intl = inject(NgxStatusIntl);
     private readonly destroyRef = inject(DestroyRef);
 
     /**

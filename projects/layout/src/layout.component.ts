@@ -52,11 +52,10 @@ export class NgxLayoutComponent {
 
     @ViewChild('sideFilter') protected sideFilter?: MatDrawer;
 
-    protected intl = inject(NgxLayoutIntl);
-
-    protected mediaService = inject(NgxMediaService);
-    protected sidenavService = inject(NgxSidenavService);
-    protected elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+    protected readonly intl = inject(NgxLayoutIntl);
+    protected readonly mediaService = inject(NgxMediaService);
+    protected readonly sidenavService = inject(NgxSidenavService);
+    protected readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
     public get layoutToolbar(): TemplateRef<unknown> | undefined {
         return this.layoutToolbarExternal ?? this.layoutToolbarContent;
