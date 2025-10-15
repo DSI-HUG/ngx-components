@@ -1,3 +1,18 @@
+## 3.3.0 (2025-10-15)
+
+### 🚀 Features
+
+- **status:** internationalisation (#NGXCPTS-25) ([9cf21d6](https://github.com/DSI-HUG/ngx-components/commit/9cf21d6))
+
+### 🐛 Fixes
+
+- **i18n:** relative imports in layout and status (#NGXCPTS-25) ([f59e391](https://github.com/DSI-HUG/ngx-components/commit/f59e391))
+
+### ❤️ Thank You
+
+- Aniata Lehartel
+- damien-guillermet
+
 ## 3.2.1 (2025-03-13)
 
 ### 🌱 Dependencies

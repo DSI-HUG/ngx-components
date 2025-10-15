@@ -1,3 +1,13 @@
+## 3.1.1 (2025-10-15)
+
+### 🐛 Fixes
+
+- **i18n:** relative imports in layout and status (#NGXCPTS-25) ([f59e391](https://github.com/DSI-HUG/ngx-components/commit/f59e391))
+
+### ❤️ Thank You
+
+- damien-guillermet
+
 ## 3.0.3 (2025-06-04)
 
 ### 🐛 Fixes
