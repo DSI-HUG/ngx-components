@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject, inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NgxMessageBoxType } from '@hug/ngx-message-box';
-import { NgxStatusIntl } from 'projects/status/src/providers';
 
+import { NgxStatusIntl } from '../providers';
 import { NgxStatus } from '../status.model';
 
 @Component({
