@@ -22,8 +22,8 @@ const meta: Meta<NgxLayoutComponent> = {
                 provideAnimations(), // Provides animations to the application
                 NgxLayoutIntl,
                 provideNgxLayout(),
-                provideNgxStatus(),
-                NgxStatusIntl
+                NgxStatusIntl,
+                provideNgxStatus()
             ]
         }),
         moduleMetadata({

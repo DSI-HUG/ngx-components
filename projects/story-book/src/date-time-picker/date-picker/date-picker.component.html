@@ -1,0 +1,17 @@
+<mat-form-field class="date-picker-container">
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="datePicker" [formControl]="dateControl" dateMask />
+    <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+    <mat-datepicker
+        #datePicker
+        [startView]="startView()"
+        (monthSelected)="monthSelected($event, datePicker)"
+        (yearSelected)="yearSelected($event, datePicker)">
+        @if (hasTime) {
+            <ngx-datepicker-with-time></ngx-datepicker-with-time>
+        }
+    </mat-datepicker>
+</mat-form-field>
+
+<hr />
+<date-printer [value]="dateControl.value"></date-printer>

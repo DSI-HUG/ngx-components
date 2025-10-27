@@ -1,0 +1,21 @@
+<div class="options">
+    <div>
+        <mat-form-field class="date-format-selector-container">
+            <mat-label>Format</mat-label>
+            <mat-select [formControl]="dateFormatControl">
+                @for (opt of dateFormatOptions; track opt) {
+                    <mat-option [value]="opt">{{ opt }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+
+<hr />
+
+@defer (when datePickerInjector()) {
+    <ng-container
+        *ngComponentOutlet="datePickerComponent; injector: datePickerInjector(); inputs: datePickerInputs()" />
+} @placeholder {
+    <p>Please select a date format above</p>
+}

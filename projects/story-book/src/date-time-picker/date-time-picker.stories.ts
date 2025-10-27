@@ -1,25 +1,22 @@
 import { registerLocaleData } from '@angular/common';
-import localeFrExtra from '@angular/common/locales/extra/fr-CH';
-import localeFr from '@angular/common/locales/fr-CH';
+import localeEn from '@angular/common/locales/en';
+import localeEnExtra from '@angular/common/locales/extra/en';
+import { LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_NATIVE_DATE_FORMATS, NativeDateAdapter } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { DateFnsAdapter, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { enUS } from 'date-fns/locale';
 
 import { NgxDatepickerWithTimeComponent } from '../../../date-picker/src/datepicker-with-time/datepicker-with-time.component';
-import { NgxNumericStepperComponent } from '../../../numeric-stepper/src/numeric-stepper.component';
+import { DatepickerWrapperComponent } from './datepicker-wrapper-component/datepicker-wrapper.component';
 
-registerLocaleData(localeFr, 'fr-CH', localeFrExtra);
-
-export class CustomDateAdapter extends NativeDateAdapter {
-    public override format(date: Date, _displayFormat: string): string {
-        return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
-    }
-}
+registerLocaleData(localeEn, 'en-US', localeEnExtra);
 
 const meta: Meta<NgxDatepickerWithTimeComponent> = {
     title: 'Components/DateTimePicker',
@@ -33,15 +30,13 @@ const meta: Meta<NgxDatepickerWithTimeComponent> = {
                 MatDatepickerModule,
                 MatIconModule,
                 MatInputModule,
-                MatFormFieldModule,
-                NgxNumericStepperComponent
+                MatFormFieldModule
             ],
             providers: [
-                { provide: DateAdapter, useClass: CustomDateAdapter },
-                {
-                    provide: MAT_DATE_FORMATS,
-                    useValue: MAT_NATIVE_DATE_FORMATS
-                }
+                { provide: LOCALE_ID, useValue: 'en-US' },
+                { provide: MAT_DATE_LOCALE, useValue: enUS },
+                { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
+                { provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] }
             ]
         })
     ],
@@ -74,6 +69,24 @@ export const standard: Story = {
                     <ngx-datepicker-with-time></ngx-datepicker-with-time>
                 </mat-datepicker>
             </mat-form-field>
+          `
+    })
+};
+
+export const withMask: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                DatepickerWrapperComponent
+            ]
+        })
+    ],
+    render: args => ({
+        props: {
+            ...args
+        },
+        template: `
+            <datepicker-wrapper></datepicker-wrapper>
           `
     })
 };

@@ -2,5 +2,8 @@
     "root": true,
     "extends": [
         "@hug/eslint-config/recommended"
-    ]
+    ],
+    "rules": {
+        "no-console": 0
+    }
 }
