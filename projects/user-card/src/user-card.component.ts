@@ -1,14 +1,12 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { NgxUserCardIntl } from './providers';
 
 import { NgxUserCard } from './user-card.model';
 
-const greenBadgeFamily = ['Médico-technique', 'Social', 'Médico-thérapeutique', 'Pharmacie'];
-const blueBadgeFamily = ['Soins', 'Infirmier-e'];
-const redBadgeFamily = ['Médecin dentiste', 'Médecin'];
 type BadgeColor = 'green' | 'blue' | 'red' | 'grey';
 
 interface DisplayableUserCard {
@@ -44,8 +42,19 @@ export class NgxUserCardComponent implements OnChanges {
     public user!: NgxUserCard;
 
     protected userCard!: DisplayableUserCard;
+    protected greenBadgeFamily: string[];
+    protected blueBadgeFamily: string[];
+    protected redBadgeFamily: string[];
+    protected readonly intl = inject(NgxUserCardIntl);
 
     private _expanded = true;
+
+    public constructor() {
+        this.greenBadgeFamily = [this.intl.medTech, this.intl.social, this.intl.medTherapeutic, this.intl.pharmacy];
+        this.blueBadgeFamily = [this.intl.care, this.intl.nurse];
+        this.redBadgeFamily = [this.intl.dentist, this.intl.doctor];
+    }
+
     @Input()
     public set expanded(value: BooleanInput) {
         this._expanded = coerceBooleanProperty(value);
@@ -102,13 +111,13 @@ export class NgxUserCardComponent implements OnChanges {
         if (!familyCode) {
             return undefined;
         }
-        if (greenBadgeFamily.includes(familyCode)) {
+        if (this.greenBadgeFamily.includes(familyCode)) {
             return 'green';
         }
-        if (blueBadgeFamily.includes(familyCode)) {
+        if (this.blueBadgeFamily.includes(familyCode)) {
             return 'blue';
         }
-        if (redBadgeFamily.includes(familyCode)) {
+        if (this.redBadgeFamily.includes(familyCode)) {
             return 'red';
         }
         return 'grey';
@@ -135,17 +144,17 @@ export class NgxUserCardComponent implements OnChanges {
     private getShortTitle(title?: string): string {
         switch (title?.toLowerCase().trim()) {
             case 'monsieur':
-                return 'M.';
+                return this.intl.mr;
             case 'madame':
-                return 'Mme.';
+                return this.intl.mrs;
             case 'docteur':
-                return 'Dr.';
+                return this.intl.dr;
             case 'docteure':
-                return 'Dre.';
+                return this.intl.drF;
             case 'professeur':
-                return 'Pr.';
+                return this.intl.prof;
             case 'professeure':
-                return 'Pre.';
+                return this.intl.profF;
             default:
                 return title || '';
         }
