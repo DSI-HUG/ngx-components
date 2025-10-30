@@ -38,6 +38,11 @@
                                 "input": "node_modules/@hug/ngx-status/src/assets/translations",
                                 "glob": "**/*",
                                 "output": "assets/translations/ngx-status"
+                            },
+                            {
+                                "input": "node_modules/@hug/ngx-user-card/src/assets/translations",
+                                "glob": "**/*",
+                                "output": "assets/translations/ngx-user-card"
                             }
                         ],
                         "styles": [
@@ -57,7 +62,7 @@
                                 {
                                     "type": "anyComponentStyle",
                                     "maximumWarning": "2kb",
-                                    "maximumError": "4kb"
+                                    "maximumError": "1mb"
                                 }
                             ],
                             "fileReplacements": [
