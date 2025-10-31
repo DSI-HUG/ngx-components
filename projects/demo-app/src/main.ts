@@ -9,6 +9,7 @@ import { provideG11n, withInterceptor } from '@hug/ngx-g11n/legacy';
 import { withDefaultLocales } from '@hug/ngx-g11n/locales';
 import { withDateFnsMaterial } from '@hug/ngx-g11n/material';
 import { NgxLayoutIntl, provideNgxLayout } from '@hug/ngx-layout';
+import { NgxSearchContainerIntl, provideNgxSearchContainer } from '@hug/ngx-search-container';
 import { NgxStatusIntl, provideNgxStatus } from '@hug/ngx-status';
 
 import { AppComponent } from './app/app.component';
@@ -44,6 +45,8 @@ bootstrapApplication(AppComponent, {
             provide: NgxStatusIntl,
             useClass: CustomNgxStatusIntl
         },
-        provideNgxStatus()
+        provideNgxStatus(),
+        NgxSearchContainerIntl,
+        provideNgxSearchContainer()
     ]
 }).catch(err => console.error(err));

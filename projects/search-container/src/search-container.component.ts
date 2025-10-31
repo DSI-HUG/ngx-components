@@ -6,6 +6,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxDestroy, NgxMediaService } from '@hug/ngx-core';
 import { BehaviorSubject, distinctUntilChanged, first, Observable, shareReplay, switchMap, takeUntil, tap } from 'rxjs';
 
+import { NgxSearchContainerIntl } from './providers';
+
 @Directive({
     selector: '[ngx-search-input]',
     standalone: true
@@ -45,16 +47,18 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
     public readonly cleared = new EventEmitter<void>();
 
     @Input()
-    public clearTooltip = 'Effacer la recherche';
+    public clearTooltip: string;
 
     @Input()
-    public openSearchTooltip = 'Ouvrir la recherche';
+    public openSearchTooltip: string;
 
     @Input()
-    public closeSearchTooltip = 'Quitter la recherche';
+    public closeSearchTooltip: string;
 
     @ContentChild('mobileSearch')
     public mobileSearch: TemplateRef<unknown> | undefined;
+
+    protected readonly intl = inject(NgxSearchContainerIntl);
 
     protected readonly activeSearch$ = new BehaviorSubject(false);
 
@@ -65,10 +69,10 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
     @ContentChild(NgxSearchInputDirective)
     public set searchInput(searchInput: NgxSearchInputDirective) {
         if (!searchInput) {
-            throw new Error('You need to add the attribute ngx-search-input to the NgxSearchContainerComponent');
+            throw new Error(this.intl.addAttSearchInput);
         }
         if (!searchInput.ngControl) {
-            throw new Error('You need to add the attribute ngModel to the NgxSearchContainerComponent');
+            throw new Error(this.intl.addAttNgmodel);
         }
         this._searchInput = searchInput;
     }
@@ -89,6 +93,10 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
         private zone: NgZone
     ) {
         super();
+
+        this.clearTooltip = this.intl.clearSearch;
+        this.openSearchTooltip = this.intl.openSearch;
+        this.closeSearchTooltip = this.intl.exitSearch;
 
         this.activeSearch$.pipe(
             switchMap(activeSearch => this.zone.onStable.pipe(

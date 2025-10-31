@@ -38,6 +38,11 @@
                                 "input": "node_modules/@hug/ngx-status/src/assets/translations",
                                 "glob": "**/*",
                                 "output": "assets/translations/ngx-status"
+                            },
+                            {
+                                "input": "node_modules/@hug/ngx-search-container/src/assets/translations",
+                                "glob": "**/*",
+                                "output": "assets/translations/ngx-search-container"
                             }
                         ],
                         "styles": [
