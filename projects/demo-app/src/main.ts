@@ -11,6 +11,7 @@ import { withDateFnsMaterial } from '@hug/ngx-g11n/material';
 import { NgxLayoutIntl, provideNgxLayout } from '@hug/ngx-layout';
 import { NgxSearchContainerIntl, provideNgxSearchContainer } from '@hug/ngx-search-container';
 import { NgxStatusIntl, provideNgxStatus } from '@hug/ngx-status';
+import { NgxUserCardIntl, provideNgxUserCard } from '@hug/ngx-user-card';
 
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
@@ -47,6 +48,8 @@ bootstrapApplication(AppComponent, {
         },
         provideNgxStatus(),
         NgxSearchContainerIntl,
-        provideNgxSearchContainer()
+        provideNgxSearchContainer(),
+        NgxUserCardIntl,
+        provideNgxUserCard()
     ]
 }).catch(err => console.error(err));

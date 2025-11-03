@@ -43,6 +43,11 @@
                                 "input": "node_modules/@hug/ngx-search-container/src/assets/translations",
                                 "glob": "**/*",
                                 "output": "assets/translations/ngx-search-container"
+                            },
+                            {
+                                "input": "node_modules/@hug/ngx-user-card/src/assets/translations",
+                                "glob": "**/*",
+                                "output": "assets/translations/ngx-user-card"
                             }
                         ],
                         "styles": [
@@ -62,7 +67,7 @@
                                 {
                                     "type": "anyComponentStyle",
                                     "maximumWarning": "2kb",
-                                    "maximumError": "4kb"
+                                    "maximumError": "1mb"
                                 }
                             ],
                             "fileReplacements": [
