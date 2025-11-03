@@ -1,0 +1,7 @@
+{
+    "clearSearch": "Effacer la recherche",
+    "openSearch": "Ouvrir la recherche",
+    "exitSearch": "Quitter la recherche",
+    "addAttSearchInput": "Vous devez ajouter l'attribut ngx-search-input au composant NgxSearchContainerComponent.",
+    "addAttNgmodel": "Vous devez ajouter l'attribut ngModel au composant NgxSearchContainerComponent."
+}

@@ -1,7 +1,8 @@
 import { FormsModule } from '@angular/forms';
 import { MatList, MatListItem } from '@angular/material/list';
 import { MatTooltip } from '@angular/material/tooltip';
-import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { NgxSearchContainerIntl, provideNgxSearchContainer } from '@hug/ngx-search-container';
+import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../search-container/src/search-container.component';
 
@@ -10,6 +11,12 @@ const meta: Meta<NgxSearchContainerComponent> = {
     title: 'Components/Search Container',
     component: NgxSearchContainerComponent,
     decorators: [
+        applicationConfig({
+            providers: [
+                NgxSearchContainerIntl,
+                provideNgxSearchContainer()
+            ]
+        }),
         moduleMetadata({
             imports: [
                 NgxSearchInputDirective,
@@ -22,44 +29,13 @@ const meta: Meta<NgxSearchContainerComponent> = {
     parameters: {
         docs: {
             description: {
-                component: 'The `NgxSearchContainerComponent` provides a flexible search interface with customizable tooltips for actions such as clearing, opening, and closing the search. It integrates with an input field via the `ngx-search-input` directive to enable search functionality.'
+                component: 'The `NgxSearchContainerComponent` provides a flexible search interface with customizable tooltips for actions such as clearing, opening, and closing the search.It integrates with an input field via the `ngx-search-input` directive to enable search functionality. The tooltip for the clear button is now defined by intl.clearSearch (previously clearTooltip).'
             }
         },
         backgrounds: {
             // Set default background value for all component stories
             default: 'Dark'
         }
-    },
-    argTypes: {
-        clearTooltip: {
-            control: 'text',
-            description: 'Tooltip text for the clear button in the search container. This is displayed when the user hovers over the clear button.',
-            table: {
-                type: { summary: 'string' },
-                defaultValue: { summary: 'Effacer la recherche' }
-            }
-        },
-        openSearchTooltip: {
-            description: 'Tooltip text for the button that opens the search. This is displayed when the user hovers over the search button.',
-            control: 'text',
-            table: {
-                type: { summary: 'string' },
-                defaultValue: { summary: 'Ouvrir la recherche' }
-            }
-        },
-        closeSearchTooltip: {
-            description: 'Tooltip text for the button that closes the search. This is displayed when the user hovers over the close button.',
-            control: 'text',
-            table: {
-                type: { summary: 'string' },
-                defaultValue: { summary: 'Quitter la recherche' }
-            }
-        }
-    },
-    args: {
-        clearTooltip: 'Effacer la recherche',
-        openSearchTooltip: 'Ouvrir la recherche',
-        closeSearchTooltip: 'Quitter la recherche'
     }
 };
 export default meta;
@@ -77,10 +53,7 @@ export const standard: Story = {
     render: args => ({
         props: args,
         template: `
-            <ngx-search-container
-              [clearTooltip]="clearTooltip"
-              [openSearchTooltip]="openSearchTooltip"
-              [closeSearchTooltip]="closeSearchTooltip">
+            <ngx-search-container>
               <input ngx-search-input type="text" placeholder="Rechercher dans la liste" [(ngModel)]="searchModel" />
             </ngx-search-container>
           `
@@ -95,12 +68,7 @@ export const customTooltips: Story = {
             }
         }
     },
-    ...standard,
-    args: {
-        clearTooltip: 'Clear search',
-        openSearchTooltip: 'Start searching',
-        closeSearchTooltip: 'Close search'
-    }
+    ...standard
 };
 
 export const searchWithLists: Story = {
@@ -164,7 +132,7 @@ export const searchWithLists: Story = {
         },
         template: `
             <section>
-              <ngx-search-container [clearTooltip]="clearTooltip">
+              <ngx-search-container>
                 <input ngx-search-input type="text" placeholder="Rechercher dans la liste" [(ngModel)]="searchModel" (ngModelChange)="searchQueryChanged($event)" />
               </ngx-search-container>
               <br />
@@ -209,10 +177,7 @@ export const searchWithLists: Story = {
               height: 24px;
             }
           `]
-    }),
-    args: {
-        clearTooltip: 'Effacer la recherche'
-    }
+    })
 };
 
 export const initialValue: Story = {
@@ -233,7 +198,7 @@ export const initialValue: Story = {
         },
         template: `
             <section>
-              <ngx-search-container clearTooltip="Clear search">
+              <ngx-search-container>
                 <input ngx-search-input type="text" placeholder="Search..." [(ngModel)]="search" (ngModelChange)="log($event)" />
               </ngx-search-container>
               <br />

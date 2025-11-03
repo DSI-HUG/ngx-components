@@ -52,6 +52,10 @@ const config: StorybookConfig = {
                 {
                     from: resolve(__dirname, '../user-card/public/translations'),
                     to: 'public/translations/ngx-user-card'
+                },
+                {
+                    from: resolve(__dirname, '../search-container/public/translations'),
+                    to: 'public/translations/ngx-search-container'
                 }
             ]
         });
