@@ -10,6 +10,7 @@ import { withDefaultLocales } from '@hug/ngx-g11n/locales';
 import { withDateFnsMaterial } from '@hug/ngx-g11n/material';
 import { NgxLayoutIntl, provideNgxLayout } from '@hug/ngx-layout';
 import { NgxStatusIntl, provideNgxStatus } from '@hug/ngx-status';
+import { NgxUserCardIntl, provideNgxUserCard } from '@hug/ngx-user-card';
 
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
@@ -44,6 +45,8 @@ bootstrapApplication(AppComponent, {
             provide: NgxStatusIntl,
             useClass: CustomNgxStatusIntl
         },
-        provideNgxStatus()
+        provideNgxStatus(),
+        NgxUserCardIntl,
+        provideNgxUserCard()
     ]
 }).catch(err => console.error(err));

@@ -16,27 +16,27 @@
     <hr />
     <div class="ngx-user-card-content">
         <div class="content-service">
-            <div class="label">Service</div>
+            <div class="label">{{ intl.service }}</div>
             <div class="value">{{ userCard.service ?? '-' }}</div>
         </div>
         <div class="content-type">
-            <div class="label">Type</div>
+            <div class="label">{{ intl.type }}</div>
             <div class="value">{{ userCard.type ?? '-' }}</div>
         </div>
         <div class="content-phone">
-            <div class="label">Téléphone</div>
+            <div class="label">{{ intl.phoneNumber }}</div>
             <div class="value">{{ userCard.phoneNumber ?? '-' }}</div>
         </div>
         <div class="content-mobile">
-            <div class="label">Mobile</div>
+            <div class="label">{{ intl.mobileNumber }}</div>
             <div class="value">{{ userCard.mobileNumber ?? '-' }}</div>
         </div>
         <div class="content-email">
-            <div class="label">Email</div>
+            <div class="label">{{ intl.email }}</div>
             <div class="value">{{ userCard.email ?? '-' }}</div>
         </div>
         <div class="content-address">
-            <div class="label">Adresse</div>
+            <div class="label">{{ intl.address }}</div>
             <div class="value" [innerHTML]="userCard.address ?? '-'"></div>
         </div>
     </div>

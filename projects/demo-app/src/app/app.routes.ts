@@ -11,5 +11,6 @@ export const appRoutes: Routes = [
     { path: 'status', loadComponent: () => import('./status/status-demo.component').then(m => m.StatusDemoComponent), data: { title: 'Status' } },
     { path: 'time-picker', loadComponent: () => import('./time-picker/time-picker-demo.component').then(m => m.TimePickerDemoComponent), data: { title: 'Time Picker' } },
     { path: 'layout', loadComponent: () => import('./layout/layout-demo.component').then(m => m.LayoutDemoComponent), data: { title: 'Layout' } },
+    { path: 'user-card', loadComponent: () => import('./user-card/user-card-demo.component').then(m => m.UserCardDemoComponent), data: { title: 'User Card' } },
     { path: '**', redirectTo: 'message-box', pathMatch: 'prefix' }
 ];
