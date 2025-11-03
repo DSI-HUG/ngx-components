@@ -103,7 +103,7 @@
             "eslint --fix"
         ],
         "**/*.{scss,html,json}": [
-            "prettier . --check"
+            "prettier --check"
         ]
     },
     "engines": {
