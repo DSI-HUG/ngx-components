@@ -46,15 +46,6 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
     @Output()
     public readonly cleared = new EventEmitter<void>();
 
-    @Input()
-    public clearTooltip: string;
-
-    @Input()
-    public openSearchTooltip: string;
-
-    @Input()
-    public closeSearchTooltip: string;
-
     @ContentChild('mobileSearch')
     public mobileSearch: TemplateRef<unknown> | undefined;
 
@@ -93,10 +84,6 @@ export class NgxSearchContainerComponent extends NgxDestroy implements AfterCont
         private zone: NgZone
     ) {
         super();
-
-        this.clearTooltip = this.intl.clearSearch;
-        this.openSearchTooltip = this.intl.openSearch;
-        this.closeSearchTooltip = this.intl.exitSearch;
 
         this.activeSearch$.pipe(
             switchMap(activeSearch => this.zone.onStable.pipe(
