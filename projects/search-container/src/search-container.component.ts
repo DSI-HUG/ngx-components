@@ -7,6 +7,8 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { NgxMediaService } from '@hug/ngx-core';
 import { BehaviorSubject, distinctUntilChanged, first, Observable, shareReplay, switchMap, tap } from 'rxjs';
 
+import { NgxSearchContainerIntl } from './providers';
+
 @Directive({
     selector: '[ngx-search-input]',
     standalone: true
@@ -43,17 +45,10 @@ export class NgxSearchContainerComponent implements AfterContentInit {
     @Output()
     public readonly cleared = new EventEmitter<void>();
 
-    @Input()
-    public clearTooltip = 'Effacer la recherche';
-
-    @Input()
-    public openSearchTooltip = 'Ouvrir la recherche';
-
-    @Input()
-    public closeSearchTooltip = 'Quitter la recherche';
-
     @ContentChild('mobileSearch')
     public mobileSearch: TemplateRef<unknown> | undefined;
+
+    protected readonly intl = inject(NgxSearchContainerIntl);
 
     protected readonly activeSearch$ = new BehaviorSubject(false);
 
@@ -62,10 +57,10 @@ export class NgxSearchContainerComponent implements AfterContentInit {
     @ContentChild(NgxSearchInputDirective)
     public set searchInput(searchInput: NgxSearchInputDirective) {
         if (!searchInput) {
-            throw new Error('You need to add the attribute ngx-search-input to the NgxSearchContainerComponent');
+            throw new Error(this.intl.addAttSearchInput);
         }
         if (!searchInput.ngControl) {
-            throw new Error('You need to add the attribute ngModel to the NgxSearchContainerComponent');
+            throw new Error(this.intl.addAttNgmodel);
         }
         this._searchInput = searchInput;
     }
