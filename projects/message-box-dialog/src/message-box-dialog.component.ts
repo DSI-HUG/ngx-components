@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData } from './message-box-dialog.model';
+import { NgxMessageBoxDialogIntl } from './providers';
 
 @Component({
     selector: 'ngx-message-box-dialog',
@@ -22,6 +23,8 @@ import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData } from './message-b
 export class NgxMessageBoxDialogComponent {
 
     protected dialogParams = inject<NgxMessageBoxDialogData>(MAT_DIALOG_DATA);
+
+    protected readonly intl = inject(NgxMessageBoxDialogIntl);
 
     protected hasControl(key: 'OK' | 'CANCEL' | 'IGNORE' | 'RETRY' | 'YES' | 'NO' | 'CONTINUE'): boolean {
         // eslint-disable-next-line no-bitwise

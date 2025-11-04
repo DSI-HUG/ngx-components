@@ -56,6 +56,10 @@ const config: StorybookConfig = {
                 {
                     from: resolve(__dirname, '../search-container/public/translations'),
                     to: 'public/translations/ngx-search-container'
+                },
+                {
+                    from: resolve(__dirname, '../message-box-dialog/public/translations'),
+                    to: 'public/translations/ngx-message-box-dialog'
                 }
             ]
         });
