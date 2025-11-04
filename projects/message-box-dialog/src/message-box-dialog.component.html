@@ -18,7 +18,7 @@
         *ngIf="hasControl('CANCEL')"
         color="primary"
         data-cy="cancel">
-        Annuler
+        {{ intl.cancel }}
     </button>
     <button
         type="button"
@@ -27,7 +27,7 @@
         *ngIf="hasControl('IGNORE')"
         color="primary"
         data-cy="ignore">
-        Ignorer
+        {{ intl.ignore }}
     </button>
     <button
         type="button"
@@ -37,7 +37,7 @@
         *ngIf="hasControl('RETRY')"
         color="primary"
         data-cy="retry">
-        Recommencer
+        {{ intl.retry }}
     </button>
     <button
         type="button"
@@ -47,7 +47,7 @@
         *ngIf="hasControl('OK')"
         color="primary"
         data-cy="ok">
-        Ok
+        {{ intl.ok }}
     </button>
     <button
         type="button"
@@ -56,7 +56,7 @@
         *ngIf="hasControl('YES')"
         color="primary"
         data-cy="yes">
-        Oui
+        {{ intl.yes }}
     </button>
     <button
         type="button"
@@ -65,7 +65,7 @@
         *ngIf="hasControl('NO')"
         color="primary"
         data-cy="no">
-        Non
+        {{ intl.no }}
     </button>
     <button
         type="button"
@@ -74,6 +74,6 @@
         *ngIf="hasControl('CONTINUE')"
         color="primary"
         data-cy="continue">
-        Continuer
+        {{ intl.continue }}
     </button>
 </div>

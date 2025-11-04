@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, Inject, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData } from './message-box-dialog.model';
+import { NgxMessageBoxDialogIntl } from './providers';
 
 @Component({
     selector: 'ngx-message-box-dialog',
@@ -11,6 +12,8 @@ import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData } from './message-b
     encapsulation: ViewEncapsulation.None
 })
 export class NgxMessageBoxDialogComponent {
+    protected readonly intl = inject(NgxMessageBoxDialogIntl);
+
     public constructor(
         @Inject(MAT_DIALOG_DATA) protected dialogParams: NgxMessageBoxDialogData
     ) { }

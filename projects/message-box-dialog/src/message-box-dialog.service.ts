@@ -1,14 +1,17 @@
-import { Injectable, Type } from '@angular/core';
+import { inject, Injectable, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NgxAbstractLazyModule, NgxDialogService, NgxLazyLoaderService } from '@hug/ngx-core';
 import { Observable, take } from 'rxjs';
 
 import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData, NgxMessageBoxDialogResponse } from './message-box-dialog.model';
+import { NgxMessageBoxDialogIntl } from './providers';
 
 @Injectable({
     providedIn: 'root'
 })
 export class NgxMessageBoxDialogService extends NgxDialogService<NgxMessageBoxDialogResponse, NgxMessageBoxDialogData | string> {
+    protected readonly intl = inject(NgxMessageBoxDialogIntl);
+
     public constructor(
         lazyLoaderService: NgxLazyLoaderService,
         dialog: MatDialog
@@ -28,7 +31,7 @@ export class NgxMessageBoxDialogService extends NgxDialogService<NgxMessageBoxDi
         } else {
             messageBoxDialogData = dialogData;
         }
-        messageBoxDialogData.title = messageBoxDialogData.title || 'Confirmation'; // Translate
+        messageBoxDialogData.title = messageBoxDialogData.title || this.intl.confirmation; // Translate
 
         return super.openDialog$(messageBoxDialogData, dialogConfig);
     }
