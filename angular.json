@@ -48,6 +48,11 @@
                                 "input": "node_modules/@hug/ngx-user-card/src/assets/translations",
                                 "glob": "**/*",
                                 "output": "assets/translations/ngx-user-card"
+                            },
+                            {
+                                "input": "node_modules/@hug/ngx-message-box-dialog/src/assets/translations",
+                                "glob": "**/*",
+                                "output": "assets/translations/ngx-message-box-dialog"
                             }
                         ],
                         "styles": [
