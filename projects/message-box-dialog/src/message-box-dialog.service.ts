@@ -3,11 +3,13 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { from, Observable, switchMap, take } from 'rxjs';
 
 import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData, NgxMessageBoxDialogResponse } from './message-box-dialog.model';
+import { NgxMessageBoxDialogIntl } from './providers';
 
 @Injectable({
     providedIn: 'root'
 })
 export class NgxMessageBoxDialogService {
+    protected readonly intl = inject(NgxMessageBoxDialogIntl);
     private dialog = inject(MatDialog);
 
     public open$(dialogData: NgxMessageBoxDialogData | string, additionalDialogConfig?: MatDialogConfig<NgxMessageBoxDialogData>): Observable<NgxMessageBoxDialogResponse | undefined> {
@@ -23,7 +25,7 @@ export class NgxMessageBoxDialogService {
                 } else {
                     messageBoxDialogData = dialogData;
                 }
-                messageBoxDialogData.title = messageBoxDialogData.title || 'Confirmation'; // Translate
+                messageBoxDialogData.title = messageBoxDialogData.title || this.intl.confirmation; // Translate
 
                 const dialogConfig = {
                     panelClass: 'no-padding-dialog',

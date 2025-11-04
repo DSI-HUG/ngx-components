@@ -15,15 +15,17 @@
 <mat-dialog-actions align="end">
     @if (hasControl('CANCEL')) {
         <button type="button" id="cancelbtn" mat-button mat-dialog-close="cancel" color="primary" data-cy="cancel">
-            Annuler
+            {{ intl.cancel }}
         </button>
     }
     @if (hasControl('IGNORE')) {
-        <button type="button" mat-button mat-dialog-close="ignore" color="primary" data-cy="ignore">Ignorer</button>
+        <button type="button" mat-button mat-dialog-close="ignore" color="primary" data-cy="ignore">
+            {{ intl.ignore }}
+        </button>
     }
     @if (hasControl('RETRY')) {
         <button type="button" mat-stroked-button default mat-dialog-close="retry" color="primary" data-cy="retry">
-            Recommencer
+            {{ intl.retry }}
         </button>
     }
     @if (hasControl('OK')) {
@@ -35,18 +37,22 @@
             color="primary"
             data-cy="ok"
             cdkFocusInitial>
-            Ok
+            {{ intl.ok }}
         </button>
     }
     @if (hasControl('YES')) {
-        <button type="button" mat-stroked-button mat-dialog-close="yes" color="primary" data-cy="yes">Oui</button>
+        <button type="button" mat-stroked-button mat-dialog-close="yes" color="primary" data-cy="yes">
+            {{ intl.yes }}
+        </button>
     }
     @if (hasControl('NO')) {
-        <button type="button" mat-stroked-button mat-dialog-close="no" color="primary" data-cy="no">Non</button>
+        <button type="button" mat-stroked-button mat-dialog-close="no" color="primary" data-cy="no">
+            {{ intl.no }}
+        </button>
     }
     @if (hasControl('CONTINUE')) {
         <button type="button" mat-stroked-button mat-dialog-close="continue" color="primary" data-cy="continue">
-            Continuer
+            {{ intl.continue }}
         </button>
     }
 </mat-dialog-actions>
