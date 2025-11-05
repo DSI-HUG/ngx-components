@@ -1,0 +1,22 @@
+{
+    "service": "Dienstleistung",
+    "type": "Typ",
+    "phoneNumber": "Telefon",
+    "mobileNumber": "Mobil",
+    "email": "E-Mail",
+    "address": "Adresse",
+    "medTech": "Medizintechnik",
+    "social": "Sozial",
+    "medTherapeutic": "Medizinisch-therapeutisch",
+    "pharmacy": "Apotheke",
+    "care": "Pflege",
+    "nurse": "Krankenpfleger/-schwester",
+    "dentist": "Zahnarzt",
+    "doctor": "Arzt",
+    "mr": "Hr.",
+    "mrs": "Frau",
+    "dr": "Dr.",
+    "drF": "Dr.",
+    "prof": "Prof.",
+    "profF": "Prof."
+}

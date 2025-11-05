@@ -1,5 +1,6 @@
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
-import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { NgxUserCardIntl, provideNgxUserCard } from '@hug/ngx-user-card';
+import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxUserCardComponent } from '../../../user-card/src/user-card.component';
 import { UserTooltipWrapperComponent } from './user-tooltip-wrapper/user-tooltip-wrapper.component';
@@ -10,6 +11,12 @@ const meta: Meta<NgxUserCardComponent> = {
     component: NgxUserCardComponent,
     tags: ['autodocs'],
     decorators: [
+        applicationConfig({
+            providers: [
+                NgxUserCardIntl,
+                provideNgxUserCard()
+            ]
+        }),
         moduleMetadata({
             imports: [
                 MatButtonToggleGroup, MatButtonToggle

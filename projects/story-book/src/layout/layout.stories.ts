@@ -4,8 +4,10 @@ import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { NgxSearchContainerIntl, provideNgxSearchContainer } from '@hug/ngx-search-container';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 import { NgxLayoutIntl, provideNgxLayout } from 'projects/layout/src/providers';
+import { NgxMessageBoxDialogIntl, provideNgxMessageBoxDialog } from 'projects/message-box-dialog/src/providers';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from 'projects/search-container/src/search-container.component';
 import { NgxStatusIntl, provideNgxStatus } from 'projects/status/src/providers';
 
@@ -22,8 +24,12 @@ const meta: Meta<NgxLayoutComponent> = {
                 provideAnimations(), // Provides animations to the application
                 NgxLayoutIntl,
                 provideNgxLayout(),
+                provideNgxStatus(),
                 NgxStatusIntl,
-                provideNgxStatus()
+                NgxSearchContainerIntl,
+                provideNgxSearchContainer(),
+                NgxMessageBoxDialogIntl,
+                provideNgxMessageBoxDialog()
             ]
         }),
         moduleMetadata({
