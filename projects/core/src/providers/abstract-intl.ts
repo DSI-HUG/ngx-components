@@ -1,10 +1,22 @@
-import { EnvironmentProviders, inject, LOCALE_ID, provideAppInitializer, Type } from '@angular/core';
+import { EnvironmentProviders, inject, LOCALE_ID, makeEnvironmentProviders, provideAppInitializer, Type } from '@angular/core';
 
-export const provideNgxIntl = <T extends NgxAbstractIntl<T>>(filesPath: string, type: Type<T>): EnvironmentProviders =>
-    provideAppInitializer(() => {
-        const localeId = inject(LOCALE_ID);
-        return inject(type).init(localeId, filesPath, type);
-    });
+export interface NgxOptionsIntl<T> {
+    translationsPath?: string;
+    customIntl?: Type<T>;
+}
+
+export const provideNgxIntl = <T extends NgxAbstractIntl<T>>(
+    intl: Type<T>,
+    translationsPath: string,
+    customIntl: Type<T>
+): EnvironmentProviders =>
+    makeEnvironmentProviders([
+        { provide: intl, useClass: customIntl },
+        provideAppInitializer(() => {
+            const localeId = inject(LOCALE_ID);
+            return inject(intl).init(localeId, translationsPath);
+        })
+    ]);
 
 /**
  * Data for internationalization
@@ -13,23 +25,33 @@ export const provideNgxIntl = <T extends NgxAbstractIntl<T>>(filesPath: string, 
 export abstract class NgxAbstractIntl<T extends NgxAbstractIntl<T>> {
 
     private static readonly DEFAULT_LOCALE = 'en-US';
+
+    private static readonly FALLBACKS = new Map<string, string>([
+        ['en', NgxAbstractIntl.DEFAULT_LOCALE],
+        ['fr', 'fr-CH'],
+        ['de', 'de-CH']
+    ]);
+
     private static readonly ERR_TEXT = '**ERR-MISSING-TRANSLATION**';
 
-    async init(localeId: string, filesPath: string, type: Type<T>): Promise<this> {
-        // console.log('Initializing intl with locale', localeId, 'and files path', filesPath);
-        const intl = await this.loadFromFile(localeId, filesPath)
+    async init(localeId: string, translationsPath: string): Promise<this> {
+        console.debug('Initializing intl with locale', localeId, 'and files path', translationsPath);
+        const intl = await this.loadFromFile(localeId, translationsPath)
             .catch(async err => {
-                console.warn(`Failed to get the translation file for requested locale ${localeId}. Fallback to default ${NgxAbstractIntl.DEFAULT_LOCALE} locale.`, err);
+                const fallbackLocaleId = localeId.includes('-') ?
+                    NgxAbstractIntl.FALLBACKS.get(localeId.substring(0, 2)) ?? NgxAbstractIntl.DEFAULT_LOCALE :
+                    NgxAbstractIntl.DEFAULT_LOCALE;
+                console.warn(`Failed to get the translation file for requested locale ${localeId}. Fallback to ${fallbackLocaleId} locale.`, err);
                 try {
-                    return await this.loadFromFile(NgxAbstractIntl.DEFAULT_LOCALE, filesPath);
+                    return await this.loadFromFile(fallbackLocaleId, translationsPath);
                 } catch (fallbackErr) {
-                    console.error(`Failed to get the translation file for default locale ${NgxAbstractIntl.DEFAULT_LOCALE}. Check that you correctly import the files in your project.`, fallbackErr);
+                    console.error(`Failed to get the translation file for fallback locale ${fallbackLocaleId}. Check that you correctly import the files in your project.`, fallbackErr);
                     return undefined;
                 }
             });
 
         // Whitelist to prevent other keys from JSON files
-        const whitelistKeys = new Set(Object.keys(new type()));
+        const whitelistKeys = new Set(Object.keys(this));
 
         if (intl) {
             Object.keys(intl).forEach(key => {
@@ -52,8 +74,8 @@ export abstract class NgxAbstractIntl<T extends NgxAbstractIntl<T>> {
         return this;
     }
 
-    private async loadFromFile(localeId: string, filesPath: string): Promise<T> {
-        return await fetch(`${filesPath}/${localeId}.json`)
+    private async loadFromFile(localeId: string, translationsPath: string): Promise<T> {
+        return await fetch(`${translationsPath}/${localeId}.json`)
             .then(file => file.json())
             .then((fileJson: T) => fileJson);
     }

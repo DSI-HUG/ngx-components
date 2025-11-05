@@ -24,7 +24,7 @@
         ".": {
             "sass": "./_status-theme.scss"
         },
-        "./public/translations/*": {
+        "./translations/*": {
             "default": "./**/*.json"
         }
     },

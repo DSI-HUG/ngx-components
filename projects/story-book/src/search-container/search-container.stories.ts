@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatList, MatListItem } from '@angular/material/list';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -6,6 +7,11 @@ import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@st
 
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../search-container/src/search-container.component';
 
+@Injectable()
+export class CustomNgxSearchContainerIntl extends NgxSearchContainerIntl {
+    public override openSearch = '***My custom openSearch***';
+    public override clearSearch = '***My custom clearSearch***';
+}
 
 const meta: Meta<NgxSearchContainerComponent> = {
     title: 'Components/Search Container',
@@ -13,8 +19,7 @@ const meta: Meta<NgxSearchContainerComponent> = {
     decorators: [
         applicationConfig({
             providers: [
-                NgxSearchContainerIntl,
-                provideNgxSearchContainer()
+                provideNgxSearchContainer({ customIntl: CustomNgxSearchContainerIntl })
             ]
         }),
         moduleMetadata({

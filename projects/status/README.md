@@ -13,9 +13,9 @@ First of all you have to import the asset translation files like:
     "assets": [
         ...
         {
-            "input": "node_modules/@hug/ngx-status/public/translations",
+            "input": "node_modules/@hug/ngx-status/translations",
             "glob": "**/*",
-            "output": "public/translations/ngx-status"
+            "output": "translations/ngx-status"
         }
     ]
 }
@@ -30,7 +30,6 @@ import { NgxStatusIntl, provideNgxStatus } from '@hug/ngx-status';
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        NgxStatusIntl,
         provideNgxStatus()
     ]
 };

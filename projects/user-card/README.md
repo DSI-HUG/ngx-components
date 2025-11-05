@@ -13,9 +13,9 @@ First of all you have to import the asset translation files like:
     "assets": [
         ...
         {
-            "input": "node_modules/@hug/ngx-user-card/public/translations",
+            "input": "node_modules/@hug/ngx-user-card/translations",
             "glob": "**/*",
-            "output": "public/translations/ngx-user-card"
+            "output": "translations/ngx-user-card"
         }
     ]
 }
@@ -30,7 +30,6 @@ import { NgxUserCardIntl, provideNgxUserCard } from '@hug/ngx-user-card';
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        NgxUserCardIntl,
         provideNgxUserCard()
     ]
 };

@@ -24,7 +24,7 @@
         ".": {
             "sass": "./_user-card-theme.scss"
         },
-        "./public/translations/*": {
+        "./translations/*": {
             "default": "./**/*.json"
         }
     },
