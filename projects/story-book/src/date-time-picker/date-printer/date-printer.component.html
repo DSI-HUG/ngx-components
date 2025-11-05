@@ -1,0 +1,13 @@
+<div class="date-printer-container">
+    <p>Actual value:</p>
+
+    <ul>
+        @if (value()) {
+            @for (format of formats; track format) {
+                <li>{{ format }}: {{ value() | date: format }}</li>
+            }
+        } @else {
+            <li>-</li>
+        }
+    </ul>
+</div>

@@ -7,6 +7,7 @@
         "upgrade": "npx storybook@latest upgrade"
     },
     "devDependencies": {
+        "@angular/material-date-fns-adapter": "~19.1.5",
         "@compodoc/compodoc": "^1.1.26",
         "@storybook/addon-essentials": "^8.5.2",
         "@storybook/addon-themes": "^8.5.2",

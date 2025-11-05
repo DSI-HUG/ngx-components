@@ -2,14 +2,10 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, OnDestroy, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButton } from '@angular/material/button';
-import { DateAdapter } from '@angular/material/core';
 import { MatDatepicker, MatDatepickerApply, MatDatepickerInput, MatDateSelectionModel } from '@angular/material/datepicker';
 import { NgxTimePickerComponent } from '@hug/ngx-time-picker';
 import { cloneDeep } from 'lodash-es';
 import { delay, filter, map, tap } from 'rxjs';
-
-import { DATE_TIME_ADAPTER, DateTimeAdapter } from '../date-adapter/date-time-adapter';
-
 
 @Component({
     selector: 'ngx-datepicker-with-time',
@@ -20,7 +16,6 @@ import { DATE_TIME_ADAPTER, DateTimeAdapter } from '../date-adapter/date-time-ad
     imports: [
         MatButton,
         NgxTimePickerComponent,
-        MatDatepicker,
         MatDatepickerApply
     ]
 })
@@ -37,7 +32,6 @@ export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy 
     protected datepicker = inject<MatDatepicker<unknown>>(MatDatepicker);
     protected viewContainerRef = inject(ViewContainerRef);
     protected globalModel = inject<MatDateSelectionModel<unknown, unknown>>(MatDateSelectionModel);
-    protected dateAdapter? = inject<DateTimeAdapter<unknown> & DateAdapter<unknown>>(DATE_TIME_ADAPTER, { optional: true });
     private destroyRef = inject(DestroyRef);
 
     private portal?: TemplatePortal;

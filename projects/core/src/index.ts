@@ -5,5 +5,4 @@ export * from './cache';
 export * from './custom-operators';
 export * from './custom-array.module';
 export * from './key-codes';
-export * from './locale';
 export * from './providers';

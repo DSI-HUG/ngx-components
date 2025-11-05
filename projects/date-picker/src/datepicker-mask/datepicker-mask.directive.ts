@@ -1,8 +1,8 @@
-import { Directive, ElementRef, forwardRef, inject, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, forwardRef, inject, Input, LOCALE_ID, Renderer2 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl, NG_VALIDATORS, NgControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
-import { KeyCodes } from '@hug/ngx-core';
+import { buildNgxMatDateFormatsFactory, KeyCodes, NgxDateFormat } from '@hug/ngx-core';
 import { addDays, addHours, addMinutes, addMonths, addSeconds, addYears, isValid, parse, set } from 'date-fns';
 import { isNil } from 'lodash-es';
 import { delay, EMPTY, filter, from, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, tap, timeInterval } from 'rxjs';
@@ -10,7 +10,7 @@ import { delay, EMPTY, filter, from, fromEvent, map, mergeWith, of, shareReplay,
 import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.service';
 
 @Directive({
-    selector: '[matDatepicker][dateFormat],[matDatepicker][dateTimeFormat],[matStartDate][dateFormat],[matEndDate][dateFormat],[matStartDate][dateTimeFormat],[matEndDate][dateTimeFormat]',
+    selector: '[matDatepicker][dateMask],[matStartDate][dateMask],[matEndDate][dateMask]',
     providers: [
         NgxDatepickerMaskValidatorService,
         {
@@ -22,20 +22,16 @@ import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.s
     standalone: true
 })
 export class NgxDatepickerMaskDirective {
+
     private readonly applyMask$ = new Subject<void>();
 
     @Input()
-    public set dateTimeFormat(value: string) {
-        this.formatExpression = value || this.dateFormats?.display?.dateInput as string;
-    }
-
-    @Input()
-    public set dateFormat(value: string) {
+    public set dateMask(value: string) {
         this.formatExpression = value || this.dateFormats?.display?.dateInput as string;
     }
 
     private set formatExpression(value: string) {
-        this._formatExpression = value;
+        this._formatExpression = this.parseFormatExpression(value);
         this.applyMask$.next();
     }
 
@@ -57,6 +53,7 @@ export class NgxDatepickerMaskDirective {
     private readonly ngControl = inject(NgControl);
     private readonly renderer = inject(Renderer2);
     private readonly dateAdapter = inject<DateAdapter<unknown>>(DateAdapter);
+    private readonly localeId = inject(LOCALE_ID);
 
     public constructor(
     ) {
@@ -179,7 +176,9 @@ export class NgxDatepickerMaskDirective {
             tap(() => this.setValue(undefined)),
             mergeWith(this.applyMask$, applyMaskOnFocus$),
             filter(() => {
+                console.debug('Format expression:', this._formatExpression);
                 this.maskValue = this._formatExpression?.replace(/[ymdhs]/gi, this._placeHolderCharacter) || '';
+                console.debug('Computed mask:', this.maskValue);
 
                 const modelIsValid = (): boolean => {
                     const value = this.ngControl.value as unknown;
@@ -422,5 +421,40 @@ export class NgxDatepickerMaskDirective {
         } else {
             updateDateControl(this.ngControl.control, null, this.dateAdapter);
         }
+    }
+
+    /**
+     * Convert the format expression into a supported format for this mask.
+     * <br>It handle format provided from date-fns like:
+     * <pre>
+     *     { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
+     *     { provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] }
+     * </pre>
+     * <br>List of date-fns converted formats:
+     * <ul>
+     *     <li>P: short date (04/29/1453)</li>
+     *     <li>Pp: short date + hours and minutes (04/29/1453, 12:00 AM)</li>
+     *     <li>Ppp: short date + full time (04/29/1453, 12:00:00 AM)</li>
+     * </ul>
+     * @param value the raw format expression.
+     * @return a supported format expression.
+     * @see https://date-fns.org/v2.30.0/docs/format
+     */
+    private parseFormatExpression(value: string): string {
+        console.debug('Parse format expression:', value);
+        // Handle date-fns formats
+        if ('P' === value) {
+            return this.getDateInputFormat('short');
+        } else if ('Pp' === value) {
+            return this.getDateInputFormat('long');
+        } else if ('Ppp' === value) {
+            return this.getDateInputFormat('full');
+        }
+        return value;
+    }
+
+    private getDateInputFormat(dateFormat: NgxDateFormat): string {
+        const factory = buildNgxMatDateFormatsFactory(dateFormat);
+        return factory(this.localeId).parse.dateInput as string;
     }
 }
