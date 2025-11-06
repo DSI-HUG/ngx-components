@@ -21,7 +21,7 @@ First of all you have to import the asset translation files like:
 }
 ```
 
-You can choose another output path, but you will need to override the default value in the `provideNgxMessageBoxDialog('my/custom/output/path')`.
+You can choose another output path, but you will need to override the default value in the `provideNgxMessageBoxDialog({ translationsPath: 'my/custom/output/path' })`.
 
 Then you have to provide `provideNgxMessageBoxDialog()` ; you call provide it globally in your main `ApplicationConfig` like:
 
@@ -45,11 +45,7 @@ export class CustomNgxMessageBoxDialogIntl extends NgxMessageBoxDialogIntl {
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        {
-            provide: NgxMessageBoxDialogIntl,
-            useClass: CustomNgxMessageBoxDialogIntl
-        },
-        provideNgxMessageBoxDialog()
+        provideNgxMessageBoxDialog({ customIntl: CustomNgxMessageBoxDialogIntl })
     ]
 };
 ```

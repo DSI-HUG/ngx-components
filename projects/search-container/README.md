@@ -21,7 +21,7 @@ First of all you have to import the asset translation files like:
 }
 ```
 
-You can choose another output path, but you will need to override the default value in the `provideNgxSearchContainer('my/custom/output/path')`.
+You can choose another output path, but you will need to override the default value in the `provideNgxSearchContainer({ translationsPath: 'my/custom/output/path' })`.
 
 Then you have to provide `provideNgxSearchContainer()` ; you call provide it globally in your main `ApplicationConfig` like:
 
@@ -45,11 +45,7 @@ export class CustomNgxSearchContainerIntl extends NgxSearchContainerIntl {
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        {
-            provide: NgxSearchContainerIntl,
-            useClass: CustomNgxSearchContainerIntl
-        },
-        provideNgxSearchContainer()
+        provideNgxSearchContainer({ customIntl: CustomNgxSearchContainerIntl })
     ]
 };
 ```

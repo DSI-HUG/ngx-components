@@ -26,7 +26,7 @@ First of all you have to import the asset translation files like:
 }
 ```
 
-You can choose another output path, but you will need to override the default value in the `provideNgxLayout('my/custom/output/path')`.
+You can choose another output path, but you will need to override the default value in the `provideNgxLayout({ translationsPath: 'my/custom/output/path' })`.
 
 Then you have to provide `provideNgxLayout()` ; you call provide it globally in your main `ApplicationConfig` like:
 
@@ -50,11 +50,7 @@ export class CustomNgxLayoutIntl extends NgxLayoutIntl {
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        {
-            provide: NgxLayoutIntl,
-            useClass: CustomNgxLayoutIntl
-        },
-        provideNgxLayout()
+        provideNgxLayout({ customIntl: CustomNgxLayoutIntl })
     ]
 };
 ```

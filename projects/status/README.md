@@ -21,7 +21,7 @@ First of all you have to import the asset translation files like:
 }
 ```
 
-You can choose another output path, but you will need to override the default value in the `provideNgxStatus('my/custom/output/path')`.
+You can choose another output path, but you will need to override the default value in the `provideNgxStatus({ translationsPath: 'my/custom/output/path' })`.
 
 Then you have to provide `provideNgxStatus()` ; you call provide it globally in your main `ApplicationConfig` like:
 
@@ -45,11 +45,7 @@ export class CustomNgxStatusIntl extends NgxStatusIntl {
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        {
-            provide: NgxStatusIntl,
-            useClass: CustomNgxStatusIntl
-        },
-        provideNgxStatus()
+        provideNgxStatus({ customIntl: CustomNgxStatusIntl })
     ]
 };
 ```
