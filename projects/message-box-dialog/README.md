@@ -13,9 +13,9 @@ First of all you have to import the asset translation files like:
     "assets": [
         ...
         {
-            "input": "node_modules/@hug/ngx-message-box-dialog/public/translations",
+            "input": "node_modules/@hug/ngx-message-box-dialog/translations",
             "glob": "**/*",
-            "output": "public/translations/ngx-message-box-dialog"
+            "output": "translations/ngx-message-box-dialog"
         }
     ]
 }
@@ -30,7 +30,6 @@ import { NgxMessageBoxDialogIntl, provideNgxMessageBoxDialog } from '@hug/ngx-me
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        NgxMessageBoxDialogIntl,
         provideNgxMessageBoxDialog()
     ]
 };

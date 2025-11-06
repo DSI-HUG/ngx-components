@@ -13,9 +13,9 @@ First of all you have to import the asset translation files like:
     "assets": [
         ...
         {
-            "input": "node_modules/@hug/ngx-search-container/public/translations",
+            "input": "node_modules/@hug/ngx-search-container/translations",
             "glob": "**/*",
-            "output": "public/translations/ngx-search-container"
+            "output": "translations/ngx-search-container"
         }
     ]
 }
@@ -30,7 +30,6 @@ import { NgxSearchContainerIntl, provideNgxSearchContainer } from '@hug/ngx-sear
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        NgxSearchContainerIntl,
         provideNgxSearchContainer()
     ]
 };

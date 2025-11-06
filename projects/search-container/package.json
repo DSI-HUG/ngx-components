@@ -24,7 +24,7 @@
         ".": {
             "sass": "./_search-container-theme.scss"
         },
-        "./public/translations/*": {
+        "./translations/*": {
             "default": "./**/*.json"
         }
     },

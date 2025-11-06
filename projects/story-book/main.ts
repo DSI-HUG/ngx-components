@@ -42,24 +42,24 @@ const config: StorybookConfig = {
         const pluginAssetsTranslation = new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: resolve(__dirname, '../layout/public/translations'),
-                    to: 'public/translations/ngx-layout'
+                    from: resolve(__dirname, '../layout/translations'),
+                    to: 'translations/ngx-layout'
                 },
                 {
-                    from: resolve(__dirname, '../status/public/translations'),
-                    to: 'public/translations/ngx-status'
+                    from: resolve(__dirname, '../status/translations'),
+                    to: 'translations/ngx-status'
                 },
                 {
-                    from: resolve(__dirname, '../user-card/public/translations'),
-                    to: 'public/translations/ngx-user-card'
+                    from: resolve(__dirname, '../user-card/translations'),
+                    to: 'translations/ngx-user-card'
                 },
                 {
-                    from: resolve(__dirname, '../search-container/public/translations'),
-                    to: 'public/translations/ngx-search-container'
+                    from: resolve(__dirname, '../search-container/translations'),
+                    to: 'translations/ngx-search-container'
                 },
                 {
-                    from: resolve(__dirname, '../message-box-dialog/public/translations'),
-                    to: 'public/translations/ngx-message-box-dialog'
+                    from: resolve(__dirname, '../message-box-dialog/translations'),
+                    to: 'translations/ngx-message-box-dialog'
                 }
             ]
         });

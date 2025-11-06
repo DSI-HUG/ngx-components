@@ -8,7 +8,7 @@
             "glob": "_user-card-theme.scss",
             "output": "."
         },
-        "public/**/*"
+        "translations/**/*"
     ],
     "lib": {
         "entryFile": "src/index.ts"

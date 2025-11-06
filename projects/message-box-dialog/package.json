@@ -24,7 +24,7 @@
         ".": {
             "sass": "./_message-box-dialog-theme.scss"
         },
-        "./public/translations/*": {
+        "./translations/*": {
             "default": "./**/*.json"
         }
     },

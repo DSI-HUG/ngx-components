@@ -18,9 +18,9 @@ First of all you have to import the asset translation files like:
     "assets": [
         ...
         {
-            "input": "node_modules/@hug/ngx-layout/public/translations",
+            "input": "node_modules/@hug/ngx-layout/translations",
             "glob": "**/*",
-            "output": "public/translations/ngx-layout"
+            "output": "translations/ngx-layout"
         }
     ]
 }
@@ -35,7 +35,6 @@ import { NgxLayoutIntl, provideNgxLayout } from '@hug/ngx-layout';
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        NgxLayoutIntl,
         provideNgxLayout()
     ]
 };

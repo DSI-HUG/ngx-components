@@ -4,12 +4,12 @@ import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { NgxSearchContainerIntl, provideNgxSearchContainer } from '@hug/ngx-search-container';
+import { provideNgxSearchContainer } from '@hug/ngx-search-container';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
-import { NgxLayoutIntl, provideNgxLayout } from 'projects/layout/src/providers';
-import { NgxMessageBoxDialogIntl, provideNgxMessageBoxDialog } from 'projects/message-box-dialog/src/providers';
+import { provideNgxLayout } from 'projects/layout/src/providers';
+import { provideNgxMessageBoxDialog } from 'projects/message-box-dialog/src/providers';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from 'projects/search-container/src/search-container.component';
-import { NgxStatusIntl, provideNgxStatus } from 'projects/status/src/providers';
+import { provideNgxStatus } from 'projects/status/src/providers';
 
 import { NgxLayoutComponent } from '../../../layout/src/layout.component';
 import { NgxStatusService } from '../../../status/src/status.service';
@@ -22,13 +22,9 @@ const meta: Meta<NgxLayoutComponent> = {
         applicationConfig({
             providers: [
                 provideAnimations(), // Provides animations to the application
-                NgxLayoutIntl,
                 provideNgxLayout(),
                 provideNgxStatus(),
-                NgxStatusIntl,
-                NgxSearchContainerIntl,
                 provideNgxSearchContainer(),
-                NgxMessageBoxDialogIntl,
                 provideNgxMessageBoxDialog()
             ]
         }),
