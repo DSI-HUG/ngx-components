@@ -1,3 +1,15 @@
+# 4.0.0 (2025-11-06)
+
+### 🚀 Features
+
+- ⚠️ **i18n:** remove public folder + avoid providing Ngx*Intl + improve fallback logic (#NGXCPTS-35) ([b9380ef](https://github.com/DSI-HUG/ngx-components/commit/b9380ef))
+- **message-box-dialog:** internationalisation (#NGXCPTS-34) ([bb208c9](https://github.com/DSI-HUG/ngx-components/commit/bb208c9))
+
+### ❤️ Thank You
+
+- Aniata Lehartel
+- damien-guillermet
+
 ## 3.0.1 (2025-03-13)
 
 This was a version bump only for @hug/ngx-message-box-dialog to align it with other projects, there were no code changes.

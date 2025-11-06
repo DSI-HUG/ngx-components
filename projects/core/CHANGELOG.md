@@ -1,3 +1,15 @@
+# 4.0.0 (2025-11-06)
+
+### 🚀 Features
+
+- ⚠️ **i18n:** remove public folder + avoid providing Ngx*Intl + improve fallback logic (#NGXCPTS-35) ([b9380ef](https://github.com/DSI-HUG/ngx-components/commit/b9380ef))
+- ⚠️ **locale:** remove formatWithLocale (#NGXCPTS-31) ([b2534eb](https://github.com/DSI-HUG/ngx-components/commit/b2534eb))
+- ⚠️ **ngx-date-picker:** i18n the mask directive (#NGXCPTS-31) ([db148c3](https://github.com/DSI-HUG/ngx-components/commit/db148c3))
+
+### ❤️ Thank You
+
+- damien-guillermet
+
 ## 3.1.0 (2025-10-14)
 
 ### 🚀 Features

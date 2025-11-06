@@ -1,3 +1,13 @@
+# 4.0.0 (2025-11-06)
+
+### 🚀 Features
+
+- ⚠️ **i18n:** remove public folder + avoid providing Ngx*Intl + improve fallback logic (#NGXCPTS-35) ([b9380ef](https://github.com/DSI-HUG/ngx-components/commit/b9380ef))
+
+### ❤️ Thank You
+
+- damien-guillermet
+
 ## 3.3.0 (2025-10-15)
 
 ### 🚀 Features

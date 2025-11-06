@@ -1,3 +1,15 @@
+# 4.0.0 (2025-11-06)
+
+### 🚀 Features
+
+- ⚠️ **i18n:** remove public folder + avoid providing Ngx*Intl + improve fallback logic (#NGXCPTS-35) ([b9380ef](https://github.com/DSI-HUG/ngx-components/commit/b9380ef))
+- **user-card:** internationalisation (#NGXCPTS-32) ([6012e8d](https://github.com/DSI-HUG/ngx-components/commit/6012e8d))
+
+### ❤️ Thank You
+
+- Aniata Lehartel
+- damien-guillermet
+
 ## 3.0.1 (2025-03-13)
 
 This was a version bump only for @hug/ngx-user-card to align it with other projects, there were no code changes.
