@@ -14,14 +14,19 @@ const preview: Preview = {
         },
         layout: 'centered',
         backgrounds: {
-            values: [
-                // Default values
+            options: {
+                dark: // Default values
                 { name: 'Dark', value: '#333' },
-                { name: 'Light', value: '#fff' },
-                { name: 'Lightblue', value: '#b5d8ff' }
-            ],
-            // Specify which background is shown by default
-            default: 'Light'
+
+                light: { name: 'Light', value: '#fff' },
+                lightblue: { name: 'Lightblue', value: '#b5d8ff' }
+            }
+        }
+    },
+
+    initialGlobals: {
+        backgrounds: {
+            value: 'light'
         }
     }
 };

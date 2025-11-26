@@ -7,12 +7,13 @@
         "upgrade": "npx storybook@latest upgrade"
     },
     "devDependencies": {
-        "@angular/material-date-fns-adapter": "~19.1.5",
+        "@angular/material-date-fns-adapter": "^21.0.0",
         "@compodoc/compodoc": "^1.1.26",
-        "@storybook/addon-essentials": "^8.5.2",
-        "@storybook/addon-themes": "^8.5.2",
-        "@storybook/addon-links": "^8.5.2",
-        "@storybook/angular": "^8.5.2",
-        "storybook": "^8.5.2"
+        "@storybook/addon-links": "^10.0.8",
+        "@storybook/addon-themes": "^10.0.8",
+        "@storybook/angular": "^10.0.8",
+        "storybook": "^10.0.8",
+        "eslint-plugin-storybook": "10.0.8",
+        "@storybook/addon-docs": "^10.0.8"
     }
 }
