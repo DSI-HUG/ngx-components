@@ -30,8 +30,8 @@
         "release:dry-run": "nx release -p=@hug/ngx-date-picker --verbose --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">=19 <20",
-        "@angular/core": ">=19 <20",
+        "@angular/common": ">=21 <22",
+        "@angular/core": ">=21 <22",
         "@hug/ngx-core": "^4.0.0",
         "@hug/ngx-time-picker": "^3.0.6",
         "rxjs": ">= 7.4.0",

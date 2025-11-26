@@ -2,6 +2,7 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "esModuleInterop": true,
+        "moduleResolution": "bundler",
         "paths": {
             "@hug/ngx-core": [
                 "projects/core/src"
