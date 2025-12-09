@@ -25,7 +25,7 @@ export class NgxStatusService extends NgxDestroy {
     private readonly lazyLoaderService = inject(NgxLazyLoaderService);
     private readonly injector = inject(Injector);
     private readonly resolver = inject(ComponentFactoryResolver);
-    private readonly intl = inject(NgxStatusIntl);
+    private readonly intl = inject(NgxStatusIntl, { optional: true });
 
     /**
      * Display an information message to the screen.
@@ -44,14 +44,14 @@ export class NgxStatusService extends NgxDestroy {
     /**
      * Display a warning message to the screen.
      */
-    public warning(text: string, title = this.intl.warn, technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
+    public warning(text: string, title = this.intl?.warn ?? 'Caution', technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
         this.showStatus({ type: 'warn', title, text, duration, technicalText, actions });
     }
 
     /**
      * Display an error message to the screen and send it to HugLog.
      */
-    public error(text: string, title = this.intl.error, technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
+    public error(text: string, title = this.intl?.error ?? 'Error', technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
         this.showStatus({ type: 'danger', title, text, duration, technicalText, actions });
     }
 

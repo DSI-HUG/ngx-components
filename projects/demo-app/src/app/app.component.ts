@@ -1,12 +1,11 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
+import { QueryParamsHandling, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -21,18 +20,19 @@ import { RouterModule } from '@angular/router';
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-        NgIf,
-        NgFor,
         RouterModule
     ]
 })
 export class AppComponent implements OnDestroy {
+
+    protected readonly queryParamsHandling: QueryParamsHandling = 'merge';
+
     protected mobileQuery: MediaQueryList;
 
-    private _mobileQueryListener: () => void;
+    private readonly _mobileQueryListener: () => void;
 
-    private changeDetectorRef = inject(ChangeDetectorRef);
-    private media = inject(MediaMatcher);
+    private readonly changeDetectorRef = inject(ChangeDetectorRef);
+    private readonly media = inject(MediaMatcher);
 
     public constructor() {
         this.mobileQuery = this.media.matchMedia('(max-width: 600px)');

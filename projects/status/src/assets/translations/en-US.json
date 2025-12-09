@@ -1,6 +1,6 @@
 {
     "errorDetails": "Error details:",
-    "copyToClipboard": "'Copy to clipboard: Ctrl+C, Enter'",
+    "copyToClipboard": "Copy to clipboard: Ctrl+C, Enter",
     "dateError": "Error Date: ",
     "openStatusDetailDialogFailed": "Failed to open status detail dialog",
     "warn": "Caution",

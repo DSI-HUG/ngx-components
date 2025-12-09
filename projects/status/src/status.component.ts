@@ -31,7 +31,7 @@ export class NgxStatusComponent extends NgxDestroy {
 
     protected readonly displayDetailedStatus$ = new Subject<NgxStatus>();
 
-    protected readonly intl = inject(NgxStatusIntl);
+    private readonly intl = inject(NgxStatusIntl, { optional: true });
 
     private statusDetailDialogService = inject(NgxStatusDetailDialogService);
 
@@ -44,7 +44,7 @@ export class NgxStatusComponent extends NgxDestroy {
             throttleTime(1000),
             switchMap(status => this.statusDetailDialogService.openDialog$(status).pipe(
                 catchError(err => {
-                    console.error(this.intl.openStatusDetailDialogFailed, err);
+                    console.error(this.intl?.openStatusDetailDialogFailed ?? 'Failed to open status detail dialog', err);
                     return EMPTY;
                 })
             )),
