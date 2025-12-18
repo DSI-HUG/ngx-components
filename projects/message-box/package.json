@@ -35,10 +35,11 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
+        "@angular/cdk": ">=21 <22",
         "@angular/common": ">=21 <22",
         "@angular/core": ">=21 <22",
-        "@angular/cdk": ">=21 <22",
-        "@angular/material": ">=21 <22"
+        "@angular/material": ">=21 <22",
+        "zone.js": "^0.16.0"
     },
     "dependencies": {
         "tslib": "^2.8.1"
