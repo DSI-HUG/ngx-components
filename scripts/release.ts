@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/naming-convention, no-loops/no-loops, camelcase */
 
 import chalk from 'chalk';
@@ -6,7 +9,7 @@ import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { releaseChangelog, releasePublish, releaseVersion } from 'nx/release';
 import { PublishOptions } from 'nx/src/command-line/release/command-object';
-import { VersionData } from 'nx/src/command-line/release/version';
+import { VersionData } from 'nx/src/command-line/release/utils/shared';
 import { ProjectsConfigurations } from 'nx/src/config/workspace-json-project-json';
 import { createProjectGraphAsync, readProjectsConfigurationFromProjectGraph } from 'nx/src/project-graph/project-graph';
 import { PackageJson } from 'nx/src/utils/package-json';
@@ -100,6 +103,7 @@ const updateProjectsDists = (
         if (!options.dryRun) {
             const distPackageJson = JSON.parse(readFileSync(join(workspaceRoot, distPackageJsonPath), 'utf8')) as PackageJson;
             distPackageJson.version = projectNewVersion;
+            distPackageJson.dependencies = workspacePackageJson.dependencies;
             distPackageJson.peerDependencies = workspacePackageJson.peerDependencies;
             writeFileSync(join(workspaceRoot, distPackageJsonPath), JSON.stringify(distPackageJson, null, 4), { encoding: 'utf8' });
         }
@@ -205,9 +209,11 @@ const updateProjectsVersions = async (gitCommitMessage: string, options: Options
         stageChanges: true,
         gitCommit: true,
         gitCommitMessage,
+        /* no needed?
         generatorOptionsOverrides: {
             installIgnoreScripts: true
         },
+        */
         dryRun: options.dryRun,
         verbose: options.verbose
     });
