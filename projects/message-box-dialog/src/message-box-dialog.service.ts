@@ -10,7 +10,8 @@ import { NgxMessageBoxDialogIntl } from './providers';
     providedIn: 'root'
 })
 export class NgxMessageBoxDialogService extends NgxDialogService<NgxMessageBoxDialogResponse, NgxMessageBoxDialogData | string> {
-    protected readonly intl = inject(NgxMessageBoxDialogIntl);
+
+    private readonly intl = inject(NgxMessageBoxDialogIntl, { optional: true });
 
     public constructor(
         lazyLoaderService: NgxLazyLoaderService,
@@ -31,7 +32,7 @@ export class NgxMessageBoxDialogService extends NgxDialogService<NgxMessageBoxDi
         } else {
             messageBoxDialogData = dialogData;
         }
-        messageBoxDialogData.title = messageBoxDialogData.title || this.intl.confirmation; // Translate
+        messageBoxDialogData.title = messageBoxDialogData.title || this.intl?.confirmation || 'Confirmation';
 
         return super.openDialog$(messageBoxDialogData, dialogConfig);
     }

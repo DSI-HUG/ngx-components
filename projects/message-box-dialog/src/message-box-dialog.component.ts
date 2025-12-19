@@ -12,7 +12,8 @@ import { NgxMessageBoxDialogIntl } from './providers';
     encapsulation: ViewEncapsulation.None
 })
 export class NgxMessageBoxDialogComponent {
-    protected readonly intl = inject(NgxMessageBoxDialogIntl);
+
+    protected readonly intl = inject(NgxMessageBoxDialogIntl, { optional: true });
 
     public constructor(
         @Inject(MAT_DIALOG_DATA) protected dialogParams: NgxMessageBoxDialogData

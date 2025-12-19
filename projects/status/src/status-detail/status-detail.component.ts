@@ -16,13 +16,13 @@ export class NgxStatusDetailComponent {
 
     protected fullTextError: string;
     protected messageBoxType: NgxMessageBoxType;
-    protected readonly intl = inject(NgxStatusIntl);
+    protected readonly intl = inject(NgxStatusIntl, { optional: true });
 
     public constructor(
         protected dialogRef: MatDialogRef<NgxStatusDetailComponent, void>,
         @Inject(MAT_DIALOG_DATA) protected status: NgxStatus
     ) {
-        this.fullTextError = `${this.intl.dateError}${(status.date ?? new Date()).toUTCString()}\n${status.technicalText || ''}`;
+        this.fullTextError = `${this.intl?.dateError ?? 'Error Date: '}${(status.date ?? new Date()).toUTCString()}\n${status.technicalText || ''}`;
 
         switch (status.type) {
             case 'primary':
@@ -44,6 +44,6 @@ export class NgxStatusDetailComponent {
     }
 
     public copyToClipboard(text: string): void {
-        window.prompt(this.intl.copyToClipboard, text);
+        window.prompt(this.intl?.copyToClipboard ?? 'Copy to clipboard: Ctrl+C, Enter', text);
     }
 }

@@ -34,7 +34,14 @@ bootstrapApplication(AppComponent, {
         Dialog,
         DIALOG_SCROLL_STRATEGY_PROVIDER,
         provideG11n(
-            withDefaultLocales(),
+            withDefaultLocales({
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                'it-CH': {
+                    base: () => import('@angular/common/locales/it-CH'),
+                    extra: () => import('@angular/common/locales/extra/it-CH'),
+                    datefns: () => import('date-fns/locale/it-CH')
+                }
+            }),
             withDateFnsMaterial(),
             withInterceptor()
         ),

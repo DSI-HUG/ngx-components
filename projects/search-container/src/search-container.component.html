@@ -4,13 +4,19 @@
     [class.active]="activeSearch$ | async"
     #mobileSearch>
     <ng-container *ngIf="activeSearch$ | async; else noActiveSearchTpl">
-        <mat-icon class="icon-close-search" [matTooltip]="intl.exitSearch" (click)="activeSearch$.next(false)">
+        <mat-icon
+            class="icon-close-search"
+            [matTooltip]="intl?.exitSearch ?? 'Exit the search'"
+            (click)="activeSearch$.next(false)">
             arrow_back
         </mat-icon>
         <ng-container *ngTemplateOutlet="searchContainerTpl"></ng-container>
     </ng-container>
     <ng-template #noActiveSearchTpl>
-        <mat-icon class="icon-open-search" [matTooltip]="intl.openSearch" (click)="activeSearch$.next(true)">
+        <mat-icon
+            class="icon-open-search"
+            [matTooltip]="intl?.openSearch ?? 'Open the search'"
+            (click)="activeSearch$.next(true)">
             search
         </mat-icon>
     </ng-template>
@@ -24,7 +30,11 @@
     <div class="ngx-search-container">
         <mat-icon>search</mat-icon>
         <ng-content></ng-content>
-        <mat-icon *ngIf="searchInputValue$ | async" class="icon-clear" [matTooltip]="intl.clearSearch" (click)="reset()">
+        <mat-icon
+            *ngIf="searchInputValue$ | async"
+            class="icon-clear"
+            [matTooltip]="intl?.clearSearch ?? 'Clear the search'"
+            (click)="reset()">
             close
         </mat-icon>
         <ng-container *ngTemplateOutlet="right"></ng-container>
