@@ -1,3 +1,24 @@
+## 1.2.0 (2025-12-23)
+
+
+### 🚀 Features
+
+- **message-box-dialog:** internationalisation (#NGXCPTS-34) ([971c53e](https://github.com/DSI-HUG/ngx-components/commit/971c53e))
+
+- **i18n:** make i18n providers optional + add retry logic on fetch file (#FC-113) ([83025f9](https://github.com/DSI-HUG/ngx-components/commit/83025f9))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.3.0 ([16dc079](https://github.com/DSI-HUG/ngx-components/commit/16dc079))
+
+
+### ❤️  Thank You
+
+- Aniata Lehartel
+- dgui
+- dsi-hug-bot @dsi-hug-bot
+
 ## 1.1.11 (2025-10-14)
 
 

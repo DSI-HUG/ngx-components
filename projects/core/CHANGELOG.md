@@ -1,3 +1,15 @@
+## 1.3.0 (2025-12-23)
+
+
+### 🚀 Features
+
+- **i18n:** make i18n providers optional + add retry logic on fetch file (#FC-113) ([83025f9](https://github.com/DSI-HUG/ngx-components/commit/83025f9))
+
+
+### ❤️  Thank You
+
+- dgui
+
 ## 1.2.0 (2025-10-14)
 
 

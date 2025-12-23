@@ -1,3 +1,29 @@
+## 1.2.0 (2025-12-23)
+
+
+### 🚀 Features
+
+- **search-container:** internationalisation (#NGXCPTS-33) ([f2a14a2](https://github.com/DSI-HUG/ngx-components/commit/f2a14a2))
+
+- **i18n:** make i18n providers optional + add retry logic on fetch file (#FC-113) ([83025f9](https://github.com/DSI-HUG/ngx-components/commit/83025f9))
+
+
+### 🐛 Fixes
+
+- **search-container:** internationalisation (#NGXCPTS-33) ([794ea63](https://github.com/DSI-HUG/ngx-components/commit/794ea63))
+
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core:** upgrade to v1.3.0 ([16dc079](https://github.com/DSI-HUG/ngx-components/commit/16dc079))
+
+
+### ❤️  Thank You
+
+- Aniata Lehartel
+- dgui
+- dsi-hug-bot @dsi-hug-bot
+
 ## 1.1.12 (2025-10-14)
 
 
