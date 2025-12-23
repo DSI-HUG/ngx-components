@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-overlay",
-    "version": "1.1.12",
+    "version": "1.1.13",
     "description": "HUG Angular - overlay component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
