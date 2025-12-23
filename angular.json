@@ -53,7 +53,7 @@
             "prefix": "core",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/core/ng-package.json"
                     },
@@ -68,7 +68,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/core/tsconfig.spec.json",
                         "polyfills": [
@@ -86,7 +86,7 @@
             "prefix": "list-loader",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/list-loader/ng-package.json"
                     },
@@ -101,7 +101,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/list-loader/tsconfig.spec.json",
                         "polyfills": [
@@ -119,7 +119,7 @@
             "prefix": "message-box",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/message-box/ng-package.json"
                     },
@@ -134,7 +134,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/message-box/tsconfig.spec.json",
                         "polyfills": [
@@ -152,7 +152,7 @@
             "prefix": "numeric-stepper",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/numeric-stepper/ng-package.json"
                     },
@@ -167,7 +167,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/numeric-stepper/tsconfig.spec.json",
                         "polyfills": [
@@ -185,7 +185,7 @@
             "prefix": "overlay",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/overlay/ng-package.json"
                     },
@@ -200,7 +200,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/overlay/tsconfig.spec.json",
                         "polyfills": [
@@ -218,7 +218,7 @@
             "prefix": "snackbar",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/snackbar/ng-package.json"
                     },
@@ -233,7 +233,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/snackbar/tsconfig.spec.json",
                         "polyfills": [
@@ -251,7 +251,7 @@
             "prefix": "splitter",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/splitter/ng-package.json"
                     },
@@ -266,7 +266,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/splitter/tsconfig.spec.json",
                         "polyfills": [
@@ -284,7 +284,7 @@
             "prefix": "status",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/status/ng-package.json"
                     },
@@ -299,7 +299,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/status/tsconfig.spec.json",
                         "polyfills": [
@@ -317,7 +317,7 @@
             "prefix": "time-picker",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/time-picker/ng-package.json"
                     },
@@ -332,7 +332,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/time-picker/tsconfig.spec.json",
                         "polyfills": [
@@ -350,7 +350,7 @@
             "prefix": "tooltip",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/tooltip/ng-package.json"
                     },
@@ -365,7 +365,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/tooltip/tsconfig.spec.json",
                         "polyfills": [
@@ -383,7 +383,7 @@
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/sidenav/ng-package.json"
                     },
@@ -398,7 +398,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/sidenav/tsconfig.spec.json",
                         "polyfills": [
@@ -416,7 +416,7 @@
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/layout/ng-package.json"
                     },
@@ -431,7 +431,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/layout/tsconfig.spec.json",
                         "polyfills": [
@@ -449,7 +449,7 @@
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/user-card/ng-package.json"
                     },
@@ -464,7 +464,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/user-card/tsconfig.spec.json",
                         "polyfills": [
@@ -482,7 +482,7 @@
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/user-tooltip/ng-package.json"
                     },
@@ -497,7 +497,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/user-tooltip/tsconfig.spec.json",
                         "polyfills": [
@@ -515,7 +515,7 @@
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/search-container/ng-package.json"
                     },
@@ -530,7 +530,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/search-container/tsconfig.spec.json",
                         "polyfills": [
@@ -548,7 +548,7 @@
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/message-box-dialog/ng-package.json"
                     },
@@ -563,7 +563,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/message-box-dialog/tsconfig.spec.json",
                         "polyfills": [
@@ -581,7 +581,7 @@
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "builder": "@angular/build:ng-packagr",
                     "options": {
                         "project": "projects/date-picker/ng-package.json"
                     },
@@ -596,7 +596,7 @@
                     "defaultConfiguration": "production"
                 },
                 "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                    "builder": "@angular/build:karma",
                     "options": {
                         "tsConfig": "projects/date-picker/tsconfig.spec.json",
                         "polyfills": [

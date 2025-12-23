@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/naming-convention, no-loops/no-loops, camelcase */
 
 import chalk from 'chalk';
@@ -5,11 +8,11 @@ import { spawnSync } from 'node:child_process';
 import { copyFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { releaseChangelog, releasePublish, releaseVersion } from 'nx/release';
-import { PublishOptions } from 'nx/src/command-line/release/command-object';
-import { VersionData } from 'nx/src/command-line/release/version';
-import { ProjectsConfigurations } from 'nx/src/config/workspace-json-project-json';
+import type { PublishOptions } from 'nx/src/command-line/release/command-object';
+import type { VersionData } from 'nx/src/command-line/release/utils/shared';
+import type { ProjectsConfigurations } from 'nx/src/config/workspace-json-project-json';
 import { createProjectGraphAsync, readProjectsConfigurationFromProjectGraph } from 'nx/src/project-graph/project-graph';
-import { PackageJson } from 'nx/src/utils/package-json';
+import type { PackageJson } from 'nx/src/utils/package-json';
 import { workspaceRoot } from 'nx/src/utils/workspace-root';
 import yargs from 'yargs';
 
@@ -100,6 +103,7 @@ const updateProjectsDists = (
         if (!options.dryRun) {
             const distPackageJson = JSON.parse(readFileSync(join(workspaceRoot, distPackageJsonPath), 'utf8')) as PackageJson;
             distPackageJson.version = projectNewVersion;
+            distPackageJson.dependencies = workspacePackageJson.dependencies;
             distPackageJson.peerDependencies = workspacePackageJson.peerDependencies;
             writeFileSync(join(workspaceRoot, distPackageJsonPath), JSON.stringify(distPackageJson, null, 4), { encoding: 'utf8' });
         }
@@ -140,7 +144,7 @@ const updateProjectsPeerDeps = (
                 const packageJson = JSON.parse(readFileSync(join(workspaceRoot, packageJsonPath), 'utf8')) as PackageJson;
                 const peerDependencies = packageJson.peerDependencies ?? {};
 
-                if (Object.prototype.hasOwnProperty.call(peerDependencies, projectToRelease)) {
+                if (Object.hasOwn(peerDependencies, projectToRelease)) {
                     const version = peerDependencies[projectToRelease];
                     if (!version.includes(projectToReleaseNewVersion)) {
                         changesDetected = true;
@@ -205,7 +209,7 @@ const updateProjectsVersions = async (gitCommitMessage: string, options: Options
         stageChanges: true,
         gitCommit: true,
         gitCommitMessage,
-        generatorOptionsOverrides: {
+        versionActionsOptionsOverrides: {
             installIgnoreScripts: true
         },
         dryRun: options.dryRun,

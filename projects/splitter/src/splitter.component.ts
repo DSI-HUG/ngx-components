@@ -80,10 +80,10 @@ export class NgxSplitterComponent {
     }
 
     @HostBinding('attr.direction')
-    private _direction = 'horizontal' as NgxSplitterDirection;
+    protected _direction = 'horizontal' as NgxSplitterDirection;
 
     @HostBinding('attr.disabled')
-    private _disabled: boolean | null = null;
+    protected _disabled: boolean | null = null;
 
     protected startDragging$ = new Subject<DraggingEvent>();
 

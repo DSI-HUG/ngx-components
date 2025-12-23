@@ -1,4 +1,7 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
 import type { StorybookConfig } from '@storybook/angular';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'path';
 
 /**
@@ -10,28 +13,31 @@ const getAbsolutePath = (value: string): string => dirname(require.resolve(join(
 // eslint-disable-next-line @typescript-eslint/naming-convention
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
+const filename = fileURLToPath(import.meta.url);
+const dirName = dirname(filename);
+const require = createRequire(import.meta.url);
+
 const config: StorybookConfig = {
     stories: [
         './src/**/*.mdx',
         './src/**/*.stories.@(js|jsx|mjs|ts|tsx)'
     ],
+
     addons: [
-        {
-            name: getAbsolutePath('@storybook/addon-essentials'),
-            options: {
-                'actions': false
-            }
-        },
         getAbsolutePath('@storybook/addon-themes'),
-        getAbsolutePath('@storybook/addon-links')
+        getAbsolutePath('@storybook/addon-links'),
+        getAbsolutePath('@storybook/addon-docs')
     ],
+
     framework: {
         name: getAbsolutePath('@storybook/angular'),
         options: {}
     },
+
     staticDirs: [
         './public'
     ],
+
     webpackFinal: webpackConfig => {
         webpackConfig.performance = (typeof webpackConfig.performance === 'object') ? webpackConfig.performance : {};
         webpackConfig.performance.hints = false;
@@ -42,23 +48,23 @@ const config: StorybookConfig = {
         const pluginAssetsTranslation = new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: resolve(__dirname, '../layout/translations'),
+                    from: resolve(dirName, '../layout/translations'),
                     to: 'translations/ngx-layout'
                 },
                 {
-                    from: resolve(__dirname, '../status/translations'),
+                    from: resolve(dirName, '../status/translations'),
                     to: 'translations/ngx-status'
                 },
                 {
-                    from: resolve(__dirname, '../user-card/translations'),
+                    from: resolve(dirName, '../user-card/translations'),
                     to: 'translations/ngx-user-card'
                 },
                 {
-                    from: resolve(__dirname, '../search-container/translations'),
+                    from: resolve(dirName, '../search-container/translations'),
                     to: 'translations/ngx-search-container'
                 },
                 {
-                    from: resolve(__dirname, '../message-box-dialog/translations'),
+                    from: resolve(dirName, '../message-box-dialog/translations'),
                     to: 'translations/ngx-message-box-dialog'
                 }
             ]
@@ -67,8 +73,13 @@ const config: StorybookConfig = {
 
         return webpackConfig;
     },
+
     core: {
         disableTelemetry: true
+    },
+
+    features: {
+        actions: false
     }
 };
 

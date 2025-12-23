@@ -38,15 +38,16 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">=19 <20",
-        "@angular/core": ">=19 <20",
-        "@angular/cdk": ">=19 <20",
-        "@angular/material": ">=19 <20",
+        "@angular/cdk": ">=21 <22",
+        "@angular/common": ">=21 <22",
+        "@angular/core": ">=21 <22",
+        "@angular/material": ">=21 <22",
         "@hug/ngx-core": "^4.0.0",
-        "@hug/ngx-sidenav": "^3.0.5"
+        "@hug/ngx-sidenav": "^3.0.5",
+        "zone.js": "^0.16.0"
     },
     "dependencies": {
-        "tslib": "^2.7.0"
+        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public"
