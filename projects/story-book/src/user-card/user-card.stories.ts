@@ -146,8 +146,8 @@ export const dynamicBadgeColor: Story = {
           <div class="matButtonContainer">
             <mat-button-toggle-group name="familyCode" (change)="familyCodeChanged($event.value)" [value]="user.familyCode">
                 <mat-button-toggle value="Social">Social</mat-button-toggle>
-                <mat-button-toggle value="Infirmier-e">Infirmier-e</mat-button-toggle>
-                <mat-button-toggle value="Médecin dentiste">Médecin dentiste</mat-button-toggle>
+                <mat-button-toggle value="Nurse">Infirmier-e</mat-button-toggle>
+                <mat-button-toggle value="Dentist">Médecin dentiste</mat-button-toggle>
                 <mat-button-toggle value="a text">Custom text</mat-button-toggle>
                 <mat-button-toggle value="">Empty</mat-button-toggle>
             </mat-button-toggle-group>
