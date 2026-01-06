@@ -1,11 +1,9 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
 
 import { NgxUserCardIntl } from './providers';
 import { NgxUserCard } from './user-card.model';
-
 
 type BadgeColor = 'green' | 'blue' | 'red' | 'grey';
 
@@ -30,8 +28,7 @@ interface DisplayableUserCard {
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        NgClass,
-        MatIcon
+        NgClass
     ]
 })
 export class NgxUserCardComponent implements OnChanges {
@@ -43,14 +40,25 @@ export class NgxUserCardComponent implements OnChanges {
     protected greenBadgeFamily: string[];
     protected blueBadgeFamily: string[];
     protected redBadgeFamily: string[];
-    protected readonly intl = inject(NgxUserCardIntl);
+    protected readonly intl = inject(NgxUserCardIntl, { optional: true });
 
     private _expanded = true;
 
     public constructor() {
-        this.greenBadgeFamily = [this.intl.medTech, this.intl.social, this.intl.medTherapeutic, this.intl.pharmacy];
-        this.blueBadgeFamily = [this.intl.care, this.intl.nurse];
-        this.redBadgeFamily = [this.intl.dentist, this.intl.doctor];
+        this.greenBadgeFamily = [
+            this.intl?.medTech ?? 'Medical-technical',
+            this.intl?.social ?? 'Social',
+            this.intl?.medTherapeutic ?? 'Medical-therapeutic',
+            this.intl?.pharmacy ?? 'Pharmacy'
+        ];
+        this.blueBadgeFamily = [
+            this.intl?.care ?? 'Care',
+            this.intl?.nurse ?? 'Nurse'
+        ];
+        this.redBadgeFamily = [
+            this.intl?.dentist ?? 'Dentist',
+            this.intl?.doctor ?? 'Doctor'
+        ];
     }
 
     @Input()
@@ -142,17 +150,17 @@ export class NgxUserCardComponent implements OnChanges {
     private getShortTitle(title?: string): string {
         switch (title?.toLowerCase().trim()) {
             case 'monsieur':
-                return this.intl.mr;
+                return this.intl?.mr ?? 'Mr.';
             case 'madame':
-                return this.intl.mrs;
+                return this.intl?.mrs ?? 'Mrs.';
             case 'docteur':
-                return this.intl.dr;
+                return this.intl?.dr ?? 'Dr.';
             case 'docteure':
-                return this.intl.drF;
+                return this.intl?.drF ?? 'Dr.';
             case 'professeur':
-                return this.intl.prof;
+                return this.intl?.prof ?? 'Prof.';
             case 'professeure':
-                return this.intl.profF;
+                return this.intl?.profF ?? 'Prof.';
             default:
                 return title || '';
         }

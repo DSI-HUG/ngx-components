@@ -21,27 +21,27 @@
         <hr />
         <div class="ngx-user-card-content">
             <div class="content-service">
-                <div class="label">{{ intl.service }}</div>
+                <div class="label">{{ intl?.service ?? 'Service' }}</div>
                 <div class="value">{{ userCard.service ?? '-' }}</div>
             </div>
             <div class="content-type">
-                <div class="label">{{ intl.type }}</div>
+                <div class="label">{{ intl?.type ?? 'Type' }}</div>
                 <div class="value">{{ userCard.type ?? '-' }}</div>
             </div>
             <div class="content-phone">
-                <div class="label">{{ intl.phoneNumber }}</div>
+                <div class="label">{{ intl?.phoneNumber ?? 'Phone' }}</div>
                 <div class="value">{{ userCard.phoneNumber ?? '-' }}</div>
             </div>
             <div class="content-mobile">
-                <div class="label">{{ intl.mobileNumber }}</div>
+                <div class="label">{{ intl?.mobileNumber ?? 'Mobile' }}</div>
                 <div class="value">{{ userCard.mobileNumber ?? '-' }}</div>
             </div>
             <div class="content-email">
-                <div class="label">{{ intl.email }}</div>
+                <div class="label">{{ intl?.email ?? 'Email' }}</div>
                 <div class="value">{{ userCard.email ?? '-' }}</div>
             </div>
             <div class="content-address">
-                <div class="label">{{ intl.address }}</div>
+                <div class="label">{{ intl?.address ?? 'Address' }}</div>
                 <div class="value" [innerHTML]="userCard.address ?? '-'"></div>
             </div>
         </div>
