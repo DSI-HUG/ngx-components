@@ -10,6 +10,7 @@
     "release": {
         "projectsRelationship": "independent",
         "version": {
+            "preserveMatchingDependencyRanges": false,
             "conventionalCommits": true
         },
         "changelog": {

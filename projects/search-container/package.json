@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-search-container",
-    "version": "4.0.0",
+    "version": "20.0.0",
     "description": "HUG Angular - search-container component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -42,7 +42,7 @@
         "@angular/core": ">=21 <22",
         "@angular/forms": ">=21 <22",
         "@angular/material": ">=21 <22",
-        "@hug/ngx-core": "^4.0.0",
+        "@hug/ngx-core": "^20.0.0",
         "rxjs": "^7.8.2",
         "zone.js": "^0.16.0"
     },

@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-list-loader",
-    "version": "3.0.1",
+    "version": "20.0.0",
     "description": "HUG Angular - list loader component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",

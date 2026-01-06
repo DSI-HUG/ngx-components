@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-user-card",
-    "version": "4.0.0",
+    "version": "20.0.0",
     "description": "HUG Angular - user-card component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
