@@ -9,7 +9,7 @@ import { NgxMessageBoxDialogIntl } from './providers';
     providedIn: 'root'
 })
 export class NgxMessageBoxDialogService {
-    protected readonly intl = inject(NgxMessageBoxDialogIntl);
+    protected readonly intl = inject(NgxMessageBoxDialogIntl, { optional: true });
     private dialog = inject(MatDialog);
 
     public open$(dialogData: NgxMessageBoxDialogData | string, additionalDialogConfig?: MatDialogConfig<NgxMessageBoxDialogData>): Observable<NgxMessageBoxDialogResponse | undefined> {
@@ -25,7 +25,7 @@ export class NgxMessageBoxDialogService {
                 } else {
                     messageBoxDialogData = dialogData;
                 }
-                messageBoxDialogData.title = messageBoxDialogData.title || this.intl.confirmation; // Translate
+                messageBoxDialogData.title = messageBoxDialogData.title || this.intl?.confirmation || 'Confirmation';
 
                 const dialogConfig = {
                     panelClass: 'no-padding-dialog',

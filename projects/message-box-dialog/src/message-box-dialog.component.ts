@@ -24,7 +24,7 @@ export class NgxMessageBoxDialogComponent {
 
     protected dialogParams = inject<NgxMessageBoxDialogData>(MAT_DIALOG_DATA);
 
-    protected readonly intl = inject(NgxMessageBoxDialogIntl);
+    protected readonly intl = inject(NgxMessageBoxDialogIntl, { optional: true });
 
     protected hasControl(key: 'OK' | 'CANCEL' | 'IGNORE' | 'RETRY' | 'YES' | 'NO' | 'CONTINUE'): boolean {
         // eslint-disable-next-line no-bitwise

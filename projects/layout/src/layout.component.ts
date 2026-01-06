@@ -52,7 +52,7 @@ export class NgxLayoutComponent {
 
     @ViewChild('sideFilter') protected sideFilter?: MatDrawer;
 
-    protected readonly intl = inject(NgxLayoutIntl);
+    protected readonly intl = inject(NgxLayoutIntl, { optional: true });
     protected readonly mediaService = inject(NgxMediaService);
     protected readonly sidenavService = inject(NgxSidenavService);
     protected readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
