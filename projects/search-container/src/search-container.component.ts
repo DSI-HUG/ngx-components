@@ -48,7 +48,7 @@ export class NgxSearchContainerComponent implements AfterContentInit {
     @ContentChild('mobileSearch')
     public mobileSearch: TemplateRef<unknown> | undefined;
 
-    protected readonly intl = inject(NgxSearchContainerIntl);
+    protected readonly intl = inject(NgxSearchContainerIntl, { optional: true });
 
     protected readonly activeSearch$ = new BehaviorSubject(false);
 
@@ -57,10 +57,10 @@ export class NgxSearchContainerComponent implements AfterContentInit {
     @ContentChild(NgxSearchInputDirective)
     public set searchInput(searchInput: NgxSearchInputDirective) {
         if (!searchInput) {
-            throw new Error(this.intl.addAttSearchInput);
+            throw new Error(this.intl?.addAttSearchInput ?? 'You need to add the attribute ngx-search-input to the NgxSearchContainerComponent');
         }
         if (!searchInput.ngControl) {
-            throw new Error(this.intl.addAttNgmodel);
+            throw new Error(this.intl?.addAttNgmodel ?? 'You need to add the attribute ngModel to the NgxSearchContainerComponent');
         }
         this._searchInput = searchInput;
     }
