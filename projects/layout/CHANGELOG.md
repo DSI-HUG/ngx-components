@@ -1,3 +1,24 @@
+# 21.0.0 (2026-01-07)
+
+### ⚠️  Breaking Changes
+
+- ⚠️ align lib versions with angular ([6454157](https://github.com/DSI-HUG/ngx-components/commit/6454157))
+
+### 🚀 Features
+
+- ⚠️ align lib versions with angular ([6454157](https://github.com/DSI-HUG/ngx-components/commit/6454157))
+- **i18n:** make i18n providers optional + add retry logic on fetch file (#FC-113) ([4b9577f](https://github.com/DSI-HUG/ngx-components/commit/4b9577f))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-sidenav**: upgraded to `v21.0.0`
+- **@hug/ngx-core**: upgraded to `v21.0.0`
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+- Guillaume Marcel
+
 ## 3.1.1 (2025-10-15)
 
 ### 🐛 Fixes

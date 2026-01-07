@@ -1,3 +1,17 @@
+# 21.0.0 (2026-01-07)
+
+### ⚠️  Breaking Changes
+
+- ⚠️ align lib versions with angular ([6454157](https://github.com/DSI-HUG/ngx-components/commit/6454157))
+
+### 🚀 Features
+
+- ⚠️ align lib versions with angular ([6454157](https://github.com/DSI-HUG/ngx-components/commit/6454157))
+
+### ❤️ Thank You
+
+- Guillaume Marcel
+
 ## 3.0.2 (2025-05-12)
 
 This was a version bump only for @hug/ngx-message-box to align it with other projects, there were no code changes.

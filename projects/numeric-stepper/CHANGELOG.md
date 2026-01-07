@@ -1,3 +1,21 @@
+# 21.0.0 (2026-01-07)
+
+### ⚠️  Breaking Changes
+
+- ⚠️ align lib versions with angular ([6454157](https://github.com/DSI-HUG/ngx-components/commit/6454157))
+
+### 🚀 Features
+
+- ⚠️ align lib versions with angular ([6454157](https://github.com/DSI-HUG/ngx-components/commit/6454157))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core**: upgraded to `v21.0.0`
+
+### ❤️ Thank You
+
+- Guillaume Marcel
+
 ## 3.0.2 (2025-05-12)
 
 ### 🐛 Fixes
