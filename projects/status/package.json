@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-status",
-    "version": "4.0.0",
+    "version": "20.0.0",
     "description": "HUG Angular - status component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -42,8 +42,8 @@
         "@angular/common": ">=21 <22",
         "@angular/core": ">=21 <22",
         "@angular/material": ">=21 <22",
-        "@hug/ngx-message-box": "^3.0.2",
-        "@hug/ngx-snackbar": "^3.0.1",
+        "@hug/ngx-message-box": "^20.0.0",
+        "@hug/ngx-snackbar": "^20.0.0",
         "rxjs": "^7.8.2",
         "zone.js": "^0.16.0"
     },
