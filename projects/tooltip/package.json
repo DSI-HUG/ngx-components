@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-tooltip",
-    "version": "20.0.0",
+    "version": "21.0.0",
     "description": "HUG Angular - tooltip component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -34,7 +34,7 @@
         "@angular/common": ">=21 <22",
         "@angular/core": ">=21 <22",
         "@angular/material": ">=21 <22",
-        "@hug/ngx-core": "^20.0.0",
+        "@hug/ngx-core": "^21.0.0",
         "lodash-es": "^4.17.21",
         "rxjs": "^7.8.2",
         "zone.js": "^0.16.0"
