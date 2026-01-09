@@ -4,7 +4,9 @@
     <ul>
         @if (value()) {
             @for (format of formats; track format) {
-                <li>{{ format }}: {{ value() | date: format }}</li>
+                @for (locale of locales; track locale) {
+                    <li>{{ locale }} - {{ format }}: {{ value() | ngxDate: format }}</li>
+                }
             }
         } @else {
             <li>-</li>

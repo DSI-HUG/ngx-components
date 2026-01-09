@@ -6,3 +6,4 @@ export * from './custom-operators';
 export * from './custom-array.module';
 export * from './key-codes';
 export * from './providers';
+export * from './pipes';
