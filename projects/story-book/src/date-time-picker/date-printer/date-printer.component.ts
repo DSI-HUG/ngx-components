@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject, input, LOCALE_ID } from '@angular/core';
-import { NgxDatePipe } from '@hug/ngx-core';
+import { DateFnsPipe } from '@hug/ngx-core';
 
 @Component({
     selector: 'date-printer',
     imports: [
-        NgxDatePipe
+        DateFnsPipe
     ],
     templateUrl: './date-printer.component.html',
     styleUrl: './date-printer.component.scss',
