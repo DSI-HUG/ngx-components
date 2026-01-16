@@ -1,1 +1,1 @@
-export * from './date.pipe';
+export * from './date-fns.pipe';
