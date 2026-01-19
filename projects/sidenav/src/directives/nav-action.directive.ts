@@ -146,7 +146,6 @@ export class NavActionDirective implements OnDestroy, AfterViewInit {
                 break;
             case 'open': {
                 if (contents === null) {
-                    console.log('closePanel:');
                     this.groupService.closeAllHoverPanel();
                 } else {
                     if (!groupInfos.length) {
