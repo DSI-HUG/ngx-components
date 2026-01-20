@@ -1,13 +1,30 @@
 <div class="date-printer-container">
     <p>Actual value:</p>
 
-    <ul>
-        @if (value()) {
-            @for (format of formats; track format) {
-                <li>{{ locale }} - {{ format }}: {{ value() | dateFns: format }}</li>
-            }
-        } @else {
-            <li>-</li>
-        }
-    </ul>
+    @if (value()) {
+        <table>
+            <thead>
+                <tr>
+                    <th>DateFns ({{ locale }})</th>
+                    <th>Angular ({{ locale }})</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (format of dateFnsPatterns; track format; let i = $index) {
+                    <tr>
+                        <td>
+                            <strong>{{ format }}</strong>
+                            : {{ value() | dateFns: format }}
+                        </td>
+                        <td>
+                            <strong>{{ angularFormats[i] }}</strong>
+                            : {{ value() | date: angularFormats[i] }}
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    } @else {
+        <p>-</p>
+    }
 </div>

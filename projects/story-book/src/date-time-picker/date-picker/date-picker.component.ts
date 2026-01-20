@@ -45,7 +45,7 @@ export class DatePickerComponent {
     protected readonly hasDay: boolean;
     protected readonly hasTime: boolean;
 
-    protected dateControl = new FormControl<Date | undefined>(undefined);
+    protected dateControl = new FormControl<Date | undefined>(undefined, { nonNullable: true });
 
     private readonly matDateFormats = inject<MatDateFormats>(MAT_DATE_FORMATS);
 
