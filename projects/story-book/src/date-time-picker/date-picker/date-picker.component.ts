@@ -4,9 +4,8 @@ import { MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 import { MatDatepicker, MatDatepickerInput, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
+import { NgxDatepickerMaskDirective, NgxDatepickerWithTimeComponent } from '@hug/ngx-date-picker';
 
-import { NgxDatepickerMaskDirective } from '../../../../date-picker/src/datepicker-mask/datepicker-mask.directive';
-import { NgxDatepickerWithTimeComponent } from '../../../../date-picker/src/datepicker-with-time/datepicker-with-time.component';
 import { DatePrinterComponent } from '../date-printer/date-printer.component';
 
 export type StartView = 'month' | 'year' | 'multi-year';
@@ -46,7 +45,7 @@ export class DatePickerComponent {
     protected readonly hasDay: boolean;
     protected readonly hasTime: boolean;
 
-    protected dateControl = new FormControl<Date | undefined>(undefined);
+    protected dateControl = new FormControl<Date | undefined>(undefined, { nonNullable: true });
 
     private readonly matDateFormats = inject<MatDateFormats>(MAT_DATE_FORMATS);
 
