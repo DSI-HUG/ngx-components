@@ -20,7 +20,9 @@ describe('NgxDatePipe', () => {
             providers: [
                 { provide: MAT_DATE_LOCALE, useValue: frCH },
                 { provide: LOCALE_ID, useValue: 'fr-CH' },
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 { provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] },
                 {
                     provide: DateFnsPipe,
