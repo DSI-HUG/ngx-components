@@ -4,7 +4,7 @@
         [disabled]="forInput.disabled"
         mat-icon-button
         class="ngx-date-picker-button"
-        matTooltip="effacer"
+        [matTooltip]="intl?.erase ?? 'erase'"
         type="button"
         (click)="setValue($event, false)">
         <mat-icon>close</mat-icon>
@@ -16,7 +16,7 @@
         [disabled]="forInput.disabled"
         mat-icon-button
         class="ngx-date-picker-button"
-        matTooltip="aujourd'hui"
+        [matTooltip]="intl?.today ?? 'today'"
         type="button"
         (click)="setValue($event, true)">
         <mat-icon>today</mat-icon>
@@ -27,7 +27,7 @@
     [disabled]="forInput.disabled"
     mat-icon-button
     class="ngx-date-picker-button"
-    matTooltip="ouvrir le calendrier"
+    [matTooltip]="intl?.openCalendar ?? 'open the calendar'"
     type="button"
     (click)="openCalendar()">
     <mat-icon>date_range</mat-icon>

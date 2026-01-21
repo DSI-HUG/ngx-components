@@ -1,6 +1,8 @@
 <ng-template>
     <ngx-time-picker #timepicker class="ngx-datepicker-with-time" [(time)]="time"></ngx-time-picker>
     <div class="ngx-datepicker-with-time action-buttons">
-        <button mat-raised-button color="primary" matDatepickerApply (click)="onDateTimeClosed()">OK</button>
+        <button mat-raised-button color="primary" matDatepickerApply (click)="onDateTimeClosed()">
+            {{ intl?.ok ?? 'OK' }}
+        </button>
     </div>
 </ng-template>

@@ -20,6 +20,11 @@
         "components"
     ],
     "sideEffects": false,
+    "exports": {
+        "./translations/*": {
+            "default": "./**/*.json"
+        }
+    },
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test date-picker",
