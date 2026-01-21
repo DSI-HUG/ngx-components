@@ -5,9 +5,10 @@ import { LOCALE_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { DateFnsAdapter, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
-import { DateFnsPipe } from '@hug/ngx-core';
 import { setDefaultOptions } from 'date-fns';
 import { frCH } from 'date-fns/locale';
+
+import { DateFnsPipe } from './date-fns.pipe';
 
 describe('NgxDatePipe', () => {
 
@@ -20,9 +21,7 @@ describe('NgxDatePipe', () => {
             providers: [
                 { provide: MAT_DATE_LOCALE, useValue: frCH },
                 { provide: LOCALE_ID, useValue: 'fr-CH' },
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 { provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] },
                 {
                     provide: DateFnsPipe,
@@ -33,9 +32,14 @@ describe('NgxDatePipe', () => {
 
         pipe = TestBed.inject(DateFnsPipe);
     });
-    it('should create an instance', () => {
-        const date = new Date('2000/12/31');
-        expect(pipe.transform(date, 'P')).toEqual('31.12.2000');
+
+    it('should format Date correctly', () => {
+        const date = new Date(2025, 11, 31, 17, 46, 39, 123);
+        expect(pipe.transform(date, 'P')).toEqual('31.12.2025');
+        expect(pipe.transform(date, 'PP')).toEqual('31 déc. 2025');
+        expect(pipe.transform(date, 'Pp')).toEqual('31.12.2025, 17:46');
+        expect(pipe.transform(date, 'PPPp')).toEqual('31 décembre 2025 à 17:46');
+        expect(pipe.transform(date, 'PPPPpppp')).toEqual('mercredi 31 décembre 2025 à 17:46:39 GMT+01:00');
     });
 
 });
