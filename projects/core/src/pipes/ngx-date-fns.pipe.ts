@@ -9,9 +9,9 @@ export class NgxDateFnsPipe implements PipeTransform {
     /**
      * Pipe to format a Date using date-fns.
      *
-     * @param value - Date to format
-     * @param pattern - see https://date-fns.org/v4.1.0/docs/format
-     * @return {string} Formatted date string
+     * @param value the Date to format.
+     * @param pattern the pattern (see: https://date-fns.org/v4.1.0/docs/format).
+     * @return {string} the formatted date string.
      */
     transform(value: Date | null | undefined, pattern = 'P'): string {
         if (!value || !isDate(value)) {
