@@ -11,6 +11,8 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { set } from 'date-fns';
 import { filter, ReplaySubject, switchMap, tap } from 'rxjs';
 
+import { NgxDatePickerIntl } from '../providers';
+
 @Component({
     selector: 'ngx-datepicker-buttons',
     templateUrl: './datepicker-buttons.component.html',
@@ -31,6 +33,8 @@ export class NgxDatepickerButtonsComponent implements OnInit {
 
     protected changeDetectorRef = inject(ChangeDetectorRef);
     protected dateAdater = inject<DateAdapter<unknown>>(DateAdapter);
+    protected readonly intl = inject(NgxDatePickerIntl, { optional: true });
+
     private destroyRef = inject(DestroyRef);
 
     private _hideToday = false;

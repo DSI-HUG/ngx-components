@@ -7,6 +7,8 @@ import { NgxTimePickerComponent } from '@hug/ngx-time-picker';
 import { cloneDeep } from 'lodash-es';
 import { delay, filter, map, tap } from 'rxjs';
 
+import { NgxDatePickerIntl } from '../providers';
+
 @Component({
     selector: 'ngx-datepicker-with-time',
     templateUrl: './datepicker-with-time.component.html',
@@ -32,6 +34,8 @@ export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy 
     protected datepicker = inject<MatDatepicker<unknown>>(MatDatepicker);
     protected viewContainerRef = inject(ViewContainerRef);
     protected globalModel = inject<MatDateSelectionModel<unknown, unknown>>(MatDateSelectionModel);
+    protected readonly intl = inject(NgxDatePickerIntl, { optional: true });
+
     private destroyRef = inject(DestroyRef);
 
     private portal?: TemplatePortal;
