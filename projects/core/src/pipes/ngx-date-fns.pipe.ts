@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { format } from 'date-fns';
+import { format, isDate } from 'date-fns';
 
 @Pipe({
     name: 'ngxDateFns'
 })
-export class DateFnsPipe implements PipeTransform {
+export class NgxDateFnsPipe implements PipeTransform {
 
     /**
      * Pipe to format a Date using date-fns.
@@ -13,8 +13,8 @@ export class DateFnsPipe implements PipeTransform {
      * @param pattern - see https://date-fns.org/v4.1.0/docs/format
      * @return {string} Formatted date string
      */
-    transform(value: Date | undefined, pattern = 'P'): string {
-        if (!value) {
+    transform(value: Date | null | undefined, pattern = 'P'): string {
+        if (!value || !isDate(value)) {
             return '';
         }
         return format(value, pattern);

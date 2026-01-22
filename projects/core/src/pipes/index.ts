@@ -1,1 +1,1 @@
-export * from './date-fns.pipe';
+export * from './ngx-date-fns.pipe';

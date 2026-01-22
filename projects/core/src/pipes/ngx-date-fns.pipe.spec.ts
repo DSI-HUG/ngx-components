@@ -8,11 +8,11 @@ import { DateFnsAdapter, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns
 import { setDefaultOptions } from 'date-fns';
 import { frCH } from 'date-fns/locale';
 
-import { DateFnsPipe } from './date-fns.pipe';
+import { NgxDateFnsPipe } from './ngx-date-fns.pipe';
 
-describe('NgxDatePipe', () => {
+describe('NgxDateFnsPipe', () => {
 
-    let pipe: DateFnsPipe;
+    let pipe: NgxDateFnsPipe;
 
     beforeEach(() => {
         registerLocaleData(localeFrCH, 'fr-CH');
@@ -24,13 +24,13 @@ describe('NgxDatePipe', () => {
                 { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
                 { provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] },
                 {
-                    provide: DateFnsPipe,
-                    useClass: DateFnsPipe
+                    provide: NgxDateFnsPipe,
+                    useClass: NgxDateFnsPipe
                 }
             ]
         });
 
-        pipe = TestBed.inject(DateFnsPipe);
+        pipe = TestBed.inject(NgxDateFnsPipe);
     });
 
     it('should format Date correctly', () => {

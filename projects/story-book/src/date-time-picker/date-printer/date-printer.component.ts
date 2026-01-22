@@ -2,7 +2,7 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr-CH';
 import { ChangeDetectionStrategy, Component, inject, input, LOCALE_ID } from '@angular/core';
-import { DateFnsPipe } from '@hug/ngx-core';
+import { NgxDateFnsPipe } from '@hug/ngx-core';
 import { setDefaultOptions } from 'date-fns';
 import { frCH } from 'date-fns/locale';
 
@@ -11,7 +11,7 @@ setDefaultOptions({ locale: frCH });
 @Component({
     selector: 'date-printer',
     imports: [
-        DateFnsPipe,
+        NgxDateFnsPipe,
         DatePipe
     ],
     templateUrl: './date-printer.component.html',
