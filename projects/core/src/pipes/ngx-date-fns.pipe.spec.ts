@@ -1,6 +1,6 @@
 import { registerLocaleData } from '@angular/common';
-// eslint-disable-next-line @typescript-eslint/naming-convention
-import localeFrCH from '@angular/common/locales/fr-CH';
+import localeFrChExtra from '@angular/common/locales/extra/fr-CH';
+import localeFrCh from '@angular/common/locales/fr-CH';
 import { LOCALE_ID } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -15,12 +15,12 @@ describe('NgxDateFnsPipe', () => {
     let pipe: NgxDateFnsPipe;
 
     beforeEach(() => {
-        registerLocaleData(localeFrCH, 'fr-CH');
+        registerLocaleData(localeFrCh, 'fr-CH', localeFrChExtra);
         setDefaultOptions({ locale: frCH });
         TestBed.configureTestingModule({
             providers: [
-                { provide: MAT_DATE_LOCALE, useValue: frCH },
                 { provide: LOCALE_ID, useValue: 'fr-CH' },
+                { provide: MAT_DATE_LOCALE, useValue: frCH },
                 { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
                 { provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] },
                 {

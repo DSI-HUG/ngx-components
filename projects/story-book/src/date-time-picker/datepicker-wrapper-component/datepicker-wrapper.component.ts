@@ -6,7 +6,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatOption } from '@angu
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { DateFnsAdapter, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
-import { enUS } from 'date-fns/locale';
+import { frCH } from 'date-fns/locale';
 
 import { buildNgxMatDateFormatsFactory, NgxDateFormat } from '../../../../core/src/providers/date-format.provider';
 import { DatePickerComponent, DatePickerInputs } from '../date-picker/date-picker.component';
@@ -76,10 +76,11 @@ export class DatepickerWrapperComponent {
             }
 
             return createEnvironmentInjector([
+                { provide: LOCALE_ID, useValue: 'fr-CH' },
                 matDateFormatProvider,
                 {
                     provide: MAT_DATE_LOCALE,
-                    useValue: enUS
+                    useValue: frCH
                 },
                 {
                     provide: DateAdapter,

@@ -1,13 +1,7 @@
-/* disable @typescript-eslint/naming-convention */
-import { DatePipe, registerLocaleData } from '@angular/common';
-import localeFr from '@angular/common/locales/fr-CH';
+import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, LOCALE_ID } from '@angular/core';
 import { NgxDateFnsPipe } from '@hug/ngx-core';
-import { setDefaultOptions } from 'date-fns';
-import { frCH } from 'date-fns/locale';
 
-registerLocaleData(localeFr);
-setDefaultOptions({ locale: frCH });
 @Component({
     selector: 'date-printer',
     imports: [
