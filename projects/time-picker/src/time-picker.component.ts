@@ -113,7 +113,7 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                 return [!isNaN(hours) ? hours : 0, false] as const;
             }),
             tap(([hours, _isEvent]) => {
-                const newValue = this.value ? new Date(this.value.getTime()) : new Date();
+                const newValue = this.value ? new Date(this.value.getTime()) : set(new Date(), { hours: 0, minutes: 0, seconds: 0 });
 
                 if (hours !== undefined) {
                     newValue.setHours(hours);
@@ -141,7 +141,7 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                 return minutes && !isNaN(minutes) && minutes || 0;
             }),
             tap(minutes => {
-                const newValue = this.value ? new Date(this.value.getTime()) : new Date();
+                const newValue = this.value ? new Date(this.value.getTime()) : set(new Date(), { hours: 0, minutes: 0, seconds: 0 });
 
                 if (minutes < 0) {
                     minutes += 60;
