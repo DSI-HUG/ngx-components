@@ -38,8 +38,12 @@ describe('NgxDateFnsPipe', () => {
         expect(pipe.transform(date, 'P')).toEqual('31.12.2025');
         expect(pipe.transform(date, 'PP')).toEqual('31 déc. 2025');
         expect(pipe.transform(date, 'Pp')).toEqual('31.12.2025, 17:46');
+        expect(pipe.transform(date, 'P p')).toEqual('31.12.2025 17:46');
         expect(pipe.transform(date, 'PPPp')).toEqual('31 décembre 2025 à 17:46');
         expect(pipe.transform(date, 'PPPPpp')).toEqual('mercredi 31 décembre 2025 à 17:46:39');
+
+        const dateEpoch = date.getTime();
+        expect(pipe.transform(dateEpoch, 'PPPPpp')).toEqual('mercredi 31 décembre 2025 à 17:46:39');
     });
 
 });
