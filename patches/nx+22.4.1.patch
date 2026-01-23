@@ -1,5 +1,5 @@
 diff --git a/node_modules/nx/release/changelog-renderer/index.js b/node_modules/nx/release/changelog-renderer/index.js
-index d349e5f..f16eee6 100644
+index 1ef1fac..e529fbf 100644
 --- a/node_modules/nx/release/changelog-renderer/index.js
 +++ b/node_modules/nx/release/changelog-renderer/index.js
 @@ -45,13 +45,13 @@ class DefaultChangelogRenderer {
@@ -44,10 +44,10 @@ index d349e5f..f16eee6 100644
                  ? `**${change.scope.trim()}:** `
                  : '') +
 diff --git a/node_modules/nx/src/command-line/release/changelog.js b/node_modules/nx/src/command-line/release/changelog.js
-index 6bd7995..44dd4e4 100644
+index 08ffff6..61607ea 100644
 --- a/node_modules/nx/src/command-line/release/changelog.js
 +++ b/node_modules/nx/src/command-line/release/changelog.js
-@@ -303,6 +303,7 @@ function createAPI(overrideReleaseConfig, ignoreNxJsonConfig) {
+@@ -271,6 +271,7 @@ function createAPI(overrideReleaseConfig, ignoreNxJsonConfig) {
              if (config === false) {
                  continue;
              }
@@ -55,7 +55,7 @@ index 6bd7995..44dd4e4 100644
              const projects = args.projects?.length
                  ? // If the user has passed a list of projects, we need to use the filtered list of projects within the release group, plus any dependents
                      Array.from(releaseGraph.releaseGroupToFilteredProjects.get(releaseGroup)).flatMap((project) => {
-@@ -310,6 +311,12 @@ function createAPI(overrideReleaseConfig, ignoreNxJsonConfig) {
+@@ -278,6 +279,12 @@ function createAPI(overrideReleaseConfig, ignoreNxJsonConfig) {
                              project,
                              ...(projectsVersionData[project]?.dependentProjects.map((dep) => dep.source) || []),
                          ];
@@ -69,47 +69,50 @@ index 6bd7995..44dd4e4 100644
                  : // Otherwise, we use the full list of projects within the release group
                      releaseGroup.projects;
 diff --git a/node_modules/nx/src/command-line/release/utils/git.js b/node_modules/nx/src/command-line/release/utils/git.js
-index fbb58b6..557face 100644
+index 7302fa9..4043cfc 100644
 --- a/node_modules/nx/src/command-line/release/utils/git.js
 +++ b/node_modules/nx/src/command-line/release/utils/git.js
-@@ -475,7 +475,8 @@ function getAllAuthorsForCommit(commit) {
+@@ -531,7 +531,9 @@ function getAllAuthorsForCommit(commit) {
  }
  // https://www.conventionalcommits.org/en/v1.0.0/
  // https://regex101.com/r/FSfNvA/1
 -const ConventionalCommitRegex = /(?<type>[a-z]+)(\((?<scope>.+)\))?(?<breaking>!)?: (?<description>.+)/i;
++// TODO: to be removed when https://github.com/nrwl/nx/issues/26466 is resolved
 +// const ConventionalCommitRegex = /(?<type>[a-z]+)(\((?<scope>.+)\))?(?<breaking>!)?: (?<description>.+)/i;
 +const ConventionalCommitRegex = /(?<type>[a-z]+)(\((?<scope>.*)\))?(?<breaking>!)?: (?<description>.+)/i;
  const CoAuthoredByRegex = /co-authored-by:\s*(?<name>.+)(<(?<email>.+)>)/gim;
  // GitHub style PR references
  const PullRequestRE = /\([ a-z]*(#\d+)\s*\)/gm;
 diff --git a/node_modules/nx/src/command-line/release/utils/remote-release-clients/github.js b/node_modules/nx/src/command-line/release/utils/remote-release-clients/github.js
-index f58fa46..680fab7 100644
+index f58fa46..9955408 100644
 --- a/node_modules/nx/src/command-line/release/utils/remote-release-clients/github.js
 +++ b/node_modules/nx/src/command-line/release/utils/remote-release-clients/github.js
-@@ -115,11 +115,18 @@ class GithubRemoteReleaseClient extends remote_release_client_1.RemoteReleaseCli
+@@ -115,11 +115,19 @@ class GithubRemoteReleaseClient extends remote_release_client_1.RemoteReleaseCli
                          break;
                      }
                  }
 -                const { data } = await axios
+-                    .get(`https://ungh.cc/users/find/${email}`)
++                // TODO: needs to submit a PR for that (https://github.com/nrwl/nx/issues/26311)
 +                const emailQuery = await axios
-                     .get(`https://ungh.cc/users/find/${email}`)
-                     .catch(() => ({ data: { user: null } }));
--                if (data?.user) {
--                    meta.username = data.user.username;
++                     .get(`https://ungh.cc/users/find/${email}`)
++                     .catch(() => ({ data: { user: null } }));
 +                if (emailQuery.data?.user) {
 +                    meta.username = emailQuery.data.user.username;
 +                    break;
 +                }
 +                const authorQuery = await axios
 +                    .get(`https://ungh.cc/users/find/${authorName}`)
-+                    .catch(() => ({ data: { user: null } }));
+                     .catch(() => ({ data: { user: null } }));
+-                if (data?.user) {
+-                    meta.username = data.user.username;
 +                if (authorQuery.data?.user) {
 +                    meta.username = authorQuery.data.user.username;
                      break;
                  }
              }
 diff --git a/node_modules/nx/src/generators/utils/json.js b/node_modules/nx/src/generators/utils/json.js
-index a59bc2c..a8387f4 100644
+index a59bc2c..5ba842a 100644
 --- a/node_modules/nx/src/generators/utils/json.js
 +++ b/node_modules/nx/src/generators/utils/json.js
 @@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
@@ -121,11 +124,12 @@ index a59bc2c..a8387f4 100644
  const json_1 = require("../../utils/json");
  /**
   * Reads a json file, removes all comments and parses JSON.
-@@ -31,7 +33,9 @@ function readJson(tree, path, options) {
+@@ -31,7 +33,10 @@ function readJson(tree, path, options) {
   * @param options Optional JSON Serialize Options
   */
  function writeJson(tree, path, value, options) {
 -    const serialized = (0, json_1.serializeJson)(value, options);
++    // TODO: to be removed when https://github.com/nrwl/nx/issues/26425 is resolved
 +    // const serialized = (0, json_1.serializeJson)(value, options);
 +    const indent = options?.indent ?? detectIndent_1(tree.read(path, 'utf-8')).indent;
 +    const serialized = (0, json_1.serializeJson)(value, { ...options, indent });
@@ -133,14 +137,15 @@ index a59bc2c..a8387f4 100644
  }
  /**
 diff --git a/node_modules/nx/src/utils/json.js b/node_modules/nx/src/utils/json.js
-index 2ace40e..c415390 100644
+index 2ace40e..f992c47 100644
 --- a/node_modules/nx/src/utils/json.js
 +++ b/node_modules/nx/src/utils/json.js
-@@ -58,5 +58,6 @@ function formatParseError(input, parseError) {
+@@ -58,5 +58,7 @@ function formatParseError(input, parseError) {
   * @returns the formatted JSON representation of the object
   */
  function serializeJson(input, options) {
 -    return JSON.stringify(input, null, options?.spaces ?? 2);
++    // TODO: to be removed when https://github.com/nrwl/nx/issues/26425 is resolved
 +    // return JSON.stringify(input, null, options?.spaces ?? 2);
 +    return JSON.stringify(input, null, options?.indent ?? 2);
  }
