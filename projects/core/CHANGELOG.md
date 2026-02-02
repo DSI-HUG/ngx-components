@@ -1,3 +1,25 @@
+## 21.1.0 (2026-02-02)
+
+### 🚀 Features
+
+- **i18n:** rename Pipe ([c4ffe68](https://github.com/DSI-HUG/ngx-components/commit/c4ffe68))
+- **i18n:** add the NgxDatePipe based on date-fns ([c2ad285](https://github.com/DSI-HUG/ngx-components/commit/c2ad285))
+
+### 🐛 Fixes
+
+- **NgxDateFnsPipe:** allow to format numbers (#NGXCPTS-43) ([8dd8892](https://github.com/DSI-HUG/ngx-components/commit/8dd8892))
+- **story-book:** locale injection (#NGXCPTS-43) ([eb1896a](https://github.com/DSI-HUG/ngx-components/commit/eb1896a))
+- import of material-date-fns-adapter + pipe typo (#NGXCPTS-43) ([166a840](https://github.com/DSI-HUG/ngx-components/commit/166a840))
+
+### 📖 Documentation
+
+- **NgxDateFnsPipe:** documentation (#NGXCPTS-43) ([42fc28b](https://github.com/DSI-HUG/ngx-components/commit/42fc28b))
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+- Nathanael Martin @nathanaelmartin
+
 # 21.0.0 (2026-01-07)
 
 ### ⚠️  Breaking Changes

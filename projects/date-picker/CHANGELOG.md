@@ -1,3 +1,23 @@
+## 21.1.0 (2026-02-02)
+
+### 🚀 Features
+
+- **date-picker:** internationalisation (#NGXCPTS-43) ([809b58a](https://github.com/DSI-HUG/ngx-components/commit/809b58a))
+
+### 🐛 Fixes
+
+- NgxDateFnsPipe test (#NGXCPTS-43) ([3adafa6](https://github.com/DSI-HUG/ngx-components/commit/3adafa6))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker**: upgraded to `v21.0.1`
+- **@hug/ngx-core**: upgraded to `v21.1.0`
+
+### ❤️ Thank You
+
+- Aniata Lehartel
+- damien-guillermet @damien-guillermet
+
 # 21.0.0 (2026-01-07)
 
 ### ⚠️  Breaking Changes
