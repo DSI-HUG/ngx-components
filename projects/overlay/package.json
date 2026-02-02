@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-overlay",
-    "version": "21.0.0",
+    "version": "21.0.1",
     "description": "HUG Angular - overlay component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -33,7 +33,7 @@
         "@angular/cdk": ">=21 <22",
         "@angular/common": ">=21 <22",
         "@angular/core": ">=21 <22",
-        "@hug/ngx-core": "^21.0.0",
+        "@hug/ngx-core": "^21.1.0",
         "rxjs": "^7.8.2",
         "zone.js": "^0.16.0"
     },
