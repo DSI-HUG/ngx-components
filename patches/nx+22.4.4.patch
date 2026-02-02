@@ -44,7 +44,7 @@ index 1ef1fac..e529fbf 100644
                  ? `**${change.scope.trim()}:** `
                  : '') +
 diff --git a/node_modules/nx/src/command-line/release/changelog.js b/node_modules/nx/src/command-line/release/changelog.js
-index 08ffff6..61607ea 100644
+index 08ffff6..d302633 100644
 --- a/node_modules/nx/src/command-line/release/changelog.js
 +++ b/node_modules/nx/src/command-line/release/changelog.js
 @@ -271,6 +271,7 @@ function createAPI(overrideReleaseConfig, ignoreNxJsonConfig) {
@@ -69,7 +69,7 @@ index 08ffff6..61607ea 100644
                  : // Otherwise, we use the full list of projects within the release group
                      releaseGroup.projects;
 diff --git a/node_modules/nx/src/command-line/release/utils/git.js b/node_modules/nx/src/command-line/release/utils/git.js
-index 7302fa9..4043cfc 100644
+index 7302fa9..0e3a498 100644
 --- a/node_modules/nx/src/command-line/release/utils/git.js
 +++ b/node_modules/nx/src/command-line/release/utils/git.js
 @@ -531,7 +531,9 @@ function getAllAuthorsForCommit(commit) {
@@ -111,6 +111,45 @@ index f58fa46..9955408 100644
                      break;
                  }
              }
+diff --git a/node_modules/nx/src/command-line/release/utils/shared.js b/node_modules/nx/src/command-line/release/utils/shared.js
+index 45def06..0331e4e 100644
+--- a/node_modules/nx/src/command-line/release/utils/shared.js
++++ b/node_modules/nx/src/command-line/release/utils/shared.js
+@@ -304,16 +304,33 @@ function isAutomatedReleaseCommit(message, nxReleaseConfig) {
+ async function getCommitsRelevantToProjects(projectGraph, commits, projects, nxReleaseConfig) {
+     const projectSet = new Set(projects);
+     const relevantCommits = new Map();
++
++    // TODO: to be removed when https://github.com/nrwl/nx/issues/34211 regression 2 is resolved
++    const file_map_utils_1 = require('../../../project-graph/file-map-utils');
++    const { fileMap } = await file_map_utils_1.createFileMapUsingProjectGraph(projectGraph);
++
++    // TODO: to be removed when https://github.com/nrwl/nx/issues/34211 regression 3 is resolved
++    const filesInReleaseGroup = new Set(projects.reduce((files, p) => [...files, ...fileMap.projectFileMap[p].map((f) => f.file)], []));
++
+     for (const commit of commits) {
+         // Filter out automated release commits
+         if (isAutomatedReleaseCommit(commit.message, nxReleaseConfig)) {
+             continue;
+         }
+         // Convert affectedFiles to FileChange[] format with proper diff computation
+-        const touchedFiles = (0, file_utils_1.calculateFileChanges)(commit.affectedFiles, {
++        let touchedFiles = (0, file_utils_1.calculateFileChanges)(commit.affectedFiles, {
+             base: `${commit.shortHash}^`,
+             head: commit.shortHash,
+         });
++
++        // TODO: to be removed when https://github.com/nrwl/nx/issues/34211 regression 2 is resolved
++        touchedFiles = touchedFiles.filter(tf => !fileMap.nonProjectFiles.some(npf => npf.file === tf.file));
++
++        // TODO: to be removed when https://github.com/nrwl/nx/issues/34211 regression 3 is resolved
++        if (!touchedFiles.some(tf => filesInReleaseGroup.has(tf.file))) {
++            continue;
++        }
++
+         // Use the same affected detection logic as `nx affected`
+         const affectedGraph = await (0, affected_project_graph_1.filterAffected)(projectGraph, touchedFiles);
+         for (const projectName of Object.keys(affectedGraph.nodes)) {
 diff --git a/node_modules/nx/src/generators/utils/json.js b/node_modules/nx/src/generators/utils/json.js
 index a59bc2c..5ba842a 100644
 --- a/node_modules/nx/src/generators/utils/json.js
