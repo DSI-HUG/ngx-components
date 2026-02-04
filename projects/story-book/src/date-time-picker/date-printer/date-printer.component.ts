@@ -15,6 +15,6 @@ import { NgxDateFnsPipe } from '@hug/ngx-core';
 export class DatePrinterComponent {
     public value = input<Date | undefined>();
     protected readonly locale = inject(LOCALE_ID);
-    protected readonly dateFnsPatterns = ['PPPPpppp', 'PPPPpp', 'PPPp', 'Pp', 'PPPP', 'PPP', 'PP', 'P'];
+    protected readonly dateFnsPatterns = ['PPPPpppp', 'PPPPpp', 'PPPp', 'P p', 'PPPP', 'PPP', 'PP', 'P'];
     protected readonly angularFormats = ['full', 'long', 'medium', 'short', 'fullDate', 'longDate', 'mediumDate', 'shortDate'];
 }
