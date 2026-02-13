@@ -1,5 +1,10 @@
 import { MatDateFormats } from '@angular/material/core';
 
+/**
+ * Build a mask for given locale + date format options.
+ * @param localeId the locale.
+ * @param options the date format options.
+ */
 const buildMaskFromParts = (localeId: string, options: Intl.DateTimeFormatOptions): string => {
     const formatter = new Intl.DateTimeFormat(localeId, options);
     const parts = formatter.formatToParts(new Date());
