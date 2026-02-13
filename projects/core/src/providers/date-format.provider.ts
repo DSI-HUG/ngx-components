@@ -1,21 +1,63 @@
 import { MatDateFormats } from '@angular/material/core';
 
 /**
- * A regex to match a word and any non-whitespace around (i.e.: `Test.`, `?test!`).
+ * Build a mask for given locale + date format options.
+ * @param localeId the locale.
+ * @param options the date format options.
  */
-const anyWordPattern = /\S?[a-zA-Z]+\S?/;
+const buildMaskFromParts = (localeId: string, options: Intl.DateTimeFormatOptions): string => {
+    const formatter = new Intl.DateTimeFormat(localeId, options);
+    const parts = formatter.formatToParts(new Date());
 
-/**
- * Performs a canonical decomposition (NFD) on value + removes all glyphs (diacritic marks, signs, accents).
- * @param value the value to normalize.
- */
-const normalizeStr = (value: string): string => value.normalize('NFD').replace(/\p{Diacritic}/gu, '');
-
-const toStrWithZeroPadded = (value: number, maxLength: number): string => value.toString().padStart(maxLength, '0');
-
-const to2DigitsStr = (value: number): string => toStrWithZeroPadded(value, 2);
-
-const to4DigitsStr = (value: number): string => toStrWithZeroPadded(value, 4);
+    return parts.map(p => {
+        switch (p.type) {
+            case 'year': {
+                const y = options.year;
+                return (y === '2-digit') ? 'yy' : 'yyyy';
+            }
+            case 'month': {
+                const m = options.month;
+                if (m === '2-digit') {
+                    return 'MM';
+                }
+                if (m === 'numeric') {
+                    return 'M';
+                }
+                if (m === 'short') {
+                    return 'MMM';
+                }
+                if (m === 'long') {
+                    return 'MMMM';
+                }
+                return 'M';
+            }
+            case 'day': {
+                const d = options.day;
+                if (d === '2-digit') {
+                    return 'dd';
+                }
+                if (d === 'numeric') {
+                    return 'd';
+                }
+                return 'd';
+            }
+            case 'hour': {
+                const h = options.hour;
+                return (h === '2-digit') ? 'HH' : 'H';
+            }
+            case 'minute': {
+                const m = options.minute;
+                return (m === '2-digit') ? 'mm' : 'm';
+            }
+            case 'second': {
+                const s = options.second;
+                return (s === '2-digit') ? 'ss' : 's';
+            }
+            default:
+                return p.value;
+        }
+    }).join('');
+};
 
 /**
  * Supported date formats.
@@ -28,8 +70,6 @@ export type NgxDateFormat = 'full' | 'long' | 'short' | 'monthYearOnly' | 'yearO
  * @param dateFormat the date format to use.
  */
 export const buildNgxMatDateFormatsFactory = (dateFormat: NgxDateFormat) => (localeId: string): MatDateFormats => {
-    const date = new Date(2025, 10, 22, 7, 45, 33);
-
     const options: Intl.DateTimeFormatOptions = {
         year: 'numeric',
         hour12: false
@@ -60,25 +100,9 @@ export const buildNgxMatDateFormatsFactory = (dateFormat: NgxDateFormat) => (loc
             break;
     }
 
-    const dateStr = date.toLocaleString(localeId, options);
-    const dateYearStr = to4DigitsStr(date.getFullYear());
-    const dateInput = dateStr
-        .replace(dateYearStr, 'yyyy')
-        .replace(to2DigitsStr(date.getMonth() + 1), 'MM')
-        .replace(to2DigitsStr(date.getDate()), 'dd')
-        .replace(to2DigitsStr(date.getHours()), 'HH')
-        .replace(to2DigitsStr(date.getMinutes()), 'mm')
-        .replace(to2DigitsStr(date.getSeconds()), 'ss');
-
-    const dateStrShortMonth = date.toLocaleString(localeId, { month: 'short', year: 'numeric' });
-    const monthYearLabel = normalizeStr(dateStrShortMonth)
-        .replace(anyWordPattern, 'MMM')
-        .replace(dateYearStr, 'yyyy');
-
-    const dateStrLongMonth = date.toLocaleString(localeId, { month: 'long', year: 'numeric' });
-    const monthYearA11yLabel = normalizeStr(dateStrLongMonth)
-        .replace(anyWordPattern, 'MMMM')
-        .replace(dateYearStr, 'yyyy');
+    const dateInput = buildMaskFromParts(localeId, options);
+    const monthYearLabel = buildMaskFromParts(localeId, { month: 'short', year: 'numeric' });
+    const monthYearA11yLabel = buildMaskFromParts(localeId, { month: 'long', year: 'numeric' });
 
     const result: MatDateFormats = {
         parse: {
