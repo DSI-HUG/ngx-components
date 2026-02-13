@@ -1,3 +1,22 @@
+## 21.2.0 (2026-02-13)
+
+### 🚀 Features
+
+- **buildNgxMatDateFormatsFactory:** improve the method (#NGXCPTS-45) ([8dbfd6b](https://github.com/DSI-HUG/ngx-components/commit/8dbfd6b))
+
+### 🐛 Fixes
+
+- remove hard dependencies on font sources ([2319329](https://github.com/DSI-HUG/ngx-components/commit/2319329))
+
+### 📖 Documentation
+
+- **buildNgxMatDateFormatsFactory:** add documentation (#NGXCPTS-45) ([65ff73f](https://github.com/DSI-HUG/ngx-components/commit/65ff73f))
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+- Maxime F. @Maxouhell
+
 ## 21.1.0 (2026-02-02)
 
 ### 🚀 Features

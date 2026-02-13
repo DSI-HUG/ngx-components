@@ -1,3 +1,18 @@
+## 21.1.1 (2026-02-13)
+
+### 🐛 Fixes
+
+- **NgxDatepickerMaskDirective:** emit dateChange event when value changes (#NGXCPTS-46) ([c11080b](https://github.com/DSI-HUG/ngx-components/commit/c11080b))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker**: upgraded to `v21.0.2`
+- **@hug/ngx-core**: upgraded to `v21.2.0`
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+
 ## 21.1.0 (2026-02-02)
 
 ### 🚀 Features
