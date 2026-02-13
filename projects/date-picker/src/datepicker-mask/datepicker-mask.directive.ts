@@ -2,6 +2,7 @@ import { Directive, ElementRef, forwardRef, inject, Input, LOCALE_ID, Renderer2 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AbstractControl, NG_VALIDATORS, NgControl } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
+import { MatDatepickerInput, MatEndDate, MatStartDate } from '@angular/material/datepicker';
 import { buildNgxMatDateFormatsFactory, KeyCodes, NgxDateFormat } from '@hug/ngx-core';
 import { addDays, addHours, addMinutes, addMonths, addSeconds, addYears, isValid, parse, set } from 'date-fns';
 import { isNil } from 'lodash-es';
@@ -51,6 +52,9 @@ export class NgxDatepickerMaskDirective {
     private readonly dateFormats = inject<MatDateFormats>(MAT_DATE_FORMATS, { optional: true });
     private readonly elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
     private readonly ngControl = inject(NgControl);
+    private readonly matDatepickerInput = inject(MatDatepickerInput, { optional: true });
+    private readonly matStartDate = inject(MatStartDate, { optional: true });
+    private readonly matEndDate = inject(MatEndDate, { optional: true });
     private readonly renderer = inject(Renderer2);
     private readonly dateAdapter = inject<DateAdapter<unknown>>(DateAdapter);
     private readonly localeId = inject(LOCALE_ID);
@@ -406,20 +410,47 @@ export class NgxDatepickerMaskDirective {
     }
 
     private setValue(date: Date | undefined): void {
-        const updateDateControl = (control: AbstractControl | null, d: unknown, dateAdpater: DateAdapter<unknown>): void => {
-            if (!control || !control.value && !d) {
+        const updateDateControl = (control: AbstractControl | null,
+            newValue: unknown, adapter: DateAdapter<unknown>,
+            element: ElementRef<HTMLElement>,
+            dateInput: MatDatepickerInput<unknown> | null,
+            dateStart: MatStartDate<unknown> | null,
+            dateEnd: MatEndDate<unknown> | null
+        ): void => {
+            if (!control || !control.value && !newValue) {
                 return;
             }
-            if (!dateAdpater.sameDate(control.value, d)) {
-                control.setValue(d);
+
+            if (!adapter.sameDate(control.value, newValue)) {
+                control.setValue(newValue);
                 control.markAsDirty();
+
+                if (dateInput) {
+                    dateInput.dateChange.emit({
+                        value: newValue,
+                        targetElement: element.nativeElement,
+                        target: dateInput
+                    });
+                } else if (dateStart) {
+                    dateStart.dateChange.emit({
+                        value: newValue,
+                        targetElement: element.nativeElement,
+                        target: dateStart
+                    });
+                } else if (dateEnd) {
+                    dateEnd.dateChange.emit({
+                        value: newValue,
+                        targetElement: element.nativeElement,
+                        target: dateEnd
+                    });
+                }
             }
         };
 
         if (isNil(date) || isValid(date)) {
-            updateDateControl(this.ngControl.control, date, this.dateAdapter);
+            updateDateControl(this.ngControl.control, date, this.dateAdapter, this.elementRef, this.matDatepickerInput, this.matStartDate, this.matEndDate);
         } else {
-            updateDateControl(this.ngControl.control, null, this.dateAdapter);
+            updateDateControl(this.ngControl.control, null, this.dateAdapter, this.elementRef, this.matDatepickerInput, this.matStartDate, this.matEndDate);
         }
     }
 
