@@ -5,6 +5,7 @@ const yearPattern = '[0-9]{4}';
 const otherThanYearPatternToFind = '[dmMLsHXZ]+';
 const otherThanYearPatternToReplace = '[A-Za-z0-9éû]*';
 
+
 export const isMatch = (dateString: string, formatString: string, locale: Locale): boolean => isMatchFns(dateString, formatString, { locale: locale });
 
 /**
