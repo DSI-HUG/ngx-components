@@ -11,7 +11,7 @@ on:
             - '**'
         paths:
             - '.github/workflows/ci_test_message-box.yml'
-            - 'projects/message-box/**'
+            - 'projects/m2/message-box/**'
 
 concurrency:
     group: ci-test-message-box-group-${{ github.ref }}
@@ -21,7 +21,7 @@ jobs:
     ci_test_message-box:
         uses: dsi-hug/actions/.github/workflows/action.yml@v3
         with:
-            working-directory: projects/message-box
+            working-directory: projects/m2/message-box
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
             lint: true
             test: true

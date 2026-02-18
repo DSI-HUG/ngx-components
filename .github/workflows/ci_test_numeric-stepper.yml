@@ -11,7 +11,7 @@ on:
             - '**'
         paths:
             - '.github/workflows/ci_test_numeric-stepper.yml'
-            - 'projects/numeric-stepper/**'
+            - 'projects/m2/numeric-stepper/**'
 
 concurrency:
     group: ci-test-numeric-stepper-group-${{ github.ref }}
@@ -21,7 +21,7 @@ jobs:
     ci_test_numeric-stepper:
         uses: dsi-hug/actions/.github/workflows/action.yml@v3
         with:
-            working-directory: projects/numeric-stepper
+            working-directory: projects/m2/numeric-stepper
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
             lint: true
             test: true

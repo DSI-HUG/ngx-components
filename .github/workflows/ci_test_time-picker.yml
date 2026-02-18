@@ -11,7 +11,7 @@ on:
             - '**'
         paths:
             - '.github/workflows/ci_test_time-picker.yml'
-            - 'projects/time-picker/**'
+            - 'projects/m2/time-picker/**'
 
 concurrency:
     group: ci-test-time-picker-group-${{ github.ref }}
@@ -21,7 +21,7 @@ jobs:
     ci_test_time-picker:
         uses: dsi-hug/actions/.github/workflows/action.yml@v3
         with:
-            working-directory: projects/time-picker
+            working-directory: projects/m2/time-picker
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
             lint: true
             test: true

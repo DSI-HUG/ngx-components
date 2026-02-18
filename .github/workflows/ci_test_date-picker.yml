@@ -11,7 +11,7 @@ on:
             - '**'
         paths:
             - '.github/workflows/ci_test_date-picker.yml'
-            - 'projects/date-picker/**'
+            - 'projects/m2/date-picker/**'
 
 concurrency:
     group: ci-test-date-picker-group-${{ github.ref }}
@@ -21,7 +21,7 @@ jobs:
     ci_test_date-picker:
         uses: dsi-hug/actions/.github/workflows/action.yml@v3
         with:
-            working-directory: projects/date-picker
+            working-directory: projects/m2/date-picker
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
             lint: true
             test: true

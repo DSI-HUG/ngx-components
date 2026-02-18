@@ -57,7 +57,7 @@ const publishProjects = async (
     let processStatus = 0;
     if (!options.dryRun) {
         for (const project of projectsToRelease) {
-            const projectName = projects[project].root.substring('projects/'.length);
+            const projectName = projects[project].root.substring('projects/m2/'.length);
             const args = {
                 __overrides_unparsed__: `--packageRoot=./dist/ngx-${projectName}`,
                 projects: [project],
@@ -92,7 +92,7 @@ const updateProjectsDists = (
     console.log(`\n${bgBlue(' HUG ')}  ${blue('Synchronizing dist packages')}${options.dryRun ? yellow(' [dry-run]') : ''}`);
     projectsToRelease.forEach(project => {
         const projectRoot = projects[project].root;
-        const projectName = projectRoot.substring('projects/'.length);
+        const projectName = projectRoot.substring('projects/m2/'.length);
         const projectNewVersion = projectsVersionData[project].newVersion ?? '';
         const distPackageJsonPath = join('dist', `ngx-${projectName}`, 'package.json');
         const distChangelogPath = join('dist', `ngx-${projectName}`, 'CHANGELOG.md');

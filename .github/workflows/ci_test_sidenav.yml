@@ -11,7 +11,7 @@ on:
             - '**'
         paths:
             - '.github/workflows/ci_test_sidenav.yml'
-            - 'projects/sidenav/**'
+            - 'projects/m2/sidenav/**'
 
 concurrency:
     group: ci-test-sidenav-group-${{ github.ref }}
@@ -21,7 +21,7 @@ jobs:
     ci_test_sidenav:
         uses: dsi-hug/actions/.github/workflows/action.yml@v3
         with:
-            working-directory: projects/sidenav
+            working-directory: projects/m2/sidenav
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
             lint: true
             test: true

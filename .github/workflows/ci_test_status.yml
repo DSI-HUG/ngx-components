@@ -11,7 +11,7 @@ on:
             - '**'
         paths:
             - '.github/workflows/ci_test_status.yml'
-            - 'projects/status/**'
+            - 'projects/m2/status/**'
 
 concurrency:
     group: ci-test-status-group-${{ github.ref }}
@@ -21,7 +21,7 @@ jobs:
     ci_test_status:
         uses: dsi-hug/actions/.github/workflows/action.yml@v3
         with:
-            working-directory: projects/status
+            working-directory: projects/m2/status
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
             lint: true
             test: true

@@ -8,52 +8,52 @@
                 "projects/core/src"
             ],
             "@hug/ngx-date-picker": [
-                "projects/date-picker/src"
+                "projects/m2/date-picker/src"
             ],
             "@hug/ngx-layout": [
-                "projects/layout/src"
+                "projects/m2/layout/src"
             ],
             "@hug/ngx-list-loader": [
-                "projects/list-loader/src"
+                "projects/m2/list-loader/src"
             ],
             "@hug/ngx-message-box": [
-                "projects/message-box/src"
+                "projects/m2/message-box/src"
             ],
             "@hug/ngx-message-box-dialog": [
-                "projects/message-box-dialog/src"
+                "projects/m2/message-box-dialog/src"
             ],
             "@hug/ngx-numeric-stepper": [
-                "projects/numeric-stepper/src"
+                "projects/m2/numeric-stepper/src"
             ],
             "@hug/ngx-overlay": [
-                "projects/overlay/src"
+                "projects/m2/overlay/src"
             ],
             "@hug/ngx-search-container": [
-                "projects/search-container/src"
+                "projects/m2/search-container/src"
             ],
             "@hug/ngx-sidenav": [
-                "projects/sidenav/src"
+                "projects/m2/sidenav/src"
             ],
             "@hug/ngx-snackbar": [
-                "projects/snackbar/src"
+                "projects/m2/snackbar/src"
             ],
             "@hug/ngx-splitter": [
-                "projects/splitter/src"
+                "projects/m2/splitter/src"
             ],
             "@hug/ngx-status": [
-                "projects/status/src"
+                "projects/m2/status/src"
             ],
             "@hug/ngx-time-picker": [
-                "projects/time-picker/src"
+                "projects/m2/time-picker/src"
             ],
             "@hug/ngx-tooltip": [
-                "projects/tooltip/src"
+                "projects/m2/tooltip/src"
             ],
             "@hug/ngx-user-card": [
-                "projects/user-card/src"
+                "projects/m2/user-card/src"
             ],
             "@hug/ngx-user-tooltip": [
-                "projects/user-tooltip/src"
+                "projects/m2/user-tooltip/src"
             ]
         }
     }

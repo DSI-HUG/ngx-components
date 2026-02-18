@@ -27,52 +27,52 @@
                 "dist/ngx-core"
             ],
             "@hug/ngx-date-picker": [
-                "dist/ngx-date-picker"
+                "dist/m2/ngx-date-picker"
             ],
             "@hug/ngx-layout": [
-                "dist/ngx-layout"
+                "dist/m2/ngx-layout"
             ],
             "@hug/ngx-list-loader": [
-                "dist/ngx-list-loader"
+                "dist/m2/ngx-list-loader"
             ],
             "@hug/ngx-message-box": [
-                "dist/ngx-message-box"
+                "dist/m2/ngx-message-box"
             ],
             "@hug/ngx-message-box-dialog": [
-                "dist/ngx-message-box-dialog"
+                "dist/m2/ngx-message-box-dialog"
             ],
             "@hug/ngx-numeric-stepper": [
-                "dist/ngx-numeric-stepper"
+                "dist/m2/ngx-numeric-stepper"
             ],
             "@hug/ngx-overlay": [
-                "dist/ngx-overlay"
+                "dist/m2/ngx-overlay"
             ],
             "@hug/ngx-search-container": [
-                "dist/ngx-search-container"
+                "dist/m2/ngx-search-container"
             ],
             "@hug/ngx-sidenav": [
-                "dist/ngx-sidenav"
+                "dist/m2/ngx-sidenav"
             ],
             "@hug/ngx-snackbar": [
-                "dist/ngx-snackbar"
+                "dist/m2/ngx-snackbar"
             ],
             "@hug/ngx-splitter": [
-                "dist/ngx-splitter"
+                "dist/m2/ngx-splitter"
             ],
             "@hug/ngx-status": [
-                "dist/ngx-status"
+                "dist/m2/ngx-status"
             ],
             "@hug/ngx-time-picker": [
-                "dist/ngx-time-picker"
+                "dist/m2/ngx-time-picker"
             ],
             "@hug/ngx-tooltip": [
-                "dist/ngx-tooltip"
+                "dist/m2/ngx-tooltip"
             ],
             "@hug/ngx-user-card": [
-                "dist/ngx-user-card"
+                "dist/m2/ngx-user-card"
             ],
             "@hug/ngx-user-tooltip": [
-                "dist/ngx-user-tooltip"
+                "dist/m2/ngx-user-tooltip"
             ]
         }
     },

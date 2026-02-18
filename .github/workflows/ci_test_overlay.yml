@@ -11,7 +11,7 @@ on:
             - '**'
         paths:
             - '.github/workflows/ci_test_overlay.yml'
-            - 'projects/overlay/**'
+            - 'projects/m2/overlay/**'
 
 concurrency:
     group: ci-test-overlay-group-${{ github.ref }}
@@ -21,7 +21,7 @@ jobs:
     ci_test_overlay:
         uses: dsi-hug/actions/.github/workflows/action.yml@v3
         with:
-            working-directory: projects/overlay
+            working-directory: projects/m2/overlay
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
             lint: true
             test: true

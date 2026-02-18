@@ -11,7 +11,7 @@ on:
             - '**'
         paths:
             - '.github/workflows/ci_test_splitter.yml'
-            - 'projects/splitter/**'
+            - 'projects/m2/splitter/**'
 
 concurrency:
     group: ci-test-splitter-group-${{ github.ref }}
@@ -21,7 +21,7 @@ jobs:
     ci_test_splitter:
         uses: dsi-hug/actions/.github/workflows/action.yml@v3
         with:
-            working-directory: projects/splitter
+            working-directory: projects/m2/splitter
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
             lint: true
             test: true

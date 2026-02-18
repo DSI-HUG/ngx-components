@@ -1,0 +1,16 @@
+{
+    "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../../dist/m2/ngx-layout",
+    "assets": [
+        "CHANGELOG.md",
+        {
+            "input": "src/",
+            "glob": "_layout-theme.scss",
+            "output": "."
+        },
+        "translations/**/*"
+    ],
+    "lib": {
+        "entryFile": "src/index.ts"
+    }
+}

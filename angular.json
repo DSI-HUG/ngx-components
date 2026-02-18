@@ -81,21 +81,21 @@
         },
         "list-loader": {
             "projectType": "library",
-            "root": "projects/list-loader",
-            "sourceRoot": "projects/list-loader/src",
+            "root": "projects/m2/list-loader",
+            "sourceRoot": "projects/m2/list-loader/src",
             "prefix": "list-loader",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/list-loader/ng-package.json"
+                        "project": "projects/m2/list-loader/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/list-loader/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/list-loader/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/list-loader/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/list-loader/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -103,7 +103,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/list-loader/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/list-loader/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -114,21 +114,21 @@
         },
         "message-box": {
             "projectType": "library",
-            "root": "projects/message-box",
-            "sourceRoot": "projects/message-box/src",
+            "root": "projects/m2/message-box",
+            "sourceRoot": "projects/m2/message-box/src",
             "prefix": "message-box",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/message-box/ng-package.json"
+                        "project": "projects/m2/message-box/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/message-box/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/message-box/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/message-box/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/message-box/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -136,7 +136,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/message-box/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/message-box/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -147,21 +147,21 @@
         },
         "numeric-stepper": {
             "projectType": "library",
-            "root": "projects/numeric-stepper",
-            "sourceRoot": "projects/numeric-stepper/src",
+            "root": "projects/m2/numeric-stepper",
+            "sourceRoot": "projects/m2/numeric-stepper/src",
             "prefix": "numeric-stepper",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/numeric-stepper/ng-package.json"
+                        "project": "projects/m2/numeric-stepper/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/numeric-stepper/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/numeric-stepper/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/numeric-stepper/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/numeric-stepper/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -169,7 +169,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/numeric-stepper/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/numeric-stepper/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -180,21 +180,21 @@
         },
         "overlay": {
             "projectType": "library",
-            "root": "projects/overlay",
-            "sourceRoot": "projects/overlay/src",
+            "root": "projects/m2/overlay",
+            "sourceRoot": "projects/m2/overlay/src",
             "prefix": "overlay",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/overlay/ng-package.json"
+                        "project": "projects/m2/overlay/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/overlay/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/overlay/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/overlay/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/overlay/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -202,7 +202,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/overlay/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/overlay/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -213,21 +213,21 @@
         },
         "snackbar": {
             "projectType": "library",
-            "root": "projects/snackbar",
-            "sourceRoot": "projects/snackbar/src",
+            "root": "projects/m2/snackbar",
+            "sourceRoot": "projects/m2/snackbar/src",
             "prefix": "snackbar",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/snackbar/ng-package.json"
+                        "project": "projects/m2/snackbar/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/snackbar/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/snackbar/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/snackbar/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/snackbar/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -235,7 +235,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/snackbar/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/snackbar/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -246,21 +246,21 @@
         },
         "splitter": {
             "projectType": "library",
-            "root": "projects/splitter",
-            "sourceRoot": "projects/splitter/src",
+            "root": "projects/m2/splitter",
+            "sourceRoot": "projects/m2/splitter/src",
             "prefix": "splitter",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/splitter/ng-package.json"
+                        "project": "projects/m2/splitter/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/splitter/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/splitter/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/splitter/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/splitter/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -268,7 +268,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/splitter/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/splitter/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -279,21 +279,21 @@
         },
         "status": {
             "projectType": "library",
-            "root": "projects/status",
-            "sourceRoot": "projects/status/src",
+            "root": "projects/m2/status",
+            "sourceRoot": "projects/m2/status/src",
             "prefix": "status",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/status/ng-package.json"
+                        "project": "projects/m2/status/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/status/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/status/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/status/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/status/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -301,7 +301,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/status/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/status/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -312,21 +312,21 @@
         },
         "time-picker": {
             "projectType": "library",
-            "root": "projects/time-picker",
-            "sourceRoot": "projects/time-picker/src",
+            "root": "projects/m2/time-picker",
+            "sourceRoot": "projects/m2/time-picker/src",
             "prefix": "time-picker",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/time-picker/ng-package.json"
+                        "project": "projects/m2/time-picker/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/time-picker/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/time-picker/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/time-picker/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/time-picker/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -334,7 +334,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/time-picker/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/time-picker/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -345,21 +345,21 @@
         },
         "tooltip": {
             "projectType": "library",
-            "root": "projects/tooltip",
-            "sourceRoot": "projects/tooltip/src",
+            "root": "projects/m2/tooltip",
+            "sourceRoot": "projects/m2/tooltip/src",
             "prefix": "tooltip",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/tooltip/ng-package.json"
+                        "project": "projects/m2/tooltip/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/tooltip/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/tooltip/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/tooltip/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/tooltip/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -367,7 +367,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/tooltip/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/tooltip/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -378,21 +378,21 @@
         },
         "sidenav": {
             "projectType": "library",
-            "root": "projects/sidenav",
-            "sourceRoot": "projects/sidenav/src",
+            "root": "projects/m2/sidenav",
+            "sourceRoot": "projects/m2/sidenav/src",
             "prefix": "lib",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/sidenav/ng-package.json"
+                        "project": "projects/m2/sidenav/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/sidenav/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/sidenav/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/sidenav/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/sidenav/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -400,7 +400,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/sidenav/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/sidenav/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -411,21 +411,21 @@
         },
         "layout": {
             "projectType": "library",
-            "root": "projects/layout",
-            "sourceRoot": "projects/layout/src",
+            "root": "projects/m2/layout",
+            "sourceRoot": "projects/m2/layout/src",
             "prefix": "lib",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/layout/ng-package.json"
+                        "project": "projects/m2/layout/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/layout/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/layout/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/layout/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/layout/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -433,7 +433,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/layout/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/layout/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -444,21 +444,21 @@
         },
         "user-card": {
             "projectType": "library",
-            "root": "projects/user-card",
-            "sourceRoot": "projects/user-card/src",
+            "root": "projects/m2/user-card",
+            "sourceRoot": "projects/m2/user-card/src",
             "prefix": "lib",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/user-card/ng-package.json"
+                        "project": "projects/m2/user-card/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/user-card/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/user-card/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/user-card/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/user-card/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -466,7 +466,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/user-card/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/user-card/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -477,21 +477,21 @@
         },
         "user-tooltip": {
             "projectType": "library",
-            "root": "projects/user-tooltip",
-            "sourceRoot": "projects/user-tooltip/src",
+            "root": "projects/m2/user-tooltip",
+            "sourceRoot": "projects/m2/user-tooltip/src",
             "prefix": "lib",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/user-tooltip/ng-package.json"
+                        "project": "projects/m2/user-tooltip/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/user-tooltip/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/user-tooltip/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/user-tooltip/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/user-tooltip/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -499,7 +499,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/user-tooltip/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/user-tooltip/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -510,21 +510,21 @@
         },
         "search-container": {
             "projectType": "library",
-            "root": "projects/search-container",
-            "sourceRoot": "projects/search-container/src",
+            "root": "projects/m2/search-container",
+            "sourceRoot": "projects/m2/search-container/src",
             "prefix": "lib",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/search-container/ng-package.json"
+                        "project": "projects/m2/search-container/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/search-container/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/search-container/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/search-container/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/search-container/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -532,7 +532,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/search-container/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/search-container/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -543,21 +543,21 @@
         },
         "message-box-dialog": {
             "projectType": "library",
-            "root": "projects/message-box-dialog",
-            "sourceRoot": "projects/message-box-dialog/src",
+            "root": "projects/m2/message-box-dialog",
+            "sourceRoot": "projects/m2/message-box-dialog/src",
             "prefix": "lib",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/message-box-dialog/ng-package.json"
+                        "project": "projects/m2/message-box-dialog/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/message-box-dialog/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/message-box-dialog/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/message-box-dialog/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/message-box-dialog/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -565,7 +565,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/message-box-dialog/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/message-box-dialog/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"
@@ -576,21 +576,21 @@
         },
         "date-picker": {
             "projectType": "library",
-            "root": "projects/date-picker",
-            "sourceRoot": "projects/date-picker/src",
+            "root": "projects/m2/date-picker",
+            "sourceRoot": "projects/m2/date-picker/src",
             "prefix": "lib",
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",
                     "options": {
-                        "project": "projects/date-picker/ng-package.json"
+                        "project": "projects/m2/date-picker/ng-package.json"
                     },
                     "configurations": {
                         "production": {
-                            "tsConfig": "projects/date-picker/tsconfig.lib.prod.json"
+                            "tsConfig": "projects/m2/date-picker/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/date-picker/tsconfig.lib.json"
+                            "tsConfig": "projects/m2/date-picker/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -598,7 +598,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/date-picker/tsconfig.spec.json",
+                        "tsConfig": "projects/m2/date-picker/tsconfig.spec.json",
                         "polyfills": [
                             "zone.js",
                             "zone.js/testing"

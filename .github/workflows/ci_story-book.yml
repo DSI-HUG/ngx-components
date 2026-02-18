@@ -9,7 +9,7 @@ on:
             - '**'
         paths:
             - '.github/workflows/ci_story-book.yml'
-            - 'projects/story-book/**'
+            - 'projects/m2/story-book/**'
 
 env:
     HUSKY: 0
@@ -26,7 +26,7 @@ jobs:
               uses: dsi-hug/actions/setup@v3
 
             - name: Build story-book
-              working-directory: projects/story-book
+              working-directory: projects/m2/story-book
               run: npm run build
 
             - name: Deploy to GitHub Pages
