@@ -18,7 +18,7 @@ First of all you have to import the asset translation files like:
     "assets": [
         ...
         {
-            "input": "node_modules/@hug/ngx-layout/translations",
+            "input": "node_modules/@hug/ngx-layout/m2/translations",
             "glob": "**/*",
             "output": "translations/ngx-layout"
         }

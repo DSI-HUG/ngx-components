@@ -1,2 +1,1 @@
-export * from './layout.component';
-export * from './providers';
+export const m3 = 'M3';

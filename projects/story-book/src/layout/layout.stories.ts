@@ -3,16 +3,14 @@ import { MatFabButton, MatIconButton } from '@angular/material/button';
 import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { NgxLayoutComponent, provideNgxLayout } from '@hug/ngx-layout/m2';
+import { provideNgxMessageBoxDialog } from '@hug/ngx-message-box-dialog';
 import { provideNgxSearchContainer } from '@hug/ngx-search-container';
+import { NgxStatusService } from '@hug/ngx-status';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
-import { provideNgxLayout } from 'projects/layout/src/providers';
-import { provideNgxMessageBoxDialog } from 'projects/message-box-dialog/src/providers';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from 'projects/search-container/src/search-container.component';
 import { provideNgxStatus } from 'projects/status/src/providers';
 
-import { NgxLayoutComponent } from '../../../layout/src/layout.component';
-import { NgxStatusService } from '../../../status/src/status.service';
 import { StorybookLayoutWrapperComponent } from './layout-wrapper.component';
 
 const meta: Meta<NgxLayoutComponent> = {
@@ -21,7 +19,6 @@ const meta: Meta<NgxLayoutComponent> = {
     decorators: [
         applicationConfig({
             providers: [
-                provideAnimations(), // Provides animations to the application
                 provideNgxLayout(),
                 provideNgxStatus(),
                 provideNgxSearchContainer(),

@@ -3,7 +3,7 @@
     "scripts": {
         "start": "cd ../../ && ng serve story-book",
         "lint": "eslint . --fix",
-        "build": "cd ../../ && ng build story-book",
+        "build": "cd ../../ && ng build story-book --debug-webpack",
         "upgrade": "npx storybook@latest upgrade"
     },
     "devDependencies": {

@@ -48,7 +48,7 @@ const config: StorybookConfig = {
         const pluginAssetsTranslation = new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: resolve(dirName, '../layout/translations'),
+                    from: resolve(dirName, '../layout/m2/translations'),
                     to: 'translations/ngx-layout'
                 },
                 {

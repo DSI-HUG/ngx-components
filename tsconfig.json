@@ -10,8 +10,8 @@
             "@hug/ngx-date-picker": [
                 "projects/date-picker/src"
             ],
-            "@hug/ngx-layout": [
-                "projects/layout/src"
+            "@hug/ngx-layout/m2": [
+                "projects/layout/m2"
             ],
             "@hug/ngx-list-loader/m2": [
                 "projects/list-loader/m2"
