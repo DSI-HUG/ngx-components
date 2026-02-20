@@ -21,7 +21,7 @@
     ],
     "sideEffects": false,
     "exports": {
-        "./translations/*": {
+        "./m2/translations/*": {
             "default": "./**/*.json"
         }
     },

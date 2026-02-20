@@ -3,17 +3,17 @@ import localeFrChExtra from '@angular/common/locales/extra/fr-CH';
 import localeFrCh from '@angular/common/locales/fr-CH';
 import { LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DateFnsAdapter, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { DateFnsAdapter, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 import { setDefaultOptions } from 'date-fns';
 import { frCH } from 'date-fns/locale';
 
-import { NgxDatepickerWithTimeComponent } from '../../../date-picker/src/datepicker-with-time/datepicker-with-time.component';
+import { NgxDatepickerWithTimeComponent } from '../../../date-picker/m2/datepicker-with-time/datepicker-with-time.component';
 import { DatepickerWrapperComponent } from './datepicker-wrapper-component/datepicker-wrapper.component';
 
 setDefaultOptions({ locale: frCH });

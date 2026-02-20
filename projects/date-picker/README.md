@@ -13,7 +13,7 @@ First of all you have to import the asset translation files like:
     "assets": [
         ...
         {
-            "input": "node_modules/@hug/ngx-date-picker/translations",
+            "input": "node_modules/@hug/ngx-date-picker/m2/translations",
             "glob": "**/*",
             "output": "translations/ngx-date-picker"
         }

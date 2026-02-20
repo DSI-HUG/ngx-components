@@ -7,8 +7,8 @@
             "@hug/ngx-core": [
                 "projects/core/src"
             ],
-            "@hug/ngx-date-picker": [
-                "projects/date-picker/src"
+            "@hug/ngx-date-picker/m2": [
+                "projects/date-picker/m2"
             ],
             "@hug/ngx-layout/m2": [
                 "projects/layout/m2"

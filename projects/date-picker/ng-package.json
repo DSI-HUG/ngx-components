@@ -3,7 +3,7 @@
     "dest": "../../dist/ngx-date-picker",
     "assets": [
         "CHANGELOG.md",
-        "translations/**/*"
+        "m2/translations/**/*"
     ],
     "lib": {
         "entryFile": "src/index.ts"
