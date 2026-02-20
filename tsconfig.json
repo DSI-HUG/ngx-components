@@ -13,8 +13,8 @@
             "@hug/ngx-layout": [
                 "projects/layout/src"
             ],
-            "@hug/ngx-list-loader": [
-                "projects/list-loader/src"
+            "@hug/ngx-list-loader/m2": [
+                "projects/list-loader/m2"
             ],
             "@hug/ngx-message-box": [
                 "projects/message-box/src"

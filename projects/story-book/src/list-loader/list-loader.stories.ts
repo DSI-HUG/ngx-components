@@ -1,6 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/angular';
 
-import { NgxListLoaderComponent } from '../../../list-loader/src/list-loader.component';
+import { NgxListLoaderComponent } from '../../../list-loader/m2/list-loader.component';
 
 
 const meta: Meta<NgxListLoaderComponent> = {

@@ -1,1 +1,1 @@
-export * from './list-loader.component';
+export const m3 = 'M3';

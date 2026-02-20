@@ -1,0 +1,29 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+
+    ngx-list-loader {
+        > .container {
+            > .spinner {
+                > .bounce1 {
+                    background-color: mat.m2-get-color-from-palette($foreground, disabled);
+                }
+
+                > .bounce2 {
+                    background-color: mat.m2-get-color-from-palette($primary, 600);
+                }
+
+                > .bounce3 {
+                    background-color: mat.m2-get-color-from-palette($accent, 500);
+                }
+            }
+
+            > .label {
+                color: mat.m2-get-color-from-palette($foreground, text);
+            }
+        }
+    }
+}
