@@ -1,6 +1,6 @@
 @use '../../../core/m2/styles/theme';
 @use '../../../core/m2/styles/themeVariables' as themeVariables;
-@use '../../../splitter/src/splitter-theme' as splitterTheme;
+@use '../../../splitter/m2/splitter-theme' as splitterTheme;
 
 @include splitterTheme.theme(themeVariables.$theme);
 

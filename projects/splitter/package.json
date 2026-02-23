@@ -21,8 +21,8 @@
     ],
     "sideEffects": false,
     "exports": {
-        ".": {
-            "sass": "./_splitter-theme.scss"
+        "./m2": {
+            "sass": "./m2/_splitter-theme.scss"
         }
     },
     "scripts": {

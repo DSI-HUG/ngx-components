@@ -1,3 +1,1 @@
-export * from './splitter-direction-type';
-export * from './split-area.directive';
-export * from './splitter.component';
+export const m3 = 'M3';

@@ -37,8 +37,8 @@
             "@hug/ngx-snackbar/m2": [
                 "projects/snackbar/m2"
             ],
-            "@hug/ngx-splitter": [
-                "projects/splitter/src"
+            "@hug/ngx-splitter/m2": [
+                "projects/splitter/m2"
             ],
             "@hug/ngx-status": [
                 "projects/status/src"

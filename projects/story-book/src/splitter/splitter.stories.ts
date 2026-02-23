@@ -2,21 +2,15 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
-import { NgxSplitAreaDirective } from '../../../splitter/src/split-area.directive';
-import { NgxSplitterComponent } from '../../../splitter/src/splitter.component';
+import { NgxSplitAreaDirective } from '../../../splitter/m2/split-area.directive';
+import { NgxSplitterComponent } from '../../../splitter/m2/splitter.component';
 
 const meta: Meta<NgxSplitterComponent> = {
     title: 'Components/Splitter',
     component: NgxSplitterComponent,
     decorators: [
-        applicationConfig({
-            providers: [
-                provideAnimations() // Provides animations to the application
-            ]
-        }),
         moduleMetadata({
             imports: [
                 NgxSplitAreaDirective
