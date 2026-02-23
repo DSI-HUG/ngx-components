@@ -1,2 +1,1 @@
-export * from './search-container.component';
-export { NgxSearchContainerIntl, provideNgxSearchContainer } from './providers';
+export const m3 = 'M3';

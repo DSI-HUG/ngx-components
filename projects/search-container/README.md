@@ -13,7 +13,7 @@ First of all you have to import the asset translation files like:
     "assets": [
         ...
         {
-            "input": "node_modules/@hug/ngx-search-container/translations",
+            "input": "node_modules/@hug/ngx-search-container/m2/translations",
             "glob": "**/*",
             "output": "translations/ngx-search-container"
         }

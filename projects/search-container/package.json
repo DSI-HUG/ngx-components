@@ -21,10 +21,10 @@
     ],
     "sideEffects": false,
     "exports": {
-        ".": {
-            "sass": "./_search-container-theme.scss"
+        "./m2": {
+            "sass": "./m2/_search-container-theme.scss"
         },
-        "./translations/*": {
+        "./m2/translations/*": {
             "default": "./**/*.json"
         }
     },

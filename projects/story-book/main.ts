@@ -60,7 +60,7 @@ const config: StorybookConfig = {
                     to: 'translations/ngx-user-card'
                 },
                 {
-                    from: resolve(dirName, '../search-container/translations'),
+                    from: resolve(dirName, '../search-container/m2/translations'),
                     to: 'translations/ngx-search-container'
                 },
                 {

@@ -28,8 +28,8 @@
             "@hug/ngx-overlay/m2": [
                 "projects/overlay/m2"
             ],
-            "@hug/ngx-search-container": [
-                "projects/search-container/src"
+            "@hug/ngx-search-container/m2": [
+                "projects/search-container/m2"
             ],
             "@hug/ngx-sidenav/m2": [
                 "projects/sidenav/m2"

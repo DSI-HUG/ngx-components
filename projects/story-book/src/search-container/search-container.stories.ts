@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatList, MatListItem } from '@angular/material/list';
 import { MatTooltip } from '@angular/material/tooltip';
-import { NgxSearchContainerIntl, provideNgxSearchContainer } from '@hug/ngx-search-container';
+import { NgxSearchContainerIntl, provideNgxSearchContainer } from '@hug/ngx-search-container/m2';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../search-container/src/search-container.component';
+import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../search-container/m2/search-container.component';
 
 @Injectable()
 export class CustomNgxSearchContainerIntl extends NgxSearchContainerIntl {
