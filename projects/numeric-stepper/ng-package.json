@@ -4,9 +4,9 @@
     "assets": [
         "CHANGELOG.md",
         {
-            "input": "src/",
+            "input": "m2/",
             "glob": "_numeric-stepper-theme.scss",
-            "output": "."
+            "output": "./m2"
         }
     ],
     "lib": {

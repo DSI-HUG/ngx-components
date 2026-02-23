@@ -1,1 +1,1 @@
-export * from './numeric-stepper.component';
+export const m3 = 'M3';

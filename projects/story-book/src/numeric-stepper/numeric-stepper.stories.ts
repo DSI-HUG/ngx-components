@@ -4,7 +4,7 @@ import { MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/
 import { MatInput } from '@angular/material/input';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-import { NgxNumericStepperComponent } from '../../../numeric-stepper/src/numeric-stepper.component';
+import { NgxNumericStepperComponent } from '../../../numeric-stepper/m2/numeric-stepper.component';
 
 const meta: Meta<NgxNumericStepperComponent> = {
     title: 'Components/Numeric Stepper',

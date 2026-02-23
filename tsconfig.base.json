@@ -41,8 +41,8 @@
             "@hug/ngx-message-box-dialog": [
                 "dist/ngx-message-box-dialog"
             ],
-            "@hug/ngx-numeric-stepper": [
-                "dist/ngx-numeric-stepper"
+            "@hug/ngx-numeric-stepper/m2": [
+                "dist/ngx-numeric-stepper/m2"
             ],
             "@hug/ngx-overlay": [
                 "dist/ngx-overlay"

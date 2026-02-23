@@ -5,7 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
+import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper/m2';
 import { set } from 'date-fns';
 import { debounceTime, distinctUntilChanged, EMPTY, map, mergeWith, Subject, switchMap, tap, timer } from 'rxjs';
 

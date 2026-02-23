@@ -21,8 +21,8 @@
     ],
     "sideEffects": false,
     "exports": {
-        ".": {
-            "sass": "./_numeric-stepper-theme.scss"
+        "./m2": {
+            "sass": "./m2/_numeric-stepper-theme.scss"
         }
     },
     "scripts": {
