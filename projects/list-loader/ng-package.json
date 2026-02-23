@@ -4,11 +4,6 @@
     "assets": [
         "CHANGELOG.md",
         {
-            "input": "src/",
-            "glob": "_list-loader-theme.scss",
-            "output": "."
-        },
-        {
             "input": "m2/",
             "glob": "_list-loader-theme.scss",
             "output": "./m2"
