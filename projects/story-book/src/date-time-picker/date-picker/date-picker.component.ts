@@ -4,7 +4,7 @@ import { MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 import { MatDatepicker, MatDatepickerInput, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { NgxDatepickerMaskDirective, NgxDatepickerWithTimeComponent } from '@hug/ngx-date-picker';
+import { NgxDatepickerMaskDirective, NgxDatepickerWithTimeComponent } from '@hug/ngx-date-picker/m2';
 
 import { DatePrinterComponent } from '../date-printer/date-printer.component';
 

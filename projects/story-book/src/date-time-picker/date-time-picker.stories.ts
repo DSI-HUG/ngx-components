@@ -13,7 +13,7 @@ import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 import { setDefaultOptions } from 'date-fns';
 import { frCH } from 'date-fns/locale';
 
-import { NgxDatepickerWithTimeComponent } from '../../../date-picker/src/datepicker-with-time/datepicker-with-time.component';
+import { NgxDatepickerWithTimeComponent } from '../../../date-picker/m2/datepicker-with-time/datepicker-with-time.component';
 import { DatepickerWrapperComponent } from './datepicker-wrapper-component/datepicker-wrapper.component';
 
 setDefaultOptions({ locale: frCH });
