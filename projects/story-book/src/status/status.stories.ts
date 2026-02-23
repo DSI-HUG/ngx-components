@@ -2,7 +2,7 @@ import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 import { provideNgxStatus } from 'projects/status/src/providers';
 
-import { NgxSnackbarComponent } from '../../../snackbar/src/snackbar.component';
+import { NgxSnackbarComponent } from '../../../snackbar/m2/snackbar.component';
 import { NgxStatusComponent } from '../../../status/src/status.component';
 import { NgxStatusService } from '../../../status/src/status.service';
 

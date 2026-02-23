@@ -1,1 +1,1 @@
-export * from './snackbar.component';
+export const m3 = 'M3';

@@ -1,6 +1,6 @@
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-import { NgxSnackbarComponent } from '../../../snackbar/src/snackbar.component';
+import { NgxSnackbarComponent } from '../../../snackbar/m2/snackbar.component';
 
 const meta: Meta<NgxSnackbarComponent> = {
     title: 'Components/Snackbar',

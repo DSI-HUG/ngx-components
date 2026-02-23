@@ -56,8 +56,8 @@
             "@hug/ngx-sidenav/m2": [
                 "dist/ngx-sidenav/m2"
             ],
-            "@hug/ngx-snackbar": [
-                "dist/ngx-snackbar"
+            "@hug/ngx-snackbar/m2": [
+                "dist/ngx-snackbar/m2"
             ],
             "@hug/ngx-splitter": [
                 "dist/ngx-splitter"

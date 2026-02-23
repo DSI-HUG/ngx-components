@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, EventEmitter, inject, I
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { NgxSnackbarComponent } from '@hug/ngx-snackbar';
+import { NgxSnackbarComponent } from '@hug/ngx-snackbar/m2';
 import { catchError, EMPTY, Subject, switchMap, throttleTime } from 'rxjs';
 
 import { NgxStatusIntl } from './providers';

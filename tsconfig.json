@@ -34,8 +34,8 @@
             "@hug/ngx-sidenav/m2": [
                 "projects/sidenav/m2"
             ],
-            "@hug/ngx-snackbar": [
-                "projects/snackbar/src"
+            "@hug/ngx-snackbar/m2": [
+                "projects/snackbar/m2"
             ],
             "@hug/ngx-splitter": [
                 "projects/splitter/src"
