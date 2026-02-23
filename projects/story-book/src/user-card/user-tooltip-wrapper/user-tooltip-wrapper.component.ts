@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatChip } from '@angular/material/chips';
 import { NgxTooltipDirective } from '@hug/ngx-tooltip';
 import { NgxUserCard } from '@hug/ngx-user-card';
-import { NgxUserTooltipService } from '@hug/ngx-user-tooltip';
+import { NgxUserTooltipService } from '@hug/ngx-user-tooltip/m2';
 import { Observable } from 'rxjs';
 
 
