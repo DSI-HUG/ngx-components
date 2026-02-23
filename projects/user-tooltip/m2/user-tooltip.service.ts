@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
-import { NgxTooltipService } from '@hug/ngx-tooltip';
+import { NgxTooltipService } from '@hug/ngx-tooltip/m2';
 import { NgxUserCard } from '@hug/ngx-user-card';
 import { from, map, Observable } from 'rxjs';
 

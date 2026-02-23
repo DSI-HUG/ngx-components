@@ -46,8 +46,8 @@
             "@hug/ngx-time-picker/m2": [
                 "projects/time-picker/m2"
             ],
-            "@hug/ngx-tooltip": [
-                "projects/tooltip/src"
+            "@hug/ngx-tooltip/m2": [
+                "projects/tooltip/m2"
             ],
             "@hug/ngx-user-card": [
                 "projects/user-card/src"

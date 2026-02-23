@@ -1,4 +1,1 @@
-export * from './tooltip.model';
-export * from './tooltip-component.interface';
-export * from './tooltip.service';
-export * from './tooltip.directive';
+export const m3 = 'M3';
