@@ -21,9 +21,6 @@
     ],
     "sideEffects": false,
     "exports": {
-        ".": {
-            "sass": "./_list-loader-theme.scss"
-        },
         "./m2": {
             "sass": "./m2/_list-loader-theme.scss"
         }

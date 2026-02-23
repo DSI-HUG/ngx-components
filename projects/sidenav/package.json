@@ -21,9 +21,6 @@
     ],
     "sideEffects": false,
     "exports": {
-        ".": {
-            "sass": "./_sidenav-theme.scss"
-        },
         "./m2": {
             "sass": "./m2/_sidenav-theme.scss"
         }

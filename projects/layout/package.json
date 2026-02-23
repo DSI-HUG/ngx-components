@@ -22,7 +22,7 @@
     "sideEffects": false,
     "exports": {
         "./m2": {
-            "sass": "./_layout-theme.scss"
+            "sass": "./m2/_layout-theme.scss"
         },
         "./m2/translations/*": {
             "default": "./**/*.json"

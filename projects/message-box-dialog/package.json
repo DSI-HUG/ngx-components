@@ -22,7 +22,7 @@
     "sideEffects": false,
     "exports": {
         "./m2": {
-            "sass": "./_message-box-dialog-theme.scss"
+            "sass": "./m2/_message-box-dialog-theme.scss"
         },
         "./m2/translations/*": {
             "default": "./**/*.json"
