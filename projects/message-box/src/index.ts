@@ -1,2 +1,1 @@
-export * from './message-box.component';
-export * from './message-box.model';
+export const m3 = 'M3';

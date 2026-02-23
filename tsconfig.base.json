@@ -35,8 +35,8 @@
             "@hug/ngx-list-loader": [
                 "dist/ngx-list-loader"
             ],
-            "@hug/ngx-message-box": [
-                "dist/ngx-message-box"
+            "@hug/ngx-message-box/m2": [
+                "dist/ngx-message-box/m2"
             ],
             "@hug/ngx-message-box-dialog": [
                 "dist/ngx-message-box-dialog"

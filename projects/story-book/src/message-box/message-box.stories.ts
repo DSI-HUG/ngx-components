@@ -1,6 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/angular';
 
-import { NgxMessageBoxComponent } from '../../../message-box/src/message-box.component';
+import { NgxMessageBoxComponent } from '../../../message-box/m2/message-box.component';
 
 const meta: Meta<NgxMessageBoxComponent> = {
     title: 'Components/MessageBox',

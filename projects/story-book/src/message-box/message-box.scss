@@ -1,6 +1,6 @@
 @use '../../../core/m2/styles/theme';
 @use '../../../core/m2/styles/themeVariables' as themeVariables;
-@use '../../../message-box/src/message-box-theme' as messageBoxTheme;
+@use '../../../message-box/m2/message-box-theme' as messageBoxTheme;
 
 @include messageBoxTheme.theme(themeVariables.$theme);
 

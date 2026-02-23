@@ -23,6 +23,9 @@
     "exports": {
         ".": {
             "sass": "./_message-box-theme.scss"
+        },
+        "./m2": {
+            "sass": "./m2/_message-box-theme.scss"
         }
     },
     "scripts": {

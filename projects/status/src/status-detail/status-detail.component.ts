@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@
 import { MatIconButton } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
-import { NgxMessageBoxComponent, NgxMessageBoxType } from '@hug/ngx-message-box';
+import { NgxMessageBoxComponent, NgxMessageBoxType } from '@hug/ngx-message-box/m2';
 
 import { NgxStatusIntl } from '../providers';
 import { NgxStatus } from '../status.model';

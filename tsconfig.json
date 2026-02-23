@@ -16,8 +16,8 @@
             "@hug/ngx-list-loader/m2": [
                 "projects/list-loader/m2"
             ],
-            "@hug/ngx-message-box": [
-                "projects/message-box/src"
+            "@hug/ngx-message-box/m2": [
+                "projects/message-box/m2"
             ],
             "@hug/ngx-message-box-dialog": [
                 "projects/message-box-dialog/src"
