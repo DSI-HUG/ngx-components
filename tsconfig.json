@@ -25,8 +25,8 @@
             "@hug/ngx-numeric-stepper/m2": [
                 "projects/numeric-stepper/m2"
             ],
-            "@hug/ngx-overlay": [
-                "projects/overlay/src"
+            "@hug/ngx-overlay/m2": [
+                "projects/overlay/m2"
             ],
             "@hug/ngx-search-container": [
                 "projects/search-container/src"

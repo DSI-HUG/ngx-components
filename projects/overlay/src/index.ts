@@ -1,2 +1,1 @@
-export * from './overlay.component';
-export * from './connection-position-pair';
+export const m3 = 'M3';

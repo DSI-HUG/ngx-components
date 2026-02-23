@@ -6,7 +6,7 @@ import { MatInput } from '@angular/material/input';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-import { NgxOverlayComponent } from '../../../overlay/src/overlay.component';
+import { NgxOverlayComponent } from '../../../overlay/m2/overlay.component';
 
 const meta: Meta<NgxOverlayComponent> = {
     title: 'Components/Overlay',
