@@ -64,7 +64,7 @@ const config: StorybookConfig = {
                     to: 'translations/ngx-search-container'
                 },
                 {
-                    from: resolve(dirName, '../message-box-dialog/translations'),
+                    from: resolve(dirName, '../message-box-dialog/m2/translations'),
                     to: 'translations/ngx-message-box-dialog'
                 }
             ]
