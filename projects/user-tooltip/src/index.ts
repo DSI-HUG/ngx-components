@@ -1,2 +1,1 @@
-export * from './user-tooltip.component';
-export * from './user-tooltip.service';
+export const m3 = 'M3';
