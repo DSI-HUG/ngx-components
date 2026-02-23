@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxTooltipComponentInterface } from '@hug/ngx-tooltip/m2';
-import { NgxUserCard, NgxUserCardComponent } from '@hug/ngx-user-card';
+import { NgxUserCard, NgxUserCardComponent } from '@hug/ngx-user-card/m2';
 
 @Component({
     selector: 'ngx-user-tooltip',

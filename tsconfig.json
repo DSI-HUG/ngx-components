@@ -49,8 +49,8 @@
             "@hug/ngx-tooltip/m2": [
                 "projects/tooltip/m2"
             ],
-            "@hug/ngx-user-card": [
-                "projects/user-card/src"
+            "@hug/ngx-user-card/m2": [
+                "projects/user-card/m2"
             ],
             "@hug/ngx-user-tooltip/m2": [
                 "projects/user-tooltip/m2"

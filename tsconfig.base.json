@@ -71,8 +71,8 @@
             "@hug/ngx-tooltip": [
                 "dist/ngx-tooltip"
             ],
-            "@hug/ngx-user-card": [
-                "dist/ngx-user-card"
+            "@hug/ngx-user-card/m2": [
+                "dist/ngx-user-card/m2"
             ],
             "@hug/ngx-user-tooltip": [
                 "dist/ngx-user-tooltip"

@@ -1,8 +1,8 @@
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
-import { provideNgxUserCard } from '@hug/ngx-user-card';
+import { provideNgxUserCard } from '@hug/ngx-user-card/m2';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-import { NgxUserCardComponent } from '../../../user-card/src/user-card.component';
+import { NgxUserCardComponent } from '../../../user-card/m2/user-card.component';
 import { UserTooltipWrapperComponent } from './user-tooltip-wrapper/user-tooltip-wrapper.component';
 
 

@@ -56,7 +56,7 @@ const config: StorybookConfig = {
                     to: 'translations/ngx-status'
                 },
                 {
-                    from: resolve(dirName, '../user-card/translations'),
+                    from: resolve(dirName, '../user-card/m2/translations'),
                     to: 'translations/ngx-user-card'
                 },
                 {

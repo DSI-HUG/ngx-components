@@ -21,10 +21,10 @@
     ],
     "sideEffects": false,
     "exports": {
-        ".": {
-            "sass": "./_user-card-theme.scss"
+        "./m2": {
+            "sass": "./m2/_user-card-theme.scss"
         },
-        "./translations/*": {
+        "./m2/translations/*": {
             "default": "./**/*.json"
         }
     },

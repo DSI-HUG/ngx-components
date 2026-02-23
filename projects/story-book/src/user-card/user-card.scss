@@ -3,7 +3,7 @@
 @use '../../../core/m2/styles/mixins/icon-theme' as iconTheme;
 @use '../../../core/m2/styles/mixins/menu-theme' as menuTheme;
 @use '../../../core/m2/styles/themeVariables' as themeVariables;
-@use '../../../user-card/src/user-card-theme' as userCardTheme;
+@use '../../../user-card/m2/user-card-theme' as userCardTheme;
 
 @include userCardTheme.theme(themeVariables.$theme);
 @include iconTheme.theme(themeVariables.$theme);

@@ -13,7 +13,7 @@ First of all you have to import the asset translation files like:
     "assets": [
         ...
         {
-            "input": "node_modules/@hug/ngx-user-card/translations",
+            "input": "node_modules/@hug/ngx-user-card/m2/translations",
             "glob": "**/*",
             "output": "translations/ngx-user-card"
         }

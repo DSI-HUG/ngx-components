@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, Input, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatChip } from '@angular/material/chips';
-import { NgxUserCard } from '@hug/ngx-user-card';
+import { NgxUserCard } from '@hug/ngx-user-card/m2';
 import { NgxUserTooltipService } from '@hug/ngx-user-tooltip/m2';
 import { NgxTooltipDirective } from 'projects/tooltip/m2';
 import { Observable } from 'rxjs';
