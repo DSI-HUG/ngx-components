@@ -19,8 +19,8 @@
             "@hug/ngx-message-box/m2": [
                 "projects/message-box/m2"
             ],
-            "@hug/ngx-message-box-dialog": [
-                "projects/message-box-dialog/src"
+            "@hug/ngx-message-box-dialog/m2": [
+                "projects/message-box-dialog/m2"
             ],
             "@hug/ngx-numeric-stepper": [
                 "projects/numeric-stepper/src"

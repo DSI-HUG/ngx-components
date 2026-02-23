@@ -6,7 +6,7 @@
         {
             "input": "m2/",
             "glob": "_layout-theme.scss",
-            "output": "."
+            "output": "./m2"
         },
         "m2/translations/**/*"
     ],

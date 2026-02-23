@@ -7,7 +7,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutComponent } from '../../../layout/m2/layout.component';
-import { NgxMessageBoxDialogService } from '../../../message-box-dialog/src/message-box-dialog.service';
+import { NgxMessageBoxDialogService } from '../../../message-box-dialog/m2/message-box-dialog.service';
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../search-container/src/search-container.component';
 import { NgxStatusService } from '../../../status/src/status.service';
 

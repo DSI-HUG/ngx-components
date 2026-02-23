@@ -4,11 +4,11 @@
     "assets": [
         "CHANGELOG.md",
         {
-            "input": "src/",
+            "input": "m2/",
             "glob": "_message-box-dialog-theme.scss",
-            "output": "."
+            "output": "./m2"
         },
-        "translations/**/*"
+        "m2/translations/**/*"
     ],
     "lib": {
         "entryFile": "src/index.ts"
