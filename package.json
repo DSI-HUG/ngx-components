@@ -5,6 +5,7 @@
         "ncu": "npx npm-check-updates -i --dep=dev,peer,optional,prod --format=group --packageFile='{,projects/**/}package.json' --no-deprecated",
         "prepare": "husky || true",
         "new-package": "ng g .:new-package",
+        "story-book": "ng serve story-book",
         "prettier": "prettier . --write",
         "lint": "nx run-many -t lint --verbose --exclude=story-book",
         "test:ci": "nx run-many -t test:ci --exclude=story-book",
