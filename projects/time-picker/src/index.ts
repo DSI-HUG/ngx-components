@@ -1,1 +1,1 @@
-export * from './time-picker.component';
+export const m3 = 'M3';

@@ -65,8 +65,8 @@
             "@hug/ngx-status": [
                 "dist/ngx-status"
             ],
-            "@hug/ngx-time-picker": [
-                "dist/ngx-time-picker"
+            "@hug/ngx-time-picker/m2": [
+                "dist/ngx-time-picker/m2"
             ],
             "@hug/ngx-tooltip": [
                 "dist/ngx-tooltip"

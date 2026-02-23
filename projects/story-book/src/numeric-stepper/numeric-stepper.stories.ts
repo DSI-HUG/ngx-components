@@ -2,8 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxNumericStepperComponent } from '../../../numeric-stepper/src/numeric-stepper.component';
 
@@ -11,11 +10,6 @@ const meta: Meta<NgxNumericStepperComponent> = {
     title: 'Components/Numeric Stepper',
     component: NgxNumericStepperComponent,
     decorators: [
-        applicationConfig({
-            providers: [
-                provideAnimations() // Provides animations to the application
-            ]
-        }),
         moduleMetadata({
             imports: [
                 MatLabel, MatInput, MatPrefix, MatSuffix, MatFormField, FormsModule

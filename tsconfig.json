@@ -43,8 +43,8 @@
             "@hug/ngx-status": [
                 "projects/status/src"
             ],
-            "@hug/ngx-time-picker": [
-                "projects/time-picker/src"
+            "@hug/ngx-time-picker/m2": [
+                "projects/time-picker/m2"
             ],
             "@hug/ngx-tooltip": [
                 "projects/tooltip/src"
