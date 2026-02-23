@@ -7,7 +7,7 @@ import { MatDrawer, MatDrawerContainer, MatDrawerContent } from '@angular/materi
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatTooltip } from '@angular/material/tooltip';
 import { NgxMediaService } from '@hug/ngx-core';
-import { NgxSidenavService } from '@hug/ngx-sidenav';
+import { NgxSidenavService } from '@hug/ngx-sidenav/m2';
 
 import { NgxLayoutIntl } from './providers';
 

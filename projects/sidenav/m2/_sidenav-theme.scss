@@ -1,0 +1,55 @@
+@use '@angular/material' as mat;
+
+@mixin sidenav-theme($theme) {
+    $primary: map-get($theme, primary);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    .mat-drawer-container {
+        &.sidenav-light {
+            .mat-sidenav {
+                .header {
+                    background: mat.m2-get-color-from-palette($primary);
+
+                    .header-menu-btn [fontIcon] {
+                        color: mat.m2-get-color-from-palette($primary, default-contrast);
+                    }
+                }
+            }
+        }
+
+        .mat-sidenav {
+            .header {
+                background: mat.m2-get-color-from-palette($background, background);
+                border-bottom: 1px solid mat.m2-get-color-from-palette($foreground, divider);
+            }
+
+            .sidenav-menu {
+                border-right: 1px solid mat.m2-get-color-from-palette($foreground, divider);
+
+                .mat-list-item {
+                    &.active {
+                        .mat-list-text,
+                        .mat-list-icon {
+                            color: mat.m2-get-color-from-palette($primary) !important;
+                        }
+
+                        .mat-icon {
+                            font-variation-settings: 'FILL' 1;
+                        }
+                    }
+
+                    .mat-list-item-content {
+                        .mat-list-icon {
+                            color: mat.m2-get-color-from-palette($foreground, icons);
+                        }
+
+                        .mat-list-text {
+                            color: mat.m2-get-color-from-palette($foreground, text);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

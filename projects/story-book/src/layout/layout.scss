@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
-@use '../../../core/src/styles/theme';
-@use '../../../core/src/styles/themeVariables' as themeVariables;
+@use '../../../core/m2/styles/theme';
+@use '../../../core/m2/styles/themeVariables' as themeVariables;
 @use '../../../layout/m2/layout-theme' as layoutTheme;
 @use '../../../status/src/status-theme' as statusTheme;
 

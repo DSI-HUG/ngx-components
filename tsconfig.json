@@ -31,8 +31,8 @@
             "@hug/ngx-search-container": [
                 "projects/search-container/src"
             ],
-            "@hug/ngx-sidenav": [
-                "projects/sidenav/src"
+            "@hug/ngx-sidenav/m2": [
+                "projects/sidenav/m2"
             ],
             "@hug/ngx-snackbar": [
                 "projects/snackbar/src"

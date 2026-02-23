@@ -4,9 +4,9 @@
     "assets": [
         "CHANGELOG.md",
         {
-            "input": "src/styles",
+            "input": "m2/styles",
             "glob": "**/*",
-            "output": "./styles"
+            "output": "./m2/styles"
         }
     ],
     "lib": {

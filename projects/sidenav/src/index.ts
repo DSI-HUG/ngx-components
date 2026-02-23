@@ -1,1 +1,1 @@
-export * from './sidenav.service';
+export const m3 = 'M3';

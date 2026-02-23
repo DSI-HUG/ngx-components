@@ -1,8 +1,8 @@
 @use '@angular/material' as mat;
-@use '../../../core/src/styles/theme';
-@use '../../../core/src/styles/mixins/icon-theme' as iconTheme;
-@use '../../../core/src/styles/mixins/menu-theme' as menuTheme;
-@use '../../../core/src/styles/themeVariables' as themeVariables;
+@use '../../../core/m2/styles/theme';
+@use '../../../core/m2/styles/mixins/icon-theme' as iconTheme;
+@use '../../../core/m2/styles/mixins/menu-theme' as menuTheme;
+@use '../../../core/m2/styles/themeVariables' as themeVariables;
 @use '../../../list-loader/src/list-loader-theme' as listLoaderTheme;
 
 @include listLoaderTheme.theme(themeVariables.$theme);

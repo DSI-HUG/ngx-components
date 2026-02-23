@@ -53,6 +53,9 @@
             "@hug/ngx-sidenav": [
                 "dist/ngx-sidenav"
             ],
+            "@hug/ngx-sidenav/m2": [
+                "dist/ngx-sidenav/m2"
+            ],
             "@hug/ngx-snackbar": [
                 "dist/ngx-snackbar"
             ],
