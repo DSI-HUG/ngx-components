@@ -40,8 +40,8 @@
             "@hug/ngx-splitter/m2": [
                 "projects/splitter/m2"
             ],
-            "@hug/ngx-status": [
-                "projects/status/src"
+            "@hug/ngx-status/m2": [
+                "projects/status/m2"
             ],
             "@hug/ngx-time-picker/m2": [
                 "projects/time-picker/m2"

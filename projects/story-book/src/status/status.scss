@@ -1,6 +1,6 @@
 @use '../../../core/m2/styles/theme';
 @use '../../../core/m2/styles/themeVariables' as themeVariables;
-@use '../../../status/src/status-theme' as statusTheme;
+@use '../../../status/m2/status-theme' as statusTheme;
 @use '../../../message-box/m2/message-box-theme' as messageBoxTheme;
 
 @include statusTheme.theme(themeVariables.$theme);

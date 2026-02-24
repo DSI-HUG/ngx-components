@@ -13,7 +13,7 @@ First of all you have to import the asset translation files like:
     "assets": [
         ...
         {
-            "input": "node_modules/@hug/ngx-status/translations",
+            "input": "node_modules/@hug/ngx-status/m2/translations",
             "glob": "**/*",
             "output": "translations/ngx-status"
         }

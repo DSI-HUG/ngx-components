@@ -52,7 +52,7 @@ const config: StorybookConfig = {
                     to: 'translations/ngx-layout'
                 },
                 {
-                    from: resolve(dirName, '../status/translations'),
+                    from: resolve(dirName, '../status/m2/translations'),
                     to: 'translations/ngx-status'
                 },
                 {

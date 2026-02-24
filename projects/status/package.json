@@ -21,10 +21,10 @@
     ],
     "sideEffects": false,
     "exports": {
-        ".": {
-            "sass": "./_status-theme.scss"
+        "./m2": {
+            "sass": "./m2/_status-theme.scss"
         },
-        "./translations/*": {
+        "./m2/translations/*": {
             "default": "./**/*.json"
         }
     },
