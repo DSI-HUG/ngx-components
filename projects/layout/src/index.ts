@@ -1,1 +1,1 @@
-export const m3 = 'M3';
+export { NgxAppBarComponent } from './app-bar';

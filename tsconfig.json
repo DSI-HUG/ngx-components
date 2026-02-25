@@ -13,6 +13,9 @@
             "@hug/ngx-layout/m2": [
                 "projects/layout/m2"
             ],
+            "@hug/ngx-layout/*": [
+                "projects/layout/src/*"
+            ],
             "@hug/ngx-list-loader/m2": [
                 "projects/list-loader/m2"
             ],

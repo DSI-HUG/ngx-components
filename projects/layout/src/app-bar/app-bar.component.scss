@@ -1,0 +1,46 @@
+ngx-app-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 3.5rem;
+    box-sizing: border-box;
+    gap: 0.25rem;
+
+    header {
+        color: var(--mat-sys-on-surface-variant);
+
+        &.condensed {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.5rem;
+
+            mat-icon {
+                color: var(--mat-sys-outline);
+            }
+        }
+
+        .title,
+        .subtitle {
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .title {
+            font: var(--app-bar-title-font, var(--mat-sys-headline-medium));
+            letter-spacing: var(--app-bar-title-letter-spacing, var(--mat-sys-headline-medium-tracking));
+        }
+
+        .subtitle {
+            font: var(--app-bar-subtitle-font, var(--mat-sys-headline-small));
+            letter-spacing: var(--app-bar-subtitle-letter-spacing, var(--mat-sys-headline-small-tracking));
+        }
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 1;
+        gap: 0.5rem;
+    }
+}
