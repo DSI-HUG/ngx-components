@@ -1,0 +1,19 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1 1 0;
+
+    background-color: var(--mat-sys-surface-container);
+
+    padding: 1rem;
+    padding-block-start: 0rem;
+    box-sizing: border-box;
+
+    .content {
+        display: flex;
+        flex: 1 1 0;
+        overflow: hidden;
+        gap: 0.5rem;
+    }
+}

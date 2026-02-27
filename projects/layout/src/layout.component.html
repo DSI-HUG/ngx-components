@@ -1,0 +1,11 @@
+<ng-content select="ngx-app-bar"></ng-content>
+<ng-content select="ngx-main-bar"></ng-content>
+<!--
+    The ng-content's is not clearly defined yet. The potential use-cases are:
+    - Display GPD bars
+    - Display warnings
+ -->
+<ng-content></ng-content>
+<section class="content">
+    <ng-content select="ngx-panel"></ng-content>
+</section>

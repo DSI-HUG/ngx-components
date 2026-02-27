@@ -1,6 +1,7 @@
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
+import { NgxLayoutComponent } from '@hug/ngx-layout';
 import { NgxAppBarComponent } from '@hug/ngx-layout/app-bar';
 import { type Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
@@ -14,7 +15,7 @@ interface AppBarArgs {
 
 const meta: Meta<AppBarArgs> = {
     title: 'Components/Layout-m3',
-    component: NgxAppBarComponent as unknown,
+    component: NgxLayoutComponent as unknown,
     decorators: [
         moduleMetadata({
             imports: [
@@ -22,10 +23,14 @@ const meta: Meta<AppBarArgs> = {
                 MatIconButton,
                 MatButton,
                 MatTooltip,
-                NgxAppBarComponent
+                NgxAppBarComponent,
+                NgxLayoutComponent
             ]
         })
     ],
+    parameters: {
+        layout: 'fullscreen'
+    },
     argTypes: {
         mode: {
             control: 'radio',
@@ -48,6 +53,7 @@ type Story = StoryObj<AppBarArgs>;
 export const basic: Story = {
     render: args => ({
         template: `
+        <ngx-layout>
         <ngx-app-bar
         [mode]="mode"
         [title]="title"
@@ -58,7 +64,8 @@ export const basic: Story = {
             <button mat-icon-button aria-label="Home">
                 <mat-icon>home</mat-icon>
             </button>
-        </ngx-app-bar>`,
+        </ngx-app-bar>
+        </ngx-layout>`,
         props: args
     })
 };
