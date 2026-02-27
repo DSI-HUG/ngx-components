@@ -2,6 +2,7 @@ import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { NgxLayoutComponent } from '@hug/ngx-layout';
+import { NgxActionsGroupComponent } from '@hug/ngx-layout/actions-group';
 import { NgxAppBarComponent } from '@hug/ngx-layout/app-bar';
 import { type Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
@@ -24,7 +25,8 @@ const meta: Meta<AppBarArgs> = {
                 MatButton,
                 MatTooltip,
                 NgxAppBarComponent,
-                NgxLayoutComponent
+                NgxLayoutComponent,
+                NgxActionsGroupComponent
             ]
         })
     ],
@@ -54,17 +56,31 @@ export const basic: Story = {
     render: args => ({
         template: `
         <ngx-layout>
-        <ngx-app-bar
-        [mode]="mode"
-        [title]="title"
-        [subtitle]="subtitle"
-        [helpUrl]="helpUrl"
-        [withBackIcon]="withBackIcon"
-        >
-            <button mat-icon-button aria-label="Home">
-                <mat-icon>home</mat-icon>
-            </button>
-        </ngx-app-bar>
+            <ngx-app-bar
+            [mode]="mode"
+            [title]="title"
+            [subtitle]="subtitle"
+            [helpUrl]="helpUrl"
+            [withBackIcon]="withBackIcon"
+            >
+                <button mat-icon-button aria-label="Home">
+                    <mat-icon>home</mat-icon>
+                </button>
+            </ngx-app-bar>
+            <ngx-actions-group>
+                <button mat-icon-button aria-label="Filter" matTooltip="Filtres">
+                    <mat-icon>filter_list</mat-icon>
+                </button>
+                <button mat-icon-button aria-label="Columns" matTooltip="Colonnes">
+                    <mat-icon>view_column</mat-icon>
+                </button>
+                <button mat-icon-button aria-label="Settings" matTooltip="Paramètres">
+                    <mat-icon>settings</mat-icon>
+                </button>
+                <button mat-icon-button aria-label="Download" matTooltip="Télécharger">
+                    <mat-icon>download</mat-icon>
+                </button>
+            </ngx-actions-group>
         </ngx-layout>`,
         props: args
     })

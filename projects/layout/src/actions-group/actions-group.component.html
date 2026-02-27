@@ -1,0 +1,15 @@
+<div #container class="container">
+    <ng-content></ng-content>
+    @if (hiddenActions().length > 0) {
+        <button
+            mat-icon-button
+            class="more-actions-button"
+            [matMenuTriggerFor]="menuActionsGroup"
+            matTooltip="Plus d'actions">
+            <mat-icon>more_horiz</mat-icon>
+        </button>
+    }
+    <mat-menu #menuActionsGroup="matMenu" class="actions-group-menu">
+        <div #hiddenContainer></div>
+    </mat-menu>
+</div>

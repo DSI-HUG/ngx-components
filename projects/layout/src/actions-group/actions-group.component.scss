@@ -1,0 +1,24 @@
+ngx-actions-group {
+    display: flex;
+    inline-size: 100%;
+
+    .container {
+        display: flex;
+        inline-size: fit-content;
+        align-items: center;
+        gap: 0.75rem;
+        border-radius: 2rem;
+        padding: 0.25rem;
+        background-color: var(--mat-sys-surface-container-low);
+        max-width: 100%;
+        box-sizing: border-box;
+
+        .more-actions-button {
+            order: 999;
+        }
+    }
+}
+
+.actions-group-menu.mat-mdc-menu-panel {
+    padding: 0 0.75rem;
+}

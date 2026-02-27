@@ -1,11 +1,9 @@
 @use '@angular/material' as mat;
-@use './m3-themes' as m3;
 
 html {
-    font-family: Roboto, 'Helvetica Neue', sans-serif;
-
     @include mat.theme(
         (
+            color: mat.$violet-palette,
             typography: Roboto,
             density: 0
         )
