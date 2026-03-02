@@ -6,7 +6,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { NgxLayoutComponent } from '@hug/ngx-layout';
 import { NgxActionsGroupComponent } from '@hug/ngx-layout/actions-group';
 import { NgxAppBarComponent } from '@hug/ngx-layout/app-bar';
-import { NgxSearchBarContainerComponent, SearchInputDirective } from '@hug/ngx-layout/search-bar-container/';
+import { NgxSearchBarContainerComponent, NgxSearchInputDirective } from '@hug/ngx-layout/search-bar-container/';
 import { type Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { argTypesLayout } from './arg-types-layout';
@@ -26,7 +26,7 @@ const meta: Meta = {
                 NgxActionsGroupComponent,
                 NgxSearchBarContainerComponent,
                 MatInput,
-                SearchInputDirective
+                NgxSearchInputDirective
             ]
         })
     ],

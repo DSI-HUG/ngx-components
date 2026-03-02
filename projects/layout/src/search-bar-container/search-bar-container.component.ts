@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { SearchInputDirective } from './directives/search-input.directive';
+import { NgxSearchInputDirective } from './directives/search-input.directive';
 
 // type SearchBarContainerSize = 'medium' | 'small';
 
@@ -36,7 +36,7 @@ export class NgxSearchBarContainerComponent {
     protected readonly manualFoldingState = signal<boolean>(true);
     protected readonly isFolded = computed(() => this.folded() && this.manualFoldingState() && !this.searchText());
 
-    protected readonly searchInput = contentChild(SearchInputDirective);
+    protected readonly searchInput = contentChild(NgxSearchInputDirective);
     protected readonly searchText = computed(() => this.searchInput()?.value());
 
     /*

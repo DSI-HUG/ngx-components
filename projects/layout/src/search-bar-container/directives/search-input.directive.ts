@@ -10,7 +10,7 @@ import { type FormControl, NgControl } from '@angular/forms';
         '(focus)': 'blurred.set(false);'
     }
 })
-export class SearchInputDirective {
+export class NgxSearchInputDirective {
     public readonly blurred = signal<boolean>(false);
     public readonly value: Signal<string>;
 
