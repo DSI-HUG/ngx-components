@@ -31,9 +31,23 @@ export const argSearchInput: Meta['argTypes'] = {
     }
 };
 
+export const argTypesPanel: Meta['argTypes'] = {
+    appearance: {
+        control: 'radio',
+        table: { category: 'panel' },
+        options: ['default', 'transparent']
+    },
+    contentPadding: {
+        control: 'radio',
+        table: { category: 'panel' },
+        options: ['regular', 'none']
+    }
+};
+
 export const argTypesLayout: Meta['argTypes'] = {
     ...argTypesAppBar,
-    ...argSearchInput
+    ...argSearchInput,
+    ...argTypesPanel
 };
 
 

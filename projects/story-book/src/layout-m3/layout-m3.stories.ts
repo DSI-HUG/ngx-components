@@ -7,6 +7,7 @@ import { NgxLayoutComponent } from '@hug/ngx-layout';
 import { NgxActionsGroupComponent } from '@hug/ngx-layout/actions-group';
 import { NgxAppBarComponent } from '@hug/ngx-layout/app-bar';
 import { NgxMainBarComponent } from '@hug/ngx-layout/main-bar';
+import { NgxPanelComponent } from '@hug/ngx-layout/panel';
 import { NgxSearchBarContainerComponent, NgxSearchInputDirective } from '@hug/ngx-layout/search-bar-container/';
 import { type Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
@@ -28,7 +29,8 @@ const meta: Meta = {
                 NgxSearchBarContainerComponent,
                 MatInput,
                 NgxSearchInputDirective,
-                NgxMainBarComponent
+                NgxMainBarComponent,
+                NgxPanelComponent
             ]
         })
     ],
@@ -44,7 +46,9 @@ const meta: Meta = {
         subtitle: 'Subtitle',
         helpUrl: 'https://www.hug.ch/',
         withBackIcon: false,
-        folded: false
+        folded: false,
+        appearance: 'default',
+        contentPadding: 'regular'
     },
     tags: ['autodocs']
 };
@@ -55,6 +59,7 @@ type Story = StoryObj;
 export const basic: Story = {
     render: args => ({
         template: `
+        <div style="display: flex; height: 50vh;">
         <ngx-layout>
             <ngx-app-bar
             [mode]="mode"
@@ -92,7 +97,11 @@ export const basic: Story = {
                     />
                 </ngx-search-bar-container>
             </ngx-main-bar>
-        </ngx-layout>`,
+            <ngx-panel [appearance]="appearance" [content-padding]="contentPadding">
+                <p>Contenu du panneau numéro 1</p>
+            </ngx-panel>
+        </ngx-layout>
+        </div>`,
         props: args
     })
 };
