@@ -1,0 +1,52 @@
+ngx-search-bar-container {
+    display: flex;
+    align-items: center;
+    block-size: 3rem;
+    border-radius: 2rem;
+    padding-inline-start: 1.125rem;
+    padding-inline-end: 0.25rem;
+    background-color: var(--mat-sys-surface-container-high);
+    gap: 0.125rem;
+
+    &:has(button:only-child) {
+        width: fit-content;
+        padding: 0;
+    }
+
+    /*
+    &.small {
+        block-size: 2.5rem;
+
+        mat-icon.icon-search-bar {
+            padding: 0.5rem;
+            block-size: 1.25rem;
+            inline-size: 1.25rem;
+            font-size: 1.25rem;
+        }
+    }
+    */
+
+    input {
+        font: var(--mat-sys-body-large);
+        letter-spacing: var(--mat-sys-body-large-tracking);
+
+        &::placeholder {
+            color: var(--mat-sys-on-surface-variant);
+        }
+    }
+
+    mat-icon.icon-search-bar {
+        padding: 0.5rem;
+        color: var(--mat-sys-on-surface-variant);
+    }
+
+    [ngx-search-input] {
+        flex: 1;
+        background: none;
+        border: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
