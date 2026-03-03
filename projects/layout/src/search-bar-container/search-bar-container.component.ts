@@ -1,8 +1,9 @@
-import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, contentChild, effect, input, signal, untracked, ViewEncapsulation } from '@angular/core';
+import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, contentChild, effect, inject, input, signal, untracked, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { NgxLayoutIntl } from '../providers';
 import { NgxSearchInputDirective } from './directives/search-input.directive';
 
 // type SearchBarContainerSize = 'medium' | 'small';
@@ -30,8 +31,7 @@ export class NgxSearchBarContainerComponent {
     protected sizeButtonAttributeValue = input<string>();
     */
 
-    protected readonly clearTooltip = 'Effacer la recherche';
-    protected readonly openTooltip = 'Ouvrir la barre de recherche';
+    protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
     protected readonly manualFoldingState = signal<boolean>(true);
     protected readonly isFolded = computed(() => this.folded() && this.manualFoldingState() && !this.searchText());

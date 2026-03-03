@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, contentChildren, DestroyRef, effect, ElementRef, inject, input, Renderer2, type Signal, signal, viewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, DestroyRef, effect, ElementRef, inject, Renderer2, type Signal, signal, viewChild, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -58,9 +58,6 @@ export const resizeSignal = (
     ]
 })
 export class NgxActionsGroupComponent {
-    // input
-    public readonly moreActionsTooltip = input<string>('Plus d\'actions');
-
     protected readonly hiddenActions = computed(() => {
         const maxVisible = this.getMaxVisibleAction(this.hostWidth());
         return this.iconButtons().slice(maxVisible);

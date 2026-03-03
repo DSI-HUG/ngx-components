@@ -1,12 +1,20 @@
 @if (isFolded()) {
-    <button mat-icon-button aria-label="Open search bar" (click)="toggleFolded()" matTooltip="{{ openTooltip }}">
+    <button
+        mat-icon-button
+        aria-label="Open search bar"
+        (click)="toggleFolded()"
+        matTooltip="{{ intl?.openSearchBar ?? 'Open search bar' }}">
         <mat-icon>search</mat-icon>
     </button>
 } @else {
     <ng-content select="[ngx-search-input]"></ng-content>
 
     @if (searchText()) {
-        <button mat-icon-button aria-label="Clear button" (click)="resetInput()" matTooltip="{{ clearTooltip }}">
+        <button
+            mat-icon-button
+            aria-label="Clear button"
+            (click)="resetInput()"
+            matTooltip="{{ intl?.deleteSearch ?? 'Clear search' }}">
             <mat-icon>close</mat-icon>
         </button>
     } @else {
