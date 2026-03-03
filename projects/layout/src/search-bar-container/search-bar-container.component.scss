@@ -10,7 +10,7 @@ ngx-search-bar-container {
 
     &:has(button:only-child) {
         width: fit-content;
-        padding: 0;
+        padding: 0 0.25rem;
     }
 
     /*

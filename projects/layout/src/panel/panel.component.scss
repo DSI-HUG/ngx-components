@@ -7,6 +7,7 @@ ngx-panel {
     border-radius: 2rem;
     padding-block: 0.25rem;
     background-color: var(--mat-sys-surface-container-lowest);
+    min-width: min-content;
 
     &[appearance='transparent'] {
         background-color: transparent;
@@ -17,6 +18,7 @@ ngx-panel {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        flex: 1;
 
         padding-inline: 0.5rem;
         padding-block-end: 0.75rem;
