@@ -1,18 +1,13 @@
-@if(withBackIcon()){
-    <button
-        mat-icon-button
-        aria-label="Back button"
-        matTooltip="Retour"
-        (click)="triggerGoBack()"
-    >
-    <mat-icon>arrow_back</mat-icon>
-</button>
+@if (withBackIcon()) {
+    <button mat-icon-button matTooltip="{{ intl?.back ?? 'Back' }}" (click)="triggerGoBack()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
 }
 
 <header class="{{ mode() }}">
     <h1 class="title">{{ title() }}</h1>
-    @if(subtitle()) {
-        @if (mode() === "condensed"){
+    @if (subtitle()) {
+        @if (mode() === 'condensed') {
             <mat-icon>chevron_right</mat-icon>
         }
         <h2 class="subtitle">{{ subtitle() }}</h2>
@@ -21,13 +16,8 @@
 
 <section class="actions">
     <ng-content />
-    @if(helpUrl()){
-        <button
-            mat-icon-button
-            aria-label="Help button"
-            matTooltip="Aide"
-            (click)="openHelp()"
-        >
+    @if (helpUrl()) {
+        <button mat-icon-button matTooltip="{{ intl?.help ?? 'Help' }}" (click)="openHelp()">
             <mat-icon>help</mat-icon>
         </button>
     }

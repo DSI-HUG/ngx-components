@@ -25,7 +25,10 @@
             "sass": "./m2/_layout-theme.scss"
         },
         "./m2/translations/*": {
-            "default": "./**/*.json"
+            "default": "./m2/translations/**/*.json"
+        },
+        "./translations/*": {
+            "default": "./translations/**/*.json"
         }
     },
     "scripts": {

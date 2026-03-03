@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, input, output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { NgxLayoutIntl } from '../providers';
 
 type AppBarMode = 'standard' | 'condensed';
 
@@ -25,6 +27,8 @@ export class NgxAppBarComponent {
     public withBackIcon = input<boolean>(false);
 
     public readonly goBack = output();
+
+    protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
     private helpPopup: Window | undefined;
 
