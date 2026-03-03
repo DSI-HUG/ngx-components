@@ -5,7 +5,7 @@
             mat-icon-button
             class="more-actions-button"
             [matMenuTriggerFor]="menuActionsGroup"
-            matTooltip="Plus d'actions">
+            matTooltip="{{ intl?.moreActions ?? 'More actions' }}">
             <mat-icon>more_horiz</mat-icon>
         </button>
     }

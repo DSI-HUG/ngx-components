@@ -4,6 +4,8 @@ import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 
+import { NgxLayoutIntl } from '../providers';
+
 const buttonGap = 12;
 const buttonDimensions = 40;
 
@@ -63,6 +65,8 @@ export class NgxActionsGroupComponent {
         const maxVisible = this.getMaxVisibleAction(this.hostWidth());
         return this.iconButtons().slice(maxVisible);
     });
+
+    protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
     private readonly iconButtons = contentChildren<MatIconButton, ElementRef<HTMLElement>>(MatIconButton, { read: ElementRef });
 
