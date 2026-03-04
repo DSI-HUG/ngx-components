@@ -4,8 +4,8 @@ ngx-panel {
     overflow: hidden;
     box-sizing: border-box;
     block-size: 100%;
-    border-radius: 2rem;
-    padding-block: 0.25rem;
+    border-radius: var(--ngx-panel-radius, 2rem);
+    padding-block: var(--ngx-panel-padding-block, 0.25rem);
     background-color: var(--mat-sys-surface-container-lowest);
     min-width: min-content;
 
@@ -17,20 +17,16 @@ ngx-panel {
         overflow: auto;
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: var(--ngx-panel-content-gap, 0.5rem);
         flex: 1;
 
-        padding-inline: 0.5rem;
-        padding-block-end: 0.75rem;
-
-        &::-webkit-scrollbar-track {
-            margin-block-end: 1.5rem;
-        }
+        padding-inline: var(--ngx-panel-content-padding-inline, 0.5rem);
+        padding-block-end: var(--ngx-panel-content-padding-block-end, 0.75rem);
     }
 
     &[content-padding='none'] {
         .content {
-            padding-inline: 0rem;
+            padding-inline: 0;
         }
     }
 }
