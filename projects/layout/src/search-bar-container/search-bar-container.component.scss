@@ -1,16 +1,16 @@
 ngx-search-bar-container {
     display: flex;
     align-items: center;
-    block-size: 3rem;
-    border-radius: 2rem;
-    padding-inline-start: 1.125rem;
-    padding-inline-end: 0.25rem;
+    block-size: var(--ngx-search-bar-container-block-size, 3rem);
+    border-radius: var(--ngx-search-bar-container-radius, 2rem);
+    padding-inline-start: var(--ngx-search-bar-container-padding-inline-start, 1.125rem);
+    padding-inline-end: var(--ngx-search-bar-container-padding-inline-end, 0.25rem);
     background-color: var(--mat-sys-surface-container-high);
-    gap: 0.125rem;
+    gap: var(--ngx-search-bar-container-gap, 0.125rem);
 
     &:has(button:only-child) {
         width: fit-content;
-        padding: 0 0.25rem;
+        padding: var(--ngx-search-bar-folded-container-padding, 0 0.25rem);
     }
 
     /*
@@ -36,7 +36,7 @@ ngx-search-bar-container {
     }
 
     mat-icon.icon-search-bar {
-        padding: 0.5rem;
+        padding: var(--ngx-search-bar-icon-padding, 0.5rem);
         color: var(--mat-sys-on-surface-variant);
     }
 
