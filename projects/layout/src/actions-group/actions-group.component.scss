@@ -6,9 +6,9 @@ ngx-actions-group {
         display: flex;
         inline-size: fit-content;
         align-items: center;
-        gap: 0.75rem;
-        border-radius: 2rem;
-        padding: 0.25rem;
+        gap: var(--ngx-actions-group-gap, 0.75rem);
+        border-radius: var(--ngx-actions-group-radius, 2rem);
+        padding: var(--ngx-actions-group-padding, 0.25rem);
         background-color: var(--mat-sys-surface-container-low);
         max-width: 100%;
         box-sizing: border-box;
@@ -20,5 +20,5 @@ ngx-actions-group {
 }
 
 .actions-group-menu.mat-mdc-menu-panel {
-    padding: 0 0.75rem;
+    padding: var(--ngx-actions-group-menu-padding, 0 0.75rem);
 }
