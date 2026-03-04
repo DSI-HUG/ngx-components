@@ -1,18 +1,18 @@
 ngx-main-bar {
     display: flex;
     align-items: center;
-    padding-block: 0.25rem;
-    gap: 0.75rem;
+    padding-block: var(--ngx-main-bar-padding-block, 0.25rem);
+    gap: var(--ngx-main-bar-gap, 0.75rem);
 
     .right {
         flex: 1;
         display: flex;
         justify-content: flex-end;
-        gap: 0.75rem;
+        gap: var(--ngx-main-bar-right-gap, 0.75rem);
     }
 
     ngx-actions-group {
         flex: 1;
-        min-inline-size: 3rem;
+        min-inline-size: var(--ngx-main-bar-action-min-inline-size, 3rem);
     }
 }
