@@ -2,9 +2,9 @@ ngx-app-bar {
     display: flex;
     flex-direction: row;
     align-items: center;
-    min-height: 3.5rem;
+    min-height: var(--ngx-app-bar-min-height, 3.5rem);
     box-sizing: border-box;
-    gap: 0.25rem;
+    gap: var(--ngx-app-bar-gap, 0.25rem);
 
     header {
         color: var(--mat-sys-on-surface-variant);
@@ -13,7 +13,7 @@ ngx-app-bar {
             display: flex;
             flex-direction: row;
             align-items: center;
-            gap: 0.5rem;
+            gap: var(--ngx-app-bar-condensed-gap, 0.5rem);
 
             mat-icon {
                 color: var(--mat-sys-outline);
@@ -27,13 +27,13 @@ ngx-app-bar {
         }
 
         .title {
-            font: var(--app-bar-title-font, var(--mat-sys-headline-medium));
-            letter-spacing: var(--app-bar-title-letter-spacing, var(--mat-sys-headline-medium-tracking));
+            font: var(--ngx-app-bar-title-font, var(--mat-sys-headline-medium));
+            letter-spacing: var(--ngx-app-bar-title-letter-spacing, var(--mat-sys-headline-medium-tracking));
         }
 
         .subtitle {
-            font: var(--app-bar-subtitle-font, var(--mat-sys-headline-small));
-            letter-spacing: var(--app-bar-subtitle-letter-spacing, var(--mat-sys-headline-small-tracking));
+            font: var(--ngx-app-bar-subtitle-font, var(--mat-sys-headline-small));
+            letter-spacing: var(--ngx-app-bar-subtitle-letter-spacing, var(--mat-sys-headline-small-tracking));
         }
     }
 
@@ -41,6 +41,6 @@ ngx-app-bar {
         display: flex;
         justify-content: flex-end;
         flex-grow: 1;
-        gap: 0.5rem;
+        gap: var(--ngx-app-bar-actions-gap, 0.5rem);
     }
 }
