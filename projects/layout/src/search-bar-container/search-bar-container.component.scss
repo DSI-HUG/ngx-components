@@ -26,9 +26,12 @@ ngx-search-bar-container {
     }
     */
 
-    input {
+    > input[ngx-search-input] {
         font: var(--mat-sys-body-large);
         letter-spacing: var(--mat-sys-body-large-tracking);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &::placeholder {
             color: var(--mat-sys-on-surface-variant);

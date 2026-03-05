@@ -1,13 +1,12 @@
 :host {
     display: flex;
     flex-direction: column;
-    gap: var(--ngx-layout-gap, 0.5rem);
     flex: 1 1 0;
 
     background-color: var(--mat-sys-surface-container);
 
-    padding: var(--ngx-layout-padding, 1rem);
-    padding-block-start: var(--ngx-layout-padding-block-start, 0);
+    padding-block-end: var(--ngx-layout-padding-block-end, 0.75rem);
+    padding-inline: var(--ngx-layout-padding-inline, 1rem);
     box-sizing: border-box;
 
     .content {
@@ -15,5 +14,6 @@
         flex: 1 1 0;
         overflow: hidden;
         gap: var(--ngx-layout-content-gap, 0.5rem);
+        padding-block: var(--ngx-layout-content-padding-block, 0.25rem);
     }
 }
