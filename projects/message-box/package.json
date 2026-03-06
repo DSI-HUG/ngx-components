@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-message-box",
-    "version": "21.0.0",
+    "version": "22.0.0-alpha.0",
     "description": "HUG Angular - message box component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -45,6 +45,7 @@
         "tslib": "^2.8.1"
     },
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "tag": "alpha"
     }
 }

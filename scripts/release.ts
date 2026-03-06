@@ -212,6 +212,8 @@ const updateProjectsVersions = async (gitCommitMessage: string, options: Options
         versionActionsOptionsOverrides: {
             installIgnoreScripts: true
         },
+        preid: 'alpha',
+        specifier: 'prerelease',
         dryRun: options.dryRun,
         verbose: options.verbose
     });
