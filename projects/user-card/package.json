@@ -42,6 +42,7 @@
         "@angular/common": ">=21 <22",
         "@angular/core": ">=21 <22",
         "@angular/material": ">=21 <22",
+        "@hug/ngx-core": "^22.0.0-alpha.0",
         "zone.js": "^0.16.0"
     },
     "dependencies": {

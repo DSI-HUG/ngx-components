@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { TruthyTypesOf } from 'rxjs';
 
+export { };
+
 declare global {
     interface Array<T> {
         // eslint-disable-next-line @typescript-eslint/method-signature-style
