@@ -1,11 +1,11 @@
 import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
 import { DecimalPipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NgxNumericStepperComponent } from '@hug/ngx-numeric-stepper';
+import { NgxNumericStepperComponent, NgxNumericStepperLayout } from '@hug/ngx-numeric-stepper';
 import { set } from 'date-fns';
 import { debounceTime, distinctUntilChanged, EMPTY, map, mergeWith, Subject, switchMap, tap, timer } from 'rxjs';
 
@@ -34,6 +34,9 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
 
     /** Display mode for the time-picker */
     @Input() public mode: NgxTimePickerDisplayMode = 'fullTime';
+
+    @HostBinding('attr.layout') @Input()
+    public layout: NgxNumericStepperLayout = 'vertical';
 
     /**
      * Force the hour or minute to be null (only if the other field is disabled)

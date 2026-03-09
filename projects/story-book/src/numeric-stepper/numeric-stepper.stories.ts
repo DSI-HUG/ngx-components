@@ -2,23 +2,46 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatFormField, MatLabel, MatPrefix, MatSuffix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxNumericStepperComponent } from '../../../numeric-stepper/src/numeric-stepper.component';
+
+const baseStyles = `
+    section {
+        background-color: white;
+        padding: 1rem;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+    }
+
+    .item h4 {
+        margin: 0 0 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .controls {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+    }
+`;
 
 const meta: Meta<NgxNumericStepperComponent> = {
     title: 'Components/Numeric Stepper',
     component: NgxNumericStepperComponent,
     decorators: [
-        applicationConfig({
-            providers: [
-                provideAnimations() // Provides animations to the application
-            ]
-        }),
         moduleMetadata({
             imports: [
-                MatLabel, MatInput, MatPrefix, MatSuffix, MatFormField, FormsModule
+                MatLabel,
+                MatInput,
+                MatPrefix,
+                MatSuffix,
+                MatFormField,
+                FormsModule
             ]
         })
     ],
@@ -29,52 +52,44 @@ const meta: Meta<NgxNumericStepperComponent> = {
             control: { type: 'select' },
             description: 'Layout of the stepper control.',
             table: {
-                defaultValue: {
-                    summary: 'vertical'
-                },
+                defaultValue: { summary: 'vertical' },
                 type: { summary: 'NgxNumericStepperLayout' }
             }
         },
         arrowIcons: {
             control: { type: 'boolean' },
-            description: 'Whether to show arrow icons.',
+            description: 'Whether to display arrow icons.',
             table: {
-                defaultValue: {
-                    summary: 'false'
-                },
+                defaultValue: { summary: 'false' },
                 type: { summary: 'boolean' }
             }
         },
         showOnInit: {
             control: { type: 'boolean' },
-            description: 'Whether to show the stepper on initialization.',
+            description: 'Whether to display controls before hover.',
             table: {
-                defaultValue: {
-                    summary: 'false'
-                },
+                defaultValue: { summary: 'false' },
                 type: { summary: 'boolean' }
             }
         },
-        input: {
-            control: { type: 'object' },
-            description: 'The form field control input to be used.',
-            table: {
-                defaultValue: { summary: undefined },
-                type: { summary: 'MatFormFieldControl<unknown>' }
-            }
-        }
+        increment: { control: false },
+        decrement: { control: false },
+        input: { control: false }
     },
     args: {
-        layout: 'vertical'
+        layout: 'vertical',
+        arrowIcons: false,
+        showOnInit: false
     },
     parameters: {
         docs: {
             description: {
-                component: 'The `NgxNumericStepperComponent` integrates with a `mat-form-field` containing an input. It provides a hover mask to allow custom increments or decrements using the `+` and `-` buttons. It can be configured with various layouts and options.'
+                component: 'The `NgxNumericStepperComponent` adds increment and decrement controls to an input inside a `mat-form-field`.'
             }
         }
     }
 };
+
 export default meta;
 type Story = StoryObj<NgxNumericStepperComponent>;
 
@@ -89,219 +104,109 @@ export const standard: Story = {
             <section>
                 <div ngx-numeric-stepper-container>
                     <mat-form-field [appearance]="appearance">
-                        <mat-label>This is my label</mat-label>
-                        <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                        <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" [layout]="layout" [arrowIcons]="arrowIcons" [showOnInit]="showOnInit" [input]="input" showOnInit></ngx-numeric-stepper>
+                        <mat-label>Weight</mat-label>
+                        <input matInput type="number" [ngModel]="value" />
+                        <ngx-numeric-stepper
+                            [layout]="layout"
+                            [arrowIcons]="arrowIcons"
+                            [showOnInit]="showOnInit"
+                            (increment)="value = value + 5"
+                            (decrement)="value = value - 5">
+                        </ngx-numeric-stepper>
                     </mat-form-field>
                 </div>
             </section>
-          `,
-        styles: [`
-            section {
-                background-color: white;
-            }
-          `]
+        `,
+        styles: [baseStyles]
     })
 };
 
-export const layout: Story = {
+export const layouts: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This component supports several layouts: <ul><li><code>vertical</code></li><li><code>horizontal</code></li><li><code>horizontal-inlay</code></li></ul>'
+                story: 'Compare all supported layouts: `vertical`, `horizontal`, and `horizontal-inlay`.'
             }
         }
     },
-    render: args => ({
+    render: () => ({
         props: {
-            ...args,
             value: 115
         },
         template: `
-            <section>
-                <div class="grouped">
-                    <div ngx-numeric-stepper-container>
-                        <mat-form-field appearance="outline">
-                            <mat-label>vertical layout</mat-label>
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="vertical" showOnInit></ngx-numeric-stepper>
-                        </mat-form-field>
-                    </div>
-                     <div ngx-numeric-stepper-container>
-                        <mat-form-field appearance="fill">
-                            <mat-label>vertical layout</mat-label>
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="vertical" showOnInit></ngx-numeric-stepper>
-                        </mat-form-field>
-                    </div>
+            <section class="grid">
+                <div class="item" ngx-numeric-stepper-container>
+                    <h4>vertical</h4>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Value</mat-label>
+                        <input matInput type="number" [ngModel]="value" />
+                        <ngx-numeric-stepper layout="vertical" (increment)="value = value + 1" (decrement)="value = value - 1" showOnInit></ngx-numeric-stepper>
+                    </mat-form-field>
                 </div>
-                <br />
-                <div class="grouped">
-                    <div ngx-numeric-stepper-container>
-                        <mat-form-field appearance="outline">
-                            <mat-label>horizontal layout</mat-label>
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal" showOnInit></ngx-numeric-stepper>
-                        </mat-form-field>
-                    </div>
-                    <div ngx-numeric-stepper-container>
-                        <mat-form-field appearance="fill">
-                            <mat-label>horizontal layout</mat-label>
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal" showOnInit></ngx-numeric-stepper>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <br />
-                <div class="grouped">
-                    <div ngx-numeric-stepper-container>
-                        <mat-form-field appearance="outline">
-                            <mat-label>horizontal-inlay layout</mat-label>
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal-inlay" showOnInit></ngx-numeric-stepper>
-                        </mat-form-field>
-                    </div>
-                    <div ngx-numeric-stepper-container>
-                        <mat-form-field appearance="fill">
-                            <mat-label>horizontal-inlay layout</mat-label>
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal-inlay" showOnInit></ngx-numeric-stepper>
-                        </mat-form-field>
-                    </div>
-                </div>
-            </section>
-          `,
-        styles: [`
-            section {
-                background-color: white;
-            }
-            .matButtonContainer {
-                padding-top: 20px;
-                display: flex;
-                justify-content: center;
-            }
-            .grouped {
-                display: flex;
-                gap: 5rem;
-            }
-          `]
-    }),
-    args: {
-        layout: 'vertical'
-    }
-};
 
-export const customArrowIcons: Story = {
-    render: args => ({
-        props: {
-            ...args,
-            value: 115,
-            appearance: 'outline'
-        },
-        template: `
-            <section>
-                <div ngx-numeric-stepper-container>
-                    <mat-form-field [appearance]="appearance">
-                <mat-label>Custom Arrow Icons</mat-label>
-                        <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                        <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" [layout]="layout" [arrowIcons]="arrowIcons" [showOnInit]="showOnInit" [input]="input" showOnInit></ngx-numeric-stepper>
+                <div class="item" ngx-numeric-stepper-container>
+                    <h4>horizontal</h4>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Value</mat-label>
+                        <input matInput type="number" [ngModel]="value" />
+                        <ngx-numeric-stepper layout="horizontal" (increment)="value = value + 1" (decrement)="value = value - 1" showOnInit></ngx-numeric-stepper>
+                    </mat-form-field>
+                </div>
+
+                <div class="item" ngx-numeric-stepper-container>
+                    <h4>horizontal-inlay</h4>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Value</mat-label>
+                        <input matInput type="number" [ngModel]="value" />
+                        <ngx-numeric-stepper layout="horizontal-inlay" (increment)="value = value + 1" (decrement)="value = value - 1" showOnInit></ngx-numeric-stepper>
                     </mat-form-field>
                 </div>
             </section>
-          `,
-        styles: [`
-            section {
-                background-color: white;
-            }
-          `]
-    }),
-    args: {
-        arrowIcons: true
-    }
-};
-
-export const showOnInit: Story = {
-    tags: ['!dev', '!autodocs'], // Pour disable sur le menu à gauche !dev, et sur la doc !autodocs
-    render: args => ({
-        props: {
-            ...args,
-            value: 115,
-            appearance: 'outline'
-        },
-        template: `
-            <section>
-                <div ngx-numeric-stepper-container>
-                    <mat-form-field [appearance]="appearance">
-                <mat-label>Show On Init True</mat-label>
-                        <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                        <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" [layout]="layout" [arrowIcons]="arrowIcons" [showOnInit]="showOnInit" [input]="input" showOnInit></ngx-numeric-stepper>
-                    </mat-form-field>
-                </div>
-            </section>
-          `,
-        styles: [`
-            section {
-                background-color: white;
-            }
-          `]
-    }),
-    args: {
-        showOnInit: true
-    }
+        `,
+        styles: [baseStyles]
+    })
 };
 
 export const appearance: Story = {
     decorators: [
         moduleMetadata({
-            imports: [
-                MatButtonToggle,
-                MatButtonToggleGroup
-            ]
+            imports: [MatButtonToggle, MatButtonToggleGroup]
         })
     ],
-    parameters: {
-        docs: {
-            description: {
-                story: 'This component supports different appearances for `mat-form-field`.'
-            }
-        }
-    },
     render: args => ({
         props: {
             ...args,
             value: 115,
-            appearance: 'fill',
-            appearanceChanged(value: string): void {
-                this['appearance'] = value;
+            currentAppearance: 'outline',
+            setAppearance(value: 'outline' | 'fill'): void {
+                this['currentAppearance'] = value;
             }
         },
         template: `
             <section>
                 <div ngx-numeric-stepper-container>
-                    <mat-form-field [appearance]="appearance">
-                        <mat-label>This is my label</mat-label>
-                        <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                        <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" [layout]="layout" showOnInit></ngx-numeric-stepper>
+                    <mat-form-field [appearance]="currentAppearance">
+                        <mat-label>Value</mat-label>
+                        <input matInput type="number" [ngModel]="value" />
+                        <ngx-numeric-stepper
+                            [layout]="layout"
+                            [arrowIcons]="arrowIcons"
+                            [showOnInit]="true"
+                            (increment)="value = value + 5"
+                            (decrement)="value = value - 5">
+                        </ngx-numeric-stepper>
                     </mat-form-field>
                 </div>
-                <div class="matButtonContainer">
-                    <mat-button-toggle-group name="appearance" (change)="appearanceChanged($event.value)" [value]="appearance">
-                        <mat-button-toggle value="fill">Fill</mat-button-toggle>
+
+                <div class="controls">
+                    <mat-button-toggle-group [value]="currentAppearance" (change)="setAppearance($event.value)">
                         <mat-button-toggle value="outline">Outline</mat-button-toggle>
+                        <mat-button-toggle value="fill">Fill</mat-button-toggle>
                     </mat-button-toggle-group>
                 </div>
             </section>
-          `,
-        styles: [`
-            section {
-                background-color: white;
-            }
-            .matButtonContainer {
-                padding-top: 20px;
-                display: flex;
-                justify-content: center;
-            }
-          `]
+        `,
+        styles: [baseStyles]
     })
 };
 
@@ -309,143 +214,54 @@ export const prefixAndSuffix: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This section allows you to visualize the component with different `mat-form-field` configurations, including custom prefixes and suffixes.'
+                story: 'Use text prefix and suffix while keeping stepper controls.'
             }
         }
     },
-    render: args => ({
+    render: () => ({
         props: {
-            ...args,
             value: 115,
             prefix: '',
             suffix: 'cm',
-            prefixChanged(value: string): void {
+            setPrefix(value: string): void {
                 this['prefix'] = value;
             },
-            suffixChanged(value: string): void {
+            setSuffix(value: string): void {
                 this['suffix'] = value;
             }
         },
         template: `
             <section>
-                <div class="grouped">
-                    <div ngx-numeric-stepper-container>
+                <div class="grid">
+                    <div class="item" ngx-numeric-stepper-container>
+                        <h4>Preview</h4>
                         <mat-form-field appearance="outline">
-                            <mat-label>vertical layout</mat-label>
+                            <mat-label>Value</mat-label>
                             @if(prefix) {
                                 <span matTextPrefix>{{ prefix }}</span>
                             }
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
+                            <input matInput type="number" [ngModel]="value" />
                             @if(suffix) {
                                 <span matTextSuffix>{{ suffix }}</span>
                             }
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="vertical" showOnInit></ngx-numeric-stepper>
+                            <ngx-numeric-stepper layout="horizontal-inlay" (increment)="value = value + 5" (decrement)="value = value - 5" showOnInit></ngx-numeric-stepper>
                         </mat-form-field>
                     </div>
-                     <div ngx-numeric-stepper-container>
-                        <mat-form-field appearance="fill">
-                            <mat-label>vertical layout</mat-label>
-                            @if(prefix) {
-                                <span matTextPrefix>{{ prefix }}</span>
-                            }
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            @if(suffix) {
-                                <span matTextSuffix>{{ suffix }}</span>
-                            }
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="vertical" showOnInit></ngx-numeric-stepper>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <br />
-                <div class="grouped">
-                    <div ngx-numeric-stepper-container>
+
+                    <div class="item">
+                        <h4>Configure</h4>
                         <mat-form-field appearance="outline">
-                            <mat-label>horizontal layout</mat-label>
-                            @if(prefix) {
-                                <span matTextPrefix>{{ prefix }}</span>
-                            }
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            @if(suffix) {
-                                <span matTextSuffix>{{ suffix }}</span>
-                            }
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal" showOnInit></ngx-numeric-stepper>
-                        </mat-form-field>
-                    </div>
-                    <div ngx-numeric-stepper-container>
-                        <mat-form-field appearance="fill">
-                            <mat-label>horizontal layout</mat-label>
-                            @if(prefix) {
-                                <span matTextPrefix>{{ prefix }}</span>
-                            }
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            @if(suffix) {
-                                <span matTextSuffix>{{ suffix }}</span>
-                            }
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal" showOnInit></ngx-numeric-stepper>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <br />
-                <div class="grouped">
-                    <div ngx-numeric-stepper-container>
-                        <mat-form-field appearance="outline">
-                            <mat-label>horizontal-inlay layout</mat-label>
-                            @if(prefix) {
-                                <span matTextPrefix>{{ prefix }}</span>
-                            }
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            @if(suffix) {
-                                <span matTextSuffix>{{ suffix }}</span>
-                            }
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal-inlay" showOnInit></ngx-numeric-stepper>
-                        </mat-form-field>
-                    </div>
-                    <div ngx-numeric-stepper-container>
-                        <mat-form-field appearance="fill">
-                            <mat-label>horizontal-inlay layout</mat-label>
-                            @if(prefix) {
-                                <span matTextPrefix>{{ prefix }}</span>
-                            }
-                            <input matInput type="number" [ngModel]="value" #numericStepper="ngModel" />
-                            @if(suffix) {
-                                <span matTextSuffix>{{ suffix }}</span>
-                            }
-                            <ngx-numeric-stepper (increment)="value = value + 5" (decrement)="value = value - 5" layout="horizontal-inlay" showOnInit></ngx-numeric-stepper>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <br />
-                <h4>Try your own suffixes and prefixes</h4>
-                <br />
-                <div class="grouped">
-                        <mat-form-field appearance="outline">
-                            <mat-label>prefix</mat-label>
-                            <input matInput type="string" [ngModel]="prefix" (ngModelChange)="prefixChanged($event)" />
+                            <mat-label>Prefix</mat-label>
+                            <input matInput [ngModel]="prefix" (ngModelChange)="setPrefix($event)" />
                         </mat-form-field>
                         <mat-form-field appearance="outline">
-                            <mat-label>suffix</mat-label>
-                            <input matInput type="string" [ngModel]="suffix" (ngModelChange)="suffixChanged($event)" />
+                            <mat-label>Suffix</mat-label>
+                            <input matInput [ngModel]="suffix" (ngModelChange)="setSuffix($event)" />
                         </mat-form-field>
+                    </div>
                 </div>
             </section>
-          `,
-        styles: [`
-            section {
-                background-color: white;
-                font-family: 'Roboto';
-            }
-            .matButtonContainer {
-                padding-top: 20px;
-                display: flex;
-                justify-content: center;
-            }
-            .grouped {
-                display: flex;
-                gap: 5rem;
-            }
-          `]
-    }),
-    args: {
-        layout: 'vertical'
-    }
+        `,
+        styles: [baseStyles]
+    })
 };
