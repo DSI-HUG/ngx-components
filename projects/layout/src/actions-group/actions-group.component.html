@@ -2,7 +2,7 @@
     <ng-content></ng-content>
     @if (hiddenActions().length > 0) {
         <button
-            mat-icon-button
+            matIconButton
             class="more-actions-button"
             [matMenuTriggerFor]="menuActionsGroup"
             matTooltip="{{ intl?.moreActions ?? 'More actions' }}">

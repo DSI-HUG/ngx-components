@@ -1,5 +1,5 @@
 @if (withBackIcon()) {
-    <button mat-icon-button matTooltip="{{ intl?.back ?? 'Back' }}" (click)="triggerGoBack()">
+    <button matIconButton matTooltip="{{ intl?.back ?? 'Back' }}" (click)="triggerGoBack()">
         <mat-icon>arrow_back</mat-icon>
     </button>
 }
@@ -17,7 +17,7 @@
 <section class="actions">
     <ng-content />
     @if (helpUrl()) {
-        <button mat-icon-button matTooltip="{{ intl?.help ?? 'Help' }}" (click)="openHelp()">
+        <button matIconButton matTooltip="{{ intl?.help ?? 'Help' }}" (click)="openHelp()">
             <mat-icon>help</mat-icon>
         </button>
     }

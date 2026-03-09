@@ -68,22 +68,22 @@ export const basic: Story = {
             [helpUrl]="helpUrl"
             [withBackIcon]="withBackIcon"
             >
-                <button mat-icon-button aria-label="Home">
+                <button matIconButton aria-label="Home">
                     <mat-icon>home</mat-icon>
                 </button>
             </ngx-app-bar>
             <ngx-main-bar>
                 <ngx-actions-group [moreActionsTooltip]="moreActionsTooltip">
-                    <button mat-icon-button aria-label="Filter" matTooltip="Filtres">
+                    <button matIconButton aria-label="Filter" matTooltip="Filtres">
                         <mat-icon>filter_list</mat-icon>
                     </button>
-                    <button mat-icon-button aria-label="Columns" matTooltip="Colonnes">
+                    <button matIconButton aria-label="Columns" matTooltip="Colonnes">
                         <mat-icon>view_column</mat-icon>
                     </button>
-                    <button mat-icon-button aria-label="Settings" matTooltip="Paramètres">
+                    <button matIconButton aria-label="Settings" matTooltip="Paramètres">
                         <mat-icon>settings</mat-icon>
                     </button>
-                    <button mat-icon-button aria-label="Download" matTooltip="Télécharger">
+                    <button matIconButton aria-label="Download" matTooltip="Télécharger">
                         <mat-icon>download</mat-icon>
                     </button>
                 </ngx-actions-group>

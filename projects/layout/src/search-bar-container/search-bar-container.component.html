@@ -1,6 +1,6 @@
 @if (isFolded()) {
     <button
-        mat-icon-button
+        matIconButton
         aria-label="Open search bar"
         (click)="toggleFolded()"
         matTooltip="{{ intl?.openSearchBar ?? 'Open search bar' }}">
@@ -11,7 +11,7 @@
 
     @if (searchText()) {
         <button
-            mat-icon-button
+            matIconButton
             aria-label="Clear button"
             (click)="resetInput()"
             matTooltip="{{ intl?.deleteSearch ?? 'Clear search' }}">
