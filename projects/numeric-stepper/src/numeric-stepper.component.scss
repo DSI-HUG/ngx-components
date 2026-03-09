@@ -158,6 +158,15 @@
         }
     }
 
+    &[ngx-numeric-stepper-form-field='horizontal-inlay'] {
+        .mat-mdc-form-field-infix {
+            width: 100%;
+            .mat-mdc-input-element.mat-mdc-form-field-input-control {
+                width: 100%;
+            }
+        }
+    }
+
     ngx-numeric-stepper {
         z-index: 10002;
         position: relative;
