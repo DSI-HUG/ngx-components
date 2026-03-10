@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-numeric-stepper",
-    "version": "21.0.2",
+    "version": "21.1.0",
     "description": "HUG Angular - numeric stepper component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
