@@ -1,3 +1,17 @@
+## 21.1.0 (2026-03-10)
+
+### 🚀 Features
+
+- **time-picker:** add storybook NgxTimePickerComponent with customizable layouts and modes ([fdfaacd](https://github.com/DSI-HUG/ngx-components/commit/fdfaacd))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-numeric-stepper**: upgraded to `v21.1.0`
+
+### ❤️ Thank You
+
+- rfrt @rfrt
+
 ## 21.0.2 (2026-02-13)
 
 ### 🌱 Dependencies
