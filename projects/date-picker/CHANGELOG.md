@@ -1,3 +1,10 @@
+## 22.0.0-alpha.1 (2026-03-13)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker**: upgraded to `v22.0.0-alpha.1`
+- **@hug/ngx-core**: upgraded to `v22.0.0-alpha.1`
+
 ## 21.1.1 (2026-02-13)
 
 ### 🐛 Fixes

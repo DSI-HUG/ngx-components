@@ -1,3 +1,10 @@
+## 22.0.0-alpha.1 (2026-03-13)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-user-card**: upgraded to `v22.0.0-alpha.1`
+- **@hug/ngx-tooltip**: upgraded to `v22.0.0-alpha.1`
+
 ## 21.0.2 (2026-02-13)
 
 ### 🌱 Dependencies

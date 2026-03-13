@@ -1,3 +1,13 @@
+## 22.0.0-alpha.1 (2026-03-13)
+
+### 🚀 Features
+
+- **design-system:** first draft ([974b9b1](https://github.com/DSI-HUG/ngx-components/commit/974b9b1))
+
+### ❤️ Thank You
+
+- Badisi @Badisi
+
 # 21.0.0 (2026-01-07)
 
 ### ⚠️  Breaking Changes

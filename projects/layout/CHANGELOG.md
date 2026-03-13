@@ -1,3 +1,34 @@
+## 22.0.0-alpha.1 (2026-03-13)
+
+### 🚀 Features
+
+- **layout:** adjust styles + add ellipsis for the search input #DESIGNSYS-103 ([7158e2f](https://github.com/DSI-HUG/ngx-components/commit/7158e2f))
+- **layout:** use CSS variables #DESIGNSYS-178 ([309b56a](https://github.com/DSI-HUG/ngx-components/commit/309b56a))
+- **search-bar-container:** use CSS variables #DESIGNSYS-103 ([c35c5f7](https://github.com/DSI-HUG/ngx-components/commit/c35c5f7))
+- **panel:** use CSS variables #DESIGNSYS-176 ([7e75e7b](https://github.com/DSI-HUG/ngx-components/commit/7e75e7b))
+- **main-bar:** use CSS variables #DESIGNSYS-102 ([4a81e1b](https://github.com/DSI-HUG/ngx-components/commit/4a81e1b))
+- **actions-group:** use CSS variables #DESIGNSYS-180 ([9a96e80](https://github.com/DSI-HUG/ngx-components/commit/9a96e80))
+- **app-bar:** use CSS variables for layout properties #DESIGNSYS-101 ([d22a389](https://github.com/DSI-HUG/ngx-components/commit/d22a389))
+- **layout:** adjust properties for better layout #DESIGNSYS-180 ([888699c](https://github.com/DSI-HUG/ngx-components/commit/888699c))
+- **search-bar:** add translations and internationalization support #DESIGNSYS-103 ([50640a2](https://github.com/DSI-HUG/ngx-components/commit/50640a2))
+- **actions-group:** add translations and internationalization support #DESIGNSYS-180 ([ffece73](https://github.com/DSI-HUG/ngx-components/commit/ffece73))
+- **app-bar:** add translations and internationalization support #DESIGNSYS-101 ([e8e42e5](https://github.com/DSI-HUG/ngx-components/commit/e8e42e5))
+- **panel:** add NgxPanelComponent #DESIGNSYS-176 ([69ae788](https://github.com/DSI-HUG/ngx-components/commit/69ae788))
+- **main-bar:** add NgxMainBarComponent #DESIGNSYS-102 ([b972c4e](https://github.com/DSI-HUG/ngx-components/commit/b972c4e))
+- **search-bar:** add ngx-search-bar-container #DESIGNSYS-103 ([5e8da5c](https://github.com/DSI-HUG/ngx-components/commit/5e8da5c))
+- **layout:** add NgxActionsGroupComponent #DESIGNSYS-180 ([7dc1e4e](https://github.com/DSI-HUG/ngx-components/commit/7dc1e4e))
+- **layout:** add NgxLayoutComponent #DESIGNSYS-178 ([edf93bb](https://github.com/DSI-HUG/ngx-components/commit/edf93bb))
+- **app-bar:** added the ngx-app-bar component #DESIGNSYS-101 ([0cc08f3](https://github.com/DSI-HUG/ngx-components/commit/0cc08f3))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-sidenav**: upgraded to `v22.0.0-alpha.1`
+- **@hug/ngx-core**: upgraded to `v22.0.0-alpha.1`
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 21.0.2 (2026-02-13)
 
 ### 🌱 Dependencies

@@ -1,3 +1,14 @@
+## 22.0.0-alpha.1 (2026-03-13)
+
+### 🚀 Features
+
+- **layout:** add NgxActionsGroupComponent #DESIGNSYS-180 ([7dc1e4e](https://github.com/DSI-HUG/ngx-components/commit/7dc1e4e))
+- **app-bar:** added the ngx-app-bar component #DESIGNSYS-101 ([0cc08f3](https://github.com/DSI-HUG/ngx-components/commit/0cc08f3))
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 21.2.0 (2026-02-13)
 
 ### 🚀 Features

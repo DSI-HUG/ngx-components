@@ -1,3 +1,7 @@
+## 22.0.0-alpha.1 (2026-03-13)
+
+This was a version bump only for @hug/ngx-message-box-dialog to align it with other projects, there were no code changes.
+
 # 21.0.0 (2026-01-07)
 
 ### ⚠️  Breaking Changes
