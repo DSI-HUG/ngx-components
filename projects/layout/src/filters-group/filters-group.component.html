@@ -29,9 +29,15 @@
                         @if (f.type === 'complex' && f.selectedFilterLabel()) {
                             <span class="selected-label">: {{ f.selectedFilterLabel() }}</span>
                         }
+                        @if (f.type === 'complex') {
+                            <mat-icon matChipTrailingIcon>arrow_drop_down</mat-icon>
+                        }
                     </mat-chip-option>
                 }
-                <mat-chip #overflowMeasure>+00 filtres (00 actifs)</mat-chip>
+                <mat-chip #overflowMeasure>
+                    +00 filtres (00 actifs)
+                    <mat-icon matChipTrailingIcon>arrow_drop_down</mat-icon>
+                </mat-chip>
             </mat-chip-set>
         </section>
     }
@@ -63,6 +69,11 @@
                             @if (f.selectedFilterLabel()) {
                                 <span class="selected-label">: {{ f.selectedFilterLabel() }}</span>
                             }
+                            <mat-icon
+                                [class.is-overlay-open]="this.overlayOpen() && this.overlayContent() === f.templateRef"
+                                matChipTrailingIcon>
+                                arrow_drop_down
+                            </mat-icon>
                         </mat-chip-option>
                     }
                 }
@@ -81,6 +92,11 @@
                             this.moreFiltersOverlay.set(true)
                         ">
                         +{{ invisibleFiltersAmount }} filtres ({{ activeFiltersAmount() }} actifs)
+                        <mat-icon
+                            [class.is-overlay-open]="this.overlayOpen() && this.overlayContent() === moreFilters"
+                            matChipTrailingIcon>
+                            arrow_drop_down
+                        </mat-icon>
                     </mat-chip>
                 </mat-chip-set>
             }
