@@ -1,6 +1,6 @@
-<div style="display: flex; height: 50vh">
-    <ngx-filters-group (resetFilters)="buttonResetClicked()">
-        <ng-template [ngx-filter-toggle] label="Un toggle" [(active)]="toggleFilter" />
+<div style="height: 10vh">
+    <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="filtersGroupFolded()">
+        <ng-template [ngx-filter-toggle] label="Afficher commentaire" [(active)]="commentFilter" />
         <ng-template
             [ngx-filter]
             [active]="!!selectedPeriod()"
@@ -55,15 +55,6 @@
                 <mat-list-option value="Autres" togglePosition="after">Autres</mat-list-option>
             </mat-selection-list>
         </ng-template>
-        <ng-template [ngx-filter] [active]="false" label="aurevoir">
-            <div class="test">
-                <span>bonjour, je suis un test 4</span>
-            </div>
-        </ng-template>
-        <ng-template [ngx-filter] [active]="false" label="pain">
-            <div class="test">
-                <span>bonjour, je suis un test 5</span>
-            </div>
-        </ng-template>
+        <ng-template [ngx-filter-toggle] label="Afficher documents" [(active)]="documentFilter" />
     </ngx-filters-group>
 </div>

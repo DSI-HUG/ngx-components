@@ -34,18 +34,29 @@ ngx-filters-group {
         border-radius: 2rem;
         padding-inline: 0.5rem;
 
-        background-color: var(--mat-sys-surface-container-high);
+        background-color: var(--mat-sys-surface-container-low);
 
         .static {
             display: flex;
             flex-direction: row;
 
-            mat-chip:first-child {
-                @include mat.chips-overrides(
-                    (
-                        container-shape-radius: 0.5rem
-                    )
-                );
+            mat-chip {
+                &:first-child {
+                    @include mat.chips-overrides(
+                        (
+                            container-shape-radius: 0.5rem
+                        )
+                    );
+                }
+
+                &.filter-active {
+                    @include mat.chips-overrides(
+                        (
+                            elevated-container-color: var(--mat-sys-secondary-container),
+                            outline-color: transparent
+                        )
+                    );
+                }
             }
         }
 

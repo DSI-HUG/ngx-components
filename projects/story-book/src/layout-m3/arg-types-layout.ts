@@ -25,7 +25,8 @@ const argTypesAppBar: Meta['argTypes'] = {
 };
 
 export const argSearchInput: Meta['argTypes'] = {
-    folded: {
+    searchFolded: {
+        name: 'folded',
         control: 'boolean',
         table: { category: 'search-bar-container' }
     }
@@ -44,10 +45,19 @@ export const argTypesPanel: Meta['argTypes'] = {
     }
 };
 
+export const argTypesFiltersGroup: Meta['argTypes'] = {
+    filtersGroupFolded: {
+        name: 'folded',
+        control: 'boolean',
+        table: { category: 'filters-group' }
+    }
+};
+
 export const argTypesLayout: Meta['argTypes'] = {
     ...argTypesAppBar,
     ...argSearchInput,
-    ...argTypesPanel
+    ...argTypesPanel,
+    ...argTypesFiltersGroup
 };
 
 

@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, model, signal } from '@an
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
-import { MatChipsModule, MatChipTrailingIcon } from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { NgxFilterDirective, NgxFiltersGroupComponent, NgxFilterToggleDirective } from '@hug/ngx-layout/filters-group';
 
 @Component({
-    selector: 'ngx-layout-template',
+    selector: 'ngx-filters-group-template',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CommonModule,
@@ -30,15 +30,15 @@ import { NgxFilterDirective, NgxFiltersGroupComponent, NgxFilterToggleDirective 
         MatDatepickerModule,
         MatListModule,
         NgxFilterDirective,
-        NgxFilterToggleDirective,
-        MatChipTrailingIcon
+        NgxFilterToggleDirective
     ],
-    templateUrl: './layout-template.component.html'
+    templateUrl: './filters-group-template.component.html'
 })
 
-export class NgxLayoutTemplateComponent {
-
-    protected toggleFilter = model<boolean>(false);
+export class NgxFiltersGroupTemplateComponent {
+    protected filtersGroupFolded = signal<boolean>(false);
+    protected commentFilter = model<boolean>(false);
+    protected documentFilter = model<boolean>(false);
 
     protected selectedPeriod = signal<'3_DAYS' | '3_MONTHS' | 'LAST_YEAR' | 'OTHER' | undefined>(undefined);
     protected selectedStartDate = signal<Date | undefined>(undefined);
@@ -92,7 +92,8 @@ export class NgxLayoutTemplateComponent {
         this.selectedPeriod.set(undefined);
         this.selectedStartDate.set(undefined);
         this.selectedEndDate.set(undefined);
-        this.toggleFilter.set(false);
+        this.commentFilter.set(false);
+        this.documentFilter.set(false);
         this.orderOrigin.set(undefined);
         this.orderTypes.set([]);
         console.log('reset clicked');

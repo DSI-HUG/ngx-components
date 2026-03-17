@@ -84,6 +84,7 @@
                 <mat-chip-set>
                     <mat-chip
                         cdkOverlayOrigin
+                        [class.filter-active]="activeFiltersAmount()"
                         #trigger="cdkOverlayOrigin"
                         (click)="
                             this.overlayOrigin.set(trigger);
