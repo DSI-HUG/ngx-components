@@ -92,7 +92,7 @@ export class NgxFiltersGroupComponent {
 
     // #region Filters
     protected allFilters = contentChildren(FILTER_TOKEN);
-    protected readonly activeFiltersAmount = computed(() => this.allFilters().filter(filter => filter.active()).length);
+    protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter => filter.active()).length);
 
     protected readonly visibleFilters = computed(() => {
         const lastFittingIndex = this.lastFittingIndex();
