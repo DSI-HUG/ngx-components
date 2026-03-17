@@ -43,7 +43,7 @@ ngx-filters-group {
             mat-chip:first-child {
                 @include mat.chips-overrides(
                     (
-                        container-shape-radius: 0.5rem,
+                        container-shape-radius: 0.5rem
                     )
                 );
             }
@@ -56,7 +56,7 @@ ngx-filters-group {
             &:first-child {
                 @include mat.chips-overrides(
                     (
-                        container-shape-radius: 1rem 0.5rem 0.5rem 1rem,
+                        container-shape-radius: 1rem 0.5rem 0.5rem 1rem
                     )
                 );
             }
@@ -64,18 +64,6 @@ ngx-filters-group {
             .mat-mdc-chip-action-label {
                 display: flex;
                 align-items: center;
-            }
-
-            // FIXME: This shouldn't have to be declared, there is an overlap with the button styles and the mat-chip.
-            // The buttons should not affect the matchip : button:not([matchipaction])
-            button {
-                gap: 0.25rem;
-            }
-
-            &[hy-selected='true'] {
-                button {
-                    gap: 0rem;
-                }
             }
         }
 

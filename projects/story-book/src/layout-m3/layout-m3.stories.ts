@@ -6,12 +6,14 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { NgxLayoutComponent } from '@hug/ngx-layout';
 import { NgxActionsGroupComponent } from '@hug/ngx-layout/actions-group';
 import { NgxAppBarComponent } from '@hug/ngx-layout/app-bar';
+import { NgxFiltersGroupComponent } from '@hug/ngx-layout/filters-group';
 import { NgxMainBarComponent } from '@hug/ngx-layout/main-bar';
 import { NgxPanelComponent } from '@hug/ngx-layout/panel';
 import { NgxSearchBarContainerComponent, NgxSearchInputDirective } from '@hug/ngx-layout/search-bar-container/';
 import { type Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { argTypesLayout } from './arg-types-layout';
+import { NgxLayoutTemplateComponent } from './layout-template/layout-template.component';
 
 const meta: Meta = {
     title: 'Components/Layout-m3',
@@ -30,7 +32,9 @@ const meta: Meta = {
                 MatInput,
                 NgxSearchInputDirective,
                 NgxMainBarComponent,
-                NgxPanelComponent
+                NgxPanelComponent,
+                NgxFiltersGroupComponent,
+                NgxLayoutTemplateComponent
             ]
         })
     ],
@@ -73,7 +77,7 @@ export const basic: Story = {
                 </button>
             </ngx-app-bar>
             <ngx-main-bar>
-                <ngx-actions-group [moreActionsTooltip]="moreActionsTooltip">
+                <ngx-actions-group>
                     <button matIconButton aria-label="Filter" matTooltip="Filtres">
                         <mat-icon>filter_list</mat-icon>
                     </button>
@@ -102,6 +106,13 @@ export const basic: Story = {
             </ngx-panel>
         </ngx-layout>
         </div>`,
+        props: args
+    })
+};
+
+export const withFiltersGroup: Story = {
+    render: args => ({
+        template: '<ngx-layout-template></ngx-layout-template>',
         props: args
     })
 };

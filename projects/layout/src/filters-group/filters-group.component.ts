@@ -11,8 +11,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 
 import { FILTER_TOKEN } from './filter-chip.model';
 
-// #region ResizeSignal => Mis à jour. Prévoir d'update dans les autres cas d'utilisation.
-export const resizeSignal = (
+const resizeSignal = (
     element: () => ElementRef<HTMLElement> | undefined,
     box: ResizeObserverBoxOptions = 'border-box'
 ): Signal<ResizeObserverEntry | undefined> => {
@@ -47,7 +46,6 @@ export const resizeSignal = (
 
     return value;
 };
-// #endregion
 
 @Component({
     selector: 'ngx-filters-group',
@@ -68,7 +66,7 @@ export const resizeSignal = (
         MatBadgeModule
     ]
 })
-export class FiltersGroupComponent {
+export class NgxFiltersGroupComponent {
     public readonly resetFilters = output();
     public readonly folded = input<boolean>();
 
@@ -77,7 +75,7 @@ export class FiltersGroupComponent {
     protected readonly overlayContent = signal<TemplateRef<unknown> | undefined>(undefined);
     protected readonly overlayOpen = signal<boolean>(false);
     protected readonly moreFiltersOverlay = signal<boolean>(false);
-    protected readonly overlayPositions: Array<ConnectionPositionPair> = [{
+    protected readonly overlayPositions: ConnectionPositionPair[] = [{
         originX: 'center',
         originY: 'bottom',
         overlayX: 'center',
@@ -144,7 +142,7 @@ export class FiltersGroupComponent {
         }
 
         const availableSpace = hostWidth - (this.staticFieldsWidth() + (2 * this.filterContainerPadding()));
-        const filters = Array.from(this.measureRowRef()?.nativeElement.querySelectorAll<HTMLElement>('mat-chip-option') || []);
+        const filters = Array.from(this.measureRowRef()?.nativeElement.querySelectorAll<HTMLElement>('mat-chip-option') ?? []);
 
         if (availableSpace - this.measureRowWidth() >= 0) {
             return filters.length;
@@ -157,7 +155,7 @@ export class FiltersGroupComponent {
         this.resetFilters.emit();
     }
 
-    private getLastFittingIndex(availableSpace: number, elements: ReadonlyArray<HTMLElement>): number {
+    private getLastFittingIndex(availableSpace: number, elements: readonly HTMLElement[]): number {
         const firstEl = elements[0];
 
         if (!firstEl || availableSpace <= 0 || availableSpace - firstEl.offsetWidth < 0) {

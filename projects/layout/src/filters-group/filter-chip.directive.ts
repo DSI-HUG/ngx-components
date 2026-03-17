@@ -1,15 +1,15 @@
 import { Directive, forwardRef, inject, input, TemplateRef } from '@angular/core';
 
-import { FILTER_TOKEN, type HospitalityComplexFilter } from './filter-chip.model';
+import { FILTER_TOKEN, type NgxComplexFilter } from './filter-chip.model';
 
 
 @Directive({
-    selector: 'ng-template[hy-filter]',
+    selector: 'ng-template[ngx-filter]',
     standalone: true,
-    providers: [{ provide: FILTER_TOKEN, useExisting: forwardRef(() => FilterDirective) }]
+    providers: [{ provide: FILTER_TOKEN, useExisting: forwardRef(() => NgxFilterDirective) }]
 
 })
-export class FilterDirective implements HospitalityComplexFilter {
+export class NgxFilterDirective implements NgxComplexFilter {
     public readonly type = 'complex';
     public readonly label = input.required<string>();
     public readonly active = input.required<boolean>();

@@ -24,7 +24,7 @@
         <section #measureRow class="measure-row">
             <mat-chip-set>
                 @for (f of allFilters(); track $index) {
-                    <mat-chip-option [selectable]="false" [selected]="f.active()" [attr.hy-selected]="f.active()">
+                    <mat-chip-option [selectable]="false" [selected]="f.active()">
                         {{ f.label() }}
                         @if (f.type === 'complex' && f.selectedFilterLabel()) {
                             <span class="selected-label">: {{ f.selectedFilterLabel() }}</span>
@@ -44,7 +44,6 @@
                         <mat-chip-option
                             selectable="true"
                             [selected]="f.active()"
-                            [attr.hy-selected]="f.active()"
                             (selectionChange)="f.active.set($event.selected)">
                             {{ f.label() }}
                         </mat-chip-option>
@@ -52,7 +51,6 @@
                         <mat-chip-option
                             [selectable]="false"
                             [selected]="f.active()"
-                            [attr.hy-selected]="f.active()"
                             cdkOverlayOrigin
                             #trigger="cdkOverlayOrigin"
                             (click)="

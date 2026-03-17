@@ -2,23 +2,24 @@ import { InjectionToken, type InputSignal, type ModelSignal, type TemplateRef } 
 
 export type FilterType = 'toggle' | 'complex';
 
-interface HospitalityBaseFilter {
+interface NgxBaseFilter {
     readonly label: InputSignal<string>;
     readonly active: InputSignal<boolean>;
     readonly type: FilterType;
 }
 
-export interface HospitalityToggleFilter extends HospitalityBaseFilter {
+export interface NgxToggleFilter extends NgxBaseFilter {
     readonly type: 'toggle';
     readonly active: ModelSignal<boolean>;
 }
 
-export interface HospitalityComplexFilter extends HospitalityBaseFilter {
+export interface NgxComplexFilter extends NgxBaseFilter {
     readonly selectedFilterLabel: InputSignal<string>;
     readonly templateRef: TemplateRef<unknown>;
     readonly type: 'complex';
 }
 
-export type HospitalityFilter = HospitalityToggleFilter | HospitalityComplexFilter;
+export type NgxFilter = NgxToggleFilter | NgxComplexFilter;
 
-export const FILTER_TOKEN = new InjectionToken<HospitalityFilter>('FILTER_TOKEN');
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const FILTER_TOKEN = new InjectionToken<NgxFilter>('FILTER_TOKEN');

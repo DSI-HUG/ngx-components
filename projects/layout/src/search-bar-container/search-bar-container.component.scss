@@ -13,6 +13,7 @@ ngx-search-bar-container {
     &:has(button:only-child) {
         width: fit-content;
         padding: var(--ngx-search-bar-folded-container-padding, 0 0.25rem);
+        flex: 0;
     }
 
     /*

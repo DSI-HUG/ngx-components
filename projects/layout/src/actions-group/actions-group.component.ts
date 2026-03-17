@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, contentChildren, DestroyRef, effect, ElementRef, inject, Renderer2, type Signal, signal, viewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, Renderer2, type Signal, signal, viewChild, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -16,29 +16,37 @@ const buttonDimensions = 40;
  * @param box
  * @param defaultSize
  */
-export const resizeSignal = (
-    element: HTMLElement,
-    destroyRef: DestroyRef,
+const resizeSignal = (
+    element: () => ElementRef<HTMLElement> | undefined,
     box: ResizeObserverBoxOptions = 'border-box'
-): Signal<ResizeObserverEntry> => {
-    const initialValue: ResizeObserverEntry = {
-        borderBoxSize: [],
-        contentRect: element.getBoundingClientRect(),
-        contentBoxSize: [],
-        devicePixelContentBoxSize: [],
-        target: element
-    };
+): Signal<ResizeObserverEntry | undefined> => {
 
-    const value = signal<ResizeObserverEntry>(initialValue);
+    const value = signal<ResizeObserverEntry | undefined>(undefined);
 
-    const ro = new ResizeObserver(entries => {
-        value.set(entries[0] || initialValue);
-    });
+    effect(onCleanup => {
+        const el = element()?.nativeElement;
+        if (!el) {
+            return;
+        }
 
-    ro.observe(element, { box });
+        const initialValue: ResizeObserverEntry = {
+            borderBoxSize: [],
+            contentRect: new DOMRect(),
+            contentBoxSize: [],
+            devicePixelContentBoxSize: [],
+            target: el
+        };
 
-    destroyRef.onDestroy(() => {
-        ro.disconnect();
+        value.set(initialValue);
+
+        const ro = new ResizeObserver(entries => {
+            value.set(entries[0] || initialValue);
+        });
+
+        ro.observe(el, { box });
+        onCleanup(() => {
+            ro.disconnect();
+        });
     });
 
     return value;
@@ -72,10 +80,9 @@ export class NgxActionsGroupComponent {
 
     private readonly hostElement = inject<ElementRef<HTMLElement>>(ElementRef);
     private readonly renderer = inject(Renderer2);
-    private readonly destroyRef = inject(DestroyRef);
 
-    private readonly hostSize = resizeSignal(this.hostElement.nativeElement, this.destroyRef);
-    private readonly hostWidth = computed(() => this.hostSize().contentRect.width);
+    private readonly hostSize = resizeSignal(() => this.hostElement);
+    private readonly hostWidth = computed(() => Math.ceil(this.hostSize()?.contentRect.width || 0));
 
     private readonly visibleActions = computed(() => {
         const maxVisible = this.getMaxVisibleAction(this.hostWidth());
