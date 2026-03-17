@@ -1,0 +1,151 @@
+@if (folded()) {
+    <section
+        class="filter-container"
+        #container
+        [matBadge]="activeFiltersAmount()"
+        [matBadgeHidden]="activeFiltersAmount() <= 0">
+        <button
+            mat-icon-button
+            aria-label="Reset filters"
+            cdkOverlayOrigin
+            #trigger="cdkOverlayOrigin"
+            (click)="
+                this.overlayOrigin.set(trigger);
+                this.overlayContent.set(moreFilters);
+                this.overlayOpen.set(true);
+                this.moreFiltersOverlay.set(true)
+            "
+            matTooltip="Tous les filtres">
+            <mat-icon>filter_alt</mat-icon>
+        </button>
+    </section>
+} @else {
+    @if (allFilters()) {
+        <section #measureRow class="measure-row">
+            <mat-chip-set>
+                @for (f of allFilters(); track $index) {
+                    <mat-chip-option [selectable]="false" [selected]="f.active()" [attr.hy-selected]="f.active()">
+                        {{ f.label() }}
+                        @if (f.type === 'complex' && f.selectedFilterLabel()) {
+                            <span class="selected-label">: {{ f.selectedFilterLabel() }}</span>
+                        }
+                    </mat-chip-option>
+                }
+                <mat-chip #overflowMeasure>+00 filtres (00 actifs)</mat-chip>
+            </mat-chip-set>
+        </section>
+    }
+
+    <section class="filter-container" #container>
+        <mat-chip-set>
+            @if (this.visibleFilters().length) {
+                @for (f of visibleFilters(); track $index) {
+                    @if (f.type === 'toggle') {
+                        <mat-chip-option
+                            selectable="true"
+                            [selected]="f.active()"
+                            [attr.hy-selected]="f.active()"
+                            (selectionChange)="f.active.set($event.selected)">
+                            {{ f.label() }}
+                        </mat-chip-option>
+                    } @else {
+                        <mat-chip-option
+                            [selectable]="false"
+                            [selected]="f.active()"
+                            [attr.hy-selected]="f.active()"
+                            cdkOverlayOrigin
+                            #trigger="cdkOverlayOrigin"
+                            (click)="
+                                this.overlayOrigin.set(trigger);
+                                this.overlayContent.set(f.templateRef);
+                                this.overlayOpen.set(true);
+                                this.moreFiltersOverlay.set(false)
+                            ">
+                            {{ f.label() }}
+                            @if (f.selectedFilterLabel()) {
+                                <span class="selected-label">: {{ f.selectedFilterLabel() }}</span>
+                            }
+                        </mat-chip-option>
+                    }
+                }
+            }
+        </mat-chip-set>
+        <section class="static" #static>
+            @if (invisibleFilters().length; as invisibleFiltersAmount) {
+                <mat-chip-set>
+                    <mat-chip
+                        cdkOverlayOrigin
+                        #trigger="cdkOverlayOrigin"
+                        (click)="
+                            this.overlayOrigin.set(trigger);
+                            this.overlayContent.set(moreFilters);
+                            this.overlayOpen.set(true);
+                            this.moreFiltersOverlay.set(true)
+                        ">
+                        +{{ invisibleFiltersAmount }} filtres ({{ activeFiltersAmount() }} actifs)
+                    </mat-chip>
+                </mat-chip-set>
+            }
+            <button mat-icon-button aria-label="Reset filters" (click)="emitResetClicked()" matTooltip="Reset">
+                <mat-icon>settings_backup_restore</mat-icon>
+            </button>
+        </section>
+    </section>
+}
+
+<ng-template #moreFilters>
+    @if (allFilters()) {
+        @for (f of allFilters(); track $index) {
+            @if (f.type === 'toggle') {
+                <section class="filter">
+                    <mat-slide-toggle labelPosition="before" [(ngModel)]="f.active">
+                        {{ f.label() }}
+                    </mat-slide-toggle>
+                </section>
+            } @else {
+                <section class="filter">
+                    <div class="title">
+                        <span class="label">{{ f.label() }}</span>
+                        <span class="value">{{ f.selectedFilterLabel() }}</span>
+                    </div>
+                    @if (f.templateRef) {
+                        <ng-container *ngTemplateOutlet="f.templateRef"></ng-container>
+                    }
+                </section>
+            }
+        }
+    }
+</ng-template>
+
+@let overlayOrigin = this.overlayOrigin();
+@let overlayOpen = this.overlayOpen();
+@let overlayContent = this.overlayContent();
+@if (overlayOrigin && overlayOpen && overlayContent) {
+    <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="overlayOrigin"
+        [cdkConnectedOverlayOpen]="overlayOpen"
+        (detach)="this.overlayOpen.set(false)"
+        cdkConnectedOverlayHasBackdrop="true"
+        backdrop
+        (backdropClick)="this.overlayOpen.set(false)"
+        cdkConnectedOverlayPanelClass="filter-group--overlay"
+        cdkConnectedOverlayBackdropClass="filter-group--overlay--backdrop--transparent"
+        [cdkConnectedOverlayPositions]="overlayPositions"
+        [cdkConnectedOverlayFlexibleDimensions]="true"
+        [cdkConnectedOverlayGrowAfterOpen]="true"
+        [cdkConnectedOverlayFlexibleDimensions]="true"
+        [cdkConnectedOverlayViewportMargin]="32">
+        @if (moreFiltersOverlay()) {
+            <div class="filters--title">
+                <span>Filtres</span>
+                <button mat-icon-button aria-label="Reset filters" (click)="emitResetClicked()" matTooltip="Reset">
+                    <mat-icon>settings_backup_restore</mat-icon>
+                </button>
+            </div>
+        }
+        <div class="filters--content">
+            <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
+        </div>
+    </ng-template>
+}

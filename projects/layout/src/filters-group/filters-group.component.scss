@@ -1,0 +1,180 @@
+@use '@angular/material' as mat;
+
+ngx-filters-group {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 0;
+
+    .selected-label {
+        max-width: 27ch;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+    }
+
+    .measure-row {
+        display: flex;
+        flex-direction: row;
+        gap: 0.125rem;
+        position: absolute;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .filter-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.25rem;
+
+        block-size: 3rem;
+        border-radius: 2rem;
+        padding-inline: 0.5rem;
+
+        background-color: var(--mat-sys-surface-container-high);
+
+        .static {
+            display: flex;
+            flex-direction: row;
+
+            mat-chip:first-child {
+                @include mat.chips-overrides(
+                    (
+                        container-shape-radius: 0.5rem,
+                    )
+                );
+            }
+        }
+
+        mat-chip,
+        mat-chip-option {
+            min-width: 0;
+
+            &:first-child {
+                @include mat.chips-overrides(
+                    (
+                        container-shape-radius: 1rem 0.5rem 0.5rem 1rem,
+                    )
+                );
+            }
+
+            .mat-mdc-chip-action-label {
+                display: flex;
+                align-items: center;
+            }
+
+            // FIXME: This shouldn't have to be declared, there is an overlap with the button styles and the mat-chip.
+            // The buttons should not affect the matchip : button:not([matchipaction])
+            button {
+                gap: 0.25rem;
+            }
+
+            &[hy-selected='true'] {
+                button {
+                    gap: 0rem;
+                }
+            }
+        }
+
+        &:has(> button:only-of-type) {
+            padding-inline: 0.25rem;
+        }
+    }
+
+    &:has(.folded-icon-button) {
+        block-size: fit-content;
+        inline-size: fit-content;
+        padding: 0.25rem;
+    }
+}
+
+.filter-group--overlay {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--mat-sys-surface-container-high);
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    mat-slide-toggle {
+        > * {
+            width: 100%;
+            justify-content: space-between;
+
+            label {
+                margin: 0;
+            }
+        }
+    }
+
+    --filter-padding: 1rem;
+
+    .filters--title {
+        border-block-end: 1px solid var(--mat-sys-outline-variant);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: var(--filter-padding);
+        padding-block: calc(var(--filter-padding) / 4);
+    }
+
+    .filters--content {
+        min-width: 18.75rem;
+        overflow: auto;
+
+        display: flex;
+        flex-direction: column;
+        justify-items: stretch;
+        gap: 0.5rem;
+        padding: var(--filter-padding);
+
+        .filter {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding-block: var(--filter-padding);
+
+            &:not(:last-child) {
+                border-bottom: 1px dashed var(--mat-sys-outline-variant);
+            }
+
+            &:last-child {
+                padding-block-end: unset;
+            }
+
+            &:first-child {
+                padding-block-start: unset;
+            }
+
+            .title {
+                display: inline-flex;
+                justify-content: space-between;
+                align-items: baseline;
+
+                .label {
+                    font: var(--mat-sys-label-large);
+                }
+
+                .value {
+                    font: var(--mat-sys-label-medium);
+                    max-width: 27ch;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            > [no-padding] {
+                margin-inline: -1rem;
+            }
+        }
+    }
+}
+
+.filter-group--overlay--backdrop--transparent {
+    background-color: transparent;
+}
