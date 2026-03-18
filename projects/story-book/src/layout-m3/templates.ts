@@ -1,9 +1,26 @@
-<div style="display: flex; height: 10vh; width: 100%">
-    <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="filtersGroupFolded()">
+
+export const actionsGroupTemplate = `
+    <ngx-actions-group>
+        <button matIconButton aria-label="Filter" matTooltip="Filtres">
+            <mat-icon>filter_list</mat-icon>
+        </button>
+        <button matIconButton aria-label="Columns" matTooltip="Colonnes">
+            <mat-icon>view_column</mat-icon>
+        </button>
+        <button matIconButton aria-label="Settings" matTooltip="Paramètres">
+            <mat-icon>settings</mat-icon>
+        </button>
+        <button matIconButton aria-label="Download" matTooltip="Télécharger">
+            <mat-icon>download</mat-icon>
+        </button>
+    </ngx-actions-group>`;
+
+export const filtersGroupTemplate = `
+    <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="filtersGroupFolded">
         <ng-template [ngx-filter-toggle] label="Afficher commentaire" [(active)]="commentFilter" />
         <ng-template
             [ngx-filter]
-            [active]="!!selectedPeriod()"
+            [active]="!!selectedPeriod"
             label="Periode"
             [selectedFilterLabel]="selectedDateRangeLabel()">
             <mat-button-toggle-group [(ngModel)]="selectedPeriod" aria-label="Font Style">
@@ -12,7 +29,7 @@
                 <mat-button-toggle value="LAST_YEAR">Dernière année</mat-button-toggle>
                 <mat-button-toggle value="OTHER">Autre</mat-button-toggle>
             </mat-button-toggle-group>
-            @if (selectedPeriod() === 'OTHER') {
+            @if (selectedPeriod === 'OTHER') {
                 <mat-form-field>
                     <mat-label>Enter a date range</mat-label>
                     <mat-date-range-input [rangePicker]="picker">
@@ -27,7 +44,7 @@
         </ng-template>
         <ng-template
             [ngx-filter]
-            [active]="!!orderOrigin()"
+            [active]="!!orderOrigin"
             label="Origine"
             [selectedFilterLabel]="orderOriginSelectedLabel()">
             <mat-button-toggle-group [(ngModel)]="orderOrigin" aria-label="Font Style">
@@ -37,7 +54,7 @@
         </ng-template>
         <ng-template
             [ngx-filter]
-            [active]="!!orderTypes().length"
+            [active]="!!orderTypes.length"
             label="Type"
             [selectedFilterLabel]="orderTypesSelectedLabel()">
             <mat-selection-list no-padding [(ngModel)]="orderTypes">
@@ -56,5 +73,15 @@
             </mat-selection-list>
         </ng-template>
         <ng-template [ngx-filter-toggle] label="Afficher documents" [(active)]="documentFilter" />
-    </ngx-filters-group>
-</div>
+    </ngx-filters-group>`;
+
+export const searchBarTemplate = `
+    <ngx-search-bar-container [folded]="searchFolded">
+        <input
+            ngx-search-input
+            type="text"
+            name="search"
+            placeholder="Rechercher"
+            [(ngModel)]="ngModel"                
+        />
+    </ngx-search-bar-container>`;

@@ -1,0 +1,46 @@
+ngx-panel-bar {
+    display: flex;
+    align-items: center;
+    padding: var(--ngx-panel-bar-padding, 0.25rem 0.5rem);
+    gap: var(--ngx-panel-bar-gap, 0.75rem);
+    min-height: var(--ngx-panel-bar-min-height, 3rem);
+    flex-wrap: nowrap;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        white-space: nowrap;
+        margin: 0;
+        font: var(--mat-sys-title-large);
+        letter-spacing: var(--mat-sys-title-large-tracking);
+        color: var(--mat-sys-on-surface-variant);
+
+        overflow: hidden;
+        min-width: var(--ngx-panel-bar-title-min-width, 6ch);
+        text-overflow: ellipsis;
+
+        &:first-child {
+            padding-inline-start: var(--ngx-panel-bar-title-first-child-padding-start, 0.25rem);
+        }
+    }
+
+    .right,
+    ngx-actions-group {
+        display: flex;
+        align-items: center;
+        gap: var(--ngx-panel-bar-gap, 0.75rem);
+    }
+
+    .right {
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    ngx-actions-group {
+        flex: 1;
+        min-inline-size: var(--ngx-panel-bar-actions-group-min-inline-size, 3rem);
+    }
+}

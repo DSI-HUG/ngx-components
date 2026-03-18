@@ -1,0 +1,20 @@
+@if (hasBackButton()) {
+    <button mat-icon-button aria-label="Back button" matTooltip="Retour" (click)="emitBackClicked()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+}
+
+<ng-content select="h1,h2,h3,h4,h5,h6"></ng-content>
+<ng-content select="ngx-actions-group"></ng-content>
+
+@if (hasRightContent()) {
+    <div class="right">
+        <ng-content select="ngx-filters-group"></ng-content>
+        <ng-content select="ngx-search-bar-container"></ng-content>
+        @if (closable()) {
+            <button mat-icon-button aria-label="Close button" matTooltip="Fermer" (click)="emitCloseClicked()">
+                <mat-icon>close</mat-icon>
+            </button>
+        }
+    </div>
+}

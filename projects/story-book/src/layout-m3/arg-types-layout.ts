@@ -53,11 +53,23 @@ export const argTypesFiltersGroup: Meta['argTypes'] = {
     }
 };
 
+export const argTypesPanelBar: Meta['argTypes'] = {
+    closable: {
+        control: 'boolean',
+        table: { category: 'panel-bar' }
+    },
+    hasBackButton: {
+        control: 'boolean',
+        table: { category: 'panel-bar' }
+    }
+};
+
 export const argTypesLayout: Meta['argTypes'] = {
     ...argTypesAppBar,
     ...argSearchInput,
     ...argTypesPanel,
-    ...argTypesFiltersGroup
+    ...argTypesFiltersGroup,
+    ...argTypesPanelBar
 };
 
 
