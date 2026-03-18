@@ -79,7 +79,7 @@ export class NgxSearchBarContainerComponent {
                 const blurred = this.searchInput()?.blurred();
 
                 if (blurred && !searchText) {
-                    this.toggleFolded();
+                    this.manualFoldingState.set(true);
                 }
             }
         });

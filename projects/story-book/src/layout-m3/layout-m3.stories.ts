@@ -172,7 +172,7 @@ export const basic: Story = {
                         <mat-icon>download</mat-icon>
                     </button>
                 </ngx-actions-group>
-                <ngx-filters-group (resetFilters)="buttonResetClicked" [folded]="filtersGroupFolded">
+                <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="filtersGroupFolded">
                     <ng-template [ngx-filter-toggle] label="Afficher commentaire" [(active)]="commentFilter" />
                     <ng-template
                         [ngx-filter]

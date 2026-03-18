@@ -5,10 +5,9 @@ ngx-filters-group {
     display: flex;
     flex-direction: row;
     justify-content: end;
-    gap: 0;
 
     .selected-label {
-        max-width: 27ch;
+        max-width: var(--ngx-filters-group-selected-label-max-width, 27ch);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -18,7 +17,7 @@ ngx-filters-group {
     .measure-row {
         display: flex;
         flex-direction: row;
-        gap: 0.125rem;
+        gap: var(--ngx-filters-group-gap, 0.5rem);
         position: absolute;
         visibility: hidden;
         pointer-events: none;
@@ -28,23 +27,24 @@ ngx-filters-group {
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 0.25rem;
+        gap: var(--ngx-filters-group-gap, 0.5rem);
 
-        block-size: 3rem;
-        border-radius: 2rem;
-        padding-inline: 0.5rem;
+        block-size: var(--ngx-filters-group-block-size, 3rem);
+        border-radius: var(--ngx-filters-group-border-radius, 2rem);
+        padding-inline: var(--ngx-filters-group-padding-inline, 0.5rem);
 
         background-color: var(--mat-sys-surface-container-low);
 
         .static {
             display: flex;
             flex-direction: row;
+            gap: var(--ngx-filters-group-gap, 0.5rem);
 
             mat-chip {
                 &:first-child {
                     @include mat.chips-overrides(
                         (
-                            container-shape-radius: 0.5rem
+                            container-shape-radius: var(--ngx-filters-group-first-chip-shape-radius, 0.5rem)
                         )
                     );
                 }
@@ -71,7 +71,10 @@ ngx-filters-group {
             &:first-child {
                 @include mat.chips-overrides(
                     (
-                        container-shape-radius: 1rem 0.5rem 0.5rem 1rem
+                        container-shape-radius: var(
+                                --ngx-filters-group-first-chip-option-shape-radius,
+                                1rem 0.5rem 0.5rem 1rem
+                            )
                     )
                 );
             }
@@ -87,14 +90,8 @@ ngx-filters-group {
         }
 
         &:has(> button:only-of-type) {
-            padding-inline: 0.25rem;
+            padding-inline: var(--ngx-filters-group-folded-padding-inline, 0.25rem);
         }
-    }
-
-    &:has(.folded-icon-button) {
-        block-size: fit-content;
-        inline-size: fit-content;
-        padding: 0.25rem;
     }
 }
 
@@ -103,7 +100,7 @@ ngx-filters-group {
     flex-direction: column;
 
     background-color: var(--mat-sys-surface-container-high);
-    border-radius: 0.5rem;
+    border-radius: var(--ngx-filters-group-overlay-border-radius, 0.5rem);
     overflow: hidden;
 
     mat-slide-toggle {
@@ -117,7 +114,7 @@ ngx-filters-group {
         }
     }
 
-    --filter-padding: 1rem;
+    --filter-padding: var(--ngx-filters-group-overlay-filter-padding, 1rem);
 
     .filters--title {
         border-block-end: 1px solid var(--mat-sys-outline-variant);
@@ -136,13 +133,13 @@ ngx-filters-group {
         display: flex;
         flex-direction: column;
         justify-items: stretch;
-        gap: 0.5rem;
+        gap: var(--ngx-filters-group-overlay-filter-gap, 0.5rem);
         padding: var(--filter-padding);
 
         .filter {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: var(--ngx-filters-group-overlay-filter-gap, 0.5rem);
             padding-block: var(--filter-padding);
 
             &:not(:last-child) {
@@ -168,7 +165,7 @@ ngx-filters-group {
 
                 .value {
                     font: var(--mat-sys-label-medium);
-                    max-width: 27ch;
+                    max-width: var(--ngx-filters-group-overlay-max-width, 27ch);
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
