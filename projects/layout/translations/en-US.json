@@ -3,5 +3,9 @@
     "back": "Back",
     "deleteSearch": "Delete search",
     "openSearchBar": "Open search bar",
-    "moreActions": "More actions"
+    "moreActions": "More actions",
+    "allFilters": "All filters",
+    "filters": "Filters",
+    "actives": "Actives",
+    "reset": "Reset"
 }

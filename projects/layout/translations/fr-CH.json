@@ -3,5 +3,9 @@
     "back": "Retour",
     "deleteSearch": "Effacer la recherche",
     "openSearchBar": "Ouvrir la barre de recherche",
-    "moreActions": "Plus d'actions"
+    "moreActions": "Plus d'actions",
+    "allFilters": "Tous les filtres",
+    "filters": "Filtres",
+    "actives": "Actifs",
+    "reset": "Réinitialiser"
 }

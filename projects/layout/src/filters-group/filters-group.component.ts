@@ -1,5 +1,5 @@
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
-import { NgTemplateOutlet } from '@angular/common';
+import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -9,6 +9,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltip } from '@angular/material/tooltip';
 
+import { NgxLayoutIntl } from '../providers';
 import { FILTER_TOKEN } from './filter-chip.model';
 
 const resizeSignal = (
@@ -63,12 +64,15 @@ const resizeSignal = (
         CdkOverlayOrigin,
         MatSlideToggleModule,
         FormsModule,
-        MatBadgeModule
+        MatBadgeModule,
+        LowerCasePipe
     ]
 })
 export class NgxFiltersGroupComponent {
     public readonly resetFilters = output();
     public readonly folded = input<boolean>();
+
+    protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
     // #region Overlay
     protected readonly overlayOrigin = signal<CdkOverlayOrigin | undefined>(undefined);

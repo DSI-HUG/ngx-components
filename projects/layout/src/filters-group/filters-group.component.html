@@ -6,7 +6,7 @@
         [matBadgeHidden]="activeFiltersAmount() <= 0">
         <button
             mat-icon-button
-            aria-label="Reset filters"
+            aria-label="All filters"
             cdkOverlayOrigin
             #trigger="cdkOverlayOrigin"
             (click)="
@@ -15,7 +15,7 @@
                 this.overlayOpen.set(true);
                 this.moreFiltersOverlay.set(true)
             "
-            matTooltip="Tous les filtres">
+            matTooltip="{{ intl?.allFilters ?? 'All filters' }}">
             <mat-icon>filter_alt</mat-icon>
         </button>
     </section>
@@ -35,7 +35,7 @@
                     </mat-chip-option>
                 }
                 <mat-chip #overflowMeasure>
-                    +00 filtres (00 actifs)
+                    +00 {{ intl?.filters ?? 'Filters' | lowercase }} (00 {{ intl?.actives ?? 'Actives' | lowercase }})
                     <mat-icon matChipTrailingIcon>arrow_drop_down</mat-icon>
                 </mat-chip>
             </mat-chip-set>
@@ -92,7 +92,10 @@
                             this.overlayOpen.set(true);
                             this.moreFiltersOverlay.set(true)
                         ">
-                        +{{ invisibleFiltersAmount }} filtres ({{ activeFiltersAmount() }} actifs)
+                        +{{ invisibleFiltersAmount }} {{ intl?.filters ?? 'Filters' | lowercase }} ({{
+                            activeFiltersAmount()
+                        }}
+                        {{ intl?.actives ?? 'Actives' | lowercase }})
                         <mat-icon
                             [class.is-overlay-open]="this.overlayOpen() && this.overlayContent() === moreFilters"
                             matChipTrailingIcon>
@@ -101,7 +104,11 @@
                     </mat-chip>
                 </mat-chip-set>
             }
-            <button mat-icon-button aria-label="Reset filters" (click)="emitResetClicked()" matTooltip="Reset">
+            <button
+                mat-icon-button
+                aria-label="Reset filters"
+                (click)="emitResetClicked()"
+                matTooltip="{{ intl?.reset ?? 'Reset' }}">
                 <mat-icon>settings_backup_restore</mat-icon>
             </button>
         </section>
@@ -153,8 +160,12 @@
         [cdkConnectedOverlayViewportMargin]="32">
         @if (moreFiltersOverlay()) {
             <div class="filters--title">
-                <span>Filtres</span>
-                <button mat-icon-button aria-label="Reset filters" (click)="emitResetClicked()" matTooltip="Reset">
+                <span>{{ intl?.filters ?? 'Filters' }}</span>
+                <button
+                    mat-icon-button
+                    aria-label="Reset filters"
+                    (click)="emitResetClicked()"
+                    matTooltip="{{ intl?.reset ?? 'Reset' }}">
                     <mat-icon>settings_backup_restore</mat-icon>
                 </button>
             </div>

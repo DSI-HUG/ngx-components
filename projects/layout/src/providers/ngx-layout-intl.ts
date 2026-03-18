@@ -10,4 +10,8 @@ export class NgxLayoutIntl extends NgxAbstractIntl<NgxLayoutIntl> {
     public deleteSearch = '';
     public openSearchBar = '';
     public moreActions = '';
+    public allFilters = '';
+    public filters = '';
+    public actives = '';
+    public reset = '';
 }
