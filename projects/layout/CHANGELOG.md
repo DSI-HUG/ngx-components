@@ -1,3 +1,13 @@
+## 22.0.0-alpha.2 (2026-03-18)
+
+### 🚀 Features
+
+- **filters-group:** add filters-group component #DESIGNSYS-177 ([dea1a5f](https://github.com/DSI-HUG/ngx-components/commit/dea1a5f))
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.1 (2026-03-13)
 
 ### 🚀 Features
