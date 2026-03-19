@@ -75,7 +75,7 @@ const meta: Meta = {
         searchFolded: false,
         filtersGroupFolded: false,
         appearance: 'default',
-        contentPadding: 'regular',
+        contentPadding: 'none',
         closable: false,
         hasBackButton: false,
         hasSearchPanelBar: true,
@@ -200,7 +200,8 @@ export const basic: Story = {
                 </ngx-panel-bar>
                 <div>
                     <ngx-column-bar>
-                        <h4>Column Bar Title</h4>
+                        @if(hasTitlePanelBar){
+                        <h4>Column Bar Title</h4>}
                         @if(hasActionsPanelBar){
                         ${actionsGroupTemplate}}                 
                         @if(hasFiltersPanelBar){
@@ -211,7 +212,8 @@ export const basic: Story = {
                 </div>
                 <div>
                     <ngx-column-bar>
-                        <h2>Title</h2>
+                        @if(hasTitlePanelBar){
+                        <h4>Column Bar Title</h4>}
                         @if(hasActionsPanelBar){
                         ${actionsGroupTemplate}}                 
                         @if(hasFiltersPanelBar){

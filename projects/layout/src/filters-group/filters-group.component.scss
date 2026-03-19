@@ -117,6 +117,9 @@ ngx-filters-group {
     --filter-padding: var(--ngx-filters-group-overlay-filter-padding, 1rem);
 
     .filters--title {
+        font: var(--mat-sys-title-medium);
+        letter-spacing: var(--mat-sys-title-medium-tracking);
+        color: var(--mat-sys-on-surface-variant);
         border-block-end: 1px solid var(--mat-sys-outline-variant);
         display: flex;
         flex-direction: row;
