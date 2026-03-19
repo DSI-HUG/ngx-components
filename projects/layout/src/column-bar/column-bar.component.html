@@ -1,0 +1,9 @@
+<ng-content select="h1,h2,h3,h4,h5,h6"></ng-content>
+<ng-content select="ngx-actions-group"></ng-content>
+
+@if (hasRightContent()) {
+    <div class="right">
+        <ng-content select="ngx-filters-group"></ng-content>
+        <ng-content select="ngx-search-bar-container"></ng-content>
+    </div>
+}

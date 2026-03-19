@@ -27,6 +27,66 @@ export const actionsGroupTemplate = `
         </button>
     </ngx-actions-group>`;
 
+export const filtersGroupFoldedTemplate = `
+    <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="true">
+        <ng-template [ngx-filter-toggle] label="Afficher commentaire" [(active)]="commentFilter" />
+        <ng-template
+            [ngx-filter]
+            [active]="!!selectedPeriod"
+            label="Periode"
+            [selectedFilterLabel]="selectedDateRangeLabel()">
+            <mat-button-toggle-group [(ngModel)]="selectedPeriod" aria-label="Font Style">
+                <mat-button-toggle value="3_DAYS">3 derniers jours</mat-button-toggle>
+                <mat-button-toggle value="3_MONTHS">3 derniers mois</mat-button-toggle>
+                <mat-button-toggle value="LAST_YEAR">Dernière année</mat-button-toggle>
+                <mat-button-toggle value="OTHER">Autre</mat-button-toggle>
+            </mat-button-toggle-group>
+            @if (selectedPeriod === 'OTHER') {
+                <mat-form-field>
+                    <mat-label>Enter a date range</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate [(ngModel)]="selectedStartDate" placeholder="Start date" />
+                        <input matEndDate [(ngModel)]="selectedEndDate" placeholder="End date" />
+                    </mat-date-range-input>
+                    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+            }
+        </ng-template>
+        <ng-template
+            [ngx-filter]
+            [active]="!!orderOrigin"
+            label="Origine"
+            [selectedFilterLabel]="orderOriginSelectedLabel()">
+            <mat-button-toggle-group [(ngModel)]="orderOrigin" aria-label="Font Style">
+                <mat-button-toggle style="justify-self: stretch; flex-grow: 1" value="HOSP">Hôpital</mat-button-toggle>
+                <mat-button-toggle style="justify-self: stretch; flex-grow: 1" value="HOME">Domicile</mat-button-toggle>
+            </mat-button-toggle-group>
+        </ng-template>
+        <ng-template
+            [ngx-filter]
+            [active]="!!orderTypes.length"
+            label="Type"
+            [selectedFilterLabel]="orderTypesSelectedLabel()">
+            <mat-selection-list no-padding [(ngModel)]="orderTypes">
+                <mat-list-option value="Médicament" togglePosition="after">Médicament</mat-list-option>
+                <mat-list-option value="Soin" togglePosition="after">Soin</mat-list-option>
+                <mat-list-option value="Laboratoire" togglePosition="after">Laboratoire</mat-list-option>
+                <mat-list-option value="Consultation/Examen" togglePosition="after">
+                    Consultation/Examen
+                </mat-list-option>
+                <mat-list-option value="Intervention de soin" togglePosition="after">
+                    Intervention de soin
+                </mat-list-option>
+                <mat-list-option value="Radiologie" togglePosition="after">Radiologie</mat-list-option>
+                <mat-list-option value="Onco./Hémato" togglePosition="after">Onco./Hémato</mat-list-option>
+                <mat-list-option value="Autres" togglePosition="after">Autres</mat-list-option>
+            </mat-selection-list>
+        </ng-template>
+        <ng-template [ngx-filter-toggle] label="Afficher documents" [(active)]="documentFilter" />
+    </ngx-filters-group>`;
+
 export const filtersGroupTemplate = `
     <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="filtersGroupFolded">
         <ng-template [ngx-filter-toggle] label="Afficher commentaire" [(active)]="commentFilter" />
@@ -89,6 +149,17 @@ export const filtersGroupTemplate = `
 
 export const searchBarTemplate = `
     <ngx-search-bar-container [folded]="searchFolded">
+        <input
+            ngx-search-input
+            type="text"
+            name="search"
+            placeholder="Rechercher"
+            [(ngModel)]="ngModel"                
+        />
+    </ngx-search-bar-container>`;
+
+export const searchBarFoldedTemplate = `
+    <ngx-search-bar-container [folded]="true">
         <input
             ngx-search-input
             type="text"

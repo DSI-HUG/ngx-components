@@ -1,0 +1,51 @@
+ngx-column-bar {
+    display: flex;
+    align-items: center;
+    padding: var(--ngx-column-bar-padding, 0.25rem 0.5rem);
+    gap: var(--ngx-column-bar-gap, 0.75rem);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        white-space: nowrap;
+        margin: 0;
+        font: var(--mat-sys-title-large);
+        letter-spacing: var(--mat-sys-title-large-tracking);
+        color: var(--mat-sys-on-surface-variant);
+
+        overflow: hidden;
+        min-width: 6ch;
+        text-overflow: ellipsis;
+
+        &:first-child {
+            padding-inline-start: var(--ngx-column-bar-first-child-padding, 0.25rem);
+        }
+    }
+
+    &:has(h1, h2, h3, h4, h5, h6) ngx-actions-group {
+        justify-content: flex-end;
+    }
+
+    &:not(:has(ngx-actions-group)) .right {
+        flex: 1;
+    }
+
+    .right,
+    ngx-actions-group {
+        display: flex;
+        align-items: center;
+        gap: var(--ngx-column-bar-gap, 0.75rem);
+    }
+
+    .right {
+        justify-content: flex-end;
+    }
+
+    ngx-actions-group {
+        flex: 1;
+        min-inline-size: var(--ngx-column-bar-actions-group-min-inline-size, 3rem);
+    }
+}

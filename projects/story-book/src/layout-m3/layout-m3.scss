@@ -2,4 +2,15 @@
 
 ngx-panel {
     flex: 1;
+
+    section.content {
+        flex-direction: row;
+
+        > div {
+            flex: 1;
+            &:first-of-type {
+                border-inline-end: 1px solid var(--mat-sys-outline-variant);
+            }
+        }
+    }
 }
