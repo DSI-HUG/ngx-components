@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, contentChild, inject, input, output, ViewEncapsulation } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxFiltersGroupComponent } from '../filters-group';
 import { NgxLayoutIntl } from '../providers';
@@ -13,7 +13,7 @@ import { NgxSearchBarContainerComponent } from '../search-bar-container';
     styleUrl: './panel-bar.component.scss',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatIconModule, MatButtonModule, MatTooltipModule]
+    imports: [MatIcon, MatIconButton, MatTooltip]
 })
 export class NgxPanelBarComponent {
     // inputs

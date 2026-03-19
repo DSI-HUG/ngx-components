@@ -2,11 +2,11 @@ import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } fr
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatBadgeModule } from '@angular/material/badge';
+import { MatBadge } from '@angular/material/badge';
 import { MatIconButton } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
+import { MatChip, MatChipOption, MatChipSet, MatChipTrailingIcon } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
@@ -57,14 +57,17 @@ const resizeSignal = (
     imports: [
         MatIcon,
         MatIconButton,
-        MatChipsModule,
+        MatChip,
+        MatChipOption,
+        MatChipTrailingIcon,
+        MatChipSet,
         MatTooltip,
         NgTemplateOutlet,
         CdkConnectedOverlay,
         CdkOverlayOrigin,
-        MatSlideToggleModule,
+        MatSlideToggle,
         FormsModule,
-        MatBadgeModule,
+        MatBadge,
         LowerCasePipe
     ]
 })

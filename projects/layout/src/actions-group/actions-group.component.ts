@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, Renderer2, type Signal, signal, viewChild, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
@@ -62,7 +62,8 @@ const resizeSignal = (
         MatIcon,
         MatIconButton,
         MatTooltip,
-        MatMenuModule
+        MatMenu,
+        MatMenuTrigger
     ]
 })
 export class NgxActionsGroupComponent {

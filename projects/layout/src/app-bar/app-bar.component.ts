@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, input, output, ViewEncapsulation } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
 
@@ -13,7 +13,7 @@ type AppBarMode = 'standard' | 'condensed';
     styleUrl: './app-bar.component.scss',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatIconModule, MatButtonModule, MatTooltipModule],
+    imports: [MatIcon, MatIconButton, MatTooltip],
     host: {
         // eslint-disable-next-line @typescript-eslint/naming-convention
         '[class.condensed]': 'mode()==="condensed"'
