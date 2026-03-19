@@ -6,6 +6,12 @@ ngx-app-bar {
     box-sizing: border-box;
     gap: var(--ngx-app-bar-gap, 0.25rem);
 
+    &:has(.subtitle) {
+        &:has(:not(.condensed)) {
+            padding-block: var(--ngx-app-bar-with-subtitle-padding-block, 0.25rem);
+        }
+    }
+
     header {
         color: var(--mat-sys-on-surface-variant);
 
