@@ -1,5 +1,9 @@
 @if (hasBackButton()) {
-    <button mat-icon-button aria-label="Back button" matTooltip="Retour" (click)="emitBackClicked()">
+    <button
+        mat-icon-button
+        aria-label="Back button"
+        matTooltip="{{ intl?.back ?? 'Back' }}"
+        (click)="emitBackClicked()">
         <mat-icon>arrow_back</mat-icon>
     </button>
 }
@@ -36,7 +40,7 @@
                 mat-icon-button
                 class="close-button"
                 aria-label="Close button"
-                matTooltip="Fermer"
+                matTooltip="{{ intl?.close ?? 'Close' }}"
                 (click)="emitCloseClicked()">
                 <mat-icon>close</mat-icon>
             </button>

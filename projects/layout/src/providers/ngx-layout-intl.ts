@@ -14,4 +14,5 @@ export class NgxLayoutIntl extends NgxAbstractIntl<NgxLayoutIntl> {
     public filters = '';
     public actives = '';
     public reset = '';
+    public close = '';
 }

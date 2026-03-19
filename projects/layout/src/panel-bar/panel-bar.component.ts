@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, contentChild, input, output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChild, inject, input, output, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { NgxFiltersGroupComponent } from '../filters-group';
+import { NgxLayoutIntl } from '../providers';
 import { NgxSearchBarContainerComponent } from '../search-bar-container';
 
 
@@ -29,6 +30,8 @@ export class NgxPanelBarComponent {
     public readonly backClicked = output();
     public readonly closeClicked = output();
 
+    protected readonly intl = inject(NgxLayoutIntl, { optional: true });
+
     protected hasRightContent = computed(() => !!((this.searchBarContainer() ?? this.filtersGroup()) ?? this.closable()));
 
     private readonly filtersGroup = contentChild(NgxFiltersGroupComponent);
@@ -42,3 +45,4 @@ export class NgxPanelBarComponent {
         this.closeClicked.emit();
     }
 }
+

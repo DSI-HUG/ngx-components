@@ -181,13 +181,9 @@ export const basic: Story = {
                 </button>
             </ngx-app-bar>
             <ngx-main-bar>
-                @if(hasActionsMainBar){
-                ${actionsGroupTemplate}}
-                @if(hasFiltersMainBar){
-                ${filtersGroupTemplate}}
-                @if(hasSearchMainBar){
+                ${actionsGroupTemplate}
+                ${filtersGroupTemplate}
                 ${searchBarTemplate}
-                }
             </ngx-main-bar>
             <ngx-panel [appearance]="appearance" [content-padding]="contentPadding">
                 <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton" [title]="{ text: titleText, level: titleLevel }" [primary]="primary">
