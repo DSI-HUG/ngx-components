@@ -12,6 +12,7 @@ ngx-panel-bar {
     h4,
     h5,
     h6 {
+        flex: 1;
         white-space: nowrap;
         margin: 0;
         font: var(--mat-sys-title-large);
@@ -25,6 +26,10 @@ ngx-panel-bar {
         &:first-child {
             padding-inline-start: var(--ngx-panel-bar-title-first-child-padding-start, 0.25rem);
         }
+    }
+
+    &:has(h1, h2, h3, h4, h5, h6) ngx-actions-group {
+        justify-content: flex-end;
     }
 
     .right,
@@ -42,9 +47,5 @@ ngx-panel-bar {
     ngx-actions-group {
         flex: 1;
         min-inline-size: var(--ngx-panel-bar-actions-group-min-inline-size, 3rem);
-    }
-
-    &.has-title ngx-actions-group {
-        justify-content: flex-end;
     }
 }

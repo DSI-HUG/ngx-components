@@ -81,8 +81,7 @@ const meta: Meta = {
         hasSearchPanelBar: true,
         hasActionsPanelBar: true,
         hasFiltersPanelBar: true,
-        titleText: 'Title panel bar',
-        titleLevel: 2,
+        hasTitlePanelBar: true,
         primary: false
     },
     tags: ['autodocs']
@@ -188,7 +187,9 @@ export const basic: Story = {
                 ${searchBarTemplate}
             </ngx-main-bar>
             <ngx-panel [appearance]="appearance" [content-padding]="contentPadding">
-                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton" [title]="{ text: titleText, level: titleLevel }" [primary]="primary">
+                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton" [primary]="primary">
+                    @if(hasTitlePanelBar){
+                    <h2>Panel Bar Title</h2>}
                     @if(hasActionsPanelBar){
                     ${actionsGroupTemplate}}                 
                     @if(hasFiltersPanelBar){

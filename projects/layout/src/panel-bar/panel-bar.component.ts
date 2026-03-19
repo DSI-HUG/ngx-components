@@ -7,23 +7,17 @@ import { NgxFiltersGroupComponent } from '../filters-group';
 import { NgxLayoutIntl } from '../providers';
 import { NgxSearchBarContainerComponent } from '../search-bar-container';
 
-
 @Component({
     selector: 'ngx-panel-bar',
     templateUrl: './panel-bar.component.html',
     styleUrl: './panel-bar.component.scss',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatIconModule, MatButtonModule, MatTooltipModule],
-    host: {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        '[class.has-title]': 'title()?.text'
-    }
+    imports: [MatIconModule, MatButtonModule, MatTooltipModule]
 })
 export class NgxPanelBarComponent {
     // inputs
     public hasBackButton = input<boolean>();
-    public title = input<{ text: string; level: 2 | 3 | 4 | 5 | 6 }>();
     public closable = input<boolean>();
 
     // output
@@ -45,4 +39,3 @@ export class NgxPanelBarComponent {
         this.closeClicked.emit();
     }
 }
-
