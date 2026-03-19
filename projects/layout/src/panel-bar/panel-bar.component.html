@@ -4,7 +4,27 @@
     </button>
 }
 
-<ng-content select="h1,h2,h3,h4,h5,h6"></ng-content>
+@if (title(); as title) {
+    @if (title.text) {
+        @switch (title.level) {
+            @case (2) {
+                <h2>{{ title.text }}</h2>
+            }
+            @case (3) {
+                <h3>{{ title.text }}</h3>
+            }
+            @case (4) {
+                <h4>{{ title.text }}</h4>
+            }
+            @case (5) {
+                <h5>{{ title.text }}</h5>
+            }
+            @case (6) {
+                <h6>{{ title.text }}</h6>
+            }
+        }
+    }
+}
 <ng-content select="ngx-actions-group"></ng-content>
 
 @if (hasRightContent()) {
@@ -12,7 +32,12 @@
         <ng-content select="ngx-filters-group"></ng-content>
         <ng-content select="ngx-search-bar-container"></ng-content>
         @if (closable()) {
-            <button mat-icon-button aria-label="Close button" matTooltip="Fermer" (click)="emitCloseClicked()">
+            <button
+                mat-icon-button
+                class="close-button"
+                aria-label="Close button"
+                matTooltip="Fermer"
+                (click)="emitCloseClicked()">
                 <mat-icon>close</mat-icon>
             </button>
         }

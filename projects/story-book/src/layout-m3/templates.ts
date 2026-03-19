@@ -13,6 +13,18 @@ export const actionsGroupTemplate = `
         <button matIconButton aria-label="Download" matTooltip="Télécharger">
             <mat-icon>download</mat-icon>
         </button>
+        <button matIconButton aria-label="Share" matTooltip="Partager">
+            <mat-icon>share</mat-icon>
+        </button>
+        <button matIconButton aria-label="Dashboard" matTooltip="Tableau de bord">
+            <mat-icon>dashboard</mat-icon>
+        </button>
+        <button matIconButton aria-label="Notifications" matTooltip="Notifications">
+            <mat-icon>notifications</mat-icon>
+        </button>
+        <button matIconButton aria-label="Help" matTooltip="Aide">
+            <mat-icon>help_outline</mat-icon>
+        </button>
     </ngx-actions-group>`;
 
 export const filtersGroupTemplate = `

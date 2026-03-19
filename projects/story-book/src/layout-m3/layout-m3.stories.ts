@@ -66,7 +66,7 @@ const meta: Meta = {
     },
     args: {
         mode: 'standard',
-        title: 'App Bar Title',
+        titleAppBar: 'App Bar Title',
         subtitle: 'Subtitle',
         helpUrl: 'https://www.hug.ch/',
         withBackIcon: false,
@@ -76,14 +76,12 @@ const meta: Meta = {
         contentPadding: 'regular',
         closable: false,
         hasBackButton: false,
-        titlePanelBar: 'Title panel bar',
-        hasActionsMainBar: true,
-        hasFiltersMainBar: true,
-        hasSearchMainBar: true,
         hasSearchPanelBar: true,
         hasActionsPanelBar: true,
         hasFiltersPanelBar: true,
-        hasSecondPanelBar: true
+        titleText: 'Title panel bar',
+        titleLevel: 2,
+        primary: false
     },
     tags: ['autodocs']
 };
@@ -173,7 +171,7 @@ export const basic: Story = {
         <ngx-layout>
             <ngx-app-bar
             [mode]="mode"
-            [title]="title"
+            [title]="titleAppBar"
             [subtitle]="subtitle"
             [helpUrl]="helpUrl"
             [withBackIcon]="withBackIcon"
@@ -192,15 +190,7 @@ export const basic: Story = {
                 }
             </ngx-main-bar>
             <ngx-panel [appearance]="appearance" [content-padding]="contentPadding">
-                @if(hasSecondPanelBar){
-                <ngx-panel-bar>
-                    <h2>Title second panel bar</h2>
-                </ngx-panel-bar>
-                }   
-                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton" [primary]>
-                    @if (titlePanelBar) {
-                        <h2>{{titlePanelBar}}</h2>
-                    }
+                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton" [title]="{ text: titleText, level: titleLevel }" [primary]="primary">
                     @if(hasActionsPanelBar){
                     ${actionsGroupTemplate}}                 
                     @if(hasFiltersPanelBar){

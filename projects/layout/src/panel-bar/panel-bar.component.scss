@@ -43,4 +43,8 @@ ngx-panel-bar {
         flex: 1;
         min-inline-size: var(--ngx-panel-bar-actions-group-min-inline-size, 3rem);
     }
+
+    &.has-title ngx-actions-group {
+        justify-content: flex-end;
+    }
 }

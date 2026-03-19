@@ -61,6 +61,21 @@ export const argTypesPanelBar: Meta['argTypes'] = {
     hasBackButton: {
         control: 'boolean',
         table: { category: 'panel-bar' }
+    },
+    titleText: {
+        name: 'title',
+        control: 'text',
+        table: { category: 'panel-bar' }
+    },
+    titleLevel: {
+        name: 'titleLevel',
+        control: 'select',
+        options: [2, 3, 4, 5, 6],
+        table: { category: 'panel-bar' }
+    },
+    primary: {
+        control: 'boolean',
+        table: { category: 'panel-bar' }
     }
 };
 

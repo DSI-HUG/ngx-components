@@ -13,11 +13,16 @@ import { NgxSearchBarContainerComponent } from '../search-bar-container';
     styleUrl: './panel-bar.component.scss',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatIconModule, MatButtonModule, MatTooltipModule]
+    imports: [MatIconModule, MatButtonModule, MatTooltipModule],
+    host: {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        '[class.has-title]': 'title()?.text'
+    }
 })
 export class NgxPanelBarComponent {
     // inputs
     public hasBackButton = input<boolean>();
+    public title = input<{ text: string; level: 2 | 3 | 4 | 5 | 6 }>();
     public closable = input<boolean>();
 
     // output
