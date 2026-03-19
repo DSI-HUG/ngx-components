@@ -17,11 +17,11 @@ ngx-column-bar {
         color: var(--mat-sys-on-surface-variant);
 
         overflow: hidden;
-        min-width: 6ch;
+        min-width: var(--ngx-column-bar-title-min-width, 6ch);
         text-overflow: ellipsis;
 
         &:first-child {
-            padding-inline-start: var(--ngx-column-bar-first-child-padding, 0.25rem);
+            padding-inline-start: var(--ngx-column-bar-title-first-child-padding-inline-start, 0.25rem);
         }
     }
 
@@ -37,7 +37,7 @@ ngx-column-bar {
     ngx-actions-group {
         display: flex;
         align-items: center;
-        gap: var(--ngx-column-bar-gap, 0.75rem);
+        gap: var(--ngx-column-bar-elements-gap, 0.75rem);
     }
 
     .right {

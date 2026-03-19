@@ -36,7 +36,7 @@ ngx-panel-bar {
     ngx-actions-group {
         display: flex;
         align-items: center;
-        gap: var(--ngx-panel-bar-gap, 0.75rem);
+        gap: var(--ngx-panel-bar-elements-gap, 0.75rem);
     }
 
     .right {

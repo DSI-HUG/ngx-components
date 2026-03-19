@@ -38,7 +38,7 @@ ngx-filters-group {
         .static {
             display: flex;
             flex-direction: row;
-            gap: var(--ngx-filters-group-gap, 0.5rem);
+            gap: var(--ngx-filters-group-static-gap, 0.5rem);
 
             mat-chip {
                 &:first-child {
@@ -114,8 +114,6 @@ ngx-filters-group {
         }
     }
 
-    --filter-padding: var(--ngx-filters-group-overlay-filter-padding, 1rem);
-
     .filters--title {
         font: var(--mat-sys-title-medium);
         letter-spacing: var(--mat-sys-title-medium-tracking);
@@ -125,8 +123,8 @@ ngx-filters-group {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding-inline: var(--filter-padding);
-        padding-block: calc(var(--filter-padding) / 4);
+        padding-inline: var(--ngx-filters-group-overlay-title-padding-inline, 1rem);
+        padding-block: calc(var(--ngx-filters-group-overlay-title-padding-block, 1rem) / 4);
     }
 
     .filters--content {
@@ -136,14 +134,14 @@ ngx-filters-group {
         display: flex;
         flex-direction: column;
         justify-items: stretch;
-        gap: var(--ngx-filters-group-overlay-filter-gap, 0.5rem);
-        padding: var(--filter-padding);
+        gap: var(--ngx-filters-group-overlay-content-gap, 0.5rem);
+        padding: var(--ngx-filters-group-overlay-filter-padding, 1rem);
 
         .filter {
             display: flex;
             flex-direction: column;
-            gap: var(--ngx-filters-group-overlay-filter-gap, 0.5rem);
-            padding-block: var(--filter-padding);
+            gap: var(--ngx-filters-group-overlay-content-filter-gap, 0.5rem);
+            padding-block: var(--ngx-filters-group-overlay-filter-padding, 1rem);
 
             &:not(:last-child) {
                 border-bottom: 1px dashed var(--mat-sys-outline-variant);
@@ -168,7 +166,7 @@ ngx-filters-group {
 
                 .value {
                     font: var(--mat-sys-label-medium);
-                    max-width: var(--ngx-filters-group-overlay-max-width, 27ch);
+                    max-width: var(--ngx-filters-group-title-overlay-max-width, 27ch);
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
