@@ -1,16 +1,16 @@
-<mat-card class="ngx-message-box {{ type }}">
+<mat-card class="ngx-message-box {{ type() }}">
     <mat-card-header>
-        @if (icon || showCloseIcon) {
+        @if (icon() || showCloseIcon()) {
             <mat-card-title>
-                @if (icon) {
+                @if (icon(); as icon) {
                     <mat-icon id="icon">{{ icon }}</mat-icon>
                 }
-                @if (!horizontal) {
-                    <span id="title">{{ title }}</span>
+                @if (!horizontal()) {
+                    <span id="title">{{ title() }}</span>
                 }
                 <div class="header-actions">
-                    @if (showCloseIcon) {
-                        <button mat-icon-button type="button" class="close" (click)="onClose()">
+                    @if (showCloseIcon()) {
+                        <button mat-icon-button type="button" class="close" (click)="close.emit()">
                             <mat-icon>close</mat-icon>
                         </button>
                     }
@@ -19,14 +19,14 @@
         }
     </mat-card-header>
     <mat-card-content>
-        @if (horizontal && title) {
-            <h2 id="title">{{ title }}</h2>
+        @if (horizontal() && title()) {
+            <h2 id="title">{{ title() }}</h2>
         }
         <ng-content></ng-content>
     </mat-card-content>
-    @if (actions) {
+    @if (actions()) {
         <mat-card-actions>
-            @for (action of actions; track $index) {
+            @for (action of actions(); track $index) {
                 <span>
                     @if (action.text) {
                         <button
@@ -51,9 +51,10 @@
             }
         </mat-card-actions>
     }
-    @if (!actions && actionsTemplate) {
+    @let template = actionsTemplate();
+    @if (!actions && template) {
         <mat-card-actions>
-            <ng-template [ngTemplateOutlet]="actionsTemplate"></ng-template>
+            <ng-template [ngTemplateOutlet]="template"></ng-template>
         </mat-card-actions>
     }
 </mat-card>
