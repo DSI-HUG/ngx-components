@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-layout",
-    "version": "22.0.0-alpha.2",
+    "version": "22.0.0-alpha.3",
     "description": "HUG Angular - layout component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
