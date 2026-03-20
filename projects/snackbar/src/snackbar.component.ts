@@ -274,7 +274,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
     /**
      * compute cumulated height of all snackbars, precedent instance height, width and height of the innerContainer
      *
-     * @return cumulated height of all snackbars, precedent instance height, width and height of the innerContainer
+     * @return the cumulated height
      */
     private computePosition(): { innerContainerWidth: number; innerContainerHeight: number; precedentInstanceHeight: number; computedHeight: number } {
         // Inner container
@@ -290,13 +290,11 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         let precedentInstanceHeight = 0;
 
-        if (instancesInSameZone) {
-            const precedentInstance = instancesInSameZone[instancesInSameZone.length - 1];
+        const precedentInstance = instancesInSameZone[instancesInSameZone.length - 1];
 
-            if (precedentInstance) {
-                const innerContainerElement = precedentInstance.elementRef.nativeElement;
-                precedentInstanceHeight = innerContainerElement.getBoundingClientRect().height;
-            }
+        if (precedentInstance) {
+            const innerContainerElement = precedentInstance.elementRef.nativeElement;
+            precedentInstanceHeight = innerContainerElement.getBoundingClientRect().height;
         }
 
         // computed height of inner containers, sharing the same outer container and the same anchor

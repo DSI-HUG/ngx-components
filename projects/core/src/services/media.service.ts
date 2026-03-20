@@ -109,7 +109,6 @@ export class NgxMediaService implements OnDestroy {
         this.mediaDefinitions.forEach(mediaDefinition => {
             const { alias, mediaQuery } = mediaDefinition;
             this.mql[alias] = window.matchMedia(mediaQuery);
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             this.mql[alias].addEventListener('change', this.onMqlEvent.bind(this, alias));
             if (this.mql[alias].matches) {
                 this.mediaChanged$ = new BehaviorSubject(alias);
@@ -132,7 +131,7 @@ export class NgxMediaService implements OnDestroy {
     public ngOnDestroy(): void {
         Object.keys(this.mql).forEach(alias => {
             // eslint-disable-next-line @typescript-eslint/unbound-method
-            this.mql[alias].removeEventListener('change', this.onMqlEvent as never);
+            this.mql[alias]?.removeEventListener('change', this.onMqlEvent as never);
             delete this.mql[alias];
         });
     }
