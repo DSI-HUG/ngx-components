@@ -22,7 +22,7 @@ import { NgxMessageBoxDialogIntl } from './providers';
 })
 export class NgxMessageBoxDialogComponent {
 
-    protected dialogParams = inject<NgxMessageBoxDialogData>(MAT_DIALOG_DATA);
+    protected readonly dialogParams = inject<NgxMessageBoxDialogData>(MAT_DIALOG_DATA);
 
     protected readonly intl = inject(NgxMessageBoxDialogIntl, { optional: true });
 
@@ -30,4 +30,5 @@ export class NgxMessageBoxDialogComponent {
         // eslint-disable-next-line no-bitwise
         return !!this.dialogParams.buttons && (this.dialogParams.buttons & NgxMessageBoxDialogButtons[key]) !== 0;
     }
+
 }

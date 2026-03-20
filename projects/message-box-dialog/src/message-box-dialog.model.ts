@@ -1,6 +1,6 @@
 export type NgxMessageBoxDialogResponse = 'ok' | 'cancel' | 'ignore' | 'retry' | 'yes' | 'no' | 'continue';
 
-export enum NgxMessageBoxDialogButtons {
+export enum NgxMessageBoxDialogButtons { // should not be hex values but array to allow choosing of order
     OK = 0x1,
     CANCEL = 0x2,
     IGNORE = 0x4,
