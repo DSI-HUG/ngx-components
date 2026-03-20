@@ -1,3 +1,18 @@
+## 22.0.0-alpha.3 (2026-03-20)
+
+### 🚀 Features
+
+- **column-bar:** add ngx-column-bar component #DESIGNSYS-179 ([7d32d1a](https://github.com/DSI-HUG/ngx-components/commit/7d32d1a))
+- **panel-bar:** add ngx-panel-bar component #DESIGNSYS-104 ([5d4b476](https://github.com/DSI-HUG/ngx-components/commit/5d4b476))
+
+### 🐛 Fixes
+
+- **translations:** correction of the German translation for "active" #DESIGNSYS-177 ([82dd0cb](https://github.com/DSI-HUG/ngx-components/commit/82dd0cb))
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.2 (2026-03-18)
 
 ### 🚀 Features
