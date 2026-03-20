@@ -10,11 +10,10 @@ import { NgxStatus } from '../status.model';
 
 @Component({
     selector: 'ngx-status-detail',
-    styleUrls: ['./status-detail.component.scss'],
+    styleUrl: './status-detail.component.scss',
     templateUrl: './status-detail.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         DatePipe,
         MatIcon,
@@ -24,12 +23,11 @@ import { NgxStatus } from '../status.model';
 })
 export class NgxStatusDetailComponent {
 
-    protected fullTextError: string;
-    protected messageBoxType: NgxMessageBoxType;
+    protected readonly fullTextError: string;
+    protected readonly messageBoxType: NgxMessageBoxType;
+
     protected readonly intl = inject(NgxStatusIntl, { optional: true });
-
     protected readonly status = inject<NgxStatus>(MAT_DIALOG_DATA);
-
     protected readonly dialogRef = inject<MatDialogRef<NgxStatusDetailComponent, void>>(MatDialogRef);
 
     public constructor() {

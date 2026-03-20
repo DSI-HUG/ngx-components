@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, EventEmitter, inject, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, model, output, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -6,16 +6,15 @@ import { NgxSnackbarComponent } from '@hug/ngx-snackbar';
 import { catchError, EMPTY, Subject, switchMap, throttleTime } from 'rxjs';
 
 import { NgxStatusIntl } from './providers';
-import { NgxStatus, NgxStatusAction, NgxStatusType } from './status.model';
+import { NgxStatus, NgxStatusAction } from './status.model';
 import { NgxStatusDetailDialogService } from './status-detail/status-detail-dialog.service';
 
 @Component({
     selector: 'ngx-status',
-    styleUrls: ['./status.component.scss'],
+    styleUrl: './status.component.scss',
     templateUrl: './status.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [
         MatButton,
         MatIcon,
@@ -24,31 +23,30 @@ import { NgxStatusDetailDialogService } from './status-detail/status-detail-dial
 })
 export class NgxStatusComponent {
 
-    public get status(): NgxStatus | undefined {
-        return this._status;
-    }
+    public readonly status = model<NgxStatus>();
 
-    @Input()
-    public set status(value: NgxStatus | undefined) {
-        this._status = value;
-        this.statusIcon = this.getStatusIcon(value?.type);
-    }
+    public readonly close = output<void>();
 
-    public close = new EventEmitter<void>();
-
-    protected statusIcon: string | undefined;
+    protected readonly statusIcon = computed<string | undefined>(() => {
+        switch (this.status()?.type) {
+            case 'success':
+                return 'check';
+            case 'warn':
+                return 'warning';
+            case 'danger':
+                return 'release_alert';
+            default:
+                return 'notifications';
+        }
+    });
 
     protected readonly displayDetailedStatus$ = new Subject<NgxStatus>();
 
-    protected readonly intl = inject(NgxStatusIntl, { optional: true });
-
+    private readonly intl = inject(NgxStatusIntl, { optional: true });
     private readonly statusDetailDialogService = inject(NgxStatusDetailDialogService);
     private readonly destroyRef = inject(DestroyRef);
 
-    private _status?: NgxStatus;
-
     public constructor() {
-
         this.displayDetailedStatus$.pipe(
             throttleTime(1000),
             switchMap(status => this.statusDetailDialogService.open$(status).pipe(
@@ -67,22 +65,8 @@ export class NgxStatusComponent {
         }
         action.callback();
         if (action.terminal) {
-            this.close.next();
+            this.close.emit();
         }
     }
 
-    private getStatusIcon(statusType: NgxStatusType | undefined): string {
-        switch (statusType) {
-            case 'success':
-                return 'check';
-            case 'warn':
-                return 'warning';
-            case 'danger':
-                return 'release_alert';
-            case 'primary':
-                return 'notifications';
-            default:
-                return 'notifications';
-        }
-    }
 }

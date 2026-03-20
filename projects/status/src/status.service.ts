@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
-import { ApplicationRef, DestroyRef, EmbeddedViewRef, EventEmitter, inject, Injectable, Injector, ViewContainerRef } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { from, mergeWith, switchMap, take, tap, timer } from 'rxjs';
+import { ApplicationRef, DestroyRef, EmbeddedViewRef, inject, Injectable, Injector, ViewContainerRef } from '@angular/core';
+import { outputToObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { EMPTY, from, mergeWith, switchMap, take, tap, timer } from 'rxjs';
 
 import { NgxStatusIntl } from './providers';
 import { NgxStatus, NgxStatusAction } from './status.model';
@@ -73,8 +73,8 @@ export class NgxStatusService {
                 const componentRef = rootViewContainerRef?.createComponent(component.NgxStatusComponent);
 
                 if (componentRef) {
-                    componentRef.instance.status = status;
-                    const domElement = (componentRef?.hostView as EmbeddedViewRef<unknown>).rootNodes[0] as HTMLElement;
+                    componentRef.instance.status.set(status);
+                    const domElement = (componentRef.hostView as EmbeddedViewRef<unknown>).rootNodes[0] as HTMLElement;
                     this.document.body.appendChild(domElement);
                 }
 
@@ -82,7 +82,7 @@ export class NgxStatusService {
 
                 const duration = status.duration || (status.type === 'danger' && durationLong) || durationShort;
                 return timer(duration).pipe(
-                    mergeWith(componentRef?.instance.close ?? new EventEmitter<void>),
+                    mergeWith(componentRef?.instance.close ? outputToObservable(componentRef.instance.close) : EMPTY),
                     tap(() => {
                         componentRef?.destroy();
                         applicationRef.tick();
@@ -92,4 +92,5 @@ export class NgxStatusService {
             takeUntilDestroyed(this.destroyRef)
         ).subscribe();
     }
+
 }
