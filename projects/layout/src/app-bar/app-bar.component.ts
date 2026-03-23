@@ -24,7 +24,7 @@ export class NgxAppBarComponent {
     public title = input.required<string>();
     public subtitle = input<string>();
     public helpUrl = input<string | URL>();
-    public withBackIcon = input<boolean>(false);
+    public withBackButton = input<boolean>(false);
 
     public readonly goBack = output();
 

@@ -18,15 +18,12 @@ ngx-panel {
         display: flex;
         flex-direction: column;
         gap: var(--ngx-panel-content-gap, 0.5rem);
-        flex: 1;
-
         padding-inline: var(--ngx-panel-content-padding-inline, 0.5rem);
         padding-block-end: var(--ngx-panel-content-padding-block-end, 0.75rem);
-    }
+        flex: 1;
 
-    &[content-padding='none'] {
-        .content {
-            padding-inline: 0;
+        &.no-padding {
+            padding: 0;
         }
     }
 }

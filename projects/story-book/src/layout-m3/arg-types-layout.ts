@@ -18,7 +18,7 @@ const argTypesAppBar: Meta['argTypes'] = {
         control: 'text',
         table: { category: 'app-bar' }
     },
-    withBackIcon: {
+    withBackButton: {
         control: 'boolean',
         table: { category: 'app-bar' }
     }

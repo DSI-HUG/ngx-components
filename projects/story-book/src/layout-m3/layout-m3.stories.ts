@@ -71,7 +71,7 @@ const meta: Meta = {
         titleAppBar: 'App Bar Title',
         subtitle: 'Subtitle',
         helpUrl: 'https://www.hug.ch/',
-        withBackIcon: false,
+        withBackButton: false,
         searchFolded: false,
         filtersGroupFolded: false,
         appearance: 'default',
@@ -175,7 +175,7 @@ export const basic: Story = {
             [title]="titleAppBar"
             [subtitle]="subtitle"
             [helpUrl]="helpUrl"
-            [withBackIcon]="withBackIcon"
+            [withBackButton]="withBackButton"
             >
                 <button matIconButton aria-label="Home">
                     <mat-icon>home</mat-icon>

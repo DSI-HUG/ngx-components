@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';
 
 type Appearance = 'transparent' | 'default';
-type ContentPadding = 'none' | 'regular';
+type ContentPadding = 'none' | 'default';
 
 @Component({
     selector: 'ngx-panel',
@@ -11,12 +11,10 @@ type ContentPadding = 'none' | 'regular';
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        '[attr.appearance]': 'this.appearance()',
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        '[attr.content-padding]': 'this.contentPadding()'
+        '[attr.appearance]': 'this.appearance()'
     }
 })
 export class NgxPanelComponent {
     public readonly appearance = input<Appearance | undefined>(undefined);
-    public readonly contentPadding = input<ContentPadding | undefined>(undefined, { alias: 'content-padding' });
+    public readonly contentPadding = input<ContentPadding | undefined>(undefined);
 }

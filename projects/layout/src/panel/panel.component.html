@@ -1,5 +1,4 @@
-<ng-content select="ngx-panel-bar[primary]"></ng-content>
 <ng-content select="ngx-panel-bar"></ng-content>
-<section class="content">
+<section class="content" [class.no-padding]="contentPadding() === 'none'">
     <ng-content></ng-content>
 </section>
