@@ -1,3 +1,13 @@
+## 22.0.0-alpha.4 (2026-03-24)
+
+### 🐛 Fixes
+
+- **layout:** add exports for column-bar and panel-bar #DESIGNSYS-104 ([0fa772b](https://github.com/DSI-HUG/ngx-components/commit/0fa772b))
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.3 (2026-03-20)
 
 ### 🚀 Features
