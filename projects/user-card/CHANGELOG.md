@@ -71,8 +71,8 @@ This was a version bump only for @hug/ngx-user-card to align it with other proje
 
 ### ❤️  Thank You
 
-- Badisi
-- rfrt
+- Badisi @Badisi
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.8 (2024-07-25)
 
