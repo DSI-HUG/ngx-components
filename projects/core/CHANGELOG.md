@@ -163,8 +163,8 @@ This was a version bump only for @hug/ngx-core to align it with other projects, 
 
 ### ❤️  Thank You
 
-- Badisi
-- rfrt
+- Badisi @Badisi
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.14 (2024-07-25)
 

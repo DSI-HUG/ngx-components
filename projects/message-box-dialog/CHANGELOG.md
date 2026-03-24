@@ -85,9 +85,9 @@ This was a version bump only for @hug/ngx-message-box-dialog to align it with ot
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.10 (2024-07-25)
 
