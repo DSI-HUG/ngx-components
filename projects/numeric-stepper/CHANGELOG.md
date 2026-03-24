@@ -6,7 +6,7 @@
 
 ### ❤️ Thank You
 
-- rfrt @rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 21.0.2 (2026-02-13)
 
@@ -135,9 +135,9 @@
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.11 (2024-07-25)
 

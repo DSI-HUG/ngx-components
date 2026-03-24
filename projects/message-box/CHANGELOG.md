@@ -72,9 +72,9 @@ This was a version bump only for @hug/ngx-message-box to align it with other pro
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.8 (2024-07-25)
 
