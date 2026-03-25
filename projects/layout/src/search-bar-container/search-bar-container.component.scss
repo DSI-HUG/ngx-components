@@ -1,7 +1,7 @@
 ngx-search-bar-container {
     display: flex;
     flex: 1 1 auto;
-    max-width: 400px;
+    max-width: var(--ngx-search-bar-container-max-width, 400px);
     align-items: center;
     block-size: var(--ngx-search-bar-container-block-size, 3rem);
     border-radius: var(--ngx-search-bar-container-radius, 2rem);
