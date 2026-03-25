@@ -43,8 +43,8 @@
     }
 
     <section class="filter-container" #container>
-        <mat-chip-set>
-            @if (this.visibleFilters().length) {
+        @if (this.visibleFilters().length) {
+            <mat-chip-set>
                 @for (f of visibleFilters(); track $index) {
                     @if (f.type === 'toggle') {
                         <mat-chip-option
@@ -77,8 +77,8 @@
                         </mat-chip-option>
                     }
                 }
-            }
-        </mat-chip-set>
+            </mat-chip-set>
+        }
         <section class="static" #static>
             @if (invisibleFilters().length; as invisibleFiltersAmount) {
                 <mat-chip-set>

@@ -40,6 +40,17 @@ ngx-filters-group {
             flex-direction: row;
             gap: var(--ngx-filters-group-static-gap, 0.5rem);
 
+            &:only-child mat-chip-set mat-chip{
+                @include mat.chips-overrides(
+                    (
+                        container-shape-radius: var(
+                                --ngx-filters-group-first-chip-option-shape-radius,
+                                1rem 0.5rem 0.5rem 1rem
+                            )
+                    )
+                );
+            }
+
             mat-chip {
                 &:first-child {
                     @include mat.chips-overrides(
