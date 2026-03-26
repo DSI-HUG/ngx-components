@@ -209,7 +209,8 @@ export const basic: Story = {
                             ${filtersGroupFoldedTemplate}}                 
                         @if(hasSearchPanelBar){
                             ${searchBarFoldedTemplate}}         
-                        <button matButton="outlined">Content Button</button> 
+                        <button matButton="outlined" ngProjectAs="[ngxContentRight]">ngxContentRight</button> 
+                        <button matButton="outlined" ngProjectAs="[ngxContentLeft]">ngxContentLeft</button> 
                     </ngx-column-bar>
                 </div>
             </ngx-panel>

@@ -16,6 +16,7 @@
         }
         <ng-content select="ngx-filters-group"></ng-content>
         <ng-content select="ngx-search-bar-container"></ng-content>
+        <ng-content select="[ngxContentRight]"></ng-content>
     </div>
 }
 
@@ -24,5 +25,5 @@
 </ng-template>
 
 <ng-template #ngContent>
-    <ng-content></ng-content>
+    <ng-content select="[ngxContentLeft]"></ng-content>
 </ng-template>
