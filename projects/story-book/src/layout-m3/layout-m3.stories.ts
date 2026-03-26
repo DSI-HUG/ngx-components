@@ -186,6 +186,8 @@ export const basic: Story = {
                 ${actionsGroupTemplate}
                 ${filtersGroupTemplate}
                 ${searchBarTemplate}
+                <button matButton="outlined" ngProjectAs="[ngxContentRight]">ngxContentRight</button> 
+                <button matButton="outlined" ngProjectAs="[ngxContentLeft]">ngxContentLeft</button> 
             </ngx-main-bar>
             <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
                 <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
