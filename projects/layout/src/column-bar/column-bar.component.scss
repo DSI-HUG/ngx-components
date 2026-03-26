@@ -13,8 +13,8 @@ ngx-column-bar {
     h6 {
         white-space: nowrap;
         margin: 0;
-        font: var(--mat-sys-title-large);
-        letter-spacing: var(--mat-sys-title-large-tracking);
+        font: var(--mat-sys-title-medium);
+        letter-spacing: var(--mat-sys-title-medium-tracking);
         color: var(--mat-sys-on-surface-variant);
 
         overflow: hidden;
@@ -26,8 +26,16 @@ ngx-column-bar {
         }
     }
 
-    &:has(h1, h2, h3, h4, h5, h6) ngx-actions-group {
-        justify-content: flex-end;
+    &:has(h1, h2, h3, h4, h5, h6) {
+
+        .right:has(ngx-actions-group){
+            ngx-filters-group{
+                flex: none;
+            }
+        }
+        ngx-actions-group {
+            justify-content: flex-end;
+        }
     }
 
     .right,

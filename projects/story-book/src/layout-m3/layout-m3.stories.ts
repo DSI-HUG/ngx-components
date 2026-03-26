@@ -81,8 +81,7 @@ const meta: Meta = {
         hasSearchPanelBar: true,
         hasActionsPanelBar: true,
         hasFiltersPanelBar: true,
-        hasTitlePanelBar: true,
-        primary: false
+        hasTitlePanelBar: true
     },
     tags: ['autodocs']
 };
@@ -186,40 +185,29 @@ export const basic: Story = {
                 ${filtersGroupTemplate}
                 ${searchBarTemplate}
             </ngx-main-bar>
-            <ngx-panel [appearance]="appearance" [content-padding]="contentPadding">
-                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton" [primary]="primary">
+            <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
+                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
                     @if(hasTitlePanelBar){
-                    <h2>Panel Bar Title</h2>}
+                        <h3>Panel Bar Title</h3>}
                     @if(hasActionsPanelBar){
-                    ${actionsGroupTemplate}}                 
+                        ${actionsGroupTemplate}}                 
                     @if(hasFiltersPanelBar){
-                    ${filtersGroupTemplate}}                 
+                        ${filtersGroupTemplate}}                 
                     @if(hasSearchPanelBar){
-                    ${searchBarTemplate}
-                }
+                        ${searchBarTemplate}
+                    }
                 </ngx-panel-bar>
                 <div>
                     <ngx-column-bar>
                         @if(hasTitlePanelBar){
-                        <h4>Column Bar Title</h4>}
+                            <h4 ngxTitleBar>Column Bar Title</h4>}
                         @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}                 
+                            ${actionsGroupTemplate}}                 
                         @if(hasFiltersPanelBar){
-                        ${filtersGroupFoldedTemplate}}                 
+                            ${filtersGroupFoldedTemplate}}                 
                         @if(hasSearchPanelBar){
-                        ${searchBarFoldedTemplate}}             
-                    </ngx-column-bar>
-                </div>
-                <div>
-                    <ngx-column-bar>
-                        @if(hasTitlePanelBar){
-                        <h4>Column Bar Title</h4>}
-                        @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}                 
-                        @if(hasFiltersPanelBar){
-                        ${filtersGroupFoldedTemplate}}                 
-                        @if(hasSearchPanelBar){
-                        ${searchBarFoldedTemplate}}             
+                            ${searchBarFoldedTemplate}}         
+                        <p>Coucou</p>    
                     </ngx-column-bar>
                 </div>
             </ngx-panel>

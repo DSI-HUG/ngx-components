@@ -28,7 +28,7 @@ export const actionsGroupTemplate = `
     </ngx-actions-group>`;
 
 export const filtersGroupFoldedTemplate = `
-    <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="true">
+    <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="folded">
         <ng-template [ngx-filter-toggle] label="Afficher commentaire" [(active)]="commentFilter" />
         <ng-template
             [ngx-filter]
