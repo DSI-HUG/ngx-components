@@ -1,4 +1,6 @@
-<ng-content select="h1[ngxTitleBar], h2[ngxTitleBar], h3[ngxTitleBar], h4[ngxTitleBar], h5[ngxTitleBar], h6[ngxTitleBar]"></ng-content>
+@if (hasTitle()) {
+    <ng-content select="h1[ngxTitleBar], h2[ngxTitleBar], h3[ngxTitleBar], h4[ngxTitleBar], h5[ngxTitleBar], h6[ngxTitleBar]"></ng-content>
+}
 @if(!hasTitle()) {
     <ng-container [ngTemplateOutlet]="actionsGroup"></ng-container>
 }@else {

@@ -13,6 +13,7 @@ import { NgxLayoutComponent } from '@hug/ngx-layout';
 import { NgxActionsGroupComponent } from '@hug/ngx-layout/actions-group';
 import { NgxAppBarComponent } from '@hug/ngx-layout/app-bar';
 import { NgxColumnBarComponent } from '@hug/ngx-layout/column-bar';
+import { NgxTitleBarDirective } from '@hug/ngx-layout/directives';
 import { NgxFilterDirective, NgxFiltersGroupComponent, NgxFilterToggleDirective } from '@hug/ngx-layout/filters-group';
 import { NgxMainBarComponent } from '@hug/ngx-layout/main-bar';
 import { NgxPanelComponent } from '@hug/ngx-layout/panel';
@@ -56,7 +57,8 @@ const meta: Meta = {
                 MatDatepickerModule,
                 MatListModule,
                 NgxPanelBarComponent,
-                NgxColumnBarComponent
+                NgxColumnBarComponent,
+                NgxTitleBarDirective
             ]
         })
     ],
@@ -207,7 +209,7 @@ export const basic: Story = {
                             ${filtersGroupFoldedTemplate}}                 
                         @if(hasSearchPanelBar){
                             ${searchBarFoldedTemplate}}         
-                        <p>Coucou</p>    
+                        <button matButton="outlined">Content Button</button> 
                     </ngx-column-bar>
                 </div>
             </ngx-panel>
