@@ -1,8 +1,8 @@
 <mat-card class="ngx-message-box {{ type() }}">
     <mat-card-header>
-        @if (icon() || showCloseIcon()) {
+        @if (iconValue() || showCloseIcon()) {
             <mat-card-title>
-                @if (icon(); as icon) {
+                @if (iconValue(); as icon) {
                     <mat-icon id="icon">{{ icon }}</mat-icon>
                 }
                 @if (!horizontal()) {

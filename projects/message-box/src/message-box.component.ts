@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, contentChild, input, model, OnInit, output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, contentChild, input, linkedSignal, OnInit, output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
@@ -29,7 +29,7 @@ export class NgxMessageBoxComponent implements OnInit {
 
     public readonly type = input<NgxMessageBoxType>();
     public readonly title = input<string>();
-    public readonly icon = model<string>('');
+    public readonly icon = input<string>('');
     public readonly actions = input<readonly NgxMessageBoxAction[]>([]);
     public readonly horizontal = input<boolean>(false);
     public readonly showCloseIcon = input<boolean>(false);
@@ -37,10 +37,12 @@ export class NgxMessageBoxComponent implements OnInit {
     /** Event Emitted when the close action is called */
     public readonly actionsTemplate = contentChild<TemplateRef<unknown>>('actionsTemplate');
 
+    protected readonly iconValue = linkedSignal<string>(() => this.icon());
+
     public ngOnInit(): void {
         const type = this.type();
-        if (!this.icon() && type) {
-            this.icon.set(this.getIconFromType(type));
+        if (!this.iconValue() && type) {
+            this.iconValue.set(this.getIconFromType(type));
         }
 
         this.actions()
