@@ -224,7 +224,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
         // check if snackbars have to move (if they were created after the one deleted)
         if (NgxSnackbarComponent.INSTANCES.length) {
             NgxSnackbarComponent.INSTANCES
-                .filter(instance => this.outerContainerElement === instance.outerContainerElement)
+                .filter(instance => this.outerContainerElement() === instance.outerContainerElement())
                 .filter(instance => this.anchor === instance.anchor)
                 .forEach(instance => {
                     if (instance.timestamp > this.timestamp) {
@@ -271,7 +271,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // Instances sharing the same outer container and the same anchor
         const instancesInSameZone = NgxSnackbarComponent.INSTANCES
-            .filter((instance: NgxSnackbarComponent) => this.outerContainerElement === instance.outerContainerElement)
+            .filter((instance: NgxSnackbarComponent) => this.outerContainerElement() === instance.outerContainerElement())
             .filter((instance: NgxSnackbarComponent) => this.anchor === instance.anchor)
             .filter((instance: NgxSnackbarComponent) => this !== instance);
 
