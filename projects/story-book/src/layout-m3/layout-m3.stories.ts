@@ -186,13 +186,12 @@ export const basic: Story = {
                 ${actionsGroupTemplate}
                 ${filtersGroupTemplate}
                 ${searchBarTemplate}
-                <button matButton="outlined" ngProjectAs="[ngxContentRight]">ngxContentRight</button> 
                 <button matButton="outlined" ngProjectAs="[ngxContentLeft]">ngxContentLeft</button> 
             </ngx-main-bar>
             <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
                 <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
                     @if(hasTitlePanelBar){
-                        <h3>Panel Bar Title</h3>}
+                        <h3 ngxTitleBar>Panel Bar Title</h3>}
                     @if(hasActionsPanelBar){
                         ${actionsGroupTemplate}}                 
                     @if(hasFiltersPanelBar){
@@ -200,6 +199,7 @@ export const basic: Story = {
                     @if(hasSearchPanelBar){
                         ${searchBarTemplate}
                     }
+                    <button matButton="outlined" ngProjectAs="[ngxContentLeft]">ngxContentLeft</button> 
                 </ngx-panel-bar>
                 <div>
                     <ngx-column-bar>
@@ -211,7 +211,6 @@ export const basic: Story = {
                             ${filtersGroupFoldedTemplate}}                 
                         @if(hasSearchPanelBar){
                             ${searchBarFoldedTemplate}}         
-                        <button matButton="outlined" ngProjectAs="[ngxContentRight]">ngxContentRight</button> 
                         <button matButton="outlined" ngProjectAs="[ngxContentLeft]">ngxContentLeft</button> 
                     </ngx-column-bar>
                 </div>

@@ -40,13 +40,13 @@ ngx-column-bar {
 
     .right,
     ngx-actions-group {
-        flex:1;
         display: flex;
         align-items: center;
         gap: var(--ngx-column-bar-elements-gap, 0.75rem);
     }
 
     .right {
+        flex: 1;
         justify-content: flex-end;
     }
 

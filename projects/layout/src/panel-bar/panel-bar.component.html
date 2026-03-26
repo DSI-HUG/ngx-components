@@ -8,13 +8,26 @@
     </button>
 }
 
-<ng-content select="h1,h2,h3,h4,h5,h6"></ng-content>
-<ng-content select="ngx-actions-group"></ng-content>
+@if (hasTitle()) {
+    <ng-content select="h2[ngxTitleBar], h3[ngxTitleBar], h4[ngxTitleBar], h5[ngxTitleBar], h6[ngxTitleBar]"></ng-content>
+}
+@if(!hasTitle()) {
+    <ng-container [ngTemplateOutlet]="actionsGroup"></ng-container>
+}@else {
+    <ng-container [ngTemplateOutlet]="ngContent"></ng-container>
+}
+
 
 @if (hasRightContent()) {
     <div class="right">
+        @if(hasTitle()) {
+            <ng-container [ngTemplateOutlet]="actionsGroup"></ng-container>
+        } @else {
+            <ng-container [ngTemplateOutlet]="ngContent"></ng-container>
+        }
         <ng-content select="ngx-filters-group"></ng-content>
         <ng-content select="ngx-search-bar-container"></ng-content>
+        <ng-content select="[ngxContentRight]"></ng-content>
         @if (closable()) {
             <button
                 mat-icon-button
@@ -27,3 +40,11 @@
         }
     </div>
 }
+
+<ng-template #actionsGroup>
+    <ng-content select="ngx-actions-group"></ng-content>
+</ng-template>
+
+<ng-template #ngContent>
+    <ng-content select="[ngxContentLeft]"></ng-content>
+</ng-template>

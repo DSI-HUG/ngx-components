@@ -12,7 +12,6 @@ ngx-panel-bar {
     h4,
     h5,
     h6 {
-        flex: 1;
         white-space: nowrap;
         margin: 0;
         font: var(--mat-sys-title-large);
@@ -28,8 +27,15 @@ ngx-panel-bar {
         }
     }
 
-    &:has(h1, h2, h3, h4, h5, h6) ngx-actions-group {
-        justify-content: flex-end;
+    &:has(h1, h2, h3, h4, h5, h6) {
+        .right:has(ngx-actions-group){
+            ngx-filters-group{
+                flex: none;
+            }
+        }
+        ngx-actions-group {
+            justify-content: flex-end;
+        }
     }
 
     .right,
