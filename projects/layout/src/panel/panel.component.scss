@@ -5,7 +5,7 @@ ngx-panel {
     box-sizing: border-box;
     block-size: 100%;
     border-radius: var(--ngx-panel-radius, 2rem);
-    padding-block: var(--ngx-panel-padding-block, 0.25rem);
+    padding: var(--ngx-panel-padding, 0.25rem);
     background-color: var(--mat-sys-surface-container-lowest);
     min-width: min-content;
 

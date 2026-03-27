@@ -1,7 +1,7 @@
 ngx-panel-bar {
     display: flex;
     align-items: center;
-    padding: var(--ngx-panel-bar-padding, 0.25rem 0.5rem);
+    padding: var(--ngx-panel-bar-padding, 0.25rem);
     gap: var(--ngx-panel-bar-gap, 0.75rem);
     min-height: var(--ngx-panel-bar-min-height, 3rem);
     flex-wrap: nowrap;

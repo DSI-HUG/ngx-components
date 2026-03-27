@@ -1,5 +1,5 @@
 @if (hasTitle()) {
-    <ng-content select="h2[ngxTitleBar], h3[ngxTitleBar], h4[ngxTitleBar], h5[ngxTitleBar], h6[ngxTitleBar]"></ng-content>
+    <ng-content select="[ngxBarTitle]"></ng-content>
     <ng-container [ngTemplateOutlet]="ngContentLeft"></ng-container>
 } @else {
      <ng-container [ngTemplateOutlet]="actionsGroup"></ng-container>

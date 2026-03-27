@@ -4,7 +4,7 @@ import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 
-import { NgxTitleBarDirective } from '../directives';
+import { NgxBarTitleDirective } from '../directives';
 import { NgxFiltersGroupComponent } from '../filters-group';
 import { NgxLayoutIntl } from '../providers';
 import { NgxSearchBarContainerComponent } from '../search-bar-container';
@@ -29,12 +29,12 @@ export class NgxPanelBarComponent {
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
     protected hasRightContent = computed(() => !!((this.searchBarContainer() ?? this.filtersGroup()) ?? this.closable()));
-    protected hasTitle = computed(() => !!this.titleBar());
+    protected hasTitle = computed(() => !!this.barTitle());
 
 
     private readonly filtersGroup = contentChild(NgxFiltersGroupComponent);
     private readonly searchBarContainer = contentChild(NgxSearchBarContainerComponent);
-    private readonly titleBar = contentChild(NgxTitleBarDirective);
+    private readonly barTitle = contentChild(NgxBarTitleDirective);
 
 
     protected emitBackClicked(): void {

@@ -13,7 +13,7 @@ import { NgxLayoutComponent } from '@hug/ngx-layout';
 import { NgxActionsGroupComponent } from '@hug/ngx-layout/actions-group';
 import { NgxAppBarComponent } from '@hug/ngx-layout/app-bar';
 import { NgxColumnBarComponent } from '@hug/ngx-layout/column-bar';
-import { NgxTitleBarDirective } from '@hug/ngx-layout/directives';
+import { NgxBarTitleDirective } from '@hug/ngx-layout/directives';
 import { NgxFilterDirective, NgxFiltersGroupComponent, NgxFilterToggleDirective } from '@hug/ngx-layout/filters-group';
 import { NgxMainBarComponent } from '@hug/ngx-layout/main-bar';
 import { NgxPanelComponent } from '@hug/ngx-layout/panel';
@@ -58,7 +58,7 @@ const meta: Meta = {
                 MatListModule,
                 NgxPanelBarComponent,
                 NgxColumnBarComponent,
-                NgxTitleBarDirective
+                NgxBarTitleDirective
             ]
         })
     ],
@@ -186,13 +186,11 @@ export const basic: Story = {
                 ${actionsGroupTemplate}
                 ${filtersGroupTemplate}
                 ${searchBarTemplate}
-                <button matButton="outlined" ngProjectAs="[ngxContentLeft]">ngxContentLeft</button> 
-                <button matButton="outlined" ngProjectAs="[ngxContentRight]">ngxContentRight</button> 
             </ngx-main-bar>
             <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
                 <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
                     @if(hasTitlePanelBar){
-                        <h3 ngxTitleBar>Panel Bar Title</h3>}
+                        <h3 ngxBarTitle>Panel Bar Title</h3>}
                     @if(hasActionsPanelBar){
                         ${actionsGroupTemplate}}                 
                     @if(hasFiltersPanelBar){
@@ -200,22 +198,29 @@ export const basic: Story = {
                     @if(hasSearchPanelBar){
                         ${searchBarTemplate}
                     }
-                    <button matButton="outlined" ngProjectAs="[ngxContentLeft]">ngxContentLeft</button> 
-                    <button matButton="outlined" ngProjectAs="[ngxContentRight]">ngxContentRight</button> 
+                </ngx-panel-bar>
+                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
+                    @if(hasActionsPanelBar){
+                        ${actionsGroupTemplate}}                 
+                    @if(hasFiltersPanelBar){
+                        ${filtersGroupTemplate}}                 
+                    @if(hasSearchPanelBar){
+                        ${searchBarTemplate}
+                    }
                 </ngx-panel-bar>
                 <div>
                     <ngx-column-bar>
                         @if(hasTitlePanelBar){
-                            <h4 ngxTitleBar>Column Bar Title</h4>}
+                            <h4 ngxBarTitle>Column Bar Title</h4>}
                         @if(hasActionsPanelBar){
                             ${actionsGroupTemplate}}                 
                         @if(hasFiltersPanelBar){
                             ${filtersGroupFoldedTemplate}}                 
                         @if(hasSearchPanelBar){
-                            ${searchBarFoldedTemplate}}         
-                        <button matButton="outlined" ngProjectAs="[ngxContentLeft]">ngxContentLeft</button> 
-                        <button matButton="outlined" ngProjectAs="[ngxContentRight]">ngxContentRight</button> 
+                            ${searchBarFoldedTemplate}}          
                     </ngx-column-bar>
+
+                    <p>Content of the panel</p>
                 </div>
             </ngx-panel>
         </ngx-layout>

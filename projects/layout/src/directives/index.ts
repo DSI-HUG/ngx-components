@@ -1,2 +1,2 @@
-export * from './title-bar.directive';
+export * from './bar-title.directive';
 

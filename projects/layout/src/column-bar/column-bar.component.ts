@@ -1,7 +1,7 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, contentChild, ViewEncapsulation } from '@angular/core';
 
-import { NgxTitleBarDirective } from '../directives';
+import { NgxBarTitleDirective } from '../directives';
 import { NgxFiltersGroupComponent } from '../filters-group';
 import { NgxSearchBarContainerComponent } from '../search-bar-container';
 
@@ -15,9 +15,9 @@ import { NgxSearchBarContainerComponent } from '../search-bar-container';
 })
 export class NgxColumnBarComponent {
     protected hasRightContent = computed(() => this.filtersGroup() ?? this.searchBarContainer());
-    protected hasTitle = computed(() => !!this.titleBar());
+    protected hasTitle = computed(() => !!this.barTitle());
 
     private readonly filtersGroup = contentChild(NgxFiltersGroupComponent);
     private readonly searchBarContainer = contentChild(NgxSearchBarContainerComponent);
-    private readonly titleBar = contentChild(NgxTitleBarDirective);
+    private readonly barTitle = contentChild(NgxBarTitleDirective);
 }
