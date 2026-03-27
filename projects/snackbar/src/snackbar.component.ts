@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, HostListener, inject, input, model, OnDestroy, OnInit, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounce, delay, Subject, Subscription, take, tap, timer } from 'rxjs';
 
@@ -14,9 +14,8 @@ interface Animation {
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'ngx-snackbar',
-    styleUrls: ['./snackbar.component.scss'],
-    template: '<ng-content></ng-content>',
-    standalone: true
+    styleUrl: './snackbar.component.scss',
+    template: '<ng-content></ng-content>'
 })
 export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
     /**
@@ -27,60 +26,56 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
     /**
      * callback used to negate the boolean responsible for the presence of the snackbar on the dom (see demo)
     */
-    // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-    @Output() public readonly onAnimationDone = new EventEmitter();
-
-    /**
-     * inner container
-     */
-    // @ViewChild('container') public host;
+    public readonly onAnimationDone = output<Event | void>();
 
     /**
      * specify delay for the enter animation
      */
-    @Input() public delay = 0;
+    public readonly delay = input<number>(0);
 
     /**
      * specify lifetime of the snackbar on the screen
      */
-    @Input() public duration = 0;
+    public readonly duration = input<number>(0);
 
     /**
      * set a container for the snackbar instead of default behavior (viewport)
      */
-    @Input() public outerContainerElement?: HTMLElement;
+    public readonly outerContainerElement = model<HTMLElement | undefined>(undefined);
 
-    protected elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+    public readonly alignment = input<string>('');
+
+    protected readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
     /**
      * inner container element, represent the snackbar since the host has no height width and a position relative to it's html declaration
      */
-    private host: HTMLElement;
+    private readonly host: HTMLElement;
 
     /**
      * vertical space between snackbar
      */
-    private marginTop = 6;
+    private readonly marginTop = 6;
 
     /**
      * snackbar creation timestamp, used for calculation, forthe adapt animation
      */
-    private timestamp: number = +new Date();
+    private readonly timestamp: number = +new Date();
 
     /**
      * enter animation duration
      */
-    private enterAnimationDuration = 350;
+    private readonly enterAnimationDuration = 350;
 
     /**
      * adapt animation duration
      */
-    private adaptAnimationDuration = 225;
+    private readonly adaptAnimationDuration = 225;
 
     /**
      * leave animation duration
      */
-    private leaveAnimationDuration = 175;
+    private readonly leaveAnimationDuration = 175;
 
     /**
      * string representation of the alignment, used for statements and initial final position
@@ -90,37 +85,21 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
     /**
      * object representation of the alignment, used to filter incompatible alignments and build the string representation
      */
-    private _alignments = {} as {
+    private readonly alignments: {
         [prop: string]: boolean;
         top: boolean;
         right: boolean;
         bottom: boolean;
         left: boolean;
-    };
-
-    private animate$ = new Subject<Animation>();
-    private animate$sub: Subscription;
-
-    /**
-     * _alignments setter
-     */
-    @Input() public set alignment(value: string) {
-        this._alignments = {
+    } = {
             bottom: false,
             left: false,
             right: false,
             top: false
         };
 
-        // set _alignments
-        if (value) {
-            value.split(/\s+/g).forEach((align: string) => this._alignments[align] = true);
-        }
-
-        // filter incompatible alignments
-        this._alignments.bottom = this._alignments.top && this._alignments.bottom ? false : this._alignments.bottom;
-        this._alignments.left = this._alignments.right && this._alignments.left ? false : this._alignments.left;
-    }
+    private readonly animate$ = new Subject<Animation>();
+    private readonly animate$sub: Subscription;
 
     private destroyRef = inject(DestroyRef);
 
@@ -183,8 +162,8 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
         // Choose animation depending on alignment
         const anchors = [] as string[];
 
-        Object.keys(this._alignments).forEach(key => {
-            if (this._alignments[key]) {
+        Object.keys(this.alignments).forEach(key => {
+            if (this.alignments[key]) {
                 anchors.push(key);
             }
         });
@@ -200,15 +179,23 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
         }, '');
 
         this.anchor = anchor;
+
+        if (this.alignment()) {
+            this.alignment().split(/\s+/g).forEach((align: string) => this.alignments[align] = true);
+        }
+
+        // filter incompatible alignments
+        this.alignments.bottom = this.alignments.top && this.alignments.bottom ? false : this.alignments.bottom;
+        this.alignments.left = this.alignments.right && this.alignments.left ? false : this.alignments.left;
     }
 
     /**
      * afterviewInit hook
      */
     public ngAfterViewInit(): void {
-        if (!this.outerContainerElement) {
+        if (!this.outerContainerElement()) {
             // Set default outer container if none specified
-            this.outerContainerElement = this.host.ownerDocument.body;
+            this.outerContainerElement.set(this.host.ownerDocument.body);
         } else {
             // Otherwise, set inner container position to absolute for correct placement of snackbars
             this.host.classList.add('absolute');
@@ -218,10 +205,10 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.launchEnterAnimation();
 
         // if a duration has been been specified, launch the 'leave' animation after snackbar's lifetime flow, then emit amination done
-        timer(this.duration + this.delay).pipe(
+        timer(this.duration() + this.delay()).pipe(
             take(1),
             tap(() => {
-                if (this.duration) {
+                if (this.duration()) {
                     this.launchLeaveAnimation();
                 }
             }),
@@ -237,7 +224,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
         // check if snackbars have to move (if they were created after the one deleted)
         if (NgxSnackbarComponent.INSTANCES.length) {
             NgxSnackbarComponent.INSTANCES
-                .filter(instance => this.outerContainerElement === instance.outerContainerElement)
+                .filter(instance => this.outerContainerElement() === instance.outerContainerElement())
                 .filter(instance => this.anchor === instance.anchor)
                 .forEach(instance => {
                     if (instance.timestamp > this.timestamp) {
@@ -274,7 +261,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
     /**
      * compute cumulated height of all snackbars, precedent instance height, width and height of the innerContainer
      *
-     * @return cumulated height of all snackbars, precedent instance height, width and height of the innerContainer
+     * @return the cumulated height
      */
     private computePosition(): { innerContainerWidth: number; innerContainerHeight: number; precedentInstanceHeight: number; computedHeight: number } {
         // Inner container
@@ -284,19 +271,17 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // Instances sharing the same outer container and the same anchor
         const instancesInSameZone = NgxSnackbarComponent.INSTANCES
-            .filter((instance: NgxSnackbarComponent) => this.outerContainerElement === instance.outerContainerElement)
+            .filter((instance: NgxSnackbarComponent) => this.outerContainerElement() === instance.outerContainerElement())
             .filter((instance: NgxSnackbarComponent) => this.anchor === instance.anchor)
             .filter((instance: NgxSnackbarComponent) => this !== instance);
 
         let precedentInstanceHeight = 0;
 
-        if (instancesInSameZone) {
-            const precedentInstance = instancesInSameZone[instancesInSameZone.length - 1];
+        const precedentInstance = instancesInSameZone[instancesInSameZone.length - 1];
 
-            if (precedentInstance) {
-                const innerContainerElement = precedentInstance.elementRef.nativeElement;
-                precedentInstanceHeight = innerContainerElement.getBoundingClientRect().height;
-            }
+        if (precedentInstance) {
+            const innerContainerElement = precedentInstance.elementRef.nativeElement;
+            precedentInstanceHeight = innerContainerElement.getBoundingClientRect().height;
         }
 
         // computed height of inner containers, sharing the same outer container and the same anchor
@@ -385,7 +370,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
     private launchAdaptAnimation(height: number): void {
 
         let direction = 1;
-        if (this._alignments.top) {
+        if (this.alignments.top) {
             direction = -1;
         }
 
@@ -409,7 +394,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
      */
     private launchEnterAnimation(): void {
         let direction = -1;
-        if (this._alignments.top) {
+        if (this.alignments.top) {
             direction = 1;
         }
 
@@ -422,7 +407,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
                 opacity: '1',
                 transform: 'translateY(0)'
             },
-            delay: this.delay,
+            delay: this.delay(),
             duration: this.enterAnimationDuration,
             easing: 'ease'
         } as Animation);

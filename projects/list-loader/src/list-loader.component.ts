@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
     selector: 'ngx-list-loader',
     templateUrl: './list-loader.component.html',
-    styleUrls: ['./list-loader.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true
+    styleUrl: './list-loader.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxListLoaderComponent {
-    @Input()
-    public label?: string;
+
+    public readonly label = input<string>();
+
 }

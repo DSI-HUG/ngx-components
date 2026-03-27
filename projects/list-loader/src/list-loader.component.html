@@ -4,7 +4,7 @@
         <div class="bounce2"></div>
         <div class="bounce3"></div>
     </div>
-    @if (label) {
+    @if (label(); as label) {
         <div class="label">{{ label }}</div>
     }
 </div>

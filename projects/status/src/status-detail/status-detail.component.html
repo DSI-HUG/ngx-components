@@ -3,7 +3,7 @@
         light
         [type]="messageBoxType"
         [title]="status.title || ''"
-        showCloseIcon="true"
+        [showCloseIcon]="true"
         (close)="dialogRef.close()">
         <p>{{ status.text }}</p>
         <p class="detail-error-title">{{ intl?.errorDetails ?? 'Error details:' }}</p>

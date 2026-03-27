@@ -60,7 +60,7 @@ export abstract class NgxAbstractIntl<T extends NgxAbstractIntl<T>> {
                 // If whitelisted + not overridden entry
                 if (whitelistKeys.has(key) && !(this as unknown as Record<string, string>)[key]) {
                     // Let's assign the value from JSON file
-                    (this as unknown as Record<string, string>)[key] = (intl as unknown as Record<string, string>)[key];
+                    (this as unknown as Record<string, string>)[key] = (intl as unknown as Record<string, string>)[key] ?? '';
                 }
             });
         }

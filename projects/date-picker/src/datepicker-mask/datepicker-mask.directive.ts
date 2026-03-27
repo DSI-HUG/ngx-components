@@ -120,9 +120,11 @@ export class NgxDatepickerMaskDirective {
                 }
 
                 let start: number | undefined;
-                if (this.formatCharRegExp.exec(this._formatExpression[pos])) {
+                const expr = this._formatExpression[pos];
+                const previousExpr = this._formatExpression[pos - 1];
+                if (expr && this.formatCharRegExp.exec(expr)) {
                     start = pos;
-                } else if (this.formatCharRegExp.exec(this._formatExpression[pos - 1])) {
+                } else if (previousExpr && this.formatCharRegExp.exec(previousExpr)) {
                     start = pos - 1;
                 }
 
@@ -256,7 +258,7 @@ export class NgxDatepickerMaskDirective {
                         if (!formatChar || !this.formatCharRegExp.exec(formatChar)) {
                             formatChar = formatExpression[start - 1];
                         }
-                        if (this.formatCharRegExp.exec(formatChar)) {
+                        if (formatChar && this.formatCharRegExp.exec(formatChar)) {
                             let newDate: Date | undefined;
                             switch (formatChar) {
                                 case 'y':

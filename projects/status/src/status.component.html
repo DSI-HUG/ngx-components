@@ -1,10 +1,10 @@
-@if (status) {
+@if (status(); as status) {
     <ngx-snackbar
         alignment="bottom right"
         [class.hasInfo]="!!status.technicalText"
         class="ngx-snackbar ngx-snackbar-{{ status.type }} {{ status.className }}">
         <div class="header">
-            @if (statusIcon) {
+            @if (statusIcon(); as statusIcon) {
                 <mat-icon class="status-icon">{{ statusIcon }}</mat-icon>
             }
             <div class="title">
@@ -17,7 +17,7 @@
                 @if (status.technicalText) {
                     <mat-icon class="info" inline (click)="displayDetailedStatus$.next(status)">info</mat-icon>
                 }
-                <mat-icon class="close" inline (click)="close.next()">close</mat-icon>
+                <mat-icon class="close" inline (click)="close.emit()">close</mat-icon>
             </div>
         </div>
         @if (status.text; as text) {
