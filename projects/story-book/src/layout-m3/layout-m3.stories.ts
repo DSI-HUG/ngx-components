@@ -187,6 +187,7 @@ export const basic: Story = {
                 ${filtersGroupTemplate}
                 ${searchBarTemplate}
                 <button matButton="outlined" ngProjectAs="[ngxContentLeft]">ngxContentLeft</button> 
+                <button matButton="outlined" ngProjectAs="[ngxContentRight]">ngxContentRight</button> 
             </ngx-main-bar>
             <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
                 <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
@@ -200,6 +201,7 @@ export const basic: Story = {
                         ${searchBarTemplate}
                     }
                     <button matButton="outlined" ngProjectAs="[ngxContentLeft]">ngxContentLeft</button> 
+                    <button matButton="outlined" ngProjectAs="[ngxContentRight]">ngxContentRight</button> 
                 </ngx-panel-bar>
                 <div>
                     <ngx-column-bar>
@@ -212,6 +214,7 @@ export const basic: Story = {
                         @if(hasSearchPanelBar){
                             ${searchBarFoldedTemplate}}         
                         <button matButton="outlined" ngProjectAs="[ngxContentLeft]">ngxContentLeft</button> 
+                        <button matButton="outlined" ngProjectAs="[ngxContentRight]">ngxContentRight</button> 
                     </ngx-column-bar>
                 </div>
             </ngx-panel>

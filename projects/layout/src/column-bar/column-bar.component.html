@@ -1,10 +1,8 @@
 @if (hasTitle()) {
     <ng-content select="h2[ngxTitleBar], h3[ngxTitleBar], h4[ngxTitleBar], h5[ngxTitleBar], h6[ngxTitleBar]"></ng-content>
-}
-@if(!hasTitle()) {
-    <ng-container [ngTemplateOutlet]="actionsGroup"></ng-container>
-}@else {
-    <ng-container [ngTemplateOutlet]="ngContent"></ng-container>
+    <ng-container [ngTemplateOutlet]="ngContentLeft"></ng-container>
+} @else {
+     <ng-container [ngTemplateOutlet]="actionsGroup"></ng-container>
 }
 
 @if (hasRightContent()) {
@@ -12,7 +10,7 @@
         @if(hasTitle()) {
             <ng-container [ngTemplateOutlet]="actionsGroup"></ng-container>
         } @else {
-            <ng-container [ngTemplateOutlet]="ngContent"></ng-container>
+            <ng-container [ngTemplateOutlet]="ngContentLeft"></ng-container>
         }
         <ng-content select="ngx-filters-group"></ng-content>
         <ng-content select="ngx-search-bar-container"></ng-content>
@@ -24,6 +22,6 @@
     <ng-content select="ngx-actions-group"></ng-content>
 </ng-template>
 
-<ng-template #ngContent>
+<ng-template #ngContentLeft>
     <ng-content select="[ngxContentLeft]"></ng-content>
 </ng-template>
