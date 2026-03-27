@@ -1,3 +1,13 @@
+## 21.2.0 (2026-03-27)
+
+### 🚀 Features
+
+- **time-picker:** add storybook NgxTimePickerComponent with customizable layouts and modes ([ecd11e3](https://github.com/DSI-HUG/ngx-components/commit/ecd11e3))
+
+### ❤️ Thank You
+
+- RemiFrontiere-HUG @RemiFrontiere-HUG
+
 ## 21.1.0 (2026-03-10)
 
 ### 🚀 Features

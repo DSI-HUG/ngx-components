@@ -1,3 +1,13 @@
+## 21.0.1 (2026-03-27)
+
+### 🐛 Fixes
+
+- **NgxMessageBoxComponent:** force changes to trigger version build upgrade ([00c4be2](https://github.com/DSI-HUG/ngx-components/commit/00c4be2))
+
+### ❤️ Thank You
+
+- Damien Guillermet @damien-guillermet
+
 # 21.0.0 (2026-01-07)
 
 ### ⚠️  Breaking Changes
