@@ -8,7 +8,7 @@
     box-sizing: border-box;
 
     .extra-content{
-        padding:  var(--ngx-layout-extra-content-padding, 0.25rem 1rem 1rem);
+        padding:  var(--ngx-layout-extra-content-padding, 0.25rem 1rem);
 
         &:empty {
             display: none;
