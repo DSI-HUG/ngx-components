@@ -2,18 +2,24 @@
     display: flex;
     flex-direction: column;
     flex: 1 1 0;
-
+    font: var(--mat-sys-body-medium);
+    letter-spacing: var(--mat-sys-body-medium-tracking);
     background-color: var(--mat-sys-surface-container);
-
-    padding-block-end: var(--ngx-layout-padding-block-end, 0.75rem);
-    padding-inline: var(--ngx-layout-padding-inline, 1rem);
     box-sizing: border-box;
+
+    .extra-content{
+        padding:  var(--ngx-layout-extra-content-padding, 0.25rem 1rem 1rem);
+
+        &:empty {
+            display: none;
+        }
+    }
 
     .content {
         display: flex;
         flex: 1 1 0;
         overflow: hidden;
         gap: var(--ngx-layout-content-gap, 0.5rem);
-        padding-block: var(--ngx-layout-content-padding-block, 0.25rem);
+        padding:  var(--ngx-layout-content-padding, 0.25rem 1rem 1rem);
     }
 }
