@@ -23,7 +23,7 @@ ngx-panel-bar {
         text-overflow: ellipsis;
 
         &:first-child {
-            padding-inline-start: var(--ngx-panel-bar-title-first-child-padding-start, 0.25rem);
+            padding-inline-start: var(--ngx-panel-bar-title-first-child-padding-start, 0.5rem);
         }
     }
 
