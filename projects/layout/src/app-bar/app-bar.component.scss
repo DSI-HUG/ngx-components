@@ -5,12 +5,7 @@ ngx-app-bar {
     min-height: var(--ngx-app-bar-min-height, 3.5rem);
     box-sizing: border-box;
     gap: var(--ngx-app-bar-gap, 0.25rem);
-
-    &:has(.subtitle) {
-        &:has(:not(.condensed)) {
-            padding-block: var(--ngx-app-bar-with-subtitle-padding-block, 0.25rem);
-        }
-    }
+    padding: var(--ngx-app-bar-with-subtitle-padding, 0.25rem 1rem);
 
     header {
         color: var(--mat-sys-on-surface-variant);
