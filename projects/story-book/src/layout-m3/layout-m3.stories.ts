@@ -167,7 +167,7 @@ const props = (args: Story['args']): LayoutStoryProps => ({
     }
 });
 
-export const basic: Story = {
+export const allComponents: Story = {
     render: (args): { props: LayoutStoryProps; template: string } => ({
         props: props(args),
         template: `
@@ -238,7 +238,246 @@ export const basic: Story = {
                     </ngx-column-bar>
 
                     <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
                 </ngx-column>
+            </ngx-panel>
+        </ngx-layout>
+        </div>`
+    })
+};
+
+export const oneColumns: Story = {
+    render: (args): { props: LayoutStoryProps; template: string } => ({
+        props: props(args),
+        template: `
+        <div style="display: flex; height: 100vh;">
+        <ngx-layout>
+            <ngx-app-bar
+            [mode]="mode"
+            [title]="titleAppBar"
+            [subtitle]="subtitle"
+            [helpUrl]="helpUrl"
+            [withBackButton]="withBackButton"
+            >
+                <button matIconButton aria-label="Home">
+                    <mat-icon>home</mat-icon>
+                </button>
+            </ngx-app-bar>
+            <ngx-main-bar>
+                ${actionsGroupTemplate}
+                ${filtersGroupTemplate}
+                ${searchBarTemplate}
+            </ngx-main-bar>
+            <p>Content of the layout</p>
+            <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
+                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
+                    @if(hasTitlePanelBar){
+                        <h3 ngxBarTitle>Panel Bar Title</h3>}
+                    @if(hasActionsPanelBar){
+                        ${actionsGroupTemplate}}                 
+                    @if(hasFiltersPanelBar){
+                        ${filtersGroupTemplate}}                 
+                    @if(hasSearchPanelBar){
+                        ${searchBarTemplate}
+                    }
+                </ngx-panel-bar>
+                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
+                    @if(hasActionsPanelBar){
+                        ${actionsGroupTemplate}}                 
+                    @if(hasFiltersPanelBar){
+                        ${filtersGroupTemplate}}                 
+                    @if(hasSearchPanelBar){
+                        ${searchBarTemplate}
+                    }
+                </ngx-panel-bar>
+                <ngx-column>
+                    <ngx-column-bar>
+                        @if(hasTitlePanelBar){
+                            <h4 ngxBarTitle>Column Bar Title</h4>}
+                        @if(hasActionsPanelBar){
+                            ${actionsGroupTemplate}}                 
+                        @if(hasFiltersPanelBar){
+                            ${filtersGroupFoldedTemplate}}                 
+                        @if(hasSearchPanelBar){
+                            ${searchBarFoldedTemplate}}          
+                    </ngx-column-bar>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                    <p>Content of the panel</p>
+                </ngx-column>
+            </ngx-panel>
+        </ngx-layout>
+        </div>`
+    })
+};
+
+
+export const onlyPanel: Story = {
+    render: (args): { props: LayoutStoryProps; template: string } => ({
+        props: props(args),
+        template: `
+        <div style="display: flex; height: 100vh;">
+        <ngx-layout>
+            <ngx-app-bar
+            [mode]="mode"
+            [title]="titleAppBar"
+            [subtitle]="subtitle"
+            [helpUrl]="helpUrl"
+            [withBackButton]="withBackButton"
+            >
+                <button matIconButton aria-label="Home">
+                    <mat-icon>home</mat-icon>
+                </button>
+            </ngx-app-bar>
+            <ngx-main-bar>
+                ${actionsGroupTemplate}
+                ${filtersGroupTemplate}
+                ${searchBarTemplate}
+            </ngx-main-bar>
+            <p>Content of the layout</p>
+            <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
+                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
+                    @if(hasTitlePanelBar){
+                        <h3 ngxBarTitle>Panel Bar Title</h3>}
+                    @if(hasActionsPanelBar){
+                        ${actionsGroupTemplate}}                 
+                    @if(hasFiltersPanelBar){
+                        ${filtersGroupTemplate}}                 
+                    @if(hasSearchPanelBar){
+                        ${searchBarTemplate}
+                    }
+                </ngx-panel-bar>
+                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
+                    @if(hasActionsPanelBar){
+                        ${actionsGroupTemplate}}                 
+                    @if(hasFiltersPanelBar){
+                        ${filtersGroupTemplate}}                 
+                    @if(hasSearchPanelBar){
+                        ${searchBarTemplate}
+                    }
+                </ngx-panel-bar>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
+                <p>Content of the panel</p>
             </ngx-panel>
         </ngx-layout>
         </div>`
