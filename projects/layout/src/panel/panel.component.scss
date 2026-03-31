@@ -27,12 +27,7 @@ ngx-panel {
             gap: var(--ngx-panel-content-column-gap, 0.5rem);
 
             ngx-column {
-                flex: 1;
-
                 & + ngx-column {
-                    position: relative;
-                    overflow: visible;
-
                     &::before {
                         position: absolute;
                         content: '';

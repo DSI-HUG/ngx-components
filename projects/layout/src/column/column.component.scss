@@ -1,17 +1,19 @@
 :host {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     box-sizing: border-box;
     block-size: 100%;
     min-width: min-content;
+    position: relative;
+    overflow: visible;
 
     .content {
         overflow: auto;
         display: flex;
         flex-direction: column;
         gap: var(--ngx-column-content-gap, 0.5rem);
-        padding: var(--ngx-column-content-padding-inline, 0.25rem 0.5rem);
+        padding: var(--ngx-column-content-padding, 0.25rem 0.5rem);
         flex: 1;
 
         &.no-padding {
