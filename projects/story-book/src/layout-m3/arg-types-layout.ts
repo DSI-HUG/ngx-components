@@ -41,7 +41,7 @@ export const argTypesPanel: Meta['argTypes'] = {
     contentPadding: {
         control: 'radio',
         table: { category: 'panel' },
-        options: ['regular', 'none']
+        options: ['default', 'none']
     }
 };
 

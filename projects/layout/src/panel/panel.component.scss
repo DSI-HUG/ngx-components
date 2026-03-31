@@ -18,9 +18,45 @@ ngx-panel {
         display: flex;
         flex-direction: column;
         gap: var(--ngx-panel-content-gap, 0.5rem);
-        padding-inline: var(--ngx-panel-content-padding-inline, 0.5rem);
-        padding-block-end: var(--ngx-panel-content-padding-block-end, 0.75rem);
+        padding: var(--ngx-panel-content-padding, 0.25rem 0.75rem);
         flex: 1;
+
+        &:has(> ngx-column) {
+            padding: 0;
+            flex-direction: row;
+            gap: var(--ngx-panel-content-column-gap, 0.5rem);
+
+            ngx-column {
+                flex: 1;
+
+                & + ngx-column {
+                    position: relative;
+                    overflow: visible;
+
+                    &::before {
+                        position: absolute;
+                        content: '';
+                        display: block;
+                        width: var(--ngx-panel-content-column-divider-width, 1px);
+                        background-color: var(--mat-sys-outline-variant);
+                        inset-block: 0;
+                        inset-inline-start: var(--ngx-panel-content-divider-inset-inline-start, -4px);
+                    }
+                }
+
+                &:first-child {
+                    --ngx-column-bar-title-first-child-padding-inline-start: 0.5rem;
+
+                    > section.content {
+                        margin-inline-start: var(--ngx-panel-content-first-column-margin-inline-start, 0.25rem);
+                    }
+                }
+
+                &:last-child section.content {
+                    margin-inline-end: var(--ngx-panel-content-last-column-margin-inline-end, 0.25rem);
+                }
+            }
+        }
 
         &.no-padding {
             padding: 0;
