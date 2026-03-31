@@ -12,6 +12,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { NgxLayoutComponent } from '@hug/ngx-layout';
 import { NgxActionsGroupComponent } from '@hug/ngx-layout/actions-group';
 import { NgxAppBarComponent } from '@hug/ngx-layout/app-bar';
+import { NgxColumnComponent } from '@hug/ngx-layout/column';
 import { NgxColumnBarComponent } from '@hug/ngx-layout/column-bar';
 import { NgxBarTitleDirective } from '@hug/ngx-layout/directives';
 import { NgxFilterDirective, NgxFiltersGroupComponent, NgxFilterToggleDirective } from '@hug/ngx-layout/filters-group';
@@ -58,7 +59,8 @@ const meta: Meta = {
                 MatListModule,
                 NgxPanelBarComponent,
                 NgxColumnBarComponent,
-                NgxBarTitleDirective
+                NgxBarTitleDirective,
+                NgxColumnComponent
             ]
         })
     ],
@@ -77,7 +79,7 @@ const meta: Meta = {
         searchFolded: false,
         filtersGroupFolded: false,
         appearance: 'default',
-        contentPadding: 'none',
+        contentPadding: 'default',
         closable: false,
         hasBackButton: false,
         hasSearchPanelBar: true,
@@ -187,6 +189,7 @@ export const basic: Story = {
                 ${filtersGroupTemplate}
                 ${searchBarTemplate}
             </ngx-main-bar>
+            <p>Content of the layout</p>
             <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
                 <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
                     @if(hasTitlePanelBar){
@@ -208,7 +211,7 @@ export const basic: Story = {
                         ${searchBarTemplate}
                     }
                 </ngx-panel-bar>
-                <div>
+                <ngx-column>
                     <ngx-column-bar>
                         @if(hasTitlePanelBar){
                             <h4 ngxBarTitle>Column Bar Title</h4>}
@@ -221,7 +224,21 @@ export const basic: Story = {
                     </ngx-column-bar>
 
                     <p>Content of the panel</p>
-                </div>
+                </ngx-column>
+                <ngx-column>
+                    <ngx-column-bar>
+                        @if(hasTitlePanelBar){
+                            <h4 ngxBarTitle>Column Bar Title</h4>}
+                        @if(hasActionsPanelBar){
+                            ${actionsGroupTemplate}}                 
+                        @if(hasFiltersPanelBar){
+                            ${filtersGroupFoldedTemplate}}                 
+                        @if(hasSearchPanelBar){
+                            ${searchBarFoldedTemplate}}          
+                    </ngx-column-bar>
+
+                    <p>Content of the panel</p>
+                </ngx-column>
             </ngx-panel>
         </ngx-layout>
         </div>`
