@@ -30,7 +30,7 @@ ngx-filters-group {
         gap: var(--ngx-filters-group-gap, 0.5rem);
 
         block-size: var(--ngx-filters-group-block-size, 3rem);
-        border-radius: var(--ngx-filters-group-border-radius, 2rem);
+        border-radius: var(--ngx-filters-group-radius, 2rem);
         padding-inline: var(--ngx-filters-group-padding-inline, 0.5rem);
 
         background-color: var(--mat-sys-surface-container-low);
@@ -38,9 +38,9 @@ ngx-filters-group {
         .static {
             display: flex;
             flex-direction: row;
-            gap: var(--ngx-filters-group-static-gap, 0.5rem);
+            gap: var(--ngx-filters-group-gap, 0.5rem);
 
-            &:only-child mat-chip-set mat-chip{
+            &:only-child mat-chip-set mat-chip {
                 @include mat.chips-overrides(
                     (
                         container-shape-radius: var(
@@ -111,7 +111,7 @@ ngx-filters-group {
     flex-direction: column;
 
     background-color: var(--mat-sys-surface-container-high);
-    border-radius: var(--ngx-filters-group-overlay-border-radius, 0.5rem);
+    border-radius: var(--ngx-filters-group-overlay-radius, 0.5rem);
     overflow: hidden;
 
     mat-slide-toggle {
@@ -177,7 +177,7 @@ ngx-filters-group {
 
                 .value {
                     font: var(--mat-sys-label-medium);
-                    max-width: var(--ngx-filters-group-title-overlay-max-width, 27ch);
+                    max-width: var(--ngx-filters-group-overlay-title-max-width, 27ch);
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
