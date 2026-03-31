@@ -1,4 +1,4 @@
-ngx-main-bar {
+:host {
     display: flex;
     align-items: center;
     padding: var(--ngx-main-bar-padding, 0.25rem 1rem);
@@ -9,10 +9,5 @@ ngx-main-bar {
         display: flex;
         justify-content: flex-end;
         gap: var(--ngx-main-bar-right-gap, 0.75rem);
-    }
-
-    ngx-actions-group {
-        flex: 1;
-        min-inline-size: var(--ngx-main-bar-action-min-inline-size, 3rem);
     }
 }
