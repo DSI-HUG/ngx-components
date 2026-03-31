@@ -12,7 +12,7 @@ ngx-search-bar-container {
 
     &:has(button:only-child) {
         width: fit-content;
-        padding: var(--ngx-search-bar-folded-container-padding, 0 0.25rem);
+        padding: var(--ngx-search-bar-container-folded-padding, 0 0.25rem);
         flex: 0;
     }
 
@@ -43,7 +43,7 @@ ngx-search-bar-container {
     }
 
     mat-icon.icon-search-bar {
-        padding: var(--ngx-search-bar-icon-padding, 0.5rem);
+        padding: var(--ngx-search-bar-container-icon-padding, 0.5rem);
         color: var(--mat-sys-on-surface-variant);
     }
 
