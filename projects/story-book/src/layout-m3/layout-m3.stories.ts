@@ -213,8 +213,7 @@ export const allComponents: Story = {
                 </ngx-panel-bar>
                 <ngx-column>
                     <ngx-column-bar>
-                        @if(hasTitlePanelBar){
-                            <h4 ngxBarTitle>Column Bar Title</h4>}
+
                         @if(hasActionsPanelBar){
                             ${actionsGroupTemplate}}                 
                         @if(hasFiltersPanelBar){
@@ -227,8 +226,7 @@ export const allComponents: Story = {
                 </ngx-column>
                 <ngx-column>
                     <ngx-column-bar>
-                        @if(hasTitlePanelBar){
-                            <h4 ngxBarTitle>Column Bar Title</h4>}
+
                         @if(hasActionsPanelBar){
                             ${actionsGroupTemplate}}                 
                         @if(hasFiltersPanelBar){

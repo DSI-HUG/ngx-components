@@ -1,3 +1,17 @@
+
+@mixin column-divider {
+    &::before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: var(--ngx-panel-content-column-divider-width, 1px);
+        background-color: var(--mat-sys-outline-variant);
+        inset-block: 0;
+        inset-inline-start: var(--ngx-panel-content-divider-inset-inline-start, -8.5px);
+    }
+}
+
+
 ngx-panel {
     display: flex;
     flex-direction: column;
@@ -24,36 +38,20 @@ ngx-panel {
         &:has(> ngx-column) {
             padding: 0;
             flex-direction: row;
-            gap: var(--ngx-panel-content-column-gap, 0.5rem);
+            gap: var(--ngx-panel-content-column-gap, 1rem);
 
             ngx-column {
-                flex: 1;
 
                 & + ngx-column {
-                    position: relative;
-                    overflow: visible;
-
-                    &::before {
-                        position: absolute;
-                        content: '';
-                        display: block;
-                        width: var(--ngx-panel-content-column-divider-width, 1px);
-                        background-color: var(--mat-sys-outline-variant);
-                        inset-block: 0;
-                        inset-inline-start: var(--ngx-panel-content-divider-inset-inline-start, -4px);
-                    }
+                    @include column-divider;
                 }
 
                 &:first-child {
-                    --ngx-column-bar-title-first-child-padding-inline-start: 0.5rem;
-
-                    > section.content {
-                        margin-inline-start: var(--ngx-panel-content-first-column-margin-inline-start, 0.25rem);
-                    }
+                    margin-inline-start: var(--ngx-panel-first-column-margin-inline-start, 0.25rem);
                 }
 
-                &:last-child section.content {
-                    margin-inline-end: var(--ngx-panel-content-last-column-margin-inline-end, 0.25rem);
+                &:last-child{
+                    margin-inline-end: var(--ngx-panel-last-column-margin-inline-end, 0.25rem);
                 }
             }
         }
@@ -63,3 +61,4 @@ ngx-panel {
         }
     }
 }
+

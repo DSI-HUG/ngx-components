@@ -157,20 +157,22 @@
         [cdkConnectedOverlayFlexibleDimensions]="true"
         [cdkConnectedOverlayGrowAfterOpen]="true"
         [cdkConnectedOverlayViewportMargin]="32">
-        @if (moreFiltersOverlay()) {
-            <div class="filters--title">
-                <span>{{ intl?.filters ?? 'Filters' }}</span>
-                <button
-                    mat-icon-button
-                    aria-label="Reset filters"
-                    (click)="emitResetClicked()"
-                    matTooltip="{{ intl?.reset ?? 'Reset' }}">
-                    <mat-icon>settings_backup_restore</mat-icon>
-                </button>
+        <div class="filters-group--overlay--container">
+            @if (moreFiltersOverlay()) {
+                <div class="filters--title">
+                    <span>{{ intl?.filters ?? 'Filters' }}</span>
+                    <button
+                        mat-icon-button
+                        aria-label="Reset filters"
+                        (click)="emitResetClicked()"
+                        matTooltip="{{ intl?.reset ?? 'Reset' }}">
+                        <mat-icon>settings_backup_restore</mat-icon>
+                    </button>
+                </div>
+            }
+            <div class="filters--content">
+                <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
             </div>
-        }
-        <div class="filters--content">
-            <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
         </div>
     </ng-template>
 }

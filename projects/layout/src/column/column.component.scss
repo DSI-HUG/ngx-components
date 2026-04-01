@@ -1,10 +1,12 @@
 :host {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     box-sizing: border-box;
     block-size: 100%;
     min-width: min-content;
+    flex: 1;
+    overflow: visible;
+    position: relative;
 
     .content {
         overflow: auto;
