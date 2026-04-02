@@ -1,3 +1,18 @@
+## 22.0.0-alpha.3 (2026-04-02)
+
+### 🐛 Fixes
+
+- **package:** update versions to 22.0.0-alpha.2 for multiple components ([4f38846](https://github.com/DSI-HUG/ngx-components/commit/4f38846))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-user-card**: upgraded to `v22.0.0-alpha.3`
+- **@hug/ngx-tooltip**: upgraded to `v22.0.0-alpha.3`
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.2 (2026-04-01)
 
 ### 🌱 Dependencies
