@@ -1,6 +1,6 @@
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatIconButton } from '@angular/material/button';
@@ -53,7 +53,6 @@ const resizeSignal = (
     templateUrl: './filters-group.component.html',
     styleUrl: './filters-group.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None,
     imports: [
         MatIcon,
         MatIconButton,
