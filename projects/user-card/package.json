@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-user-card",
-    "version": "22.0.0-alpha.2",
+    "version": "22.0.0-alpha.3",
     "description": "HUG Angular - user-card component",
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
@@ -42,7 +42,7 @@
         "@angular/common": ">=21 <22",
         "@angular/core": ">=21 <22",
         "@angular/material": ">=21 <22",
-        "@hug/ngx-core": "^22.0.0-alpha.2",
+        "@hug/ngx-core": "^22.0.0-alpha.3",
         "zone.js": "^0.16.0"
     },
     "dependencies": {
