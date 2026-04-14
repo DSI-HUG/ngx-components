@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
     ci_test_tooltip:
-        uses: dsi-hug/actions/.github/workflows/action.yml@v3
+        uses: dsi-hug/actions/.github/workflows/action.yml@v4
         with:
             working-directory: projects/tooltip
             runs-on: '["ubuntu-latest", "macos-latest", "windows-latest"]'
@@ -31,6 +31,6 @@ jobs:
         runs-on: 'ubuntu-latest'
         steps:
             - name: Test user-tooltip
-              uses: peter-evans/repository-dispatch@v3
+              uses: peter-evans/repository-dispatch@v4
               with:
                   event-type: test_user-tooltip
