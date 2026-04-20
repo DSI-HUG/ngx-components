@@ -66,7 +66,7 @@ export class NgxSearchBarContainerComponent {
                 return;
             }
 
-            if (!this.isFolded()) {
+            if (!this.isFolded() && this.folded()) {
                 searchInput.focus();
             }
         });

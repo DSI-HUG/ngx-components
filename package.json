@@ -110,5 +110,8 @@
         "yarn": "Please use Npm instead of Yarn.",
         "npm": "~11.12.0"
     },
-    "packageManager": "npm@11.12.0"
+    "packageManager": "npm@11.12.0",
+    "dependencies": {
+        "@storybook/angular": "^10.3.5"
+    }
 }

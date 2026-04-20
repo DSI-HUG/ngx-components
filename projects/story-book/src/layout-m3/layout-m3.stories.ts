@@ -23,7 +23,13 @@ import { NgxSearchBarContainerComponent, NgxSearchInputDirective } from '@hug/ng
 import { type Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { argTypesLayout } from './arg-types-layout';
-import { actionsGroupTemplate, filtersGroupFoldedTemplate, filtersGroupTemplate, searchBarFoldedTemplate, searchBarTemplate } from './templates';
+import {
+    actionsGroupTemplate,
+    filtersGroupFoldedTemplate,
+    filtersGroupTemplate,
+    searchBarFoldedTemplate,
+    searchBarTemplate
+} from './templates';
 
 const meta: Meta = {
     title: 'Components/Layout-m3',
@@ -87,7 +93,9 @@ const meta: Meta = {
         hasFiltersPanelBar: true,
         hasTitlePanelBar: true
     },
-    tags: ['autodocs']
+    tags: [
+        'autodocs'
+    ]
 };
 export default meta;
 
@@ -119,9 +127,12 @@ const props = (args: Story['args']): LayoutStoryProps => ({
 
     selectedDateRangeLabel(): string {
         switch (this.selectedPeriod) {
-            case '3_DAYS': return '3 jours';
-            case '3_MONTHS': return '3 mois';
-            case 'LAST_YEAR': return 'Dernière année';
+            case '3_DAYS':
+                return '3 jours';
+            case '3_MONTHS':
+                return '3 mois';
+            case 'LAST_YEAR':
+                return 'Dernière année';
             case 'OTHER': {
                 const s = this.selectedStartDate;
                 const e = this.selectedEndDate;
@@ -136,7 +147,8 @@ const props = (args: Story['args']): LayoutStoryProps => ({
                 }
                 return `du ${s.toLocaleDateString('fr-CH')} au ${e.toLocaleDateString('fr-CH')}`;
             }
-            default: return '';
+            default:
+                return '';
         }
     },
 
@@ -390,7 +402,6 @@ export const oneColumns: Story = {
         </div>`
     })
 };
-
 
 export const onlyPanel: Story = {
     render: (args): { props: LayoutStoryProps; template: string } => ({
