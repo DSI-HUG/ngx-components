@@ -1,5 +1,5 @@
 <div #container class="container">
-    <ng-content></ng-content>
+    <ng-content select="button, [ngx-action]"></ng-content>
     @if (hiddenActions().length > 0) {
         <button
             matIconButton

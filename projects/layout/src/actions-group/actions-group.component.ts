@@ -5,6 +5,7 @@ import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
+import { NgxActionDirective } from './action.directive';
 
 const buttonGap = 12;
 const buttonDimensions = 40;
@@ -74,7 +75,7 @@ export class NgxActionsGroupComponent {
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
-    private readonly iconButtons = contentChildren<MatIconButton, ElementRef<HTMLElement>>(MatIconButton, { read: ElementRef });
+    private readonly iconButtons = contentChildren<NgxActionDirective, ElementRef<HTMLElement>>(NgxActionDirective, { read: ElementRef });
 
     private readonly container = viewChild.required<ElementRef<HTMLElement>>('container');
     private readonly hiddenContainer = viewChild.required<ElementRef<HTMLElement>>('hiddenContainer');

@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTooltip } from '@angular/material/tooltip';
 import { NgxLayoutComponent } from '@hug/ngx-layout';
 import { NgxActionsGroupComponent } from '@hug/ngx-layout/actions-group';
+import { NgxActionDirective } from '@hug/ngx-layout/actions-group/action.directive';
 import { NgxAppBarComponent } from '@hug/ngx-layout/app-bar';
 import { NgxColumnComponent } from '@hug/ngx-layout/column';
 import { NgxColumnBarComponent } from '@hug/ngx-layout/column-bar';
@@ -66,7 +67,8 @@ const meta: Meta = {
                 NgxPanelBarComponent,
                 NgxColumnBarComponent,
                 NgxBarTitleDirective,
-                NgxColumnComponent
+                NgxColumnComponent,
+                NgxActionDirective
             ]
         })
     ],
