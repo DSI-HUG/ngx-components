@@ -17,11 +17,11 @@ ngx-message-box {
             align-items: center;
             display: flex;
             margin: 0;
-            padding: 1rem 0rem 0rem 1.2rem;
+            padding: 1rem 0 0 0;
             font-size: 1rem;
 
             #icon {
-                margin-right: 0.3rem;
+                margin-right: 0.5rem;
             }
 
             .header-actions {
@@ -33,11 +33,9 @@ ngx-message-box {
 
         > mat-card-content {
             margin: 0;
-            padding: 0.75rem;
+            padding: 0 0 0 1rem;
             overflow: hidden;
             font-weight: 300;
-            padding-left: 1.3rem;
-            padding-top: 0.5rem;
 
             h2 {
                 font-size: 1rem;
@@ -96,7 +94,7 @@ ngx-message-box {
 
             > mat-card-actions {
                 margin: 0;
-                padding: 0;
+                padding: 0 0.5rem;
                 flex: 0 0 auto;
 
                 [mat-icon-button] {

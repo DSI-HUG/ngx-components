@@ -2,7 +2,7 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { MatButton, MatIconButton } from '@angular/material/button';
-import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 
 import { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
@@ -22,7 +22,8 @@ import { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
         MatCardActions,
         MatIcon,
         MatIconButton,
-        MatButton
+        MatButton,
+        MatCardSubtitle
     ]
 })
 export class NgxMessageBoxComponent implements OnInit {
@@ -32,6 +33,7 @@ export class NgxMessageBoxComponent implements OnInit {
 
     @Input() public type?: NgxMessageBoxType;
     @Input() public title?: string;
+    @Input() public subtitle?: string;
     @Input() public icon?: string;
     @Input() public actions?: readonly NgxMessageBoxAction[];
 
