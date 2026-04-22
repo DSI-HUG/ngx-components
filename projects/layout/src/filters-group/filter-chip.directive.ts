@@ -4,7 +4,7 @@ import { FILTER_TOKEN, type NgxComplexFilter } from './filter-chip.model';
 
 
 @Directive({
-    selector: 'ng-template[ngx-filter]',
+    selector: 'ng-template[ngxFilter]',
     standalone: true,
     providers: [{ provide: FILTER_TOKEN, useExisting: forwardRef(() => NgxFilterDirective) }]
 

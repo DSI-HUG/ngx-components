@@ -4,7 +4,7 @@ import { FILTER_TOKEN, type NgxToggleFilter } from './filter-chip.model';
 
 
 @Directive({
-    selector: 'ng-template[ngx-filter-toggle]',
+    selector: 'ng-template[ngxFilterToggle]',
     standalone: true,
     providers: [{ provide: FILTER_TOKEN, useExisting: forwardRef(() => NgxFilterToggleDirective) }]
 })

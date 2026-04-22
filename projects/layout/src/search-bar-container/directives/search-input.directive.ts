@@ -3,7 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { type FormControl, NgControl } from '@angular/forms';
 
 @Directive({
-    selector: 'input[ngx-search-input]',
+    selector: 'input[ngxSearchInput]',
     /* eslint-disable @typescript-eslint/naming-convention */
     host: {
         '(blur)': 'blurred.set(true);',

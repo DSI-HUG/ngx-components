@@ -1,7 +1,7 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-    selector: 'button, [ngx-action]',
+    selector: 'button, [ngxAction]',
     standalone: true
 })
 export class NgxActionDirective {}

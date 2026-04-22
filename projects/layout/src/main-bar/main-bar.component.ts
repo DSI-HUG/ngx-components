@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-
 @Component({
     selector: 'ngx-main-bar',
     templateUrl: './main-bar.component.html',

@@ -29,7 +29,7 @@ ngx-search-bar-container {
     }
     */
 
-    > input[ngx-search-input] {
+    > input[ngxSearchInput] {
         font: var(--mat-sys-body-large);
         letter-spacing: var(--mat-sys-body-large-tracking);
         white-space: nowrap;
@@ -47,7 +47,7 @@ ngx-search-bar-container {
         color: var(--mat-sys-on-surface-variant);
     }
 
-    [ngx-search-input] {
+    [ngxSearchInput] {
         flex: 1;
         background: none;
         border: none;

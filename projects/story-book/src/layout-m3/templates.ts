@@ -1,9 +1,11 @@
 
 export const actionsGroupTemplate = `
     <ngx-actions-group>
-        <button matIconButton aria-label="Filter" matTooltip="Filtres">
-            <mat-icon>filter_list</mat-icon>
-        </button>
+        <div ngxAction>
+            <button matIconButton aria-label="Filter" matTooltip="Filtres">
+                <mat-icon>filter_list</mat-icon>
+            </button>
+        </div>
         <button matIconButton aria-label="Columns" matTooltip="Colonnes">
             <mat-icon>view_column</mat-icon>
         </button>
@@ -29,9 +31,9 @@ export const actionsGroupTemplate = `
 
 export const filtersGroupFoldedTemplate = `
     <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="folded">
-        <ng-template [ngx-filter-toggle] label="Afficher commentaire" [(active)]="commentFilter" />
+        <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" />
         <ng-template
-            [ngx-filter]
+            [ngxFilter]
             [active]="!!selectedPeriod"
             label="Periode"
             [selectedFilterLabel]="selectedDateRangeLabel()">
@@ -55,7 +57,7 @@ export const filtersGroupFoldedTemplate = `
             }
         </ng-template>
         <ng-template
-            [ngx-filter]
+            [ngxFilter]
             [active]="!!orderOrigin"
             label="Origine"
             [selectedFilterLabel]="orderOriginSelectedLabel()">
@@ -65,7 +67,7 @@ export const filtersGroupFoldedTemplate = `
             </mat-button-toggle-group>
         </ng-template>
         <ng-template
-            [ngx-filter]
+            [ngxFilter]
             [active]="!!orderTypes.length"
             label="Type"
             [selectedFilterLabel]="orderTypesSelectedLabel()">
@@ -84,14 +86,14 @@ export const filtersGroupFoldedTemplate = `
                 <mat-list-option value="Autres" togglePosition="after">Autres</mat-list-option>
             </mat-selection-list>
         </ng-template>
-        <ng-template [ngx-filter-toggle] label="Afficher documents" [(active)]="documentFilter" />
+        <ng-template [ngxFilterToggle] label="Afficher documents" [(active)]="documentFilter" />
     </ngx-filters-group>`;
 
 export const filtersGroupTemplate = `
     <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="filtersGroupFolded">
-        <ng-template [ngx-filter-toggle] label="Afficher commentaire" [(active)]="commentFilter" />
+        <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" />
         <ng-template
-            [ngx-filter]
+            [ngxFilter]
             [active]="!!selectedPeriod"
             label="Periode"
             [selectedFilterLabel]="selectedDateRangeLabel()">
@@ -115,7 +117,7 @@ export const filtersGroupTemplate = `
             }
         </ng-template>
         <ng-template
-            [ngx-filter]
+            [ngxFilter]
             [active]="!!orderOrigin"
             label="Origine"
             [selectedFilterLabel]="orderOriginSelectedLabel()">
@@ -125,7 +127,7 @@ export const filtersGroupTemplate = `
             </mat-button-toggle-group>
         </ng-template>
         <ng-template
-            [ngx-filter]
+            [ngxFilter]
             [active]="!!orderTypes.length"
             label="Type"
             [selectedFilterLabel]="orderTypesSelectedLabel()">
@@ -144,13 +146,13 @@ export const filtersGroupTemplate = `
                 <mat-list-option value="Autres" togglePosition="after">Autres</mat-list-option>
             </mat-selection-list>
         </ng-template>
-        <ng-template [ngx-filter-toggle] label="Afficher documents" [(active)]="documentFilter" />
+        <ng-template [ngxFilterToggle] label="Afficher documents" [(active)]="documentFilter" />
     </ngx-filters-group>`;
 
 export const searchBarTemplate = `
     <ngx-search-bar-container [folded]="searchFolded">
         <input
-            ngx-search-input
+            ngxSearchInput
             type="text"
             name="search"
             placeholder="Rechercher"
@@ -161,10 +163,20 @@ export const searchBarTemplate = `
 export const searchBarFoldedTemplate = `
     <ngx-search-bar-container [folded]="true">
         <input
-            ngx-search-input
+            ngxSearchInput
             type="text"
             name="search"
             placeholder="Rechercher"
             [(ngModel)]="ngModel"                
         />
     </ngx-search-bar-container>`;
+
+export const contentLeftTemplate = `
+    <div ngxContentLeft style="display: inline-flex; align-items: center; gap: 0.25rem;">
+        <button mat-stroked-button type="button">Left action</button>
+    </div>`;
+
+export const contentRightTemplate = `
+    <div ngxContentRight style="display: inline-flex; align-items: center; gap: 0.25rem;">
+        <button mat-flat-button type="button">Right action</button>
+    </div>`;
