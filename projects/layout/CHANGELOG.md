@@ -1,3 +1,13 @@
+## 22.0.0-alpha.9 (2026-04-22)
+
+### 🐛 Fixes
+
+- **actions-group:** add missing export for action.directive #DESIGNSYS-213 ([0aaf713](https://github.com/DSI-HUG/ngx-components/commit/0aaf713))
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.8 (2026-04-22)
 
 ### 🐛 Fixes
