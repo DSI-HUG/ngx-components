@@ -1,3 +1,14 @@
+## 22.0.0-alpha.8 (2026-04-22)
+
+### 🐛 Fixes
+
+- **actions-group:** add NgxActionDirective and update content projection #DESIGNSYS-213 ([b137908](https://github.com/DSI-HUG/ngx-components/commit/b137908))
+- **search-bar-container:** remove focus from the input at startup #DESIGNSYS-115 ([8be134b](https://github.com/DSI-HUG/ngx-components/commit/8be134b))
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.7 (2026-04-14)
 
 This was a version bump only for @hug/ngx-layout to align it with other projects, there were no code changes.
