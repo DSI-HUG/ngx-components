@@ -7,6 +7,10 @@
         0 4px 20px 0 rgba(0, 0, 0, 0.14),
         0 7px 10px -5px rgba(mat.m2-get-color-from-palette($palette), 0.4);
 
+    #subtitle {
+        color: mat.m2-get-contrast-color-from-palette($palette, 900);
+    }
+
     mat-icon {
         color: mat.m2-get-contrast-color-from-palette($palette, 900);
     }
@@ -17,6 +21,7 @@
 
     button {
         background-color: transparent;
+        color: mat.m2-get-contrast-color-from-palette($palette, 900);
     }
 }
 
@@ -24,6 +29,10 @@
     background-color: mat.m2-get-color-from-palette($palette, 50);
     color: mat.m2-get-color-from-palette($palette, 700);
     box-shadow: none;
+
+    #subtitle {
+        color: mat.m2-get-color-from-palette($palette, 700);
+    }
 
     mat-icon {
         color: mat.m2-get-color-from-palette($palette, 700);
@@ -35,6 +44,7 @@
 
         button {
             background-color: transparent;
+            color: mat.m2-get-color-from-palette($palette, 700);
         }
     }
 }

@@ -1,8 +1,7 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChild, input, output, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { MatButton, MatIconButton } from '@angular/material/button';
-import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 
 import { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
@@ -22,57 +21,46 @@ import { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
         MatCardActions,
         MatIcon,
         MatIconButton,
-        MatButton
+        MatButton,
+        MatCardSubtitle
     ]
 })
-export class NgxMessageBoxComponent implements OnInit {
-
-    // eslint-disable-next-line @angular-eslint/no-output-native
-    @Output() public readonly close = new EventEmitter();
-
-    @Input() public type?: NgxMessageBoxType;
-    @Input() public title?: string;
-    @Input() public icon?: string;
-    @Input() public actions?: readonly NgxMessageBoxAction[];
+export class NgxMessageBoxComponent {
 
     /** Event Emmited when the close action is called */
-    @ContentChild('actionsTemplate') public actionsTemplate?: TemplateRef<unknown>;
+    public readonly close = output<void>();
 
-    private _horizontal?: boolean;
+    public readonly type = input<NgxMessageBoxType>();
+    public readonly title = input<string>();
+    public readonly subtitle = input<string>();
+    public readonly icon = input<string>();
+    public readonly actions = input<readonly NgxMessageBoxAction[]>();
 
-    @Input()
-    public set horizontal(value: BooleanInput) {
-        this._horizontal = coerceBooleanProperty(value);
-    }
+    public readonly horizontal = input(false, { transform: booleanAttribute });
+    public readonly showCloseIcon = input(false, { transform: booleanAttribute });
 
-    public get horizontal(): BooleanInput {
-        return this._horizontal;
-    }
+    public readonly actionsTemplate = contentChild<TemplateRef<unknown>>('actionsTemplate');
 
-    private _showCloseIcon = false;
-
-    @Input()
-    public set showCloseIcon(value: BooleanInput) {
-        this._showCloseIcon = coerceBooleanProperty(value);
-    }
-
-    public get showCloseIcon(): BooleanInput {
-        return this._showCloseIcon;
-    }
-
-    public ngOnInit(): void {
-        if (this.icon === undefined && this.type) {
-            this.icon = this.getIconFromType(this.type);
+    public readonly computedIcon = computed(() => {
+        const icon = this.icon();
+        if (icon === undefined && this.type()) {
+            return this.getIconFromType(this.type()!);
         }
+        return icon;
+    });
 
-        if (this.actions) {
-            this.actions.forEach(action => {
+    public readonly computedActions = computed(() => {
+        const actions = this.actions();
+        if (actions) {
+            return actions.map(action => {
                 if (!action.icon && action.type) {
-                    action.icon = this.getIconFromType(action.type);
+                    return { ...action, icon: this.getIconFromType(action.type) };
                 }
+                return action;
             });
         }
-    }
+        return actions;
+    });
 
     public onClose(): void {
         this.close.emit();
