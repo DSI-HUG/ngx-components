@@ -1,3 +1,14 @@
+## 21.1.0 (2026-04-23)
+
+### 🚀 Features
+
+- **NGXCPTS-51:** change to inputSignal ([563f0b5](https://github.com/DSI-HUG/ngx-components/commit/563f0b5))
+- **NGXCPTS-51:** add subtitle to messageBox component and rework the design ([5f55826](https://github.com/DSI-HUG/ngx-components/commit/5f55826))
+
+### ❤️ Thank You
+
+- Nathanael Martin @nathanaelmartin
+
 ## 21.0.1 (2026-03-27)
 
 ### 🐛 Fixes

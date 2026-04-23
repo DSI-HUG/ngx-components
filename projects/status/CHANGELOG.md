@@ -1,3 +1,9 @@
+## 21.0.2 (2026-04-23)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-message-box**: upgraded to `v21.1.0`
+
 ## 21.0.1 (2026-03-27)
 
 ### 🌱 Dependencies
