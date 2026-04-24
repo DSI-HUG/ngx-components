@@ -1,3 +1,13 @@
+## 22.0.0-alpha.11 (2026-04-24)
+
+### 🐛 Fixes
+
+- **panel-bar:** rename hasBackButton to withBackButton for consistency #DESIGNSYS-115 ([92365ba](https://github.com/DSI-HUG/ngx-components/commit/92365ba))
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.10 (2026-04-22)
 
 ### 🐛 Fixes
