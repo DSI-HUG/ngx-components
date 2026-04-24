@@ -58,7 +58,8 @@ export const argTypesPanelBar: Meta['argTypes'] = {
         control: 'boolean',
         table: { category: 'panel-bar' }
     },
-    hasBackButton: {
+    withBackButtonPanelBar: {
+        name: 'withBackButton',
         control: 'boolean',
         table: { category: 'panel-bar' }
     },

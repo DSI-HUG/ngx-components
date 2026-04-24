@@ -20,7 +20,7 @@ import { NgxSearchBarContainerComponent } from '../search-bar-container';
 })
 export class NgxPanelBarComponent {
     // inputs
-    public hasBackButton = input<boolean>();
+    public withBackButton = input<boolean>();
     public closable = input<boolean>();
 
     // output

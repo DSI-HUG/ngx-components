@@ -91,7 +91,7 @@ const meta: Meta = {
         appearance: 'default',
         contentPadding: 'default',
         closable: false,
-        hasBackButton: false,
+        withBackButtonPanelBar: false,
         hasSearchPanelBar: true,
         hasActionsPanelBar: true,
         hasFiltersPanelBar: true,
@@ -209,7 +209,7 @@ export const allComponents: Story = {
             </ngx-main-bar>
             <p>Content of the layout</p>
             <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
-                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
+                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButtonPanelBar">
                     ${contentLeftTemplate}
                     @if(hasTitlePanelBar){
                         <h3 ngxBarTitle>Panel Bar Title</h3>}
@@ -222,7 +222,7 @@ export const allComponents: Story = {
                     }
                     ${contentRightTemplate}
                 </ngx-panel-bar>
-                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
+                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButtonPanelBar">
                     ${contentLeftTemplate}
                     @if(hasActionsPanelBar){
                         ${actionsGroupTemplate}}                 
@@ -338,7 +338,7 @@ export const oneColumns: Story = {
             </ngx-main-bar>
             <p>Content of the layout</p>
             <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
-                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
+                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
                     ${contentLeftTemplate}
                     @if(hasTitlePanelBar){
                         <h3 ngxBarTitle>Panel Bar Title</h3>}
@@ -351,7 +351,7 @@ export const oneColumns: Story = {
                     }
                     ${contentRightTemplate}
                 </ngx-panel-bar>
-                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
+                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
                     ${contentLeftTemplate}
                     @if(hasActionsPanelBar){
                         ${actionsGroupTemplate}}                 
@@ -451,7 +451,7 @@ export const onlyPanel: Story = {
             </ngx-main-bar>
             <p>Content of the layout</p>
             <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
-                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
+                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
                     ${contentLeftTemplate}
                     @if(hasTitlePanelBar){
                         <h3 ngxBarTitle>Panel Bar Title</h3>}
@@ -464,7 +464,7 @@ export const onlyPanel: Story = {
                     }
                     ${contentRightTemplate}
                 </ngx-panel-bar>
-                <ngx-panel-bar [closable]="closable" [hasBackButton]="hasBackButton">
+                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
                     ${contentLeftTemplate}
                     @if(hasActionsPanelBar){
                         ${actionsGroupTemplate}}                 
