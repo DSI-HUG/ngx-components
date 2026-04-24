@@ -1,3 +1,13 @@
+## 22.0.0-alpha.10 (2026-04-22)
+
+### 🐛 Fixes
+
+- **layout:** harmonize the selectors for directives and components #DESIGNSYS-115 ([ce50402](https://github.com/DSI-HUG/ngx-components/commit/ce50402))
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.9 (2026-04-22)
 
 ### 🐛 Fixes
