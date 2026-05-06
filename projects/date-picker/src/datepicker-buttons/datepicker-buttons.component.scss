@@ -27,7 +27,7 @@ ngx-datepicker-buttons {
     font-size: inherit;
 
     ngx-datepicker-buttons {
-        .mat-mdc-icon-button {
+        .mat-mdc-icon-button.mat-mdc-button-base {
             font-size: 130%;
             padding: 0;
         }
