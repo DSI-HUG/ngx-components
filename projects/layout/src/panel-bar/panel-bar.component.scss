@@ -5,13 +5,14 @@ ngx-panel-bar {
     gap: var(--ngx-panel-bar-gap, 0.75rem);
     min-height: var(--ngx-panel-bar-min-height, 3rem);
     flex-wrap: nowrap;
+    min-width: 0;
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    h1[ngxBarTitle],
+    h2[ngxBarTitle],
+    h3[ngxBarTitle],
+    h4[ngxBarTitle],
+    h5[ngxBarTitle],
+    h6[ngxBarTitle] {
         white-space: nowrap;
         margin: 0;
         font: var(--mat-sys-title-large);
@@ -27,30 +28,31 @@ ngx-panel-bar {
         }
     }
 
-    &:has(h1, h2, h3, h4, h5, h6) {
-        .right:has(ngx-actions-group){
-            ngx-filters-group{
+    &:has(h1[ngxBarTitle], h2[ngxBarTitle], h3[ngxBarTitle], h4[ngxBarTitle], h5[ngxBarTitle], h6[ngxBarTitle]) {
+        > .right:has(ngx-actions-group) {
+            > ngx-filters-group {
                 flex: none;
             }
         }
-        ngx-actions-group {
+        > ngx-actions-group,
+        > .right > ngx-actions-group {
             justify-content: flex-end;
         }
     }
 
-    .right,
-    ngx-actions-group {
+    > .right,
+    > ngx-actions-group {
         display: flex;
         align-items: center;
         gap: var(--ngx-panel-bar-elements-gap, 0.75rem);
     }
 
-    .right {
+    > .right {
         flex: 1;
         justify-content: flex-end;
     }
 
-    ngx-actions-group {
+    > ngx-actions-group {
         flex: 1;
         min-inline-size: var(--ngx-panel-bar-actions-group-min-inline-size, 3rem);
     }

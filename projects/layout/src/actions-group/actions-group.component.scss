@@ -3,7 +3,7 @@ ngx-actions-group {
     inline-size: 100%;
     max-width: 364px;
 
-    .container {
+    > .container {
         display: flex;
         inline-size: fit-content;
         align-items: center;
@@ -14,7 +14,7 @@ ngx-actions-group {
         max-width: 100%;
         box-sizing: border-box;
 
-        .more-actions-button {
+        > .more-actions-button {
             order: 999;
         }
     }

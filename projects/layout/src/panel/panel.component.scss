@@ -20,13 +20,13 @@ ngx-panel {
     border-radius: var(--ngx-panel-radius, 2rem);
     padding: var(--ngx-panel-padding, 0.25rem);
     background-color: var(--mat-sys-surface-container-lowest);
-    min-width: min-content;
+    min-width: 0;
 
     &[appearance='transparent'] {
         background-color: transparent;
     }
 
-    .content {
+    > .content {
         overflow: auto;
         display: flex;
         flex-direction: column;

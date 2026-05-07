@@ -4,9 +4,9 @@
     flex-direction: column;
     box-sizing: border-box;
     block-size: 100%;
-    min-width: min-content;
     position: relative;
     overflow: visible;
+    min-width: 0;
 
     .content {
         overflow: auto;

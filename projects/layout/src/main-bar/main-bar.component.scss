@@ -4,7 +4,7 @@
     padding: var(--ngx-main-bar-padding, 0.25rem 1rem);
     gap: var(--ngx-main-bar-gap, 0.75rem);
 
-    .right {
+    > .right {
         flex: 1;
         display: flex;
         justify-content: flex-end;
