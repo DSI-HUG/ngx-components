@@ -4,7 +4,7 @@ ngx-column-bar {
     min-height: var(--ngx-column-bar-min-height, 3rem);
     padding: var(--ngx-column-bar-padding, 0.25rem 0);
     gap: var(--ngx-column-bar-gap, 0.75rem);
-    min-width: 0;
+    min-inline-size: 0;
 
     h1[ngxBarTitle],
     h2[ngxBarTitle],
@@ -19,7 +19,7 @@ ngx-column-bar {
         color: var(--mat-sys-on-surface-variant);
 
         overflow: hidden;
-        min-width: var(--ngx-column-bar-title-min-width, 6ch);
+        min-inline-size: var(--ngx-column-bar-title-min-width, 6ch);
         text-overflow: ellipsis;
 
         &:first-child {

@@ -6,7 +6,7 @@
     block-size: 100%;
     position: relative;
     overflow: visible;
-    min-width: 0;
+    min-inline-size: 0;
 
     .content {
         overflow: auto;

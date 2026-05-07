@@ -1,7 +1,7 @@
 ngx-actions-group {
     display: flex;
     inline-size: 100%;
-    max-width: 364px;
+    max-inline-size: 364px;
 
     > .container {
         display: flex;
@@ -11,7 +11,7 @@ ngx-actions-group {
         border-radius: var(--ngx-actions-group-radius, 2rem);
         padding: var(--ngx-actions-group-padding, 0.25rem);
         background-color: var(--mat-sys-surface-container-low);
-        max-width: 100%;
+        max-inline-size: 100%;
         box-sizing: border-box;
 
         > .more-actions-button {

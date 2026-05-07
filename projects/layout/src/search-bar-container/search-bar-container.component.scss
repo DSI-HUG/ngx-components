@@ -1,7 +1,7 @@
 ngx-search-bar-container {
     display: flex;
     flex: 1 1 auto;
-    max-width: var(--ngx-search-bar-container-max-width, 400px);
+    max-inline-size: var(--ngx-search-bar-container-max-width, 400px);
     align-items: center;
     block-size: var(--ngx-search-bar-container-block-size, 3rem);
     border-radius: var(--ngx-search-bar-container-radius, 2rem);
@@ -11,7 +11,7 @@ ngx-search-bar-container {
     gap: var(--ngx-search-bar-container-gap, 0.125rem);
 
     &:has(button:only-child) {
-        width: fit-content;
+        inline-size: fit-content;
         padding: var(--ngx-search-bar-container-folded-padding, 0 0.25rem);
         flex: 0;
     }
@@ -35,7 +35,7 @@ ngx-search-bar-container {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: 10px;
+        inline-size: 10px;
 
         &::placeholder {
             color: var(--mat-sys-on-surface-variant);

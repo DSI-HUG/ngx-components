@@ -3,7 +3,7 @@
         position: absolute;
         content: '';
         display: block;
-        width: var(--ngx-panel-content-column-divider-width, 1px);
+        inline-size: var(--ngx-panel-content-column-divider-width, 1px);
         background-color: var(--mat-sys-outline-variant);
         inset-block: 0;
         inset-inline-start: var(--ngx-panel-content-divider-inset-inline-start, -8.5px);
@@ -20,7 +20,7 @@ ngx-panel {
     border-radius: var(--ngx-panel-radius, 2rem);
     padding: var(--ngx-panel-padding, 0.25rem);
     background-color: var(--mat-sys-surface-container-lowest);
-    min-width: 0;
+    min-inline-size: 0;
 
     &[appearance='transparent'] {
         background-color: transparent;

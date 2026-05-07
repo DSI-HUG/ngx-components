@@ -6,6 +6,7 @@
     letter-spacing: var(--mat-sys-body-medium-tracking);
     background-color: var(--mat-sys-surface-container);
     box-sizing: border-box;
+    inline-size: 100%;
 
     .extra-content {
         padding: var(--ngx-layout-extra-content-padding, 0.25rem 1rem);
