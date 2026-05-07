@@ -1,3 +1,13 @@
+## 22.0.0-alpha.12 (2026-05-07)
+
+### 🐛 Fixes
+
+- **layout:** fix component styles for improved responsif #DESIGNSYS-114 ([71b728a](https://github.com/DSI-HUG/ngx-components/commit/71b728a))
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.11 (2026-04-24)
 
 ### 🐛 Fixes
