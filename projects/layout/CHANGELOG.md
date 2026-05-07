@@ -1,3 +1,13 @@
+## 22.0.0-alpha.13 (2026-05-07)
+
+### 🐛 Fixes
+
+- **layout:** replace max-width with max-inline-size for better responsiveness #DESIGNSYS-114 ([71193de](https://github.com/DSI-HUG/ngx-components/commit/71193de))
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.12 (2026-05-07)
 
 ### 🐛 Fixes
