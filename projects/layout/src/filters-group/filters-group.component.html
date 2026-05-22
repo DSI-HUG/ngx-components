@@ -27,7 +27,7 @@
                     <mat-chip-option [selectable]="false" [selected]="f.active()">
                         {{ f.label() }}
                         @if (f.type === 'complex' && f.selectedFilterLabel()) {
-                            <span class="selected-label">: {{ f.selectedFilterLabel() }}</span>
+                            <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel() }}</span>
                         }
                         @if (f.type === 'complex') {
                             <mat-icon matChipTrailingIcon>arrow_drop_down</mat-icon>
@@ -67,7 +67,7 @@
                             ">
                             {{ f.label() }}
                             @if (f.selectedFilterLabel()) {
-                                <span class="selected-label">: {{ f.selectedFilterLabel() }}</span>
+                                <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel() }}</span>
                             }
                             <mat-icon
                                 [class.is-overlay-open]="this.overlayOpen() && this.overlayContent() === f.templateRef"
