@@ -24,19 +24,22 @@ ngx-panel {
 
     &[appearance='transparent'] {
         background-color: transparent;
+        border-radius: 0;
     }
 
-    &:not(:has(ngx-panel-bar, ngx-column)),
-    &:not(:has(ngx-panel-bar)) ngx-column:not(:has(ngx-column-bar)) {
-        > .content::-webkit-scrollbar-track {
-            margin-top: var(--ngx-panel-scroll-margin-top, 0.75rem);
+    &:not([appearance='transparent']) {
+        &:not(:has(ngx-panel-bar, ngx-column)),
+        &:not(:has(ngx-panel-bar)) ngx-column:not(:has(ngx-column-bar)) {
+            > .content::-webkit-scrollbar-track {
+                margin-top: var(--ngx-panel-scroll-margin-top, 0.75rem);
+            }
         }
-    }
 
-    &,
-    ngx-column {
-        > .content::-webkit-scrollbar-track {
-            margin-bottom: var(--ngx-panel-scroll-margin-bottom, 0.75rem);
+        &,
+        ngx-column {
+            > .content::-webkit-scrollbar-track {
+                margin-bottom: var(--ngx-panel-scroll-margin-bottom, 0.75rem);
+            }
         }
     }
 
