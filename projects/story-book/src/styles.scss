@@ -1,4 +1,4 @@
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+/* @import '@angular/material/prebuilt-themes/indigo-pink.css';*/
 
 @import '@fontsource/roboto/300.css';
 @import '@fontsource/roboto/400.css';
@@ -6,7 +6,7 @@
 @import '@fontsource/roboto/700.css';
 @import '@fontsource/material-icons';
 
-@import './layout/layout.scss';
+/* @import './layout/layout.scss';
 @import './list-loader/list-loader.scss';
 @import './message-box/message-box.scss';
 @import './overlay/overlay.scss';
@@ -14,5 +14,21 @@
 @import './splitter/splitter.scss';
 @import './status/status.scss';
 @import './user-card/user-card.scss';
+@import './snackbar/snackbar.scss';*/
+
 @import './layout-m3/layout-m3.scss';
-@import './snackbar/snackbar.scss';
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    transition: 0.3s ease-in-out;
+    border-radius: 6px;
+    background-color: var(--mat-sys-outline-variant);
+
+    &:hover {
+        background-color: var(--mat-sys-outline);
+    }
+}
