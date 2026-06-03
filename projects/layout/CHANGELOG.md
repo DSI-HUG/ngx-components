@@ -1,3 +1,7 @@
+## 22.0.0-alpha.15 (2026-06-03)
+
+This was a version bump only for @hug/ngx-layout to align it with other projects, there were no code changes.
+
 ## 22.0.0-alpha.14 (2026-05-22)
 
 This was a version bump only for @hug/ngx-layout to align it with other projects, there were no code changes.
