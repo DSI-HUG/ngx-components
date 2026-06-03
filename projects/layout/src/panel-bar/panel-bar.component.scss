@@ -17,7 +17,7 @@ ngx-panel-bar {
         margin: 0;
         font: var(--mat-sys-title-large);
         letter-spacing: var(--mat-sys-title-large-tracking);
-        color: var(--mat-sys-on-surface-variant);
+        color: var(--mat-sys-on-surface);
 
         overflow: hidden;
         min-inline-size: var(--ngx-panel-bar-title-min-width, 6ch);
