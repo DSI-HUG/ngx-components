@@ -70,11 +70,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/core/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/core/tsconfig.spec.json"
                     }
                 }
             }
@@ -103,11 +99,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/list-loader/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/list-loader/tsconfig.spec.json"
                     }
                 }
             }
@@ -136,11 +128,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/message-box/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/message-box/tsconfig.spec.json"
                     }
                 }
             }
@@ -169,11 +157,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/numeric-stepper/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/numeric-stepper/tsconfig.spec.json"
                     }
                 }
             }
@@ -202,11 +186,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/overlay/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/overlay/tsconfig.spec.json"
                     }
                 }
             }
@@ -235,11 +215,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/snackbar/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/snackbar/tsconfig.spec.json"
                     }
                 }
             }
@@ -268,11 +244,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/splitter/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/splitter/tsconfig.spec.json"
                     }
                 }
             }
@@ -301,11 +273,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/status/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/status/tsconfig.spec.json"
                     }
                 }
             }
@@ -334,11 +302,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/time-picker/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/time-picker/tsconfig.spec.json"
                     }
                 }
             }
@@ -367,11 +331,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/tooltip/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/tooltip/tsconfig.spec.json"
                     }
                 }
             }
@@ -400,11 +360,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/sidenav/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/sidenav/tsconfig.spec.json"
                     }
                 }
             }
@@ -433,11 +389,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/layout/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/layout/tsconfig.spec.json"
                     }
                 }
             }
@@ -466,11 +418,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/user-card/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/user-card/tsconfig.spec.json"
                     }
                 }
             }
@@ -499,11 +447,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/user-tooltip/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/user-tooltip/tsconfig.spec.json"
                     }
                 }
             }
@@ -532,11 +476,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/search-container/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/search-container/tsconfig.spec.json"
                     }
                 }
             }
@@ -565,11 +505,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/message-box-dialog/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/message-box-dialog/tsconfig.spec.json"
                     }
                 }
             }
@@ -598,11 +534,7 @@
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
-                        "tsConfig": "projects/date-picker/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "tsConfig": "projects/date-picker/tsconfig.spec.json"
                     }
                 }
             }
