@@ -15,6 +15,7 @@ import { frCH } from 'date-fns/locale';
 
 import { NgxDatepickerWithTimeComponent } from '../../../date-picker/src/datepicker-with-time/datepicker-with-time.component';
 import { DatepickerWrapperComponent } from './datepicker-wrapper-component/datepicker-wrapper.component';
+import { DatepickerWrapperFormSignalsComponent } from './datepicker-wrapper-form-signals-component/datepicker-wrapper-form-signals.component';
 
 setDefaultOptions({ locale: frCH });
 registerLocaleData(localeFrCh, 'fr-CH', localeFrChExtra);
@@ -90,3 +91,22 @@ export const withMask: Story = {
           `
     })
 };
+
+export const withMaskAndFormSignals: Story = {
+    decorators: [
+        moduleMetadata({
+            imports: [
+                DatepickerWrapperFormSignalsComponent
+            ]
+        })
+    ],
+    render: args => ({
+        props: {
+            ...args
+        },
+        template: `
+            <datepicker-wrapper-form-signals></datepicker-wrapper-form-signals>
+          `
+    })
+};
+
