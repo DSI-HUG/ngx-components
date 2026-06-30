@@ -201,13 +201,13 @@ export class NgxDatepickerMaskDirective {
         const validateOnBlur$ = blur$.pipe(
             tap(() => {
                 this.parseAndSetValue(this.elementRef.nativeElement.value);
+                // NGXCPTS-49 - On blur, apply the mask manually for formSignals.
                 if (this.signalFormField && this._formatExpression && this._placeHolderCharacter) {
                     const value = this.safeNgControlValue;
                     const modelIsValid = value instanceof Date && isValid(value);
                     if (!modelIsValid) {
                         this.maskValue = this._formatExpression.replace(/[ymdhs]/gi, this._placeHolderCharacter) || '';
                         this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.maskValue);
-                        console.log('MASK', this.maskValue);
                     }
                 }
             })
@@ -453,9 +453,7 @@ export class NgxDatepickerMaskDirective {
     }
 
     private setValue(date: Date | undefined): void {
-        // Determine the new value: nil/valid date → keep as-is, invalid date → null
         const newValue = isNil(date) || isValid(date) ? date : null;
-
         const emitDateChange = (val: unknown): void => {
             if (this.matDatepickerInput) {
                 this.matDatepickerInput.dateChange.emit({ value: val, targetElement: this.elementRef.nativeElement, target: this.matDatepickerInput });
@@ -466,7 +464,7 @@ export class NgxDatepickerMaskDirective {
             }
         };
 
-        // Path 1: Signal-based forms (Angular 21 [formField] / FORM_FIELD token)
+        // Path 1: Signal-based forms
         if (this.signalFormField) {
             try {
                 const fieldState = this.signalFormField.state();
