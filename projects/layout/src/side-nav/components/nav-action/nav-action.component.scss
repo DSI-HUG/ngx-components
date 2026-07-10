@@ -1,0 +1,17 @@
+ngx-nav-action {
+    --nav-action-hover-state-layer-background-color: var(--mat-sys-on-surface);
+    --nav-action-hover-state-layer-background-color-opacity: 8%;
+
+    display: grid;
+    align-content: center;
+    width: fit-content;
+
+    aspect-ratio: 1;
+
+    --mat-icon-button-state-layer-size: 2.5rem;
+
+    &.outline {
+        border: 1px solid var(--mat-sys-on-surface);
+        border-radius: var(--mat-sys-corner-full);
+    }
+}

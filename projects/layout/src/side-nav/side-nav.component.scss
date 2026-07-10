@@ -1,0 +1,44 @@
+:host {
+    --default-side-nav-gap: 1rem;
+
+    display: flex;
+    flex-direction: row;
+
+    width: fit-content;
+    height: 100%;
+
+    &.divider {
+        .rail {
+            border-right: 1px solid var(--mat-sys-outline-variant);
+        }
+    }
+
+    .rail {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        width: 72px;
+        padding-block: 1.25rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        scrollbar-width: thin;
+        scrollbar-color: var(--mat-sys-secondary-fixed-dim) transparent;
+        // scrollbar-gutter: stable both-edges;
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--side-nav-gap, var(--default-side-nav-gap));
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+}

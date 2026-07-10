@@ -1,0 +1,67 @@
+:host {
+    --section-divider-default: 1.25rem;
+    --section-divider-default-color: color-mix(in oklch, transparent, var(--mat-sys-outline) 35%);
+    --default-section-padding-block: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    text-align: center;
+    padding-block: var(--section-padding-block, var(--default-section-padding-block));
+
+    position: relative;
+
+    p {
+        //Reset
+        margin: 0;
+        box-sizing: border-box;
+
+        font: var(--mat-sys-label-small);
+        color: var(--mat-sys-outline);
+
+        max-width: 100%;
+        padding-inline: 0.5rem;
+
+        overflow: hidden;
+        text-align: center;
+        text-wrap: auto;
+        text-overflow: ellipsis;
+    }
+
+    &:not(:first-child) {
+        &::before {
+            content: '';
+            height: 1.5px;
+            background-color: var(--section-divider-color, var(--section-divider-default-color));
+
+            position: absolute;
+            inset-block-start: 0;
+            inset-inline: var(--section-divider-padding, var(--section-divider-default));
+        }
+    }
+
+    &:not(:last-child):not(:has(+ ngx-nav-section)) {
+        &::after {
+            content: '';
+            height: 1.5px;
+            background-color: var(--section-divider-color, var(--section-divider-default-color));
+
+            position: absolute;
+            inset-block-end: 0;
+            inset-inline: var(--section-divider-padding, var(--section-divider-default));
+        }
+    }
+
+    &:has(+ ngx-nav-section) {
+        padding-block-end: min(
+            0,
+            calc(
+                var(--section-padding-block, var(--default-section-padding-block)) - var(
+                        --side-nav-gap,
+                        var(--default-side-nav-gap)
+                    )
+            )
+        );
+    }
+}
