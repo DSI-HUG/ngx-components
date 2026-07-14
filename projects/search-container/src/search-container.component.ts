@@ -1,11 +1,11 @@
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
-import { AfterContentInit, ChangeDetectionStrategy, Component, ContentChild, DestroyRef, Directive, ElementRef, EventEmitter, inject, Input, NgZone, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, contentChild, DestroyRef, Directive, ElementRef, inject, input, OnInit, output, signal, TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgControl } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { NgxMediaService } from '@hug/ngx-core';
-import { BehaviorSubject, distinctUntilChanged, first, Observable, shareReplay, switchMap, tap } from 'rxjs';
+import { distinctUntilChanged, map, shareReplay } from 'rxjs';
 
 import { NgxSearchContainerIntl } from './providers';
 
@@ -40,75 +40,44 @@ export class NgxSearchInputDirective {
         MatTooltip
     ]
 })
-export class NgxSearchContainerComponent implements AfterContentInit {
+export class NgxSearchContainerComponent implements OnInit {
 
-    @Output()
-    public readonly cleared = new EventEmitter<void>();
+    public readonly right = input<TemplateRef<unknown>>();
 
-    @ContentChild('mobileSearch')
-    public mobileSearch: TemplateRef<unknown> | undefined;
+    public readonly cleared = output<void>();
+
+    protected readonly mobileSearch = viewChild<TemplateRef<unknown>>('mobileSearch');
+    protected readonly searchInput = contentChild(NgxSearchInputDirective);
 
     protected readonly intl = inject(NgxSearchContainerIntl, { optional: true });
 
-    protected readonly activeSearch$ = new BehaviorSubject(false);
+    protected readonly activeSearch = signal<boolean>(false);
 
-    protected searchInputValue$: Observable<string> | undefined;
+    protected readonly searchInputValue = signal<string | undefined>(undefined);
 
-    @ContentChild(NgxSearchInputDirective)
-    public set searchInput(searchInput: NgxSearchInputDirective) {
+    protected readonly mediaService = inject(NgxMediaService);
+    private readonly destroyRef = inject(DestroyRef);
+
+    public ngOnInit(): void {
+        const searchInput = this.searchInput();
         if (!searchInput) {
             throw new Error(this.intl?.addAttSearchInput ?? 'You need to add the attribute ngx-search-input to the NgxSearchContainerComponent');
         }
         if (!searchInput.ngControl) {
             throw new Error(this.intl?.addAttNgmodel ?? 'You need to add the attribute ngModel to the NgxSearchContainerComponent');
         }
-        this._searchInput = searchInput;
-    }
-
-    @Input()
-    public set right(value: TemplateRef<unknown> | null) {
-        this._right = value;
-    }
-
-    public get right(): TemplateRef<unknown> | null {
-        return this._right;
-    }
-
-    protected readonly mediaService = inject(NgxMediaService);
-    private readonly zone = inject(NgZone);
-    private readonly destroyRef = inject(DestroyRef);
-
-    private _searchInput: NgxSearchInputDirective | undefined;
-
-    private _right: TemplateRef<unknown> | null = null;
-
-    private _resetWhenInactiveSearch = false;
-
-    public constructor() {
-        this.activeSearch$.pipe(
-            switchMap(activeSearch => this.zone.onStable.pipe(
-                first(),
-                tap(() => {
-                    if (!activeSearch && this._resetWhenInactiveSearch) {
-                        this.reset();
-                    }
-                    this._searchInput?.focus();
-                    this._resetWhenInactiveSearch = true;
-                })
-            )),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe();
-    }
-
-    public ngAfterContentInit(): void {
-        this.searchInputValue$ = this._searchInput?.ngControl?.valueChanges?.pipe(
+        searchInput.ngControl.valueChanges?.pipe(
+            map(v => v as string | undefined),
             distinctUntilChanged(),
-            shareReplay({ bufferSize: 1, refCount: false })
-        ) ?? undefined;
+            shareReplay({ bufferSize: 1, refCount: false }),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe(v => this.searchInputValue.set(v));
     }
 
     public reset(): void {
-        this._searchInput?.ngControl?.reset();
+        const searchInput = this.searchInput();
+        searchInput?.ngControl?.reset();
+        searchInput?.focus();
         this.cleared.emit();
     }
 }
