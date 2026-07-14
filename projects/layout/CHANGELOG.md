@@ -1,3 +1,18 @@
+## 21.1.0 (2026-07-14)
+
+### 🚀 Features
+
+- **i18n:** remove country from translations filenames and invert intl fetch logic #NGXCPTS-54 ([d92afc9](https://github.com/DSI-HUG/ngx-components/commit/d92afc9))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-sidenav**: upgraded to `v21.0.3`
+- **@hug/ngx-core**: upgraded to `v21.3.0`
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+
 ## 21.0.2 (2026-02-13)
 
 ### 🌱 Dependencies

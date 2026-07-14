@@ -1,3 +1,26 @@
+## 21.2.0 (2026-07-14)
+
+### 🚀 Features
+
+- **i18n:** remove country from translations filenames and invert intl fetch logic #NGXCPTS-54 ([d92afc9](https://github.com/DSI-HUG/ngx-components/commit/d92afc9))
+- **NGXCPTS-49:** pr review ([a901a34](https://github.com/DSI-HUG/ngx-components/commit/a901a34))
+- **NGXCPTS-49:** date mask rework ([d40f6fe](https://github.com/DSI-HUG/ngx-components/commit/d40f6fe))
+
+### 🐛 Fixes
+
+- **datePickerButtons:** target more precisely the button using css to avoid precedence errors ([66333ca](https://github.com/DSI-HUG/ngx-components/commit/66333ca))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker**: upgraded to `v21.2.1`
+- **@hug/ngx-core**: upgraded to `v21.3.0`
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+- Nathanael Martin @nathanaelmartin
+- spln @spln
+
 ## 21.1.3 (2026-03-27)
 
 ### 🌱 Dependencies

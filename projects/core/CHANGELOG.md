@@ -1,3 +1,16 @@
+## 21.3.0 (2026-07-14)
+
+### 🚀 Features
+
+- **i18n:** remove country from translations filenames and invert intl fetch logic #NGXCPTS-54 ([d92afc9](https://github.com/DSI-HUG/ngx-components/commit/d92afc9))
+- **guards:** chainActivateGuards & chainMatchGuards (NGXCPTS-55) ([ba4c7ea](https://github.com/DSI-HUG/ngx-components/commit/ba4c7ea))
+- **guards:** chainActivateGuards & chainMatchGuards (NGXCPTS-55) ([5705d0a](https://github.com/DSI-HUG/ngx-components/commit/5705d0a))
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+- pdth @pdth
+
 ## 21.2.0 (2026-02-13)
 
 ### 🚀 Features
