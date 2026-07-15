@@ -1,3 +1,13 @@
+## 21.3.1 (2026-07-15)
+
+### 🐛 Fixes
+
+- **i18n:** fix retry on unknown fallback lang #NGXCPT-54 ([8625e0f](https://github.com/DSI-HUG/ngx-components/commit/8625e0f))
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+
 ## 21.3.0 (2026-07-14)
 
 ### 🚀 Features

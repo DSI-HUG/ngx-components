@@ -1,3 +1,9 @@
+## 21.2.2 (2026-07-15)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-numeric-stepper**: upgraded to `v21.2.2`
+
 ## 21.2.1 (2026-07-14)
 
 ### 🌱 Dependencies

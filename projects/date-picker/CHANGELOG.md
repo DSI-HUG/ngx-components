@@ -1,3 +1,10 @@
+## 21.2.1 (2026-07-15)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker**: upgraded to `v21.2.2`
+- **@hug/ngx-core**: upgraded to `v21.3.1`
+
 ## 21.2.0 (2026-07-14)
 
 ### 🚀 Features

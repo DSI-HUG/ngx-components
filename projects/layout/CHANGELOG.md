@@ -1,3 +1,10 @@
+## 21.1.1 (2026-07-15)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-sidenav**: upgraded to `v21.0.4`
+- **@hug/ngx-core**: upgraded to `v21.3.1`
+
 ## 21.1.0 (2026-07-14)
 
 ### 🚀 Features
