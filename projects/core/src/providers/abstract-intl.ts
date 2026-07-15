@@ -41,7 +41,7 @@ export abstract class NgxAbstractIntl<T extends NgxAbstractIntl<T>> {
         const locale = new Intl.Locale(localeId);
         const intl = await this.loadFromFile(locale.language, translationsPath, retryCount, retryDelayInMs)
             .catch(async err => {
-                const fallbackLocaleId = NgxAbstractIntl.FALLBACKS.get(locale.language) ?? NgxAbstractIntl.DEFAULT_LOCALE;
+                const fallbackLocaleId = NgxAbstractIntl.FALLBACKS.get(locale.language) ?? new Intl.Locale(NgxAbstractIntl.DEFAULT_LOCALE).language;
                 console.warn(`Failed to get the translation file for requested locale ${localeId}. Fallback to ${fallbackLocaleId} locale.`, err);
                 try {
                     return await this.loadFromFile(fallbackLocaleId, translationsPath, retryCount, retryDelayInMs);
