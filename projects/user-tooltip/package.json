@@ -34,8 +34,7 @@
         "@angular/core": ">=21 <22",
         "@angular/material": ">=21 <22",
         "@hug/ngx-tooltip": "^22.0.0-alpha.3",
-        "@hug/ngx-user-card": "^22.0.0-alpha.3",
-        "zone.js": "^0.16.0"
+        "@hug/ngx-user-card": "^22.0.0-alpha.3"
     },
     "dependencies": {
         "tslib": "^2.8.1"
