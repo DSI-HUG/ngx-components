@@ -16,7 +16,7 @@ const preview: Preview = {
         backgrounds: {
             options: {
                 dark: // Default values
-                { name: 'Dark', value: '#333' },
+                    { name: 'Dark', value: '#333' },
 
                 light: { name: 'Light', value: '#fff' },
                 lightblue: { name: 'Lightblue', value: '#b5d8ff' }
@@ -32,5 +32,3 @@ const preview: Preview = {
 };
 
 export default preview;
-
-import './src/polyfills';
