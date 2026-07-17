@@ -77,8 +77,8 @@ This was a version bump only for @hug/ngx-list-loader to align it with other pro
 
 ### ❤️  Thank You
 
-- Badisi
-- rfrt
+- Badisi @Badisi
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.9 (2024-07-25)
 

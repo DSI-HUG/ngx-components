@@ -1,0 +1,14 @@
+:host {
+    display: block;
+    padding: 0 1rem;
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .date-format-selector-container {
+        width: 100%;
+    }
+}

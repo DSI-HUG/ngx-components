@@ -24,6 +24,34 @@
 
 - **@hug/ngx-numeric-stepper**: upgraded to `v22.0.0-alpha.1`
 
+## 21.2.0 (2026-03-27)
+
+### 🚀 Features
+
+- **time-picker:** add storybook NgxTimePickerComponent with customizable layouts and modes ([ecd11e3](https://github.com/DSI-HUG/ngx-components/commit/ecd11e3))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-numeric-stepper**: upgraded to `v21.2.0`
+
+### ❤️ Thank You
+
+- RemiFrontiere-HUG @RemiFrontiere-HUG
+
+## 21.1.0 (2026-03-10)
+
+### 🚀 Features
+
+- **time-picker:** add storybook NgxTimePickerComponent with customizable layouts and modes ([fdfaacd](https://github.com/DSI-HUG/ngx-components/commit/fdfaacd))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-numeric-stepper**: upgraded to `v21.1.0`
+
+### ❤️ Thank You
+
+- RemiFrontiere-HUG @RemiFrontiere-HUG
+
 ## 21.0.2 (2026-02-13)
 
 ### 🌱 Dependencies
@@ -132,9 +160,9 @@
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.13 (2024-08-03)
 

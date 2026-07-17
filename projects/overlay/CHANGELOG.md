@@ -107,9 +107,9 @@
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.11 (2024-09-04)
 
@@ -121,7 +121,7 @@
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 
 ## 1.1.10 (2024-07-25)
 

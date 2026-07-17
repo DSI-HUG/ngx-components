@@ -27,6 +27,18 @@
 - **@hug/ngx-time-picker**: upgraded to `v22.0.0-alpha.1`
 - **@hug/ngx-core**: upgraded to `v22.0.0-alpha.1`
 
+## 21.1.3 (2026-03-27)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker**: upgraded to `v21.2.0`
+
+## 21.1.2 (2026-03-10)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker**: upgraded to `v21.1.0`
+
 ## 21.1.1 (2026-02-13)
 
 ### 🐛 Fixes
@@ -172,9 +184,9 @@
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.0.13 (2024-08-03)
 

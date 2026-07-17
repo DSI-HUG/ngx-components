@@ -16,6 +16,27 @@ This was a version bump only for @hug/ngx-message-box to align it with other pro
 
 This was a version bump only for @hug/ngx-message-box to align it with other projects, there were no code changes.
 
+## 21.1.0 (2026-04-23)
+
+### 🚀 Features
+
+- **NGXCPTS-51:** change to inputSignal ([563f0b5](https://github.com/DSI-HUG/ngx-components/commit/563f0b5))
+- **NGXCPTS-51:** add subtitle to messageBox component and rework the design ([5f55826](https://github.com/DSI-HUG/ngx-components/commit/5f55826))
+
+### ❤️ Thank You
+
+- Nathanael Martin @nathanaelmartin
+
+## 21.0.1 (2026-03-27)
+
+### 🐛 Fixes
+
+- **NgxMessageBoxComponent:** force changes to trigger version build upgrade ([00c4be2](https://github.com/DSI-HUG/ngx-components/commit/00c4be2))
+
+### ❤️ Thank You
+
+- Damien Guillermet @damien-guillermet
+
 # 21.0.0 (2026-01-07)
 
 ### ⚠️  Breaking Changes
@@ -90,9 +111,9 @@ This was a version bump only for @hug/ngx-message-box to align it with other pro
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.8 (2024-07-25)
 

@@ -214,9 +214,9 @@ export const allComponents: Story = {
                     @if(hasTitlePanelBar){
                         <h3 ngxBarTitle>Panel Bar Title</h3>}
                     @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}                 
+                        ${actionsGroupTemplate}}
                     @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}                 
+                        ${filtersGroupTemplate}}
                     @if(hasSearchPanelBar){
                         ${searchBarTemplate}
                     }
@@ -225,9 +225,9 @@ export const allComponents: Story = {
                 <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButtonPanelBar">
                     ${contentLeftTemplate}
                     @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}                 
+                        ${actionsGroupTemplate}}
                     @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}                 
+                        ${filtersGroupTemplate}}
                     @if(hasSearchPanelBar){
                         ${searchBarTemplate}
                     }
@@ -239,9 +239,9 @@ export const allComponents: Story = {
                         @if(hasTitlePanelBar){
                             <h4 ngxBarTitle>Column Bar Title</h4>}
                         @if(hasActionsPanelBar){
-                            ${actionsGroupTemplate}}                 
+                            ${actionsGroupTemplate}}
                         @if(hasFiltersPanelBar){
-                            ${filtersGroupFoldedTemplate}}                 
+                            ${filtersGroupFoldedTemplate}}
                         @if(hasSearchPanelBar){
                             ${searchBarFoldedTemplate}}
                         ${contentRightTemplate}
@@ -255,9 +255,9 @@ export const allComponents: Story = {
                         @if(hasTitlePanelBar){
                             <h4 ngxBarTitle>Column Bar Title</h4>}
                         @if(hasActionsPanelBar){
-                            ${actionsGroupTemplate}}                 
+                            ${actionsGroupTemplate}}
                         @if(hasFiltersPanelBar){
-                            ${filtersGroupFoldedTemplate}}                 
+                            ${filtersGroupFoldedTemplate}}
                         @if(hasSearchPanelBar){
                             ${searchBarFoldedTemplate}}
                         ${contentRightTemplate}
@@ -343,9 +343,9 @@ export const oneColumns: Story = {
                     @if(hasTitlePanelBar){
                         <h3 ngxBarTitle>Panel Bar Title</h3>}
                     @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}                 
+                        ${actionsGroupTemplate}}
                     @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}                 
+                        ${filtersGroupTemplate}}
                     @if(hasSearchPanelBar){
                         ${searchBarTemplate}
                     }
@@ -354,9 +354,9 @@ export const oneColumns: Story = {
                 <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
                     ${contentLeftTemplate}
                     @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}                 
+                        ${actionsGroupTemplate}}
                     @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}                 
+                        ${filtersGroupTemplate}}
                     @if(hasSearchPanelBar){
                         ${searchBarTemplate}
                     }
@@ -368,9 +368,9 @@ export const oneColumns: Story = {
                         @if(hasTitlePanelBar){
                             <h4 ngxBarTitle>Column Bar Title</h4>}
                         @if(hasActionsPanelBar){
-                            ${actionsGroupTemplate}}                 
+                            ${actionsGroupTemplate}}
                         @if(hasFiltersPanelBar){
-                            ${filtersGroupFoldedTemplate}}                 
+                            ${filtersGroupFoldedTemplate}}
                         @if(hasSearchPanelBar){
                             ${searchBarFoldedTemplate}}
                         ${contentRightTemplate}
@@ -456,9 +456,9 @@ export const onlyPanel: Story = {
                     @if(hasTitlePanelBar){
                         <h3 ngxBarTitle>Panel Bar Title</h3>}
                     @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}                 
+                        ${actionsGroupTemplate}}
                     @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}                 
+                        ${filtersGroupTemplate}}
                     @if(hasSearchPanelBar){
                         ${searchBarTemplate}
                     }
@@ -467,9 +467,9 @@ export const onlyPanel: Story = {
                 <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
                     ${contentLeftTemplate}
                     @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}                 
+                        ${actionsGroupTemplate}}
                     @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}                 
+                        ${filtersGroupTemplate}}
                     @if(hasSearchPanelBar){
                         ${searchBarTemplate}
                     }
@@ -526,6 +526,13 @@ export const onlyPanel: Story = {
 export const filtersGroup: Story = {
     render: (args): { props: LayoutStoryProps; template: string } => ({
         template: `<div style="display: flex; height: 10vh; width: 100%">${filtersGroupTemplate}</div>`,
+        props: props(args)
+    })
+};
+
+export const actionGroup: Story = {
+    render: (args): { props: LayoutStoryProps; template: string } => ({
+        template: `<div style="display: flex; height: 1vh; width: 100%">${actionsGroupTemplate}</div>`,
         props: props(args)
     })
 };

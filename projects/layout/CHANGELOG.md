@@ -340,9 +340,9 @@ This was a version bump only for @hug/ngx-layout to align it with other projects
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.11 (2024-07-26)
 
