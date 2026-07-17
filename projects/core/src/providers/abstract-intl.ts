@@ -77,6 +77,12 @@ export abstract class NgxAbstractIntl<T extends NgxAbstractIntl<T>> {
 
     private async loadFromFile(localeId: string, translationsPath: string, retryCount: number, retryDelayInMs: number): Promise<T> {
         return await fetch(`${translationsPath}/${localeId}.json`)
+            .then(response => {
+                if (response.status === 404) {
+                    throw new Error(`Translation file not found for locale ${localeId} at path ${translationsPath}`);
+                }
+                return response;
+            })
             .then(file => file.json())
             .then((fileJson: T) => fileJson)
             .catch(async err => {
