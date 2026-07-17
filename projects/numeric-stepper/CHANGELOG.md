@@ -24,6 +24,18 @@
 
 - **@hug/ngx-core**: upgraded to `v22.0.0-alpha.1`
 
+## 21.2.2 (2026-07-15)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core**: upgraded to `v21.3.1`
+
+## 21.2.1 (2026-07-14)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core**: upgraded to `v21.3.0`
+
 ## 21.2.0 (2026-03-27)
 
 ### 🚀 Features

@@ -27,6 +27,16 @@
 - **@hug/ngx-message-box**: upgraded to `v22.0.0-alpha.1`
 - **@hug/ngx-snackbar**: upgraded to `v22.0.0-alpha.1`
 
+## 21.1.0 (2026-07-14)
+
+### 🚀 Features
+
+- **i18n:** remove country from translations filenames and invert intl fetch logic #NGXCPTS-54 ([d92afc9](https://github.com/DSI-HUG/ngx-components/commit/d92afc9))
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+
 ## 21.0.2 (2026-04-23)
 
 ### 🌱 Dependencies

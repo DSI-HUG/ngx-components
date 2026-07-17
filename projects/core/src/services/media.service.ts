@@ -1,4 +1,4 @@
-import { inject, Injectable, InjectionToken, NgZone, OnDestroy } from '@angular/core';
+import { inject, Injectable, InjectionToken, OnDestroy } from '@angular/core';
 import { BehaviorSubject, distinctUntilChanged, map, Observable, shareReplay } from 'rxjs';
 
 export interface NgxMediaQueryDefinition {
@@ -9,7 +9,7 @@ export interface NgxMediaQueryDefinition {
 
 export const mediaQueryDefinitions = new InjectionToken<NgxMediaQueryDefinition[]>('MEDIA_QUERY_DEFINITIONS');
 
-export const defaultMediaQueryDefinitions = [
+export const defaultMediaQueryDefinitions: NgxMediaQueryDefinition[] = [
     {
         alias: 'xs',
         mediaQuery: '(min-width: 0px) and (max-width: 599px)'
@@ -70,9 +70,9 @@ export const defaultMediaQueryDefinitions = [
         alias: 'xl',
         mediaQuery: '(min-width: 1920px) and (max-width: 5000px)'
     }
-] as NgxMediaQueryDefinition[];
+];
 
-export const simplifiedMediaQueryDefinitions = [
+export const simplifiedMediaQueryDefinitions: NgxMediaQueryDefinition[] = [
     {
         alias: 'xs',
         mediaQuery: '(max-width: 599px)'
@@ -86,7 +86,7 @@ export const simplifiedMediaQueryDefinitions = [
         alias: 'lg',
         mediaQuery: '(min-width: 1280px)'
     }
-] as NgxMediaQueryDefinition[];
+];
 
 @Injectable({
     providedIn: 'root'
@@ -95,11 +95,10 @@ export class NgxMediaService implements OnDestroy {
     public readonly isHandset$: Observable<boolean>;
     public readonly isMobile$: Observable<boolean>;
     public mediaChanged$ = new BehaviorSubject('lg');
-    public mql = {} as Record<string, MediaQueryList>;
+    public readonly mql = {} as Record<string, MediaQueryList>;
+    private readonly mqlListeners = new WeakMap<MediaQueryList, (event: MediaQueryListEvent) => void>();
 
-    private zone = inject(NgZone);
     private mediaDefinitions? = inject<NgxMediaQueryDefinition[]>(mediaQueryDefinitions, { optional: true });
-
 
     public constructor() {
         if (!this.mediaDefinitions) {
@@ -109,8 +108,12 @@ export class NgxMediaService implements OnDestroy {
         this.mediaDefinitions.forEach(mediaDefinition => {
             const { alias, mediaQuery } = mediaDefinition;
             this.mql[alias] = window.matchMedia(mediaQuery);
+
+            const listener = this.onMqlEvent.bind(this, alias);
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-            this.mql[alias].addEventListener('change', this.onMqlEvent.bind(this, alias));
+            this.mql[alias].addEventListener('change', listener);
+            this.mqlListeners.set(this.mql[alias], listener);
+
             if (this.mql[alias].matches) {
                 this.mediaChanged$ = new BehaviorSubject(alias);
             }
@@ -131,17 +134,17 @@ export class NgxMediaService implements OnDestroy {
 
     public ngOnDestroy(): void {
         Object.keys(this.mql).forEach(alias => {
-            // eslint-disable-next-line @typescript-eslint/unbound-method
-            this.mql[alias].removeEventListener('change', this.onMqlEvent as never);
+            const listener = this.mqlListeners.get(this.mql[alias]);
+            if (listener) {
+                this.mql[alias].removeEventListener('change', listener);
+            }
             delete this.mql[alias];
         });
     }
 
     private onMqlEvent(alias: string, event: MediaQueryListEvent): void {
-        this.zone.run(() => {
-            if (event.matches) {
-                this.mediaChanged$.next(alias);
-            }
-        });
+        if (event.matches) {
+            this.mediaChanged$.next(alias);
+        }
     }
 }

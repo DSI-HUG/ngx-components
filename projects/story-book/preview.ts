@@ -32,5 +32,3 @@ const preview: Preview = {
 };
 
 export default preview;
-
-import './src/polyfills';

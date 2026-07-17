@@ -38,11 +38,10 @@ export abstract class NgxAbstractIntl<T extends NgxAbstractIntl<T>> {
 
     async init(localeId: string, translationsPath: string, retryCount: number, retryDelayInMs: number): Promise<this> {
         console.debug('Initializing intl with locale', localeId, 'and path', translationsPath, ' (retry', retryCount, 'times with', retryDelayInMs, 'ms of delay)');
-        const intl = await this.loadFromFile(localeId, translationsPath, retryCount, retryDelayInMs)
+        const locale = new Intl.Locale(localeId);
+        const intl = await this.loadFromFile(locale.language, translationsPath, retryCount, retryDelayInMs)
             .catch(async err => {
-                const fallbackLocaleId = localeId.includes('-') ?
-                    NgxAbstractIntl.FALLBACKS.get(localeId.substring(0, 2)) ?? NgxAbstractIntl.DEFAULT_LOCALE :
-                    NgxAbstractIntl.DEFAULT_LOCALE;
+                const fallbackLocaleId = NgxAbstractIntl.FALLBACKS.get(locale.language) ?? new Intl.Locale(NgxAbstractIntl.DEFAULT_LOCALE).language;
                 console.warn(`Failed to get the translation file for requested locale ${localeId}. Fallback to ${fallbackLocaleId} locale.`, err);
                 try {
                     return await this.loadFromFile(fallbackLocaleId, translationsPath, retryCount, retryDelayInMs);
@@ -78,6 +77,12 @@ export abstract class NgxAbstractIntl<T extends NgxAbstractIntl<T>> {
 
     private async loadFromFile(localeId: string, translationsPath: string, retryCount: number, retryDelayInMs: number): Promise<T> {
         return await fetch(`${translationsPath}/${localeId}.json`)
+            .then(response => {
+                if (response.status === 404) {
+                    throw new Error(`Translation file not found for locale ${localeId} at path ${translationsPath}`);
+                }
+                return response;
+            })
             .then(file => file.json())
             .then((fileJson: T) => fileJson)
             .catch(async err => {
