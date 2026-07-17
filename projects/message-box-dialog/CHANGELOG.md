@@ -16,6 +16,16 @@ This was a version bump only for @hug/ngx-message-box-dialog to align it with ot
 
 This was a version bump only for @hug/ngx-message-box-dialog to align it with other projects, there were no code changes.
 
+## 21.1.0 (2026-07-14)
+
+### 🚀 Features
+
+- **i18n:** remove country from translations filenames and invert intl fetch logic #NGXCPTS-54 ([d92afc9](https://github.com/DSI-HUG/ngx-components/commit/d92afc9))
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+
 # 21.0.0 (2026-01-07)
 
 ### ⚠️  Breaking Changes
@@ -103,9 +113,9 @@ This was a version bump only for @hug/ngx-message-box-dialog to align it with ot
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.10 (2024-07-25)
 

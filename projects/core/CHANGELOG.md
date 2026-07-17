@@ -23,6 +23,29 @@ This was a version bump only for @hug/ngx-core to align it with other projects, 
 
 - Esther Layat
 
+## 21.3.1 (2026-07-15)
+
+### 🐛 Fixes
+
+- **i18n:** fix retry on unknown fallback lang #NGXCPT-54 ([8625e0f](https://github.com/DSI-HUG/ngx-components/commit/8625e0f))
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+
+## 21.3.0 (2026-07-14)
+
+### 🚀 Features
+
+- **i18n:** remove country from translations filenames and invert intl fetch logic #NGXCPTS-54 ([d92afc9](https://github.com/DSI-HUG/ngx-components/commit/d92afc9))
+- **guards:** chainActivateGuards & chainMatchGuards (NGXCPTS-55) ([ba4c7ea](https://github.com/DSI-HUG/ngx-components/commit/ba4c7ea))
+- **guards:** chainActivateGuards & chainMatchGuards (NGXCPTS-55) ([5705d0a](https://github.com/DSI-HUG/ngx-components/commit/5705d0a))
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+- pdth @pdth
+
 ## 21.2.0 (2026-02-13)
 
 ### 🚀 Features
@@ -188,8 +211,8 @@ This was a version bump only for @hug/ngx-core to align it with other projects, 
 
 ### ❤️  Thank You
 
-- Badisi
-- rfrt
+- Badisi @Badisi
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.14 (2024-07-25)
 

@@ -24,6 +24,18 @@
 
 - **@hug/ngx-core**: upgraded to `v22.0.0-alpha.1`
 
+## 21.0.4 (2026-07-15)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core**: upgraded to `v21.3.1`
+
+## 21.0.3 (2026-07-14)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core**: upgraded to `v21.3.0`
+
 ## 21.0.2 (2026-02-13)
 
 ### 🌱 Dependencies
@@ -107,9 +119,9 @@
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.11 (2024-09-04)
 
@@ -121,7 +133,7 @@
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 
 ## 1.1.10 (2024-07-25)
 

@@ -24,6 +24,38 @@
 
 - **@hug/ngx-core**: upgraded to `v22.0.0-alpha.1`
 
+## 21.2.2 (2026-07-15)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core**: upgraded to `v21.3.1`
+
+## 21.2.1 (2026-07-14)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core**: upgraded to `v21.3.0`
+
+## 21.2.0 (2026-03-27)
+
+### 🚀 Features
+
+- **time-picker:** add storybook NgxTimePickerComponent with customizable layouts and modes ([ecd11e3](https://github.com/DSI-HUG/ngx-components/commit/ecd11e3))
+
+### ❤️ Thank You
+
+- RemiFrontiere-HUG @RemiFrontiere-HUG
+
+## 21.1.0 (2026-03-10)
+
+### 🚀 Features
+
+- **time-picker:** add storybook NgxTimePickerComponent with customizable layouts and modes ([fdfaacd](https://github.com/DSI-HUG/ngx-components/commit/fdfaacd))
+
+### ❤️ Thank You
+
+- RemiFrontiere-HUG @RemiFrontiere-HUG
+
 ## 21.0.2 (2026-02-13)
 
 ### 🌱 Dependencies
@@ -151,9 +183,9 @@
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.11 (2024-07-25)
 

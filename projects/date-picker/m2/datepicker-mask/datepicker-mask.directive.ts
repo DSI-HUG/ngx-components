@@ -1,12 +1,27 @@
 import { Directive, ElementRef, forwardRef, inject, Input, LOCALE_ID, Renderer2 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AbstractControl, NG_VALIDATORS, NgControl } from '@angular/forms';
+import { NG_VALIDATORS, NgControl } from '@angular/forms';
+import { FORM_FIELD, FormField } from '@angular/forms/signals';
 import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 import { MatDatepickerInput, MatEndDate, MatStartDate } from '@angular/material/datepicker';
 import { buildNgxMatDateFormatsFactory, KeyCodes, NgxDateFormat } from '@hug/ngx-core';
 import { addDays, addHours, addMinutes, addMonths, addSeconds, addYears, isValid, parse, set } from 'date-fns';
 import { isNil } from 'lodash-es';
-import { delay, EMPTY, filter, from, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, tap, timeInterval } from 'rxjs';
+import {
+    delay,
+    EMPTY,
+    filter,
+    from,
+    fromEvent,
+    map,
+    mergeWith,
+    of,
+    shareReplay,
+    Subject,
+    switchMap,
+    tap,
+    timeInterval
+} from 'rxjs';
 
 import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.service';
 
@@ -49,9 +64,27 @@ export class NgxDatepickerMaskDirective {
     private readonly formatCharRegExp = /[mdyhs]/i;
     private readonly forwardToInputKeyCodes = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'PageDown', 'PageUp', 'End', 'Home', 'Tab'];
 
+    private get safeNgControlValue(): unknown {
+        // Signal-based forms: read directly from the FieldState's WritableSignal
+        if (this.signalFormField) {
+            try {
+                return this.signalFormField.state().controlValue();
+            } catch {
+                return undefined;
+            }
+        }
+        // Classic forms (FormControl / NgModel)
+        try {
+            return this.ngControl.value as unknown;
+        } catch {
+            return undefined;
+        }
+    }
+
     private readonly dateFormats = inject<MatDateFormats>(MAT_DATE_FORMATS, { optional: true });
     private readonly elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
     private readonly ngControl = inject(NgControl);
+    private readonly signalFormField = inject<FormField<unknown>>(FORM_FIELD, { optional: true });
     private readonly matDatepickerInput = inject(MatDatepickerInput, { optional: true });
     private readonly matStartDate = inject(MatStartDate, { optional: true });
     private readonly matEndDate = inject(MatEndDate, { optional: true });
@@ -84,7 +117,7 @@ export class NgxDatepickerMaskDirective {
                     return;
                 }
 
-                if (this.ngControl.control?.value) {
+                if (this.safeNgControlValue) {
                     this.elementRef.nativeElement.setSelectionRange(0, -1);
                     return;
                 }
@@ -168,6 +201,15 @@ export class NgxDatepickerMaskDirective {
         const validateOnBlur$ = blur$.pipe(
             tap(() => {
                 this.parseAndSetValue(this.elementRef.nativeElement.value);
+                // NGXCPTS-49 - On blur, apply the mask manually for formSignals.
+                if (this.signalFormField && this._formatExpression && this._placeHolderCharacter) {
+                    const value = this.safeNgControlValue;
+                    const modelIsValid = value instanceof Date && isValid(value);
+                    if (!modelIsValid) {
+                        this.maskValue = this._formatExpression.replace(/[ymdhs]/gi, this._placeHolderCharacter) || '';
+                        this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.maskValue);
+                    }
+                }
             })
         );
 
@@ -185,7 +227,7 @@ export class NgxDatepickerMaskDirective {
                 console.debug('Computed mask:', this.maskValue);
 
                 const modelIsValid = (): boolean => {
-                    const value = this.ngControl.value as unknown;
+                    const value = this.safeNgControlValue;
                     if (!value || !(value instanceof Date)) {
                         return false;
                     }
@@ -249,8 +291,9 @@ export class NgxDatepickerMaskDirective {
                         this.elementRef.nativeElement.setSelectionRange(newStart, newStart);
                     }
                 } else if ((keyCode === 'ArrowUp' || keyCode === 'ArrowDown') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
-                    if (this.ngControl.value instanceof Date) {
-                        const date = this.ngControl.value;
+                    const controlValue = this.safeNgControlValue;
+                    if (controlValue instanceof Date) {
+                        const date = controlValue;
                         const step = keyCode === 'ArrowUp' ? 1 : -1;
                         let formatChar = formatExpression[start];
                         if (!formatChar || !this.formatCharRegExp.exec(formatChar)) {
@@ -318,8 +361,8 @@ export class NgxDatepickerMaskDirective {
 
                         value = replaceRange(value, newStart, newEnd, this.maskValue);
                         this.setValue(new Date(NaN));
-
-                        return from(Promise.resolve()).pipe(
+                        e.preventDefault();
+                        return from(new Promise<void>(resolve => setTimeout(resolve))).pipe(
                             map(() => {
                                 this.renderer.setProperty(this.elementRef.nativeElement, 'value', value);
                                 if (newStart === newEnd) {
@@ -327,7 +370,6 @@ export class NgxDatepickerMaskDirective {
                                 } else {
                                     this.elementRef.nativeElement.setSelectionRange(newStart, newStart);
                                 }
-                                e.preventDefault();
                                 return false;
                             })
                         );
@@ -364,11 +406,12 @@ export class NgxDatepickerMaskDirective {
                     if (isValid(newDate)) {
                         selectNextChar();
                     } else {
-                        return from(Promise.resolve()).pipe(
+                        e.preventDefault();
+                        // Change the value after form-signal change lifecycle.
+                        return from(new Promise<void>(resolve => setTimeout(resolve))).pipe(
                             map(() => {
                                 this.renderer.setProperty(this.elementRef.nativeElement, 'value', value);
                                 selectNextChar();
-                                e.preventDefault();
                                 return false;
                             })
                         );
@@ -410,47 +453,52 @@ export class NgxDatepickerMaskDirective {
     }
 
     private setValue(date: Date | undefined): void {
-        const updateDateControl = (control: AbstractControl | null,
-            newValue: unknown, adapter: DateAdapter<unknown>,
-            element: ElementRef<HTMLElement>,
-            dateInput: MatDatepickerInput<unknown> | null,
-            dateStart: MatStartDate<unknown> | null,
-            dateEnd: MatEndDate<unknown> | null
-        ): void => {
-            if (!control || !control.value && !newValue) {
-                return;
-            }
-
-            if (!adapter.sameDate(control.value, newValue)) {
-                control.setValue(newValue);
-                control.markAsDirty();
-
-                if (dateInput) {
-                    dateInput.dateChange.emit({
-                        value: newValue,
-                        targetElement: element.nativeElement,
-                        target: dateInput
-                    });
-                } else if (dateStart) {
-                    dateStart.dateChange.emit({
-                        value: newValue,
-                        targetElement: element.nativeElement,
-                        target: dateStart
-                    });
-                } else if (dateEnd) {
-                    dateEnd.dateChange.emit({
-                        value: newValue,
-                        targetElement: element.nativeElement,
-                        target: dateEnd
-                    });
-                }
+        const newValue = isNil(date) || isValid(date) ? date : null;
+        const emitDateChange = (val: unknown): void => {
+            if (this.matDatepickerInput) {
+                this.matDatepickerInput.dateChange.emit({ value: val, targetElement: this.elementRef.nativeElement, target: this.matDatepickerInput });
+            } else if (this.matStartDate) {
+                this.matStartDate.dateChange.emit({ value: val, targetElement: this.elementRef.nativeElement, target: this.matStartDate });
+            } else if (this.matEndDate) {
+                this.matEndDate.dateChange.emit({ value: val, targetElement: this.elementRef.nativeElement, target: this.matEndDate });
             }
         };
 
-        if (isNil(date) || isValid(date)) {
-            updateDateControl(this.ngControl.control, date, this.dateAdapter, this.elementRef, this.matDatepickerInput, this.matStartDate, this.matEndDate);
-        } else {
-            updateDateControl(this.ngControl.control, null, this.dateAdapter, this.elementRef, this.matDatepickerInput, this.matStartDate, this.matEndDate);
+        // Path 1: Signal-based forms
+        if (this.signalFormField) {
+            try {
+                const fieldState = this.signalFormField.state();
+                const currentValue = fieldState.controlValue();
+                if (!this.dateAdapter.sameDate(currentValue, newValue ?? null)) {
+                    fieldState.controlValue.set(newValue as unknown);
+                    fieldState.markAsDirty();
+                    emitDateChange(newValue ?? null);
+                }
+            } catch {
+                // state not yet initialised — safe to ignore
+            }
+            return;
+        }
+
+        // Path 2: Classic reactive/template-driven forms (AbstractControl)
+        const control = this.ngControl.control;
+        let currentControlValue: unknown;
+        try {
+            currentControlValue = control?.value;
+        } catch {
+            currentControlValue = undefined;
+        }
+
+        if (!currentControlValue && !newValue) {
+            return;
+        }
+
+        if (!this.dateAdapter.sameDate(currentControlValue, newValue ?? null)) {
+            if (control) {
+                control.setValue(newValue ?? null);
+                control.markAsDirty();
+            }
+            emitDateChange(newValue ?? null);
         }
     }
 

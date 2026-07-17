@@ -187,6 +187,28 @@ This was a version bump only for @hug/ngx-layout to align it with other projects
 
 - Esther Layat
 
+## 21.1.1 (2026-07-15)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-sidenav**: upgraded to `v21.0.4`
+- **@hug/ngx-core**: upgraded to `v21.3.1`
+
+## 21.1.0 (2026-07-14)
+
+### 🚀 Features
+
+- **i18n:** remove country from translations filenames and invert intl fetch logic #NGXCPTS-54 ([d92afc9](https://github.com/DSI-HUG/ngx-components/commit/d92afc9))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-sidenav**: upgraded to `v21.0.3`
+- **@hug/ngx-core**: upgraded to `v21.3.0`
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+
 ## 21.0.2 (2026-02-13)
 
 ### 🌱 Dependencies
@@ -340,9 +362,9 @@ This was a version bump only for @hug/ngx-layout to align it with other projects
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.11 (2024-07-26)
 

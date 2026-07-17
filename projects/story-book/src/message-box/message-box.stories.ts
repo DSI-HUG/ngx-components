@@ -24,6 +24,14 @@ const meta: Meta<NgxMessageBoxComponent> = {
                 defaultValue: { summary: 'undefined' }
             }
         },
+        subtitle: {
+            control: 'text',
+            description: 'The subtitle displayed in the message box. Used to provide an additional context',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'undefined' }
+            }
+        },
         icon: {
             control: 'text',
             description: 'Icon associated with the message box. This can be the name of an icon or a path to an icon image. If not provided, a default icon based on the type will be used.',
@@ -85,6 +93,7 @@ export const complete: Story = {
             <ngx-message-box
                 [type]="type"
                 [title]="title"
+                [subtitle]="subtitle"
                 [icon]="icon"
                 [actions]="actions"
                 [horizontal]="horizontal"
@@ -98,7 +107,8 @@ export const complete: Story = {
     }),
     args: {
         type: 'info',
-        title: undefined,
+        title: 'Title example',
+        subtitle: 'Subtitle example',
         icon: undefined,
         actions: [
             {
@@ -244,13 +254,11 @@ export const successWithActions: Story = {
         actions: [
             {
                 text: 'OK',
-                action: (): void => alert('OK clicked'),
-                icon: 'check'
+                action: (): void => alert('OK clicked')
             },
             {
                 text: 'Cancel',
-                action: (): void => alert('Cancel clicked'),
-                icon: 'cancel'
+                action: (): void => alert('Cancel clicked')
             }
         ],
         showCloseIcon: true
@@ -328,8 +336,52 @@ export const horizontalLayout: Story = {
         actions: [
             {
                 text: 'Acknowledge',
-                action: (): void => alert('Acknowledged'),
-                icon: 'check'
+                action: (): void => alert('Acknowledged')
+            }
+        ],
+        horizontal: true,
+        showCloseIcon: true
+    }
+};
+
+export const horizontalLayoutWithSubtitle: Story = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'This story demonstrates the NgxMessageBoxComponent with a horizontal layout. The content, title and subtitle are aligned horizontally, which may be useful for certain design requirements.'
+            }
+        }
+    },
+    render: args => ({
+        props: {
+            ...args
+        },
+        template: `
+        <section class="message-box">
+            <ngx-message-box
+                [type]="type"
+                [title]="title"
+                [subtitle]="subtitle"
+                [icon]="icon"
+                [actions]="actions"
+                [horizontal]="horizontal"
+                [attr.horizontal]="horizontal|| null"
+                [showCloseIcon]="showCloseIcon">
+                <p>Content inside the <b>message box</b></p>
+                <p>This message box is in horizontal layout.</p>
+            </ngx-message-box>
+        </section>
+      `
+    }),
+    args: {
+        type: 'warn',
+        title: 'Warning Message',
+        subtitle: 'A nice subtitle',
+        icon: 'home',
+        actions: [
+            {
+                text: 'Acknowledge',
+                action: (): void => alert('Acknowledged')
             }
         ],
         horizontal: true,
@@ -372,8 +424,7 @@ export const noCloseIcon: Story = {
         actions: [
             {
                 text: 'Retry',
-                action: (): void => alert('Retry action'),
-                icon: 'refresh'
+                action: (): void => alert('Retry action')
             }
         ],
         horizontal: true,

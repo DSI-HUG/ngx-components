@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+
 ngx-time-picker {
     display: flex;
     flex-direction: row;
@@ -17,11 +20,24 @@ ngx-time-picker {
     mat-form-field[ngx-numeric-stepper-form-field] {
         width: 52px;
     }
+    mat-form-field[layout='horizontal-inlay'][ngx-numeric-stepper-form-field] {
+        width: 80px;
+    }
 
     .time-separator {
         width: 4px;
         font-size: 14.5px;
         line-height: 17px;
         margin: 0 8px;
+
+        &[layout='horizontal'] {
+            margin: 0 18px;
+        }
+    }
+
+    ngx-numeric-stepper[layout='horizontal'] {
+        .shadow {
+            background-color: mat.m2-get-color-from-palette(mat.$m2-gray-palette, 50);
+        }
     }
 }

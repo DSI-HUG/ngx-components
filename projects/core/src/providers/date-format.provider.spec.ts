@@ -82,7 +82,7 @@ describe('NgxDateFormatProvider', () => {
 
         isEqualsTo(factory, localeFrCh, standardExpected);
         isEqualsTo(factory, localeItCh, englishExpected);
-        isEqualsTo(factory, localeDeCh, standardExpected);
+        isEqualsTo(factory, localeDeCh, englishExpected);
         isEqualsTo(factory, localeEnUs, englishExpected);
         isEqualsTo(factory, localeEs, {
             parse: {

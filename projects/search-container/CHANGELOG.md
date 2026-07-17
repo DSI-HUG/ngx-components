@@ -24,6 +24,26 @@
 
 - **@hug/ngx-core**: upgraded to `v22.0.0-alpha.1`
 
+## 21.1.1 (2026-07-15)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core**: upgraded to `v21.3.1`
+
+## 21.1.0 (2026-07-14)
+
+### 🚀 Features
+
+- **i18n:** remove country from translations filenames and invert intl fetch logic #NGXCPTS-54 ([d92afc9](https://github.com/DSI-HUG/ngx-components/commit/d92afc9))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-core**: upgraded to `v21.3.0`
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+
 ## 21.0.2 (2026-02-13)
 
 ### 🌱 Dependencies
@@ -132,9 +152,9 @@
 
 ### ❤️  Thank You
 
-- Badisi
+- Badisi @Badisi
 - dsi-hug-bot @dsi-hug-bot
-- rfrt
+- RemiFrontiere-HUG @RemiFrontiere-HUG
 
 ## 1.1.11 (2024-07-26)
 
