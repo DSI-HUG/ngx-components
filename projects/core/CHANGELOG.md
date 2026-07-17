@@ -1,3 +1,13 @@
+## 21.3.2 (2026-07-17)
+
+### 🐛 Fixes
+
+- **g11n:** rethrow properly failing catch #DMDPAT-635 ([24ff4b0](https://github.com/DSI-HUG/ngx-components/commit/24ff4b0))
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+
 ## 21.3.1 (2026-07-15)
 
 ### 🐛 Fixes
