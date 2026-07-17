@@ -1,0 +1,22 @@
+{
+    "service": "Service",
+    "type": "Type",
+    "phoneNumber": "Téléphone",
+    "mobileNumber": "Mobile",
+    "email": "Email",
+    "address": "Adresse",
+    "medTech": "Médico-technique",
+    "social": "Social",
+    "medTherapeutic": "Médico-thérapeutique",
+    "pharmacy": "Pharmacie",
+    "care": "Soins",
+    "nurse": "Infirmier-e",
+    "dentist": "Médecin dentiste",
+    "doctor": "Médecin",
+    "mr": "M.",
+    "mrs": "Mme.",
+    "dr": "Dr.",
+    "drF": "Dre.",
+    "prof": "Pr.",
+    "profF": "Pre."
+}
