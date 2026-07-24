@@ -7,20 +7,4 @@
     background-color: var(--mat-sys-surface-container);
     box-sizing: border-box;
     inline-size: 100%;
-
-    .extra-content {
-        padding: var(--ngx-layout-extra-content-padding, 0.25rem 1rem);
-
-        &:empty {
-            display: none;
-        }
-    }
-
-    .content {
-        display: flex;
-        flex: 1 1 0;
-        overflow: hidden;
-        gap: var(--ngx-layout-content-gap, 0.5rem);
-        padding: var(--ngx-layout-content-padding, 0.25rem 1rem 1rem);
-    }
 }

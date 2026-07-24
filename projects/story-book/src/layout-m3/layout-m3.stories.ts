@@ -18,11 +18,13 @@ import { NgxColumnBarComponent } from '@hug/ngx-layout/column-bar';
 import { NgxBarTitleDirective } from '@hug/ngx-layout/directives';
 import { NgxFilterDirective, NgxFiltersGroupComponent, NgxFilterToggleDirective } from '@hug/ngx-layout/filters-group';
 import { NgxMainBarComponent } from '@hug/ngx-layout/main-bar';
+import { NgxPageComponent } from '@hug/ngx-layout/page';
 import { NgxPanelComponent } from '@hug/ngx-layout/panel';
 import { NgxPanelBarComponent } from '@hug/ngx-layout/panel-bar';
 import { NgxSearchBarContainerComponent, NgxSearchInputDirective } from '@hug/ngx-layout/search-bar-container/';
 import { type Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
+import { html } from '../helper';
 import { argTypesLayout } from './arg-types-layout';
 import {
     actionsGroupTemplate,
@@ -52,6 +54,7 @@ const meta: Meta = {
                 NgxSearchInputDirective,
                 NgxMainBarComponent,
                 NgxPanelComponent,
+                NgxPageComponent,
                 NgxFiltersGroupComponent,
                 NgxFilterDirective,
                 NgxFilterToggleDirective,
@@ -186,128 +189,130 @@ const props = (args: Story['args']): LayoutStoryProps => ({
 export const allComponents: Story = {
     render: (args): { props: LayoutStoryProps; template: string } => ({
         props: props(args),
-        template: `
+        template: html`
         <div style="display: flex; height: 100vh;">
-        <ngx-layout>
-            <ngx-app-bar
-            [mode]="mode"
-            [title]="titleAppBar"
-            [subtitle]="subtitle"
-            [helpUrl]="helpUrl"
-            [withBackButton]="withBackButton"
-            >
-                <button matIconButton aria-label="Home">
-                    <mat-icon>home</mat-icon>
-                </button>
-            </ngx-app-bar>
-            <ngx-main-bar>
-                ${contentLeftTemplate}
-                ${actionsGroupTemplate}
-                ${filtersGroupTemplate}
-                ${searchBarTemplate}
-                ${contentRightTemplate}
-            </ngx-main-bar>
-            <p>Content of the layout</p>
-            <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
-                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButtonPanelBar">
-                    ${contentLeftTemplate}
-                    @if(hasTitlePanelBar){
-                        <h3 ngxBarTitle>Panel Bar Title</h3>}
-                    @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}
-                    @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}
-                    @if(hasSearchPanelBar){
-                        ${searchBarTemplate}
-                    }
-                    ${contentRightTemplate}
-                </ngx-panel-bar>
-                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButtonPanelBar">
-                    ${contentLeftTemplate}
-                    @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}
-                    @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}
-                    @if(hasSearchPanelBar){
-                        ${searchBarTemplate}
-                    }
-                    ${contentRightTemplate}
-                </ngx-panel-bar>
-                <ngx-column>
-                    <ngx-column-bar>
+            <ngx-layout>
+                <ngx-page>
+                    <ngx-app-bar
+                    [mode]="mode"
+                    [title]="titleAppBar"
+                    [subtitle]="subtitle"
+                    [helpUrl]="helpUrl"
+                    [withBackButton]="withBackButton"
+                    >
+                        <button matIconButton aria-label="Home">
+                            <mat-icon>home</mat-icon>
+                        </button>
+                    </ngx-app-bar>
+                    <ngx-main-bar>
                         ${contentLeftTemplate}
-                        @if(hasTitlePanelBar){
-                            <h4 ngxBarTitle>Column Bar Title</h4>}
-                        @if(hasActionsPanelBar){
-                            ${actionsGroupTemplate}}
-                        @if(hasFiltersPanelBar){
-                            ${filtersGroupFoldedTemplate}}
-                        @if(hasSearchPanelBar){
-                            ${searchBarFoldedTemplate}}
+                        ${actionsGroupTemplate}
+                        ${filtersGroupTemplate}
+                        ${searchBarTemplate}
                         ${contentRightTemplate}
-                    </ngx-column-bar>
+                    </ngx-main-bar>
+                    <p>Content of the layout</p>
+                    <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
+                        <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButtonPanelBar">
+                            ${contentLeftTemplate}
+                            @if(hasTitlePanelBar){
+                                <h3 ngxBarTitle>Panel Bar Title</h3>}
+                            @if(hasActionsPanelBar){
+                                ${actionsGroupTemplate}}
+                            @if(hasFiltersPanelBar){
+                                ${filtersGroupTemplate}}
+                            @if(hasSearchPanelBar){
+                                ${searchBarTemplate}
+                            }
+                            ${contentRightTemplate}
+                        </ngx-panel-bar>
+                        <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButtonPanelBar">
+                            ${contentLeftTemplate}
+                            @if(hasActionsPanelBar){
+                                ${actionsGroupTemplate}}
+                            @if(hasFiltersPanelBar){
+                                ${filtersGroupTemplate}}
+                            @if(hasSearchPanelBar){
+                                ${searchBarTemplate}
+                            }
+                            ${contentRightTemplate}
+                        </ngx-panel-bar>
+                        <ngx-column>
+                            <ngx-column-bar>
+                                ${contentLeftTemplate}
+                                @if(hasTitlePanelBar){
+                                    <h4 ngxBarTitle>Column Bar Title</h4>}
+                                @if(hasActionsPanelBar){
+                                    ${actionsGroupTemplate}}
+                                @if(hasFiltersPanelBar){
+                                    ${filtersGroupFoldedTemplate}}
+                                @if(hasSearchPanelBar){
+                                    ${searchBarFoldedTemplate}}
+                                ${contentRightTemplate}
+                            </ngx-column-bar>
 
-                    <p>Content of the panel</p>
-                </ngx-column>
-                <ngx-column>
-                    <ngx-column-bar>
-                        ${contentLeftTemplate}
-                        @if(hasTitlePanelBar){
-                            <h4 ngxBarTitle>Column Bar Title</h4>}
-                        @if(hasActionsPanelBar){
-                            ${actionsGroupTemplate}}
-                        @if(hasFiltersPanelBar){
-                            ${filtersGroupFoldedTemplate}}
-                        @if(hasSearchPanelBar){
-                            ${searchBarFoldedTemplate}}
-                        ${contentRightTemplate}
-                    </ngx-column-bar>
+                            <p>Content of the panel</p>
+                        </ngx-column>
+                        <ngx-column>
+                            <ngx-column-bar>
+                                ${contentLeftTemplate}
+                                @if(hasTitlePanelBar){
+                                    <h4 ngxBarTitle>Column Bar Title</h4>}
+                                @if(hasActionsPanelBar){
+                                    ${actionsGroupTemplate}}
+                                @if(hasFiltersPanelBar){
+                                    ${filtersGroupFoldedTemplate}}
+                                @if(hasSearchPanelBar){
+                                    ${searchBarFoldedTemplate}}
+                                ${contentRightTemplate}
+                            </ngx-column-bar>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                </ngx-column>
-            </ngx-panel>
-        </ngx-layout>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                        </ngx-column>
+                    </ngx-panel>
+                </ngx-page>
+            </ngx-layout>
         </div>`
     })
 };
@@ -315,112 +320,114 @@ export const allComponents: Story = {
 export const oneColumns: Story = {
     render: (args): { props: LayoutStoryProps; template: string } => ({
         props: props(args),
-        template: `
+        template: html`
         <div style="display: flex; height: 100vh;">
-        <ngx-layout>
-            <ngx-app-bar
-            [mode]="mode"
-            [title]="titleAppBar"
-            [subtitle]="subtitle"
-            [helpUrl]="helpUrl"
-            [withBackButton]="withBackButton"
-            >
-                <button matIconButton aria-label="Home">
-                    <mat-icon>home</mat-icon>
-                </button>
-            </ngx-app-bar>
-            <ngx-main-bar>
-                ${contentLeftTemplate}
-                ${actionsGroupTemplate}
-                ${filtersGroupTemplate}
-                ${searchBarTemplate}
-                ${contentRightTemplate}
-            </ngx-main-bar>
-            <p>Content of the layout</p>
-            <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
-                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
-                    ${contentLeftTemplate}
-                    @if(hasTitlePanelBar){
-                        <h3 ngxBarTitle>Panel Bar Title</h3>}
-                    @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}
-                    @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}
-                    @if(hasSearchPanelBar){
-                        ${searchBarTemplate}
-                    }
-                    ${contentRightTemplate}
-                </ngx-panel-bar>
-                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
-                    ${contentLeftTemplate}
-                    @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}
-                    @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}
-                    @if(hasSearchPanelBar){
-                        ${searchBarTemplate}
-                    }
-                    ${contentRightTemplate}
-                </ngx-panel-bar>
-                <ngx-column>
-                    <ngx-column-bar>
+            <ngx-layout>
+                <ngx-page>
+                    <ngx-app-bar
+                    [mode]="mode"
+                    [title]="titleAppBar"
+                    [subtitle]="subtitle"
+                    [helpUrl]="helpUrl"
+                    [withBackButton]="withBackButton"
+                    >
+                        <button matIconButton aria-label="Home">
+                            <mat-icon>home</mat-icon>
+                        </button>
+                    </ngx-app-bar>
+                    <ngx-main-bar>
                         ${contentLeftTemplate}
-                        @if(hasTitlePanelBar){
-                            <h4 ngxBarTitle>Column Bar Title</h4>}
-                        @if(hasActionsPanelBar){
-                            ${actionsGroupTemplate}}
-                        @if(hasFiltersPanelBar){
-                            ${filtersGroupFoldedTemplate}}
-                        @if(hasSearchPanelBar){
-                            ${searchBarFoldedTemplate}}
+                        ${actionsGroupTemplate}
+                        ${filtersGroupTemplate}
+                        ${searchBarTemplate}
                         ${contentRightTemplate}
-                    </ngx-column-bar>
+                    </ngx-main-bar>
+                    <p>Content of the layout</p>
+                    <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
+                        <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
+                            ${contentLeftTemplate}
+                            @if(hasTitlePanelBar){
+                                <h3 ngxBarTitle>Panel Bar Title</h3>}
+                            @if(hasActionsPanelBar){
+                                ${actionsGroupTemplate}}
+                            @if(hasFiltersPanelBar){
+                                ${filtersGroupTemplate}}
+                            @if(hasSearchPanelBar){
+                                ${searchBarTemplate}
+                            }
+                            ${contentRightTemplate}
+                        </ngx-panel-bar>
+                        <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
+                            ${contentLeftTemplate}
+                            @if(hasActionsPanelBar){
+                                ${actionsGroupTemplate}}
+                            @if(hasFiltersPanelBar){
+                                ${filtersGroupTemplate}}
+                            @if(hasSearchPanelBar){
+                                ${searchBarTemplate}
+                            }
+                            ${contentRightTemplate}
+                        </ngx-panel-bar>
+                        <ngx-column>
+                            <ngx-column-bar>
+                                ${contentLeftTemplate}
+                                @if(hasTitlePanelBar){
+                                    <h4 ngxBarTitle>Column Bar Title</h4>}
+                                @if(hasActionsPanelBar){
+                                    ${actionsGroupTemplate}}
+                                @if(hasFiltersPanelBar){
+                                    ${filtersGroupFoldedTemplate}}
+                                @if(hasSearchPanelBar){
+                                    ${searchBarFoldedTemplate}}
+                                ${contentRightTemplate}
+                            </ngx-column-bar>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
 
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                    <p>Content of the panel</p>
-                </ngx-column>
-            </ngx-panel>
-        </ngx-layout>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                            <p>Content of the panel</p>
+                        </ngx-column>
+                    </ngx-panel>
+                </ngx-page>
+            </ngx-layout>
         </div>`
     })
 };
@@ -428,111 +435,130 @@ export const oneColumns: Story = {
 export const onlyPanel: Story = {
     render: (args): { props: LayoutStoryProps; template: string } => ({
         props: props(args),
-        template: `
+        template: html`
         <div style="display: flex; height: 100vh;">
-        <ngx-layout>
-            <ngx-app-bar
-            [mode]="mode"
-            [title]="titleAppBar"
-            [subtitle]="subtitle"
-            [helpUrl]="helpUrl"
-            [withBackButton]="withBackButton"
-            >
-                <button matIconButton aria-label="Home">
-                    <mat-icon>home</mat-icon>
-                </button>
-            </ngx-app-bar>
-            <ngx-main-bar>
-                ${contentLeftTemplate}
-                ${actionsGroupTemplate}
-                ${filtersGroupTemplate}
-                ${searchBarTemplate}
-                ${contentRightTemplate}
-            </ngx-main-bar>
-            <p>Content of the layout</p>
-            <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
-                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
-                    ${contentLeftTemplate}
-                    @if(hasTitlePanelBar){
-                        <h3 ngxBarTitle>Panel Bar Title</h3>}
-                    @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}
-                    @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}
-                    @if(hasSearchPanelBar){
+            <ngx-layout>
+                <ngx-page>
+                    <ngx-app-bar
+                    [mode]="mode"
+                    [title]="titleAppBar"
+                    [subtitle]="subtitle"
+                    [helpUrl]="helpUrl"
+                    [withBackButton]="withBackButton"
+                    >
+                        <button matIconButton aria-label="Home">
+                            <mat-icon>home</mat-icon>
+                        </button>
+                    </ngx-app-bar>
+                    <ngx-main-bar>
+                        ${contentLeftTemplate}
+                        ${actionsGroupTemplate}
+                        ${filtersGroupTemplate}
                         ${searchBarTemplate}
-                    }
-                    ${contentRightTemplate}
-                </ngx-panel-bar>
-                <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
-                    ${contentLeftTemplate}
-                    @if(hasActionsPanelBar){
-                        ${actionsGroupTemplate}}
-                    @if(hasFiltersPanelBar){
-                        ${filtersGroupTemplate}}
-                    @if(hasSearchPanelBar){
-                        ${searchBarTemplate}
-                    }
-                    ${contentRightTemplate}
-                </ngx-panel-bar>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
+                        ${contentRightTemplate}
+                    </ngx-main-bar>
+                    <p>Content of the layout</p>
+                    <ngx-panel [appearance]="appearance" [contentPadding]="contentPadding">
+                        <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
+                            ${contentLeftTemplate}
+                            @if(hasTitlePanelBar){
+                                <h3 ngxBarTitle>Panel Bar Title</h3>}
+                            @if(hasActionsPanelBar){
+                                ${actionsGroupTemplate}}
+                            @if(hasFiltersPanelBar){
+                                ${filtersGroupTemplate}}
+                            @if(hasSearchPanelBar){
+                                ${searchBarTemplate}
+                            }
+                            ${contentRightTemplate}
+                        </ngx-panel-bar>
+                        <ngx-panel-bar [closable]="closable" [withBackButton]="withBackButton">
+                            ${contentLeftTemplate}
+                            @if(hasActionsPanelBar){
+                                ${actionsGroupTemplate}}
+                            @if(hasFiltersPanelBar){
+                                ${filtersGroupTemplate}}
+                            @if(hasSearchPanelBar){
+                                ${searchBarTemplate}
+                            }
+                            ${contentRightTemplate}
+                        </ngx-panel-bar>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
 
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
 
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
 
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
 
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
 
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
 
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
 
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-                <p>Content of the panel</p>
-            </ngx-panel>
-        </ngx-layout>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                        <p>Content of the panel</p>
+                    </ngx-panel>
+                </ngx-page>
+            </ngx-layout>
         </div>`
     })
 };
 
 export const filtersGroup: Story = {
     render: (args): { props: LayoutStoryProps; template: string } => ({
-        template: `<div style="display: flex; height: 10vh; width: 100%">${filtersGroupTemplate}</div>`,
+        template: html`
+            <div style="
+                display: grid;
+                align-content: center;
+                padding: 24px;
+                box-sizing: border-box;
+                height: 100vh;
+                width: 100%;
+            ">${filtersGroupTemplate}</div>
+        `,
         props: props(args)
     })
 };
 
 export const actionGroup: Story = {
     render: (args): { props: LayoutStoryProps; template: string } => ({
-        template: `<div style="display: flex; height: 1vh; width: 100%">${actionsGroupTemplate}</div>`,
+        template: html`
+            <div style="
+                display: grid;
+                align-content: center;
+                padding: 24px;
+                box-sizing: border-box;
+                width: 100%;
+                height: 100vh;
+            ">${actionsGroupTemplate}</div>`,
         props: props(args)
     })
 };
