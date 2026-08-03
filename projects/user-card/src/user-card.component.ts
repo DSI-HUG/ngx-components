@@ -2,24 +2,12 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
+import { UserCardDataProviderService } from './adapters/user-card-data-provider.service';
+import { UserCardDataAdapterLegacyService } from './adapters/user-card-data-provider-legacy.service';
+import { UserCardDisplayModel } from './adapters/user-card-display.model';
 import { NgxUserCardIntl } from './providers';
 import { NgxUserCard } from './user-card.model';
 
-type BadgeColor = 'green' | 'blue' | 'red' | 'grey';
-
-interface DisplayableUserCard {
-    initials?: string;
-    function?: string;
-    fullname?: string;
-    badgeColor?: BadgeColor;
-    specialty?: string;
-    service?: string;
-    type?: string;
-    phoneNumber?: string;
-    mobileNumber?: string;
-    email?: string;
-    address?: string;
-}
 
 @Component({
     selector: 'ngx-user-card',
@@ -36,30 +24,12 @@ export class NgxUserCardComponent implements OnChanges {
     @Input()
     public user!: NgxUserCard;
 
-    protected userCard!: DisplayableUserCard;
-    protected greenBadgeFamily: string[];
-    protected blueBadgeFamily: string[];
-    protected redBadgeFamily: string[];
+    protected userCard!: UserCardDisplayModel;
     protected readonly intl = inject(NgxUserCardIntl, { optional: true });
 
     private _expanded = true;
-
-    public constructor() {
-        this.greenBadgeFamily = [
-            this.intl?.medTech ?? 'Medical-technical',
-            this.intl?.social ?? 'Social',
-            this.intl?.medTherapeutic ?? 'Medical-therapeutic',
-            this.intl?.pharmacy ?? 'Pharmacy'
-        ];
-        this.blueBadgeFamily = [
-            this.intl?.care ?? 'Care',
-            this.intl?.nurse ?? 'Nurse'
-        ];
-        this.redBadgeFamily = [
-            this.intl?.dentist ?? 'Dentist',
-            this.intl?.doctor ?? 'Doctor'
-        ];
-    }
+    private readonly userCardAdapterLegacy = inject(UserCardDataAdapterLegacyService);
+    private readonly userCardAdapter = inject(UserCardDataProviderService);
 
     @Input()
     public set expanded(value: BooleanInput) {
@@ -73,110 +43,12 @@ export class NgxUserCardComponent implements OnChanges {
     @Input()
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes['user']) {
-            this.userCard = this.buildDisplayableUserCard(this.user);
+            // Using shortTitle as a condition to determine which adapter to use for building the displayable user card.
+            // If shortTitle is present, use the new adapter; otherwise, use the legacy adapter which will be removed in the future.
+            this.userCard = (this.user?.shortTitle)
+                ? this.userCardAdapter.buildDisplayableUserCard(this.user)
+                : this.userCardAdapterLegacy.buildDisplayableUserCard(this.user);
         }
     }
 
-    private buildDisplayableUserCard(user: NgxUserCard): DisplayableUserCard {
-        return {
-            fullname: this.getFullName(user),
-            initials: user.initials,
-            function: this.getFunction(user).toLocaleLowerCase(),
-            specialty: this.getSpecialty(user),
-            badgeColor: this.getBadgeColor(user.familyCode),
-            service: user.esoN3Label,
-            type: user.type,
-            phoneNumber: this.formatPhone(user.phone),
-            mobileNumber: this.formatPhone(user.bip || user.mobile),
-            email: user.email?.toLowerCase(),
-            address: this.getUserAddress(user)
-        };
-    }
-
-    private getUserAddress(user: NgxUserCard): string | undefined {
-        if (user.organisation || user.address || user.zipCode || user.city) {
-            let address = '';
-            if (user.organisation) {
-                address += `${user.organisation} <br>`;
-            }
-            if (user.address) {
-                address += `${user.address} <br>`;
-            }
-            if (user.zipCode) {
-                address += `${user.zipCode} `;
-            }
-            if (user.city) {
-                address += `${user.city}`;
-            }
-            return address;
-        }
-        return undefined;
-    }
-
-    private getBadgeColor(familyCode?: string): BadgeColor | undefined {
-        if (!familyCode) {
-            return undefined;
-        }
-        if (this.greenBadgeFamily.includes(familyCode)) {
-            return 'green';
-        }
-        if (this.blueBadgeFamily.includes(familyCode)) {
-            return 'blue';
-        }
-        if (this.redBadgeFamily.includes(familyCode)) {
-            return 'red';
-        }
-        return 'grey';
-    }
-
-    private getSpecialty(user: NgxUserCard): string | undefined {
-        if (this.isValidSpecialty(user.specialty1) || this.isValidSpecialty(user.specialty2)) {
-            return [user.specialty1, user.specialty2].filter(s => this.isValidSpecialty(s)).join(', ');
-        } else if (user.speciality?.trim()) {
-            return user.speciality;
-        }
-        return undefined;
-    }
-
-    private isValidSpecialty(specialty: string | undefined): boolean {
-        const s = specialty?.trim();
-        return !!s && s !== '-' && s !== 'null';
-    }
-
-    private getFunction(user: NgxUserCard): string {
-        return user.groupFunctionLabel ? `${user.groupFunctionLabel}` : `${user.functionSefName ? user.functionSefName : ''} ${user.functionSefCode ? `(${user.functionSefCode})` : ''} ${user.role ? `/ ${user.role}` : ''}`;
-    }
-
-    private getShortTitle(title?: string): string {
-        switch (title?.toLowerCase().trim()) {
-            case 'monsieur':
-                return this.intl?.mr ?? 'Mr.';
-            case 'madame':
-                return this.intl?.mrs ?? 'Mrs.';
-            case 'docteur':
-                return this.intl?.dr ?? 'Dr.';
-            case 'docteure':
-                return this.intl?.drF ?? 'Dr.';
-            case 'professeur':
-                return this.intl?.prof ?? 'Prof.';
-            case 'professeure':
-                return this.intl?.profF ?? 'Prof.';
-            default:
-                return title || '';
-        }
-    }
-
-    private getFullName(user: NgxUserCard): string {
-        return `${this.getShortTitle(user.title)} ${user.firstname || ''} ${user.lastname || ''}`;
-    }
-
-    private formatPhone(rawNumber?: string): string | undefined {
-        if (rawNumber?.length === 10 && rawNumber.startsWith('0')) {
-            return rawNumber.replace(/^(\d{3})(\d{3})(\d{2})(\d{2})$/, '$1 $2 $3 $4'); // 0xx xxx xx xx
-        }
-        if ((rawNumber?.length === 12 && rawNumber.startsWith('+')) || (rawNumber?.length === 13 && rawNumber.startsWith('00'))) {
-            return rawNumber.replace(/^(\+|0{2})(\d{2})(\d{2})(\d{3})(\d{2})(\d{2})$/, '$1$2 $3 $4 $5 $6'); // 00|+xx xx xxx xx xx
-        }
-        return rawNumber;
-    }
 }

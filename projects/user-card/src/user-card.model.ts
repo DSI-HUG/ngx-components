@@ -1,5 +1,6 @@
 export interface NgxUserCard {
     title?: string;
+    shortTitle?: string;
     firstname?: string;
     lastname?: string;
     initials?: string;
@@ -22,4 +23,5 @@ export interface NgxUserCard {
     address?: string;
     city?: string;
     zipCode?: string;
+    userCardBadgeColor?: string;
 }
