@@ -1,7 +1,7 @@
 import { NgxUserCard } from '../user-card.model';
 import { UserCardDisplayModel } from './user-card-display.model';
 
-export abstract class UserCardDataProviderService {
+export abstract class UserCardDataProviderBaseService {
 
     protected getUserAddress(user: NgxUserCard): string | undefined {
         if (user.organisation || user.address || user.zipCode || user.city) {

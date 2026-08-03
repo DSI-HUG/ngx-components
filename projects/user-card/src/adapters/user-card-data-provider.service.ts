@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { NgxUserCard } from '../user-card.model';
-import { UserCardDataProviderService } from './user-card-data-provider';
+import { UserCardDataProviderBaseService } from './user-card-data-provider-base.service';
 import type { BadgeColor, UserCardDisplayModel } from './user-card-display.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class UserCardAdapterService extends UserCardDataProviderService {
+export class UserCardDataProviderService extends UserCardDataProviderBaseService {
 
     override buildDisplayableUserCard(user: NgxUserCard): UserCardDisplayModel {
         return {

@@ -2,13 +2,16 @@ import { inject, Injectable } from '@angular/core';
 
 import { NgxUserCardIntl } from '../providers';
 import { NgxUserCard } from '../user-card.model';
-import { UserCardDataProviderService } from './user-card-data-provider';
+import { UserCardDataProviderBaseService } from './user-card-data-provider-base.service';
 import type { BadgeColor, UserCardDisplayModel } from './user-card-display.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class UserCardAdapteLegacyService extends UserCardDataProviderService {
+/**
+ * @deprecated This service is deprecated and will be removed in future versions. Please use UserCardDataProviderService instead.
+ */
+export class UserCardDataAdapterLegacyService extends UserCardDataProviderBaseService {
 
     protected greenBadgeFamily: string[];
     protected blueBadgeFamily: string[];
