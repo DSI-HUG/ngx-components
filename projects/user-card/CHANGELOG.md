@@ -1,3 +1,14 @@
+## 21.2.0 (2026-08-03)
+
+### 🚀 Features
+
+- **i18n:** use shortTitle to chose service to use + clean (#NGXCPTS-56) ([f5cf892](https://github.com/DSI-HUG/ngx-components/commit/f5cf892))
+- **i18n:** adding adapter to use old and new data for usercard display and intl (#NGXCPTS-56) ([e7b74c8](https://github.com/DSI-HUG/ngx-components/commit/e7b74c8))
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+
 ## 21.1.2 (2026-07-17)
 
 ### 🌱 Dependencies

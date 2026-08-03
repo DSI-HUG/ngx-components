@@ -1,3 +1,9 @@
+## 21.0.6 (2026-08-03)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-user-card**: upgraded to `v21.2.0`
+
 ## 21.0.5 (2026-07-17)
 
 ### 🌱 Dependencies
