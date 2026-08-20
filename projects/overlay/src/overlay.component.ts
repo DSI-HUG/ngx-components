@@ -1,5 +1,5 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { CdkConnectedOverlay, CdkOverlayOrigin, OverlayContainer, OverlayRef } from '@angular/cdk/overlay';
+import { CdkConnectedOverlay, OverlayContainer, OverlayRef } from '@angular/cdk/overlay';
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, inject, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgxMediaService } from '@hug/ngx-core';
@@ -18,7 +18,7 @@ export interface OverlayInfos {
     offsetX: number;
     offsetY: number;
     width: string;
-    origin: CdkOverlayOrigin;
+    origin: ElementRef;
     context: unknown;
 }
 
@@ -67,14 +67,14 @@ export class NgxOverlayComponent implements OnChanges {
     protected overlayContainer = inject(OverlayContainer);
     protected mediaService = inject(NgxMediaService);
 
-    private show$ = new ReplaySubject<ShowParams>(1);
-    private hide$ = new Subject<void>();
+    private readonly show$ = new ReplaySubject<ShowParams>(1);
+    private readonly hide$ = new Subject<void>();
 
     /** Renvoie une valeur qui indique si le dialog est affiché. */
-    private isMobileExt$ = new BehaviorSubject<boolean | undefined>(undefined);
+    private readonly isMobileExt$ = new BehaviorSubject<boolean | undefined>(undefined);
 
     private _hasBackdrop = true;
-    private ownerElement$ = new BehaviorSubject<HTMLElement | undefined>(undefined);
+    private readonly ownerElement$ = new BehaviorSubject<HTMLElement | undefined>(undefined);
 
     @Input() public set hasBackdrop(value: BooleanInput) {
         this._hasBackdrop = coerceBooleanProperty(value);
@@ -131,7 +131,7 @@ export class NgxOverlayComponent implements OnChanges {
                         return {
                             offsetX: showParams.offsetX && +showParams.offsetX || 0,
                             offsetY: showParams.offsetY && +showParams.offsetY || 0,
-                            origin: new CdkOverlayOrigin(new ElementRef(mobileElement ?? showParams.event?.target ?? ownerElement ?? this.elementRef.nativeElement)),
+                            origin: new ElementRef(mobileElement ?? showParams.event?.target ?? ownerElement ?? this.elementRef.nativeElement),
                             width: isMobile ? this.widthForMobile : this.width,
                             context: showParams.context
                         } as OverlayInfos;
