@@ -1,3 +1,13 @@
+## 21.0.6 (2026-08-20)
+
+### 🐛 Fixes
+
+- **overlay:** replace CdkOverlayOrigin with ElementRef for origin property - NGXCPTS-59 ([81de2e6](https://github.com/DSI-HUG/ngx-components/commit/81de2e6))
+
+### ❤️ Thank You
+
+- rfrt @rfrt
+
 ## 21.0.5 (2026-07-17)
 
 ### 🌱 Dependencies
