@@ -20,24 +20,3 @@ ngx-actions-group {
         }
     }
 }
-
-.ngx-action--menu {
-    .group {
-        display: flex;
-        flex-direction: column;
-
-        &:not(:empty) {
-            &:before {
-                content: attr(label);
-                padding-inline: 12px;
-                padding-bottom: 4px;
-            }
-        }
-
-        &:not(:last-child) {
-            &:not(:empty) {
-                border-bottom: 1px solid var(--ngx-actions-group-divider-color, var(--mat-sys-outline-variant));
-            }
-        }
-    }
-}

@@ -15,7 +15,7 @@
         </button>
     }
 
-    <mat-menu #menuActionsGroup="matMenu" class="ngx-action--menu">
+    <mat-menu #menuActionsGroup="matMenu">
         @for (item of hiddenItems(); track $index) {
             <button mat-menu-item [ariaLabel]="item.label()" (click)="item.execute.emit()">
                 <mat-icon>{{ item.icon() }}</mat-icon>
