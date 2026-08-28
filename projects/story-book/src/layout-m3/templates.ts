@@ -1,35 +1,51 @@
+import { html } from '../helper';
 
-export const actionsGroupTemplate = `
+export const actionsGroupTemplate = html`
     <ngx-actions-group>
-        <div ngxAction>
-            <button matIconButton aria-label="Filter" matTooltip="Filtres">
-                <mat-icon>filter_list</mat-icon>
-            </button>
-        </div>
-        <button matIconButton aria-label="Columns" matTooltip="Colonnes">
-            <mat-icon>view_column</mat-icon>
-        </button>
-        <button matIconButton aria-label="Settings" matTooltip="Paramètres">
-            <mat-icon>settings</mat-icon>
-        </button>
-        <button matIconButton aria-label="Download" matTooltip="Télécharger">
-            <mat-icon>download</mat-icon>
-        </button>
-        <button matIconButton aria-label="Share" matTooltip="Partager">
-            <mat-icon>share</mat-icon>
-        </button>
-        <button matIconButton aria-label="Dashboard" matTooltip="Tableau de bord">
-            <mat-icon>dashboard</mat-icon>
-        </button>
-        <button matIconButton aria-label="Notifications" matTooltip="Notifications">
-            <mat-icon>notifications</mat-icon>
-        </button>
-        <button matIconButton aria-label="Help" matTooltip="Aide">
-            <mat-icon>help_outline</mat-icon>
-        </button>
-    </ngx-actions-group>`;
+        <ngx-action
+            label="Filtres"
+            icon="filter_list"
+            (execute)="() => alert('Filtres')"
+        />
+        <ngx-action
+            label="Colonnes"
+            icon="view_column"
+            (execute)="() => alert('Colonnes')"
+        />
+        <ngx-action
+            label="Paramètres"
+            icon="settings"
+            (execute)="() => alert('Paramètres')"
+        />
+        <ngx-action
+            label="Télécharger"
+            icon="download"
+            (execute)="() => alert('Télécharger')"
+        />
+        <ngx-action
+            label="Partager"
+            icon="share"
+            (execute)="() => alert('Partager')"
+        />
+        <ngx-action
+            label="Tableau de bord"
+            icon="dashboard"
+            (execute)="() => alert('Tableau de bord')"
+        />
+        <ngx-action
+            label="Notifications"
+            icon="notifications"
+            (execute)="alert('Notifications !')"
+        />
+        <ngx-action
+            label="Aide"
+            icon="help_outline"
+            (execute)="alert('help_outline !')"
+        />
+    </ngx-actions-group>
+`;
 
-export const filtersGroupFoldedTemplate = `
+export const filtersGroupFoldedTemplate = html`
     <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="folded">
         <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" />
         <ng-template
@@ -89,7 +105,7 @@ export const filtersGroupFoldedTemplate = `
         <ng-template [ngxFilterToggle] label="Afficher documents" [(active)]="documentFilter" />
     </ngx-filters-group>`;
 
-export const filtersGroupTemplate = `
+export const filtersGroupTemplate = html`
     <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="filtersGroupFolded">
         <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" />
         <ng-template
@@ -149,34 +165,34 @@ export const filtersGroupTemplate = `
         <ng-template [ngxFilterToggle] label="Afficher documents" [(active)]="documentFilter" />
     </ngx-filters-group>`;
 
-export const searchBarTemplate = `
+export const searchBarTemplate = html`
     <ngx-search-bar-container [folded]="searchFolded">
         <input
             ngxSearchInput
             type="text"
             name="search"
             placeholder="Rechercher"
-            [(ngModel)]="ngModel"                
+            [(ngModel)]="ngModel"
         />
     </ngx-search-bar-container>`;
 
-export const searchBarFoldedTemplate = `
+export const searchBarFoldedTemplate = html`
     <ngx-search-bar-container [folded]="true">
         <input
             ngxSearchInput
             type="text"
             name="search"
             placeholder="Rechercher"
-            [(ngModel)]="ngModel"                
+            [(ngModel)]="ngModel"
         />
     </ngx-search-bar-container>`;
 
-export const contentLeftTemplate = `
+export const contentLeftTemplate = html`
     <div ngxContentLeft style="display: inline-flex; align-items: center; gap: 0.25rem;">
         <button mat-stroked-button type="button">Left action</button>
     </div>`;
 
-export const contentRightTemplate = `
+export const contentRightTemplate = html`
     <div ngxContentRight style="display: inline-flex; align-items: center; gap: 0.25rem;">
         <button mat-flat-button type="button">Right action</button>
     </div>`;

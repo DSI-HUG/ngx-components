@@ -2,11 +2,12 @@ ngx-actions-group {
     display: flex;
     inline-size: 100%;
     max-inline-size: 364px;
+    min-inline-size: 48px;
 
     > .container {
         display: flex;
         inline-size: fit-content;
-        align-items: center;
+        align-items: stretch;
         gap: var(--ngx-actions-group-gap, 0.75rem);
         border-radius: var(--ngx-actions-group-radius, 2rem);
         padding: var(--ngx-actions-group-padding, 0.25rem);
@@ -18,8 +19,4 @@ ngx-actions-group {
             order: 999;
         }
     }
-}
-
-.actions-group-menu.mat-mdc-menu-panel {
-    padding: var(--ngx-actions-group-menu-padding, 0 0.75rem);
 }

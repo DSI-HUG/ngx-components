@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatBadge } from '@angular/material/badge';
 import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
@@ -44,6 +45,7 @@ const meta: Meta = {
                 FormsModule,
                 MatIcon,
                 MatIconButton,
+                MatBadge,
                 MatButton,
                 MatTooltip,
                 NgxAppBarComponent,
