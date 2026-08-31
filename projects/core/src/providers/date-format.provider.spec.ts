@@ -68,6 +68,18 @@ describe('NgxDateFormatProvider', () => {
             }
         };
 
+        const deChStandardExpected: MatDateFormats = {
+            parse: {
+                dateInput: 'MM/yyyy'
+            },
+            display: {
+                dateInput: 'MM/yyyy',
+                monthYearLabel: standardMonthYearLabel,
+                dateA11yLabel: standardDateA11yLabel,
+                monthYearA11yLabel: standardMonthYearA11yLabel
+            }
+        };
+
         const englishExpected: MatDateFormats = {
             parse: {
                 dateInput: 'MM/yyyy'
@@ -82,7 +94,7 @@ describe('NgxDateFormatProvider', () => {
 
         isEqualsTo(factory, localeFrCh, standardExpected);
         isEqualsTo(factory, localeItCh, englishExpected);
-        isEqualsTo(factory, localeDeCh, englishExpected);
+        isEqualsTo(factory, localeDeCh, deChStandardExpected);
         isEqualsTo(factory, localeEnUs, englishExpected);
         isEqualsTo(factory, localeEs, {
             parse: {
