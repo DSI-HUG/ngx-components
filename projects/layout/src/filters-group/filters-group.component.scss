@@ -170,7 +170,7 @@ ngx-filters-group {
             overflow-y: auto;
             overflow-x: hidden;
             box-sizing: border-box;
-            border-radius: var(--ngx-filters-group-overlay-one-filter-radius, 1rem);
+            border-radius: var(--ngx-filters-group-overlay-one-filter-radius, 0.75rem);
         }
 
         .filters--title {
