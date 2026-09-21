@@ -43,7 +43,7 @@ export const filtersGroupFoldedTemplate = `
                 <mat-button-toggle value="LAST_YEAR">Dernière année</mat-button-toggle>
                 <mat-button-toggle value="OTHER">Autre</mat-button-toggle>
             </mat-button-toggle-group>
-            @if (selectedPeriod === 'OTHER') {
+            @if (selectedPeriod[0] === 'OTHER') {
                 <mat-form-field>
                     <mat-label>Enter a date range</mat-label>
                     <mat-date-range-input [rangePicker]="picker">
@@ -61,17 +61,17 @@ export const filtersGroupFoldedTemplate = `
             [active]="!!orderOrigin"
             label="Origine"
             [selectedFilterLabel]="orderOriginSelectedLabel()">
-            <mat-button-toggle-group [(ngModel)]="orderOrigin" aria-label="Font Style">
-                <mat-button-toggle style="justify-self: stretch; flex-grow: 1" value="HOSP">Hôpital</mat-button-toggle>
-                <mat-button-toggle style="justify-self: stretch; flex-grow: 1" value="HOME">Domicile</mat-button-toggle>
-            </mat-button-toggle-group>
+            <mat-selection-list [(ngModel)]="orderOrigin.value[0]">
+                <mat-list-option value="HOSP" togglePosition="after">Hôpital</mat-list-option>
+                <mat-list-option value="HOME" togglePosition="after">Domicile</mat-list-option>
+            </mat-selection-list>
         </ng-template>
         <ng-template
             [ngxFilter]
             [active]="!!orderTypes.length"
             label="Type"
             [selectedFilterLabel]="orderTypesSelectedLabel()">
-            <mat-selection-list no-padding [(ngModel)]="orderTypes">
+            <mat-selection-list [(ngModel)]="orderTypes">
                 <mat-list-option value="Médicament" togglePosition="after">Médicament</mat-list-option>
                 <mat-list-option value="Soin" togglePosition="after">Soin</mat-list-option>
                 <mat-list-option value="Laboratoire" togglePosition="after">Laboratoire</mat-list-option>
@@ -94,16 +94,16 @@ export const filtersGroupTemplate = `
         <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" />
         <ng-template
             [ngxFilter]
-            [active]="!!selectedPeriod"
-            label="Periode"
+            [active]="!!selectedPeriod.length"
+            label="Periode"            
             [selectedFilterLabel]="selectedDateRangeLabel()">
-            <mat-button-toggle-group [(ngModel)]="selectedPeriod" aria-label="Font Style">
-                <mat-button-toggle value="3_DAYS">3 derniers jours</mat-button-toggle>
-                <mat-button-toggle value="3_MONTHS">3 derniers mois</mat-button-toggle>
-                <mat-button-toggle value="LAST_YEAR">Dernière année</mat-button-toggle>
-                <mat-button-toggle value="OTHER">Autre</mat-button-toggle>
-            </mat-button-toggle-group>
-            @if (selectedPeriod === 'OTHER') {
+            <mat-selection-list multiple="false" [(ngModel)]="selectedPeriod" hideSingleSelectionIndicator>
+                <mat-list-option value="3_DAYS">3 derniers jours</mat-list-option>
+                <mat-list-option value="3_MONTHS">3 derniers mois</mat-list-option>
+                <mat-list-option value="LAST_YEAR">Dernière année</mat-list-option>
+                <mat-list-option value="OTHER">Autre</mat-list-option>
+            </mat-selection-list>
+            @if (selectedPeriod[0] === 'OTHER') {
                 <mat-form-field>
                     <mat-label>Enter a date range</mat-label>
                     <mat-date-range-input [rangePicker]="picker">
@@ -118,20 +118,20 @@ export const filtersGroupTemplate = `
         </ng-template>
         <ng-template
             [ngxFilter]
-            [active]="!!orderOrigin"
+            [active]="!!orderOrigin.length"
             label="Origine"
             [selectedFilterLabel]="orderOriginSelectedLabel()">
-            <mat-button-toggle-group [(ngModel)]="orderOrigin" aria-label="Font Style">
-                <mat-button-toggle style="justify-self: stretch; flex-grow: 1" value="HOSP">Hôpital</mat-button-toggle>
-                <mat-button-toggle style="justify-self: stretch; flex-grow: 1" value="HOME">Domicile</mat-button-toggle>
-            </mat-button-toggle-group>
+            <mat-selection-list multiple="false" [(ngModel)]="orderOrigin" hideSingleSelectionIndicator>
+                <mat-list-option value="HOSP">Hôpital</mat-list-option>
+                <mat-list-option value="HOME">Domicile</mat-list-option>
+            </mat-selection-list>
         </ng-template>
         <ng-template
             [ngxFilter]
             [active]="!!orderTypes.length"
             label="Type"
             [selectedFilterLabel]="orderTypesSelectedLabel()">
-            <mat-selection-list no-padding [(ngModel)]="orderTypes">
+            <mat-selection-list [(ngModel)]="orderTypes">
                 <mat-list-option value="Médicament" togglePosition="after">Médicament</mat-list-option>
                 <mat-list-option value="Soin" togglePosition="after">Soin</mat-list-option>
                 <mat-list-option value="Laboratoire" togglePosition="after">Laboratoire</mat-list-option>

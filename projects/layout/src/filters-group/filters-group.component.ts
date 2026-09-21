@@ -1,16 +1,19 @@
+import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatIconButton } from '@angular/material/button';
 import { MatChip, MatChipOption, MatChipSet, MatChipTrailingIcon } from '@angular/material/chips';
+import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
 import { FILTER_TOKEN } from './filter-chip.model';
+import { NgxFiltersOverlayAutoPositionDirective } from './filters-overlay/filters-overlay-auto-position.directive';
 
 const resizeSignal = (
     element: () => ElementRef<HTMLElement> | undefined,
@@ -68,12 +71,18 @@ const resizeSignal = (
         MatSlideToggle,
         FormsModule,
         MatBadge,
-        LowerCasePipe
+        LowerCasePipe,
+        MatDivider,
+        NgxFiltersOverlayAutoPositionDirective,
+        CdkTrapFocus
     ]
 })
 export class NgxFiltersGroupComponent {
     public readonly resetFilters = output();
     public readonly folded = input<boolean>();
+    public readonly overlayAutoPosition = input(false, {
+        transform: booleanAttribute
+    });
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
@@ -99,6 +108,7 @@ export class NgxFiltersGroupComponent {
 
     // #region Filters
     protected allFilters = contentChildren(FILTER_TOKEN);
+    protected readonly activeFilters = computed(() => this.allFilters().filter(filter => filter.active()).length);
     protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter => filter.active()).length);
 
     protected readonly visibleFilters = computed(() => {
@@ -117,6 +127,18 @@ export class NgxFiltersGroupComponent {
         }
 
         return this.allFilters().slice(lastFittingIndex);
+    });
+
+    protected readonly overlayCanStayOpen = computed(() => {
+        const content = this.overlayContent();
+
+        const filterIsVisible =
+        this.moreFiltersOverlay() ||
+        this.visibleFilters().some(
+            filter => filter.type === 'complex' && filter.templateRef === content
+        );
+
+        return this.overlayOpen() && filterIsVisible;
     });
 
     private readonly filterContainerRef = viewChild.required<ElementRef<HTMLElement>>('container');
@@ -160,6 +182,26 @@ export class NgxFiltersGroupComponent {
 
     protected emitResetClicked(): void {
         this.resetFilters.emit();
+    }
+
+    protected openOverlay(
+        trigger: CdkOverlayOrigin,
+        templateRef: TemplateRef<unknown>,
+        moreFiltersOverlay: boolean
+    ): void {
+        const isSameOverlay =
+        this.overlayOpen() && this.overlayContent() === templateRef;
+
+        this.overlayOpen.set(false);
+
+        if (isSameOverlay) {
+            return;
+        }
+
+        this.overlayOrigin.set(trigger);
+        this.overlayContent.set(templateRef);
+        this.moreFiltersOverlay.set(moreFiltersOverlay);
+        this.overlayOpen.set(true);
     }
 
     private getLastFittingIndex(availableSpace: number, elements: readonly HTMLElement[]): number {
