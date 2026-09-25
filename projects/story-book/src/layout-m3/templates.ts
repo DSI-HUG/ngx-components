@@ -95,7 +95,7 @@ export const filtersGroupTemplate = `
         <ng-template
             [ngxFilter]
             [active]="!!selectedPeriod.length"
-            label="Periode"            
+            label="Periode"
             [selectedFilterLabel]="selectedDateRangeLabel()">
             <mat-selection-list multiple="false" [(ngModel)]="selectedPeriod" hideSingleSelectionIndicator>
                 <mat-list-option value="3_DAYS">3 derniers jours</mat-list-option>
@@ -120,6 +120,7 @@ export const filtersGroupTemplate = `
             [ngxFilter]
             [active]="!!orderOrigin.length"
             label="Origine"
+            icon="place"
             [selectedFilterLabel]="orderOriginSelectedLabel()">
             <mat-selection-list multiple="false" [(ngModel)]="orderOrigin" hideSingleSelectionIndicator>
                 <mat-list-option value="HOSP">Hôpital</mat-list-option>
@@ -146,7 +147,7 @@ export const filtersGroupTemplate = `
                 <mat-list-option value="Autres" togglePosition="after">Autres</mat-list-option>
             </mat-selection-list>
         </ng-template>
-        <ng-template [ngxFilterToggle] label="Afficher documents" [(active)]="documentFilter" />
+        <ng-template [ngxFilterToggle] label="Afficher documents" icon="description" [(active)]="documentFilter" />
     </ngx-filters-group>`;
 
 export const searchBarTemplate = `

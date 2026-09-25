@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, 
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatIconButton } from '@angular/material/button';
-import { MatChip, MatChipOption, MatChipSet, MatChipTrailingIcon } from '@angular/material/chips';
+import { MatChip, MatChipAvatar, MatChipOption, MatChipSet, MatChipTrailingIcon } from '@angular/material/chips';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
@@ -20,6 +20,7 @@ interface ComplexFilterView {
     readonly label: string;
     readonly active: boolean;
     readonly selectedFilterLabel: string;
+    readonly icon: string | undefined;
     readonly templateRef: TemplateRef<unknown>;
 }
 
@@ -83,7 +84,8 @@ const resizeSignal = (
         MatBadge,
         LowerCasePipe,
         MatDivider,
-        CdkTrapFocus
+        CdkTrapFocus,
+        MatChipAvatar
     ]
 })
 export class NgxFiltersGroupComponent {
@@ -182,7 +184,7 @@ export class NgxFiltersGroupComponent {
     private readonly liveFilterViews = computed<FilterView[]>(() => this.allFilters().map((f): FilterView =>
         f.type === 'toggle'
             ? f
-            : { source: f, type: 'complex', label: f.label(), active: f.active(), selectedFilterLabel: f.selectedFilterLabel(), templateRef: f.templateRef }
+            : { source: f, type: 'complex', label: f.label(), active: f.active(), selectedFilterLabel: f.selectedFilterLabel(), icon: f.icon(), templateRef: f.templateRef }
     ));
 
     private constructor() {

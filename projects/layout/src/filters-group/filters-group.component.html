@@ -49,6 +49,9 @@
                             selectable="true"
                             [selected]="f.active()"
                             (selectionChange)="f.active.set($event.selected)">
+                            @if (f.icon()) {
+                                <mat-icon matChipAvatar>{{ f.icon() }}</mat-icon>
+                            }
                             {{ f.label() }}
                         </mat-chip-option>
                     } @else {
@@ -61,6 +64,9 @@
                             (click)="this.openOverlay(trigger, f.templateRef, false)"
                             (keydown.enter)="this.openOverlay(trigger, f.templateRef, false)"
                             (keydown.space)="this.openOverlay(trigger, f.templateRef, false)">
+                            @if (f.icon) {
+                                <mat-icon matChipAvatar>{{ f.icon }}</mat-icon>
+                            }
                             {{ f.label }}
                             @if (f.selectedFilterLabel) {
                                 <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel }}</span>

@@ -12,4 +12,5 @@ export class NgxFilterToggleDirective implements NgxToggleFilter {
     public readonly type = 'toggle';
     public readonly label = input.required<string>();
     public readonly active = model.required<boolean>();
+    public readonly icon = input<string>();
 }
