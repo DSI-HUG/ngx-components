@@ -1,7 +1,7 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatIconButton } from '@angular/material/button';
@@ -12,8 +12,18 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
-import { FILTER_TOKEN } from './filter-chip.model';
-import { NgxFiltersOverlayAutoPositionDirective } from './filters-overlay/filters-overlay-auto-position.directive';
+import { FILTER_TOKEN, NgxComplexFilter, NgxToggleFilter } from './filter-chip.model';
+
+interface ComplexFilterView {
+    readonly source: NgxComplexFilter;
+    readonly type: 'complex';
+    readonly label: string;
+    readonly active: boolean;
+    readonly selectedFilterLabel: string;
+    readonly templateRef: TemplateRef<unknown>;
+}
+
+type FilterView = NgxToggleFilter | ComplexFilterView;
 
 const resizeSignal = (
     element: () => ElementRef<HTMLElement> | undefined,
@@ -73,16 +83,12 @@ const resizeSignal = (
         MatBadge,
         LowerCasePipe,
         MatDivider,
-        NgxFiltersOverlayAutoPositionDirective,
         CdkTrapFocus
     ]
 })
 export class NgxFiltersGroupComponent {
     public readonly resetFilters = output();
     public readonly folded = input<boolean>();
-    public readonly overlayAutoPosition = input(false, {
-        transform: booleanAttribute
-    });
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
@@ -109,37 +115,28 @@ export class NgxFiltersGroupComponent {
     // #region Filters
     protected allFilters = contentChildren(FILTER_TOKEN);
     protected readonly activeFilters = computed(() => this.allFilters().filter(filter => filter.active()).length);
-    protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter => filter.active()).length);
+    protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter =>
+        filter.type === 'toggle' ? filter.active() : filter.active
+    ).length);
 
     protected readonly visibleFilters = computed(() => {
         const lastFittingIndex = this.lastFittingIndex();
         if (lastFittingIndex < 0) {
             return [];
         }
-
-        return this.allFilters().slice(0, lastFittingIndex);
+        return this.allFilterViews().slice(0, lastFittingIndex);
     });
 
     protected readonly invisibleFilters = computed(() => {
         const lastFittingIndex = this.lastFittingIndex();
         if (lastFittingIndex < 0) {
-            return this.allFilters();
+            return this.allFilterViews();
         }
-
-        return this.allFilters().slice(lastFittingIndex);
+        return this.allFilterViews().slice(lastFittingIndex);
     });
 
-    protected readonly overlayCanStayOpen = computed(() => {
-        const content = this.overlayContent();
+    protected readonly allFilterViews = signal<FilterView[]>([]);
 
-        const filterIsVisible =
-        this.moreFiltersOverlay() ||
-        this.visibleFilters().some(
-            filter => filter.type === 'complex' && filter.templateRef === content
-        );
-
-        return this.overlayOpen() && filterIsVisible;
-    });
 
     private readonly filterContainerRef = viewChild.required<ElementRef<HTMLElement>>('container');
     private readonly filterContainerPadding = computed(() => Number.parseFloat(globalThis.getComputedStyle(this.filterContainerRef().nativeElement).paddingInline));
@@ -164,7 +161,9 @@ export class NgxFiltersGroupComponent {
     private readonly staticFieldsWidth = computed(() => Math.ceil(this.staticFieldsSize()?.contentRect.width || 0));
     // #endregion
 
-    private readonly lastFittingIndex = computed(() => {
+    private readonly lastFittingIndex = signal(-1);
+
+    private readonly rawLastFittingIndex = computed(() => {
         const hostWidth = this.hostWidth();
         if (!hostWidth) {
             return -1;
@@ -179,6 +178,23 @@ export class NgxFiltersGroupComponent {
 
         return this.getLastFittingIndex(availableSpace, filters);
     });
+
+    private readonly liveFilterViews = computed<FilterView[]>(() => this.allFilters().map((f): FilterView =>
+        f.type === 'toggle'
+            ? f
+            : { source: f, type: 'complex', label: f.label(), active: f.active(), selectedFilterLabel: f.selectedFilterLabel(), templateRef: f.templateRef }
+    ));
+
+    private constructor() {
+        effect(() => {
+            const index = this.rawLastFittingIndex();
+            const views = this.liveFilterViews();
+            if (!this.overlayOpen()) {
+                this.lastFittingIndex.set(index);
+                this.allFilterViews.set(views);
+            }
+        });
+    }
 
     protected emitResetClicked(): void {
         this.resetFilters.emit();

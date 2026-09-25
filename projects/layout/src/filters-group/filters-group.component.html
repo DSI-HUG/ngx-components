@@ -54,16 +54,16 @@
                     } @else {
                         <mat-chip-option
                             [selectable]="false"
-                            [selected]="f.active()"
+                            [selected]="f.active"
                             [class.filter-overlay-open]="this.overlayOpen() && this.overlayContent() === f.templateRef"
                             cdkOverlayOrigin
                             #trigger="cdkOverlayOrigin"
                             (click)="this.openOverlay(trigger, f.templateRef, false)"
                             (keydown.enter)="this.openOverlay(trigger, f.templateRef, false)"
                             (keydown.space)="this.openOverlay(trigger, f.templateRef, false)">
-                            {{ f.label() }}
-                            @if (f.selectedFilterLabel()) {
-                                <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel() }}</span>
+                            {{ f.label }}
+                            @if (f.selectedFilterLabel) {
+                                <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel }}</span>
                             }
                             <mat-icon matChipTrailingIcon>
                                 {{
@@ -141,7 +141,7 @@
 </ng-template>
 
 @let overlayOrigin = this.overlayOrigin();
-@let overlayOpen = this.overlayAutoPosition() ? this.overlayCanStayOpen() : this.overlayOpen();
+@let overlayOpen = this.overlayOpen();
 @let overlayContent = this.overlayContent();
 @if (overlayOrigin && overlayOpen && overlayContent) {
     <ng-template
@@ -150,7 +150,6 @@
         [cdkConnectedOverlayOpen]="overlayOpen"
         (detach)="this.overlayOpen.set(false)"
         [cdkConnectedOverlayHasBackdrop]="true"
-        [ngxFiltersOverlayAutoPosition]="overlayAutoPosition()"
         (backdropClick)="this.overlayOpen.set(false)"
         cdkConnectedOverlayPanelClass="filters-group--overlay"
         cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"

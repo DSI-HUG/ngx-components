@@ -18,7 +18,6 @@ import { NgxColumnComponent } from '@hug/ngx-layout/column';
 import { NgxColumnBarComponent } from '@hug/ngx-layout/column-bar';
 import { NgxBarTitleDirective } from '@hug/ngx-layout/directives';
 import { NgxFilterDirective, NgxFiltersGroupComponent, NgxFilterToggleDirective } from '@hug/ngx-layout/filters-group';
-import { NgxFiltersOverlayAutoPositionDirective } from '@hug/ngx-layout/filters-group/filters-overlay/filters-overlay-auto-position.directive';
 import { NgxMainBarComponent } from '@hug/ngx-layout/main-bar';
 import { NgxPageComponent } from '@hug/ngx-layout/page';
 import { NgxPanelComponent } from '@hug/ngx-layout/panel';
@@ -75,8 +74,7 @@ const meta: Meta = {
                 NgxColumnBarComponent,
                 NgxBarTitleDirective,
                 NgxColumnComponent,
-                NgxActionDirective,
-                NgxFiltersOverlayAutoPositionDirective
+                NgxActionDirective
             ],
             providers: [
                 provideNativeDateAdapter()
