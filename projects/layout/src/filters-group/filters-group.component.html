@@ -121,28 +121,49 @@
 
 <ng-template #moreFilters>
     @if (allFilters()) {
-        @for (f of allFilters(); track $index; let last = $last) {
-            @if (f.type === 'toggle') {
-                <section class="filter">
-                    <mat-slide-toggle labelPosition="before" [(ngModel)]="f.active">
-                        {{ f.label() }}
-                    </mat-slide-toggle>
-                </section>
-            } @else {
-                <section class="filter">
-                    <div class="title">
-                        <span class="label">{{ f.label() }}</span>
-                        <span class="value">{{ f.selectedFilterLabel() }}</span>
-                    </div>
-                    @if (f.templateRef) {
-                        <ng-container *ngTemplateOutlet="f.templateRef"></ng-container>
-                    }
-                </section>
+        <cdk-accordion #accordion="cdkAccordion" [multi]="true">
+            @for (f of allFilters(); track $index; let last = $last) {
+                @if (f.type === 'toggle') {
+                    <section class="filter">
+                        <mat-slide-toggle labelPosition="before" [(ngModel)]="f.active">
+                            {{ f.label() }}
+                        </mat-slide-toggle>
+                    </section>
+                } @else {
+                    <cdk-accordion-item
+                        #accordionItem="cdkAccordionItem"
+                        class="filter"
+                        (opened)="onFilterOpened()"
+                        (closed)="onFilterClosed()">
+                        <button
+                            class="headline"
+                            type="button"
+                            (click)="accordionItem.toggle()"
+                            [attr.aria-expanded]="accordionItem.expanded"
+                            [attr.aria-controls]="'filter-content-' + $index">
+                            <span class="title">
+                                <span class="label">{{ f.label() }}</span>
+                                <span class="value">{{ f.selectedFilterLabel() }}</span>
+                            </span>
+
+                            <mat-icon aria-hidden="true" class="expand-icon">
+                                {{ accordionItem.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+                            </mat-icon>
+                        </button>
+
+                        @if (accordionItem.expanded) {
+                            <div class="filter-content" role="region" [id]="'filter-content-' + $index">
+                                <ng-container *ngTemplateOutlet="f.templateRef"></ng-container>
+                            </div>
+                        }
+                    </cdk-accordion-item>
+                }
+
+                @if (!last) {
+                    <mat-divider />
+                }
             }
-            @if (!last) {
-                <mat-divider></mat-divider>
-            }
-        }
+        </cdk-accordion>
     }
 </ng-template>
 
@@ -166,10 +187,19 @@
         <div class="filters-group--overlay--container" cdkTrapFocus cdkTrapFocusAutoCapture="true">
             @if (moreFiltersOverlay()) {
                 <div class="filters--title">
-                    <span>
+                    <span class="title">
                         {{ intl?.filters ?? 'Filters' }} ({{ activeFilters() }}
                         {{ intl?.actives ?? 'Actives' | lowercase }})
                     </span>
+                    <button
+                        mat-icon-button
+                        type="button"
+                        aria-label="Collapse all filters"
+                        [disabled]="expandedFiltersAmount() === 0"
+                        (click)="collapseAllFilters()"
+                        matTooltip="{{ intl?.collapseAll ?? 'Collapse all' }}">
+                        <mat-icon>unfold_less</mat-icon>
+                    </button>
                     <button
                         mat-icon-button
                         aria-label="Reset filters"
@@ -178,7 +208,7 @@
                         <mat-icon>settings_backup_restore</mat-icon>
                     </button>
                 </div>
-                <mat-divider></mat-divider>
+                <mat-divider class="filters-group--title-divider" />
                 <div class="filters--content">
                     <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
                 </div>

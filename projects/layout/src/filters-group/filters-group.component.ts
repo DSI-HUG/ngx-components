@@ -1,4 +1,5 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
+import { CdkAccordion, CdkAccordionItem } from '@angular/cdk/accordion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
@@ -85,7 +86,9 @@ const resizeSignal = (
         LowerCasePipe,
         MatDivider,
         CdkTrapFocus,
-        MatChipAvatar
+        MatChipAvatar,
+        CdkAccordion,
+        CdkAccordionItem
     ]
 })
 export class NgxFiltersGroupComponent {
@@ -138,7 +141,9 @@ export class NgxFiltersGroupComponent {
     });
 
     protected readonly allFilterViews = signal<FilterView[]>([]);
+    protected readonly expandedFiltersAmount = signal(0);
 
+    private readonly accordion = viewChild(CdkAccordion);
 
     private readonly filterContainerRef = viewChild.required<ElementRef<HTMLElement>>('container');
     private readonly filterContainerPadding = computed(() => Number.parseFloat(globalThis.getComputedStyle(this.filterContainerRef().nativeElement).paddingInline));
@@ -198,6 +203,14 @@ export class NgxFiltersGroupComponent {
         });
     }
 
+    protected onFilterOpened(): void {
+        this.expandedFiltersAmount.update(amount => amount + 1);
+    }
+
+    protected onFilterClosed(): void {
+        this.expandedFiltersAmount.update(amount => Math.max(0, amount - 1));
+    }
+
     protected emitResetClicked(): void {
         this.resetFilters.emit();
     }
@@ -220,6 +233,10 @@ export class NgxFiltersGroupComponent {
         this.overlayContent.set(templateRef);
         this.moreFiltersOverlay.set(moreFiltersOverlay);
         this.overlayOpen.set(true);
+    }
+
+    protected collapseAllFilters(): void {
+        this.accordion()?.closeAll();
     }
 
     private getLastFittingIndex(availableSpace: number, elements: readonly HTMLElement[]): number {

@@ -148,7 +148,7 @@ ngx-filters-group {
 
 .filters-group--overlay {
     background-color: var(--ngx-filters-group-overlay-bg-color, var(--mat-sys-surface-container-low));
-    border-radius: var(--ngx-filters-group-overlay-radius, 16px);
+    border-radius: var(--ngx-filters-group-overlay-radius, 1rem);
     overflow: hidden;
     display: flex;
     max-width: min(90dvw, 560px);
@@ -156,7 +156,7 @@ ngx-filters-group {
 
     .filters-group--overlay--container {
         padding: var(--ngx-filters-group-overlay-container-padding, 0.25rem);
-        max-width: var(--ngx-filters-group-overlay-container-max-width, min(calc(90dvw - 8px), 552px));
+        max-width: var(--ngx-filters-group-overlay-container-max-width, min(calc(90dvw - 0.5rem), 552px));
         display: flex;
         flex-direction: column;
         min-block-size: 0;
@@ -183,73 +183,125 @@ ngx-filters-group {
             justify-content: space-between;
             padding-inline: var(--ngx-filters-group-overlay-title-padding-inline, 1rem 0.5rem);
             padding-block: calc(var(--ngx-filters-group-overlay-title-padding-block, 1rem) / 4);
+            gap: var(--ngx-filters-group-overlay-title-gap, 0.5rem);
+
+            .title {
+                width: 100%;
+            }
+        }
+
+        .filters-group--title-divider {
+            margin: 0 -0.25rem;
         }
 
         .filters--content {
-            box-sizing: border-box;
-            min-inline-size: var(--ngx-filters-group-overlay-content-min-inline-size, 18.75rem);
-            flex: 1 1 auto;
             min-block-size: 0;
             overflow-y: auto;
             overflow-x: hidden;
-            padding: var(--ngx-filters-group-overlay-content-padding, 8px 8px 8px 16px);
-            display: flex;
-            flex-direction: column;
-            justify-items: stretch;
-            gap: var(--ngx-filters-group-overlay-content-gap, 0.5rem);
 
-            mat-slide-toggle {
-                > * {
-                    inline-size: 100%;
-                    justify-content: space-between;
+            cdk-accordion {
+                box-sizing: border-box;
+                min-inline-size: var(--ngx-filters-group-overlay-content-min-inline-size, 18.75rem);
 
-                    label {
-                        margin: 0;
-                    }
-                }
-            }
-            .filter {
+                padding: var(--ngx-filters-group-overlay-content-padding, 0.5rem);
                 display: flex;
                 flex-direction: column;
-                gap: var(--ngx-filters-group-overlay-content-filter-gap, 0.5rem);
+                gap: var(--ngx-filters-group-overlay-content-gap, 0.25rem);
+                border-radius: var(--ngx-filters-group-overlay-content-border-radius, 0.75rem);
 
-                &:last-child {
-                    padding-block-end: unset;
-                }
+                mat-slide-toggle {
+                    padding-inline: var(--ngx-filters-group-overlay-content-headline-padding-inline, 0.25rem);
+                    padding-block-end: var(--ngx-filters-group-overlay-content-headline-padding-block-end, 0.25rem);
 
-                &:first-child {
-                    padding-block-start: unset;
-                }
+                    > * {
+                        inline-size: 100%;
 
-                .title {
-                    display: inline-flex;
-                    justify-content: space-between;
-                    align-items: baseline;
-                    color: var(--ngx-filters-group-overlay-title-color, var(--mat-sys-on-surface-variant));
-
-                    .label {
-                        font: var(--ngx-filters-group-overlay-title-label-font, var(--mat-sys-title-small));
-                        letter-spacing: var(
-                            --ngx-filters-group-overlay-title-label-letter-spacing,
-                            var(--mat-sys-title-small-tracking)
-                        );
-                    }
-
-                    .value {
-                        font: var(--ngx-filters-group-overlay-title-value-font, var(--mat-sys-label-medium));
-                        letter-spacing: var(
-                            --ngx-filters-group-overlay-title-value-letter-spacing,
-                            var(--mat-sys-label-medium-tracking)
-                        );
-                        max-inline-size: var(--ngx-filters-group-overlay-title-max-width, 27ch);
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
+                        label {
+                            margin: 0;
+                            width: 100%;
+                        }
                     }
                 }
+                .filter {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--ngx-filters-group-overlay-content-filter-gap, 0.5rem);
 
-                > [no-padding] {
-                    margin-inline: -1rem;
+                    .headline {
+                        position: sticky;
+                        top: 0;
+                        z-index: 1;
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        inline-size: 100%;
+                        box-sizing: border-box;
+                        padding-inline: var(--ngx-filters-group-overlay-content-headline-padding-inline, 0.25rem);
+                        padding-block: var(--ngx-filters-group-overlay-content-headline-padding-block, 0.5rem);
+                        border: 0;
+                        background-color: var(
+                            --ngx-filters-group-overlay-content-headline-bg-color,
+                            var(--mat-sys-surface-container-low)
+                        );
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: color-mix(
+                                in srgb,
+                                var(
+                                        --ngx-filters-group-overlay-content-headline-hover-bg-color,
+                                        var(--mat-sys-on-surface)
+                                    )
+                                    10%,
+                                transparent
+                            );
+                            border-radius: var(
+                                --ngx-filters-group-overlay-content-headline-hover-border-radius,
+                                0.25rem
+                            );
+                        }
+
+                        .expand-icon {
+                            color: var(
+                                --ngx-filters-group-overlay-expand-icon-color,
+                                var(--mat-sys-on-surface-variant)
+                            );
+                        }
+
+                        .title {
+                            display: inline-flex;
+                            justify-content: space-between;
+                            align-items: baseline;
+                            flex-direction: column;
+                            color: var(--ngx-filters-group-overlay-title-color, var(--mat-sys-on-surface-variant));
+
+                            .label {
+                                font: var(--ngx-filters-group-overlay-title-label-font, var(--mat-sys-title-small));
+                                letter-spacing: var(
+                                    --ngx-filters-group-overlay-title-label-letter-spacing,
+                                    var(--mat-sys-title-small-tracking)
+                                );
+                            }
+
+                            .value {
+                                font: var(--ngx-filters-group-overlay-title-value-font, var(--mat-sys-label-medium));
+                                letter-spacing: var(
+                                    --ngx-filters-group-overlay-title-value-letter-spacing,
+                                    var(--mat-sys-label-medium-tracking)
+                                );
+                                max-inline-size: var(--ngx-filters-group-overlay-title-max-width, 27ch);
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                color: var(--ngx-filters-group-overlay-title-value-color, var(--mat-sys-tertiary));
+                            }
+                        }
+                    }
+
+                    > [no-padding] {
+                        margin-inline: -1rem;
+                    }
                 }
             }
         }
