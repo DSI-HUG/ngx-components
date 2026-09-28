@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
     selector: 'ngx-nav-button',
-    imports: [],
+    imports: [MatTooltip],
     templateUrl: './nav-button.component.html',
     styleUrl: './nav-button.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
