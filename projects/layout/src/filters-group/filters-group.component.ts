@@ -18,14 +18,18 @@ import { FILTER_TOKEN, NgxComplexFilter, NgxToggleFilter } from './filter-chip.m
 interface ComplexFilterView {
     readonly source: NgxComplexFilter;
     readonly type: 'complex';
-    readonly label: string;
     readonly active: boolean;
     readonly selectedFilterLabel: string;
-    readonly icon: string | undefined;
     readonly templateRef: TemplateRef<unknown>;
 }
 
-type FilterView = NgxToggleFilter | ComplexFilterView;
+interface ToggleFilterView {
+    readonly source: NgxToggleFilter;
+    readonly type: 'toggle';
+    readonly active: boolean;
+}
+
+type FilterView = ToggleFilterView | ComplexFilterView;
 
 const resizeSignal = (
     element: () => ElementRef<HTMLElement> | undefined,
@@ -120,9 +124,7 @@ export class NgxFiltersGroupComponent {
     // #region Filters
     protected allFilters = contentChildren(FILTER_TOKEN);
     protected readonly activeFilters = computed(() => this.allFilters().filter(filter => filter.active()).length);
-    protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter =>
-        filter.type === 'toggle' ? filter.active() : filter.active
-    ).length);
+    protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter => filter.active).length);
 
     protected readonly visibleFilters = computed(() => {
         const lastFittingIndex = this.lastFittingIndex();
@@ -188,8 +190,8 @@ export class NgxFiltersGroupComponent {
 
     private readonly liveFilterViews = computed<FilterView[]>(() => this.allFilters().map((f): FilterView =>
         f.type === 'toggle'
-            ? f
-            : { source: f, type: 'complex', label: f.label(), active: f.active(), selectedFilterLabel: f.selectedFilterLabel(), icon: f.icon(), templateRef: f.templateRef }
+            ? { source: f, type: 'toggle', active: f.active() }
+            : { source: f, type: 'complex', active: f.active(), selectedFilterLabel: f.selectedFilterLabel(), templateRef: f.templateRef }
     ));
 
     private constructor() {

@@ -47,12 +47,12 @@
                     @if (f.type === 'toggle') {
                         <mat-chip-option
                             selectable="true"
-                            [selected]="f.active()"
-                            (selectionChange)="f.active.set($event.selected)">
-                            @if (f.icon()) {
-                                <mat-icon matChipAvatar>{{ f.icon() }}</mat-icon>
+                            [selected]="f.active"
+                            (selectionChange)="f.source.active.set($event.selected)">
+                            @if (f.source.icon()) {
+                                <mat-icon matChipAvatar>{{ f.source.icon() }}</mat-icon>
                             }
-                            {{ f.label() }}
+                            {{ f.source.label() }}
                         </mat-chip-option>
                     } @else {
                         <mat-chip-option
@@ -64,10 +64,10 @@
                             (click)="this.openOverlay(trigger, f.templateRef, false)"
                             (keydown.enter)="this.openOverlay(trigger, f.templateRef, false)"
                             (keydown.space)="this.openOverlay(trigger, f.templateRef, false)">
-                            @if (f.icon) {
-                                <mat-icon matChipAvatar>{{ f.icon }}</mat-icon>
+                            @if (f.source.icon()) {
+                                <mat-icon matChipAvatar>{{ f.source.icon() }}</mat-icon>
                             }
-                            {{ f.label }}
+                            {{ f.source.label() }}
                             @if (f.selectedFilterLabel) {
                                 <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel }}</span>
                             }

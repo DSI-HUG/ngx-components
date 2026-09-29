@@ -231,14 +231,13 @@ ngx-filters-group {
                         position: sticky;
                         top: 0;
                         z-index: 1;
-
+                        min-height: 44px;
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
                         inline-size: 100%;
                         box-sizing: border-box;
-                        padding-inline: var(--ngx-filters-group-overlay-content-headline-padding-inline, 0.25rem);
-                        padding-block: var(--ngx-filters-group-overlay-content-headline-padding-block, 0.5rem);
+                        padding: var(--ngx-filters-group-overlay-content-headline-padding, 0.25rem);
                         border: 0;
                         background-color: var(
                             --ngx-filters-group-overlay-content-headline-bg-color,
@@ -254,7 +253,10 @@ ngx-filters-group {
                                         var(--mat-sys-on-surface)
                                     )
                                     10%,
-                                transparent
+                                var(
+                                    --ngx-filters-group-overlay-content-headline-bg-color,
+                                    var(--mat-sys-surface-container-low)
+                                )
                             );
                             border-radius: var(
                                 --ngx-filters-group-overlay-content-headline-hover-border-radius,
