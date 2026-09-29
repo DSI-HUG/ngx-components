@@ -8,5 +8,6 @@
     "filters": "Filter",
     "actives": "Aktiv",
     "reset": "Zurücksetzen",
-    "close": "Schließen"
+    "close": "Schließen",
+    "collapseAll": "Alle reduzieren"
 }

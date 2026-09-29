@@ -14,5 +14,6 @@ export class NgxFilterDirective implements NgxComplexFilter {
     public readonly label = input.required<string>();
     public readonly active = input.required<boolean>();
     public readonly selectedFilterLabel = input('');
+    public readonly icon = input<string>();
     public readonly templateRef = inject<TemplateRef<unknown>>(TemplateRef);
 }

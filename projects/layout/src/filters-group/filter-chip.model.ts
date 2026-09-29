@@ -6,6 +6,7 @@ interface NgxBaseFilter {
     readonly label: InputSignal<string>;
     readonly active: InputSignal<boolean>;
     readonly type: FilterType;
+    readonly icon: InputSignal<string | undefined>;
 }
 
 export interface NgxToggleFilter extends NgxBaseFilter {

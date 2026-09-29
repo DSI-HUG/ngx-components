@@ -4,6 +4,7 @@ import { MatBadge } from '@angular/material/badge';
 import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
@@ -76,6 +77,9 @@ const meta: Meta = {
                 NgxBarTitleDirective,
                 NgxColumnComponent,
                 NgxActionDirective
+            ],
+            providers: [
+                provideNativeDateAdapter()
             ]
         })
     ],
@@ -113,10 +117,10 @@ type Story = StoryObj;
 type LayoutStoryProps = Story['args'] & {
     commentFilter: boolean;
     documentFilter: boolean;
-    selectedPeriod: '3_DAYS' | '3_MONTHS' | 'LAST_YEAR' | 'OTHER' | undefined;
+    selectedPeriod: string[];
     selectedStartDate: Date | undefined;
     selectedEndDate: Date | undefined;
-    orderOrigin: 'HOSP' | 'HOME' | undefined;
+    orderOrigin: string[];
     orderTypes: string[];
     selectedDateRangeLabel: () => string;
     orderOriginSelectedLabel: () => string;
@@ -128,14 +132,19 @@ const props = (args: Story['args']): LayoutStoryProps => ({
     ...args,
     commentFilter: false,
     documentFilter: false,
-    selectedPeriod: undefined as '3_DAYS' | '3_MONTHS' | 'LAST_YEAR' | 'OTHER' | undefined,
+    selectedPeriod: [] as string[],
     selectedStartDate: undefined as Date | undefined,
     selectedEndDate: undefined as Date | undefined,
-    orderOrigin: undefined as 'HOSP' | 'HOME' | undefined,
+    orderOrigin: [] as string[],
     orderTypes: [] as string[],
 
     selectedDateRangeLabel(): string {
-        switch (this.selectedPeriod) {
+        if (this.selectedPeriod.length === 0) {
+            return '';
+        }
+
+        const period = this.selectedPeriod[0];
+        switch (period) {
             case '3_DAYS':
                 return '3 jours';
             case '3_MONTHS':
@@ -162,14 +171,15 @@ const props = (args: Story['args']): LayoutStoryProps => ({
     },
 
     orderOriginSelectedLabel(): string {
-        if (this.orderOrigin === 'HOSP') {
-            return 'Hôpital';
-        }
+        if (this.orderOrigin) {
+            if (this.orderOrigin[0] === 'HOSP') {
+                return 'Hôpital';
+            }
 
-        if (this.orderOrigin === 'HOME') {
-            return 'Domicile';
+            if (this.orderOrigin[0] === 'HOME') {
+                return 'Domicile';
+            }
         }
-
         return '';
     },
 
@@ -177,12 +187,12 @@ const props = (args: Story['args']): LayoutStoryProps => ({
         return this.orderTypes.join(', ');
     },
     buttonResetClicked(): void {
-        this.selectedPeriod = undefined;
+        this.selectedPeriod = [];
         this.selectedStartDate = undefined;
         this.selectedEndDate = undefined;
         this.commentFilter = false;
         this.documentFilter = false;
-        this.orderOrigin = undefined;
+        this.orderOrigin = [];
         this.orderTypes = [];
         console.log('reset clicked');
     }

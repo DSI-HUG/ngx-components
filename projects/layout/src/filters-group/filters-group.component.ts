@@ -1,16 +1,35 @@
+import { CdkTrapFocus } from '@angular/cdk/a11y';
+import { CdkAccordion, CdkAccordionItem } from '@angular/cdk/accordion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatIconButton } from '@angular/material/button';
-import { MatChip, MatChipOption, MatChipSet, MatChipTrailingIcon } from '@angular/material/chips';
+import { MatChip, MatChipAvatar, MatChipOption, MatChipSet, MatChipTrailingIcon } from '@angular/material/chips';
+import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
-import { FILTER_TOKEN } from './filter-chip.model';
+import { FILTER_TOKEN, NgxComplexFilter, NgxToggleFilter } from './filter-chip.model';
+
+interface ComplexFilterView {
+    readonly source: NgxComplexFilter;
+    readonly type: 'complex';
+    readonly active: boolean;
+    readonly selectedFilterLabel: string;
+    readonly templateRef: TemplateRef<unknown>;
+}
+
+interface ToggleFilterView {
+    readonly source: NgxToggleFilter;
+    readonly type: 'toggle';
+    readonly active: boolean;
+}
+
+type FilterView = ToggleFilterView | ComplexFilterView;
 
 const resizeSignal = (
     element: () => ElementRef<HTMLElement> | undefined,
@@ -68,7 +87,12 @@ const resizeSignal = (
         MatSlideToggle,
         FormsModule,
         MatBadge,
-        LowerCasePipe
+        LowerCasePipe,
+        MatDivider,
+        CdkTrapFocus,
+        MatChipAvatar,
+        CdkAccordion,
+        CdkAccordionItem
     ]
 })
 export class NgxFiltersGroupComponent {
@@ -99,25 +123,29 @@ export class NgxFiltersGroupComponent {
 
     // #region Filters
     protected allFilters = contentChildren(FILTER_TOKEN);
-    protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter => filter.active()).length);
+    protected readonly activeFilters = computed(() => this.allFilters().filter(filter => filter.active()).length);
+    protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter => filter.active).length);
 
     protected readonly visibleFilters = computed(() => {
         const lastFittingIndex = this.lastFittingIndex();
         if (lastFittingIndex < 0) {
             return [];
         }
-
-        return this.allFilters().slice(0, lastFittingIndex);
+        return this.allFilterViews().slice(0, lastFittingIndex);
     });
 
     protected readonly invisibleFilters = computed(() => {
         const lastFittingIndex = this.lastFittingIndex();
         if (lastFittingIndex < 0) {
-            return this.allFilters();
+            return this.allFilterViews();
         }
-
-        return this.allFilters().slice(lastFittingIndex);
+        return this.allFilterViews().slice(lastFittingIndex);
     });
+
+    protected readonly allFilterViews = signal<FilterView[]>([]);
+    protected readonly expandedFiltersAmount = signal(0);
+
+    private readonly accordion = viewChild(CdkAccordion);
 
     private readonly filterContainerRef = viewChild.required<ElementRef<HTMLElement>>('container');
     private readonly filterContainerPadding = computed(() => Number.parseFloat(globalThis.getComputedStyle(this.filterContainerRef().nativeElement).paddingInline));
@@ -142,7 +170,9 @@ export class NgxFiltersGroupComponent {
     private readonly staticFieldsWidth = computed(() => Math.ceil(this.staticFieldsSize()?.contentRect.width || 0));
     // #endregion
 
-    private readonly lastFittingIndex = computed(() => {
+    private readonly lastFittingIndex = signal(-1);
+
+    private readonly rawLastFittingIndex = computed(() => {
         const hostWidth = this.hostWidth();
         if (!hostWidth) {
             return -1;
@@ -158,8 +188,57 @@ export class NgxFiltersGroupComponent {
         return this.getLastFittingIndex(availableSpace, filters);
     });
 
+    private readonly liveFilterViews = computed<FilterView[]>(() => this.allFilters().map((f): FilterView =>
+        f.type === 'toggle'
+            ? { source: f, type: 'toggle', active: f.active() }
+            : { source: f, type: 'complex', active: f.active(), selectedFilterLabel: f.selectedFilterLabel(), templateRef: f.templateRef }
+    ));
+
+    private constructor() {
+        effect(() => {
+            const index = this.rawLastFittingIndex();
+            const views = this.liveFilterViews();
+            if (!this.overlayOpen()) {
+                this.lastFittingIndex.set(index);
+                this.allFilterViews.set(views);
+            }
+        });
+    }
+
+    protected onFilterOpened(): void {
+        this.expandedFiltersAmount.update(amount => amount + 1);
+    }
+
+    protected onFilterClosed(): void {
+        this.expandedFiltersAmount.update(amount => Math.max(0, amount - 1));
+    }
+
     protected emitResetClicked(): void {
         this.resetFilters.emit();
+    }
+
+    protected openOverlay(
+        trigger: CdkOverlayOrigin,
+        templateRef: TemplateRef<unknown>,
+        moreFiltersOverlay: boolean
+    ): void {
+        const isSameOverlay =
+        this.overlayOpen() && this.overlayContent() === templateRef;
+
+        this.overlayOpen.set(false);
+
+        if (isSameOverlay) {
+            return;
+        }
+
+        this.overlayOrigin.set(trigger);
+        this.overlayContent.set(templateRef);
+        this.moreFiltersOverlay.set(moreFiltersOverlay);
+        this.overlayOpen.set(true);
+    }
+
+    protected collapseAllFilters(): void {
+        this.accordion()?.closeAll();
     }
 
     private getLastFittingIndex(availableSpace: number, elements: readonly HTMLElement[]): number {

@@ -9,12 +9,10 @@
             aria-label="All filters"
             cdkOverlayOrigin
             #trigger="cdkOverlayOrigin"
-            (click)="
-                this.overlayOrigin.set(trigger);
-                this.overlayContent.set(moreFilters);
-                this.overlayOpen.set(true);
-                this.moreFiltersOverlay.set(true)
-            "
+            [class.filter-overlay-open]="this.overlayOpen() && this.overlayContent() === moreFilters"
+            (click)="openOverlay(trigger, moreFilters, true)"
+            (keydown.enter)="openOverlay(trigger, moreFilters, true)"
+            (keydown.space)="openOverlay(trigger, moreFilters, true)"
             matTooltip="{{ intl?.allFilters ?? 'All filters' }}">
             <mat-icon>filter_alt</mat-icon>
         </button>
@@ -49,30 +47,36 @@
                     @if (f.type === 'toggle') {
                         <mat-chip-option
                             selectable="true"
-                            [selected]="f.active()"
-                            (selectionChange)="f.active.set($event.selected)">
-                            {{ f.label() }}
+                            [selected]="f.active"
+                            (selectionChange)="f.source.active.set($event.selected)">
+                            @if (f.source.icon()) {
+                                <mat-icon matChipAvatar>{{ f.source.icon() }}</mat-icon>
+                            }
+                            {{ f.source.label() }}
                         </mat-chip-option>
                     } @else {
                         <mat-chip-option
                             [selectable]="false"
-                            [selected]="f.active()"
+                            [selected]="f.active"
+                            [class.filter-overlay-open]="this.overlayOpen() && this.overlayContent() === f.templateRef"
                             cdkOverlayOrigin
                             #trigger="cdkOverlayOrigin"
-                            (click)="
-                                this.overlayOrigin.set(trigger);
-                                this.overlayContent.set(f.templateRef);
-                                this.overlayOpen.set(true);
-                                this.moreFiltersOverlay.set(false)
-                            ">
-                            {{ f.label() }}
-                            @if (f.selectedFilterLabel()) {
-                                <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel() }}</span>
+                            (click)="this.openOverlay(trigger, f.templateRef, false)"
+                            (keydown.enter)="this.openOverlay(trigger, f.templateRef, false)"
+                            (keydown.space)="this.openOverlay(trigger, f.templateRef, false)">
+                            @if (f.source.icon()) {
+                                <mat-icon matChipAvatar>{{ f.source.icon() }}</mat-icon>
                             }
-                            <mat-icon
-                                [class.is-overlay-open]="this.overlayOpen() && this.overlayContent() === f.templateRef"
-                                matChipTrailingIcon>
-                                arrow_drop_down
+                            {{ f.source.label() }}
+                            @if (f.selectedFilterLabel) {
+                                <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel }}</span>
+                            }
+                            <mat-icon matChipTrailingIcon>
+                                {{
+                                    this.overlayOpen() && this.overlayContent() === f.templateRef
+                                        ? 'arrow_drop_up'
+                                        : 'arrow_drop_down'
+                                }}
                             </mat-icon>
                         </mat-chip-option>
                     }
@@ -85,21 +89,21 @@
                     <mat-chip
                         cdkOverlayOrigin
                         [class.filter-active]="activeFiltersAmount()"
+                        [class.filter-overlay-open]="this.overlayOpen() && this.overlayContent() === moreFilters"
                         #trigger="cdkOverlayOrigin"
-                        (click)="
-                            this.overlayOrigin.set(trigger);
-                            this.overlayContent.set(moreFilters);
-                            this.overlayOpen.set(true);
-                            this.moreFiltersOverlay.set(true)
-                        ">
+                        (click)="openOverlay(trigger, moreFilters, true)"
+                        (keydown.enter)="openOverlay(trigger, moreFilters, true)"
+                        (keydown.space)="openOverlay(trigger, moreFilters, true)">
                         +{{ invisibleFiltersAmount }} {{ intl?.filters ?? 'Filters' | lowercase }} ({{
                             activeFiltersAmount()
                         }}
                         {{ intl?.actives ?? 'Actives' | lowercase }})
-                        <mat-icon
-                            [class.is-overlay-open]="this.overlayOpen() && this.overlayContent() === moreFilters"
-                            matChipTrailingIcon>
-                            arrow_drop_down
+                        <mat-icon matChipTrailingIcon>
+                            {{
+                                this.overlayOpen() && this.overlayContent() === moreFilters
+                                    ? 'arrow_drop_up'
+                                    : 'arrow_drop_down'
+                            }}
                         </mat-icon>
                     </mat-chip>
                 </mat-chip-set>
@@ -117,25 +121,49 @@
 
 <ng-template #moreFilters>
     @if (allFilters()) {
-        @for (f of allFilters(); track $index) {
-            @if (f.type === 'toggle') {
-                <section class="filter">
-                    <mat-slide-toggle labelPosition="before" [(ngModel)]="f.active">
-                        {{ f.label() }}
-                    </mat-slide-toggle>
-                </section>
-            } @else {
-                <section class="filter">
-                    <div class="title">
-                        <span class="label">{{ f.label() }}</span>
-                        <span class="value">{{ f.selectedFilterLabel() }}</span>
-                    </div>
-                    @if (f.templateRef) {
-                        <ng-container *ngTemplateOutlet="f.templateRef"></ng-container>
-                    }
-                </section>
+        <cdk-accordion #accordion="cdkAccordion" [multi]="true">
+            @for (f of allFilters(); track $index; let last = $last) {
+                @if (f.type === 'toggle') {
+                    <section class="filter">
+                        <mat-slide-toggle labelPosition="before" [(ngModel)]="f.active">
+                            {{ f.label() }}
+                        </mat-slide-toggle>
+                    </section>
+                } @else {
+                    <cdk-accordion-item
+                        #accordionItem="cdkAccordionItem"
+                        class="filter"
+                        (opened)="onFilterOpened()"
+                        (closed)="onFilterClosed()">
+                        <button
+                            class="headline"
+                            type="button"
+                            (click)="accordionItem.toggle()"
+                            [attr.aria-expanded]="accordionItem.expanded"
+                            [attr.aria-controls]="'filter-content-' + $index">
+                            <span class="title">
+                                <span class="label">{{ f.label() }}</span>
+                                <span class="value">{{ f.selectedFilterLabel() }}</span>
+                            </span>
+
+                            <mat-icon aria-hidden="true" class="expand-icon">
+                                {{ accordionItem.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+                            </mat-icon>
+                        </button>
+
+                        @if (accordionItem.expanded) {
+                            <div class="filter-content" role="region" [id]="'filter-content-' + $index">
+                                <ng-container *ngTemplateOutlet="f.templateRef"></ng-container>
+                            </div>
+                        }
+                    </cdk-accordion-item>
+                }
+
+                @if (!last) {
+                    <mat-divider />
+                }
             }
-        }
+        </cdk-accordion>
     }
 </ng-template>
 
@@ -148,19 +176,30 @@
         [cdkConnectedOverlayOrigin]="overlayOrigin"
         [cdkConnectedOverlayOpen]="overlayOpen"
         (detach)="this.overlayOpen.set(false)"
-        cdkConnectedOverlayHasBackdrop="true"
-        backdrop
+        [cdkConnectedOverlayHasBackdrop]="true"
         (backdropClick)="this.overlayOpen.set(false)"
-        cdkConnectedOverlayPanelClass="filter-group--overlay"
-        cdkConnectedOverlayBackdropClass="filter-group--overlay--backdrop--transparent"
+        cdkConnectedOverlayPanelClass="filters-group--overlay"
+        cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
         [cdkConnectedOverlayPositions]="overlayPositions"
         [cdkConnectedOverlayFlexibleDimensions]="true"
         [cdkConnectedOverlayGrowAfterOpen]="true"
         [cdkConnectedOverlayViewportMargin]="32">
-        <div class="filters-group--overlay--container">
+        <div class="filters-group--overlay--container" cdkTrapFocus cdkTrapFocusAutoCapture="true">
             @if (moreFiltersOverlay()) {
                 <div class="filters--title">
-                    <span>{{ intl?.filters ?? 'Filters' }}</span>
+                    <span class="title">
+                        {{ intl?.filters ?? 'Filters' }} ({{ activeFilters() }}
+                        {{ intl?.actives ?? 'Actives' | lowercase }})
+                    </span>
+                    <button
+                        mat-icon-button
+                        type="button"
+                        aria-label="Collapse all filters"
+                        [disabled]="expandedFiltersAmount() === 0"
+                        (click)="collapseAllFilters()"
+                        matTooltip="{{ intl?.collapseAll ?? 'Collapse all' }}">
+                        <mat-icon>unfold_less</mat-icon>
+                    </button>
                     <button
                         mat-icon-button
                         aria-label="Reset filters"
@@ -169,10 +208,15 @@
                         <mat-icon>settings_backup_restore</mat-icon>
                     </button>
                 </div>
+                <mat-divider class="filters-group--title-divider" />
+                <div class="filters--content">
+                    <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
+                </div>
+            } @else {
+                <div class="one-filter-content">
+                    <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
+                </div>
             }
-            <div class="filters--content">
-                <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
-            </div>
         </div>
     </ng-template>
 }
