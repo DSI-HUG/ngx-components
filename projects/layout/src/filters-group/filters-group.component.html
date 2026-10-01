@@ -23,6 +23,9 @@
             <mat-chip-set>
                 @for (f of allFilters(); track $index) {
                     <mat-chip-option [selectable]="false" [selected]="f.active()">
+                        @if (f.icon()) {
+                            <mat-icon matChipAvatar>{{ f.icon() }}</mat-icon>
+                        }
                         {{ f.label() }}
                         @if (f.type === 'complex' && f.selectedFilterLabel()) {
                             <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel() }}</span>
@@ -136,6 +139,7 @@
                         (opened)="onFilterOpened()"
                         (closed)="onFilterClosed()">
                         <button
+                            #headline
                             class="headline"
                             type="button"
                             (click)="accordionItem.toggle()"
@@ -153,7 +157,11 @@
 
                         @if (accordionItem.expanded) {
                             <div class="filter-content" role="region" [id]="'filter-content-' + $index">
-                                <ng-container *ngTemplateOutlet="f.templateRef"></ng-container>
+                                <ng-container
+                                    *ngTemplateOutlet="
+                                        f.templateRef;
+                                        context: contextForSection(accordionItem, headline)
+                                    "></ng-container>
                             </div>
                         }
                     </cdk-accordion-item>
@@ -209,12 +217,12 @@
                     </button>
                 </div>
                 <mat-divider class="filters-group--title-divider" />
-                <div class="filters--content">
+                <div #filtersContent class="filters--content">
                     <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
                 </div>
             } @else {
                 <div class="one-filter-content">
-                    <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
+                    <ng-container *ngTemplateOutlet="overlayContent; context: filterContext"></ng-container>
                 </div>
             }
         </div>

@@ -91,13 +91,14 @@ export const filtersGroupFoldedTemplate = `
 
 export const filtersGroupTemplate = `
     <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="filtersGroupFolded">
-        <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" />
+        <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" icon="comment" />
         <ng-template
             [ngxFilter]
             [active]="!!selectedPeriod.length"
             label="Periode"
-            [selectedFilterLabel]="selectedDateRangeLabel()">
-            <mat-selection-list multiple="false" [(ngModel)]="selectedPeriod" hideSingleSelectionIndicator>
+            [selectedFilterLabel]="selectedDateRangeLabel()"
+            let-closeOverlay>
+            <mat-selection-list multiple="false" [(ngModel)]="selectedPeriod" hideSingleSelectionIndicator (selectionChange)="$event.options[0]?.value !== 'OTHER' && closeOverlay()">
                 <mat-list-option value="3_DAYS">3 derniers jours</mat-list-option>
                 <mat-list-option value="3_MONTHS">3 derniers mois</mat-list-option>
                 <mat-list-option value="LAST_YEAR">Dernière année</mat-list-option>
@@ -108,7 +109,7 @@ export const filtersGroupTemplate = `
                     <mat-label>Enter a date range</mat-label>
                     <mat-date-range-input [rangePicker]="picker">
                         <input matStartDate [(ngModel)]="selectedStartDate" placeholder="Start date" />
-                        <input matEndDate [(ngModel)]="selectedEndDate" placeholder="End date" />
+                        <input matEndDate [(ngModel)]="selectedEndDate" placeholder="End date" (dateChange)="selectedStartDate && selectedEndDate && closeOverlay()"/>
                     </mat-date-range-input>
                     <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -121,8 +122,9 @@ export const filtersGroupTemplate = `
             [active]="!!orderOrigin.length"
             label="Origine"
             icon="place"
-            [selectedFilterLabel]="orderOriginSelectedLabel()">
-            <mat-selection-list multiple="false" [(ngModel)]="orderOrigin" hideSingleSelectionIndicator>
+            [selectedFilterLabel]="orderOriginSelectedLabel()"
+            let-closeOverlay>
+            <mat-selection-list multiple="false" [(ngModel)]="orderOrigin" hideSingleSelectionIndicator (selectionChange)="closeOverlay()">
                 <mat-list-option value="HOSP">Hôpital</mat-list-option>
                 <mat-list-option value="HOME">Domicile</mat-list-option>
             </mat-selection-list>

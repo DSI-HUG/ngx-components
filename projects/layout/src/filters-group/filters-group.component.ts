@@ -15,6 +15,10 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { NgxLayoutIntl } from '../providers';
 import { FILTER_TOKEN, NgxComplexFilter, NgxToggleFilter } from './filter-chip.model';
 
+export interface NgxFilterContext {
+    $implicit: () => void;
+}
+
 interface ComplexFilterView {
     readonly source: NgxComplexFilter;
     readonly type: 'complex';
@@ -145,7 +149,16 @@ export class NgxFiltersGroupComponent {
     protected readonly allFilterViews = signal<FilterView[]>([]);
     protected readonly expandedFiltersAmount = signal(0);
 
+    protected readonly filterContext = {
+        $implicit: (): void => {
+            if (!this.moreFiltersOverlay()) {
+                this.overlayOpen.set(false);
+            }
+        }
+    };
+
     private readonly accordion = viewChild(CdkAccordion);
+    private readonly filtersContent = viewChild<ElementRef<HTMLElement>>('filtersContent');
 
     private readonly filterContainerRef = viewChild.required<ElementRef<HTMLElement>>('container');
     private readonly filterContainerPadding = computed(() => Number.parseFloat(globalThis.getComputedStyle(this.filterContainerRef().nativeElement).paddingInline));
@@ -203,6 +216,27 @@ export class NgxFiltersGroupComponent {
                 this.allFilterViews.set(views);
             }
         });
+    }
+
+    protected contextForSection(item: CdkAccordionItem, headline: HTMLElement): NgxFilterContext {
+        return {
+            $implicit: (): void => {
+                item.close();
+
+                requestAnimationFrame(() => {
+                    const container = this.filtersContent()?.nativeElement;
+                    if (!container) {
+                        return;
+                    }
+
+                    const top = headline.getBoundingClientRect().top
+                    - container.getBoundingClientRect().top
+                    + container.scrollTop;
+
+                    container.scrollTo({ top, behavior: 'smooth' });
+                });
+            }
+        };
     }
 
     protected onFilterOpened(): void {
