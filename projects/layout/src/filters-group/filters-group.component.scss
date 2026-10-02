@@ -190,7 +190,8 @@ ngx-filters-group {
             }
         }
 
-        .filters-group--title-divider {
+        .filters-group--title-divider,
+        .filters-group--footer-divider {
             margin: 0 -0.25rem;
         }
 
@@ -203,7 +204,7 @@ ngx-filters-group {
                 box-sizing: border-box;
                 min-inline-size: var(--ngx-filters-group-overlay-content-min-inline-size, 18.75rem);
 
-                padding: var(--ngx-filters-group-overlay-content-padding, 0.5rem);
+                padding: var(--ngx-filters-group-overlay-content-padding, 0.5rem 0.25rem);
                 display: flex;
                 flex-direction: column;
                 gap: var(--ngx-filters-group-overlay-content-gap, 0.25rem);
@@ -306,6 +307,16 @@ ngx-filters-group {
                     }
                 }
             }
+        }
+
+        .filters-group--overlay--footer-actions {
+            display: flex;
+            justify-content: end;
+            box-sizing: border-box;
+            gap: var(--ngx-filters-group-overlay-footer-actions-gap, 0.5rem);
+            width: 100%;
+            padding: var(--ngx-filters-group-overlay-footer-actions-padding, 0.25rem);
+            padding-block-start: var(--ngx-filters-group-overlay-footer-actions-padding, 0.5rem);
         }
     }
 }

@@ -9,5 +9,7 @@
     "actives": "Aktiv",
     "reset": "Zurücksetzen",
     "close": "Schließen",
-    "collapseAll": "Alle reduzieren"
+    "collapseAll": "Alle reduzieren",
+    "cancel": "Abbrechen",
+    "apply": "Anwenden"
 }

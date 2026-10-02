@@ -90,7 +90,7 @@ export const filtersGroupFoldedTemplate = `
     </ngx-filters-group>`;
 
 export const filtersGroupTemplate = `
-    <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="filtersGroupFolded">
+    <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="filtersGroupFolded" (applyClicked)="applyFilters()" (cancelClicked)="cancelFilters()">
         <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" icon="comment" />
         <ng-template
             [ngxFilter]
@@ -121,10 +121,10 @@ export const filtersGroupTemplate = `
             [ngxFilter]
             [active]="!!orderOrigin.length"
             label="Origine"
-            icon="place"
             [selectedFilterLabel]="orderOriginSelectedLabel()"
-            let-closeOverlay>
-            <mat-selection-list multiple="false" [(ngModel)]="orderOrigin" hideSingleSelectionIndicator (selectionChange)="closeOverlay()">
+            icon="place"
+            [validationDynamique]="false">
+            <mat-selection-list multiple="false" [(ngModel)]="orderOrigin"  >
                 <mat-list-option value="HOSP">Hôpital</mat-list-option>
                 <mat-list-option value="HOME">Domicile</mat-list-option>
             </mat-selection-list>

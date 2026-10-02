@@ -9,5 +9,7 @@
     "actives": "Actives",
     "reset": "Reset",
     "close": "Close",
-    "collapseAll": "Collapse all"
+    "collapseAll": "Collapse all",
+    "cancel": "Cancel",
+    "apply": "Apply"
 }

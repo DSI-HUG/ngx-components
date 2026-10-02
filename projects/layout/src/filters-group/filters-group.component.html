@@ -185,12 +185,12 @@
         [cdkConnectedOverlayOpen]="overlayOpen"
         (detach)="this.overlayOpen.set(false)"
         [cdkConnectedOverlayHasBackdrop]="true"
-        (backdropClick)="this.overlayOpen.set(false)"
+        (backdropClick)="!showValidationActions() && this.overlayOpen.set(false)"
         cdkConnectedOverlayPanelClass="filters-group--overlay"
         cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
         [cdkConnectedOverlayPositions]="overlayPositions"
-        [cdkConnectedOverlayFlexibleDimensions]="true"
         [cdkConnectedOverlayGrowAfterOpen]="true"
+        [cdkConnectedOverlayFlexibleDimensions]="true"
         [cdkConnectedOverlayViewportMargin]="32">
         <div class="filters-group--overlay--container" cdkTrapFocus cdkTrapFocusAutoCapture="true">
             @if (moreFiltersOverlay()) {
@@ -220,9 +220,18 @@
                 <div #filtersContent class="filters--content">
                     <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
                 </div>
+                @if (showValidationActions()) {
+                    <mat-divider class="filters-group--footer-divider" />
+                }
             } @else {
                 <div class="one-filter-content">
                     <ng-container *ngTemplateOutlet="overlayContent; context: filterContext"></ng-container>
+                </div>
+            }
+            @if (showValidationActions()) {
+                <div class="filters-group--overlay--footer-actions">
+                    <button matButton (click)="emitCancelClicked()">{{ intl?.cancel ?? 'Cancel' }}</button>
+                    <button matButton="filled" (click)="emitAppliedFilters()">{{ intl?.apply ?? 'Apply' }}</button>
                 </div>
             }
         </div>

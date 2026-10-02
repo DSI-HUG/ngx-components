@@ -5,7 +5,7 @@ import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
-import { MatIconButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatChip, MatChipAvatar, MatChipOption, MatChipSet, MatChipTrailingIcon } from '@angular/material/chips';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
@@ -96,11 +96,14 @@ const resizeSignal = (
         CdkTrapFocus,
         MatChipAvatar,
         CdkAccordion,
-        CdkAccordionItem
+        CdkAccordionItem,
+        MatButton
     ]
 })
 export class NgxFiltersGroupComponent {
     public readonly resetFilters = output();
+    public readonly cancelClicked = output();
+    public readonly applyClicked = output();
     public readonly folded = input<boolean>();
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
@@ -123,6 +126,14 @@ export class NgxFiltersGroupComponent {
         overlayY: 'top',
         offsetY: 16
     }];
+
+    protected readonly showValidationActions = computed(() =>
+        this.allFilters().some(filter =>
+            filter.type === 'complex'
+        && !filter.validationDynamique()
+        && (this.moreFiltersOverlay() || filter.templateRef === this.overlayContent())
+        )
+    );
     // #endregion
 
     // #region Filters
@@ -162,7 +173,6 @@ export class NgxFiltersGroupComponent {
 
     private readonly filterContainerRef = viewChild.required<ElementRef<HTMLElement>>('container');
     private readonly filterContainerPadding = computed(() => Number.parseFloat(globalThis.getComputedStyle(this.filterContainerRef().nativeElement).paddingInline));
-
     // #endregion
 
     // #region Host
@@ -207,15 +217,33 @@ export class NgxFiltersGroupComponent {
             : { source: f, type: 'complex', active: f.active(), selectedFilterLabel: f.selectedFilterLabel(), templateRef: f.templateRef }
     ));
 
+    private readonly refreshAppliedFilters = signal(false);
+
     private constructor() {
         effect(() => {
             const index = this.rawLastFittingIndex();
-            const views = this.liveFilterViews();
+
             if (!this.overlayOpen()) {
                 this.lastFittingIndex.set(index);
-                this.allFilterViews.set(views);
+
+                if (!this.showValidationActions() || this.refreshAppliedFilters()) {
+                    const views = this.liveFilterViews();
+                    this.allFilterViews.set(views);
+                    this.refreshAppliedFilters.set(false);
+                }
             }
         });
+    }
+
+    protected emitCancelClicked(): void {
+        this.cancelClicked.emit();
+        this.overlayOpen.set(false);
+    }
+
+    protected emitAppliedFilters(): void {
+        this.refreshAppliedFilters.set(true);
+        this.applyClicked.emit();
+        this.overlayOpen.set(false);
     }
 
     protected contextForSection(item: CdkAccordionItem, headline: HTMLElement): NgxFilterContext {
@@ -249,6 +277,10 @@ export class NgxFiltersGroupComponent {
 
     protected emitResetClicked(): void {
         this.resetFilters.emit();
+
+        if (!this.overlayOpen()) {
+            this.refreshAppliedFilters.set(true);
+        }
     }
 
     protected openOverlay(

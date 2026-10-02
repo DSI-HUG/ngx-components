@@ -120,11 +120,34 @@ type LayoutStoryProps = Story['args'] & {
     selectedEndDate: Date | undefined;
     orderOrigin: string[];
     orderTypes: string[];
+    appliedFilters: FiltersState;
     selectedDateRangeLabel: () => string;
     orderOriginSelectedLabel: () => string;
     orderTypesSelectedLabel: () => string;
     buttonResetClicked: () => void;
+    applyFilters: () => void;
+    cancelFilters: () => void;
 };
+
+interface FiltersState {
+    commentFilter: boolean;
+    documentFilter: boolean;
+    selectedPeriod: string[];
+    selectedStartDate: Date | undefined;
+    selectedEndDate: Date | undefined;
+    orderOrigin: string[];
+    orderTypes: string[];
+}
+
+const copyFilters = (state: FiltersState): FiltersState => ({
+    commentFilter: state.commentFilter,
+    documentFilter: state.documentFilter,
+    selectedPeriod: [...state.selectedPeriod],
+    selectedStartDate: state.selectedStartDate,
+    selectedEndDate: state.selectedEndDate,
+    orderOrigin: [...state.orderOrigin],
+    orderTypes: [...state.orderTypes]
+});
 
 const props = (args: Story['args']): LayoutStoryProps => ({
     ...args,
@@ -135,6 +158,15 @@ const props = (args: Story['args']): LayoutStoryProps => ({
     selectedEndDate: undefined as Date | undefined,
     orderOrigin: [] as string[],
     orderTypes: [] as string[],
+    appliedFilters: {
+        commentFilter: false,
+        documentFilter: false,
+        selectedPeriod: [] as string[],
+        selectedStartDate: undefined as Date | undefined,
+        selectedEndDate: undefined as Date | undefined,
+        orderOrigin: [] as string[],
+        orderTypes: [] as string[]
+    },
 
     selectedDateRangeLabel(): string {
         if (this.selectedPeriod.length === 0) {
@@ -166,6 +198,14 @@ const props = (args: Story['args']): LayoutStoryProps => ({
             default:
                 return '';
         }
+    },
+
+    applyFilters(): void {
+        this.appliedFilters = copyFilters(this);
+    },
+
+    cancelFilters(): void {
+        Object.assign(this, copyFilters(this.appliedFilters));
     },
 
     orderOriginSelectedLabel(): string {
