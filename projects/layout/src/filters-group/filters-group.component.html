@@ -224,7 +224,7 @@
                     <mat-divider class="filters-group--footer-divider" />
                 }
             } @else {
-                <div class="one-filter-content">
+                <div #oneFilterContent class="one-filter-content" [class.has-overflow]="hasOverflow()">
                     <ng-container *ngTemplateOutlet="overlayContent; context: filterContext"></ng-container>
                 </div>
             }

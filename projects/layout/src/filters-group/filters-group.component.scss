@@ -153,16 +153,34 @@ ngx-filters-group {
     display: flex;
     max-width: min(90dvw, 560px);
     @include mat.elevation(3);
+    box-sizing: border-box;
 
     .filters-group--overlay--container {
-        padding: var(--ngx-filters-group-overlay-container-padding, 0.25rem);
         max-width: var(--ngx-filters-group-overlay-container-max-width, min(calc(90dvw - 0.5rem), 552px));
         display: flex;
         flex-direction: column;
-        min-block-size: 0;
-        block-size: 100%;
         overflow: hidden;
         box-sizing: border-box;
+
+        &:has(.filters-group--overlay--footer-actions) {
+            .one-filter-content {
+                border-radius: var(--ngx-filters-group-overlay-radius, 0.75rem)
+                    var(--ngx-filters-group-overlay-radius, 0.75rem) 0 0;
+
+                &::-webkit-scrollbar-track {
+                    margin-block-start: var(--ngx-filters-group-overlay-scroll-track-margin-block, 0.5rem);
+                }
+            }
+        }
+
+        &:not(:has(.filters-group--overlay--footer-actions)) {
+            .one-filter-content::-webkit-scrollbar-track {
+                margin-block: var(--ngx-filters-group-overlay-scroll-track-margin-block, 0.5rem);
+            }
+            .filters--content::-webkit-scrollbar-track {
+                margin-block-end: var(--ngx-filters-group-overlay-scroll-track-margin-block, 0.5rem);
+            }
+        }
 
         .one-filter-content {
             display: inline-block;
@@ -170,7 +188,13 @@ ngx-filters-group {
             overflow-y: auto;
             overflow-x: hidden;
             box-sizing: border-box;
+            margin: var(--ngx-filters-group-overlay-one-filter-margin, 0.25rem);
             border-radius: var(--ngx-filters-group-overlay-one-filter-radius, 0.75rem);
+
+            &.has-overflow {
+                margin-right: 0;
+                padding-right: var(--ngx-filters-group-overlay-one-filter-padding-right, 0.125rem);
+            }
         }
 
         .filters--title {
@@ -181,7 +205,7 @@ ngx-filters-group {
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            padding-inline: var(--ngx-filters-group-overlay-title-padding-inline, 1rem 0.5rem);
+            padding-inline: var(--ngx-filters-group-overlay-title-padding-inline, 1.25rem 0.5rem);
             padding-block: calc(var(--ngx-filters-group-overlay-title-padding-block, 1rem) / 4);
             gap: var(--ngx-filters-group-overlay-title-gap, 0.5rem);
 
@@ -193,17 +217,18 @@ ngx-filters-group {
         .filters-group--title-divider,
         .filters-group--footer-divider {
             margin: 0 -0.25rem;
+            color: var(--mat-sys-outline);
         }
 
         .filters--content {
             min-block-size: 0;
             overflow-y: auto;
             overflow-x: hidden;
+            scrollbar-gutter: stable both-edges;
 
             cdk-accordion {
                 box-sizing: border-box;
                 min-inline-size: var(--ngx-filters-group-overlay-content-min-inline-size, 18.75rem);
-
                 padding: var(--ngx-filters-group-overlay-content-padding, 0.5rem 0.25rem);
                 display: flex;
                 flex-direction: column;
@@ -211,14 +236,16 @@ ngx-filters-group {
                 border-radius: var(--ngx-filters-group-overlay-content-border-radius, 0.75rem);
 
                 mat-slide-toggle {
-                    padding-inline: var(--ngx-filters-group-overlay-content-headline-padding-inline, 0.25rem);
-                    padding-block-end: var(--ngx-filters-group-overlay-content-headline-padding-block-end, 0.25rem);
+                    padding-block: var(--ngx-filters-group-overlay-content-slide-toggle-padding-block, 0.25rem);
 
                     > * {
                         inline-size: 100%;
 
                         label {
-                            margin: 0;
+                            padding-inline-start: var(
+                                --ngx-filters-group-overlay-content-slide-toggle-label-padding-inline-start,
+                                0.25rem
+                            );
                             width: 100%;
                         }
                     }
@@ -315,8 +342,7 @@ ngx-filters-group {
             box-sizing: border-box;
             gap: var(--ngx-filters-group-overlay-footer-actions-gap, 0.5rem);
             width: 100%;
-            padding: var(--ngx-filters-group-overlay-footer-actions-padding, 0.25rem);
-            padding-block-start: var(--ngx-filters-group-overlay-footer-actions-padding, 0.5rem);
+            padding: var(--ngx-filters-group-overlay-footer-actions-padding, 0.5rem);
         }
     }
 }

@@ -134,6 +134,13 @@ export class NgxFiltersGroupComponent {
         && (this.moreFiltersOverlay() || filter.templateRef === this.overlayContent())
         )
     );
+
+    protected readonly hasOverflow = computed(() => {
+        this.oneFilterContentSize();
+
+        const element = this.oneFilterContent()?.nativeElement;
+        return !!element && element.scrollHeight > element.clientHeight;
+    });
     // #endregion
 
     // #region Filters
@@ -218,6 +225,8 @@ export class NgxFiltersGroupComponent {
     ));
 
     private readonly refreshAppliedFilters = signal(false);
+    private readonly oneFilterContent = viewChild<ElementRef<HTMLElement>>('oneFilterContent');
+    private readonly oneFilterContentSize = resizeSignal(() => this.oneFilterContent());
 
     private constructor() {
         effect(() => {
