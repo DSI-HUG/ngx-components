@@ -221,7 +221,7 @@
                     <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
                 </div>
                 @if (showValidationActions()) {
-                    <mat-divider class="filters-group--footer-divider" />
+                    <mat-divider />
                 }
             } @else {
                 <div #oneFilterContent class="one-filter-content" [class.has-overflow]="hasOverflow()">
@@ -229,6 +229,9 @@
                 </div>
             }
             @if (showValidationActions()) {
+                @if (hasOverflow()) {
+                    <mat-divider />
+                }
                 <div class="filters-group--overlay--footer-actions">
                     <button matButton (click)="emitCancelClicked()">{{ intl?.cancel ?? 'Cancel' }}</button>
                     <button matButton="filled" (click)="emitAppliedFilters()">{{ intl?.apply ?? 'Apply' }}</button>

@@ -214,12 +214,6 @@ ngx-filters-group {
             }
         }
 
-        .filters-group--title-divider,
-        .filters-group--footer-divider {
-            margin: 0 -0.25rem;
-            color: var(--mat-sys-outline);
-        }
-
         .filters--content {
             min-block-size: 0;
             overflow-y: auto;
@@ -271,7 +265,9 @@ ngx-filters-group {
                             --ngx-filters-group-overlay-content-headline-bg-color,
                             var(--mat-sys-surface-container-low)
                         );
+                        gap: var(--ngx-filters-group-overlay-content-headline-gap, 0.5rem);
                         cursor: pointer;
+                        text-align: start;
 
                         &:hover {
                             background-color: color-mix(
@@ -300,13 +296,19 @@ ngx-filters-group {
                         }
 
                         .title {
-                            display: inline-flex;
+                            display: flex;
                             justify-content: space-between;
                             align-items: baseline;
                             flex-direction: column;
                             color: var(--ngx-filters-group-overlay-title-color, var(--mat-sys-on-surface-variant));
+                            min-inline-size: 0;
+                            flex: 1;
 
                             .label {
+                                inline-size: 100%;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
                                 font: var(--ngx-filters-group-overlay-title-label-font, var(--mat-sys-title-small));
                                 letter-spacing: var(
                                     --ngx-filters-group-overlay-title-label-letter-spacing,
