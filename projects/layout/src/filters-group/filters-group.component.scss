@@ -52,39 +52,18 @@ ngx-filters-group {
             }
 
             mat-chip {
+                cursor: pointer;
+
+                * {
+                    cursor: pointer;
+                }
+
                 &:first-child {
                     @include mat.chips-overrides(
                         (
                             container-shape-radius: var(--ngx-filters-group-first-chip-shape-radius, 0.5rem)
                         )
                     );
-                }
-
-                &.filter-active {
-                    @include mat.chips-overrides(
-                        (
-                            elevated-container-color: var(
-                                    --ngx-filters-group-filter-active-container-color,
-                                    var(--mat-sys-secondary-container)
-                                ),
-                            outline-color: var(--ngx-filters-group-filter-active-outline-color, transparent)
-                        )
-                    );
-
-                    &.filter-overlay-open {
-                        @include mat.chips-overrides(
-                            (
-                                elevated-container-color: var(
-                                        --ngx-filters-group-filter-active-overlay-open-container-color,
-                                        color-mix(
-                                            in srgb,
-                                            var(--mat-sys-on-secondary-container) 10%,
-                                            var(--mat-sys-secondary-container)
-                                        )
-                                    )
-                            )
-                        );
-                    }
                 }
             }
         }
@@ -96,6 +75,10 @@ ngx-filters-group {
         mat-chip,
         mat-chip-option {
             min-inline-size: 0;
+
+            [matchiptrailingicon] {
+                cursor: pointer;
+            }
 
             &:first-child {
                 @include mat.chips-overrides(
@@ -297,8 +280,6 @@ ngx-filters-group {
 
                         .title {
                             display: flex;
-                            justify-content: space-between;
-                            align-items: baseline;
                             flex-direction: column;
                             color: var(--ngx-filters-group-overlay-title-color, var(--mat-sys-on-surface-variant));
                             min-inline-size: 0;
@@ -322,7 +303,7 @@ ngx-filters-group {
                                     --ngx-filters-group-overlay-title-value-letter-spacing,
                                     var(--mat-sys-label-medium-tracking)
                                 );
-                                max-inline-size: var(--ngx-filters-group-overlay-title-max-width, 27ch);
+                                contain: inline-size;
                                 white-space: nowrap;
                                 overflow: hidden;
                                 text-overflow: ellipsis;

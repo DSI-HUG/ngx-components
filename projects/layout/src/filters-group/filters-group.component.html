@@ -91,9 +91,10 @@
                 <mat-chip-set>
                     <mat-chip
                         cdkOverlayOrigin
-                        [class.filter-active]="activeFiltersAmount()"
+                        [highlighted]="activeFiltersAmount() ? true : false"
                         [class.filter-overlay-open]="this.overlayOpen() && this.overlayContent() === moreFilters"
                         #trigger="cdkOverlayOrigin"
+                        class="more-filters-chip"
                         (click)="openOverlay(trigger, moreFilters, true)"
                         (keydown.enter)="openOverlay(trigger, moreFilters, true)"
                         (keydown.space)="openOverlay(trigger, moreFilters, true)">
