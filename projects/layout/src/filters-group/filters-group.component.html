@@ -35,7 +35,7 @@
                         }
                     </mat-chip-option>
                 }
-                <mat-chip #overflowMeasure>
+                <mat-chip>
                     +00 {{ intl?.filters ?? 'Filters' | lowercase }} (00 {{ intl?.actives ?? 'Actives' | lowercase }})
                     <mat-icon matChipTrailingIcon>arrow_drop_down</mat-icon>
                 </mat-chip>
@@ -64,9 +64,13 @@
                             [class.filter-overlay-open]="this.overlayOpen() && this.overlayContent() === f.templateRef"
                             cdkOverlayOrigin
                             #trigger="cdkOverlayOrigin"
-                            (click)="this.openOverlay(trigger, f.templateRef, false)"
-                            (keydown.enter)="this.openOverlay(trigger, f.templateRef, false)"
-                            (keydown.space)="this.openOverlay(trigger, f.templateRef, false)">
+                            (click)="this.openOverlay(trigger, f.templateRef, false, f.source.validationDynamique())"
+                            (keydown.enter)="
+                                this.openOverlay(trigger, f.templateRef, false, f.source.validationDynamique())
+                            "
+                            (keydown.space)="
+                                this.openOverlay(trigger, f.templateRef, false, f.source.validationDynamique())
+                            ">
                             @if (f.source.icon()) {
                                 <mat-icon matChipAvatar>{{ f.source.icon() }}</mat-icon>
                             }
@@ -91,7 +95,7 @@
                 <mat-chip-set>
                     <mat-chip
                         cdkOverlayOrigin
-                        [highlighted]="activeFiltersAmount() ? true : false"
+                        [highlighted]="activeFiltersAmount() > 0"
                         [class.filter-overlay-open]="this.overlayOpen() && this.overlayContent() === moreFilters"
                         #trigger="cdkOverlayOrigin"
                         class="more-filters-chip"
@@ -176,6 +180,13 @@
     }
 </ng-template>
 
+<ng-template #footer>
+    <div class="filters-group--overlay--footer-actions">
+        <button matButton (click)="emitCancelClicked()">{{ intl?.cancel ?? 'Cancel' }}</button>
+        <button matButton="filled" (click)="emitAppliedFilters()">{{ intl?.apply ?? 'Apply' }}</button>
+    </div>
+</ng-template>
+
 @let overlayOrigin = this.overlayOrigin();
 @let overlayOpen = this.overlayOpen();
 @let overlayContent = this.overlayContent();
@@ -186,7 +197,7 @@
         [cdkConnectedOverlayOpen]="overlayOpen"
         (detach)="this.overlayOpen.set(false)"
         [cdkConnectedOverlayHasBackdrop]="true"
-        (backdropClick)="!showValidationActions() && this.overlayOpen.set(false)"
+        (backdropClick)="validateDynamic() && this.overlayOpen.set(false)"
         cdkConnectedOverlayPanelClass="filters-group--overlay"
         cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
         [cdkConnectedOverlayPositions]="overlayPositions"
@@ -221,22 +232,18 @@
                 <div #filtersContent class="filters--content">
                     <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
                 </div>
-                @if (showValidationActions()) {
-                    <mat-divider />
-                }
+                <mat-divider />
+                <ng-container *ngTemplateOutlet="footer"></ng-container>
             } @else {
                 <div #oneFilterContent class="one-filter-content" [class.has-overflow]="hasOverflow()">
                     <ng-container *ngTemplateOutlet="overlayContent; context: filterContext"></ng-container>
                 </div>
-            }
-            @if (showValidationActions()) {
-                @if (hasOverflow()) {
-                    <mat-divider />
+                @if (!validateDynamic()) {
+                    @if (hasOverflow()) {
+                        <mat-divider />
+                    }
+                    <ng-container *ngTemplateOutlet="footer"></ng-container>
                 }
-                <div class="filters-group--overlay--footer-actions">
-                    <button matButton (click)="emitCancelClicked()">{{ intl?.cancel ?? 'Cancel' }}</button>
-                    <button matButton="filled" (click)="emitAppliedFilters()">{{ intl?.apply ?? 'Apply' }}</button>
-                </div>
             }
         </div>
     </ng-template>

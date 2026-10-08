@@ -112,6 +112,7 @@ export class NgxFiltersGroupComponent {
     protected readonly overlayOrigin = signal<CdkOverlayOrigin | undefined>(undefined);
     protected readonly overlayContent = signal<TemplateRef<unknown> | undefined>(undefined);
     protected readonly overlayOpen = signal<boolean>(false);
+    protected readonly validateDynamic = signal<boolean>(true);
     protected readonly moreFiltersOverlay = signal<boolean>(false);
     protected readonly overlayPositions: ConnectionPositionPair[] = [{
         originX: 'center',
@@ -126,14 +127,6 @@ export class NgxFiltersGroupComponent {
         overlayY: 'top',
         offsetY: 16
     }];
-
-    protected readonly showValidationActions = computed(() =>
-        this.allFilters().some(filter =>
-            filter.type === 'complex'
-        && !filter.validationDynamique()
-        && (this.moreFiltersOverlay() || filter.templateRef === this.overlayContent())
-        )
-    );
 
     protected readonly hasOverflow = computed(() => {
         this.oneFilterContentSize();
@@ -233,11 +226,11 @@ export class NgxFiltersGroupComponent {
             const index = this.rawLastFittingIndex();
 
             if (!this.overlayOpen()) {
+                this.expandedFiltersAmount.set(0);
                 this.lastFittingIndex.set(index);
 
-                if (!this.showValidationActions() || this.refreshAppliedFilters()) {
-                    const views = this.liveFilterViews();
-                    this.allFilterViews.set(views);
+                if (this.validateDynamic() || this.refreshAppliedFilters()) {
+                    this.allFilterViews.set(this.liveFilterViews());
                     this.refreshAppliedFilters.set(false);
                 }
             }
@@ -295,7 +288,8 @@ export class NgxFiltersGroupComponent {
     protected openOverlay(
         trigger: CdkOverlayOrigin,
         templateRef: TemplateRef<unknown>,
-        moreFiltersOverlay: boolean
+        moreFiltersOverlay: boolean,
+        validateDynamic = true
     ): void {
         const isSameOverlay =
         this.overlayOpen() && this.overlayContent() === templateRef;
@@ -309,6 +303,7 @@ export class NgxFiltersGroupComponent {
         this.overlayOrigin.set(trigger);
         this.overlayContent.set(templateRef);
         this.moreFiltersOverlay.set(moreFiltersOverlay);
+        this.validateDynamic.set(!moreFiltersOverlay && validateDynamic);
         this.overlayOpen.set(true);
     }
 
