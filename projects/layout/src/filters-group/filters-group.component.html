@@ -27,9 +27,8 @@
                             <mat-icon matChipAvatar>{{ f.icon() }}</mat-icon>
                         }
                         {{ f.label() }}
-                        @if (f.type === 'complex' && f.selectedFilterLabel()) {
-                            <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel() }}</span>
-                        }
+                        {{ f.label()
+                        }}{{ f.type === 'complex' && f.selectedFilterLabel() ? ' : ' + f.selectedFilterLabel : '' }}
                         @if (f.type === 'complex') {
                             <mat-icon matChipTrailingIcon>arrow_drop_down</mat-icon>
                         }
@@ -74,10 +73,7 @@
                             @if (f.source.icon()) {
                                 <mat-icon matChipAvatar>{{ f.source.icon() }}</mat-icon>
                             }
-                            {{ f.source.label() }}
-                            @if (f.selectedFilterLabel) {
-                                <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel }}</span>
-                            }
+                            {{ f.source.label() }}{{ f.selectedFilterLabel ? ' : ' + f.selectedFilterLabel : '' }}
                             <mat-icon matChipTrailingIcon>
                                 {{
                                     this.overlayOpen() && this.overlayContent() === f.templateRef
