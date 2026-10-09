@@ -26,7 +26,6 @@
                         @if (f.icon()) {
                             <mat-icon matChipAvatar>{{ f.icon() }}</mat-icon>
                         }
-                        {{ f.label() }}
                         {{ f.label()
                         }}{{ f.type === 'complex' && f.selectedFilterLabel() ? ' : ' + f.selectedFilterLabel : '' }}
                         @if (f.type === 'complex') {
