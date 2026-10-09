@@ -16,7 +16,7 @@ export class NgxFilterDirective implements NgxComplexFilter {
     public readonly selectedFilterLabel = input('');
     public readonly icon = input<string>();
     public readonly templateRef = inject<TemplateRef<unknown>>(TemplateRef);
-    public readonly validationDynamique = input<boolean>(true);
+    public readonly dynamicValidation = input<boolean>(true);
 
     static ngTemplateContextGuard(
         _directive: NgxFilterDirective,

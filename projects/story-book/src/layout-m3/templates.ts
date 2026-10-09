@@ -123,7 +123,7 @@ export const filtersGroupTemplate = `
             label="Origine"
             [selectedFilterLabel]="orderOriginSelectedLabel()"
             icon="place"
-            [validationDynamique]="false">
+            [dynamicValidation]="false">
             <mat-selection-list multiple="false" [(ngModel)]="orderOrigin"  >
                 <mat-list-option value="HOSP">Hôpital</mat-list-option>
                 <mat-list-option value="HOME">Domicile</mat-list-option>

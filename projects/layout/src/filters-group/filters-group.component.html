@@ -63,12 +63,12 @@
                             [class.filter-overlay-open]="this.overlayOpen() && this.overlayContent() === f.templateRef"
                             cdkOverlayOrigin
                             #trigger="cdkOverlayOrigin"
-                            (click)="this.openOverlay(trigger, f.templateRef, false, f.source.validationDynamique())"
+                            (click)="this.openOverlay(trigger, f.templateRef, false, f.source.dynamicValidation())"
                             (keydown.enter)="
-                                this.openOverlay(trigger, f.templateRef, false, f.source.validationDynamique())
+                                this.openOverlay(trigger, f.templateRef, false, f.source.dynamicValidation())
                             "
                             (keydown.space)="
-                                this.openOverlay(trigger, f.templateRef, false, f.source.validationDynamique())
+                                this.openOverlay(trigger, f.templateRef, false, f.source.dynamicValidation())
                             ">
                             @if (f.source.icon()) {
                                 <mat-icon matChipAvatar>{{ f.source.icon() }}</mat-icon>
