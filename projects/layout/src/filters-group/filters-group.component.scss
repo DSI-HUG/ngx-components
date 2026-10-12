@@ -204,6 +204,10 @@ ngx-filters-group {
                 gap: var(--ngx-filters-group-overlay-content-gap, 0.25rem);
                 border-radius: var(--ngx-filters-group-overlay-content-border-radius, 0.75rem);
 
+                cdk-accordion-item:has(.is-collapsed) {
+                    gap: 0;
+                }
+
                 mat-slide-toggle {
                     padding-block: var(--ngx-filters-group-overlay-content-slide-toggle-padding-block, 0.25rem);
 
@@ -307,6 +311,13 @@ ngx-filters-group {
                     > [no-padding] {
                         margin-inline: -1rem;
                     }
+                }
+
+                .filter-content.is-collapsed {
+                    block-size: 0;
+                    min-block-size: 0;
+                    overflow: clip;
+                    visibility: hidden;
                 }
             }
         }

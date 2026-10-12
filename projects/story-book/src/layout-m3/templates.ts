@@ -104,7 +104,6 @@ export const filtersGroupTemplate = `
                 <mat-list-option value="LAST_YEAR">Dernière année</mat-list-option>
                 <mat-list-option value="OTHER">Autre</mat-list-option>
             </mat-selection-list>
-            @if (selectedPeriod[0] === 'OTHER') {
                 <mat-form-field>
                     <mat-label>Enter a date range</mat-label>
                     <mat-date-range-input [rangePicker]="picker">
@@ -115,7 +114,7 @@ export const filtersGroupTemplate = `
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-date-range-picker #picker></mat-date-range-picker>
                 </mat-form-field>
-            }
+            
         </ng-template>
         <ng-template
             [ngxFilter]

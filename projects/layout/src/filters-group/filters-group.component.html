@@ -141,16 +141,17 @@
                                 {{ accordionItem.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
                             </mat-icon>
                         </button>
-
-                        @if (accordionItem.expanded) {
-                            <div class="filter-content" role="region" [id]="'filter-content-' + $index">
-                                <ng-container
-                                    *ngTemplateOutlet="
-                                        f.templateRef;
-                                        context: contextForSection(accordionItem, headline)
-                                    "></ng-container>
-                            </div>
-                        }
+                        <div
+                            class="filter-content"
+                            [class.is-collapsed]="!accordionItem.expanded"
+                            role="region"
+                            [id]="'filter-content-' + $index">
+                            <ng-container
+                                *ngTemplateOutlet="
+                                    f.templateRef;
+                                    context: contextForSection(accordionItem, headline)
+                                "></ng-container>
+                        </div>
                     </cdk-accordion-item>
                 }
 
