@@ -119,11 +119,11 @@ type LayoutStoryProps = Story['args'] & {
     selectedStartDate: Date | undefined;
     selectedEndDate: Date | undefined;
     origin: string[];
-    orderTypes: string[];
+    types: string[];
     appliedFilters: FiltersState;
     selectedDateRangeLabel: () => string;
     originSelectedLabel: () => string;
-    orderTypesSelectedLabel: () => string;
+    typesSelectedLabel: () => string;
     buttonResetClicked: () => void;
     applyFilters: () => void;
     cancelFilters: () => void;
@@ -136,7 +136,7 @@ interface FiltersState {
     selectedStartDate: Date | undefined;
     selectedEndDate: Date | undefined;
     origin: string[];
-    orderTypes: string[];
+    types: string[];
 }
 
 const copyFilters = (state: FiltersState): FiltersState => ({
@@ -146,7 +146,7 @@ const copyFilters = (state: FiltersState): FiltersState => ({
     selectedStartDate: state.selectedStartDate,
     selectedEndDate: state.selectedEndDate,
     origin: [...state.origin],
-    orderTypes: [...state.orderTypes]
+    types: [...state.types]
 });
 
 const props = (args: Story['args']): LayoutStoryProps => ({
@@ -157,7 +157,7 @@ const props = (args: Story['args']): LayoutStoryProps => ({
     selectedStartDate: undefined as Date | undefined,
     selectedEndDate: undefined as Date | undefined,
     origin: [] as string[],
-    orderTypes: [] as string[],
+    types: [] as string[],
     appliedFilters: {
         commentFilter: false,
         documentFilter: false,
@@ -165,7 +165,7 @@ const props = (args: Story['args']): LayoutStoryProps => ({
         selectedStartDate: undefined as Date | undefined,
         selectedEndDate: undefined as Date | undefined,
         origin: [] as string[],
-        orderTypes: [] as string[]
+        types: [] as string[]
     },
 
     selectedDateRangeLabel(): string {
@@ -221,8 +221,8 @@ const props = (args: Story['args']): LayoutStoryProps => ({
         return '';
     },
 
-    orderTypesSelectedLabel(): string {
-        return this.orderTypes.join(', ');
+    typesSelectedLabel(): string {
+        return this.types.join(', ');
     },
     buttonResetClicked(): void {
         this.selectedPeriod = [];
@@ -231,7 +231,7 @@ const props = (args: Story['args']): LayoutStoryProps => ({
         this.commentFilter = false;
         this.documentFilter = false;
         this.origin = [];
-        this.orderTypes = [];
+        this.types = [];
         console.log('reset clicked');
     }
 });

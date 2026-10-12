@@ -68,10 +68,10 @@ export const filtersGroupFoldedTemplate = `
         </ng-template>
         <ng-template
             [ngxFilter]
-            [active]="!!orderTypes.length"
+            [active]="!!types.length"
             label="Type"
-            [selectedFilterLabel]="orderTypesSelectedLabel()">
-            <mat-selection-list [(ngModel)]="orderTypes">
+            [selectedFilterLabel]="typesSelectedLabel()">
+            <mat-selection-list [(ngModel)]="types">
                 <mat-list-option value="Médicament" togglePosition="after">Médicament</mat-list-option>
                 <mat-list-option value="Soin" togglePosition="after">Soin</mat-list-option>
                 <mat-list-option value="Laboratoire" togglePosition="after">Laboratoire</mat-list-option>
@@ -131,10 +131,10 @@ export const filtersGroupTemplate = `
         </ng-template>
         <ng-template
             [ngxFilter]
-            [active]="!!orderTypes.length"
+            [active]="!!types.length"
             label="Type"
-            [selectedFilterLabel]="orderTypesSelectedLabel()">
-            <mat-selection-list [(ngModel)]="orderTypes">
+            [selectedFilterLabel]="typesSelectedLabel()">
+            <mat-selection-list [(ngModel)]="types">
                 <mat-list-option value="Médicament" togglePosition="after">Médicament</mat-list-option>
                 <mat-list-option value="Soin" togglePosition="after">Soin</mat-list-option>
                 <mat-list-option value="Laboratoire" togglePosition="after">Laboratoire</mat-list-option>
