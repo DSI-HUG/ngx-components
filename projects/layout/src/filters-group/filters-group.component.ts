@@ -220,11 +220,12 @@ export class NgxFiltersGroupComponent {
         return this.getLastFittingIndex(availableSpace, filters);
     });
 
-    private readonly liveFilterViews = computed<FilterView[]>(() => this.allFilters().map((f): FilterView =>
-        f.type === 'toggle'
-            ? { source: f, type: 'toggle', active: f.active() }
-            : { source: f, type: 'complex', active: f.active(), selectedFilterLabel: f.selectedFilterLabel(), templateRef: f.templateRef }
-    ));
+    private readonly liveFilterViews = computed<FilterView[]>(() => this.allFilters().map((f): FilterView => {
+        if (f.type === 'toggle') {
+            return { source: f, type: 'toggle', active: f.active() };
+        }
+        return { source: f, type: 'complex', active: f.active(), selectedFilterLabel: f.selectedFilterLabel(), templateRef: f.templateRef };
+    }));
 
     private readonly refreshAppliedFilters = signal(false);
     private readonly oneFilterContent = viewChild<ElementRef<HTMLElement>>('oneFilterContent');
