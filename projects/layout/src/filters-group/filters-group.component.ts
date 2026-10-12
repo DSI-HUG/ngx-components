@@ -2,11 +2,11 @@ import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { CdkAccordion, CdkAccordionItem } from '@angular/cdk/accordion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, Directive, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, viewChildren, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatButton, MatIconButton } from '@angular/material/button';
-import { MatChip, MatChipAvatar, MatChipOption, MatChipSet, MatChipTrailingIcon } from '@angular/material/chips';
+import { MatChip, MatChipAvatar, MatChipListbox, MatChipOption, MatChipTrailingIcon } from '@angular/material/chips';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
@@ -14,6 +14,11 @@ import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
 import { FILTER_TOKEN, NgxComplexFilter, NgxToggleFilter } from './filter-chip.model';
+
+@Directive({ selector: '[ngxExpandedFilter]' })
+class NgxExpandedDirective {
+    public readonly ngxExpandedFilter = input(false);
+}
 
 export interface NgxFilterContext {
     $implicit: () => void;
@@ -83,7 +88,7 @@ const resizeSignal = (
         MatChip,
         MatChipOption,
         MatChipTrailingIcon,
-        MatChipSet,
+        MatChipListbox,
         MatTooltip,
         NgTemplateOutlet,
         CdkConnectedOverlay,
@@ -97,7 +102,8 @@ const resizeSignal = (
         MatChipAvatar,
         CdkAccordion,
         CdkAccordionItem,
-        MatButton
+        MatButton,
+        NgxExpandedDirective
     ]
 })
 export class NgxFiltersGroupComponent {
@@ -158,7 +164,10 @@ export class NgxFiltersGroupComponent {
     });
 
     protected readonly allFilterViews = signal<FilterView[]>([]);
-    protected readonly expandedFiltersAmount = signal(0);
+    protected readonly expandedFilters = viewChildren(NgxExpandedDirective);
+    protected readonly expandedFiltersAmount = computed(() =>
+        this.expandedFilters().filter(filter => filter.ngxExpandedFilter()).length
+    );
 
     protected readonly filterContext = {
         $implicit: (): void => {
@@ -226,7 +235,6 @@ export class NgxFiltersGroupComponent {
             const index = this.rawLastFittingIndex();
 
             if (!this.overlayOpen()) {
-                this.expandedFiltersAmount.set(0);
                 this.lastFittingIndex.set(index);
 
                 if (this.validateDynamic() || this.refreshAppliedFilters()) {
@@ -269,14 +277,6 @@ export class NgxFiltersGroupComponent {
         };
     }
 
-    protected onFilterOpened(): void {
-        this.expandedFiltersAmount.update(amount => amount + 1);
-    }
-
-    protected onFilterClosed(): void {
-        this.expandedFiltersAmount.update(amount => Math.max(0, amount - 1));
-    }
-
     protected emitResetClicked(): void {
         this.resetFilters.emit();
 
@@ -291,8 +291,7 @@ export class NgxFiltersGroupComponent {
         moreFiltersOverlay: boolean,
         validateDynamic = true
     ): void {
-        const isSameOverlay =
-        this.overlayOpen() && this.overlayContent() === templateRef;
+        const isSameOverlay = this.overlayOpen() && this.overlayContent() === templateRef;
 
         this.overlayOpen.set(false);
 
@@ -309,6 +308,13 @@ export class NgxFiltersGroupComponent {
 
     protected collapseAllFilters(): void {
         this.accordion()?.closeAll();
+    }
+
+    protected onKeydown(event: KeyboardEvent, trigger: CdkOverlayOrigin, templateRef: TemplateRef<unknown>, moreFiltersOverlay: boolean, dynamicValidation?: boolean): void {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this.openOverlay(trigger, templateRef, moreFiltersOverlay, dynamicValidation);
+        }
     }
 
     private getLastFittingIndex(availableSpace: number, elements: readonly HTMLElement[]): number {
