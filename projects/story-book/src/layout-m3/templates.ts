@@ -58,10 +58,10 @@ export const filtersGroupFoldedTemplate = `
         </ng-template>
         <ng-template
             [ngxFilter]
-            [active]="!!orderOrigin"
+            [active]="!!origin"
             label="Origine"
-            [selectedFilterLabel]="orderOriginSelectedLabel()">
-            <mat-selection-list [(ngModel)]="orderOrigin.value[0]">
+            [selectedFilterLabel]="originSelectedLabel()">
+            <mat-selection-list [(ngModel)]="origin.value[0]">
                 <mat-list-option value="HOSP" togglePosition="after">Hôpital</mat-list-option>
                 <mat-list-option value="HOME" togglePosition="after">Domicile</mat-list-option>
             </mat-selection-list>
@@ -119,12 +119,12 @@ export const filtersGroupTemplate = `
         </ng-template>
         <ng-template
             [ngxFilter]
-            [active]="!!orderOrigin.length"
+            [active]="!!origin.length"
             label="Origine"
-            [selectedFilterLabel]="orderOriginSelectedLabel()"
+            [selectedFilterLabel]="originSelectedLabel()"
             icon="place"
             [dynamicValidation]="false">
-            <mat-selection-list multiple="false" [(ngModel)]="orderOrigin"  >
+            <mat-selection-list multiple="false" [(ngModel)]="origin"  >
                 <mat-list-option value="HOSP">Hôpital</mat-list-option>
                 <mat-list-option value="HOME">Domicile</mat-list-option>
             </mat-selection-list>

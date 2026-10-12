@@ -118,11 +118,11 @@ type LayoutStoryProps = Story['args'] & {
     selectedPeriod: string[];
     selectedStartDate: Date | undefined;
     selectedEndDate: Date | undefined;
-    orderOrigin: string[];
+    origin: string[];
     orderTypes: string[];
     appliedFilters: FiltersState;
     selectedDateRangeLabel: () => string;
-    orderOriginSelectedLabel: () => string;
+    originSelectedLabel: () => string;
     orderTypesSelectedLabel: () => string;
     buttonResetClicked: () => void;
     applyFilters: () => void;
@@ -135,7 +135,7 @@ interface FiltersState {
     selectedPeriod: string[];
     selectedStartDate: Date | undefined;
     selectedEndDate: Date | undefined;
-    orderOrigin: string[];
+    origin: string[];
     orderTypes: string[];
 }
 
@@ -145,7 +145,7 @@ const copyFilters = (state: FiltersState): FiltersState => ({
     selectedPeriod: [...state.selectedPeriod],
     selectedStartDate: state.selectedStartDate,
     selectedEndDate: state.selectedEndDate,
-    orderOrigin: [...state.orderOrigin],
+    origin: [...state.origin],
     orderTypes: [...state.orderTypes]
 });
 
@@ -156,7 +156,7 @@ const props = (args: Story['args']): LayoutStoryProps => ({
     selectedPeriod: [] as string[],
     selectedStartDate: undefined as Date | undefined,
     selectedEndDate: undefined as Date | undefined,
-    orderOrigin: [] as string[],
+    origin: [] as string[],
     orderTypes: [] as string[],
     appliedFilters: {
         commentFilter: false,
@@ -164,7 +164,7 @@ const props = (args: Story['args']): LayoutStoryProps => ({
         selectedPeriod: [] as string[],
         selectedStartDate: undefined as Date | undefined,
         selectedEndDate: undefined as Date | undefined,
-        orderOrigin: [] as string[],
+        origin: [] as string[],
         orderTypes: [] as string[]
     },
 
@@ -208,13 +208,13 @@ const props = (args: Story['args']): LayoutStoryProps => ({
         Object.assign(this, copyFilters(this.appliedFilters));
     },
 
-    orderOriginSelectedLabel(): string {
-        if (this.orderOrigin) {
-            if (this.orderOrigin[0] === 'HOSP') {
+    originSelectedLabel(): string {
+        if (this.origin) {
+            if (this.origin[0] === 'HOSP') {
                 return 'Hôpital';
             }
 
-            if (this.orderOrigin[0] === 'HOME') {
+            if (this.origin[0] === 'HOME') {
                 return 'Domicile';
             }
         }
@@ -230,7 +230,7 @@ const props = (args: Story['args']): LayoutStoryProps => ({
         this.selectedEndDate = undefined;
         this.commentFilter = false;
         this.documentFilter = false;
-        this.orderOrigin = [];
+        this.origin = [];
         this.orderTypes = [];
         console.log('reset clicked');
     }
