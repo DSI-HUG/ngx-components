@@ -39,7 +39,7 @@ ngx-filters-group {
             flex-direction: row;
             gap: var(--ngx-filters-group-gap, 0.5rem);
 
-            &:only-child mat-chip-set mat-chip {
+            &:only-child mat-chip-listbox mat-chip {
                 @include mat.chips-overrides(
                     (
                         container-shape-radius: var(
@@ -67,7 +67,7 @@ ngx-filters-group {
             }
         }
 
-        mat-chip-set > div {
+        mat-chip-listbox > div {
             flex-wrap: nowrap;
         }
 
