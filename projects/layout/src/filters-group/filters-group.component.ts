@@ -148,19 +148,19 @@ export class NgxFiltersGroupComponent {
     protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter => filter.active).length);
 
     protected readonly visibleFilters = computed(() => {
-        const lastFittingIndex = this.lastFittingIndex();
-        if (lastFittingIndex < 0) {
+        const visibleFiltersEndIndex = this.visibleFiltersEndIndex();
+        if (visibleFiltersEndIndex < 0) {
             return [];
         }
-        return this.allFilterViews().slice(0, lastFittingIndex);
+        return this.allFilterViews().slice(0, visibleFiltersEndIndex);
     });
 
     protected readonly invisibleFilters = computed(() => {
-        const lastFittingIndex = this.lastFittingIndex();
-        if (lastFittingIndex < 0) {
+        const visibleFiltersEndIndex = this.visibleFiltersEndIndex();
+        if (visibleFiltersEndIndex < 0) {
             return this.allFilterViews();
         }
-        return this.allFilterViews().slice(lastFittingIndex);
+        return this.allFilterViews().slice(visibleFiltersEndIndex);
     });
 
     protected readonly allFilterViews = signal<FilterView[]>([]);
@@ -202,9 +202,9 @@ export class NgxFiltersGroupComponent {
     private readonly staticFieldsWidth = computed(() => Math.ceil(this.staticFieldsSize()?.contentRect.width || 0));
     // #endregion
 
-    private readonly lastFittingIndex = signal(-1);
+    private readonly visibleFiltersEndIndex = signal(-1);
 
-    private readonly rawLastFittingIndex = computed(() => {
+    private readonly measuredVisibleFiltersEndIndex = computed(() => {
         const hostWidth = this.hostWidth();
         if (!hostWidth) {
             return -1;
@@ -217,7 +217,7 @@ export class NgxFiltersGroupComponent {
             return filters.length;
         }
 
-        return this.getLastFittingIndex(availableSpace, filters);
+        return this.getVisibleFiltersEndIndex(availableSpace, filters);
     });
 
     private readonly liveFilterViews = computed<FilterView[]>(() => this.allFilters().map((f): FilterView => {
@@ -233,10 +233,10 @@ export class NgxFiltersGroupComponent {
 
     private constructor() {
         effect(() => {
-            const index = this.rawLastFittingIndex();
+            const index = this.measuredVisibleFiltersEndIndex();
 
             if (!this.overlayOpen()) {
-                this.lastFittingIndex.set(index);
+                this.visibleFiltersEndIndex.set(index);
 
                 if (this.dynamicValidation() || this.refreshAppliedFilters()) {
                     this.allFilterViews.set(this.liveFilterViews());
@@ -318,7 +318,7 @@ export class NgxFiltersGroupComponent {
         }
     }
 
-    private getLastFittingIndex(availableSpace: number, elements: readonly HTMLElement[]): number {
+    private getVisibleFiltersEndIndex(availableSpace: number, elements: readonly HTMLElement[]): number {
         const firstEl = elements[0];
 
         if (!firstEl || availableSpace <= 0 || availableSpace - firstEl.offsetWidth < 0) {
@@ -327,11 +327,11 @@ export class NgxFiltersGroupComponent {
 
         let residualAvailableSpace = availableSpace;
 
-        const lastFittingIndex = elements.findIndex(el => {
+        const visibleFiltersEndIndex = elements.findIndex(el => {
             residualAvailableSpace -= el.offsetWidth + 16;
             return residualAvailableSpace <= 0;
         });
 
-        return lastFittingIndex >= 0 ? lastFittingIndex : elements.length - 1;
+        return visibleFiltersEndIndex >= 0 ? visibleFiltersEndIndex : elements.length - 1;
     }
 }
