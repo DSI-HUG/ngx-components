@@ -9,7 +9,7 @@
             aria-label="All filters"
             cdkOverlayOrigin
             #trigger="cdkOverlayOrigin"
-            [class.filter-overlay-open]="this.overlayOpen() && this.overlayContent() === moreFilters"
+            [class.filter-overlay-open]="isSameOverlay(moreFilters)"
             (click)="openOverlay(trigger, moreFilters, true)"
             (keydown)="onKeydown($event, trigger, moreFilters, true)">
             matTooltip="{{ intl?.allFilters ?? 'All filters' }}">
@@ -60,7 +60,7 @@
                         <mat-chip-option
                             [selectable]="false"
                             [selected]="f.active"
-                            [class.filter-overlay-open]="this.overlayOpen() && this.overlayContent() === f.templateRef"
+                            [class.filter-overlay-open]="isSameOverlay(f.templateRef)"
                             cdkOverlayOrigin
                             #trigger="cdkOverlayOrigin"
                             (click)="this.openOverlay(trigger, f.templateRef, false, f.source.dynamicValidation())"
@@ -72,11 +72,7 @@
                             }
                             {{ f.source.label() }}{{ f.selectedFilterLabel ? ' : ' + f.selectedFilterLabel : '' }}
                             <mat-icon matChipTrailingIcon>
-                                {{
-                                    this.overlayOpen() && this.overlayContent() === f.templateRef
-                                        ? 'arrow_drop_up'
-                                        : 'arrow_drop_down'
-                                }}
+                                {{ isSameOverlay(f.templateRef) ? 'arrow_drop_up' : 'arrow_drop_down' }}
                             </mat-icon>
                         </mat-chip-option>
                     }
@@ -90,7 +86,7 @@
                         tabindex="0"
                         cdkOverlayOrigin
                         [highlighted]="activeFiltersAmount() > 0"
-                        [class.filter-overlay-open]="this.overlayOpen() && this.overlayContent() === moreFilters"
+                        [class.filter-overlay-open]="isSameOverlay(moreFilters)"
                         #trigger="cdkOverlayOrigin"
                         class="more-filters-chip"
                         (click)="openOverlay(trigger, moreFilters, true)"
@@ -100,11 +96,7 @@
                         }}
                         {{ intl?.actives ?? 'Actives' | lowercase }})
                         <mat-icon matChipTrailingIcon>
-                            {{
-                                this.overlayOpen() && this.overlayContent() === moreFilters
-                                    ? 'arrow_drop_up'
-                                    : 'arrow_drop_down'
-                            }}
+                            {{ isSameOverlay(moreFilters) ? 'arrow_drop_up' : 'arrow_drop_down' }}
                         </mat-icon>
                     </mat-chip>
                 </mat-chip-listbox>

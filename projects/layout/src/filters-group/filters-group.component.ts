@@ -286,17 +286,22 @@ export class NgxFiltersGroupComponent {
         }
     }
 
+    protected isSameOverlay(
+        templateRef: TemplateRef<unknown>
+    ): boolean {
+        return this.overlayOpen() && this.overlayContent() === templateRef;
+    }
+
+
     protected openOverlay(
         trigger: CdkOverlayOrigin,
         templateRef: TemplateRef<unknown>,
         moreFiltersOverlay: boolean,
         dynamicValidation = true
     ): void {
-        const isSameOverlay = this.overlayOpen() && this.overlayContent() === templateRef;
-
         this.overlayOpen.set(false);
 
-        if (isSameOverlay) {
+        if (this.isSameOverlay(templateRef)) {
             return;
         }
 
