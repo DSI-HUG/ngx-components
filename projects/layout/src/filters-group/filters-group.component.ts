@@ -2,7 +2,7 @@ import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { CdkAccordion, CdkAccordionItem } from '@angular/cdk/accordion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, contentChildren, Directive, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, viewChildren, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, viewChildren, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatButton, MatIconButton } from '@angular/material/button';
@@ -13,12 +13,8 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
+import { NgxExpandedDirective } from './expanded-filter.directive';
 import { FILTER_TOKEN, NgxComplexFilter, NgxToggleFilter } from './filter-chip.model';
-
-@Directive({ selector: '[ngxExpandedFilter]' })
-class NgxExpandedDirective {
-    public readonly ngxExpandedFilter = input(false);
-}
 
 export interface NgxFilterContext {
     $implicit: () => void;
