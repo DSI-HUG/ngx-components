@@ -118,7 +118,7 @@ export class NgxFiltersGroupComponent {
     protected readonly overlayOrigin = signal<CdkOverlayOrigin | undefined>(undefined);
     protected readonly overlayContent = signal<TemplateRef<unknown> | undefined>(undefined);
     protected readonly overlayOpen = signal<boolean>(false);
-    protected readonly validateDynamic = signal<boolean>(true);
+    protected readonly dynamicValidation = signal<boolean>(true);
     protected readonly moreFiltersOverlay = signal<boolean>(false);
     protected readonly overlayPositions: ConnectionPositionPair[] = [{
         originX: 'center',
@@ -237,7 +237,7 @@ export class NgxFiltersGroupComponent {
             if (!this.overlayOpen()) {
                 this.lastFittingIndex.set(index);
 
-                if (this.validateDynamic() || this.refreshAppliedFilters()) {
+                if (this.dynamicValidation() || this.refreshAppliedFilters()) {
                     this.allFilterViews.set(this.liveFilterViews());
                     this.refreshAppliedFilters.set(false);
                 }
@@ -289,7 +289,7 @@ export class NgxFiltersGroupComponent {
         trigger: CdkOverlayOrigin,
         templateRef: TemplateRef<unknown>,
         moreFiltersOverlay: boolean,
-        validateDynamic = true
+        dynamicValidation = true
     ): void {
         const isSameOverlay = this.overlayOpen() && this.overlayContent() === templateRef;
 
@@ -302,7 +302,7 @@ export class NgxFiltersGroupComponent {
         this.overlayOrigin.set(trigger);
         this.overlayContent.set(templateRef);
         this.moreFiltersOverlay.set(moreFiltersOverlay);
-        this.validateDynamic.set(!moreFiltersOverlay && validateDynamic);
+        this.dynamicValidation.set(!moreFiltersOverlay && dynamicValidation);
         this.overlayOpen.set(true);
     }
 
