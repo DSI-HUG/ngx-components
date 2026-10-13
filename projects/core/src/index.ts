@@ -3,7 +3,6 @@ export * from './directives/input-autosize.directive';
 export * from './directives/single-click.directive';
 export * from './cache';
 export * from './custom-operators';
-export * from './custom-array.module';
 export * from './guards';
 export * from './key-codes';
 export * from './providers';
