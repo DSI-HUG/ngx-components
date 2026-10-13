@@ -63,9 +63,9 @@
                             [class.filter-overlay-open]="isSameOverlay(f.templateRef)"
                             cdkOverlayOrigin
                             #trigger="cdkOverlayOrigin"
-                            (click)="this.openOverlay(trigger, f.templateRef, false, f.source.dynamicValidation())"
+                            (click)="this.openOverlay(trigger, f.templateRef, false, f.source.requireExplicitApply())"
                             (keydown)="
-                                this.onKeydown($event, trigger, f.templateRef, false, f.source.dynamicValidation())
+                                this.onKeydown($event, trigger, f.templateRef, false, f.source.requireExplicitApply())
                             ">
                             @if (f.source.icon()) {
                                 <mat-icon matChipAvatar>{{ f.source.icon() }}</mat-icon>

@@ -17,7 +17,7 @@ export class NgxFilterDirective implements NgxComplexFilter {
     public readonly error = input('');
     public readonly icon = input<string>();
     public readonly templateRef = inject<TemplateRef<unknown>>(TemplateRef);
-    public readonly dynamicValidation = input<boolean>(true);
+    public readonly requireExplicitApply = input<boolean>(false);
 
     static ngTemplateContextGuard(
         _directive: NgxFilterDirective,
