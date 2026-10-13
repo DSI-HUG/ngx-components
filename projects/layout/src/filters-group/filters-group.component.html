@@ -190,7 +190,7 @@
         [cdkConnectedOverlayOpen]="overlayOpen"
         (detach)="this.overlayOpen.set(false)"
         [cdkConnectedOverlayHasBackdrop]="true"
-        (backdropClick)="dynamicValidation() && this.overlayOpen.set(false)"
+        (backdropClick)="!requireExplicitApply() && this.overlayOpen.set(false)"
         cdkConnectedOverlayPanelClass="filters-group--overlay"
         cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
         [cdkConnectedOverlayPositions]="overlayPositions"
@@ -231,7 +231,7 @@
                 <div #oneFilterContent class="one-filter-content" [class.has-overflow]="hasOverflow()">
                     <ng-container *ngTemplateOutlet="overlayContent; context: filterContext"></ng-container>
                 </div>
-                @if (!dynamicValidation()) {
+                @if (requireExplicitApply()) {
                     @if (hasOverflow()) {
                         <mat-divider />
                     }

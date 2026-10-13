@@ -114,7 +114,7 @@ export class NgxFiltersGroupComponent {
     protected readonly overlayOrigin = signal<CdkOverlayOrigin | undefined>(undefined);
     protected readonly overlayContent = signal<TemplateRef<unknown> | undefined>(undefined);
     protected readonly overlayOpen = signal<boolean>(false);
-    protected readonly dynamicValidation = signal<boolean>(true);
+    protected readonly requireExplicitApply = signal<boolean>(false);
     protected readonly moreFiltersOverlay = signal<boolean>(false);
 
     protected readonly disableApply = computed(() => this.allFilters().some(filter => {
@@ -242,7 +242,7 @@ export class NgxFiltersGroupComponent {
             if (!this.overlayOpen()) {
                 this.visibleFiltersEndIndex.set(index);
 
-                if (this.dynamicValidation() || this.refreshAppliedFilters()) {
+                if (!this.requireExplicitApply() || this.refreshAppliedFilters()) {
                     this.allFilterViews.set(this.liveFilterViews());
                     this.refreshAppliedFilters.set(false);
                 }
@@ -301,7 +301,7 @@ export class NgxFiltersGroupComponent {
         trigger: CdkOverlayOrigin,
         templateRef: TemplateRef<unknown>,
         moreFiltersOverlay: boolean,
-        dynamicValidation = true
+        requireExplicitApply = false
     ): void {
         this.overlayOpen.set(false);
 
@@ -312,7 +312,7 @@ export class NgxFiltersGroupComponent {
         this.overlayOrigin.set(trigger);
         this.overlayContent.set(templateRef);
         this.moreFiltersOverlay.set(moreFiltersOverlay);
-        this.dynamicValidation.set(!moreFiltersOverlay && dynamicValidation);
+        this.requireExplicitApply.set(!moreFiltersOverlay && requireExplicitApply);
         this.overlayOpen.set(true);
     }
 
@@ -320,10 +320,10 @@ export class NgxFiltersGroupComponent {
         this.accordion()?.closeAll();
     }
 
-    protected onKeydown(event: KeyboardEvent, trigger: CdkOverlayOrigin, templateRef: TemplateRef<unknown>, moreFiltersOverlay: boolean, dynamicValidation?: boolean): void {
+    protected onKeydown(event: KeyboardEvent, trigger: CdkOverlayOrigin, templateRef: TemplateRef<unknown>, moreFiltersOverlay: boolean, requireExplicitApply?: boolean): void {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
-            this.openOverlay(trigger, templateRef, moreFiltersOverlay, dynamicValidation);
+            this.openOverlay(trigger, templateRef, moreFiltersOverlay, requireExplicitApply);
         }
     }
 
