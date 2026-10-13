@@ -116,6 +116,14 @@ export class NgxFiltersGroupComponent {
     protected readonly overlayOpen = signal<boolean>(false);
     protected readonly dynamicValidation = signal<boolean>(true);
     protected readonly moreFiltersOverlay = signal<boolean>(false);
+
+    protected readonly disableApply = computed(() => this.allFilters().some(filter => {
+        if (filter.type === 'complex') {
+            return !!filter.error().trim();
+        }
+        return false;
+    }));
+
     protected readonly overlayPositions: ConnectionPositionPair[] = [{
         originX: 'center',
         originY: 'bottom',
@@ -248,28 +256,28 @@ export class NgxFiltersGroupComponent {
     }
 
     protected emitAppliedFilters(): void {
+        if (this.disableApply()) {
+            this.collapseAllFilters();
+            this.scrollToFirstError();
+            return;
+        }
+
         this.refreshAppliedFilters.set(true);
         this.applyClicked.emit();
         this.overlayOpen.set(false);
+    }
+
+    protected scrollToFirstError(): void {
+        this.scrollToElement(() =>
+            this.filtersContent()?.nativeElement.querySelector<HTMLElement>('.filter.has-error .headline')
+        );
     }
 
     protected contextForSection(item: CdkAccordionItem, headline: HTMLElement): NgxFilterContext {
         return {
             $implicit: (): void => {
                 item.close();
-
-                requestAnimationFrame(() => {
-                    const container = this.filtersContent()?.nativeElement;
-                    if (!container) {
-                        return;
-                    }
-
-                    const top = headline.getBoundingClientRect().top
-                    - container.getBoundingClientRect().top
-                    + container.scrollTop;
-
-                    container.scrollTo({ top, behavior: 'smooth' });
-                });
+                this.scrollToElement(() => headline);
             }
         };
     }
@@ -334,5 +342,22 @@ export class NgxFiltersGroupComponent {
         });
 
         return visibleFiltersEndIndex >= 0 ? visibleFiltersEndIndex : elements.length - 1;
+    }
+
+    private scrollToElement(getTarget: () => HTMLElement | null | undefined): void {
+        requestAnimationFrame(() => {
+            const container = this.filtersContent()?.nativeElement;
+            const target = getTarget();
+
+            if (!container || !target) {
+                return;
+            }
+
+            const top = target.getBoundingClientRect().top
+            - container.getBoundingClientRect().top
+            + container.scrollTop;
+
+            container.scrollTo({ top, behavior: 'smooth' });
+        });
     }
 }

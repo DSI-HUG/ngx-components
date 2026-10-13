@@ -19,7 +19,7 @@
 } @else {
     @if (allFilters()) {
         <section #measureRow class="measure-row">
-            <mat-chip-listbox>
+            <mat-chip-listbox multiple>
                 @for (f of allFilters(); track $index) {
                     <mat-chip-option [selectable]="false" [selected]="f.active()">
                         @if (f.icon()) {
@@ -44,7 +44,7 @@
 
     <section class="filter-container" #container>
         @if (this.visibleFilters().length) {
-            <mat-chip-listbox>
+            <mat-chip-listbox multiple>
                 @for (f of visibleFilters(); track $index) {
                     @if (f.type === 'toggle') {
                         <mat-chip-option
@@ -126,7 +126,10 @@
                         </mat-slide-toggle>
                     </section>
                 } @else {
-                    <cdk-accordion-item #accordionItem="cdkAccordionItem" class="filter">
+                    <cdk-accordion-item
+                        #accordionItem="cdkAccordionItem"
+                        class="filter"
+                        [class.has-error]="!!f.error().trim()">
                         <button
                             #headline
                             class="headline"
@@ -137,7 +140,9 @@
                             [attr.aria-controls]="'filter-content-' + $index">
                             <span class="title">
                                 <span class="label">{{ f.label() }}</span>
-                                <span class="value">{{ f.selectedFilterLabel() }}</span>
+                                <span class="value" [class.error]="!!f.error()">
+                                    {{ f.error() || f.selectedFilterLabel() }}
+                                </span>
                             </span>
 
                             <mat-icon aria-hidden="true" class="expand-icon">
@@ -169,7 +174,9 @@
 <ng-template #footer>
     <div class="filters-group--overlay--footer-actions">
         <button matButton (click)="emitCancelClicked()">{{ intl?.cancel ?? 'Cancel' }}</button>
-        <button matButton="filled" (click)="emitAppliedFilters()">{{ intl?.apply ?? 'Apply' }}</button>
+        <button matButton="filled" (click)="emitAppliedFilters()" [disabled]="disableApply() && !moreFiltersOverlay()">
+            {{ intl?.apply ?? 'Apply' }}
+        </button>
     </div>
 </ng-template>
 

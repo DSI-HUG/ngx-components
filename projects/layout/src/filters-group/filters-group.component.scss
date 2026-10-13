@@ -304,6 +304,10 @@ ngx-filters-group {
                                 overflow: hidden;
                                 text-overflow: ellipsis;
                                 color: var(--ngx-filters-group-overlay-title-value-color, var(--mat-sys-tertiary));
+
+                                &.error {
+                                    color: var(--ngx-filters-group-overlay-title-error-color, var(--mat-sys-error));
+                                }
                             }
                         }
                     }
