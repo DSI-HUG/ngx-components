@@ -217,15 +217,25 @@
                         {{ intl?.filters ?? 'Filters' }} ({{ activeFilters() }}
                         {{ intl?.actives ?? 'Actives' | lowercase }})
                     </span>
-                    <button
-                        mat-icon-button
-                        type="button"
-                        aria-label="Collapse all filters"
-                        [disabled]="expandedFiltersAmount() === 0"
-                        (click)="collapseAllFilters()"
-                        matTooltip="{{ intl?.collapseAll ?? 'Collapse all' }}">
-                        <mat-icon>unfold_less</mat-icon>
-                    </button>
+                    @if (expandedFiltersAmount() === 0) {
+                        <button
+                            mat-icon-button
+                            type="button"
+                            aria-label="Expand all filters"
+                            (click)="expandAllFilters()"
+                            matTooltip="{{ intl?.expandAll ?? 'Expand all' }}">
+                            <mat-icon>unfold_more</mat-icon>
+                        </button>
+                    } @else {
+                        <button
+                            mat-icon-button
+                            type="button"
+                            aria-label="Collapse all filters"
+                            (click)="collapseAllFilters()"
+                            matTooltip="{{ intl?.collapseAll ?? 'Collapse all' }}">
+                            <mat-icon>unfold_less</mat-icon>
+                        </button>
+                    }
                     <button
                         mat-icon-button
                         aria-label="Reset filters"

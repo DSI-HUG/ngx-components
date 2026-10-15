@@ -16,6 +16,7 @@ export class NgxLayoutIntl extends NgxAbstractIntl<NgxLayoutIntl> {
     public reset = '';
     public close = '';
     public collapseAll = '';
+    public expandAll = '';
     public cancel = '';
     public apply = '';
 }

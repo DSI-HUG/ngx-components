@@ -9,7 +9,8 @@
     "actives": "Actifs",
     "reset": "Réinitialiser",
     "close": "Fermer",
-    "collapseAll": "Tout réduire",
+    "collapseAll": "Tout replier",
+    "expandAll": "Tout déplier",
     "cancel": "Annuler",
     "apply": "Appliquer"
 }

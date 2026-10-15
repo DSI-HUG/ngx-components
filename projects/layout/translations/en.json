@@ -10,6 +10,7 @@
     "reset": "Reset",
     "close": "Close",
     "collapseAll": "Collapse all",
+    "expandAll": "Expand all",
     "cancel": "Cancel",
     "apply": "Apply"
 }

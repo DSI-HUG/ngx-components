@@ -99,7 +99,8 @@ const resizeSignal = (
         CdkAccordion,
         CdkAccordionItem,
         MatButton,
-        NgxExpandedDirective
+        NgxExpandedDirective,
+        MatTooltip
     ]
 })
 export class NgxFiltersGroupComponent {
@@ -318,6 +319,10 @@ export class NgxFiltersGroupComponent {
 
     protected collapseAllFilters(): void {
         this.accordion()?.closeAll();
+    }
+
+    protected expandAllFilters(): void {
+        this.accordion()?.openAll();
     }
 
     protected onKeydown(event: KeyboardEvent, trigger: CdkOverlayOrigin, templateRef: TemplateRef<unknown>, moreFiltersOverlay: boolean, requireExplicitApply?: boolean): void {
