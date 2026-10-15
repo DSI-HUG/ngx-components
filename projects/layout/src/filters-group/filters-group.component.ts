@@ -118,13 +118,6 @@ export class NgxFiltersGroupComponent {
     protected readonly requireExplicitApply = signal<boolean>(false);
     protected readonly moreFiltersOverlay = signal<boolean>(false);
 
-    protected readonly disableApply = computed(() => this.allFilters().some(filter => {
-        if (filter.type === 'complex') {
-            return !!filter.error().trim();
-        }
-        return false;
-    }));
-
     protected readonly overlayPositions: ConnectionPositionPair[] = [{
         originX: 'center',
         originY: 'bottom',
@@ -177,10 +170,23 @@ export class NgxFiltersGroupComponent {
     protected readonly filterContext = {
         $implicit: (): void => {
             if (!this.moreFiltersOverlay()) {
+                this.refreshAppliedFilters.set(true);
                 this.overlayOpen.set(false);
             }
         }
     };
+
+    protected readonly currentFilter = computed(() =>
+        this.moreFiltersOverlay() ? undefined : this.allFilters().find(
+            (filter): filter is NgxComplexFilter =>
+                filter.type === 'complex' &&
+            filter.templateRef === this.overlayContent()
+        )
+    );
+
+    protected readonly disableApply = computed(() =>
+        this.currentFilter()?.applyDisabled() ?? false
+    );
 
     private readonly accordion = viewChild(CdkAccordion);
     private readonly filtersContent = viewChild<ElementRef<HTMLElement>>('filtersContent');
