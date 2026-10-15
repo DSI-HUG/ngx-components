@@ -74,8 +74,8 @@
                             @if (f.selectedFilterLabel) {
                                 &nbsp;: {{ f.selectedFilterLabel }}
                             }
-                            <mat-icon matChipTrailingIcon>
-                                {{ isSameOverlay(f.templateRef) ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                            <mat-icon matChipTrailingIcon [class.filter-overlay-open]="isSameOverlay(f.templateRef)">
+                                arrow_drop_down
                             </mat-icon>
                         </mat-chip-option>
                     }
@@ -98,8 +98,8 @@
                             activeFiltersAmount()
                         }}
                         {{ intl?.actives ?? 'Actives' | lowercase }})
-                        <mat-icon matChipTrailingIcon>
-                            {{ isSameOverlay(moreFilters) ? 'arrow_drop_up' : 'arrow_drop_down' }}
+                        <mat-icon matChipTrailingIcon [class.filter-overlay-open]="isSameOverlay(moreFilters)">
+                            arrow_drop_down
                         </mat-icon>
                     </mat-chip>
                 </mat-chip-listbox>
@@ -139,15 +139,28 @@
                             [attr.aria-expanded]="accordionItem.expanded"
                             [attr.aria-controls]="'filter-content-' + $index">
                             <span class="title">
-                                <span class="label">{{ f.label() }}</span>
+                                <span class="label">
+                                    @if (!!f.error()) {
+                                        <ng-container>
+                                            <mat-icon>release_alert</mat-icon>
+                                            {{ f.label() }}
+                                        </ng-container>
+                                    } @else {
+                                        {{ f.label() }}
+                                    }
+                                </span>
                                 <span class="value" [class.error]="!!f.error()">
-                                    {{ f.error() || f.selectedFilterLabel() }}
+                                    @if (!!f.error()) {
+                                        <ng-container>
+                                            {{ f.error() }}
+                                        </ng-container>
+                                    } @else {
+                                        {{ f.selectedFilterLabel() }}
+                                    }
                                 </span>
                             </span>
 
-                            <mat-icon aria-hidden="true" class="expand-icon">
-                                {{ accordionItem.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
-                            </mat-icon>
+                            <mat-icon aria-hidden="true" class="expand-icon">keyboard_arrow_down</mat-icon>
                         </button>
                         <div
                             class="filter-content"

@@ -108,6 +108,11 @@ ngx-filters-group {
                     )
                 );
             }
+
+            .filter-overlay-open {
+                transform: rotate(180deg);
+                transition: 0.15s;
+            }
         }
 
         &:has(> button:only-of-type) {
@@ -228,6 +233,17 @@ ngx-filters-group {
                     flex-direction: column;
                     gap: var(--ngx-filters-group-overlay-content-filter-gap, 0.5rem);
 
+                    > [aria-expanded='true'] {
+                        .expand-icon {
+                            transform: rotate(180deg);
+                        }
+                    }
+
+                    .expand-icon {
+                        color: var(--ngx-filters-group-overlay-expand-icon-color, var(--mat-sys-on-surface-variant));
+                        transition: 0.15s;
+                    }
+
                     .headline {
                         position: sticky;
                         top: 0;
@@ -267,13 +283,6 @@ ngx-filters-group {
                             );
                         }
 
-                        .expand-icon {
-                            color: var(
-                                --ngx-filters-group-overlay-expand-icon-color,
-                                var(--mat-sys-on-surface-variant)
-                            );
-                        }
-
                         .title {
                             display: flex;
                             flex-direction: column;
@@ -291,6 +300,17 @@ ngx-filters-group {
                                     --ngx-filters-group-overlay-title-label-letter-spacing,
                                     var(--mat-sys-title-small-tracking)
                                 );
+
+                                display: flex;
+                                align-items: center;
+                                gap: var(--ngx-filters-group-overlay-title-error-gap, 0.125rem);
+
+                                mat-icon {
+                                    color: var(--ngx-filters-group-overlay-title-error-color, var(--mat-sys-error));
+                                    font-size: 16px;
+                                    height: 16px;
+                                    width: 16px;
+                                }
                             }
 
                             .value {
@@ -306,7 +326,16 @@ ngx-filters-group {
                                 color: var(--ngx-filters-group-overlay-title-value-color, var(--mat-sys-tertiary));
 
                                 &.error {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: var(--ngx-filters-group-overlay-title-error-gap, 0.125rem);
                                     color: var(--ngx-filters-group-overlay-title-error-color, var(--mat-sys-error));
+
+                                    mat-icon {
+                                        font-size: 16px;
+                                        height: 16px;
+                                        width: 16px;
+                                    }
                                 }
                             }
                         }
