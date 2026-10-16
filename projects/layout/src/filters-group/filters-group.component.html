@@ -107,7 +107,7 @@
             <button
                 mat-icon-button
                 aria-label="Reset filters"
-                (click)="emitResetClicked()"
+                (click)="emitFiltersReset()"
                 matTooltip="{{ intl?.reset ?? 'Reset' }}">
                 <mat-icon>settings_backup_restore</mat-icon>
             </button>
@@ -180,7 +180,7 @@
 
 <ng-template #footer>
     <div class="filters-group--overlay--footer-actions">
-        <button matButton (click)="emitCancelClicked()">{{ intl?.cancel ?? 'Cancel' }}</button>
+        <button matButton (click)="emitCanceled()">{{ intl?.cancel ?? 'Cancel' }}</button>
         <button
             matButton="filled"
             (click)="emitAppliedFilters()"
@@ -242,7 +242,7 @@
                     <button
                         mat-icon-button
                         aria-label="Reset filters"
-                        (click)="emitResetClicked()"
+                        (click)="emitFiltersReset()"
                         [disabled]="validating()"
                         matTooltip="{{ intl?.reset ?? 'Reset' }}">
                         <mat-icon>settings_backup_restore</mat-icon>

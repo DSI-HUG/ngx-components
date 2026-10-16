@@ -106,9 +106,9 @@ const resizeSignal = (
     ]
 })
 export class NgxFiltersGroupComponent {
-    public readonly resetFilters = output();
-    public readonly cancelClicked = output();
-    public readonly applyClicked = output();
+    public readonly filtersReset = output();
+    public readonly canceled = output();
+    public readonly applied = output();
     public readonly folded = input<boolean>();
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
@@ -260,8 +260,8 @@ export class NgxFiltersGroupComponent {
         });
     }
 
-    protected emitCancelClicked(): void {
-        this.cancelClicked.emit();
+    protected emitCanceled(): void {
+        this.canceled.emit();
         this.overlayOpen.set(false);
     }
 
@@ -302,7 +302,7 @@ export class NgxFiltersGroupComponent {
         }
 
         this.refreshAppliedFilters.set(true);
-        this.applyClicked.emit();
+        this.applied.emit();
         this.overlayOpen.set(false);
         this.validating.set(false);
     }
@@ -322,8 +322,8 @@ export class NgxFiltersGroupComponent {
         };
     }
 
-    protected emitResetClicked(): void {
-        this.resetFilters.emit();
+    protected emitFiltersReset(): void {
+        this.filtersReset.emit();
 
         if (!this.overlayOpen()) {
             this.refreshAppliedFilters.set(true);

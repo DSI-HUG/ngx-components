@@ -30,7 +30,7 @@ export const actionsGroupTemplate = `
     </ngx-actions-group>`;
 
 export const filtersGroupFoldedTemplate = `
-    <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="folded">
+    <ngx-filters-group (filtersReset)="buttonResetClicked()" [folded]="folded">
         <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" />
         <ng-template
             [ngxFilter]
@@ -90,7 +90,7 @@ export const filtersGroupFoldedTemplate = `
     </ngx-filters-group>`;
 
 export const filtersGroupTemplate = `
-    <ngx-filters-group (resetFilters)="buttonResetClicked()" [folded]="filtersGroupFolded" (applyClicked)="applyFilters()" (cancelClicked)="cancelFilters()">
+    <ngx-filters-group (filtersReset)="buttonResetClicked()" [folded]="filtersGroupFolded" (applied)="applyFilters()" (canceled)="cancelFilters()">
         <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" icon="comment" />
         <ng-template
             [ngxFilter]
