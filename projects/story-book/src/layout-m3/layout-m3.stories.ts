@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
+import { signal, type WritableSignal } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -74,7 +75,8 @@ const meta: Meta = {
                 NgxColumnBarComponent,
                 NgxBarTitleDirective,
                 NgxColumnComponent,
-                NgxActionDirective
+                NgxActionDirective,
+                MatError
             ],
             providers: [
                 provideNativeDateAdapter()
@@ -121,6 +123,11 @@ type LayoutStoryProps = Story['args'] & {
     origin: string[];
     types: string[];
     appliedFilters: FiltersState;
+    reference: WritableSignal<string>;
+    referenceError: WritableSignal<string>;
+    appliedReference: string;
+    validateReference: () => Promise<boolean>;
+    onPeriodChange: (selection: unknown) => void;
     selectedDateRangeLabel: () => string;
     originSelectedLabel: () => string;
     typesSelectedLabel: () => string;
@@ -149,8 +156,29 @@ const copyFilters = (state: FiltersState): FiltersState => ({
     types: [...state.types]
 });
 
+const referenceProps = (): Pick<LayoutStoryProps, 'reference' | 'referenceError' | 'appliedReference' | 'validateReference'> => {
+    const reference = signal('');
+    const referenceError = signal('');
+
+    return {
+        reference,
+        referenceError,
+        appliedReference: '',
+        validateReference: async (): Promise<boolean> => {
+            const value = reference().trim();
+            referenceError.set('');
+            await new Promise<void>(resolve => setTimeout(resolve, 800));
+
+            const valid = /^REF-\d{3}$/.test(value);
+            referenceError.set(valid ? '' : 'La référence doit respecter le format REF-123.');
+            return valid;
+        }
+    };
+};
+
 const props = (args: Story['args']): LayoutStoryProps => ({
     ...args,
+    ...referenceProps(),
     commentFilter: false,
     documentFilter: false,
     selectedPeriod: [] as string[],
@@ -202,10 +230,37 @@ const props = (args: Story['args']): LayoutStoryProps => ({
 
     applyFilters(): void {
         this.appliedFilters = copyFilters(this);
+        this.appliedReference = this.reference();
     },
 
     cancelFilters(): void {
         Object.assign(this, copyFilters(this.appliedFilters));
+        this.reference.set(this.appliedReference);
+        this.referenceError.set('');
+    },
+
+    onPeriodChange(selection: unknown): void {
+        if (!Array.isArray(selection) || !selection.every(value => typeof value === 'string')) {
+            return;
+        }
+        this.selectedPeriod = selection;
+        const period = selection[0];
+        if (!['3_DAYS', '3_MONTHS', 'LAST_YEAR'].includes(period)) {
+            return;
+        }
+        const end = new Date();
+        end.setHours(0, 0, 0, 0);
+        const start = new Date(end);
+        if (period === '3_DAYS') {
+            start.setDate(start.getDate() - 2);
+        } else {
+            start.setDate(1);
+            start.setMonth(start.getMonth() - (period === '3_MONTHS' ? 3 : 12));
+            const lastDay = new Date(start.getFullYear(), start.getMonth() + 1, 0).getDate();
+            start.setDate(Math.min(end.getDate(), lastDay));
+        }
+        this.selectedStartDate = start;
+        this.selectedEndDate = end;
     },
 
     originSelectedLabel(): string {
@@ -232,6 +287,8 @@ const props = (args: Story['args']): LayoutStoryProps => ({
         this.documentFilter = false;
         this.origin = [];
         this.types = [];
+        this.reference.set('');
+        this.referenceError.set('');
         console.log('reset clicked');
     }
 });

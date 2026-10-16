@@ -164,6 +164,10 @@ ngx-filters-group {
             }
         }
 
+        .is-disabled {
+            opacity: 0.38;
+        }
+
         .one-filter-content {
             flex: 1 1 auto;
             overflow-y: auto;
@@ -330,6 +334,13 @@ ngx-filters-group {
                                     align-items: center;
                                     gap: var(--ngx-filters-group-overlay-title-error-gap, 0.125rem);
                                     color: var(--ngx-filters-group-overlay-title-error-color, var(--mat-sys-error));
+
+                                    .error-text {
+                                        overflow: hidden;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                        box-sizing: border-box;
+                                    }
 
                                     mat-icon {
                                         font-size: 16px;

@@ -84,7 +84,7 @@
         }
         <section class="static" #static>
             @if (invisibleFilters().length; as invisibleFiltersAmount) {
-                <mat-chip-listbox>
+                <mat-chip-listbox multiple>
                     <mat-chip
                         tabindex="0"
                         cdkOverlayOrigin
@@ -146,7 +146,7 @@
                                     @if (!!f.error()) {
                                         <ng-container>
                                             <mat-icon>release_alert</mat-icon>
-                                            {{ f.error() }}
+                                            <span class="error-text">{{ f.error() }}</span>
                                         </ng-container>
                                     } @else {
                                         {{ f.selectedFilterLabel() }}
@@ -181,8 +181,16 @@
 <ng-template #footer>
     <div class="filters-group--overlay--footer-actions">
         <button matButton (click)="emitCancelClicked()">{{ intl?.cancel ?? 'Cancel' }}</button>
-        <button matButton="filled" (click)="emitAppliedFilters()" [disabled]="disableApply()">
-            {{ intl?.apply ?? 'Apply' }}
+        <button
+            matButton="filled"
+            (click)="emitAppliedFilters()"
+            [disabled]="disableApply() || validating()"
+            [attr.aria-busy]="validating()">
+            @if (validating()) {
+                <mat-spinner diameter="18" aria-label="Validation en cours" />
+            } @else {
+                {{ intl?.apply ?? 'Apply' }}
+            }
         </button>
     </div>
 </ng-template>
@@ -197,7 +205,7 @@
         [cdkConnectedOverlayOpen]="overlayOpen"
         (detach)="this.overlayOpen.set(false)"
         [cdkConnectedOverlayHasBackdrop]="true"
-        (backdropClick)="!requireExplicitApply()"
+        (backdropClick)="closeOnBackdropClick()"
         cdkConnectedOverlayPanelClass="filters-group--overlay"
         cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
         [cdkConnectedOverlayPositions]="overlayPositions"
@@ -215,6 +223,7 @@
                         <button
                             mat-icon-button
                             type="button"
+                            [disabled]="validating()"
                             aria-label="Expand all filters"
                             (click)="expandAllFilters()"
                             matTooltip="{{ intl?.expandAll ?? 'Expand all' }}">
@@ -234,18 +243,30 @@
                         mat-icon-button
                         aria-label="Reset filters"
                         (click)="emitResetClicked()"
+                        [disabled]="validating()"
                         matTooltip="{{ intl?.reset ?? 'Reset' }}">
                         <mat-icon>settings_backup_restore</mat-icon>
                     </button>
                 </div>
                 <mat-divider />
-                <div #filtersContent class="filters--content">
+                <div
+                    #filtersContent
+                    class="filters--content"
+                    [class.is-disabled]="validating()"
+                    [attr.inert]="validating() ? '' : null"
+                    [attr.aria-busy]="validating()">
                     <ng-container *ngTemplateOutlet="overlayContent"></ng-container>
                 </div>
                 <mat-divider />
                 <ng-container *ngTemplateOutlet="footer"></ng-container>
             } @else {
-                <div #oneFilterContent class="one-filter-content" [class.has-overflow]="hasOverflow()">
+                <div
+                    #oneFilterContent
+                    class="one-filter-content"
+                    [class.has-overflow]="hasOverflow()"
+                    [class.is-disabled]="validating()"
+                    [attr.inert]="validating() ? '' : null"
+                    [attr.aria-busy]="validating()">
                     <ng-container *ngTemplateOutlet="overlayContent; context: filterContext"></ng-container>
                 </div>
                 @if (requireExplicitApply()) {

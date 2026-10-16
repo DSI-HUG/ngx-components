@@ -19,6 +19,7 @@ export interface NgxComplexFilter extends NgxBaseFilter {
     readonly error: InputSignal<string>;
     readonly applyDisabled: InputSignal<boolean>;
     readonly templateRef: TemplateRef<unknown>;
+    readonly validationBeforeApply: InputSignal<() => boolean | Promise<boolean>>;
     readonly requireExplicitApply: InputSignal<boolean>;
     readonly type: 'complex';
 }

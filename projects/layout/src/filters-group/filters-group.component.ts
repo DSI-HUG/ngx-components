@@ -9,6 +9,7 @@ import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatChip, MatChipAvatar, MatChipListbox, MatChipOption, MatChipTrailingIcon } from '@angular/material/chips';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatTooltip } from '@angular/material/tooltip';
 
@@ -100,7 +101,8 @@ const resizeSignal = (
         CdkAccordionItem,
         MatButton,
         NgxExpandedDirective,
-        MatTooltip
+        MatTooltip,
+        MatProgressSpinner
     ]
 })
 export class NgxFiltersGroupComponent {
@@ -117,6 +119,7 @@ export class NgxFiltersGroupComponent {
     protected readonly overlayOpen = signal<boolean>(false);
     protected readonly requireExplicitApply = signal<boolean>(false);
     protected readonly moreFiltersOverlay = signal<boolean>(false);
+    protected readonly validating = signal<boolean>(false);
 
     protected readonly overlayPositions: ConnectionPositionPair[] = [{
         originX: 'center',
@@ -262,16 +265,46 @@ export class NgxFiltersGroupComponent {
         this.overlayOpen.set(false);
     }
 
-    protected emitAppliedFilters(): void {
-        if (this.disableApply()) {
+    protected async emitAppliedFilters(): Promise<void> {
+        let valid = true;
+        this.validating.set(true);
+
+        if (this.currentFilter()) {
+            const currentFilter = this.currentFilter();
+            const validationBeforeApply = currentFilter?.validationBeforeApply();
+            valid = validationBeforeApply ? await validationBeforeApply() : true;
+        } else {
             this.collapseAllFilters();
-            this.scrollToFirstError();
+            const filters = this.allFilters().filter<NgxComplexFilter>(
+                (filter): filter is NgxComplexFilter =>
+                    filter.type === 'complex'
+            );
+
+            const results = await Promise.all(
+                filters.map(async filter => {
+                    const validate = filter.validationBeforeApply();
+                    const filterValid = await validate();
+
+                    return filterValid && !filter.applyDisabled();
+                })
+            );
+
+            valid = results.every(result => result);
+
+            if (!valid) {
+                this.scrollToFirstError();
+            }
+        }
+
+        if (!valid) {
+            this.validating.set(false);
             return;
         }
 
         this.refreshAppliedFilters.set(true);
         this.applyClicked.emit();
         this.overlayOpen.set(false);
+        this.validating.set(false);
     }
 
     protected scrollToFirstError(): void {
@@ -335,6 +368,12 @@ export class NgxFiltersGroupComponent {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
             this.openOverlay(trigger, templateRef, moreFiltersOverlay, requireExplicitApply);
+        }
+    }
+
+    protected closeOnBackdropClick(): void {
+        if (!this.moreFiltersOverlay() && !this.requireExplicitApply()) {
+            this.overlayOpen.set(false);
         }
     }
 

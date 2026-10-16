@@ -94,21 +94,24 @@ export const filtersGroupTemplate = `
         <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" icon="comment" />
         <ng-template
             [ngxFilter]
-            [active]="!!selectedPeriod.length"
-            label="Periode"
+            [active]="!!selectedStartDate || !!selectedEndDate"
+            label="Période"
             [selectedFilterLabel]="selectedDateRangeLabel()"
-            let-closeOverlay>
-            <mat-selection-list multiple="false" [(ngModel)]="selectedPeriod" hideSingleSelectionIndicator (selectionChange)="$event.options[0]?.value !== 'OTHER' && closeOverlay()">
+            [applyDisabled]="!selectedStartDate && !selectedEndDate"
+            [error]="!selectedStartDate && !selectedEndDate ? 'Date non renseignée' : ''"
+            [requireExplicitApply]="true"
+            let-overlayClose>
+            <mat-selection-list [multiple]="false" [(ngModel)]="selectedPeriod" hideSingleSelectionIndicator (ngModelChange)="onPeriodChange($event)" (selectionChange)="overlayClose()">
                 <mat-list-option value="3_DAYS">3 derniers jours</mat-list-option>
                 <mat-list-option value="3_MONTHS">3 derniers mois</mat-list-option>
                 <mat-list-option value="LAST_YEAR">Dernière année</mat-list-option>
                 <mat-list-option value="OTHER">Autre</mat-list-option>
             </mat-selection-list>
                 <mat-form-field>
-                    <mat-label>Enter a date range</mat-label>
+                    <mat-label>Période</mat-label>
                     <mat-date-range-input [rangePicker]="picker">
-                        <input matStartDate [(ngModel)]="selectedStartDate" placeholder="Start date" />
-                        <input matEndDate [(ngModel)]="selectedEndDate" placeholder="End date" (dateChange)="selectedStartDate && selectedEndDate && closeOverlay()"/>
+                        <input matStartDate [(ngModel)]="selectedStartDate" placeholder="Date de début" (dateChange)="selectedPeriod = ['OTHER']" />
+                        <input matEndDate [(ngModel)]="selectedEndDate" placeholder="Date de fin" (dateChange)="selectedPeriod = ['OTHER']" />
                     </mat-date-range-input>
                     <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -122,8 +125,8 @@ export const filtersGroupTemplate = `
             label="Origine"
             [selectedFilterLabel]="originSelectedLabel()"
             icon="place"
-            [requireExplicitApply]="true">
-            <mat-selection-list multiple="false" [(ngModel)]="origin"  >
+            let-overlayClose>
+            <mat-selection-list multiple="false" [(ngModel)]="origin" (selectionChange)="overlayClose()">
                 <mat-list-option value="HOSP">Hôpital</mat-list-option>
                 <mat-list-option value="HOME">Domicile</mat-list-option>
             </mat-selection-list>
@@ -132,7 +135,8 @@ export const filtersGroupTemplate = `
             [ngxFilter]
             [active]="!!types.length"
             label="Type"
-            [selectedFilterLabel]="typesSelectedLabel()">
+            [selectedFilterLabel]="typesSelectedLabel()"
+            [requireExplicitApply]="true">
             <mat-selection-list [(ngModel)]="types">
                 <mat-list-option value="Médicament" togglePosition="after">Médicament</mat-list-option>
                 <mat-list-option value="Soin" togglePosition="after">Soin</mat-list-option>
@@ -147,6 +151,22 @@ export const filtersGroupTemplate = `
                 <mat-list-option value="Onco./Hémato" togglePosition="after">Onco./Hémato</mat-list-option>
                 <mat-list-option value="Autres" togglePosition="after">Autres</mat-list-option>
             </mat-selection-list>
+        </ng-template>
+        <ng-template
+            [ngxFilter]
+            label="Référence"
+            [active]="!!reference().trim()"
+            [selectedFilterLabel]="reference()"
+            [requireExplicitApply]="true"
+            [validationBeforeApply]="validateReference"
+            [error]="referenceError()">
+            <mat-form-field>
+                <mat-label>Référence</mat-label>
+                <input matInput [ngModel]="reference()" (ngModelChange)="reference.set($event); referenceError.set('')" placeholder="REF-123" />
+            </mat-form-field>
+            @if (referenceError()) {
+                <mat-error>{{ referenceError() }}</mat-error>
+            }
         </ng-template>
         <ng-template [ngxFilterToggle] label="Afficher documents" icon="description" [(active)]="documentFilter" />
     </ngx-filters-group>`;
