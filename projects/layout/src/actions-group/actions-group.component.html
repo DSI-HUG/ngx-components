@@ -1,15 +1,26 @@
-<div #container class="container">
-    <ng-content select="button, [ngxAction]"></ng-content>
-    @if (hiddenActions().length > 0) {
+<div class="container">
+    @for (item of visibleItems(); track $index) {
+        <button matIconButton [ariaLabel]="item.label()" [matTooltip]="item.label()" (click)="item.execute.emit()">
+            <mat-icon>{{ item.icon() }}</mat-icon>
+        </button>
+    }
+
+    @if (hiddenItems().length) {
         <button
             matIconButton
             class="more-actions-button"
             [matMenuTriggerFor]="menuActionsGroup"
-            matTooltip="{{ intl?.moreActions ?? 'More actions' }}">
+            [matTooltip]="intl?.moreActions ?? 'More actions'">
             <mat-icon>more_horiz</mat-icon>
         </button>
     }
-    <mat-menu #menuActionsGroup="matMenu" class="actions-group-menu">
-        <div #hiddenContainer></div>
+
+    <mat-menu #menuActionsGroup="matMenu">
+        @for (item of hiddenItems(); track $index) {
+            <button mat-menu-item [ariaLabel]="item.label()" (click)="item.execute.emit()">
+                <mat-icon>{{ item.icon() }}</mat-icon>
+                <span>{{ item.label() }}</span>
+            </button>
+        }
     </mat-menu>
 </div>

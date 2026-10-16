@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, Renderer2, type Signal, signal, viewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, type Signal, signal, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
@@ -64,69 +64,33 @@ const resizeSignal = (
         MatIconButton,
         MatTooltip,
         MatMenu,
+        MatMenuItem,
         MatMenuTrigger
     ]
 })
 export class NgxActionsGroupComponent {
-    protected readonly hiddenActions = computed(() => {
-        const maxVisible = this.getMaxVisibleAction(this.hostWidth());
-        return this.iconButtons().slice(maxVisible);
-    });
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
-    private readonly iconButtons = contentChildren<NgxActionDirective, ElementRef<HTMLElement>>(NgxActionDirective, { read: ElementRef });
+    protected visibleItems = computed(() => this.itemsCategory().visible);
 
-    private readonly container = viewChild.required<ElementRef<HTMLElement>>('container');
-    private readonly hiddenContainer = viewChild.required<ElementRef<HTMLElement>>('hiddenContainer');
+    protected hiddenItems = computed(() => this.itemsCategory().hidden);
+
+    private readonly items = contentChildren<NgxActionDirective>(NgxActionDirective);
+
+    private readonly itemsCategory = computed(() => {
+        const items = this.items();
+        const maxItems = this.getMaxVisibleAction(this.hostWidth());
+        return {
+            visible: items.slice(0, maxItems),
+            hidden: items.slice(maxItems)
+        };
+    });
 
     private readonly hostElement = inject<ElementRef<HTMLElement>>(ElementRef);
-    private readonly renderer = inject(Renderer2);
 
     private readonly hostSize = resizeSignal(() => this.hostElement);
     private readonly hostWidth = computed(() => Math.ceil(this.hostSize()?.contentRect.width || 0));
-
-    private readonly visibleActions = computed(() => {
-        const maxVisible = this.getMaxVisibleAction(this.hostWidth());
-        return this.iconButtons().slice(0, maxVisible);
-    });
-
-    public constructor() {
-
-        effect(() => {
-            const buttons = this.iconButtons();
-
-            if (buttons.length === 0) {
-                return;
-            }
-
-            const visibleButtons = this.visibleActions();
-            const containerEl = this.container();
-            visibleButtons.forEach(button => {
-                const element = button.nativeElement;
-                containerEl.nativeElement.appendChild(element);
-            });
-
-            const hiddenButtons = this.hiddenActions();
-            const hiddenContainerEl = this.hiddenContainer();
-            if (hiddenButtons.length > 0) {
-                hiddenButtons.forEach(button => {
-                    const element = button.nativeElement;
-
-                    const hasMenu =
-                        element.classList.contains('mat-mdc-menu-trigger');
-
-                    if (hasMenu) {
-                        this.renderer.listen(element, 'click', (event: MouseEvent) => {
-                            event.stopPropagation();
-                        });
-                    }
-
-                    hiddenContainerEl.nativeElement.appendChild(element);
-                });
-            }
-        });
-    }
 
     private getMaxVisibleAction(width: number): number {
 
@@ -134,13 +98,13 @@ export class NgxActionsGroupComponent {
 
         const maxVisibleActions = Math.max(1, maxNumberOfActions);
 
-        const totalButtons = this.iconButtons().length;
+        const totalButtons = this.items().length;
 
         if (maxVisibleActions >= totalButtons) {
             return totalButtons;
         }
 
         // -1 => Allows for the more button to be displayed
-        return maxVisibleActions - 1;
+        return Math.max(0, maxVisibleActions - 1);
     }
 }

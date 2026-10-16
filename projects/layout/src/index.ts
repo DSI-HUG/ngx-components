@@ -10,4 +10,3 @@ export * from './panel';
 export * from './panel-bar';
 export * from './providers';
 export * from './search-bar-container';
-
