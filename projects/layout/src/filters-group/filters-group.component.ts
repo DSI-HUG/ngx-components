@@ -1,16 +1,41 @@
+import { CdkTrapFocus } from '@angular/cdk/a11y';
+import { CdkAccordion, CdkAccordionItem } from '@angular/cdk/accordion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, viewChildren, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
-import { MatIconButton } from '@angular/material/button';
-import { MatChip, MatChipOption, MatChipSet, MatChipTrailingIcon } from '@angular/material/chips';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatChip, MatChipAvatar, MatChipListbox, MatChipOption, MatChipTrailingIcon } from '@angular/material/chips';
+import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
-import { FILTER_TOKEN } from './filter-chip.model';
+import { NgxExpandedDirective } from './expanded-filter.directive';
+import { FILTER_TOKEN, NgxComplexFilter, NgxToggleFilter } from './filter-chip.model';
+
+export interface NgxFilterContext {
+    $implicit: () => void;
+}
+
+interface ComplexFilterView {
+    readonly source: NgxComplexFilter;
+    readonly type: 'complex';
+    readonly active: boolean;
+    readonly selectedFilterLabel: string;
+    readonly templateRef: TemplateRef<unknown>;
+}
+
+interface ToggleFilterView {
+    readonly source: NgxToggleFilter;
+    readonly type: 'toggle';
+    readonly active: boolean;
+}
+
+type FilterView = ToggleFilterView | ComplexFilterView;
 
 const resizeSignal = (
     element: () => ElementRef<HTMLElement> | undefined,
@@ -60,7 +85,7 @@ const resizeSignal = (
         MatChip,
         MatChipOption,
         MatChipTrailingIcon,
-        MatChipSet,
+        MatChipListbox,
         MatTooltip,
         NgTemplateOutlet,
         CdkConnectedOverlay,
@@ -68,11 +93,22 @@ const resizeSignal = (
         MatSlideToggle,
         FormsModule,
         MatBadge,
-        LowerCasePipe
+        LowerCasePipe,
+        MatDivider,
+        CdkTrapFocus,
+        MatChipAvatar,
+        CdkAccordion,
+        CdkAccordionItem,
+        MatButton,
+        NgxExpandedDirective,
+        MatTooltip,
+        MatProgressSpinner
     ]
 })
 export class NgxFiltersGroupComponent {
-    public readonly resetFilters = output();
+    public readonly filtersReset = output();
+    public readonly canceled = output();
+    public readonly applied = output();
     public readonly folded = input<boolean>();
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
@@ -81,7 +117,10 @@ export class NgxFiltersGroupComponent {
     protected readonly overlayOrigin = signal<CdkOverlayOrigin | undefined>(undefined);
     protected readonly overlayContent = signal<TemplateRef<unknown> | undefined>(undefined);
     protected readonly overlayOpen = signal<boolean>(false);
+    protected readonly requireExplicitApply = signal<boolean>(false);
     protected readonly moreFiltersOverlay = signal<boolean>(false);
+    protected readonly validating = signal<boolean>(false);
+
     protected readonly overlayPositions: ConnectionPositionPair[] = [{
         originX: 'center',
         originY: 'bottom',
@@ -95,33 +134,68 @@ export class NgxFiltersGroupComponent {
         overlayY: 'top',
         offsetY: 16
     }];
+
+    protected readonly hasOverflow = computed(() => {
+        this.oneFilterContentSize();
+
+        const element = this.oneFilterContent()?.nativeElement;
+        return !!element && element.scrollHeight > element.clientHeight;
+    });
     // #endregion
 
     // #region Filters
     protected allFilters = contentChildren(FILTER_TOKEN);
-    protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter => filter.active()).length);
+    protected readonly activeFilters = computed(() => this.allFilters().filter(filter => filter.active()).length);
+    protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter => filter.active).length);
 
     protected readonly visibleFilters = computed(() => {
-        const lastFittingIndex = this.lastFittingIndex();
-        if (lastFittingIndex < 0) {
+        const visibleFiltersEndIndex = this.visibleFiltersEndIndex();
+        if (visibleFiltersEndIndex < 0) {
             return [];
         }
-
-        return this.allFilters().slice(0, lastFittingIndex);
+        return this.allFilterViews().slice(0, visibleFiltersEndIndex);
     });
 
     protected readonly invisibleFilters = computed(() => {
-        const lastFittingIndex = this.lastFittingIndex();
-        if (lastFittingIndex < 0) {
-            return this.allFilters();
+        const visibleFiltersEndIndex = this.visibleFiltersEndIndex();
+        if (visibleFiltersEndIndex < 0) {
+            return this.allFilterViews();
         }
-
-        return this.allFilters().slice(lastFittingIndex);
+        return this.allFilterViews().slice(visibleFiltersEndIndex);
     });
+
+    protected readonly allFilterViews = signal<FilterView[]>([]);
+    protected readonly expandedFilters = viewChildren(NgxExpandedDirective);
+    protected readonly expandedFiltersAmount = computed(() =>
+        this.expandedFilters().filter(filter => filter.ngxExpandedFilter()).length
+    );
+
+    protected readonly filterContext = {
+        $implicit: (): void => {
+            if (!this.moreFiltersOverlay()) {
+                this.refreshAppliedFilters.set(true);
+                this.overlayOpen.set(false);
+            }
+        }
+    };
+
+    protected readonly currentFilter = computed(() =>
+        this.moreFiltersOverlay() ? undefined : this.allFilters().find(
+            (filter): filter is NgxComplexFilter =>
+                filter.type === 'complex' &&
+            filter.templateRef === this.overlayContent()
+        )
+    );
+
+    protected readonly disableApply = computed(() =>
+        this.currentFilter()?.applyDisabled() ?? false
+    );
+
+    private readonly accordion = viewChild(CdkAccordion);
+    private readonly filtersContent = viewChild<ElementRef<HTMLElement>>('filtersContent');
 
     private readonly filterContainerRef = viewChild.required<ElementRef<HTMLElement>>('container');
     private readonly filterContainerPadding = computed(() => Number.parseFloat(globalThis.getComputedStyle(this.filterContainerRef().nativeElement).paddingInline));
-
     // #endregion
 
     // #region Host
@@ -142,7 +216,9 @@ export class NgxFiltersGroupComponent {
     private readonly staticFieldsWidth = computed(() => Math.ceil(this.staticFieldsSize()?.contentRect.width || 0));
     // #endregion
 
-    private readonly lastFittingIndex = computed(() => {
+    private readonly visibleFiltersEndIndex = signal(-1);
+
+    private readonly measuredVisibleFiltersEndIndex = computed(() => {
         const hostWidth = this.hostWidth();
         if (!hostWidth) {
             return -1;
@@ -155,14 +231,153 @@ export class NgxFiltersGroupComponent {
             return filters.length;
         }
 
-        return this.getLastFittingIndex(availableSpace, filters);
+        return this.getVisibleFiltersEndIndex(availableSpace, filters);
     });
 
-    protected emitResetClicked(): void {
-        this.resetFilters.emit();
+    private readonly liveFilterViews = computed<FilterView[]>(() => this.allFilters().map((f): FilterView => {
+        if (f.type === 'toggle') {
+            return { source: f, type: 'toggle', active: f.active() };
+        }
+        return { source: f, type: 'complex', active: f.active(), selectedFilterLabel: f.selectedFilterLabel(), templateRef: f.templateRef };
+    }));
+
+    private readonly refreshAppliedFilters = signal(false);
+    private readonly oneFilterContent = viewChild<ElementRef<HTMLElement>>('oneFilterContent');
+    private readonly oneFilterContentSize = resizeSignal(() => this.oneFilterContent());
+
+    private constructor() {
+        effect(() => {
+            const index = this.measuredVisibleFiltersEndIndex();
+
+            if (!this.overlayOpen()) {
+                this.visibleFiltersEndIndex.set(index);
+
+                if (!this.requireExplicitApply() || this.refreshAppliedFilters()) {
+                    this.allFilterViews.set(this.liveFilterViews());
+                    this.refreshAppliedFilters.set(false);
+                }
+            }
+        });
     }
 
-    private getLastFittingIndex(availableSpace: number, elements: readonly HTMLElement[]): number {
+    protected emitCanceled(): void {
+        this.canceled.emit();
+        this.overlayOpen.set(false);
+    }
+
+    protected async emitAppliedFilters(): Promise<void> {
+        let valid = true;
+        this.validating.set(true);
+
+        if (this.currentFilter()) {
+            const currentFilter = this.currentFilter();
+            const validationBeforeApply = currentFilter?.validationBeforeApply();
+            valid = validationBeforeApply ? await validationBeforeApply() : true;
+        } else {
+            this.collapseAllFilters();
+            const filters = this.allFilters().filter<NgxComplexFilter>(
+                (filter): filter is NgxComplexFilter =>
+                    filter.type === 'complex'
+            );
+
+            const results = await Promise.all(
+                filters.map(async filter => {
+                    const validate = filter.validationBeforeApply();
+                    const filterValid = await validate();
+
+                    return filterValid && !filter.applyDisabled();
+                })
+            );
+
+            valid = results.every(result => result);
+
+            if (!valid) {
+                this.scrollToFirstError();
+            }
+        }
+
+        if (!valid) {
+            this.validating.set(false);
+            return;
+        }
+
+        this.refreshAppliedFilters.set(true);
+        this.applied.emit();
+        this.overlayOpen.set(false);
+        this.validating.set(false);
+    }
+
+    protected scrollToFirstError(): void {
+        this.scrollToElement(() =>
+            this.filtersContent()?.nativeElement.querySelector<HTMLElement>('.filter.has-error .headline')
+        );
+    }
+
+    protected contextForSection(item: CdkAccordionItem, headline: HTMLElement): NgxFilterContext {
+        return {
+            $implicit: (): void => {
+                item.close();
+                this.scrollToElement(() => headline);
+            }
+        };
+    }
+
+    protected emitFiltersReset(): void {
+        this.filtersReset.emit();
+
+        if (!this.overlayOpen()) {
+            this.refreshAppliedFilters.set(true);
+        }
+    }
+
+    protected isSameOverlay(
+        templateRef: TemplateRef<unknown>
+    ): boolean {
+        return this.overlayOpen() && this.overlayContent() === templateRef;
+    }
+
+
+    protected openOverlay(
+        trigger: CdkOverlayOrigin,
+        templateRef: TemplateRef<unknown>,
+        moreFiltersOverlay: boolean,
+        requireExplicitApply = false
+    ): void {
+        this.overlayOpen.set(false);
+
+        if (this.isSameOverlay(templateRef)) {
+            return;
+        }
+
+        this.overlayOrigin.set(trigger);
+        this.overlayContent.set(templateRef);
+        this.moreFiltersOverlay.set(moreFiltersOverlay);
+        this.requireExplicitApply.set(!moreFiltersOverlay && requireExplicitApply);
+        this.overlayOpen.set(true);
+    }
+
+    protected collapseAllFilters(): void {
+        this.accordion()?.closeAll();
+    }
+
+    protected expandAllFilters(): void {
+        this.accordion()?.openAll();
+    }
+
+    protected onKeydown(event: KeyboardEvent, trigger: CdkOverlayOrigin, templateRef: TemplateRef<unknown>, moreFiltersOverlay: boolean, requireExplicitApply?: boolean): void {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this.openOverlay(trigger, templateRef, moreFiltersOverlay, requireExplicitApply);
+        }
+    }
+
+    protected closeOnBackdropClick(): void {
+        if (!this.moreFiltersOverlay() && !this.requireExplicitApply()) {
+            this.overlayOpen.set(false);
+        }
+    }
+
+    private getVisibleFiltersEndIndex(availableSpace: number, elements: readonly HTMLElement[]): number {
         const firstEl = elements[0];
 
         if (!firstEl || availableSpace <= 0 || availableSpace - firstEl.offsetWidth < 0) {
@@ -171,11 +386,28 @@ export class NgxFiltersGroupComponent {
 
         let residualAvailableSpace = availableSpace;
 
-        const lastFittingIndex = elements.findIndex(el => {
+        const visibleFiltersEndIndex = elements.findIndex(el => {
             residualAvailableSpace -= el.offsetWidth + 16;
             return residualAvailableSpace <= 0;
         });
 
-        return lastFittingIndex >= 0 ? lastFittingIndex : elements.length - 1;
+        return visibleFiltersEndIndex >= 0 ? visibleFiltersEndIndex : elements.length - 1;
+    }
+
+    private scrollToElement(getTarget: () => HTMLElement | null | undefined): void {
+        requestAnimationFrame(() => {
+            const container = this.filtersContent()?.nativeElement;
+            const target = getTarget();
+
+            if (!container || !target) {
+                return;
+            }
+
+            const top = target.getBoundingClientRect().top
+            - container.getBoundingClientRect().top
+            + container.scrollTop;
+
+            container.scrollTo({ top, behavior: 'smooth' });
+        });
     }
 }

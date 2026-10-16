@@ -3,7 +3,7 @@
         mat-icon-button
         aria-label="Back button"
         matTooltip="{{ intl?.back ?? 'Back' }}"
-        (click)="emitBackClicked()">
+        (click)="emitBackRequested()">
         <mat-icon>arrow_back</mat-icon>
     </button>
 }
@@ -31,7 +31,7 @@
                 class="close-button"
                 aria-label="Close button"
                 matTooltip="{{ intl?.close ?? 'Close' }}"
-                (click)="emitCloseClicked()">
+                (click)="emitCloseRequested()">
                 <mat-icon>close</mat-icon>
             </button>
         }

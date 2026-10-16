@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
+import { signal, type WritableSignal } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -75,7 +77,11 @@ const meta: Meta = {
                 NgxColumnBarComponent,
                 NgxBarTitleDirective,
                 NgxColumnComponent,
-                NgxActionDirective
+                NgxActionDirective,
+                MatError
+            ],
+            providers: [
+                provideNativeDateAdapter()
             ]
         })
     ],
@@ -113,29 +119,92 @@ type Story = StoryObj;
 type LayoutStoryProps = Story['args'] & {
     commentFilter: boolean;
     documentFilter: boolean;
-    selectedPeriod: '3_DAYS' | '3_MONTHS' | 'LAST_YEAR' | 'OTHER' | undefined;
+    selectedPeriod: string[];
     selectedStartDate: Date | undefined;
     selectedEndDate: Date | undefined;
-    orderOrigin: 'HOSP' | 'HOME' | undefined;
-    orderTypes: string[];
+    origin: string[];
+    types: string[];
+    appliedFilters: FiltersState;
+    reference: WritableSignal<string>;
+    referenceError: WritableSignal<string>;
+    appliedReference: string;
+    validateReference: () => Promise<boolean>;
+    onPeriodChange: (selection: unknown) => void;
     selectedDateRangeLabel: () => string;
-    orderOriginSelectedLabel: () => string;
-    orderTypesSelectedLabel: () => string;
+    originSelectedLabel: () => string;
+    typesSelectedLabel: () => string;
     buttonResetClicked: () => void;
+    applyFilters: () => void;
+    cancelFilters: () => void;
+};
+
+interface FiltersState {
+    commentFilter: boolean;
+    documentFilter: boolean;
+    selectedPeriod: string[];
+    selectedStartDate: Date | undefined;
+    selectedEndDate: Date | undefined;
+    origin: string[];
+    types: string[];
+}
+
+const copyFilters = (state: FiltersState): FiltersState => ({
+    commentFilter: state.commentFilter,
+    documentFilter: state.documentFilter,
+    selectedPeriod: [...state.selectedPeriod],
+    selectedStartDate: state.selectedStartDate,
+    selectedEndDate: state.selectedEndDate,
+    origin: [...state.origin],
+    types: [...state.types]
+});
+
+const referenceProps = (): Pick<LayoutStoryProps, 'reference' | 'referenceError' | 'appliedReference' | 'validateReference'> => {
+    const reference = signal('');
+    const referenceError = signal('');
+
+    return {
+        reference,
+        referenceError,
+        appliedReference: '',
+        validateReference: async (): Promise<boolean> => {
+            const value = reference().trim();
+            referenceError.set('');
+            await new Promise<void>(resolve => setTimeout(resolve, 800));
+
+            const valid = /^REF-\d{3}$/.test(value);
+            referenceError.set(valid ? '' : 'La référence doit respecter le format REF-123.');
+            return valid;
+        }
+    };
 };
 
 const props = (args: Story['args']): LayoutStoryProps => ({
     ...args,
+    ...referenceProps(),
     commentFilter: false,
     documentFilter: false,
-    selectedPeriod: undefined as '3_DAYS' | '3_MONTHS' | 'LAST_YEAR' | 'OTHER' | undefined,
+    selectedPeriod: [] as string[],
     selectedStartDate: undefined as Date | undefined,
     selectedEndDate: undefined as Date | undefined,
-    orderOrigin: undefined as 'HOSP' | 'HOME' | undefined,
-    orderTypes: [] as string[],
+    origin: [] as string[],
+    types: [] as string[],
+    appliedFilters: {
+        commentFilter: false,
+        documentFilter: false,
+        selectedPeriod: [] as string[],
+        selectedStartDate: undefined as Date | undefined,
+        selectedEndDate: undefined as Date | undefined,
+        origin: [] as string[],
+        types: [] as string[]
+    },
 
     selectedDateRangeLabel(): string {
-        switch (this.selectedPeriod) {
+        if (this.selectedPeriod.length === 0) {
+            return '';
+        }
+
+        const period = this.selectedPeriod[0];
+        switch (period) {
             case '3_DAYS':
                 return '3 jours';
             case '3_MONTHS':
@@ -161,29 +230,67 @@ const props = (args: Story['args']): LayoutStoryProps => ({
         }
     },
 
-    orderOriginSelectedLabel(): string {
-        if (this.orderOrigin === 'HOSP') {
-            return 'Hôpital';
-        }
+    applyFilters(): void {
+        this.appliedFilters = copyFilters(this);
+        this.appliedReference = this.reference();
+    },
 
-        if (this.orderOrigin === 'HOME') {
-            return 'Domicile';
-        }
+    cancelFilters(): void {
+        Object.assign(this, copyFilters(this.appliedFilters));
+        this.reference.set(this.appliedReference);
+        this.referenceError.set('');
+    },
 
+    onPeriodChange(selection: unknown): void {
+        if (!Array.isArray(selection) || !selection.every(value => typeof value === 'string')) {
+            return;
+        }
+        this.selectedPeriod = selection;
+        const period = selection[0];
+        if (!['3_DAYS', '3_MONTHS', 'LAST_YEAR'].includes(period)) {
+            return;
+        }
+        const end = new Date();
+        end.setHours(0, 0, 0, 0);
+        const start = new Date(end);
+        if (period === '3_DAYS') {
+            start.setDate(start.getDate() - 2);
+        } else {
+            start.setDate(1);
+            start.setMonth(start.getMonth() - (period === '3_MONTHS' ? 3 : 12));
+            const lastDay = new Date(start.getFullYear(), start.getMonth() + 1, 0).getDate();
+            start.setDate(Math.min(end.getDate(), lastDay));
+        }
+        this.selectedStartDate = start;
+        this.selectedEndDate = end;
+    },
+
+    originSelectedLabel(): string {
+        if (this.origin) {
+            if (this.origin[0] === 'HOSP') {
+                return 'Hôpital';
+            }
+
+            if (this.origin[0] === 'HOME') {
+                return 'Domicile';
+            }
+        }
         return '';
     },
 
-    orderTypesSelectedLabel(): string {
-        return this.orderTypes.join(', ');
+    typesSelectedLabel(): string {
+        return this.types.join(', ');
     },
     buttonResetClicked(): void {
-        this.selectedPeriod = undefined;
+        this.selectedPeriod = [];
         this.selectedStartDate = undefined;
         this.selectedEndDate = undefined;
         this.commentFilter = false;
         this.documentFilter = false;
-        this.orderOrigin = undefined;
-        this.orderTypes = [];
+        this.origin = [];
+        this.types = [];
+        this.reference.set('');
+        this.referenceError.set('');
         console.log('reset clicked');
     }
 });
