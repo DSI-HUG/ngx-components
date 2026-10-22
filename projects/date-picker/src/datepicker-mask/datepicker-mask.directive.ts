@@ -60,6 +60,8 @@ export class NgxDatepickerMaskDirective {
     private _placeHolderCharacter = '_';
     private _formatExpression?: string;
     private maskValue = '';
+    // value of the last dateChange, taken on focus: an incomplete date typed is emitted on blur only
+    private lastDateChange: unknown;
 
     private readonly formatCharRegExp = /[mdyhs]/i;
     private readonly forwardToInputKeyCodes = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'PageDown', 'PageUp', 'End', 'Home', 'Tab'];
@@ -198,9 +200,14 @@ export class NgxDatepickerMaskDirective {
             shareReplay(1)
         );
 
+        const dateChangeBaseline$ = focus$.pipe(
+            tap(() => this.lastDateChange = this.safeNgControlValue)
+        );
+
         const validateOnBlur$ = blur$.pipe(
             tap(() => {
                 this.parseAndSetValue(this.elementRef.nativeElement.value);
+                this.emitPendingDateChange();
                 // NGXCPTS-49 - On blur, apply the mask manually for formSignals.
                 if (this.signalFormField && this._formatExpression && this._placeHolderCharacter) {
                     const value = this.safeNgControlValue;
@@ -360,7 +367,7 @@ export class NgxDatepickerMaskDirective {
                         }
 
                         value = replaceRange(value, newStart, newEnd, this.maskValue);
-                        this.setValue(new Date(NaN));
+                        this.setValue(new Date(NaN), false);
                         e.preventDefault();
                         return from(new Promise<void>(resolve => setTimeout(resolve))).pipe(
                             map(() => {
@@ -402,7 +409,7 @@ export class NgxDatepickerMaskDirective {
                         this.elementRef.nativeElement.setSelectionRange(nextStart, nextStart);
                     };
 
-                    const newDate = this.parseAndSetValue(value);
+                    const newDate = this.parseAndSetValue(value, false);
                     if (isValid(newDate)) {
                         selectNextChar();
                     } else {
@@ -438,29 +445,32 @@ export class NgxDatepickerMaskDirective {
         );
 
         keyApplied$.pipe(
-            mergeWith(maskApplied$, paste$, selectAll$, dblClick$, validateOnBlur$),
+            mergeWith(maskApplied$, paste$, selectAll$, dblClick$, dateChangeBaseline$, validateOnBlur$),
             takeUntilDestroyed()
         ).subscribe();
     }
 
-    private parseAndSetValue(str: string): Date {
+    private parseAndSetValue(str: string, commit = true): Date {
         if (!this._formatExpression) {
             return new Date();
         }
         const newDate = parse(str, this._formatExpression, new Date());
-        this.setValue(newDate);
+        this.setValue(newDate, commit);
         return newDate;
     }
 
-    private setValue(date: Date | undefined): void {
+    /**
+     * Writes the date in the control and emits dateInput, like the input event of MatDatepickerInput.
+     * dateChange is emitted for a valid date or a committed value (blur, Enter, paste, Delete, picker keys),
+     * not for an incomplete date being typed (24.12.202_): that one is emitted on blur by emitPendingDateChange.
+     */
+    private setValue(date: Date | undefined, commit = true): void {
         const newValue = isNil(date) || isValid(date) ? date : null;
         const emitDateChange = (val: unknown): void => {
-            if (this.matDatepickerInput) {
-                this.matDatepickerInput.dateChange.emit({ value: val, targetElement: this.elementRef.nativeElement, target: this.matDatepickerInput });
-            } else if (this.matStartDate) {
-                this.matStartDate.dateChange.emit({ value: val, targetElement: this.elementRef.nativeElement, target: this.matStartDate });
-            } else if (this.matEndDate) {
-                this.matEndDate.dateChange.emit({ value: val, targetElement: this.elementRef.nativeElement, target: this.matEndDate });
+            this.emitDateEvent('dateInput', val);
+            const committed = commit || (val instanceof Date && isValid(val));
+            if (committed && !this.dateAdapter.sameDate(this.lastDateChange ?? null, val)) {
+                this.emitDateEvent('dateChange', val);
             }
         };
 
@@ -499,6 +509,28 @@ export class NgxDatepickerMaskDirective {
                 control.markAsDirty();
             }
             emitDateChange(newValue ?? null);
+        }
+    }
+
+    // on blur, the value left by the typing (null for an incomplete date) when no dateChange has carried it yet
+    private emitPendingDateChange(): void {
+        const value = this.safeNgControlValue ?? null;
+        if (!this.dateAdapter.sameDate(this.lastDateChange ?? null, value)) {
+            this.emitDateEvent('dateChange', value);
+        }
+    }
+
+    private emitDateEvent(eventName: 'dateInput' | 'dateChange', value: unknown): void {
+        const targetElement = this.elementRef.nativeElement;
+        if (eventName === 'dateChange') {
+            this.lastDateChange = value;
+        }
+        if (this.matDatepickerInput) {
+            this.matDatepickerInput[eventName].emit({ value, targetElement, target: this.matDatepickerInput });
+        } else if (this.matStartDate) {
+            this.matStartDate[eventName].emit({ value, targetElement, target: this.matStartDate });
+        } else if (this.matEndDate) {
+            this.matEndDate[eventName].emit({ value, targetElement, target: this.matEndDate });
         }
     }
 
