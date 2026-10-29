@@ -23,7 +23,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Setup
-              uses: dsi-hug/actions/setup@v4
+              uses: dsi-hug/actions/setup@v5
 
             - name: Build story-book
               working-directory: projects/story-book
