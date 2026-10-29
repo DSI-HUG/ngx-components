@@ -107,7 +107,7 @@
             <button
                 mat-icon-button
                 aria-label="Reset filters"
-                (click)="emitFiltersReset()"
+                (click)="emitResetRequested()"
                 matTooltip="{{ intl?.reset ?? 'Reset' }}">
                 <mat-icon>settings_backup_restore</mat-icon>
             </button>
@@ -129,7 +129,7 @@
                     <cdk-accordion-item
                         #accordionItem="cdkAccordionItem"
                         class="filter"
-                        [class.has-error]="!!f.error().trim()">
+                        [class.has-error]="!!f.error()">
                         <button
                             #headline
                             class="headline"
@@ -242,7 +242,7 @@
                     <button
                         mat-icon-button
                         aria-label="Reset filters"
-                        (click)="emitFiltersReset()"
+                        (click)="emitResetRequested()"
                         [disabled]="validating()"
                         matTooltip="{{ intl?.reset ?? 'Reset' }}">
                         <mat-icon>settings_backup_restore</mat-icon>

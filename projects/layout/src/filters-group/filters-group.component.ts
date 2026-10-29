@@ -25,7 +25,7 @@ interface ComplexFilterView {
     readonly source: NgxComplexFilter;
     readonly type: 'complex';
     readonly active: boolean;
-    readonly selectedFilterLabel: string;
+    readonly selectedFilterLabel: string | undefined;
     readonly templateRef: TemplateRef<unknown>;
 }
 
@@ -106,10 +106,10 @@ const resizeSignal = (
     ]
 })
 export class NgxFiltersGroupComponent {
-    public readonly filtersReset = output();
+    public readonly resetRequested = output();
     public readonly canceled = output();
     public readonly applied = output();
-    public readonly folded = input<boolean>();
+    public readonly folded = input<boolean>(false);
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
@@ -322,8 +322,8 @@ export class NgxFiltersGroupComponent {
         };
     }
 
-    protected emitFiltersReset(): void {
-        this.filtersReset.emit();
+    protected emitResetRequested(): void {
+        this.resetRequested.emit();
 
         if (!this.overlayOpen()) {
             this.refreshAppliedFilters.set(true);
@@ -364,7 +364,13 @@ export class NgxFiltersGroupComponent {
         this.accordion()?.openAll();
     }
 
-    protected onKeydown(event: KeyboardEvent, trigger: CdkOverlayOrigin, templateRef: TemplateRef<unknown>, moreFiltersOverlay: boolean, requireExplicitApply?: boolean): void {
+    protected onKeydown(
+        event: KeyboardEvent,
+        trigger: CdkOverlayOrigin,
+        templateRef: TemplateRef<unknown>,
+        moreFiltersOverlay: boolean,
+        requireExplicitApply?: boolean
+    ): void {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
             this.openOverlay(trigger, templateRef, moreFiltersOverlay, requireExplicitApply);

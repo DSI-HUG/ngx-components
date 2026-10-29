@@ -30,13 +30,12 @@ export const actionsGroupTemplate = `
     </ngx-actions-group>`;
 
 export const filtersGroupFoldedTemplate = `
-    <ngx-filters-group (filtersReset)="buttonResetClicked()" [folded]="folded">
+    <ngx-filters-group (resetRequested)="buttonResetClicked()" [folded]="folded">
         <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" />
         <ng-template
             [ngxFilter]
             [active]="!!selectedPeriod"
-            label="Periode"
-            [selectedFilterLabel]="selectedDateRangeLabel()">
+            label="Periode">
             <mat-button-toggle-group [(ngModel)]="selectedPeriod" aria-label="Font Style">
                 <mat-button-toggle value="3_DAYS">3 derniers jours</mat-button-toggle>
                 <mat-button-toggle value="3_MONTHS">3 derniers mois</mat-button-toggle>
@@ -90,7 +89,7 @@ export const filtersGroupFoldedTemplate = `
     </ngx-filters-group>`;
 
 export const filtersGroupTemplate = `
-    <ngx-filters-group (filtersReset)="buttonResetClicked()" [folded]="filtersGroupFolded" (applied)="applyFilters()" (canceled)="cancelFilters()">
+    <ngx-filters-group (resetRequested)="buttonResetClicked()" [folded]="filtersGroupFolded" (applied)="applyFilters()" (canceled)="cancelFilters()">
         <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" icon="comment" />
         <ng-template
             [ngxFilter]

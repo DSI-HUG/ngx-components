@@ -15,8 +15,8 @@ export interface NgxToggleFilter extends NgxBaseFilter {
 }
 
 export interface NgxComplexFilter extends NgxBaseFilter {
-    readonly selectedFilterLabel: InputSignal<string>;
-    readonly error: InputSignal<string>;
+    readonly selectedFilterLabel: InputSignal<string | undefined>;
+    readonly error: InputSignal<string | undefined>;
     readonly applyDisabled: InputSignal<boolean>;
     readonly templateRef: TemplateRef<unknown>;
     readonly validationBeforeApply: InputSignal<() => boolean | Promise<boolean>>;

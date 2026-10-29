@@ -13,8 +13,8 @@ export class NgxFilterDirective implements NgxComplexFilter {
     public readonly type = 'complex';
     public readonly label = input.required<string>();
     public readonly active = input.required<boolean>();
-    public readonly selectedFilterLabel = input('');
-    public readonly error = input('');
+    public readonly selectedFilterLabel = input<string>();
+    public readonly error = input<string>();
     public readonly icon = input<string>();
     public readonly applyDisabled = input(false);
     public readonly validationBeforeApply = input<() => boolean | Promise<boolean>>((() => true));
