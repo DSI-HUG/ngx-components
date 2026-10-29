@@ -166,9 +166,7 @@ export class NgxFiltersGroupComponent {
 
     protected readonly allFilterViews = signal<FilterView[]>([]);
     protected readonly expandedFilters = viewChildren(NgxExpandedDirective);
-    protected readonly expandedFiltersAmount = computed(() =>
-        this.expandedFilters().filter(filter => filter.ngxExpandedFilter()).length
-    );
+    protected readonly hasExpandedFilters = computed(() => this.expandedFilters().some(filter => filter.ngxExpandedFilter()));
 
     protected readonly filterContext = {
         $implicit: (): void => {
