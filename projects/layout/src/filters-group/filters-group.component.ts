@@ -182,17 +182,15 @@ export class NgxFiltersGroupComponent {
             return undefined;
         }
 
-        return this.allFilters().find((filter): filter is NgxComplexFilter => {
+        return this.allFilters().find(filter => {
             if (filter.type !== 'complex') {
-                return false;
+                return undefined;
             }
             return filter.templateRef === this.overlayContent();
-        });
+        }) as NgxComplexFilter | undefined;
     });
 
-    protected readonly disableApply = computed(() =>
-        this.currentFilter()?.applyDisabled() ?? false
-    );
+    protected readonly disableApply = computed(() => this.currentFilter()?.applyDisabled() ?? false);
 
     private readonly accordion = viewChild(CdkAccordion);
     private readonly filtersContent = viewChild<ElementRef<HTMLElement>>('filtersContent');
@@ -279,7 +277,7 @@ export class NgxFiltersGroupComponent {
         } else {
             this.collapseAllFilters();
             const filters = this.allFilters().filter<NgxComplexFilter>(
-                (filter): filter is NgxComplexFilter =>
+                filter =>
                     filter.type === 'complex'
             );
 
