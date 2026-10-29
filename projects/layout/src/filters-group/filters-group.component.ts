@@ -177,13 +177,18 @@ export class NgxFiltersGroupComponent {
         }
     };
 
-    protected readonly currentFilter = computed(() =>
-        this.moreFiltersOverlay() ? undefined : this.allFilters().find(
-            (filter): filter is NgxComplexFilter =>
-                filter.type === 'complex' &&
-            filter.templateRef === this.overlayContent()
-        )
-    );
+    protected readonly currentFilter = computed(() => {
+        if (this.moreFiltersOverlay()) {
+            return undefined;
+        }
+
+        return this.allFilters().find((filter): filter is NgxComplexFilter => {
+            if (filter.type !== 'complex') {
+                return false;
+            }
+            return filter.templateRef === this.overlayContent();
+        });
+    });
 
     protected readonly disableApply = computed(() =>
         this.currentFilter()?.applyDisabled() ?? false
