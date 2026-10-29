@@ -403,18 +403,8 @@ export class NgxFiltersGroupComponent {
 
     private scrollToElement(getTarget: () => HTMLElement | null | undefined): void {
         requestAnimationFrame(() => {
-            const container = this.filtersContent()?.nativeElement;
             const target = getTarget();
-
-            if (!container || !target) {
-                return;
-            }
-
-            const top = target.getBoundingClientRect().top
-            - container.getBoundingClientRect().top
-            + container.scrollTop;
-
-            container.scrollTo({ top, behavior: 'smooth' });
+            target?.scrollIntoView({ block: 'start' });
         });
     }
 }

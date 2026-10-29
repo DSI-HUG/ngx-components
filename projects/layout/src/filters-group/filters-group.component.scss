@@ -203,6 +203,7 @@ ngx-filters-group {
             overflow-y: auto;
             overflow-x: hidden;
             scrollbar-gutter: stable both-edges;
+            scroll-behavior: smooth;
 
             cdk-accordion {
                 box-sizing: border-box;
