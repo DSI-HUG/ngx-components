@@ -1,11 +1,24 @@
 import { Injectable, signal } from '@angular/core';
 
-export type ToastSeverity = 'info' | 'warning' | 'error';
+export type ToastSeverity = 'info' | 'success' | 'warning' | 'error';
+
+export class ToastAction {
+    public readonly name: string;
+    public readonly execute: () => void;
+
+    public constructor(
+        name: string,
+        action: () => void
+    ) {
+        this.name = name;
+        this.execute = action;
+    }
+}
 
 abstract class BaseToast {
     public readonly title: string;
     public readonly body: string | undefined;
-    public readonly action: (() => void) | undefined;
+    public readonly action: ToastAction | undefined;
     public readonly uuid: string;
 
     public readonly abstract severity: ToastSeverity;
@@ -13,7 +26,7 @@ abstract class BaseToast {
     public constructor(
         title: string,
         body?: string,
-        action?: (() => void)
+        action?: ToastAction
     ) {
         this.uuid = crypto.randomUUID();
         this.title = title;
@@ -33,21 +46,38 @@ export class InfoToast extends BaseToast {
     public constructor(
         title: string,
         body?: string,
-        action?: (() => void),
+        action?: ToastAction,
         duration?: number
     ) {
         super(title, body, action);
         this.duration = duration || 3000;
     }
 }
+
+export class SuccessToast extends BaseToast {
+    public readonly severity = 'success';
+    public readonly duration: number;
+
+    public constructor(
+        title: string,
+        body?: string,
+        action?: ToastAction,
+        duration?: number
+    ) {
+        super(title, body, action);
+        this.duration = duration || 3000;
+    }
+}
+
 export class WarnToast extends BaseToast {
     public readonly severity = 'warning';
 }
+
 export class ErrorToast extends BaseToast {
     public readonly severity = 'error';
 }
 
-export type Toast = InfoToast | WarnToast | ErrorToast;
+export type Toast = InfoToast | SuccessToast | WarnToast | ErrorToast;
 
 @Injectable({
     providedIn: 'root'

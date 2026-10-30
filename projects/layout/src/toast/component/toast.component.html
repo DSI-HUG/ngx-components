@@ -1,29 +1,13 @@
 @let toast = this.toast();
-<div class="header">
-    <span class="icon-container" [class.timed]="!!duration()" [style.animation-duration.ms]="duration()">
+<div class="content">
+    <div class="icon-container">
         <mat-icon>{{ icon() }}</mat-icon>
-    </span>
-    <h1>{{ toast.title }}</h1>
-    <button matIconButton (click)="expire()">
+    </div>
+    <h1>{{ toast.title }} {{ toast.body }}</h1>
+    @if (toast.action; as action) {
+        <button matButton (click)="action.execute()">{{ action.name }}</button>
+    }
+    <button aria-label="close" matIconButton (click)="expire()">
         <mat-icon>close</mat-icon>
     </button>
 </div>
-<div class="content">
-    @if (toast.body) {
-        <p>{{ toast.body }}</p>
-    }
-    @if (toast.action) {
-        <button (click)="toast.action()">action</button>
-    }
-</div>
-<!--
-<div class="content">
-    <mat-icon>{{icon()}}</mat-icon>
-    <h1>{{toast.title}} {{toast.body}}</h1>
-    @if(toast.action) {
-        <button (click)="toast.action()">action</button>
-    }
-    <button matIconButton (click)="expire()">
-        <mat-icon>close</mat-icon>
-    </button>
-</div> -->

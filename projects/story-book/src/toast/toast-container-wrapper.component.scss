@@ -19,6 +19,15 @@
             );
         }
 
+        .success {
+            @include mat.button-overrides(
+                (
+                    tonal-container-color: oklch(from green calc(l + 0.305) calc(c - 0.05) h),
+                    tonal-label-text-color: oklch(from green calc(l - 0.075) c h)
+                )
+            );
+        }
+
         .warn {
             @include mat.button-overrides(
                 (

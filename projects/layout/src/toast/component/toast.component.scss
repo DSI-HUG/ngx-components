@@ -1,26 +1,62 @@
 @use '@angular/material' as mat;
 
-@property --ngx-toast-progress-angle {
-    syntax: '<angle>';
-    inherits: false;
-    initial-value: 360deg;
-}
-
 @property --ngx-toast-progress-percent {
     syntax: '<percentage>';
-    inherits: false;
+    inherits: true;
     initial-value: 0%;
 }
 
-:host {
-    position: relative;
-    background-color: white;
-    border: 1px solid lightgray;
-    border-radius: 14px;
-    padding: 1rem;
-    height: fit-content;
+@property --ngx-toast-progress-angle {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 360deg;
+}
 
+@keyframes toast-around-countdown {
+    0% {
+        --ngx-toast-progress-angle: 0deg;
+    }
+
+    98% {
+        --ngx-toast-progress-angle: 360deg;
+    }
+
+    100% {
+        --ngx-toast-progress-angle: 360deg;
+    }
+}
+
+@keyframes toast-horizontal-countdown {
+    0% {
+        --ngx-toast-progress-percent: 0%;
+    }
+
+    98% {
+        --ngx-toast-progress-percent: 100%;
+    }
+
+    100% {
+        --ngx-toast-progress-percent: 100%;
+    }
+}
+
+:host {
+    --height: var(--ngx-toast-height, 3rem);
+    --background-color: var(--ngx-toast-background-color, white);
+    --border-color: var(--ngx-toast-border-color, lightgray);
+    --text-color: var(--ngx-toast-text-color, dimgray);
+    --icon-color: var(--ngx-toast-info-icon-color, #00629e);
+    --action-color: var(--ngx-toast-action-color, #00629e);
+    --progress-color: oklch(from var(--icon-color) l c h / 0.15);
     --depth: calc(sibling-count() - sibling-index());
+    --peek: var(--ngx-toast-peek, 0);
+
+    height: var(--height);
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--mat-sys-level2);
+
     grid-area: 1 / 1;
     align-self: end;
     z-index: sibling-index();
@@ -36,93 +72,18 @@
         transform: translateY(100%) scale(0.8);
     }
 
-    .header .icon-container {
-        @include mat.icon-overrides(
-            (
-                color: blue
-            )
-        );
-        --toast-progress-color: oklch(from var(--mat-icon-color, black) calc(l + 0.3) calc(c - 0.15) h);
-    }
-
-    &.warning {
-        .header .icon-container {
-            @include mat.icon-overrides(
-                (
-                    color: orange
-                )
-            );
-            --toast-progress-color: oklch(from var(--mat-icon-color, black) calc(l + 0.75) c h / calc(alpha - 0.6));
-        }
-    }
-
-    &.error {
-        .header .icon-container {
-            @include mat.icon-overrides(
-                (
-                    color: red
-                )
-            );
-            --toast-progress-color: oklch(from var(--mat-icon-color, black) calc(l + 0.75) calc(c - 0.15) h);
-        }
-    }
-
-    &:nth-last-child(n + 4) {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-    }
-
-    @keyframes toast-countdown {
-        from {
-            --ngx-toast-progress-angle: 360deg;
-        }
-
-        to {
-            --ngx-toast-progress-angle: 0deg;
-        }
-    }
-
-    .header {
+    .content {
         display: flex;
-        flex-direction: row;
         align-items: center;
+        justify-content: start;
         gap: 8px;
 
-        .icon-container {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            width: 24px;
-            height: 24px;
-            border-radius: 999px;
-            overflow: hidden;
-            background: conic-gradient(
-                var(--toast-progress-color) 0deg var(--ngx-toast-progress-angle),
-                transparent var(--ngx-toast-progress-angle) 360deg
-            );
+        border-radius: calc(8px - 1px);
+        height: 100%;
+        padding-inline: 0.5rem;
 
-            &.timed {
-                animation: toast-countdown linear forwards;
-
-                @media (prefers-reduced-motion: reduce) {
-                    animation: none;
-                }
-            }
-
-            mat-icon {
-                position: relative;
-            }
-        }
-
-        h1 {
-            margin: 0;
-            flex: 1;
-            font-size: 14px;
-            font-weight: bold;
-        }
+        background-color: transparent;
+        color: var(--text-color);
 
         @include mat.icon-button-overrides(
             (
@@ -138,88 +99,103 @@
             height: 16px;
             width: 16px;
         }
-    }
-    .content {
-        display: flex;
-        flex-direction: row;
 
-        p {
+        @include mat.button-overrides(
+            (
+                text-label-text-color: var(--action-color)
+            )
+        );
+
+        .icon-container {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            overflow: hidden;
+            background: var(--progress-color);
+
+            @include mat.icon-overrides(
+                (
+                    color: var(--icon-color)
+                )
+            );
+
+            mat-icon {
+                position: relative;
+                font-size: 20px;
+                height: 20px;
+                width: 20px;
+            }
+        }
+
+        h1 {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            min-width: 0;
             margin: 0;
             flex: 1;
             font-size: 14px;
-            font-weight: normal;
+            font-weight: bold;
+            max-height: 2lh;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+
+    &:nth-last-child(n + 4) {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    &.success {
+        --icon-color: var(--ngx-toast-success-icon-color, #007804);
+        --action-color: var(--ngx-toast-success-action-color, #007804);
+    }
+
+    &.warning {
+        --icon-color: var(--ngx-toast-warning-icon-color, #da771f);
+        --background-color: var(--ngx-toast-warning-background-color, #ffe3c8);
+        --text-color: var(--ngx-toast-warning-text-color, #8b4d00);
+        --action-color: var(--ngx-toast-warning-action-color, #da771f);
+        --border-color: var(--ngx-toast-warning-border-color, transparent);
+    }
+
+    &.error {
+        --icon-color: var(--ngx-toast-error-icon-color, #ba1a1a);
+        --background-color: var(--ngx-toast-error-background-color, #ffdad6);
+        --text-color: var(--ngx-toast-error-text-color, #7e0007);
+        --action-color: var(--ngx-toast-error-action-color, #ba1a1a);
+        --border-color: var(--ngx-toast-error-border-color, transparent);
+    }
+
+    &.timed {
+        &.horizontal {
+            animation: toast-horizontal-countdown linear forwards;
+
+            .content {
+                background: linear-gradient(
+                    90deg,
+                    var(--progress-color) var(--ngx-toast-progress-percent),
+                    transparent var(--ngx-toast-progress-percent)
+                );
+            }
+        }
+
+        &.around-icon {
+            animation: toast-around-countdown linear forwards;
+
+            .content .icon-container {
+                background: conic-gradient(
+                    var(--progress-color) 0deg var(--ngx-toast-progress-angle),
+                    transparent var(--ngx-toast-progress-angle) 360deg
+                );
+            }
         }
     }
 }
-
-// :host {
-//     --toast-progress-color: red;
-//     padding: 1px;
-//     height: 3rem;
-//     background: linear-gradient(
-//         90deg,
-//         var(--toast-progress-color) var(--ngx-toast-progress-percent),
-//         transparent var(--ngx-toast-progress-percent)
-//     );
-//     border-radius: 8px;
-//
-//     --depth: calc(sibling-count() - sibling-index());
-//     grid-area: 1 / 1;
-//     align-self: end;
-//     z-index: sibling-index();
-//     transform-origin: bottom center;
-//     transform: translateY(calc(var(--depth) * var(--peek) * -1)) scale(calc(1 - var(--depth) * 0.05));
-//     transition:
-//         transform 0.25s ease,
-//         opacity 0.25s ease,
-//         visibility 0.25s ease;
-//
-//     @starting-style {
-//         opacity: 0;
-//         transform: translateY(100%) scale(0.8);
-//     }
-//
-//     @keyframes toast-countdown {
-//         from {
-//             --ngx-toast-progress-percent: 0%;
-//         }
-//
-//         to {
-//             --ngx-toast-progress-percent: 100%;
-//         }
-//     }
-//
-//     &.timed {
-//         animation: toast-countdown linear forwards;
-//
-//         @media (prefers-reduced-motion: reduce) {
-//             animation: none;
-//         }
-//     }
-//
-//     .content {
-//         display: flex;
-//         align-items: center;
-//         justify-content: start;
-//         gap: 8px;
-//
-//         border-radius: calc(8px - 1px);
-//         height: 100%;
-//         padding-inline-start: 0.5rem;
-//
-//         background-color: transparent;
-//
-//         h1 {
-//             margin: 0;
-//             flex: 1;
-//             font-size: 14px;
-//             font-weight: bold;
-//         }
-//     }
-//
-//     &:nth-last-child(n + 4) {
-//         opacity: 0;
-//         visibility: hidden;
-//         pointer-events: none;
-//     }
-// }

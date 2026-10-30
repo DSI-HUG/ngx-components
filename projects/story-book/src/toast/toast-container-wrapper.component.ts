@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { ErrorToast, InfoToast, ToastService, ToastSeverity, WarnToast } from '../../../layout/src/toast/toast.service';
+import { ErrorToast, InfoToast, SuccessToast, ToastAction, ToastService, ToastSeverity, WarnToast } from '../../../layout/src/toast/toast.service';
 import { NgxToastContainerComponent } from '../../../layout/src/toast/toast-container.component';
 
 @Component({
@@ -24,13 +24,54 @@ export class StorybookToastContainerWrapperComponent {
     protected addToast(severity: ToastSeverity): void {
         switch (severity) {
             case 'info':
-                this.toastService.add(new InfoToast('Example toast', 'A toast added from Storybook.', undefined, 3000));
+                this.toastService.add(new InfoToast(
+                    'Message sent',
+                    '',
+                    new ToastAction(
+                        'Revert',
+                        () => {
+                            alert('Revert has been clicked');
+                        }
+                    ),
+                    3000
+                ));
+                break;
+            case 'success':
+                this.toastService.add(new SuccessToast(
+                    'Message sent',
+                    '',
+                    new ToastAction(
+                        'Revert',
+                        () => {
+                            alert('Revert has been clicked');
+                        }
+                    ),
+                    3000
+                ));
                 break;
             case 'warning':
-                this.toastService.add(new WarnToast('Example toast', 'A toast added from Storybook. with some more text just to see what happens when I do that'));
+                this.toastService.add(new WarnToast(
+                    'Message sent',
+                    'A toast added from Storybook. with some more text just to see what happens when I do that',
+                    new ToastAction(
+                        'Revert',
+                        () => {
+                            alert('Revert has been clicked');
+                        }
+                    )
+                ));
                 break;
             case 'error':
-                this.toastService.add(new ErrorToast('Example toast', 'A toast added from Storybook.'));
+                this.toastService.add(new ErrorToast(
+                    'Message sent',
+                    '',
+                    new ToastAction(
+                        'Open ticket',
+                        () => {
+                            alert('Open ticket has been clicked');
+                        }
+                    )
+                ));
                 break;
             default:
                 throw new Error('Unknown severity');

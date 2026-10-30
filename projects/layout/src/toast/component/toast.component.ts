@@ -21,14 +21,18 @@ import { Toast } from '../toast.service';
         'aria-live': 'polite',
         '[class.error]': 'toast().severity === \'error\'',
         '[class.warning]': 'toast().severity === \'warning\'',
+        '[class.success]': 'toast().severity === \'success\'',
         '[class.timed]': '!!duration()',
-        '[style.animation-duration.ms]': 'duration()'
+        '[style.animation-duration.ms]': 'duration()',
+        '[class.around-icon]': '!!duration() && animationType() === \'around-icon\'',
+        '[class.horizontal]': '!!duration() && animationType() === \'horizontal\''
     },
     /* eslint-disable @typescript-eslint/naming-convention */
     standalone: true
 })
 export class NgxToastComponent {
     public readonly toast = input.required<Toast>();
+    public readonly animationType = input<string>();
     public readonly expired = output<string>();
 
     protected readonly icon = computed(() => {
@@ -45,7 +49,7 @@ export class NgxToastComponent {
 
     protected readonly duration = computed(() => {
         const toast = this.toast();
-        if (toast.severity !== 'info') {
+        if (toast.severity !== 'info' && toast.severity !== 'success') {
             return undefined;
         }
 
@@ -59,7 +63,7 @@ export class NgxToastComponent {
 
             const toast = this.toast();
 
-            if (toast.severity !== 'info') {
+            if (toast.severity !== 'info' && toast.severity !== 'success') {
                 return;
             }
 
