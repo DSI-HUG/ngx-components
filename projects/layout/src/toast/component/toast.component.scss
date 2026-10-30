@@ -132,7 +132,7 @@
             }
         }
 
-        h1 {
+        p {
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
@@ -140,10 +140,13 @@
             margin: 0;
             flex: 1;
             font-size: 14px;
-            font-weight: bold;
             max-height: 2lh;
             text-overflow: ellipsis;
             overflow: hidden;
+
+            &.title {
+                font-weight: bold;
+            }
         }
     }
 
@@ -197,5 +200,9 @@
                 );
             }
         }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
     }
 }

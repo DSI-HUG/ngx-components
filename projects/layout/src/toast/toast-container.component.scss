@@ -16,7 +16,7 @@
     }
 
     &:not(:empty):is(:hover, :focus-within) {
-        height: 100%;
+        height: calc((var(--ngx-toast-count) + 1) * (var(--toast-height) + var(--toast-gap)));
 
         ngx-toast {
             transform: translateY(calc(var(--depth) * (var(--toast-height) + var(--toast-gap)) * -1));

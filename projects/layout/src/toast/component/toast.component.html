@@ -3,7 +3,7 @@
     <div class="icon-container">
         <mat-icon>{{ icon() }}</mat-icon>
     </div>
-    <h1>{{ toast.title }} {{ toast.body }}</h1>
+    <p class="title">{{ toast.title }} {{ toast.body }}</p>
     @if (toast.action; as action) {
         <button matButton (click)="action.execute()">{{ action.name }}</button>
     }

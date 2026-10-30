@@ -20,7 +20,8 @@ import { ToastService } from './toast.service';
     host: {
         'role': 'region',
         'aria-live': 'polite',
-        '[style.padding-block-end.px]': 'offset()'
+        '[style.padding-block-end.px]': 'offset()',
+        '[style.--ngx-toast-count]': 'toasts().length'
     }
     /* eslint-disable @typescript-eslint/naming-convention */
 })
