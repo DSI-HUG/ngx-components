@@ -11,5 +11,6 @@ import { FILTER_TOKEN, type NgxToggleFilter } from './filter-chip.model';
 export class NgxFilterToggleDirective implements NgxToggleFilter {
     public readonly type = 'toggle';
     public readonly label = input.required<string>();
-    public readonly active = model.required<boolean>();
+    public readonly active = model<boolean>(false);
+    public readonly icon = input<string>();
 }
