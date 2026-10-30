@@ -169,7 +169,7 @@ export class NgxFiltersGroupComponent {
             if (this.overlayOpen()) {
                 return undefined;
             }
-            if (this.requireExplicitApply() || this.moreFiltersOverlay()) {
+            if (this.requireExplicitApply()) {
                 return undefined;
             }
 
