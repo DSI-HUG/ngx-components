@@ -2,7 +2,7 @@ import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { CdkAccordion, CdkAccordionItem } from '@angular/cdk/accordion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, viewChildren, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, linkedSignal, output, type Signal, signal, type TemplateRef, viewChild, viewChildren, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatButton, MatIconButton } from '@angular/material/button';
@@ -164,14 +164,27 @@ export class NgxFiltersGroupComponent {
         return this.allFilterViews().slice(visibleFiltersEndIndex);
     });
 
-    protected readonly allFilterViews = signal<FilterView[]>([]);
+    protected readonly allFilterViews = linkedSignal<FilterView[] | undefined, FilterView[]>({
+        source: () => {
+            if (this.overlayOpen()) {
+                return undefined;
+            }
+            if (this.requireExplicitApply() || this.moreFiltersOverlay()) {
+                return undefined;
+            }
+
+            return this.liveFilterViews();
+        },
+        computation: (filters, previous) => filters ?? previous?.value ?? []
+    });
+
     protected readonly expandedFilters = viewChildren(NgxExpandedDirective);
     protected readonly hasExpandedFilters = computed(() => this.expandedFilters().some(filter => filter.ngxExpandedFilter()));
 
     protected readonly filterContext = {
         $implicit: (): void => {
             if (!this.moreFiltersOverlay()) {
-                this.refreshAppliedFilters.set(true);
+                this.requireExplicitApply.set(false);
                 this.overlayOpen.set(false);
             }
         }
@@ -217,7 +230,10 @@ export class NgxFiltersGroupComponent {
     private readonly staticFieldsWidth = computed(() => Math.ceil(this.staticFieldsSize()?.contentRect.width || 0));
     // #endregion
 
-    private readonly visibleFiltersEndIndex = signal(-1);
+    private readonly visibleFiltersEndIndex = linkedSignal<number | undefined, number>({
+        source: () => this.overlayOpen() ? undefined : this.measuredVisibleFiltersEndIndex(),
+        computation: (index, previous) => index ?? previous?.value ?? -1
+    });
 
     private readonly measuredVisibleFiltersEndIndex = computed(() => {
         const hostWidth = this.hostWidth();
@@ -242,24 +258,8 @@ export class NgxFiltersGroupComponent {
         return { source: f, type: 'complex', active: f.active(), selectedFilterLabel: f.selectedFilterLabel(), templateRef: f.templateRef };
     }));
 
-    private readonly refreshAppliedFilters = signal(false);
     private readonly oneFilterContent = viewChild<ElementRef<HTMLElement>>('oneFilterContent');
     private readonly oneFilterContentSize = resizeSignal(() => this.oneFilterContent());
-
-    private constructor() {
-        effect(() => {
-            const index = this.measuredVisibleFiltersEndIndex();
-
-            if (!this.overlayOpen()) {
-                this.visibleFiltersEndIndex.set(index);
-
-                if (!this.requireExplicitApply() || this.refreshAppliedFilters()) {
-                    this.allFilterViews.set(this.liveFilterViews());
-                    this.refreshAppliedFilters.set(false);
-                }
-            }
-        });
-    }
 
     protected emitCanceled(): void {
         this.canceled.emit();
@@ -302,8 +302,8 @@ export class NgxFiltersGroupComponent {
             return;
         }
 
-        this.refreshAppliedFilters.set(true);
         this.applied.emit();
+        this.requireExplicitApply.set(false);
         this.overlayOpen.set(false);
         this.validating.set(false);
     }
@@ -327,7 +327,7 @@ export class NgxFiltersGroupComponent {
         this.resetRequested.emit();
 
         if (!this.overlayOpen()) {
-            this.refreshAppliedFilters.set(true);
+            this.requireExplicitApply.set(false);
         }
     }
 
