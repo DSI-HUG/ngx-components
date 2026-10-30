@@ -23,6 +23,23 @@ ngx-filters-group {
         pointer-events: none;
     }
 
+    .is-protected-anchor {
+        anchor-name: --ngx-filters-group-protected-chip;
+    }
+
+    .filter-clone {
+        position: fixed;
+        position-anchor: --ngx-filters-group-protected-chip;
+        top: anchor(top);
+        left: anchor(center);
+        translate: -50% 0;
+        margin: 0 !important;
+        z-index: var(--ngx-filters-group-clone-z-index, 1);
+        pointer-events: none;
+        white-space: nowrap;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
     .filter-container {
         display: flex;
         flex-direction: row;

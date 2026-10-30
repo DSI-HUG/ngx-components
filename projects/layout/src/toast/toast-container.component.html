@@ -1,0 +1,3 @@
+@for (toast of toasts(); track toast.uuid) {
+    <ngx-toast [toast]="toast" (expired)="remove($event)"></ngx-toast>
+}

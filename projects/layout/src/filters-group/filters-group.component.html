@@ -25,9 +25,9 @@
             <mat-chip-set>
                 @for (f of allFilters(); track $index) {
                     <mat-chip-option [selectable]="false" [selected]="f.active()">
-                        {{ f.label() }}
-                        @if (f.type === 'complex' && f.selectedFilterLabel()) {
-                            <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel() }}</span>
+                        {{ displayLabel(f) }}
+                        @if (f.type === 'complex' && displaySelectedLabel(f)) {
+                            <span class="selected-label">&nbsp;: {{ displaySelectedLabel(f) }}</span>
                         }
                         @if (f.type === 'complex') {
                             <mat-icon matChipTrailingIcon>arrow_drop_down</mat-icon>
@@ -45,37 +45,52 @@
     <section class="filter-container" #container>
         @if (this.visibleFilters().length) {
             <mat-chip-set>
-                @for (f of visibleFilters(); track $index) {
-                    @if (f.type === 'toggle') {
+                @for (filter of visibleFilters(); track $index) {
+                    @if (filter.type === 'toggle') {
                         <mat-chip-option
                             selectable="true"
-                            [selected]="f.active()"
-                            (selectionChange)="f.active.set($event.selected)">
-                            {{ f.label() }}
+                            [selected]="filter.active()"
+                            (selectionChange)="filter.active.set($event.selected)">
+                            {{ filter.label() }}
                         </mat-chip-option>
                     } @else {
                         <mat-chip-option
                             [selectable]="false"
-                            [selected]="f.active()"
+                            [selected]="filter.active()"
+                            [style.opacity]="filter === protectedFilter() ? '0' : null"
+                            [class.is-protected-anchor]="filter === protectedFilter()"
                             cdkOverlayOrigin
                             #trigger="cdkOverlayOrigin"
-                            (click)="
-                                this.overlayOrigin.set(trigger);
-                                this.overlayContent.set(f.templateRef);
-                                this.overlayOpen.set(true);
-                                this.moreFiltersOverlay.set(false)
-                            ">
-                            {{ f.label() }}
-                            @if (f.selectedFilterLabel()) {
-                                <span class="selected-label">&nbsp;: {{ f.selectedFilterLabel() }}</span>
+                            (click)="openOverlay(trigger, filter.templateRef)">
+                            {{ displayLabel(filter) }}
+                            @if (displaySelectedLabel(filter)) {
+                                <span class="selected-label">&nbsp;: {{ displaySelectedLabel(filter) }}</span>
                             }
                             <mat-icon
-                                [class.is-overlay-open]="this.overlayOpen() && this.overlayContent() === f.templateRef"
+                                [class.is-overlay-open]="
+                                    this.overlayOpen() && this.overlayContent() === filter.templateRef
+                                "
                                 matChipTrailingIcon>
                                 arrow_drop_down
                             </mat-icon>
                         </mat-chip-option>
                     }
+                }
+
+                @let frozenProtectedFilter = this.protectedFilter();
+                @if (frozenProtectedFilter) {
+                    <mat-chip-option
+                        class="filter-clone"
+                        [selectable]="false"
+                        [selected]="frozenProtectedFilter.active()">
+                        {{ frozenProtectedFilter.label() }}
+                        @if (frozenProtectedFilter.selectedFilterLabel()) {
+                            <span class="selected-label">
+                                &nbsp;: {{ frozenProtectedFilter.selectedFilterLabel() }}
+                            </span>
+                        }
+                        <mat-icon class="is-overlay-open" matChipTrailingIcon>arrow_drop_down</mat-icon>
+                    </mat-chip-option>
                 }
             </mat-chip-set>
         }

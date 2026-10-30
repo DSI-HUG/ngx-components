@@ -1,0 +1,40 @@
+@use '@angular/material' as mat;
+
+:host {
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+
+        .info {
+            @include mat.button-overrides(
+                (
+                    tonal-container-color: var(--mat-sys-primary-container),
+                    tonal-label-text-color: var(--mat-sys-on-primary-container)
+                )
+            );
+        }
+
+        .warn {
+            @include mat.button-overrides(
+                (
+                    tonal-container-color: oklch(from gold calc(l + 0.075) calc(c - 0.05) h),
+                    tonal-label-text-color: oklch(from brown l c h)
+                )
+            );
+        }
+
+        .error {
+            @include mat.button-overrides(
+                (
+                    tonal-container-color: var(--mat-sys-error-container),
+                    tonal-label-text-color: var(--mat-sys-on-error-container)
+                )
+            );
+        }
+    }
+}

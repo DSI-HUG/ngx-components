@@ -1,6 +1,6 @@
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, untracked, viewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatIconButton } from '@angular/material/button';
@@ -10,7 +10,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatTooltip } from '@angular/material/tooltip';
 
 import { NgxLayoutIntl } from '../providers';
-import { FILTER_TOKEN } from './filter-chip.model';
+import { FILTER_TOKEN, type NgxComplexFilter, type NgxFilter } from './filter-chip.model';
 
 const resizeSignal = (
     element: () => ElementRef<HTMLElement> | undefined,
@@ -97,6 +97,20 @@ export class NgxFiltersGroupComponent {
     }];
     // #endregion
 
+    // #region ProtectedFilter
+    protected readonly protectedFilter = computed<NgxComplexFilter | undefined>(() => {
+        if (!this.overlayOpen() || this.moreFiltersOverlay()) {
+            return undefined;
+        }
+
+        const content = this.overlayContent();
+        return this.allFilters().find((f): f is NgxComplexFilter => f.type === 'complex' && f.templateRef === content);
+    });
+
+    protected readonly frozenLabel = signal('');
+    protected readonly frozenSelectedLabel = signal('');
+    // #endregion
+
     // #region Filters
     protected allFilters = contentChildren(FILTER_TOKEN);
     protected readonly activeFiltersAmount = computed(() => this.invisibleFilters().filter(filter => filter.active()).length);
@@ -158,8 +172,37 @@ export class NgxFiltersGroupComponent {
         return this.getLastFittingIndex(availableSpace, filters);
     });
 
+    public constructor() {
+        effect(() => {
+            const filter = this.protectedFilter();
+            if (!filter) {
+                return;
+            }
+
+            untracked(() => {
+                this.frozenLabel.set(filter.label());
+                this.frozenSelectedLabel.set(filter.selectedFilterLabel());
+            });
+        });
+    }
+
     protected emitResetClicked(): void {
         this.resetFilters.emit();
+    }
+
+    protected displayLabel(filter: NgxFilter): string {
+        return filter === this.protectedFilter() ? this.frozenLabel() : filter.label();
+    }
+
+    protected displaySelectedLabel(filter: NgxComplexFilter): string {
+        return filter === this.protectedFilter() ? this.frozenSelectedLabel() : filter.selectedFilterLabel();
+    }
+
+    protected openOverlay(trigger: CdkOverlayOrigin | undefined, templateRef: TemplateRef<unknown>): void {
+        this.overlayOrigin.set(trigger);
+        this.overlayContent.set(templateRef);
+        this.overlayOpen.set(true);
+        this.moreFiltersOverlay.set(false);
     }
 
     private getLastFittingIndex(availableSpace: number, elements: readonly HTMLElement[]): number {

@@ -1,0 +1,22 @@
+:host {
+    --h: 48px;
+    --gap: 36px;
+    --peek: 12px;
+    position: fixed;
+    inset: auto 16px 16px auto;
+    width: 360px;
+    display: grid;
+    font-family: 'Roboto';
+    z-index: 999;
+
+    &:is(:hover, :focus-within) {
+        height: 100%;
+
+        ngx-toast {
+            transform: translateY(calc(var(--depth) * (var(--h) + var(--gap)) * -1));
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+    }
+}
