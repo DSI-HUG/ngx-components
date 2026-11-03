@@ -55,35 +55,25 @@ describe('NgxDateFormatProvider', () => {
 
     it('When monthYearOnly should build MatDateFormats correctly', () => {
         const factory = buildNgxMatDateFormatsFactory('monthYearOnly');
-
-        const standardExpected: MatDateFormats = {
-            parse: {
-                dateInput: 'MM.yyyy'
-            },
-            display: {
-                dateInput: 'MM.yyyy',
-                monthYearLabel: standardMonthYearLabel,
-                dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+        const formatExpected = (separator: string): MatDateFormats => {
+            const dateInput = `MM${separator}yyyy`;
+            return {
+                parse: {
+                    dateInput
+                },
+                display: {
+                    dateInput,
+                    monthYearLabel: standardMonthYearLabel,
+                    dateA11yLabel: standardDateA11yLabel,
+                    monthYearA11yLabel: standardMonthYearA11yLabel
+                }
+            };
         };
 
-        const englishExpected: MatDateFormats = {
-            parse: {
-                dateInput: 'MM/yyyy'
-            },
-            display: {
-                dateInput: 'MM/yyyy',
-                monthYearLabel: standardMonthYearLabel,
-                dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
-        };
-
-        isEqualsTo(factory, localeFrCh, standardExpected);
-        isEqualsTo(factory, localeItCh, englishExpected);
-        isEqualsTo(factory, localeDeCh, englishExpected);
-        isEqualsTo(factory, localeEnUs, englishExpected);
+        isEqualsTo(factory, localeFrCh, formatExpected('.'));
+        isEqualsTo(factory, localeItCh, formatExpected('/'));
+        isEqualsTo(factory, localeDeCh, formatExpected('/'));
+        isEqualsTo(factory, localeEnUs, formatExpected('/'));
         isEqualsTo(factory, localeEs, {
             parse: {
                 dateInput: 'MM/yyyy'
@@ -95,7 +85,7 @@ describe('NgxDateFormatProvider', () => {
                 monthYearA11yLabel: 'MMMM de yyyy'
             }
         });
-        isEqualsTo(factory, localePl, standardExpected);
+        isEqualsTo(factory, localePl, formatExpected('.'));
         isEqualsTo(factory, localeSv, {
             parse: {
                 dateInput: 'yyyy-MM'
