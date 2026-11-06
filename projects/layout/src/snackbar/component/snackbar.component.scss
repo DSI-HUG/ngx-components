@@ -1,56 +1,56 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 
-@property --ngx-toast-progress-percent {
+@property --ngx-snackbar-progress-percent {
     syntax: '<percentage>';
     inherits: true;
     initial-value: 0%;
 }
 
-@property --ngx-toast-progress-angle {
+@property --ngx-snackbar-progress-angle {
     syntax: '<angle>';
     inherits: true;
     initial-value: 360deg;
 }
 
-@keyframes toast-around-countdown {
+@keyframes snackbar-around-countdown {
     0% {
-        --ngx-toast-progress-angle: 0deg;
+        --ngx-snackbar-progress-angle: 0deg;
     }
 
     98% {
-        --ngx-toast-progress-angle: 360deg;
+        --ngx-snackbar-progress-angle: 360deg;
     }
 
     100% {
-        --ngx-toast-progress-angle: 360deg;
+        --ngx-snackbar-progress-angle: 360deg;
     }
 }
 
-@keyframes toast-horizontal-countdown {
+@keyframes snackbar-horizontal-countdown {
     0% {
-        --ngx-toast-progress-percent: 0%;
+        --ngx-snackbar-progress-percent: 0%;
     }
 
     98% {
-        --ngx-toast-progress-percent: 100%;
+        --ngx-snackbar-progress-percent: 100%;
     }
 
     100% {
-        --ngx-toast-progress-percent: 100%;
+        --ngx-snackbar-progress-percent: 100%;
     }
 }
 
 :host {
-    --height: var(--ngx-toast-height, 3rem);
-    --background-color: var(--ngx-toast-background-color, var(--mat-sys-surface));
-    --border-color: var(--ngx-toast-border-color, var(--mat-sys-outline));
-    --text-color: var(--ngx-toast-text-color, var(--mat-sys-secondary));
-    --icon-color: var(--ngx-toast-info-icon-color, var(--mat-sys-primary));
-    --action-color: var(--ngx-toast-action-color, var(--mat-sys-primary));
+    --height: var(--ngx-snackbar-height, 3rem);
+    --background-color: var(--ngx-snackbar-background-color, var(--mat-sys-surface));
+    --border-color: var(--ngx-snackbar-border-color, var(--mat-sys-outline));
+    --text-color: var(--ngx-snackbar-text-color, var(--mat-sys-secondary));
+    --icon-color: var(--ngx-snackbar-info-icon-color, var(--mat-sys-primary));
+    --action-color: var(--ngx-snackbar-action-color, var(--mat-sys-primary));
     --progress-color: oklch(from var(--icon-color) l c h / 0.15);
     --depth: calc(sibling-count() - sibling-index());
-    --peek: var(--ngx-toast-peek, 0.75rem);
+    --peek: var(--ngx-snackbar-peek, 0.75rem);
 
     min-height: var(--height);
     background-color: var(--background-color);
@@ -148,7 +148,7 @@
             overflow: hidden;
 
             &.title {
-                font: var(--ngx-toast-title-font, var(--mat-sys-title-small));
+                font: var(--ngx-snackbar-title-font, var(--mat-sys-title-small));
             }
         }
     }
@@ -161,8 +161,8 @@
 
     &.success {
         --base-success: #{map.get(mat.$green-palette, 40)};
-        --icon-color: var(--ngx-toast-success-icon-color, var(--base-success));
-        --action-color: var(--ngx-toast-success-action-color, var(--base-success));
+        --icon-color: var(--ngx-snackbar-success-icon-color, var(--base-success));
+        --action-color: var(--ngx-snackbar-success-action-color, var(--base-success));
     }
 
     &.warning {
@@ -170,11 +170,11 @@
         --base-warn-text: #{map.get(mat.$orange-palette, 30)};
         --base-warn-background: #{map.get(mat.$orange-palette, 90)};
 
-        --icon-color: var(--ngx-toast-warning-icon-color, var(--base-warn));
-        --background-color: var(--ngx-toast-warning-background-color, var(--base-warn-background));
-        --text-color: var(--ngx-toast-warning-text-color, var(--base-warn-text));
-        --action-color: var(--ngx-toast-warning-action-color, var(--base-warn));
-        --border-color: var(--ngx-toast-warning-border-color, transparent);
+        --icon-color: var(--ngx-snackbar-warning-icon-color, var(--base-warn));
+        --background-color: var(--ngx-snackbar-warning-background-color, var(--base-warn-background));
+        --text-color: var(--ngx-snackbar-warning-text-color, var(--base-warn-text));
+        --action-color: var(--ngx-snackbar-warning-action-color, var(--base-warn));
+        --border-color: var(--ngx-snackbar-warning-border-color, transparent);
     }
 
     &.error {
@@ -182,33 +182,33 @@
         --base-error-text: #{map.get(mat.$red-palette, 30)};
         --base-error-background: #{map.get(mat.$red-palette, 90)};
 
-        --icon-color: var(--ngx-toast-error-icon-color, var(--base-error));
-        --background-color: var(--ngx-toast-error-background-color, var(--base-error-background));
-        --text-color: var(--ngx-toast-error-text-color, var(--base-error-text));
-        --action-color: var(--ngx-toast-error-action-color, var(--base-error));
-        --border-color: var(--ngx-toast-error-border-color, transparent);
+        --icon-color: var(--ngx-snackbar-error-icon-color, var(--base-error));
+        --background-color: var(--ngx-snackbar-error-background-color, var(--base-error-background));
+        --text-color: var(--ngx-snackbar-error-text-color, var(--base-error-text));
+        --action-color: var(--ngx-snackbar-error-action-color, var(--base-error));
+        --border-color: var(--ngx-snackbar-error-border-color, transparent);
     }
 
     &.timed {
         &.horizontal {
-            animation: toast-horizontal-countdown linear forwards;
+            animation: snackbar-horizontal-countdown linear forwards;
 
             .content {
                 background: linear-gradient(
                     90deg,
-                    var(--progress-color) var(--ngx-toast-progress-percent),
-                    transparent var(--ngx-toast-progress-percent)
+                    var(--progress-color) var(--ngx-snackbar-progress-percent),
+                    transparent var(--ngx-snackbar-progress-percent)
                 );
             }
         }
 
         &.around-icon {
-            animation: toast-around-countdown linear forwards;
+            animation: snackbar-around-countdown linear forwards;
 
             .content .icon-container {
                 background: conic-gradient(
-                    var(--progress-color) 0deg var(--ngx-toast-progress-angle),
-                    transparent var(--ngx-toast-progress-angle) 360deg
+                    var(--progress-color) 0deg var(--ngx-snackbar-progress-angle),
+                    transparent var(--ngx-snackbar-progress-angle) 360deg
                 );
             }
         }

@@ -1,8 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 
-export type ToastSeverity = 'info' | 'success' | 'warning' | 'error';
+export type SnackbarSeverity = 'info' | 'success' | 'warning' | 'error';
 
-export class ToastAction {
+export class SnackbarAction {
     public readonly name: string;
     public readonly execute: () => void;
 
@@ -15,18 +15,18 @@ export class ToastAction {
     }
 }
 
-abstract class BaseToast {
+abstract class BaseSnackbar {
     public readonly title: string;
     public readonly body: string | undefined;
-    public readonly action: ToastAction | undefined;
+    public readonly action: SnackbarAction | undefined;
     public readonly uuid: string;
 
-    public readonly abstract severity: ToastSeverity;
+    public readonly abstract severity: SnackbarSeverity;
 
     public constructor(
         title: string,
         body?: string,
-        action?: ToastAction
+        action?: SnackbarAction
     ) {
         this.uuid = crypto.randomUUID();
         this.title = title;
@@ -39,14 +39,14 @@ abstract class BaseToast {
     }
 }
 
-export class InfoToast extends BaseToast {
+export class InfoSnackbar extends BaseSnackbar {
     public readonly severity = 'info';
     public readonly duration: number;
 
     public constructor(
         title: string,
         body?: string,
-        action?: ToastAction,
+        action?: SnackbarAction,
         duration?: number
     ) {
         super(title, body, action);
@@ -54,14 +54,14 @@ export class InfoToast extends BaseToast {
     }
 }
 
-export class SuccessToast extends BaseToast {
+export class SuccessSnackbar extends BaseSnackbar {
     public readonly severity = 'success';
     public readonly duration: number;
 
     public constructor(
         title: string,
         body?: string,
-        action?: ToastAction,
+        action?: SnackbarAction,
         duration?: number
     ) {
         super(title, body, action);
@@ -69,31 +69,31 @@ export class SuccessToast extends BaseToast {
     }
 }
 
-export class WarnToast extends BaseToast {
+export class WarnSnackbar extends BaseSnackbar {
     public readonly severity = 'warning';
 }
 
-export class ErrorToast extends BaseToast {
+export class ErrorSnackbar extends BaseSnackbar {
     public readonly severity = 'error';
 }
 
-export type Toast = InfoToast | SuccessToast | WarnToast | ErrorToast;
+export type Snackbar = InfoSnackbar | SuccessSnackbar | WarnSnackbar | ErrorSnackbar;
 
 @Injectable({
     providedIn: 'root'
 })
-export class ToastService {
-    public readonly toasts = signal<readonly Toast[]>([]);
+export class SnackbarService {
+    public readonly snackbars = signal<readonly Snackbar[]>([]);
 
-    public add(toast: Toast): void {
-        this.toasts.update(toasts => [...toasts, toast]);
+    public add(snackbar: Snackbar): void {
+        this.snackbars.update(snackbars => [...snackbars, snackbar]);
     }
 
     public remove(uuid: string): void {
-        this.toasts.update(toasts => toasts.filter(toast => !toast.is(uuid)));
+        this.snackbars.update(snackbars => snackbars.filter(snackbar => !snackbar.is(uuid)));
     }
 
     public reset(): void {
-        this.toasts.set([]);
+        this.snackbars.set([]);
     }
 }

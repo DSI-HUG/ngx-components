@@ -2,35 +2,35 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, viewChildr
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { NgxToastComponent } from './component/toast.component';
-import { ToastService } from './toast.service';
+import { NgxSnackbarComponent } from './component/snackbar.component';
+import { SnackbarService } from './snackbar.service';
 
 
 @Component({
-    selector: 'ngx-toast-container',
-    templateUrl: './toast-container.component.html',
-    styleUrl: './toast-container.component.scss',
+    selector: 'ngx-snackbar-container',
+    templateUrl: './snackbar-container.component.html',
+    styleUrl: './snackbar-container.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MatIconModule,
         MatButtonModule,
-        NgxToastComponent
+        NgxSnackbarComponent
     ],
     /* eslint-disable @typescript-eslint/naming-convention */
     host: {
         'role': 'region',
         'aria-live': 'polite',
         '[style.padding-block-end.px]': 'offset()',
-        '[style.--ngx-toast-count]': 'toasts().length',
-        '[style.--ngx-toast-total-height.px]': 'layout().totalHeight',
-        '[style.--ngx-toast-buffer-height.px]': 'layout().bufferHeight'
+        '[style.--ngx-snackbar-count]': 'snackbars().length',
+        '[style.--ngx-snackbar-total-height.px]': 'layout().totalHeight',
+        '[style.--ngx-snackbar-buffer-height.px]': 'layout().bufferHeight'
     }
     /* eslint-disable @typescript-eslint/naming-convention */
 })
-export class NgxToastContainerComponent {
+export class NgxSnackbarContainerComponent {
     public readonly offset = input<number>(0);
 
-    protected readonly toasts = computed(() => this.toastService.toasts());
+    protected readonly snackbars = computed(() => this.snackbarService.snackbars());
 
     protected readonly layout = computed(() => {
         const heights = this.components().map(component => component.size()?.borderBoxSize[0]?.blockSize ?? 0);
@@ -46,15 +46,15 @@ export class NgxToastContainerComponent {
         };
     });
 
-    private readonly toastService = inject(ToastService);
-    private readonly components = viewChildren(NgxToastComponent);
+    private readonly snackbarService = inject(SnackbarService);
+    private readonly components = viewChildren(NgxSnackbarComponent);
 
 
     protected remove(uuid: string): void {
-        this.toastService.remove(uuid);
+        this.snackbarService.remove(uuid);
     }
 
     protected removeAll(): void {
-        this.toastService.reset();
+        this.snackbarService.reset();
     }
 }

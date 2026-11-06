@@ -69,7 +69,7 @@ export const complete: Story = {
     args: {
         status: {
             title: 'Sample Status Title',
-            subtitle: 'A big subtitle to add some more context to this small toast',
+            subtitle: 'A big subtitle to add some more context to this small snackbar',
             type: 'info',
             text: 'This is a sample status message.',
             date: new Date(),

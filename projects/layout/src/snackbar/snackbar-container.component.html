@@ -1,0 +1,14 @@
+@if (snackbars().length > 1) {
+    <header>
+        <p>{{ snackbars().length }} snackbars</p>
+        <button matButton class="close-all" (click)="removeAll()">Clear all</button>
+    </header>
+}
+
+@for (snackbar of snackbars(); track snackbar.uuid; let index = $index) {
+    <ngx-snackbar
+        animationType="around-icon"
+        [snackbar]="snackbar"
+        [style.--ngx-snackbar-expanded-offset.px]="layout().offsets[index]"
+        (expired)="remove($event)"></ngx-snackbar>
+}

@@ -1,10 +1,10 @@
-@let toast = this.toast();
+@let snackbar = this.snackbar();
 <div class="content">
     <div class="icon-container">
         <mat-icon>{{ icon() }}</mat-icon>
     </div>
-    <p class="title">{{ toast.title }} {{ toast.body }}</p>
-    @if (toast.action; as action) {
+    <p class="title">{{ snackbar.title }} {{ snackbar.body }}</p>
+    @if (snackbar.action; as action) {
         <button matButton (click)="action.execute()">{{ action.name }}</button>
     }
     <button aria-label="Remove" matIconButton (click)="expire()">

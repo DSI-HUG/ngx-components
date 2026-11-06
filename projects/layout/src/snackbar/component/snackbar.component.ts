@@ -5,12 +5,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { timer } from 'rxjs';
 
 import { resizeSignal } from '../../common/resize-signal';
-import { Toast } from '../toast.service';
+import { Snackbar } from '../snackbar.service';
 
 @Component({
-    selector: 'ngx-toast',
-    templateUrl: './toast.component.html',
-    styleUrl: './toast.component.scss',
+    selector: 'ngx-snackbar',
+    templateUrl: './snackbar.component.html',
+    styleUrl: './snackbar.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MatIconModule,
@@ -20,9 +20,9 @@ import { Toast } from '../toast.service';
     host: {
         'role': 'region',
         'aria-live': 'polite',
-        '[class.error]': 'toast().severity === \'error\'',
-        '[class.warning]': 'toast().severity === \'warning\'',
-        '[class.success]': 'toast().severity === \'success\'',
+        '[class.error]': 'snackbar().severity === \'error\'',
+        '[class.warning]': 'snackbar().severity === \'warning\'',
+        '[class.success]': 'snackbar().severity === \'success\'',
         '[class.timed]': '!!duration()',
         '[style.animation-duration.ms]': 'duration()',
         '[class.around-icon]': '!!duration() && animationType() === \'around-icon\'',
@@ -31,14 +31,14 @@ import { Toast } from '../toast.service';
     /* eslint-disable @typescript-eslint/naming-convention */
     standalone: true
 })
-export class NgxToastComponent {
-    public readonly toast = input.required<Toast>();
+export class NgxSnackbarComponent {
+    public readonly snackbar = input.required<Snackbar>();
     public readonly animationType = input<string>();
     public readonly expired = output<string>();
     public readonly size = resizeSignal(() => this.elementRef);
 
     protected readonly icon = computed(() => {
-        const severity = this.toast().severity;
+        const severity = this.snackbar().severity;
         switch (severity) {
             case 'error':
                 return 'release_alert';
@@ -50,12 +50,12 @@ export class NgxToastComponent {
     });
 
     protected readonly duration = computed(() => {
-        const toast = this.toast();
-        if (toast.severity !== 'info' && toast.severity !== 'success') {
+        const snackbar = this.snackbar();
+        if (snackbar.severity !== 'info' && snackbar.severity !== 'success') {
             return undefined;
         }
 
-        return toast.duration;
+        return snackbar.duration;
     });
 
     private readonly destroyRef = inject(DestroyRef);
@@ -64,15 +64,15 @@ export class NgxToastComponent {
     public constructor() {
         effect(onCleanup => {
 
-            const toast = this.toast();
+            const snackbar = this.snackbar();
 
-            if (toast.severity !== 'info' && toast.severity !== 'success') {
+            if (snackbar.severity !== 'info' && snackbar.severity !== 'success') {
                 return;
             }
 
-            const subscription = timer(toast.duration).pipe(
+            const subscription = timer(snackbar.duration).pipe(
                 takeUntilDestroyed(this.destroyRef)
-            ).subscribe(() => this.expired.emit(toast.uuid));
+            ).subscribe(() => this.expired.emit(snackbar.uuid));
 
             onCleanup(() => subscription.unsubscribe());
         });
@@ -80,6 +80,6 @@ export class NgxToastComponent {
     }
 
     protected expire(): void {
-        this.expired.emit(this.toast().uuid);
+        this.expired.emit(this.snackbar().uuid);
     }
 }

@@ -1,9 +1,9 @@
 @use '@angular/material' as mat;
 
 :host {
-    --toast-height: 3rem;
-    --toast-gap: 0.75rem;
-    --toast-peek: 0.75rem;
+    --snackbar-height: 3rem;
+    --snackbar-gap: 0.75rem;
+    --snackbar-peek: 0.75rem;
 
     position: fixed;
     inset: auto 1rem 1rem auto;
@@ -12,9 +12,9 @@
     display: grid;
     z-index: 999;
 
-    ngx-toast {
-        --ngx-toast-height: var(--toast-height);
-        --ngx-toast-peek: var(--toast-peek);
+    ngx-snackbar {
+        --ngx-snackbar-height: var(--snackbar-height);
+        --ngx-snackbar-peek: var(--snackbar-peek);
     }
 
     header {
@@ -43,7 +43,7 @@
         p {
             margin: 0;
             flex: 1;
-            font: var(--ngx-toast-container-header-font, var(--mat-sys-label-large));
+            font: var(--ngx-snackbar-container-header-font, var(--mat-sys-label-large));
             color: var(--mat-sys-secondary);
         }
 
@@ -57,21 +57,23 @@
 
     &:not(:empty):is(:hover, :focus-within) {
         --height: calc(
-            var(--ngx-toast-total-height) + var(--ngx-toast-buffer-height) + (var(--ngx-toast-count) + 1) *
-                var(--toast-gap)
+            var(--ngx-snackbar-total-height) + var(--ngx-snackbar-buffer-height) + (var(--ngx-snackbar-count) + 1) *
+                var(--snackbar-gap)
         );
 
         height: var(--height);
 
-        ngx-toast {
-            transform: translateY(calc((var(--ngx-toast-expanded-offset) + var(--depth) * var(--toast-gap)) * -1));
+        ngx-snackbar {
+            transform: translateY(
+                calc((var(--ngx-snackbar-expanded-offset) + var(--depth) * var(--snackbar-gap)) * -1)
+            );
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
         }
 
         header {
-            top: calc(var(--toast-height) + var(--toast-gap) * 1.5);
+            top: calc(var(--snackbar-height) + var(--snackbar-gap) * 1.5);
             opacity: 1;
             visibility: visible;
             transform: translateY(-100%);
