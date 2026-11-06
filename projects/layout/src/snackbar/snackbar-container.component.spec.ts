@@ -41,11 +41,13 @@ describe('NgxSnackbarContainerComponent', () => {
         const newerStyle = getComputedStyle(snackbars[1]);
         expect(getComputedStyle(host).display).toBe('grid');
         expect(olderStyle.alignSelf).toBe('end');
-        expect(olderStyle.transformOrigin).toBe(`${snackbars[0].offsetWidth / 2}px ${snackbars[0].offsetHeight}px`);
-        expect(olderStyle.transitionProperty).toBe('transform, opacity, visibility');
+        expect(olderStyle.transformOrigin).toBe(`${snackbars[0].offsetWidth / 2}px 0px`);
+        expect(olderStyle.transitionProperty).toBe('transform, scale, opacity, visibility');
         expect(olderStyle.transitionDuration.split(',').every(duration => duration.trim() === '0.25s')).toBeTrue();
         expect(new DOMMatrix(olderStyle.transform).a).toBeCloseTo(0.95);
         expect(new DOMMatrix(newerStyle.transform).a).toBe(1);
+        expect(getComputedStyle(snackbars[0].querySelector('.content')!).opacity).toBe('0');
+        expect(getComputedStyle(snackbars[1].querySelector('.content')!).opacity).toBe('1');
     });
 
     it('expands variable-height snackbars with the original gap and extra hover slot', async () => {
@@ -56,10 +58,11 @@ describe('NgxSnackbarContainerComponent', () => {
         const snackbars = host.querySelectorAll<HTMLElement>('ngx-snackbar');
         snackbars[2].querySelectorAll<HTMLButtonElement>('button')[0].focus();
         await renderSizes();
+        expect(getComputedStyle(snackbars[0].querySelector('.content')!).opacity).toBe('1');
 
         const rectangles = Array.from(snackbars, snackbar => snackbar.getBoundingClientRect());
         const gap = 12;
-        expect(rectangles[0].height).toBeGreaterThan(rectangles[2].height);
+        expect(rectangles[0].height).toEqual(rectangles[2].height);
         expect(rectangles[1].top - rectangles[0].bottom).toBeCloseTo(gap, 0);
         expect(rectangles[2].top - rectangles[1].bottom).toBeCloseTo(gap, 0);
         expect(host.getBoundingClientRect().height).toBeGreaterThan(
@@ -82,7 +85,7 @@ describe('NgxSnackbarContainerComponent', () => {
         await renderSizes();
 
         const snackbars = host.querySelectorAll<HTMLElement>('ngx-snackbar');
-        expect(snackbars[0].offsetHeight).toBeGreaterThan(firstHeight);
-        expect(snackbars[1].getBoundingClientRect().top - snackbars[0].getBoundingClientRect().bottom).toBeCloseTo(12, 0);
+        expect(snackbars[0].offsetHeight).toEqual(firstHeight);
+        expect(snackbars[1].getBoundingClientRect().top - snackbars[0].getBoundingClientRect().top).toBeCloseTo(12, 0);
     });
 });

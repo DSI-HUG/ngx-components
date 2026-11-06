@@ -49,30 +49,12 @@
     --icon-color: var(--ngx-snackbar-info-icon-color, var(--mat-sys-primary));
     --action-color: var(--ngx-snackbar-action-color, var(--mat-sys-primary));
     --progress-color: oklch(from var(--icon-color) l c h / 0.15);
-    --depth: calc(sibling-count() - sibling-index());
-    --peek: var(--ngx-snackbar-peek, 0.75rem);
 
     min-height: var(--height);
     background-color: var(--background-color);
     // border: 1px solid var(--border-color);
     border-radius: 0.5rem;
     box-shadow: var(--mat-sys-level2);
-
-    grid-area: 1 / 1;
-    align-self: end;
-    z-index: sibling-index();
-    transform-origin: bottom center;
-    transform: translateY(calc(var(--depth) * var(--peek) * -1)) scale(calc(1 - var(--depth) * 0.05));
-    transition:
-        transform 0.25s ease,
-        scale 0.25s ease,
-        opacity 0.25s ease,
-        visibility 0.25s ease;
-
-    @starting-style {
-        opacity: 0;
-        transform: translateY(100%) scale(0.8);
-    }
 
     .content {
         display: flex;
@@ -84,9 +66,12 @@
         min-height: inherit;
         box-sizing: border-box;
         padding-inline: 0.5rem;
+        opacity: var(--ngx-snackbar-content-opacity, 1);
 
         background-color: transparent;
         color: var(--text-color);
+
+        transition: opacity 0.25s ease;
 
         @include mat.icon-button-overrides(
             (
@@ -136,27 +121,24 @@
         }
 
         p {
+            flex: 1;
+
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
             line-clamp: 2;
+
             min-width: 0;
             margin: 0;
-            flex: 1;
             max-height: 2lh;
-            text-overflow: ellipsis;
+
             overflow: hidden;
+            text-overflow: ellipsis;
 
             &.title {
                 font: var(--ngx-snackbar-title-font, var(--mat-sys-title-small));
             }
         }
-    }
-
-    &:nth-last-child(n + 4) {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
     }
 
     &.success {

@@ -10,11 +10,39 @@
     width: min(25rem, calc(100dvw - 2rem));
 
     display: grid;
-    z-index: 999;
+    z-index: var(--ngx-z-snackbar, 999);
 
     ngx-snackbar {
         --ngx-snackbar-height: var(--snackbar-height);
         --ngx-snackbar-peek: var(--snackbar-peek);
+        --depth: calc(sibling-count() - sibling-index());
+        --peek: var(--ngx-snackbar-peek, 0.75rem);
+
+        grid-area: 1 / 1;
+        align-self: end;
+        z-index: sibling-index();
+        transform-origin: top center;
+        transform: translateY(calc(var(--depth) * var(--peek) * -1)) scale(calc(1 - var(--depth) * 0.05));
+        transition:
+            transform 0.25s ease,
+            scale 0.25s ease,
+            opacity 0.25s ease,
+            visibility 0.25s ease;
+
+        @starting-style {
+            opacity: 0;
+            transform: translateY(100%) scale(0.8);
+        }
+
+        &:nth-last-child(n + 2) {
+            --ngx-snackbar-content-opacity: 0;
+        }
+
+        &:nth-last-child(n + 4) {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
     }
 
     header {
@@ -37,7 +65,7 @@
             opacity 0.25s ease,
             transform 0.2s ease,
             top 0.2s ease;
-        // visibility 0.25s linear;
+
         transition-behavior: allow-discrete;
 
         p {
@@ -70,6 +98,10 @@
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
+
+            &:nth-last-child(n + 2) {
+                --ngx-snackbar-content-opacity: 1;
+            }
         }
 
         header {
