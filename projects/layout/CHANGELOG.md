@@ -1,3 +1,19 @@
+## 22.0.0-alpha.16 (2026-11-06)
+
+### 🚀 Features
+
+- ensures the toast's zone doesn't overlap higher than necessary DESIGNSYS-251 ([25eb6b6](https://github.com/DSI-HUG/ngx-components/commit/25eb6b6))
+- updates the toast's look DESIGNSYS-251 ([7755ceb](https://github.com/DSI-HUG/ngx-components/commit/7755ceb))
+- tweaks the action-group to better handle the actions and their label + menu DESIGNSYS-240 ([5291639](https://github.com/DSI-HUG/ngx-components/commit/5291639))
+- adds a page component and tweak layout one DESIGNSYS-241 ([60ac879](https://github.com/DSI-HUG/ngx-components/commit/60ac879))
+- **i18n:** remove country from translations filenames and invert intl fetch logic #NGXCPTS-54 ([d92afc9](https://github.com/DSI-HUG/ngx-components/commit/d92afc9))
+- adds side-nav and sub-components DESIGNSYS-181 ([8ff21b5](https://github.com/DSI-HUG/ngx-components/commit/8ff21b5))
+
+### ❤️ Thank You
+
+- Faraone Damien
+- Mathieu VALENTIN
+
 ## 22.0.0-alpha.15 (2026-06-03)
 
 This was a version bump only for @hug/ngx-layout to align it with other projects, there were no code changes.
