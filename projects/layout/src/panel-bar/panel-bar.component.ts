@@ -24,8 +24,8 @@ export class NgxPanelBarComponent {
     public closable = input<boolean>();
 
     // output
-    public readonly backClicked = output();
-    public readonly closeClicked = output();
+    public readonly backRequested = output();
+    public readonly closeRequested = output();
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
@@ -43,11 +43,11 @@ export class NgxPanelBarComponent {
     private readonly searchBarContainer = contentChild(NgxSearchBarContainerComponent);
     private readonly barTitle = contentChild(NgxBarTitleDirective);
 
-    protected emitBackClicked(): void {
-        this.backClicked.emit();
+    protected emitBackRequested(): void {
+        this.backRequested.emit();
     }
 
-    protected emitCloseClicked(): void {
-        this.closeClicked.emit();
+    protected emitCloseRequested(): void {
+        this.closeRequested.emit();
     }
 }

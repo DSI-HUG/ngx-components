@@ -25,7 +25,7 @@ export class NgxAppBarComponent {
     public helpUrl = input<string | URL>();
     public withBackButton = input<boolean>(false);
 
-    public readonly goBack = output();
+    public readonly backRequested = output();
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
@@ -47,6 +47,6 @@ export class NgxAppBarComponent {
     }
 
     protected triggerGoBack(): void {
-        this.goBack.emit();
+        this.backRequested.emit();
     }
 }
