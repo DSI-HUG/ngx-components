@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { timer } from 'rxjs';
 
+import { resizeSignal } from '../../common/resize-signal';
 import { Toast } from '../toast.service';
 
 @Component({
@@ -34,6 +35,7 @@ export class NgxToastComponent {
     public readonly toast = input.required<Toast>();
     public readonly animationType = input<string>();
     public readonly expired = output<string>();
+    public readonly size = resizeSignal(() => this.elementRef);
 
     protected readonly icon = computed(() => {
         const severity = this.toast().severity;
@@ -57,6 +59,7 @@ export class NgxToastComponent {
     });
 
     private readonly destroyRef = inject(DestroyRef);
+    private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
     public constructor() {
         effect(onCleanup => {

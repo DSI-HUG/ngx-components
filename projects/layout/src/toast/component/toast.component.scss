@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @property --ngx-toast-progress-percent {
@@ -42,19 +43,19 @@
 
 :host {
     --height: var(--ngx-toast-height, 3rem);
-    --background-color: var(--ngx-toast-background-color, white);
-    --border-color: var(--ngx-toast-border-color, lightgray);
-    --text-color: var(--ngx-toast-text-color, dimgray);
-    --icon-color: var(--ngx-toast-info-icon-color, #00629e);
-    --action-color: var(--ngx-toast-action-color, #00629e);
+    --background-color: var(--ngx-toast-background-color, var(--mat-sys-surface));
+    --border-color: var(--ngx-toast-border-color, var(--mat-sys-outline));
+    --text-color: var(--ngx-toast-text-color, var(--mat-sys-secondary));
+    --icon-color: var(--ngx-toast-info-icon-color, var(--mat-sys-primary));
+    --action-color: var(--ngx-toast-action-color, var(--mat-sys-primary));
     --progress-color: oklch(from var(--icon-color) l c h / 0.15);
     --depth: calc(sibling-count() - sibling-index());
-    --peek: var(--ngx-toast-peek, 0);
+    --peek: var(--ngx-toast-peek, 0.75rem);
 
-    height: var(--height);
+    min-height: var(--height);
     background-color: var(--background-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    // border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
     box-shadow: var(--mat-sys-level2);
 
     grid-area: 1 / 1;
@@ -64,6 +65,7 @@
     transform: translateY(calc(var(--depth) * var(--peek) * -1)) scale(calc(1 - var(--depth) * 0.05));
     transition:
         transform 0.25s ease,
+        scale 0.25s ease,
         opacity 0.25s ease,
         visibility 0.25s ease;
 
@@ -76,10 +78,11 @@
         display: flex;
         align-items: center;
         justify-content: start;
-        gap: 8px;
+        gap: 0.5rem;
 
-        border-radius: calc(8px - 1px);
-        height: 100%;
+        border-radius: calc(0.5rem - 1px);
+        min-height: inherit;
+        box-sizing: border-box;
         padding-inline: 0.5rem;
 
         background-color: transparent;
@@ -87,17 +90,17 @@
 
         @include mat.icon-button-overrides(
             (
-                icon-size: 16px,
-                touch-target-size: 24px,
-                state-layer-size: 24px,
-                container-shape: 8px
+                icon-size: 1rem,
+                touch-target-size: 1.5rem,
+                state-layer-size: 1.5rem,
+                container-shape: 0.5rem
             )
         );
 
         mat-icon {
-            font-size: 16px;
-            height: 16px;
-            width: 16px;
+            font-size: 1rem;
+            height: 1rem;
+            width: 1rem;
         }
 
         @include mat.button-overrides(
@@ -114,7 +117,7 @@
             flex-shrink: 0;
             width: 28px;
             height: 28px;
-            border-radius: 999px;
+            border-radius: 99rem;
             overflow: hidden;
             background: var(--progress-color);
 
@@ -126,9 +129,9 @@
 
             mat-icon {
                 position: relative;
-                font-size: 20px;
-                height: 20px;
-                width: 20px;
+                font-size: 1.25rem;
+                height: 1.25rem;
+                width: 1.25rem;
             }
         }
 
@@ -136,16 +139,16 @@
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
+            line-clamp: 2;
             min-width: 0;
             margin: 0;
             flex: 1;
-            font-size: 14px;
             max-height: 2lh;
             text-overflow: ellipsis;
             overflow: hidden;
 
             &.title {
-                font-weight: bold;
+                font: var(--ngx-toast-title-font, var(--mat-sys-title-small));
             }
         }
     }
@@ -157,23 +160,32 @@
     }
 
     &.success {
-        --icon-color: var(--ngx-toast-success-icon-color, #007804);
-        --action-color: var(--ngx-toast-success-action-color, #007804);
+        --base-success: #{map.get(mat.$green-palette, 40)};
+        --icon-color: var(--ngx-toast-success-icon-color, var(--base-success));
+        --action-color: var(--ngx-toast-success-action-color, var(--base-success));
     }
 
     &.warning {
-        --icon-color: var(--ngx-toast-warning-icon-color, #da771f);
-        --background-color: var(--ngx-toast-warning-background-color, #ffe3c8);
-        --text-color: var(--ngx-toast-warning-text-color, #8b4d00);
-        --action-color: var(--ngx-toast-warning-action-color, #da771f);
+        --base-warn: #{map.get(mat.$red-palette, 40)};
+        --base-warn-text: #{map.get(mat.$orange-palette, 30)};
+        --base-warn-background: #{map.get(mat.$orange-palette, 90)};
+
+        --icon-color: var(--ngx-toast-warning-icon-color, var(--base-warn));
+        --background-color: var(--ngx-toast-warning-background-color, var(--base-warn-background));
+        --text-color: var(--ngx-toast-warning-text-color, var(--base-warn-text));
+        --action-color: var(--ngx-toast-warning-action-color, var(--base-warn));
         --border-color: var(--ngx-toast-warning-border-color, transparent);
     }
 
     &.error {
-        --icon-color: var(--ngx-toast-error-icon-color, #ba1a1a);
-        --background-color: var(--ngx-toast-error-background-color, #ffdad6);
-        --text-color: var(--ngx-toast-error-text-color, #7e0007);
-        --action-color: var(--ngx-toast-error-action-color, #ba1a1a);
+        --base-error: #{map.get(mat.$red-palette, 40)};
+        --base-error-text: #{map.get(mat.$red-palette, 30)};
+        --base-error-background: #{map.get(mat.$red-palette, 90)};
+
+        --icon-color: var(--ngx-toast-error-icon-color, var(--base-error));
+        --background-color: var(--ngx-toast-error-background-color, var(--base-error-background));
+        --text-color: var(--ngx-toast-error-text-color, var(--base-error-text));
+        --action-color: var(--ngx-toast-error-action-color, var(--base-error));
         --border-color: var(--ngx-toast-error-border-color, transparent);
     }
 

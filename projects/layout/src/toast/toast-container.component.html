@@ -1,3 +1,14 @@
-@for (toast of toasts(); track toast.uuid) {
-    <ngx-toast animationType="around-icon" [toast]="toast" (expired)="remove($event)"></ngx-toast>
+@if (toasts().length > 1) {
+    <header>
+        <p>{{ toasts().length }} toasts</p>
+        <button matButton class="close-all" (click)="removeAll()">Clear all</button>
+    </header>
+}
+
+@for (toast of toasts(); track toast.uuid; let index = $index) {
+    <ngx-toast
+        animationType="around-icon"
+        [toast]="toast"
+        [style.--ngx-toast-expanded-offset.px]="layout().offsets[index]"
+        (expired)="remove($event)"></ngx-toast>
 }

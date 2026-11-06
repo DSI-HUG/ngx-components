@@ -92,4 +92,8 @@ export class ToastService {
     public remove(uuid: string): void {
         this.toasts.update(toasts => toasts.filter(toast => !toast.is(uuid)));
     }
+
+    public reset(): void {
+        this.toasts.set([]);
+    }
 }

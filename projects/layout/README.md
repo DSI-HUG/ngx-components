@@ -55,6 +55,14 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
+#### > Toast stacking
+
+Toast heights follow their content; `--ngx-toast-height` sets a minimum height.
+The shared `resizeSignal` helper observes each toast to calculate expanded offsets
+when text wraps or the container resizes. The original bottom-aligned grid,
+collapsed peek and scale, entry animation, and CSS transitions are preserved.
+The expanded hover area includes an extra toast-sized buffer.
+
 The sources for this package are in the main [DSI-HUG/ngx-components](https://github.com/dsi-hug/ngx-components) repo. Please file issues and pull requests against that repo.
 
 License: GPL-3.0-only
