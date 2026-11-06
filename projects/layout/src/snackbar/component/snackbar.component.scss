@@ -1,0 +1,202 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@property --ngx-snackbar-progress-percent {
+    syntax: '<percentage>';
+    inherits: true;
+    initial-value: 0%;
+}
+
+@property --ngx-snackbar-progress-angle {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 360deg;
+}
+
+@keyframes snackbar-around-countdown {
+    0% {
+        --ngx-snackbar-progress-angle: 0deg;
+    }
+
+    98% {
+        --ngx-snackbar-progress-angle: 360deg;
+    }
+
+    100% {
+        --ngx-snackbar-progress-angle: 360deg;
+    }
+}
+
+@keyframes snackbar-horizontal-countdown {
+    0% {
+        --ngx-snackbar-progress-percent: 0%;
+    }
+
+    98% {
+        --ngx-snackbar-progress-percent: 100%;
+    }
+
+    100% {
+        --ngx-snackbar-progress-percent: 100%;
+    }
+}
+
+:host {
+    --height: var(--ngx-snackbar-height, 3rem);
+    --background-color: var(--ngx-snackbar-background-color, var(--mat-sys-surface));
+    --border-color: var(--ngx-snackbar-border-color, var(--mat-sys-outline));
+    --text-color: var(--ngx-snackbar-text-color, var(--mat-sys-secondary));
+    --icon-color: var(--ngx-snackbar-info-icon-color, var(--mat-sys-primary));
+    --action-color: var(--ngx-snackbar-action-color, var(--mat-sys-primary));
+    --progress-color: oklch(from var(--icon-color) l c h / 0.15);
+
+    min-height: var(--height);
+    background-color: var(--background-color);
+    // border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    box-shadow: var(--mat-sys-level2);
+
+    .content {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 0.5rem;
+
+        border-radius: calc(0.5rem - 1px);
+        min-height: inherit;
+        box-sizing: border-box;
+        padding-inline: 0.5rem;
+        opacity: var(--ngx-snackbar-content-opacity, 1);
+
+        background-color: transparent;
+        color: var(--text-color);
+
+        transition: opacity 0.25s ease;
+
+        @include mat.icon-button-overrides(
+            (
+                icon-size: 1rem,
+                touch-target-size: 1.5rem,
+                state-layer-size: 1.5rem,
+                container-shape: 0.5rem
+            )
+        );
+
+        mat-icon {
+            font-size: 1rem;
+            height: 1rem;
+            width: 1rem;
+        }
+
+        @include mat.button-overrides(
+            (
+                text-label-text-color: var(--action-color)
+            )
+        );
+
+        .icon-container {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 99rem;
+            overflow: hidden;
+            background: var(--progress-color);
+
+            @include mat.icon-overrides(
+                (
+                    color: var(--icon-color)
+                )
+            );
+
+            mat-icon {
+                position: relative;
+                font-size: 1.25rem;
+                height: 1.25rem;
+                width: 1.25rem;
+            }
+        }
+
+        p {
+            flex: 1;
+
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+
+            min-width: 0;
+            margin: 0;
+            max-height: 2lh;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &.title {
+                font: var(--ngx-snackbar-title-font, var(--mat-sys-title-small));
+            }
+        }
+    }
+
+    &.success {
+        --base-success: #{map.get(mat.$green-palette, 40)};
+        --icon-color: var(--ngx-snackbar-success-icon-color, var(--base-success));
+        --action-color: var(--ngx-snackbar-success-action-color, var(--base-success));
+    }
+
+    &.warning {
+        --base-warn: #{map.get(mat.$red-palette, 40)};
+        --base-warn-text: #{map.get(mat.$orange-palette, 30)};
+        --base-warn-background: #{map.get(mat.$orange-palette, 90)};
+
+        --icon-color: var(--ngx-snackbar-warning-icon-color, var(--base-warn));
+        --background-color: var(--ngx-snackbar-warning-background-color, var(--base-warn-background));
+        --text-color: var(--ngx-snackbar-warning-text-color, var(--base-warn-text));
+        --action-color: var(--ngx-snackbar-warning-action-color, var(--base-warn));
+        --border-color: var(--ngx-snackbar-warning-border-color, transparent);
+    }
+
+    &.error {
+        --base-error: #{map.get(mat.$red-palette, 40)};
+        --base-error-text: #{map.get(mat.$red-palette, 30)};
+        --base-error-background: #{map.get(mat.$red-palette, 90)};
+
+        --icon-color: var(--ngx-snackbar-error-icon-color, var(--base-error));
+        --background-color: var(--ngx-snackbar-error-background-color, var(--base-error-background));
+        --text-color: var(--ngx-snackbar-error-text-color, var(--base-error-text));
+        --action-color: var(--ngx-snackbar-error-action-color, var(--base-error));
+        --border-color: var(--ngx-snackbar-error-border-color, transparent);
+    }
+
+    &.timed {
+        &.horizontal {
+            animation: snackbar-horizontal-countdown linear forwards;
+
+            .content {
+                background: linear-gradient(
+                    90deg,
+                    var(--progress-color) var(--ngx-snackbar-progress-percent),
+                    transparent var(--ngx-snackbar-progress-percent)
+                );
+            }
+        }
+
+        &.around-icon {
+            animation: snackbar-around-countdown linear forwards;
+
+            .content .icon-container {
+                background: conic-gradient(
+                    var(--progress-color) 0deg var(--ngx-snackbar-progress-angle),
+                    transparent var(--ngx-snackbar-progress-angle) 360deg
+                );
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}

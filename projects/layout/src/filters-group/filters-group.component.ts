@@ -1,6 +1,6 @@
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, type Signal, signal, type TemplateRef, untracked, viewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, output, signal, type TemplateRef, untracked, viewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatIconButton } from '@angular/material/button';
@@ -9,44 +9,9 @@ import { MatIcon } from '@angular/material/icon';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatTooltip } from '@angular/material/tooltip';
 
+import { resizeSignal } from '../common/resize-signal';
 import { NgxLayoutIntl } from '../providers';
 import { FILTER_TOKEN, type NgxComplexFilter, type NgxFilter } from './filter-chip.model';
-
-const resizeSignal = (
-    element: () => ElementRef<HTMLElement> | undefined,
-    box: ResizeObserverBoxOptions = 'border-box'
-): Signal<ResizeObserverEntry | undefined> => {
-
-    const value = signal<ResizeObserverEntry | undefined>(undefined);
-
-    effect(onCleanup => {
-        const el = element()?.nativeElement;
-        if (!el) {
-            return;
-        }
-
-        const initialValue: ResizeObserverEntry = {
-            borderBoxSize: [],
-            contentRect: new DOMRect(),
-            contentBoxSize: [],
-            devicePixelContentBoxSize: [],
-            target: el
-        };
-
-        value.set(initialValue);
-
-        const ro = new ResizeObserver(entries => {
-            value.set(entries[0] || initialValue);
-        });
-
-        ro.observe(el, { box });
-        onCleanup(() => {
-            ro.disconnect();
-        });
-    });
-
-    return value;
-};
 
 @Component({
     selector: 'ngx-filters-group',
