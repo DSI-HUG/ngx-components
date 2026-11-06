@@ -1,0 +1,28 @@
+:host {
+    --toast-height: 3rem;
+    --toast-gap: 0.75rem;
+    --toast-peek: 0.75rem;
+
+    position: fixed;
+    inset: auto 1rem 1rem auto;
+    width: min(25rem, calc(100dvw - 2rem));
+    display: grid;
+    font-family: 'Roboto';
+    z-index: 999;
+
+    ngx-toast {
+        --ngx-toast-height: var(--toast-height);
+        --ngx-toast-peek: var(--toast-peek);
+    }
+
+    &:not(:empty):is(:hover, :focus-within) {
+        height: calc((var(--ngx-toast-count) + 1) * (var(--toast-height) + var(--toast-gap)));
+
+        ngx-toast {
+            transform: translateY(calc(var(--depth) * (var(--toast-height) + var(--toast-gap)) * -1));
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+    }
+}

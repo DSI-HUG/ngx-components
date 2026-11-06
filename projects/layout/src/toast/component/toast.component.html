@@ -1,0 +1,13 @@
+@let toast = this.toast();
+<div class="content">
+    <div class="icon-container">
+        <mat-icon>{{ icon() }}</mat-icon>
+    </div>
+    <p class="title">{{ toast.title }} {{ toast.body }}</p>
+    @if (toast.action; as action) {
+        <button matButton (click)="action.execute()">{{ action.name }}</button>
+    }
+    <button aria-label="close" matIconButton (click)="expire()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
