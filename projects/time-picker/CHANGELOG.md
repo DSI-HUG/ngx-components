@@ -1,3 +1,17 @@
+## 21.2.4 (2026-11-11)
+
+### 🐛 Fixes
+
+- **timepicker:** use standalone mode for ngModel on timepicker (NGXCPTS-61) ([c1b16ff](https://github.com/DSI-HUG/ngx-components/commit/c1b16ff))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-numeric-stepper**: upgraded to `v21.2.4`
+
+### ❤️ Thank You
+
+- spln @spln
+
 ## 21.2.3 (2026-07-17)
 
 ### 🌱 Dependencies

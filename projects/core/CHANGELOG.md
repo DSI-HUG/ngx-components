@@ -1,3 +1,19 @@
+## 21.4.0 (2026-11-11)
+
+### 🚀 Features
+
+- **NGXCPTS-49:** pr review optimization ([ff73d68](https://github.com/DSI-HUG/ngx-components/commit/ff73d68))
+- **NGXCPTS-60:** new date format standard for de-CH ([87aaee0](https://github.com/DSI-HUG/ngx-components/commit/87aaee0))
+
+### 🐛 Fixes
+
+- **FC-145:** partial date test fix ([d2d3a63](https://github.com/DSI-HUG/ngx-components/commit/d2d3a63))
+
+### ❤️ Thank You
+
+- Guillaume Marcel
+- Nathanael Martin @nathanaelmartin
+
 ## 21.3.2 (2026-07-17)
 
 ### 🐛 Fixes
