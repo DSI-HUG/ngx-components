@@ -1,12 +1,6 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 
-@property --ngx-snackbar-progress-percent {
-    syntax: '<percentage>';
-    inherits: true;
-    initial-value: 0%;
-}
-
 @property --ngx-snackbar-progress-angle {
     syntax: '<angle>';
     inherits: true;
@@ -27,20 +21,6 @@
     }
 }
 
-@keyframes snackbar-horizontal-countdown {
-    0% {
-        --ngx-snackbar-progress-percent: 0%;
-    }
-
-    98% {
-        --ngx-snackbar-progress-percent: 100%;
-    }
-
-    100% {
-        --ngx-snackbar-progress-percent: 100%;
-    }
-}
-
 :host {
     --height: var(--ngx-snackbar-height, 3rem);
     --background-color: var(--ngx-snackbar-background-color, var(--mat-sys-surface));
@@ -49,6 +29,7 @@
     --icon-color: var(--ngx-snackbar-info-icon-color, var(--mat-sys-primary));
     --action-color: var(--ngx-snackbar-action-color, var(--mat-sys-primary));
     --progress-color: oklch(from var(--icon-color) l c h / 0.15);
+    --icon-size: var(--ngx-icon-size, 1.25rem);
 
     min-height: var(--height);
     background-color: var(--background-color);
@@ -114,9 +95,9 @@
 
             mat-icon {
                 position: relative;
-                font-size: 1.25rem;
-                height: 1.25rem;
-                width: 1.25rem;
+                font-size: var(--icon-size);
+                height: var(--icon-size);
+                width: var(--icon-size);
             }
         }
 
@@ -157,6 +138,7 @@
         --text-color: var(--ngx-snackbar-warning-text-color, var(--base-warn-text));
         --action-color: var(--ngx-snackbar-warning-action-color, var(--base-warn));
         --border-color: var(--ngx-snackbar-warning-border-color, transparent);
+        --progress-color: transparent;
     }
 
     &.error {
@@ -169,21 +151,10 @@
         --text-color: var(--ngx-snackbar-error-text-color, var(--base-error-text));
         --action-color: var(--ngx-snackbar-error-action-color, var(--base-error));
         --border-color: var(--ngx-snackbar-error-border-color, transparent);
+        --progress-color: transparent;
     }
 
     &.timed {
-        &.horizontal {
-            animation: snackbar-horizontal-countdown linear forwards;
-
-            .content {
-                background: linear-gradient(
-                    90deg,
-                    var(--progress-color) var(--ngx-snackbar-progress-percent),
-                    transparent var(--ngx-snackbar-progress-percent)
-                );
-            }
-        }
-
         &.around-icon {
             animation: snackbar-around-countdown linear forwards;
 
