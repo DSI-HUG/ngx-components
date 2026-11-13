@@ -86,6 +86,8 @@ describe('NgxSnackbarContainerComponent', () => {
 
         const snackbars = host.querySelectorAll<HTMLElement>('ngx-snackbar');
         expect(snackbars[0].offsetHeight).toEqual(firstHeight);
-        expect(snackbars[1].getBoundingClientRect().top - snackbars[0].getBoundingClientRect().top).toBeCloseTo(12, 0);
+        const firstSnackbarBottomOffset = snackbars[0].getBoundingClientRect().bottom;
+        const secondSnackBarTopOffset = snackbars[1].getBoundingClientRect().top;
+        expect(Math.abs(firstSnackbarBottomOffset - secondSnackBarTopOffset)).toBeCloseTo(12, 0);
     });
 });
