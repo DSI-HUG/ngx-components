@@ -1,9 +1,9 @@
 @use '@angular/material' as mat;
 
 :host {
-    --snackbar-height: 3rem;
-    --snackbar-gap: 0.75rem;
-    --snackbar-peek: 0.75rem;
+    --snackbar-height: var(--ngx-snackbar-height, 3rem);
+    --snackbar-gap: var(--ngx-snackbar-gap, 0.75rem);
+    --snackbar-peek: var(--ngx-snackbar-peek, 0.75rem);
 
     position: fixed;
     inset: auto 1rem 1rem auto;
@@ -13,16 +13,14 @@
     z-index: var(--ngx-z-snackbar, 999);
 
     ngx-snackbar {
-        --ngx-snackbar-height: var(--snackbar-height);
-        --ngx-snackbar-peek: var(--snackbar-peek);
-        --depth: calc(sibling-count() - sibling-index());
-        --peek: var(--ngx-snackbar-peek, 0.75rem);
+        --snackbar-depth: calc(sibling-count() - sibling-index());
 
         grid-area: 1 / 1;
         align-self: end;
         z-index: sibling-index();
         transform-origin: top center;
-        transform: translateY(calc(var(--depth) * var(--peek) * -1)) scale(calc(1 - var(--depth) * 0.05));
+        transform: translateY(calc(var(--snackbar-depth) * var(--snackbar-peek) * -1))
+            scale(calc(1 - var(--snackbar-depth) * 0.05));
         transition:
             transform 0.25s ease,
             scale 0.25s ease,
@@ -84,16 +82,16 @@
     }
 
     &:not(:empty):is(:hover, :focus-within) {
-        --height: calc(
-            var(--ngx-snackbar-total-height) + var(--ngx-snackbar-buffer-height) + (var(--ngx-snackbar-count) + 1) *
+        --snackbar-container-height: calc(
+            var(--ngx-snackbar-total-height) + var(--snackbar-height) + (var(--ngx-snackbar-count) + 1) *
                 var(--snackbar-gap)
         );
 
-        height: var(--height);
+        height: var(--snackbar-container-height);
 
         ngx-snackbar {
             transform: translateY(
-                calc((var(--ngx-snackbar-expanded-offset) + var(--depth) * var(--snackbar-gap)) * -1)
+                calc((var(--ngx-snackbar-expanded-offset) + var(--snackbar-depth) * var(--snackbar-gap)) * -1)
             );
             opacity: 1;
             visibility: visible;
