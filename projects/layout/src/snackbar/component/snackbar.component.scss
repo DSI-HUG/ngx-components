@@ -129,7 +129,7 @@
     }
 
     &.warning {
-        --base-warn: #{map.get(mat.$red-palette, 40)};
+        --base-warn: #{map.get(mat.$orange-palette, 60)};
         --base-warn-text: #{map.get(mat.$orange-palette, 30)};
         --base-warn-background: #{map.get(mat.$orange-palette, 90)};
 
@@ -142,9 +142,9 @@
     }
 
     &.error {
-        --base-error: #{map.get(mat.$red-palette, 40)};
-        --base-error-text: #{map.get(mat.$red-palette, 30)};
-        --base-error-background: #{map.get(mat.$red-palette, 90)};
+        --base-error: var(--mat-sys-error);
+        --base-error-text: var(--mat-sys-on-error-container);
+        --base-error-background: var(--mat-sys-error-container);
 
         --icon-color: var(--ngx-snackbar-error-icon-color, var(--base-error));
         --background-color: var(--ngx-snackbar-error-background-color, var(--base-error-background));
