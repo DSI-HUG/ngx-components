@@ -8,5 +8,9 @@
     "filters": "Filtres",
     "actives": "Actifs",
     "reset": "Réinitialiser",
-    "close": "Fermer"
+    "close": "Fermer",
+    "collapseAll": "Tout replier",
+    "expandAll": "Tout déplier",
+    "cancel": "Annuler",
+    "apply": "Appliquer"
 }

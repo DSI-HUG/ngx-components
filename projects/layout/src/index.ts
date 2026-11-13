@@ -6,7 +6,10 @@ export * from './directives';
 export * from './filters-group';
 export * from './layout.component';
 export * from './main-bar';
+export * from './page';
 export * from './panel';
 export * from './panel-bar';
 export * from './providers';
 export * from './search-bar-container';
+export * from './side-nav';
+

@@ -6,6 +6,7 @@ interface NgxBaseFilter {
     readonly label: InputSignal<string>;
     readonly active: InputSignal<boolean>;
     readonly type: FilterType;
+    readonly icon: InputSignal<string | undefined>;
 }
 
 export interface NgxToggleFilter extends NgxBaseFilter {
@@ -14,8 +15,12 @@ export interface NgxToggleFilter extends NgxBaseFilter {
 }
 
 export interface NgxComplexFilter extends NgxBaseFilter {
-    readonly selectedFilterLabel: InputSignal<string>;
+    readonly selectedFilterLabel: InputSignal<string | undefined>;
+    readonly error: InputSignal<string | undefined>;
+    readonly applyDisabled: InputSignal<boolean>;
     readonly templateRef: TemplateRef<unknown>;
+    readonly validationBeforeApply: InputSignal<() => boolean | Promise<boolean>>;
+    readonly requireExplicitApply: InputSignal<boolean>;
     readonly type: 'complex';
 }
 
