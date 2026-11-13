@@ -2,7 +2,7 @@ import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { CdkAccordion, CdkAccordionItem } from '@angular/cdk/accordion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, input, linkedSignal, output, type Signal, signal, type TemplateRef, viewChild, viewChildren, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, ElementRef, inject, input, linkedSignal, output, signal, type TemplateRef, viewChild, viewChildren, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatButton, MatIconButton } from '@angular/material/button';
@@ -13,6 +13,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatTooltip } from '@angular/material/tooltip';
 
+import { resizeSignal } from '../common/resize-signal';
 import { NgxLayoutIntl } from '../providers';
 import { NgxExpandedDirective } from './expanded-filter.directive';
 import { FILTER_TOKEN, NgxComplexFilter, NgxToggleFilter } from './filter-chip.model';
@@ -36,42 +37,6 @@ interface ToggleFilterView {
 }
 
 type FilterView = ToggleFilterView | ComplexFilterView;
-
-const resizeSignal = (
-    element: () => ElementRef<HTMLElement> | undefined,
-    box: ResizeObserverBoxOptions = 'border-box'
-): Signal<ResizeObserverEntry | undefined> => {
-
-    const value = signal<ResizeObserverEntry | undefined>(undefined);
-
-    effect(onCleanup => {
-        const el = element()?.nativeElement;
-        if (!el) {
-            return;
-        }
-
-        const initialValue: ResizeObserverEntry = {
-            borderBoxSize: [],
-            contentRect: new DOMRect(),
-            contentBoxSize: [],
-            devicePixelContentBoxSize: [],
-            target: el
-        };
-
-        value.set(initialValue);
-
-        const ro = new ResizeObserver(entries => {
-            value.set(entries[0] || initialValue);
-        });
-
-        ro.observe(el, { box });
-        onCleanup(() => {
-            ro.disconnect();
-        });
-    });
-
-    return value;
-};
 
 @Component({
     selector: 'ngx-filters-group',
