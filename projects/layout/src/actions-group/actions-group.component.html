@@ -1,6 +1,11 @@
 <div class="container">
     @for (item of visibleItems(); track $index) {
-        <button matIconButton [ariaLabel]="item.label()" [matTooltip]="item.label()" (click)="item.execute.emit()">
+        <button
+            matIconButton
+            [ariaLabel]="item.label()"
+            [disabled]="item.disabled()"
+            [matTooltip]="item.label()"
+            (click)="item.execute.emit()">
             <mat-icon>{{ item.icon() }}</mat-icon>
         </button>
     }
@@ -17,7 +22,7 @@
 
     <mat-menu #menuActionsGroup="matMenu">
         @for (item of hiddenItems(); track $index) {
-            <button mat-menu-item [ariaLabel]="item.label()" (click)="item.execute.emit()">
+            <button mat-menu-item [ariaLabel]="item.label()" [disabled]="item.disabled()" (click)="item.execute.emit()">
                 <mat-icon>{{ item.icon() }}</mat-icon>
                 <span>{{ item.label() }}</span>
             </button>
