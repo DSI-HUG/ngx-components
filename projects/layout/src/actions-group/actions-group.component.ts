@@ -1,57 +1,15 @@
-import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, ElementRef, inject, type Signal, signal, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, ElementRef, inject, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 
+import { resizeSignal } from '../common/resize-signal';
 import { NgxLayoutIntl } from '../providers';
 import { NgxActionDirective } from './action.directive';
 
 const buttonGap = 12;
 const buttonDimensions = 40;
-
-/**
- *
- * @param element
- * @param destroyRef
- * @param box
- * @param defaultSize
- */
-const resizeSignal = (
-    element: () => ElementRef<HTMLElement> | undefined,
-    box: ResizeObserverBoxOptions = 'border-box'
-): Signal<ResizeObserverEntry | undefined> => {
-
-    const value = signal<ResizeObserverEntry | undefined>(undefined);
-
-    effect(onCleanup => {
-        const el = element()?.nativeElement;
-        if (!el) {
-            return;
-        }
-
-        const initialValue: ResizeObserverEntry = {
-            borderBoxSize: [],
-            contentRect: new DOMRect(),
-            contentBoxSize: [],
-            devicePixelContentBoxSize: [],
-            target: el
-        };
-
-        value.set(initialValue);
-
-        const ro = new ResizeObserver(entries => {
-            value.set(entries[0] || initialValue);
-        });
-
-        ro.observe(el, { box });
-        onCleanup(() => {
-            ro.disconnect();
-        });
-    });
-
-    return value;
-};
 
 @Component({
     selector: 'ngx-actions-group',

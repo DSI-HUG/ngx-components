@@ -1,33 +1,33 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { ErrorToast, InfoToast, SuccessToast, ToastAction, ToastService, ToastSeverity, WarnToast } from '../../../layout/src/toast/toast.service';
-import { NgxToastContainerComponent } from '../../../layout/src/toast/toast-container.component';
+import { ErrorSnackbar, InfoSnackbar, SnackbarAction, SnackbarService, SnackbarSeverity, SuccessSnackbar, WarnSnackbar } from '../../../layout/src/snackbar/snackbar.service';
+import { NgxSnackbarContainerComponent } from '../../../layout/src/snackbar/snackbar-container.component';
 
 @Component({
-    selector: 'storybook-toast-container-wrapper',
+    selector: 'storybook-snackbar-container-wrapper',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        NgxToastContainerComponent,
+        NgxSnackbarContainerComponent,
         MatButtonModule
     ],
     providers: [
-        ToastService
+        SnackbarService
     ],
     // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
-    templateUrl: './toast-container-wrapper.component.html',
-    styleUrl: './toast-container-wrapper.component.scss'
+    templateUrl: './snackbar-container-wrapper.component.html',
+    styleUrl: './snackbar-container-wrapper.component.scss'
 })
-export class StorybookToastContainerWrapperComponent {
-    private readonly toastService = inject(ToastService);
+export class StorybookSnackbarContainerWrapperComponent {
+    private readonly snackbarService = inject(SnackbarService);
 
-    protected addToast(severity: ToastSeverity): void {
+    protected addSnackbar(severity: SnackbarSeverity): void {
         switch (severity) {
             case 'info':
-                this.toastService.add(new InfoToast(
+                this.snackbarService.add(new InfoSnackbar(
                     'Message sent',
                     '',
-                    new ToastAction(
+                    new SnackbarAction(
                         'Revert',
                         () => {
                             alert('Revert has been clicked');
@@ -37,10 +37,10 @@ export class StorybookToastContainerWrapperComponent {
                 ));
                 break;
             case 'success':
-                this.toastService.add(new SuccessToast(
+                this.snackbarService.add(new SuccessSnackbar(
                     'Message sent',
                     '',
-                    new ToastAction(
+                    new SnackbarAction(
                         'Revert',
                         () => {
                             alert('Revert has been clicked');
@@ -50,10 +50,10 @@ export class StorybookToastContainerWrapperComponent {
                 ));
                 break;
             case 'warning':
-                this.toastService.add(new WarnToast(
+                this.snackbarService.add(new WarnSnackbar(
                     'Message sent',
-                    'A toast added from Storybook. with some more text just to see what happens when I do that',
-                    new ToastAction(
+                    'A snackbar added from Storybook. with some more text just to see what happens when I do that',
+                    new SnackbarAction(
                         'Revert',
                         () => {
                             alert('Revert has been clicked');
@@ -62,10 +62,10 @@ export class StorybookToastContainerWrapperComponent {
                 ));
                 break;
             case 'error':
-                this.toastService.add(new ErrorToast(
+                this.snackbarService.add(new ErrorSnackbar(
                     'Message sent',
                     '',
-                    new ToastAction(
+                    new SnackbarAction(
                         'Open ticket',
                         () => {
                             alert('Open ticket has been clicked');
