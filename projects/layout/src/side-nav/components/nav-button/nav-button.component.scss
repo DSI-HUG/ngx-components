@@ -5,16 +5,23 @@ ngx-nav-button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
 
     font: var(--mat-sys-label-medium);
     padding: 0.25rem;
+
+    &:has(+ ngx-nav-section) {
+        padding-block-end: 1rem;
+    }
 
     p {
         // Reset
         margin: 0;
         padding-inline: 0.25rem;
         box-sizing: border-box;
+
+        font: var(--mat-sys-label-medium);
+        letter-spacing: var(--hy-typo-ref-label-medium-tracking);
+        color: var(--mat-sys-on-surface);
 
         display: inline-block;
 
@@ -32,6 +39,7 @@ ngx-nav-button {
         padding-inline: 1rem;
         background-color: transparent;
         border-radius: 999px;
+        color: var(--mat-sys-on-surface-variant);
 
         mat-icon {
             transition: font-variation-settings 0.2s cubic-bezier(0.2, 0, 0, 1);
