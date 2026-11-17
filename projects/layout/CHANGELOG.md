@@ -1,3 +1,13 @@
+## 22.0.0-alpha.17 (2026-11-17)
+
+### 🐛 Fixes
+
+- **actions-group:** add disabled state to actions #DESIGNSYS-238 ([dbf3411](https://github.com/DSI-HUG/ngx-components/commit/dbf3411))
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.16 (2026-11-06)
 
 ### 🚀 Features
