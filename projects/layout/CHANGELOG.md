@@ -1,3 +1,75 @@
+# 22.0.0 (2026-11-18)
+
+### 🚀 Features
+
+- fixes wrongly bound css variables DESIGNSYS-251 ([f15b316](https://github.com/DSI-HUG/ngx-components/commit/f15b316))
+- adds toast component, container and service DESIGNSYS-251 ([509242f](https://github.com/DSI-HUG/ngx-components/commit/509242f))
+- tweaks the action-group to better handle the actions and their label + menu DESIGNSYS-240 ([5291639](https://github.com/DSI-HUG/ngx-components/commit/5291639))
+- adds a page component and tweak layout one DESIGNSYS-241 ([60ac879](https://github.com/DSI-HUG/ngx-components/commit/60ac879))
+- adds side-nav and sub-components DESIGNSYS-181 ([8ff21b5](https://github.com/DSI-HUG/ngx-components/commit/8ff21b5))
+- **column:** add ngx-column component #DESIGNSYS-214 ([b04757f](https://github.com/DSI-HUG/ngx-components/commit/b04757f))
+- **panel-bar:** update title handling and content projection #DESIGNSYS-104 ([39a25bb](https://github.com/DSI-HUG/ngx-components/commit/39a25bb))
+- **main-bar:** add ngxContentLeft and ngxContentRight #DESIGNSYS-102 ([ffa96c6](https://github.com/DSI-HUG/ngx-components/commit/ffa96c6))
+- **column-bar:** add support for ngxContentLeft and ngxContentRight projection #DESIGNSYS-179 ([9c314fc](https://github.com/DSI-HUG/ngx-components/commit/9c314fc))
+- **column-bar:** add ngx-column-bar component #DESIGNSYS-179 ([7d32d1a](https://github.com/DSI-HUG/ngx-components/commit/7d32d1a))
+- **panel-bar:** add ngx-panel-bar component #DESIGNSYS-104 ([5d4b476](https://github.com/DSI-HUG/ngx-components/commit/5d4b476))
+- **filters-group:** add filters-group component #DESIGNSYS-177 ([dea1a5f](https://github.com/DSI-HUG/ngx-components/commit/dea1a5f))
+- **layout:** adjust styles + add ellipsis for the search input #DESIGNSYS-103 ([7158e2f](https://github.com/DSI-HUG/ngx-components/commit/7158e2f))
+- **layout:** use CSS variables #DESIGNSYS-178 ([309b56a](https://github.com/DSI-HUG/ngx-components/commit/309b56a))
+- **search-bar-container:** use CSS variables #DESIGNSYS-103 ([c35c5f7](https://github.com/DSI-HUG/ngx-components/commit/c35c5f7))
+- **panel:** use CSS variables #DESIGNSYS-176 ([7e75e7b](https://github.com/DSI-HUG/ngx-components/commit/7e75e7b))
+- **main-bar:** use CSS variables #DESIGNSYS-102 ([4a81e1b](https://github.com/DSI-HUG/ngx-components/commit/4a81e1b))
+- **actions-group:** use CSS variables #DESIGNSYS-180 ([9a96e80](https://github.com/DSI-HUG/ngx-components/commit/9a96e80))
+- **app-bar:** use CSS variables for layout properties #DESIGNSYS-101 ([d22a389](https://github.com/DSI-HUG/ngx-components/commit/d22a389))
+- **layout:** adjust properties for better layout #DESIGNSYS-180 ([888699c](https://github.com/DSI-HUG/ngx-components/commit/888699c))
+- **search-bar:** add translations and internationalization support #DESIGNSYS-103 ([50640a2](https://github.com/DSI-HUG/ngx-components/commit/50640a2))
+- **actions-group:** add translations and internationalization support #DESIGNSYS-180 ([ffece73](https://github.com/DSI-HUG/ngx-components/commit/ffece73))
+- **app-bar:** add translations and internationalization support #DESIGNSYS-101 ([e8e42e5](https://github.com/DSI-HUG/ngx-components/commit/e8e42e5))
+- **panel:** add NgxPanelComponent #DESIGNSYS-176 ([69ae788](https://github.com/DSI-HUG/ngx-components/commit/69ae788))
+- **main-bar:** add NgxMainBarComponent #DESIGNSYS-102 ([b972c4e](https://github.com/DSI-HUG/ngx-components/commit/b972c4e))
+- **search-bar:** add ngx-search-bar-container #DESIGNSYS-103 ([5e8da5c](https://github.com/DSI-HUG/ngx-components/commit/5e8da5c))
+- **layout:** add NgxActionsGroupComponent #DESIGNSYS-180 ([7dc1e4e](https://github.com/DSI-HUG/ngx-components/commit/7dc1e4e))
+- **layout:** add NgxLayoutComponent #DESIGNSYS-178 ([edf93bb](https://github.com/DSI-HUG/ngx-components/commit/edf93bb))
+- **app-bar:** added the ngx-app-bar component #DESIGNSYS-101 ([0cc08f3](https://github.com/DSI-HUG/ngx-components/commit/0cc08f3))
+
+### 🐛 Fixes
+
+- **actions-group:** add disabled state to actions #DESIGNSYS-238 ([dbf3411](https://github.com/DSI-HUG/ngx-components/commit/dbf3411))
+- **layout:** replace max-width with max-inline-size for better responsiveness #DESIGNSYS-114 ([71193de](https://github.com/DSI-HUG/ngx-components/commit/71193de))
+- **layout:** fix component styles for improved responsif #DESIGNSYS-114 ([71b728a](https://github.com/DSI-HUG/ngx-components/commit/71b728a))
+- **panel-bar:** rename hasBackButton to withBackButton for consistency #DESIGNSYS-115 ([92365ba](https://github.com/DSI-HUG/ngx-components/commit/92365ba))
+- **layout:** harmonize the selectors for directives and components #DESIGNSYS-115 ([ce50402](https://github.com/DSI-HUG/ngx-components/commit/ce50402))
+- **actions-group:** add missing export for action.directive #DESIGNSYS-213 ([0aaf713](https://github.com/DSI-HUG/ngx-components/commit/0aaf713))
+- **actions-group:** add NgxActionDirective and update content projection #DESIGNSYS-213 ([b137908](https://github.com/DSI-HUG/ngx-components/commit/b137908))
+- **search-bar-container:** remove focus from the input at startup #DESIGNSYS-115 ([8be134b](https://github.com/DSI-HUG/ngx-components/commit/8be134b))
+- **package:** update versions to 22.0.0-alpha.2 for multiple components ([4f38846](https://github.com/DSI-HUG/ngx-components/commit/4f38846))
+- **search-bar:** correct the variable names #DESIGNSYS-103 ([14d7e32](https://github.com/DSI-HUG/ngx-components/commit/14d7e32))
+- **filters-group:** correct the variable names #DESIGNSYS-177 ([322270a](https://github.com/DSI-HUG/ngx-components/commit/322270a))
+- **layout:** adjust the padding #DESIGNSYS-178 ([eaf75f6](https://github.com/DSI-HUG/ngx-components/commit/eaf75f6))
+- **layout:** wrap ng-content in extra-content div and adjust padding #DESIGNSYS-178 ([7064b0f](https://github.com/DSI-HUG/ngx-components/commit/7064b0f))
+- **panel-bar:** update first-child padding #DESIGNSYS-104 ([ce02016](https://github.com/DSI-HUG/ngx-components/commit/ce02016))
+- **main-bar:** update padding #DESIGNSYS-102 ([ab0c38d](https://github.com/DSI-HUG/ngx-components/commit/ab0c38d))
+- **app-bar:** update padding variable #DESIGNSYS-101 ([5a771a3](https://github.com/DSI-HUG/ngx-components/commit/5a771a3))
+- **app-bar:** add padding to the sides and simplify the padding #DESIGNSYS-101 ([3029772](https://github.com/DSI-HUG/ngx-components/commit/3029772))
+- **column-bar, panel-bar:** update ngxContentLeft and ngxContentRight #DESIGNSYS-179 ([52cf25d](https://github.com/DSI-HUG/ngx-components/commit/52cf25d))
+- **column-bar:** wrap title content in conditional block for better rendering #DESIGNSYS-179 ([2eb7e57](https://github.com/DSI-HUG/ngx-components/commit/2eb7e57))
+- **search-bar-container:** replace hardcoded max-width with CSS variable #DESIGNSYS-103 ([1b53406](https://github.com/DSI-HUG/ngx-components/commit/1b53406))
+- **column-bar:** add min-height variable #DESIGNSYS-179 ([086aae8](https://github.com/DSI-HUG/ngx-components/commit/086aae8))
+- **filters-group:** adjust mat-chip-set styling for better appearance #DESIGNSYS-177 ([ff51834](https://github.com/DSI-HUG/ngx-components/commit/ff51834))
+- **column-bar:** simplify flex behavior for ngx-column-bar elements #DESIGNSYS-179 ([c4ff3c2](https://github.com/DSI-HUG/ngx-components/commit/c4ff3c2))
+- **layout:** add exports for column-bar and panel-bar #DESIGNSYS-104 ([0fa772b](https://github.com/DSI-HUG/ngx-components/commit/0fa772b))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-sidenav**: upgraded to `v22.0.0`
+- **@hug/ngx-core**: upgraded to `v22.0.0-alpha.4`
+
+### ❤️ Thank You
+
+- Esther Layat
+- Faraone Damien
+- Kuroiraven @KuroiRaven
+
 ## 22.0.0-alpha.17 (2026-11-17)
 
 ### 🐛 Fixes

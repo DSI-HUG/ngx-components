@@ -1,3 +1,21 @@
+## 22.0.0-alpha.4 (2026-11-18)
+
+### 🚀 Features
+
+- **i18n:** remove country from translations filenames and invert intl fetch logic #NGXCPTS-54 ([d92afc9](https://github.com/DSI-HUG/ngx-components/commit/d92afc9))
+- **guards:** chainActivateGuards & chainMatchGuards (NGXCPTS-55) ([ba4c7ea](https://github.com/DSI-HUG/ngx-components/commit/ba4c7ea))
+- **guards:** chainActivateGuards & chainMatchGuards (NGXCPTS-55) ([5705d0a](https://github.com/DSI-HUG/ngx-components/commit/5705d0a))
+
+### 🐛 Fixes
+
+- **g11n:** rethrow properly failing catch #DMDPAT-635 ([24ff4b0](https://github.com/DSI-HUG/ngx-components/commit/24ff4b0))
+- **i18n:** fix retry on unknown fallback lang #NGXCPT-54 ([8625e0f](https://github.com/DSI-HUG/ngx-components/commit/8625e0f))
+
+### ❤️ Thank You
+
+- Mathieu VALENTIN
+- pdth @pdth
+
 ## 22.0.0-alpha.3 (2026-04-02)
 
 ### 🐛 Fixes

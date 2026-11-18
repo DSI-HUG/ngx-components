@@ -1,3 +1,18 @@
+# 22.0.0 (2026-11-18)
+
+### 🐛 Fixes
+
+- **package:** update versions to 22.0.0-alpha.2 for multiple components ([4f38846](https://github.com/DSI-HUG/ngx-components/commit/4f38846))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker**: upgraded to `v22.0.0`
+- **@hug/ngx-core**: upgraded to `v22.0.0-alpha.4`
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.0-alpha.3 (2026-04-02)
 
 ### 🐛 Fixes
