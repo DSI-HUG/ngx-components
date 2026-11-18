@@ -1,3 +1,10 @@
+## 22.0.0-alpha.4 (2026-11-18)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-message-box**: upgraded to `v22.0.0-alpha.4`
+- **@hug/ngx-snackbar**: upgraded to `v22.0.0-alpha.4`
+
 ## 22.0.0-alpha.3 (2026-04-02)
 
 ### 🐛 Fixes

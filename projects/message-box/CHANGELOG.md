@@ -1,3 +1,13 @@
+## 22.0.0-alpha.4 (2026-11-18)
+
+### 🚀 Features
+
+- **NGXCPTS-51:** add subtitle to messageBox component and rework the design ([5f55826](https://github.com/DSI-HUG/ngx-components/commit/5f55826))
+
+### ❤️ Thank You
+
+- Nathanael Martin @nathanaelmartin
+
 ## 22.0.0-alpha.3 (2026-04-02)
 
 ### 🐛 Fixes

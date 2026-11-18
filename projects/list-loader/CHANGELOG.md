@@ -1,3 +1,7 @@
+## 22.0.0-alpha.4 (2026-11-18)
+
+This was a version bump only for @hug/ngx-list-loader to align it with other projects, there were no code changes.
+
 ## 22.0.0-alpha.3 (2026-04-02)
 
 ### 🐛 Fixes
