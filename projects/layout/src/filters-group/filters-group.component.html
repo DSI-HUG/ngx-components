@@ -224,7 +224,7 @@
                         {{ intl?.filters ?? 'Filters' }} ({{ activeFilters() }}
                         {{ intl?.actives ?? 'Actives' | lowercase }})
                     </span>
-                    @if (complexFilters().length > 0) {
+                    @if (complexFilters().length) {
                         @if (!hasExpandedFilters()) {
                             <button
                                 mat-icon-button
