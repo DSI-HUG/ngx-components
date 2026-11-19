@@ -11,6 +11,7 @@ import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatMenu, MatMenuItem } from '@angular/material/menu';
 import { MatTooltip } from '@angular/material/tooltip';
 import { NgxLayoutComponent } from '@hug/ngx-layout';
 import { NgxActionsGroupComponent } from '@hug/ngx-layout/actions-group';
@@ -73,6 +74,8 @@ const meta: Meta = {
                 ReactiveFormsModule,
                 MatDatepickerModule,
                 MatListModule,
+                MatMenu,
+                MatMenuItem,
                 NgxPanelBarComponent,
                 NgxColumnBarComponent,
                 NgxBarTitleDirective,

@@ -146,6 +146,14 @@ export class NgxFiltersGroupComponent {
     protected readonly expandedFilters = viewChildren(NgxExpandedDirective);
     protected readonly hasExpandedFilters = computed(() => this.expandedFilters().some(filter => filter.ngxExpandedFilter()));
 
+    protected readonly complexFilters = computed(() =>
+        this.allFilters().filter((filter): filter is NgxComplexFilter => filter.type === 'complex')
+    );
+
+    protected readonly allComplexFiltersDisabled = computed(() =>
+        this.complexFilters().every(filter => filter.disabled())
+    );
+
     protected readonly filterContext = {
         $implicit: (): void => {
             if (!this.moreFiltersOverlay()) {

@@ -5,6 +5,7 @@ export const actionsGroupTemplate = html`
         <ngx-action
             label="Filtres"
             icon="filter_list"
+            [menu]="filtersMenu"
             (execute)="() => alert('Filtres')"
         />
         <ngx-action
@@ -42,6 +43,12 @@ export const actionsGroupTemplate = html`
             icon="help_outline"
             (execute)="alert('help_outline !')"
         />
+        <mat-menu #filtersMenu="matMenu">
+            <button mat-menu-item>Dernières 24 heures</button>
+            <button mat-menu-item>Cette semaine</button>
+            <button mat-menu-item>Ce mois-ci</button>
+            <button mat-menu-item>Personnaliser la période</button>
+        </mat-menu>
     </ngx-actions-group>
 `;
 
@@ -106,7 +113,7 @@ export const filtersGroupFoldedTemplate = `
 
 export const filtersGroupTemplate = `
     <ngx-filters-group (resetRequested)="buttonResetClicked()" [folded]="filtersGroupFolded" (applied)="applyFilters()" (canceled)="cancelFilters()">
-        <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" icon="comment" />
+        <ng-template [ngxFilterToggle] label="Afficher commentaire" [(active)]="commentFilter" icon="comment" disabled="true"/>
         <ng-template
             [ngxFilter]
             [active]="!!selectedStartDate || !!selectedEndDate"
@@ -151,7 +158,8 @@ export const filtersGroupTemplate = `
             [active]="!!types.length"
             label="Type"
             [selectedFilterLabel]="typesSelectedLabel()"
-            [requireExplicitApply]="true">
+            [requireExplicitApply]="true"
+            disabled="true">
             <mat-selection-list [(ngModel)]="types">
                 <mat-list-option value="Médicament" togglePosition="after">Médicament</mat-list-option>
                 <mat-list-option value="Soin" togglePosition="after">Soin</mat-list-option>

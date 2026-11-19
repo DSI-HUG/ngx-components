@@ -50,7 +50,8 @@
                         <mat-chip-option
                             selectable="true"
                             [selected]="f.active"
-                            (selectionChange)="f.source.active.set($event.selected)">
+                            (selectionChange)="f.source.active.set($event.selected)"
+                            [disabled]="f.source.disabled()">
                             @if (f.source.icon()) {
                                 <mat-icon matChipAvatar>{{ f.source.icon() }}</mat-icon>
                             }
@@ -66,7 +67,8 @@
                             (click)="this.openOverlay(trigger, f.templateRef, false, f.source.requireExplicitApply())"
                             (keydown)="
                                 this.onKeydown($event, trigger, f.templateRef, false, f.source.requireExplicitApply())
-                            ">
+                            "
+                            [disabled]="f.source.disabled()">
                             @if (f.source.icon()) {
                                 <mat-icon matChipAvatar>{{ f.source.icon() }}</mat-icon>
                             }
@@ -121,7 +123,7 @@
             @for (f of allFilters(); track $index; let last = $last) {
                 @if (f.type === 'toggle') {
                     <section class="filter">
-                        <mat-slide-toggle labelPosition="before" [(ngModel)]="f.active">
+                        <mat-slide-toggle labelPosition="before" [(ngModel)]="f.active" [disabled]="f.disabled()">
                             {{ f.label() }}
                         </mat-slide-toggle>
                     </section>
@@ -129,11 +131,14 @@
                     <cdk-accordion-item
                         #accordionItem="cdkAccordionItem"
                         class="filter"
-                        [class.has-error]="!!f.error()">
+                        [class.has-error]="!!f.error()"
+                        [class.is-disabled]="f.disabled()"
+                        [disabled]="f.disabled()">
                         <button
                             #headline
                             class="headline"
                             type="button"
+                            [disabled]="f.disabled()"
                             (click)="accordionItem.toggle()"
                             [ngxExpandedFilter]="accordionItem.expanded"
                             [attr.aria-expanded]="accordionItem.expanded"
@@ -219,25 +224,28 @@
                         {{ intl?.filters ?? 'Filters' }} ({{ activeFilters() }}
                         {{ intl?.actives ?? 'Actives' | lowercase }})
                     </span>
-                    @if (hasExpandedFilters()) {
-                        <button
-                            mat-icon-button
-                            type="button"
-                            [disabled]="validating()"
-                            aria-label="Expand all filters"
-                            (click)="expandAllFilters()"
-                            matTooltip="{{ intl?.expandAll ?? 'Expand all' }}">
-                            <mat-icon>unfold_more</mat-icon>
-                        </button>
-                    } @else {
-                        <button
-                            mat-icon-button
-                            type="button"
-                            aria-label="Collapse all filters"
-                            (click)="collapseAllFilters()"
-                            matTooltip="{{ intl?.collapseAll ?? 'Collapse all' }}">
-                            <mat-icon>unfold_less</mat-icon>
-                        </button>
+                    @if (complexFilters().length > 0) {
+                        @if (!hasExpandedFilters()) {
+                            <button
+                                mat-icon-button
+                                type="button"
+                                [disabled]="allComplexFiltersDisabled() || validating()"
+                                aria-label="Expand all filters"
+                                (click)="expandAllFilters()"
+                                matTooltip="{{ intl?.expandAll ?? 'Expand all' }}">
+                                <mat-icon>unfold_more</mat-icon>
+                            </button>
+                        } @else {
+                            <button
+                                mat-icon-button
+                                type="button"
+                                [disabled]="allComplexFiltersDisabled() || validating()"
+                                aria-label="Collapse all filters"
+                                (click)="collapseAllFilters()"
+                                matTooltip="{{ intl?.collapseAll ?? 'Collapse all' }}">
+                                <mat-icon>unfold_less</mat-icon>
+                            </button>
+                        }
                     }
                     <button
                         mat-icon-button

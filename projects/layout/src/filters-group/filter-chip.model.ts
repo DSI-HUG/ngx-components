@@ -5,6 +5,7 @@ export type FilterType = 'toggle' | 'complex';
 interface NgxBaseFilter {
     readonly label: InputSignal<string>;
     readonly active: InputSignal<boolean>;
+    readonly disabled: InputSignal<boolean>;
     readonly type: FilterType;
     readonly icon: InputSignal<string | undefined>;
 }
@@ -12,6 +13,7 @@ interface NgxBaseFilter {
 export interface NgxToggleFilter extends NgxBaseFilter {
     readonly type: 'toggle';
     readonly active: ModelSignal<boolean>;
+    readonly disabled: InputSignal<boolean>;
 }
 
 export interface NgxComplexFilter extends NgxBaseFilter {
