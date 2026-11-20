@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 ngx-actions-group {
     display: flex;
     inline-size: 100%;
@@ -14,6 +16,32 @@ ngx-actions-group {
         background-color: var(--mat-sys-surface-container-low);
         max-inline-size: 100%;
         box-sizing: border-box;
+
+        .main-action {
+            @include mat.icon-button-overrides(
+                (
+                    icon-color: var(--mat-sys-on-tertiary-container),
+                    state-layer-color: var(--mat-sys-on-tertiary-container),
+                    ripple-color: color-mix(
+                            in srgb,
+                            var(--mat-sys-on-tertiary-container) var(--ngx-actions-group-main-action-opacity, 10%),
+                            transparent
+                        )
+                )
+            );
+
+            &[matIconButton]:enabled {
+                background-color: var(--mat-sys-tertiary-container);
+            }
+
+            &:disabled {
+                background-color: color-mix(
+                    in srgb,
+                    var(--mat-sys-on-surface) var(--ngx-actions-group-main-action-opacity, 10%),
+                    transparent
+                );
+            }
+        }
 
         > .more-actions-button {
             order: 999;
