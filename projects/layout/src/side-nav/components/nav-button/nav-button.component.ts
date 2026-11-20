@@ -14,6 +14,6 @@ import { MatTooltip } from '@angular/material/tooltip';
     }
     /* eslint-enable @typescript-eslint/naming-convention */
 })
-export class NavButtonComponent {
+export class NgxNavButtonComponent {
     public active = input<boolean>(false);
 }

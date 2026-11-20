@@ -12,6 +12,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     }
     /* eslint-enable @typescript-eslint/naming-convention */
 })
-export class NavSectionComponent {
+export class NgxNavSectionComponent {
     public label = input<string>();
 }
