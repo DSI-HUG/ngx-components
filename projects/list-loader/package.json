@@ -37,8 +37,8 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">=21 <23",
-        "@angular/core": ">=21 <23"
+        "@angular/common": ">=22 <23",
+        "@angular/core": ">=22 <23"
     },
     "publishConfig": {
         "access": "public",

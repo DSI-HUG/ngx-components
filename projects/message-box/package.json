@@ -38,10 +38,10 @@
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/cdk": ">=21 <23",
-        "@angular/common": ">=21 <23",
-        "@angular/core": ">=21 <23",
-        "@angular/material": ">=21 <23"
+        "@angular/cdk": ">=22 <23",
+        "@angular/common": ">=22 <23",
+        "@angular/core": ">=22 <23",
+        "@angular/material": ">=22 <23"
     },
     "publishConfig": {
         "access": "public",
