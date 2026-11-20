@@ -1,11 +1,10 @@
-import { DestroyRef, Directive, EventEmitter, HostListener, inject, Input, OnInit, Output } from '@angular/core';
+import { DestroyRef, Directive, EventEmitter, HostListener, inject, Input, type OnInit, Output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ReplaySubject } from 'rxjs';
-import { throttleTime } from 'rxjs/operators';
+import { ReplaySubject, throttleTime } from 'rxjs';
 
 @Directive({
     selector: '[ngx-single-click]',
-    standalone: true
+    standalone: true,
 })
 export class NgxSingleClickDirective implements OnInit {
     @Input()
@@ -39,7 +38,7 @@ export class NgxSingleClickDirective implements OnInit {
     public ngOnInit(): void {
         this._clicks$.pipe(
             throttleTime(this.throttleTime),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe((event: MouseEvent) => this.singleClick.emit(event));
+            takeUntilDestroyed(this.destroyRef),
+        ).subscribe((event: MouseEvent) => { this.singleClick.emit(event); });
     }
 }

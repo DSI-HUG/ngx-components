@@ -4,12 +4,10 @@ import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { NgxLayoutComponent, provideNgxLayout } from '@hug/ngx-layout/m2';
-import { NgxStatusService } from '@hug/ngx-status/m2';
+import { provideNgxMessageBoxDialog } from '@hug/ngx-message-box-dialog/m2';
+import { NgxSearchContainerComponent, NgxSearchInputDirective, provideNgxSearchContainer } from '@hug/ngx-search-container/m2';
+import { NgxStatusService, provideNgxStatus } from '@hug/ngx-status/m2';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
-import { provideNgxMessageBoxDialog } from 'projects/message-box-dialog/m2';
-import { provideNgxSearchContainer } from 'projects/search-container/m2';
-import { NgxSearchContainerComponent, NgxSearchInputDirective } from 'projects/search-container/m2/search-container.component';
-import { provideNgxStatus } from 'projects/status/m2/providers';
 
 import { StorybookLayoutWrapperComponent } from './layout-wrapper.component';
 

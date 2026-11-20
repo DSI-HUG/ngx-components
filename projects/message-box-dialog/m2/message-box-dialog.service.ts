@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { from, Observable, switchMap, take } from 'rxjs';
+import { MatDialog, type MatDialogConfig } from '@angular/material/dialog';
+import { from, type Observable, switchMap, take } from 'rxjs';
 
-import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData, NgxMessageBoxDialogResponse } from './message-box-dialog.model';
+import { NgxMessageBoxDialogButtons, type NgxMessageBoxDialogData, type NgxMessageBoxDialogResponse } from './message-box-dialog.model';
 import { NgxMessageBoxDialogIntl } from './providers';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class NgxMessageBoxDialogService {
     protected readonly intl = inject(NgxMessageBoxDialogIntl, { optional: true });
@@ -20,31 +20,32 @@ export class NgxMessageBoxDialogService {
                 if (typeof dialogData === 'string') {
                     messageBoxDialogData = {
                         text: dialogData,
-                        buttons: NgxMessageBoxDialogButtons.OK
+                        buttons: NgxMessageBoxDialogButtons.OK,
                     } as NgxMessageBoxDialogData;
                 } else {
                     messageBoxDialogData = dialogData;
                 }
                 messageBoxDialogData.title = messageBoxDialogData.title || this.intl?.confirmation || 'Confirmation';
 
-                const dialogConfig = {
+                const dialogConfig: MatDialogConfig<NgxMessageBoxDialogData | string> = {
                     panelClass: 'no-padding-dialog',
-                    data: dialogData
-                } as MatDialogConfig<NgxMessageBoxDialogData | string>;
+                    data: dialogData,
+                };
 
-                return this.dialog.open<unknown, NgxMessageBoxDialogData | string, NgxMessageBoxDialogResponse>(dialogComponent.NgxMessageBoxDialogComponent, { ...dialogConfig, ...(additionalDialogConfig ?? {}) }).afterClosed();
-            })
+                return this.dialog.open<unknown, NgxMessageBoxDialogData | string, NgxMessageBoxDialogResponse>(dialogComponent.NgxMessageBoxDialogComponent, Object.assign(dialogConfig, additionalDialogConfig)).afterClosed();
+            }),
         );
     }
 
     public openConfirmation$(message: string, dialogConfig?: MatDialogConfig<NgxMessageBoxDialogData>): Observable<NgxMessageBoxDialogResponse | undefined> {
         const dialogData = {
             text: message,
-            buttons: NgxMessageBoxDialogButtons.OK + NgxMessageBoxDialogButtons.CANCEL
+            // eslint-disable-next-line no-bitwise -- Combine the requested button flags.
+            buttons: NgxMessageBoxDialogButtons.OK | NgxMessageBoxDialogButtons.CANCEL,
         } as NgxMessageBoxDialogData;
 
         return this.open$(dialogData, dialogConfig).pipe(
-            take(1)
+            take(1),
         );
     }
 }

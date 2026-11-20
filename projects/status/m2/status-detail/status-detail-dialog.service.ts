@@ -1,16 +1,16 @@
 import { inject, Injectable } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { from, Observable, switchMap, take } from 'rxjs';
+import { MatDialog, type MatDialogConfig } from '@angular/material/dialog';
+import { from, type Observable, switchMap, take } from 'rxjs';
 
-import { NgxStatus } from '../status.model';
+import type { NgxStatus } from '../status.model';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class NgxStatusDetailDialogService {
     private dialog = inject(MatDialog);
 
-    public open$(dialogData: NgxStatus): Observable<void | undefined> {
+    public open$(dialogData: NgxStatus): Observable<void> {
         return from(import('./status-detail.component')).pipe(
             take(1),
             switchMap(dialogComponent => {
@@ -19,11 +19,11 @@ export class NgxStatusDetailDialogService {
                     hasBackdrop: true,
                     width: '700px',
                     panelClass: 'ngx-status-panel',
-                    data: dialogData
+                    data: dialogData,
                 } as MatDialogConfig<NgxStatus>;
 
-                return this.dialog.open<unknown, NgxStatus, void>(dialogComponent.NgxStatusDetailComponent, dialogConfig).afterClosed();
-            })
+                return this.dialog.open<unknown, NgxStatus, undefined>(dialogComponent.NgxStatusDetailComponent, dialogConfig).afterClosed();
+            }),
         );
     }
 }

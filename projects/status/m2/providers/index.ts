@@ -15,5 +15,5 @@ export const provideNgxStatus = (options?: NgxOptionsIntl<NgxStatusIntl>): Envir
     provideNgxIntl(
         NgxStatusIntl,
         options?.translationsPath ?? 'translations/ngx-status',
-        options?.customIntl ?? NgxStatusIntl
+        options?.customIntl ?? NgxStatusIntl,
     );

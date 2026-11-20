@@ -22,31 +22,30 @@
     "sideEffects": false,
     "exports": {
         "./m2": {
-            "sass": "./m2/_search-container-theme.scss"
+            "sass": "./m2/_search-container-theme.scss",
+            "default": "./m2/index.ts"
         },
         "./m2/translations/*": {
             "default": "./**/*.json"
-        }
+        },
+        ".": "./src/index.ts"
     },
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test search-container",
-        "test:ci": "ng test search-container --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test search-container --watch=false",
         "build:ng": "ng build search-container -c=production",
         "build": "nx build:ng @hug/ngx-search-container --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-search-container --verbose",
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">=21 <22",
-        "@angular/core": ">=21 <22",
-        "@angular/forms": ">=21 <22",
-        "@angular/material": ">=21 <22",
+        "@angular/common": ">=22 <23",
+        "@angular/core": ">=22 <23",
+        "@angular/forms": ">=22 <23",
+        "@angular/material": ">=22 <23",
         "@hug/ngx-core": "^22.0.0-alpha.5",
         "rxjs": "^7.8.2"
-    },
-    "dependencies": {
-        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public",

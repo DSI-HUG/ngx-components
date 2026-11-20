@@ -26,7 +26,7 @@ import { NgxPageComponent } from '@hug/ngx-layout/page';
 import { NgxPanelComponent } from '@hug/ngx-layout/panel';
 import { NgxPanelBarComponent } from '@hug/ngx-layout/panel-bar';
 import { NgxSearchBarContainerComponent, NgxSearchInputDirective } from '@hug/ngx-layout/search-bar-container/';
-import { type Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { html } from '../helper';
 import { argTypesLayout } from './arg-types-layout';
@@ -221,7 +221,7 @@ const props = (args: Story['args']): LayoutStoryProps => ({
                     return '';
                 }
                 if (!s) {
-                    return `jusqu'au ${e!.toLocaleDateString('fr-CH')}`;
+                    return `jusqu'au ${e?.toLocaleDateString('fr-CH') || 'date inconnue'}`;
                 }
                 if (!e) {
                     return `dès le: ${s.toLocaleDateString('fr-CH')}`;

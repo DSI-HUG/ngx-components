@@ -7,7 +7,7 @@ export enum NgxMessageBoxDialogButtons {
     RETRY = 0x8,
     YES = 0x10,
     NO = 0x20,
-    CONTINUE = 0x40
+    CONTINUE = 0x40,
 }
 
 export interface NgxMessageBoxDialogData {

@@ -6,7 +6,6 @@ import { NgxAbstractIntl } from '@hug/ngx-core';
  */
 @Injectable()
 export class NgxMessageBoxDialogIntl extends NgxAbstractIntl<NgxMessageBoxDialogIntl> {
-
     public cancel = '';
     public ignore = '';
     public retry = '';

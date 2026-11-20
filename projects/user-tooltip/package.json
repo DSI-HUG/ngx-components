@@ -2,6 +2,10 @@
     "name": "@hug/ngx-user-tooltip",
     "version": "22.0.1-alpha.0",
     "description": "HUG Angular - user-tooltip component",
+    "exports": {
+        ".": "./src/index.ts",
+        "./m2": "./m2/index.ts"
+    },
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
     "author": "HUG - Hôpitaux Universitaires Genève",
@@ -23,21 +27,18 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test user-tooltip",
-        "test:ci": "ng test user-tooltip --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test user-tooltip --watch=false",
         "build:ng": "ng build user-tooltip -c=production",
         "build": "nx build:ng @hug/ngx-user-tooltip --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-user-tooltip --verbose",
         "release:dry-run": "npm run release -- --dry-run"
     },
     "peerDependencies": {
-        "@angular/common": ">=21 <22",
-        "@angular/core": ">=21 <22",
-        "@angular/material": ">=21 <22",
+        "@angular/common": ">=22 <23",
+        "@angular/core": ">=22 <23",
+        "@angular/material": ">=22 <23",
         "@hug/ngx-tooltip": "^22.0.1-alpha.0",
         "@hug/ngx-user-card": "^22.0.1-alpha.0"
-    },
-    "dependencies": {
-        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public",

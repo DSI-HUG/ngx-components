@@ -11,7 +11,7 @@ import { NgxSearchBarContainerComponent } from '../search-bar-container';
     styleUrl: './column-bar.component.scss',
     imports: [NgTemplateOutlet],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxColumnBarComponent {
     protected hasRightContent = computed(() => this.filtersGroup() ?? this.searchBarContainer());

@@ -11,7 +11,6 @@ import { frCH } from 'date-fns/locale';
 import { NgxDateFnsPipe } from './ngx-date-fns.pipe';
 
 describe('NgxDateFnsPipe', () => {
-
     let pipe: NgxDateFnsPipe;
 
     beforeEach(() => {
@@ -25,9 +24,9 @@ describe('NgxDateFnsPipe', () => {
                 { provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] },
                 {
                     provide: NgxDateFnsPipe,
-                    useClass: NgxDateFnsPipe
-                }
-            ]
+                    useClass: NgxDateFnsPipe,
+                },
+            ],
         });
 
         pipe = TestBed.inject(NgxDateFnsPipe);
@@ -45,5 +44,4 @@ describe('NgxDateFnsPipe', () => {
         const dateEpoch = date.getTime();
         expect(pipe.transform(dateEpoch, 'PPPPpp')).toEqual('mercredi 31 décembre 2025 à 17:46:39');
     });
-
 });

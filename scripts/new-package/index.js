@@ -5,7 +5,7 @@ const { noop } = require('@angular-devkit/schematics');
 
 exports.default = options =>
     schematic('new-package', [
-        spawn('ng', ['g', 'library', options.libName]),
+        spawn('ng', ['g', 'library', options.libName, '--test-runner=vitest']),
 
         workspace()
             // deploy files
@@ -31,7 +31,7 @@ exports.default = options =>
             .rule(({ tree }) => {
                 const paths = tree.readJson('tsconfig.json').compilerOptions.paths;
                 paths[`@hug/ngx-${options.libName.toLowerCase()}`] = [
-                    `projects/${options.libName.toLowerCase()}/src`
+                    `./projects/${options.libName.toLowerCase()}/src`
                 ];
                 const sortedPaths = Object.fromEntries(Object.entries(paths).sort());
                 return modifyJsonFile('tsconfig.json', ['compilerOptions', 'paths'], sortedPaths);
@@ -41,7 +41,7 @@ exports.default = options =>
             .rule(({ tree }) => {
                 const paths = tree.readJson('tsconfig.base.json').compilerOptions.paths;
                 paths[`@hug/ngx-${options.libName.toLowerCase()}`] = [
-                    `dist/ngx-${options.libName.toLowerCase()}`
+                    `./dist/ngx-${options.libName.toLowerCase()}`
                 ];
                 const sortedPaths = Object.fromEntries(Object.entries(paths).sort());
                 return modifyJsonFile('tsconfig.base.json', ['compilerOptions', 'paths'], sortedPaths);

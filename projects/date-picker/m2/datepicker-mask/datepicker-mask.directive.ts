@@ -1,10 +1,10 @@
 import { Directive, ElementRef, forwardRef, inject, Input, LOCALE_ID, Renderer2 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NG_VALIDATORS, NgControl } from '@angular/forms';
-import { FORM_FIELD, FormField } from '@angular/forms/signals';
-import { DateAdapter, MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
+import { FORM_FIELD, type FormField } from '@angular/forms/signals';
+import { DateAdapter, MAT_DATE_FORMATS, type MatDateFormats } from '@angular/material/core';
 import { MatDatepickerInput, MatEndDate, MatStartDate } from '@angular/material/datepicker';
-import { buildNgxMatDateFormatsFactory, KeyCodes, NgxDateFormat } from '@hug/ngx-core';
+import { buildNgxMatDateFormatsFactory, type KeyCodes, type NgxDateFormat } from '@hug/ngx-core';
 import { addDays, addHours, addMinutes, addMonths, addSeconds, addYears, isValid, parse, set } from 'date-fns';
 import { isNil } from 'lodash-es';
 import {
@@ -20,7 +20,7 @@ import {
     Subject,
     switchMap,
     tap,
-    timeInterval
+    timeInterval,
 } from 'rxjs';
 
 import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.service';
@@ -32,13 +32,12 @@ import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.s
         {
             provide: NG_VALIDATORS,
             useExisting: forwardRef(() => NgxDatepickerMaskValidatorService),
-            multi: true
-        }
+            multi: true,
+        },
     ],
-    standalone: true
+    standalone: true,
 })
 export class NgxDatepickerMaskDirective {
-
     private readonly applyMask$ = new Subject<void>();
 
     @Input()
@@ -97,7 +96,7 @@ export class NgxDatepickerMaskDirective {
         this.elementRef.nativeElement.setAttribute('autocomplete', 'off');
 
         const focus$ = fromEvent<FocusEvent>(this.elementRef.nativeElement, 'focus').pipe(
-            shareReplay(1)
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
         const selectAll$ = focus$.pipe(
@@ -123,7 +122,7 @@ export class NgxDatepickerMaskDirective {
                 }
 
                 this.elementRef.nativeElement.setSelectionRange(0, 0);
-            })
+            }),
         );
 
         const paste$ = fromEvent<ClipboardEvent>(this.elementRef.nativeElement, 'paste').pipe(
@@ -136,7 +135,7 @@ export class NgxDatepickerMaskDirective {
                 this.parseAndSetValue(pastedData);
                 event.preventDefault();
                 return false;
-            })
+            }),
         );
 
         const dblClick$ = fromEvent<Event>(this.elementRef.nativeElement, 'mousedown').pipe(
@@ -187,15 +186,15 @@ export class NgxDatepickerMaskDirective {
 
                 event.preventDefault();
                 return false;
-            })
+            }),
         );
 
         const keyDown$ = fromEvent<KeyboardEvent>(this.elementRef.nativeElement, 'keydown').pipe(
-            shareReplay(1)
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
         const blur$ = fromEvent<FocusEvent>(this.elementRef.nativeElement, 'blur').pipe(
-            shareReplay(1)
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
         const validateOnBlur$ = blur$.pipe(
@@ -210,16 +209,16 @@ export class NgxDatepickerMaskDirective {
                         this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.maskValue);
                     }
                 }
-            })
+            }),
         );
 
         const applyMaskOnFocus$ = focus$.pipe(
-            filter(() => !this.elementRef.nativeElement.value)
+            filter(() => !this.elementRef.nativeElement.value),
         );
 
         const maskApplied$ = keyDown$.pipe(
             filter(e => (e.code || e.key) === 'Delete'),
-            tap(() => this.setValue(undefined)),
+            tap(() => { this.setValue(undefined); }),
             mergeWith(this.applyMask$, applyMaskOnFocus$),
             filter(() => {
                 console.debug('Format expression:', this._formatExpression);
@@ -238,7 +237,7 @@ export class NgxDatepickerMaskDirective {
             }),
             tap(() => {
                 this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.maskValue);
-            })
+            }),
         );
 
         const keyApplied$ = keyDown$.pipe(
@@ -277,17 +276,10 @@ export class NgxDatepickerMaskDirective {
 
                 if ((keyCode === 'ArrowLeft' || keyCode === 'ArrowRight') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
                     if (keyCode === 'ArrowLeft') {
-                        let newStart = getPosition(start, -1);
-                        if (newStart === undefined) {
-                            newStart = 1;
-                        }
-                        newStart -= 1;
+                        const newStart = (getPosition(start, -1) ?? 1) - 1;
                         this.elementRef.nativeElement.setSelectionRange(newStart, newStart);
                     } else {
-                        let newStart = getPosition(end + 1, 1);
-                        if (newStart === undefined) {
-                            newStart = 9999;
-                        }
+                        const newStart = getPosition(end + 1, 1) ?? 9999;
                         this.elementRef.nativeElement.setSelectionRange(newStart, newStart);
                     }
                 } else if ((keyCode === 'ArrowUp' || keyCode === 'ArrowDown') && !e.altKey && !e.ctrlKey && !e.shiftKey && !e.metaKey) {
@@ -336,7 +328,6 @@ export class NgxDatepickerMaskDirective {
                             this.elementRef.nativeElement.setSelectionRange(start, start);
                         }
                     }
-
                 } else if (keyCode === 'Backspace') {
                     let value = this.elementRef.nativeElement.value;
                     const char = value.substring(start - 1, end);
@@ -344,10 +335,7 @@ export class NgxDatepickerMaskDirective {
                     let newEnd = end;
 
                     const selectPreviousChar = (): void => {
-                        let previousStart = getPosition(newStart, -1);
-                        if (previousStart === undefined) {
-                            previousStart = 0;
-                        }
+                        const previousStart = getPosition(newStart, -1) ?? 0;
                         this.elementRef.nativeElement.setSelectionRange(previousStart, previousStart);
                     };
 
@@ -371,15 +359,13 @@ export class NgxDatepickerMaskDirective {
                                     this.elementRef.nativeElement.setSelectionRange(newStart, newStart);
                                 }
                                 return false;
-                            })
+                            }),
                         );
                     } else {
                         selectPreviousChar();
                     }
-
                 } else if ((keyCode === 'KeyA' && e.ctrlKey) || (keyCode === 'KeyA' && e.metaKey)) { // Ctrl+ A + Cmd + A (Mac)
                     this.elementRef.nativeElement.setSelectionRange(0, -1);
-
                 } else if (/^[0-9]$/.exec(e.key)) {
                     let value = this.elementRef.nativeElement.value;
                     if (end > start) {
@@ -395,10 +381,7 @@ export class NgxDatepickerMaskDirective {
                     value = replaceAt(value, newStart, e.key);
 
                     const selectNextChar = (): void => {
-                        let nextStart = getPosition(newStart + 1, 1);
-                        if (nextStart === undefined) {
-                            nextStart = -1;
-                        }
+                        const nextStart = getPosition(newStart + 1, 1) ?? -1;
                         this.elementRef.nativeElement.setSelectionRange(nextStart, nextStart);
                     };
 
@@ -413,33 +396,29 @@ export class NgxDatepickerMaskDirective {
                                 this.renderer.setProperty(this.elementRef.nativeElement, 'value', value);
                                 selectNextChar();
                                 return false;
-                            })
+                            }),
                         );
                     }
-
                 } else if (keyCode === 'KeyD') {
                     const today = set(new Date(), { seconds: 0, milliseconds: 0 });
                     this.setValue(today);
                     this.elementRef.nativeElement.setSelectionRange(0, -1);
-
                 } else if (keyCode === 'Enter') {
                     this.parseAndSetValue(this.elementRef.nativeElement.value);
-
-                } else if (this.forwardToInputKeyCodes.includes(e.key as KeyCodes)) {
+                } else if (this.forwardToInputKeyCodes.includes(e.key)) {
                     return of(undefined);
-
                 } else {
                     console.log('DatepickerMaskDirective ignored code', keyCode);
                 }
 
                 e.preventDefault();
                 return of(false);
-            })
+            }),
         );
 
         keyApplied$.pipe(
             mergeWith(maskApplied$, paste$, selectAll$, dblClick$, validateOnBlur$),
-            takeUntilDestroyed()
+            takeUntilDestroyed(),
         ).subscribe();
     }
 
@@ -470,7 +449,7 @@ export class NgxDatepickerMaskDirective {
                 const fieldState = this.signalFormField.state();
                 const currentValue = fieldState.controlValue();
                 if (!this.dateAdapter.sameDate(currentValue, newValue ?? null)) {
-                    fieldState.controlValue.set(newValue as unknown);
+                    fieldState.controlValue.set(newValue);
                     fieldState.markAsDirty();
                     emitDateChange(newValue ?? null);
                 }
@@ -516,7 +495,7 @@ export class NgxDatepickerMaskDirective {
      *     <li>Ppp: short date + full time (04/29/1453, 12:00:00 AM)</li>
      * </ul>
      * @param value the raw format expression.
-     * @return a supported format expression.
+     * @returns a supported format expression.
      * @see https://date-fns.org/v2.30.0/docs/format
      */
     private parseFormatExpression(value: string): string {

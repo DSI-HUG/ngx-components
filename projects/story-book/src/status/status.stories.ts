@@ -1,10 +1,8 @@
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { NgxStatusComponent, NgxStatusService, provideNgxStatus } from '@hug/ngx-status/m2';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
-import { provideNgxStatus } from 'projects/status/m2/providers';
 
 import { NgxSnackbarComponent } from '../../../snackbar/m2/snackbar.component';
-import { NgxStatusComponent } from '../../../status/m2/status.component';
-import { NgxStatusService } from '../../../status/m2/status.service';
 
 const meta: Meta<NgxStatusComponent> = {
     title: 'Components/Status',
