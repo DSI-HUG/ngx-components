@@ -239,7 +239,7 @@ ngx-filters-group {
                     gap: var(--ngx-filters-group-overlay-content-filter-gap, 0.5rem);
 
                     &.is-disabled {
-                        opacity: color-mix(in srgb, inherit 38%, transparent);
+                        opacity: var(--ngx-filters-group-overlay-content-filter-disabled-opacity, 0.38);
                     }
 
                     > [aria-expanded='true'] {

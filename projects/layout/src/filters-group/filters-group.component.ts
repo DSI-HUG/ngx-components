@@ -147,7 +147,7 @@ export class NgxFiltersGroupComponent {
     protected readonly hasExpandedFilters = computed(() => this.expandedFilters().some(filter => filter.ngxExpandedFilter()));
 
     protected readonly complexFilters = computed(() =>
-        this.allFilters().filter((filter): filter is NgxComplexFilter => filter.type === 'complex')
+        this.allFilters().filter(filter => filter.type === 'complex')
     );
 
     protected readonly allComplexFiltersDisabled = computed(() =>
