@@ -32,7 +32,7 @@ npm install
 
 ## Linting/verifying source code
 
-Check that the code is properly formatted and adheres to coding style. ESLint uses the shared HUG preset through the TypeScript flat config in `eslint.config.ts`.
+ESLint uses the shared HUG lint and stylistic presets in `eslint.config.ts`. TypeScript formatting is enforced by ESLint, not Prettier; run `npx eslint --fix path/to/file.ts` to fix formatting in a single file.
 
 ```sh
 npm run lint

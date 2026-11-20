@@ -37,6 +37,14 @@ export default defineConfig(
         'ios/'
     ]),
     hug.configs.recommended,
+    hug.configs.stylistic.createRecommended({
+        files: Files.TYPESCRIPT,
+        rules: {
+            '@stylistic/comma-dangle': ['error', 'never'],
+            '@stylistic/indent-binary-ops': 'off',
+            '@stylistic/padded-blocks': 'off'
+        }
+    }),
     {
         rules: {
             'no-console': 'off'
