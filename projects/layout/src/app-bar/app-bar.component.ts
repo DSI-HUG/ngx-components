@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -11,10 +11,9 @@ type AppBarMode = 'standard' | 'condensed';
     selector: 'ngx-app-bar',
     templateUrl: './app-bar.component.html',
     styleUrl: './app-bar.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatIcon, MatIconButton, MatTooltip],
     host: {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
+
         '[class.condensed]': 'mode()==="condensed"'
     }
 })

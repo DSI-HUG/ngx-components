@@ -1,18 +1,17 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
-import { NgxMessageBoxComponent, NgxMessageBoxType } from '@hug/ngx-message-box/m2';
+import { NgxMessageBoxComponent, type NgxMessageBoxType } from '@hug/ngx-message-box/m2';
 
 import { NgxStatusIntl } from '../providers';
-import { NgxStatus } from '../status.model';
+import type { NgxStatus } from '../status.model';
 
 @Component({
     selector: 'ngx-status-detail',
     styleUrls: ['./status-detail.component.scss'],
     templateUrl: './status-detail.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [

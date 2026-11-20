@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { NgxMediaService } from '@hug/ngx-core';
-import { mergeWith, Observable, ReplaySubject, shareReplay, switchMap, take } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, mergeWith, type Observable, ReplaySubject, shareReplay, switchMap, take } from 'rxjs';
 
 export type SidenavMode = 'over' | 'side';
 

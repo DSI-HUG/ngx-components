@@ -1,4 +1,4 @@
-import { MatDateFormats } from '@angular/material/core';
+import type { MatDateFormats } from '@angular/material/core';
 
 import { buildNgxMatDateFormatsFactory } from './date-format.provider';
 

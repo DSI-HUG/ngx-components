@@ -1,4 +1,4 @@
-import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, contentChild, effect, inject, input, signal, untracked, ViewEncapsulation } from '@angular/core';
+import { afterRenderEffect, Component, computed, contentChild, effect, inject, input, signal, untracked, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -13,7 +13,6 @@ import { NgxSearchInputDirective } from './directives/search-input.directive';
     templateUrl: './search-bar-container.component.html',
     styleUrl: './search-bar-container.component.scss',
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatIcon, MatIconButton, MatTooltip]
     /*
     host: {

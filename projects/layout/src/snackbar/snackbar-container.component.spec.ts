@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { type ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ErrorSnackbar, SnackbarService } from './snackbar.service';
 import { NgxSnackbarContainerComponent } from './snackbar-container.component';
@@ -8,11 +8,19 @@ describe('NgxSnackbarContainerComponent', () => {
     let service: SnackbarService;
     let host: HTMLElement;
 
+    const contentOpacity = (snackbar: HTMLElement): string => {
+        const content = snackbar.querySelector('.content');
+        if (!content) {
+            throw new Error('Expected the snackbar to contain a content element');
+        }
+        return getComputedStyle(content).opacity;
+    };
+
     const renderSizes = async (): Promise<void> => {
         await [0, 1, 2, 3].reduce(async previous => {
             await previous;
             fixture.detectChanges();
-            await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+            await new Promise<void>(resolve => requestAnimationFrame(() => { resolve(); }));
         }, Promise.resolve());
         fixture.detectChanges();
         await new Promise(resolve => setTimeout(resolve, 300));
@@ -46,8 +54,8 @@ describe('NgxSnackbarContainerComponent', () => {
         expect(olderStyle.transitionDuration.split(',').every(duration => duration.trim() === '0.25s')).toBe(true);
         expect(new DOMMatrix(olderStyle.transform).a).toBeCloseTo(0.95);
         expect(new DOMMatrix(newerStyle.transform).a).toBe(1);
-        expect(getComputedStyle(snackbars[0].querySelector('.content')!).opacity).toBe('0');
-        expect(getComputedStyle(snackbars[1].querySelector('.content')!).opacity).toBe('1');
+        expect(contentOpacity(snackbars[0])).toBe('0');
+        expect(contentOpacity(snackbars[1])).toBe('1');
     });
 
     it('expands variable-height snackbars with the original gap and extra hover slot', async () => {
@@ -58,7 +66,7 @@ describe('NgxSnackbarContainerComponent', () => {
         const snackbars = host.querySelectorAll<HTMLElement>('ngx-snackbar');
         snackbars[2].querySelectorAll<HTMLButtonElement>('button')[0].focus();
         await renderSizes();
-        expect(getComputedStyle(snackbars[0].querySelector('.content')!).opacity).toBe('1');
+        expect(contentOpacity(snackbars[0])).toBe('1');
 
         const rectangles = Array.from(snackbars, snackbar => snackbar.getBoundingClientRect());
         const gap = 12;

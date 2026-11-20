@@ -11,5 +11,5 @@ export class NgxActionDirective {
     public readonly label = input.required<string>();
     public readonly disabled = input<boolean>(false);
 
-    public readonly execute = output<void>();
+    public readonly execute = output();
 }

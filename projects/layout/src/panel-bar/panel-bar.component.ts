@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, contentChild, inject, input, output, ViewEncapsulation } from '@angular/core';
+import { Component, computed, contentChild, inject, input, output, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -15,7 +15,6 @@ import { NgxSearchBarContainerComponent } from '../search-bar-container';
     templateUrl: './panel-bar.component.html',
     styleUrl: './panel-bar.component.scss',
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatIcon, MatIconButton, MatTooltip, NgTemplateOutlet]
 })
 export class NgxPanelBarComponent {

@@ -1,5 +1,5 @@
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, contentChild, DestroyRef, Directive, ElementRef, inject, input, OnInit, output, signal, TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
+import { Component, contentChild, DestroyRef, Directive, ElementRef, inject, input, type OnInit, output, signal, type TemplateRef, viewChild, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgControl } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
@@ -32,7 +32,6 @@ export class NgxSearchInputDirective {
     templateUrl: './search-container.component.html',
     styleUrls: ['./search-container.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AsyncPipe,
         NgTemplateOutlet,
@@ -44,7 +43,7 @@ export class NgxSearchContainerComponent implements OnInit {
 
     public readonly right = input<TemplateRef<unknown>>();
 
-    public readonly cleared = output<void>();
+    public readonly cleared = output();
 
     protected readonly mobileSearch = viewChild<TemplateRef<unknown>>('mobileSearch');
     protected readonly searchInput = contentChild(NgxSearchInputDirective);
@@ -71,7 +70,7 @@ export class NgxSearchContainerComponent implements OnInit {
             distinctUntilChanged(),
             shareReplay({ bufferSize: 1, refCount: false }),
             takeUntilDestroyed(this.destroyRef)
-        ).subscribe(v => this.searchInputValue.set(v));
+        ).subscribe(v => { this.searchInputValue.set(v); });
     }
 
     public reset(): void {

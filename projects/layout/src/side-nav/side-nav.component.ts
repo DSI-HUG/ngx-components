@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 
 @Component({
@@ -6,12 +6,11 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     imports: [],
     templateUrl: './side-nav.component.html',
     styleUrl: './side-nav.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    /* eslint-disable @typescript-eslint/naming-convention */
+
     host: {
         '[class.divider]': 'withDivider()'
     }
-    /* eslint-enable @typescript-eslint/naming-convention */
+
 })
 export class SideNavComponent {
     public withDivider = input<boolean>(false);

@@ -15,7 +15,7 @@ declare global {
 @NgModule()
 export class NgxCustomArrayModule {
     public constructor() {
-        (Array.prototype as void[]).filterMap = function <T, U>(
+        (Array.prototype as unknown[]).filterMap = function <T, U>(
             this: T[],
             predicate: (value: T, index: number, array: T[]) => U | undefined
         ): Exclude<U, undefined>[] {

@@ -1,9 +1,9 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { type BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { Component, inject, Input, type OnChanges, type SimpleChanges, ViewEncapsulation } from '@angular/core';
 
 import { NgxUserCardIntl } from './providers';
-import { NgxUserCard } from './user-card.model';
+import type { NgxUserCard } from './user-card.model';
 
 type BadgeColor = 'green' | 'blue' | 'red' | 'grey';
 
@@ -25,7 +25,6 @@ interface DisplayableUserCard {
     selector: 'ngx-user-card',
     styleUrls: ['./user-card.component.scss'],
     templateUrl: './user-card.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
         NgClass
@@ -106,7 +105,7 @@ export class NgxUserCardComponent implements OnChanges {
                 address += `${user.zipCode} `;
             }
             if (user.city) {
-                address += `${user.city}`;
+                address += user.city;
             }
             return address;
         }
@@ -144,7 +143,7 @@ export class NgxUserCardComponent implements OnChanges {
     }
 
     private getFunction(user: NgxUserCard): string {
-        return user.groupFunctionLabel ? `${user.groupFunctionLabel}` : `${user.functionSefName ? user.functionSefName : ''} ${user.functionSefCode ? `(${user.functionSefCode})` : ''} ${user.role ? `/ ${user.role}` : ''}`;
+        return user.groupFunctionLabel ? user.groupFunctionLabel : `${user.functionSefName ? user.functionSefName : ''} ${user.functionSefCode ? `(${user.functionSefCode})` : ''} ${user.role ? `/ ${user.role}` : ''}`;
     }
 
     private getShortTitle(title?: string): string {

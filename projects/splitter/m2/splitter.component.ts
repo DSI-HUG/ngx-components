@@ -1,10 +1,10 @@
-import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, DestroyRef, ElementRef, EventEmitter, HostBinding, inject, Input, Output, QueryList, ViewEncapsulation } from '@angular/core';
+import { type BooleanInput, coerceBooleanProperty, coerceNumberProperty, type NumberInput } from '@angular/cdk/coercion';
+import { ChangeDetectorRef, Component, ContentChildren, DestroyRef, ElementRef, EventEmitter, HostBinding, inject, Input, Output, type QueryList, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter, fromEvent, map, mergeWith, of, shareReplay, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 
 import { NgxSplitAreaDirective } from './split-area.directive';
-import { NgxSplitterDirection } from './splitter-direction-type';
+import type { NgxSplitterDirection } from './splitter-direction-type';
 
 interface DraggingEvent {
     event: MouseEvent | TouchEvent;
@@ -18,7 +18,6 @@ interface DraggingEvent {
  */
 @Component({
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'ngx-splitter',
     styleUrls: ['./splitter.component.scss'],
     templateUrl: './splitter.component.html',
@@ -55,9 +54,9 @@ export class NgxSplitterComponent {
     }
 
     /**
-    * Size of the gutter in pixels
-    * By default `10px`
-    */
+     * Size of the gutter in pixels
+     * By default `10px`
+     */
     @Input()
     public set gutterSize(gutterSize: NumberInput) {
         this._gutterSize = coerceNumberProperty(gutterSize);

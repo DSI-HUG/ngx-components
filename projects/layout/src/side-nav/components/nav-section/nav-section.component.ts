@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
     selector: 'ngx-nav-section',
     imports: [],
     templateUrl: './nav-section.component.html',
     styleUrl: './nav-section.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     /* eslint-disable @typescript-eslint/naming-convention */
     host: {
         '[aria-label]': 'label()'

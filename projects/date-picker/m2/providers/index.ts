@@ -1,5 +1,5 @@
-import { EnvironmentProviders } from '@angular/core';
-import { NgxOptionsIntl, provideNgxIntl } from '@hug/ngx-core';
+import type { EnvironmentProviders } from '@angular/core';
+import { type NgxOptionsIntl, provideNgxIntl } from '@hug/ngx-core';
 
 import { NgxDatePickerIntl } from './ngx-date-picker-intl';
 

@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { from, Observable, switchMap, take } from 'rxjs';
+import { MatDialog, type MatDialogConfig } from '@angular/material/dialog';
+import { from, type Observable, switchMap, take } from 'rxjs';
 
-import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData, NgxMessageBoxDialogResponse } from './message-box-dialog.model';
+import { NgxMessageBoxDialogButtons, type NgxMessageBoxDialogData, type NgxMessageBoxDialogResponse } from './message-box-dialog.model';
 import { NgxMessageBoxDialogIntl } from './providers';
 
 @Injectable({
@@ -27,12 +27,12 @@ export class NgxMessageBoxDialogService {
                 }
                 messageBoxDialogData.title = messageBoxDialogData.title || this.intl?.confirmation || 'Confirmation';
 
-                const dialogConfig = {
+                const dialogConfig: MatDialogConfig<NgxMessageBoxDialogData | string> = {
                     panelClass: 'no-padding-dialog',
                     data: dialogData
-                } as MatDialogConfig<NgxMessageBoxDialogData | string>;
+                };
 
-                return this.dialog.open<unknown, NgxMessageBoxDialogData | string, NgxMessageBoxDialogResponse>(dialogComponent.NgxMessageBoxDialogComponent, { ...dialogConfig, ...(additionalDialogConfig ?? {}) }).afterClosed();
+                return this.dialog.open<unknown, NgxMessageBoxDialogData | string, NgxMessageBoxDialogResponse>(dialogComponent.NgxMessageBoxDialogComponent, Object.assign(dialogConfig, additionalDialogConfig)).afterClosed();
             })
         );
     }
@@ -40,7 +40,8 @@ export class NgxMessageBoxDialogService {
     public openConfirmation$(message: string, dialogConfig?: MatDialogConfig<NgxMessageBoxDialogData>): Observable<NgxMessageBoxDialogResponse | undefined> {
         const dialogData = {
             text: message,
-            buttons: NgxMessageBoxDialogButtons.OK + NgxMessageBoxDialogButtons.CANCEL
+            // eslint-disable-next-line no-bitwise -- Combine the requested button flags.
+            buttons: NgxMessageBoxDialogButtons.OK | NgxMessageBoxDialogButtons.CANCEL
         } as NgxMessageBoxDialogData;
 
         return this.open$(dialogData, dialogConfig).pipe(

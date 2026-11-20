@@ -1,4 +1,4 @@
-import { BaseHarnessFilters, ComponentHarness, HarnessPredicate } from '@angular/cdk/testing';
+import { type BaseHarnessFilters, ComponentHarness, HarnessPredicate } from '@angular/cdk/testing';
 
 /** Harness for interacting with a ngx date picker in tests. */
 export class NgxDatePickerButtonsHarness extends ComponentHarness {

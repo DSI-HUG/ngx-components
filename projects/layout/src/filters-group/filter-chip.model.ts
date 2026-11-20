@@ -26,5 +26,5 @@ export interface NgxComplexFilter extends NgxBaseFilter {
 
 export type NgxFilter = NgxToggleFilter | NgxComplexFilter;
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
+
 export const FILTER_TOKEN = new InjectionToken<NgxFilter>('FILTER_TOKEN');

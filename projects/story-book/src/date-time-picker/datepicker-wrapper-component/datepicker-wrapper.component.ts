@@ -1,5 +1,5 @@
 import { NgComponentOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, createEnvironmentInjector, effect, EnvironmentInjector, EnvironmentProviders, inject, Injector, input, LOCALE_ID, Provider, Signal } from '@angular/core';
+import { Component, computed, createEnvironmentInjector, effect, EnvironmentInjector, type EnvironmentProviders, inject, type Injector, input, LOCALE_ID, type Provider, type Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatOption } from '@angular/material/core';
@@ -8,8 +8,8 @@ import { MatSelect } from '@angular/material/select';
 import { DateFnsAdapter, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
 import { frCH } from 'date-fns/locale';
 
-import { buildNgxMatDateFormatsFactory, NgxDateFormat } from '../../../../core/src/providers/date-format.provider';
-import { DatePickerComponent, DatePickerInputs } from '../date-picker/date-picker.component';
+import { buildNgxMatDateFormatsFactory, type NgxDateFormat } from '../../../../core/src/providers/date-format.provider';
+import { DatePickerComponent, type DatePickerInputs } from '../date-picker/date-picker.component';
 
 type DateFormatOption = NgxDateFormat | 'MAT_DATE_FNS_FORMATS';
 
@@ -17,7 +17,6 @@ type DateFormatOption = NgxDateFormat | 'MAT_DATE_FNS_FORMATS';
     selector: 'datepicker-wrapper',
     templateUrl: './datepicker-wrapper.component.html',
     styleUrls: ['./datepicker-wrapper.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MatFormField,
         MatLabel,
@@ -49,7 +48,7 @@ export class DatepickerWrapperComponent {
     private readonly parentInjector = inject(EnvironmentInjector);
 
     public constructor() {
-        effect(() => this.dateFormatControl.patchValue(this.dateFormat()));
+        effect(() => { this.dateFormatControl.patchValue(this.dateFormat()); });
 
         const dateFormatChanged = toSignal(
             this.dateFormatControl.valueChanges,

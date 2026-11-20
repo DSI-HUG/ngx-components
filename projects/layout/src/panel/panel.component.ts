@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';
+import { Component, input, ViewEncapsulation } from '@angular/core';
 
 type Appearance = 'transparent' | 'default';
 type ContentPadding = 'none' | 'default';
@@ -8,9 +8,8 @@ type ContentPadding = 'none' | 'default';
     templateUrl: './panel.component.html',
     styleUrl: './panel.component.scss',
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
+
         '[attr.appearance]': 'this.appearance()'
     }
 })

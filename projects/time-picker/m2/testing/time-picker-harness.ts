@@ -1,8 +1,8 @@
-import { HarnessPredicate, TestKey } from '@angular/cdk/testing';
+import { HarnessPredicate, type TestKey } from '@angular/cdk/testing';
 import { MatFormFieldControlHarness } from '@angular/material/form-field/testing/control';
 import { MatInputHarness } from '@angular/material/input/testing';
 
-import { NgxTimePickerHarnessFilters } from './time-picker-harness-filters';
+import type { NgxTimePickerHarnessFilters } from './time-picker-harness-filters';
 
 /** Harness for interacting with a ngx time picker in tests. */
 export class NgxTimePickerHarness extends MatFormFieldControlHarness {

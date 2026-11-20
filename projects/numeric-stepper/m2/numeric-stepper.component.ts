@@ -1,16 +1,15 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, ElementRef, EventEmitter, HostBinding, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { type BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ChangeDetectorRef, Component, DestroyRef, ElementRef, EventEmitter, HostBinding, inject, Input, type OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatFormFieldControl } from '@angular/material/form-field';
+import type { MatFormFieldControl } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
-import { filterMap, KeyCodes } from '@hug/ngx-core';
+import { filterMap, type KeyCodes } from '@hug/ngx-core';
 import { combineLatestWith, debounceTime, delay, filter, fromEvent, map, mergeWith, ReplaySubject, shareReplay, startWith, Subject, switchMap, tap, timer, withLatestFrom } from 'rxjs';
 
 export type NgxNumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-inlay';
 
 // TODO sdil refactor rxjs flows
 @Component({
-    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'ngx-numeric-stepper',
     styleUrls: ['./numeric-stepper.component.scss'],
     templateUrl: './numeric-stepper.component.html',
@@ -211,8 +210,8 @@ export class NgxNumericStepperComponent implements OnInit {
 
         const valueChange$ = linkedElements$.pipe(
             filterMap(([inputElement]) => inputElement),
-            switchMap(inputElement => fromEvent<void>(inputElement, 'input').pipe(
-                mergeWith(step$, fromEvent<void>(inputElement, 'paste'), fromEvent<void>(inputElement, 'keypress'))
+            switchMap(inputElement => fromEvent(inputElement, 'input').pipe(
+                mergeWith(step$, fromEvent(inputElement, 'paste'), fromEvent(inputElement, 'keypress'))
             )),
             debounceTime(50),
             startWith(undefined)
@@ -230,7 +229,7 @@ export class NgxNumericStepperComponent implements OnInit {
                     mergeWith(this.show$.pipe(
                         delay(200)
                     )),
-                    tap(() => calcPositions(inputElement, formFieldElement, containerElement)),
+                    tap(() => { calcPositions(inputElement, formFieldElement, containerElement); }),
                     switchMap(() => fromEvent<MouseEvent>(element, 'mouseleave')),
                     delay(400),
                     tap(() => {

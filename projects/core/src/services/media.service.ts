@@ -1,5 +1,5 @@
-import { inject, Injectable, InjectionToken, OnDestroy } from '@angular/core';
-import { BehaviorSubject, distinctUntilChanged, map, Observable, shareReplay } from 'rxjs';
+import { inject, Injectable, InjectionToken, type OnDestroy } from '@angular/core';
+import { BehaviorSubject, distinctUntilChanged, map, type Observable, shareReplay } from 'rxjs';
 
 export interface NgxMediaQueryDefinition {
     alias: string;
@@ -101,16 +101,14 @@ export class NgxMediaService implements OnDestroy {
     private mediaDefinitions? = inject<NgxMediaQueryDefinition[]>(mediaQueryDefinitions, { optional: true });
 
     public constructor() {
-        if (!this.mediaDefinitions) {
-            this.mediaDefinitions = simplifiedMediaQueryDefinitions;
-        }
+        this.mediaDefinitions ??= simplifiedMediaQueryDefinitions;
 
         this.mediaDefinitions.forEach(mediaDefinition => {
             const { alias, mediaQuery } = mediaDefinition;
             this.mql[alias] = window.matchMedia(mediaQuery);
 
             const listener = this.onMqlEvent.bind(this, alias);
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+
             this.mql[alias].addEventListener('change', listener);
             this.mqlListeners.set(this.mql[alias], listener);
 
@@ -138,6 +136,7 @@ export class NgxMediaService implements OnDestroy {
             if (listener) {
                 this.mql[alias].removeEventListener('change', listener);
             }
+            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete -- Keep the public lookup object in sync.
             delete this.mql[alias];
         });
     }

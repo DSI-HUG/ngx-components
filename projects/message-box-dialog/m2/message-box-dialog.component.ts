@@ -1,17 +1,16 @@
-import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData } from './message-box-dialog.model';
+import { NgxMessageBoxDialogButtons, type NgxMessageBoxDialogData } from './message-box-dialog.model';
 import { NgxMessageBoxDialogIntl } from './providers';
 
 @Component({
     selector: 'ngx-message-box-dialog',
     templateUrl: './message-box-dialog.component.html',
     styleUrls: ['./message-box-dialog.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
         MatButtonModule,

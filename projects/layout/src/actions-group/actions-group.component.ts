@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, contentChildren, ElementRef, inject, ViewEncapsulation } from '@angular/core';
+import { Component, computed, contentChildren, ElementRef, inject, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
@@ -15,7 +15,6 @@ const buttonDimensions = 40;
     selector: 'ngx-actions-group',
     templateUrl: './actions-group.component.html',
     styleUrl: './actions-group.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
         MatIcon,

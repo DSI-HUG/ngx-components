@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, ValidationErrors, Validator } from '@angular/forms';
+import type { FormControl, ValidationErrors, Validator } from '@angular/forms';
 import { isValid } from 'date-fns';
 
 @Injectable()

@@ -1,10 +1,10 @@
 import { DOCUMENT } from '@angular/common';
-import { ApplicationRef, DestroyRef, EmbeddedViewRef, EventEmitter, inject, Injectable, Injector, ViewContainerRef } from '@angular/core';
+import { ApplicationRef, DestroyRef, type EmbeddedViewRef, EventEmitter, inject, Injectable, Injector, ViewContainerRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { from, mergeWith, switchMap, take, tap, timer } from 'rxjs';
 
 import { NgxStatusIntl } from './providers';
-import { NgxStatus, NgxStatusAction } from './status.model';
+import type { NgxStatus, NgxStatusAction } from './status.model';
 
 const durationLong = 30_000;
 const durationShort = 8_000;
@@ -13,7 +13,6 @@ const durationShort = 8_000;
  * Service handling the messages displayed
  * This service send <code>Status</code> objects to <code>statusObserver</code>
  * @todo: what to do with fieldNames ?
- *
  * @dynamic
  */
 @Injectable({
@@ -28,6 +27,10 @@ export class NgxStatusService {
 
     /**
      * Display an information message to the screen.
+     * @param text
+     * @param title
+     * @param duration
+     * @param actions
      */
     public info(text: string, title: string | { title: string; subtitle: string } = '', duration?: number, actions?: readonly NgxStatusAction[]): void {
         const { title: mainTitle, subtitle = '' } = typeof title === 'string' ? { title } : title;
@@ -37,6 +40,10 @@ export class NgxStatusService {
 
     /**
      * Display an information message to the screen.
+     * @param text
+     * @param title
+     * @param duration
+     * @param actions
      */
     public success(text: string, title: string | { title: string; subtitle: string } = '', duration?: number, actions?: readonly NgxStatusAction[]): void {
         const { title: mainTitle, subtitle = '' } = typeof title === 'string' ? { title } : title;
@@ -46,6 +53,11 @@ export class NgxStatusService {
 
     /**
      * Display a warning message to the screen.
+     * @param text
+     * @param title
+     * @param technicalText
+     * @param duration
+     * @param actions
      */
     public warning(text: string, title: string | { title: string; subtitle: string } = this.intl?.warn ?? 'Caution', technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
         const { title: mainTitle, subtitle = '' } = typeof title === 'string' ? { title } : title;
@@ -55,6 +67,11 @@ export class NgxStatusService {
 
     /**
      * Display an error message to the screen and send it to HugLog.
+     * @param text
+     * @param title
+     * @param technicalText
+     * @param duration
+     * @param actions
      */
     public error(text: string, title: string | { title: string; subtitle: string } = this.intl?.error ?? 'Error', technicalText?: string, duration?: number, actions?: readonly NgxStatusAction[]): void {
         const { title: mainTitle, subtitle = '' } = typeof title === 'string' ? { title } : title;

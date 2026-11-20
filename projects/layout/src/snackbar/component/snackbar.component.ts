@@ -1,17 +1,16 @@
-import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, output } from '@angular/core';
+import { Component, computed, DestroyRef, effect, ElementRef, inject, input, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { timer } from 'rxjs';
 
 import { resizeSignal } from '../../common/resize-signal';
-import { Snackbar } from '../snackbar.service';
+import type { Snackbar } from '../snackbar.service';
 
 @Component({
     selector: 'ngx-snackbar',
     templateUrl: './snackbar.component.html',
     styleUrl: './snackbar.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MatIconModule,
         MatButtonModule
@@ -28,7 +27,7 @@ import { Snackbar } from '../snackbar.service';
         '[class.around-icon]': '!!duration() && animationType() === \'around-icon\'',
         '[class.horizontal]': '!!duration() && animationType() === \'horizontal\''
     },
-    /* eslint-disable @typescript-eslint/naming-convention */
+
     standalone: true
 })
 export class NgxSnackbarComponent {
@@ -72,9 +71,9 @@ export class NgxSnackbarComponent {
 
             const subscription = timer(snackbar.duration).pipe(
                 takeUntilDestroyed(this.destroyRef)
-            ).subscribe(() => this.expired.emit(snackbar.uuid));
+            ).subscribe(() => { this.expired.emit(snackbar.uuid); });
 
-            onCleanup(() => subscription.unsubscribe());
+            onCleanup(() => { subscription.unsubscribe(); });
         });
 
     }

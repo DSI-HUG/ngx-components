@@ -1,10 +1,10 @@
 /**
  * Created by rtr on 22.12.2016.
  */
-import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
-import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
+import { coerceNumberProperty, type NumberInput } from '@angular/cdk/coercion';
+import { Directive, ElementRef, HostBinding, inject, Input } from '@angular/core';
 
-import { NgxSplitterDirection } from './splitter-direction-type';
+import type { NgxSplitterDirection } from './splitter-direction-type';
 
 /**
  * Directive representing a panel in a Splitter Component
@@ -65,5 +65,5 @@ export class NgxSplitAreaDirective {
 
     private _minSizePixel = 0;
 
-    public constructor(private elementRef: ElementRef<HTMLElement>) { }
+    private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 }

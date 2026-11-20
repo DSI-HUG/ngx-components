@@ -1,11 +1,11 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { type BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ChangeDetectorRef, Component, DestroyRef, EventEmitter, inject, Input, type OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AbstractControl } from '@angular/forms';
+import type { AbstractControl } from '@angular/forms';
 import { MatIconButton } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
-import { MatDatepicker, MatDateRangeInput, MatDateRangePicker } from '@angular/material/datepicker';
-import { MatFormFieldControl } from '@angular/material/form-field';
+import { type MatDatepicker, MatDateRangeInput, type MatDateRangePicker } from '@angular/material/datepicker';
+import type { MatFormFieldControl } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { set } from 'date-fns';
@@ -17,7 +17,6 @@ import { NgxDatePickerIntl } from '../providers';
     selector: 'ngx-datepicker-buttons',
     templateUrl: './datepicker-buttons.component.html',
     styleUrls: ['./datepicker-buttons.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
         MatIcon,

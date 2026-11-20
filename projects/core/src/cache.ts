@@ -1,4 +1,4 @@
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, type Observable, throwError } from 'rxjs';
 
 export interface NgxCacheEntry<T> {
     timeStamp: number;
@@ -45,7 +45,7 @@ export class NgxCache<T, K = string> extends Map<K, NgxCacheEntry<T>> {
 }
 
 export class NgxObservableCache<T, K = string> extends NgxCache<Observable<T>, K> {
-    // eslint-disable-next-line rxjs/finnish
+    // eslint-disable-next-line rxjs-x/finnish
     public override getCache(key: K, defaultValueFn?: (timeStamp: number) => Observable<T>): Observable<T> {
         const data$ = super.getCache(key, defaultValueFn);
         if (!data$) {

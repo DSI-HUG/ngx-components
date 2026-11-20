@@ -1,13 +1,12 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChild, input, output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, Component, computed, contentChild, input, output, type TemplateRef, ViewEncapsulation } from '@angular/core';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 
-import { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
+import type { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
 
 @Component({
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     selector: 'ngx-message-box',
     styleUrls: ['./message-box.component.scss'],
@@ -28,7 +27,8 @@ import { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model';
 export class NgxMessageBoxComponent {
 
     /** Event Emmited when the close action is called */
-    public readonly close = output<void>();
+    // eslint-disable-next-line @angular-eslint/no-output-native -- Preserve the existing public output.
+    public readonly close = output();
 
     public readonly type = input<NgxMessageBoxType>();
     public readonly title = input<string>();
@@ -43,8 +43,9 @@ export class NgxMessageBoxComponent {
 
     public readonly computedIcon = computed(() => {
         const icon = this.icon();
-        if (icon === undefined && this.type()) {
-            return this.getIconFromType(this.type()!);
+        const type = this.type();
+        if (icon === undefined && type) {
+            return this.getIconFromType(type);
         }
         return icon;
     });
@@ -70,7 +71,6 @@ export class NgxMessageBoxComponent {
         switch (type) {
             case 'info':
             case 'primary':
-                type = 'primary';
                 return 'info';
             case 'success':
                 return 'done';

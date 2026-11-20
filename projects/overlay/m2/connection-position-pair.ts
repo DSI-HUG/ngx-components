@@ -1,4 +1,4 @@
-import { ConnectionPositionPair, OriginConnectionPosition, OverlayConnectionPosition } from '@angular/cdk/overlay';
+import { ConnectionPositionPair, type OriginConnectionPosition, type OverlayConnectionPosition } from '@angular/cdk/overlay';
 
 export class NgxOverlayConnectionPositionPair extends ConnectionPositionPair {
     public static parse(value: string): ConnectionPositionPair[] {

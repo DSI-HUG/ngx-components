@@ -1,6 +1,6 @@
 import { DestroyRef, Directive, ElementRef, inject, Input } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { fromEvent, Observable, of, switchMap, take, takeUntil, timer } from 'rxjs';
+import { fromEvent, type Observable, of, switchMap, take, takeUntil, timer } from 'rxjs';
 
 @Directive({
     selector: '[ngx-tooltip]',
@@ -41,7 +41,7 @@ export class NgxTooltipDirective {
         fromEvent<MouseEvent>(triggerElement, 'mouseenter').pipe(
             switchMap(() => timer(this.delay).pipe(
                 take(1),
-                switchMap(() => this.openTooltip$ ? this.openTooltip$(triggerElement) : of(undefined as void)),
+                switchMap(() => this.openTooltip$ ? this.openTooltip$(triggerElement) : of(undefined)),
                 takeUntil(leave$)
             )),
             takeUntilDestroyed(this.destroyRef)

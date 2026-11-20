@@ -1,4 +1,4 @@
-import { MatDateFormats } from '@angular/material/core';
+import type { MatDateFormats } from '@angular/material/core';
 
 /**
  * Build a mask for given locale + date format options.

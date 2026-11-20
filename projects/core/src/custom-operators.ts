@@ -1,11 +1,14 @@
-import { filter, from, map, mergeAll, mergeWith, MonoTypeOperatorFunction, Observable, ObservableInput, ObservableInputTuple, OperatorFunction, TruthyTypesOf } from 'rxjs';
+import { filter, from, map, mergeAll, mergeWith, type MonoTypeOperatorFunction, type Observable, type ObservableInput, type ObservableInputTuple, type OperatorFunction, type TruthyTypesOf } from 'rxjs';
 
 export const filterDefined = <T>(): OperatorFunction<T, TruthyTypesOf<T>> => (source$: Observable<T>): Observable<TruthyTypesOf<T>> => source$.pipe(
     filter(v => v !== undefined),
     map(v => v as TruthyTypesOf<T>)
 );
 
-/** Applies a **`job`** mapping function and then filters out all the undefined values */
+/**
+ * Applies a **`job`** mapping function and then filters out all the undefined values
+ * @param job
+ */
 export const filterMap = <T, U>(job: (param: T) => U): OperatorFunction<T, TruthyTypesOf<U>> => (source$: Observable<T>): Observable<TruthyTypesOf<U>> => source$.pipe(
     map(value => job(value)),
     filterDefined()
