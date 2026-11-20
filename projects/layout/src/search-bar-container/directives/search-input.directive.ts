@@ -7,8 +7,8 @@ import { type FormControl, NgControl } from '@angular/forms';
     /* eslint-disable @typescript-eslint/naming-convention */
     host: {
         '(blur)': 'blurred.set(true);',
-        '(focus)': 'blurred.set(false);'
-    }
+        '(focus)': 'blurred.set(false);',
+    },
 })
 export class NgxSearchInputDirective {
     public readonly blurred = signal<boolean>(false);

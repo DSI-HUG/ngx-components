@@ -2,10 +2,9 @@ import { Pipe, type PipeTransform } from '@angular/core';
 import { format } from 'date-fns';
 
 @Pipe({
-    name: 'ngxDateFns'
+    name: 'ngxDateFns',
 })
 export class NgxDateFnsPipe implements PipeTransform {
-
     /**
      * Pipe to format a Date using date-fns.
      * @param value the Date to format.

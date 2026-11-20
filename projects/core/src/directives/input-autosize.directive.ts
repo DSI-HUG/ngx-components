@@ -6,7 +6,7 @@ import { debounceTime, fromEvent, mergeWith, of, startWith } from 'rxjs';
 @Directive({
     selector: '[ngx-input-autosize][matInput], [ngx-input-autosize] [matInput]',
     exportAs: 'ngx-input-autosize',
-    standalone: true
+    standalone: true,
 })
 export class NgxInputAutosizeDirective implements OnInit {
     private readonly elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
@@ -21,7 +21,7 @@ export class NgxInputAutosizeDirective implements OnInit {
             mergeWith(fromEvent<Event>(inputElement, 'paste'), valueChanges$),
             startWith(inputElement.value),
             debounceTime(5),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe(() => {
             const nbChar = inputElement.value?.length;
 

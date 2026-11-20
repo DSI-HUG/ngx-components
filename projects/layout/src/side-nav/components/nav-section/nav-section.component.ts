@@ -7,8 +7,8 @@ import { Component, input } from '@angular/core';
     styleUrl: './nav-section.component.scss',
     /* eslint-disable @typescript-eslint/naming-convention */
     host: {
-        '[aria-label]': 'label()'
-    }
+        '[aria-label]': 'label()',
+    },
     /* eslint-enable @typescript-eslint/naming-convention */
 })
 export class NgxNavSectionComponent {

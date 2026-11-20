@@ -8,8 +8,8 @@ import { type NgxUserCard, NgxUserCardComponent } from '@hug/ngx-user-card/m2';
     templateUrl: './user-tooltip.component.html',
     standalone: true,
     imports: [
-        NgxUserCardComponent
-    ]
+        NgxUserCardComponent,
+    ],
 })
 export class NgxUserTooltipComponent implements NgxTooltipComponentInterface {
     public elementRef = inject<ElementRef<HTMLElement>>(ElementRef);

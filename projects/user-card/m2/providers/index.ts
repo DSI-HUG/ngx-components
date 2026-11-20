@@ -15,5 +15,5 @@ export const provideNgxUserCard = (options?: NgxOptionsIntl<NgxUserCardIntl>): E
     provideNgxIntl(
         NgxUserCardIntl,
         options?.translationsPath ?? 'translations/ngx-user-card',
-        options?.customIntl ?? NgxUserCardIntl
+        options?.customIntl ?? NgxUserCardIntl,
     );

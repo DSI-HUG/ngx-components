@@ -10,14 +10,14 @@ export const provideNgxIntl = <T extends NgxAbstractIntl<T>>(
     translationsPath: string,
     customIntl: Type<T>,
     retryCount = 3,
-    retryDelayInMs = 10
+    retryDelayInMs = 10,
 ): EnvironmentProviders =>
     makeEnvironmentProviders([
         { provide: intl, useClass: customIntl },
         provideAppInitializer(() => {
             const localeId = inject(LOCALE_ID);
             return inject(intl).init(localeId, translationsPath, retryCount, retryDelayInMs);
-        })
+        }),
     ]);
 
 /**
@@ -25,13 +25,12 @@ export const provideNgxIntl = <T extends NgxAbstractIntl<T>>(
  */
 
 export abstract class NgxAbstractIntl<T extends NgxAbstractIntl<T>> {
-
     private static readonly DEFAULT_LOCALE = 'en-US';
 
     private static readonly FALLBACKS = new Map<string, string>([
         ['en', NgxAbstractIntl.DEFAULT_LOCALE],
         ['fr', 'fr-CH'],
-        ['de', 'de-CH']
+        ['de', 'de-CH'],
     ]);
 
     private static readonly ERR_TEXT = '**ERR-MISSING-TRANSLATION**';

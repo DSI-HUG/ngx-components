@@ -21,8 +21,8 @@ import { NgxDatePickerIntl } from '../providers';
     imports: [
         MatIcon,
         MatIconButton,
-        MatTooltip
-    ]
+        MatTooltip,
+    ],
 })
 export class NgxDatepickerButtonsComponent implements OnInit {
     @Output() public readonly dateChange = new EventEmitter<Date>();
@@ -71,14 +71,14 @@ export class NgxDatepickerButtonsComponent implements OnInit {
                     if (this.forInput && ((this.forInput instanceof MatDateRangeInput && !this.forInput.getStartValue()) || !this.forInput.value)) {
                         this.forPicker.select(new Date());
                     }
-                })
+                }),
             )),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe();
 
         if (this.forInput.ngControl?.valueChanges) {
             this.forInput.ngControl.valueChanges.pipe(
-                takeUntilDestroyed(this.destroyRef)
+                takeUntilDestroyed(this.destroyRef),
             ).subscribe(() => {
                 this.changeDetectorRef.markForCheck();
             });

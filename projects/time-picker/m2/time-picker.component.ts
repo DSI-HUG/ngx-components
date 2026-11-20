@@ -22,8 +22,8 @@ export type NgxTimePickerDisplayMode = 'fullTime' | 'fullTimeWithHoursDisabled' 
         FormsModule,
         MatFormFieldModule,
         MatInputModule,
-        NgxNumericStepperComponent
-    ]
+        NgxNumericStepperComponent,
+    ],
 })
 export class NgxTimePickerComponent implements ControlValueAccessor {
     @ViewChild('hours') public hours?: ElementRef<HTMLInputElement>;
@@ -126,7 +126,7 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                 }
 
                 this.changeDetectorRef.markForCheck();
-            })
+            }),
         );
 
         const minutesChange$ = this.minutesChange$.pipe(
@@ -140,7 +140,7 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                     minutes = event;
                 }
 
-                return minutes && !isNaN(minutes) && minutes || 0;
+                return (minutes && !isNaN(minutes) && minutes) || 0;
             }),
             tap(minutes => {
                 const newValue = this.value ? new Date(this.value.getTime()) : new Date();
@@ -157,7 +157,7 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                 }
 
                 this.changeDetectorRef.markForCheck();
-            })
+            }),
         );
 
         const setFocusToNextInput$ = this.hoursKeyDown$.pipe(
@@ -177,18 +177,18 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                         return timer(0).pipe(
                             tap(() => {
                                 this.minutes?.nativeElement.select();
-                            })
+                            }),
                         );
                     }
                 }
 
                 return EMPTY;
-            })
+            }),
         );
 
         hoursChange$.pipe(
             mergeWith(minutesChange$, setFocusToNextInput$),
-            takeUntilDestroyed()
+            takeUntilDestroyed(),
         ).subscribe();
     }
 

@@ -9,8 +9,8 @@ import { MatTooltip } from '@angular/material/tooltip';
     encapsulation: ViewEncapsulation.None,
 
     host: {
-        '[class.active]': 'active()'
-    }
+        '[class.active]': 'active()',
+    },
 
 })
 export class NgxNavButtonComponent {

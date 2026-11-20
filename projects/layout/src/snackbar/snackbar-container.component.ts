@@ -13,7 +13,7 @@ import { SnackbarService } from './snackbar.service';
     imports: [
         MatIconModule,
         MatButtonModule,
-        NgxSnackbarComponent
+        NgxSnackbarComponent,
     ],
     /* eslint-disable @typescript-eslint/naming-convention */
     host: {
@@ -22,8 +22,8 @@ import { SnackbarService } from './snackbar.service';
         '[style.padding-block-end.px]': 'offset()',
         '[style.--ngx-snackbar-count]': 'snackbars().length',
         '[style.--ngx-snackbar-total-height.px]': 'layout().totalHeight',
-        '[style.--ngx-snackbar-buffer-height.px]': 'layout().bufferHeight'
-    }
+        '[style.--ngx-snackbar-buffer-height.px]': 'layout().bufferHeight',
+    },
 
 })
 export class NgxSnackbarContainerComponent {
@@ -44,7 +44,7 @@ export class NgxSnackbarContainerComponent {
         return {
             offsets,
             totalHeight,
-            bufferHeight: Math.max(0, ...heights)
+            bufferHeight: Math.max(0, ...heights),
         };
     });
 

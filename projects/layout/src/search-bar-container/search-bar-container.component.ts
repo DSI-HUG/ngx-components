@@ -13,7 +13,7 @@ import { NgxSearchInputDirective } from './directives/search-input.directive';
     templateUrl: './search-bar-container.component.html',
     styleUrl: './search-bar-container.component.scss',
     encapsulation: ViewEncapsulation.None,
-    imports: [MatIcon, MatIconButton, MatTooltip]
+    imports: [MatIcon, MatIconButton, MatTooltip],
     /*
     host: {
         '[class.small]': 'size()==="small"'
@@ -44,7 +44,6 @@ export class NgxSearchBarContainerComponent {
     */
 
     public constructor() {
-
         /*
         afterRender(() => {
             const containerElement = this.hostElement.nativeElement;

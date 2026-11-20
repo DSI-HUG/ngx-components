@@ -21,13 +21,12 @@ import type { NgxMessageBoxAction, NgxMessageBoxType } from './message-box.model
         MatIcon,
         MatIconButton,
         MatButton,
-        MatCardSubtitle
-    ]
+        MatCardSubtitle,
+    ],
 })
 export class NgxMessageBoxComponent {
-
     /** Event Emmited when the close action is called */
-    // eslint-disable-next-line @angular-eslint/no-output-native -- Preserve the existing public output.
+
     public readonly close = output();
 
     public readonly type = input<NgxMessageBoxType>();

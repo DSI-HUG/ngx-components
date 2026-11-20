@@ -2,7 +2,7 @@ import { filter, from, map, mergeAll, mergeWith, type MonoTypeOperatorFunction, 
 
 export const filterDefined = <T>(): OperatorFunction<T, TruthyTypesOf<T>> => (source$: Observable<T>): Observable<TruthyTypesOf<T>> => source$.pipe(
     filter(v => v !== undefined),
-    map(v => v as TruthyTypesOf<T>)
+    map(v => v as TruthyTypesOf<T>),
 );
 
 /**
@@ -11,7 +11,7 @@ export const filterDefined = <T>(): OperatorFunction<T, TruthyTypesOf<T>> => (so
  */
 export const filterMap = <T, U>(job: (param: T) => U): OperatorFunction<T, TruthyTypesOf<U>> => (source$: Observable<T>): Observable<TruthyTypesOf<U>> => source$.pipe(
     map(value => job(value)),
-    filterDefined()
+    filterDefined(),
 );
 
 // Will subscribe to all passed observables with the source observable, but publish only the source observable.
@@ -22,6 +22,6 @@ export const subscribeWith = <T, A extends readonly unknown[]>(...others: [...Ob
         mergeAll(),
         filter(() => false), // stop all the passed observables
         map(() => undefined as never),
-        mergeWith(source$) // and just publish the source
+        mergeWith(source$), // and just publish the source
     );
 };

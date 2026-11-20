@@ -18,11 +18,10 @@ import type { NgxStatus } from '../status.model';
         DatePipe,
         MatIcon,
         MatIconButton,
-        NgxMessageBoxComponent
-    ]
+        NgxMessageBoxComponent,
+    ],
 })
 export class NgxStatusDetailComponent {
-
     protected fullTextError: string;
     protected messageBoxType: NgxMessageBoxType;
     protected readonly intl = inject(NgxStatusIntl, { optional: true });

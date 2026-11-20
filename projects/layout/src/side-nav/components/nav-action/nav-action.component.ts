@@ -11,8 +11,8 @@ import { MatIcon } from '@angular/material/icon';
 
     host: {
         '[class.active]': 'active()',
-        '[class.outline]': 'outline()'
-    }
+        '[class.outline]': 'outline()',
+    },
 
 })
 export class NgxNavActionComponent {

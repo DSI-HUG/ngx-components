@@ -15,5 +15,5 @@ export const provideNgxMessageBoxDialog = (options?: NgxOptionsIntl<NgxMessageBo
     provideNgxIntl(
         NgxMessageBoxDialogIntl,
         options?.translationsPath ?? 'translations/ngx-message-box-dialog',
-        options?.customIntl ?? NgxMessageBoxDialogIntl
+        options?.customIntl ?? NgxMessageBoxDialogIntl,
     );

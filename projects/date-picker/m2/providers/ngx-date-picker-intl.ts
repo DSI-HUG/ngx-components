@@ -6,7 +6,6 @@ import { NgxAbstractIntl } from '@hug/ngx-core';
  */
 @Injectable()
 export class NgxDatePickerIntl extends NgxAbstractIntl<NgxDatePickerIntl> {
-
     public erase = '';
     public today = '';
     public openCalendar = '';

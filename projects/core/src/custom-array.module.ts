@@ -17,10 +17,10 @@ export class NgxCustomArrayModule {
     public constructor() {
         (Array.prototype as unknown[]).filterMap = function <T, U>(
             this: T[],
-            predicate: (value: T, index: number, array: T[]) => U | undefined
+            predicate: (value: T, index: number, array: T[]) => U | undefined,
         ): Exclude<U, undefined>[] {
             return this.map(predicate).filter(
-                (value): value is Exclude<U, undefined> => value !== undefined
+                (value): value is Exclude<U, undefined> => value !== undefined,
             );
         };
     }

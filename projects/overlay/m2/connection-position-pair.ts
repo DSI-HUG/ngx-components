@@ -12,12 +12,12 @@ export class NgxOverlayConnectionPositionPair extends ConnectionPositionPair {
 
             const originPosition = {
                 originX: poss[0],
-                originY: poss[1]
+                originY: poss[1],
             } as OriginConnectionPosition;
 
             const overlayPosition = {
                 overlayX: poss[2],
-                overlayY: poss[3]
+                overlayY: poss[3],
             } as OverlayConnectionPosition;
 
             positions.push(new NgxOverlayConnectionPositionPair(originPosition, overlayPosition));

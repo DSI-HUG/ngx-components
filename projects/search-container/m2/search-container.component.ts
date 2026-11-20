@@ -11,7 +11,7 @@ import { NgxSearchContainerIntl } from './providers';
 
 @Directive({
     selector: '[ngx-search-input]',
-    standalone: true
+    standalone: true,
 })
 export class NgxSearchInputDirective {
     public ngControl = inject(NgControl);
@@ -36,11 +36,10 @@ export class NgxSearchInputDirective {
         AsyncPipe,
         NgTemplateOutlet,
         MatIcon,
-        MatTooltip
-    ]
+        MatTooltip,
+    ],
 })
 export class NgxSearchContainerComponent implements OnInit {
-
     public readonly right = input<TemplateRef<unknown>>();
 
     public readonly cleared = output();
@@ -69,7 +68,7 @@ export class NgxSearchContainerComponent implements OnInit {
             map(v => v as string | undefined),
             distinctUntilChanged(),
             shareReplay({ bufferSize: 1, refCount: false }),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe(v => { this.searchInputValue.set(v); });
     }
 

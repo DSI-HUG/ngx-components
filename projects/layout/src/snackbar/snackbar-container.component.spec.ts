@@ -28,7 +28,7 @@ describe('NgxSnackbarContainerComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgxSnackbarContainerComponent]
+            imports: [NgxSnackbarContainerComponent],
         }).compileComponents();
         service = TestBed.inject(SnackbarService);
         fixture = TestBed.createComponent(NgxSnackbarContainerComponent);
@@ -74,7 +74,7 @@ describe('NgxSnackbarContainerComponent', () => {
         expect(rectangles[1].top - rectangles[0].bottom).toBeCloseTo(gap, 0);
         expect(rectangles[2].top - rectangles[1].bottom).toBeCloseTo(gap, 0);
         expect(host.getBoundingClientRect().height).toBeGreaterThan(
-            rectangles.reduce((total, rect) => total + rect.height, 0) + Math.max(...rectangles.map(rect => rect.height))
+            rectangles.reduce((total, rect) => total + rect.height, 0) + Math.max(...rectangles.map(rect => rect.height)),
         );
     });
 

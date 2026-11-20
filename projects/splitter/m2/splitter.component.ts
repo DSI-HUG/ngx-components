@@ -21,7 +21,7 @@ interface DraggingEvent {
     selector: 'ngx-splitter',
     styleUrls: ['./splitter.component.scss'],
     templateUrl: './splitter.component.html',
-    standalone: true
+    standalone: true,
 })
 export class NgxSplitterComponent {
     /**
@@ -105,7 +105,6 @@ export class NgxSplitterComponent {
     private destroyRef = inject(DestroyRef);
 
     public constructor() {
-
         this.startDragging$.pipe(
             filter(() => !this.disabled),
             switchMap(draggingEvent => {
@@ -124,7 +123,7 @@ export class NgxSplitterComponent {
                 this.dragStart.emit();
 
                 const mouseMove$ = fromEvent<MouseEvent>(document, 'mousemove').pipe(
-                    shareReplay({ bufferSize: 1, refCount: true })
+                    shareReplay({ bufferSize: 1, refCount: true }),
                 );
 
                 const stopDragging$ = mouseMove$.pipe(
@@ -134,7 +133,7 @@ export class NgxSplitterComponent {
                         this.dragEnd.emit();
                         return event as MouseEvent;
                     }),
-                    shareReplay({ bufferSize: 1, refCount: true })
+                    shareReplay({ bufferSize: 1, refCount: true }),
                 );
 
                 const drag$ = mouseMove$.pipe(
@@ -150,15 +149,15 @@ export class NgxSplitterComponent {
                         const percentWithTwoDigits = Math.round(areaSizeInPercentA * 100) / 100;
                         this.dragProgress.emit(percentWithTwoDigits);
                     }),
-                    takeUntil(stopDragging$)
+                    takeUntil(stopDragging$),
                 );
 
                 return stopDragging$.pipe(
                     take(1),
-                    mergeWith(drag$)
+                    mergeWith(drag$),
                 );
             }),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe(event => {
             if (event.type !== 'mouseup' && event.type !== 'touchend' && event.type !== 'touchcancel') {
                 this.elementRef.nativeElement.setAttribute('splitting', 'true');

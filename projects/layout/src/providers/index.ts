@@ -12,10 +12,10 @@ export * from './ngx-layout-intl';
  * @param options.customIntl - A custom internationalization class to inject.
  */
 export const provideNgxLayout = (
-    options?: NgxOptionsIntl<NgxLayoutIntl>
+    options?: NgxOptionsIntl<NgxLayoutIntl>,
 ): EnvironmentProviders =>
     provideNgxIntl(
         NgxLayoutIntl,
         options?.translationsPath ?? 'translations/ngx-layout',
-        options?.customIntl ?? NgxLayoutIntl
+        options?.customIntl ?? NgxLayoutIntl,
     );

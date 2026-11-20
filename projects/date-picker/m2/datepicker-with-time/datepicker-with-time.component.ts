@@ -17,11 +17,10 @@ import { NgxDatePickerIntl } from '../providers';
     imports: [
         MatButton,
         NgxTimePickerComponent,
-        MatDatepickerApply
-    ]
+        MatDatepickerApply,
+    ],
 })
 export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy {
-
     @ViewChild(TemplateRef)
     private template?: TemplateRef<unknown>;
 
@@ -40,7 +39,6 @@ export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy 
     private portal?: TemplatePortal;
 
     public constructor() {
-
         this.datepicker.openedStream.pipe(
             tap(() => {
                 const datePickerInput = this.datepicker.datepickerInput as MatDatepickerInput<Date>;
@@ -49,7 +47,7 @@ export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy 
             delay(1),
             map(() => this.timePickerElement?.nativeElement.parentElement),
             filter(Boolean),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe(datePickerContainer => {
             const containerRef = this.viewContainerRef.element.nativeElement as HTMLElement;
             datePickerContainer.setAttribute('layout', containerRef?.ownerDocument?.body?.clientHeight <= 500 ? 'h' : 'v');

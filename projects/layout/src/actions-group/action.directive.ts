@@ -4,7 +4,7 @@ import type { MatMenuPanel } from '@angular/material/menu';
 
 @Directive({
     selector: 'ngx-action',
-    standalone: true
+    standalone: true,
 })
 export class NgxActionDirective {
     // Basic action fields

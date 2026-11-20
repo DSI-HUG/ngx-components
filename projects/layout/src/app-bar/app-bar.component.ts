@@ -14,8 +14,8 @@ type AppBarMode = 'standard' | 'condensed';
     imports: [MatIcon, MatIconButton, MatTooltip],
     host: {
 
-        '[class.condensed]': 'mode()==="condensed"'
-    }
+        '[class.condensed]': 'mode()==="condensed"',
+    },
 })
 export class NgxAppBarComponent {
     public mode = input<AppBarMode>('standard');
@@ -34,7 +34,7 @@ export class NgxAppBarComponent {
         const params = [
             `height=${screen.height}`,
             `width=${screen.width}`,
-            'fullscreen=yes'
+            'fullscreen=yes',
         ].join(',');
 
         if (this.helpPopup) {

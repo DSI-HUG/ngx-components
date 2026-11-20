@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
     selector: 'ngx-list-loader',
     templateUrl: './list-loader.component.html',
     styleUrls: ['./list-loader.component.scss'],
-    standalone: true
+    standalone: true,
 })
 export class NgxListLoaderComponent {
     @Input()

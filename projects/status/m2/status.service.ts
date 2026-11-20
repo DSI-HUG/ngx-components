@@ -16,10 +16,9 @@ const durationShort = 8_000;
  * @dynamic
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class NgxStatusService {
-
     private readonly document = inject<Document>(DOCUMENT);
     private readonly injector = inject(Injector);
     private readonly intl = inject(NgxStatusIntl, { optional: true });
@@ -99,14 +98,14 @@ export class NgxStatusService {
 
                 const duration = status.duration || (status.type === 'danger' && durationLong) || durationShort;
                 return timer(duration).pipe(
-                    mergeWith(componentRef?.instance.close ?? new EventEmitter<void>),
+                    mergeWith(componentRef?.instance.close ?? new EventEmitter<void>()),
                     tap(() => {
                         componentRef?.destroy();
                         applicationRef.tick();
-                    })
+                    }),
                 );
             }),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe();
     }
 }

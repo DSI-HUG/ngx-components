@@ -6,7 +6,7 @@ type ContentPadding = 'none' | 'default';
     selector: 'ngx-column',
     templateUrl: './column.component.html',
     styleUrl: './column.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxColumnComponent {
     public readonly contentPadding = input<ContentPadding | undefined>(undefined);

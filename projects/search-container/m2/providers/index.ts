@@ -15,5 +15,5 @@ export const provideNgxSearchContainer = (options?: NgxOptionsIntl<NgxSearchCont
     provideNgxIntl(
         NgxSearchContainerIntl,
         options?.translationsPath ?? 'translations/ngx-search-container',
-        options?.customIntl ?? NgxSearchContainerIntl
+        options?.customIntl ?? NgxSearchContainerIntl,
     );

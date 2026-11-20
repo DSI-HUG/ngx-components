@@ -10,8 +10,8 @@ type ContentPadding = 'none' | 'default';
     encapsulation: ViewEncapsulation.None,
     host: {
 
-        '[attr.appearance]': 'this.appearance()'
-    }
+        '[attr.appearance]': 'this.appearance()',
+    },
 })
 export class NgxPanelComponent {
     public readonly appearance = input<Appearance | undefined>(undefined);

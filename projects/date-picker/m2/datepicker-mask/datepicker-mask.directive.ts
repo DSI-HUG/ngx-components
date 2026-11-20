@@ -20,7 +20,7 @@ import {
     Subject,
     switchMap,
     tap,
-    timeInterval
+    timeInterval,
 } from 'rxjs';
 
 import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.service';
@@ -32,13 +32,12 @@ import { NgxDatepickerMaskValidatorService } from './datepicker-mask-validator.s
         {
             provide: NG_VALIDATORS,
             useExisting: forwardRef(() => NgxDatepickerMaskValidatorService),
-            multi: true
-        }
+            multi: true,
+        },
     ],
-    standalone: true
+    standalone: true,
 })
 export class NgxDatepickerMaskDirective {
-
     private readonly applyMask$ = new Subject<void>();
 
     @Input()
@@ -97,7 +96,7 @@ export class NgxDatepickerMaskDirective {
         this.elementRef.nativeElement.setAttribute('autocomplete', 'off');
 
         const focus$ = fromEvent<FocusEvent>(this.elementRef.nativeElement, 'focus').pipe(
-            shareReplay({ bufferSize: 1, refCount: false })
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
         const selectAll$ = focus$.pipe(
@@ -123,7 +122,7 @@ export class NgxDatepickerMaskDirective {
                 }
 
                 this.elementRef.nativeElement.setSelectionRange(0, 0);
-            })
+            }),
         );
 
         const paste$ = fromEvent<ClipboardEvent>(this.elementRef.nativeElement, 'paste').pipe(
@@ -136,7 +135,7 @@ export class NgxDatepickerMaskDirective {
                 this.parseAndSetValue(pastedData);
                 event.preventDefault();
                 return false;
-            })
+            }),
         );
 
         const dblClick$ = fromEvent<Event>(this.elementRef.nativeElement, 'mousedown').pipe(
@@ -187,15 +186,15 @@ export class NgxDatepickerMaskDirective {
 
                 event.preventDefault();
                 return false;
-            })
+            }),
         );
 
         const keyDown$ = fromEvent<KeyboardEvent>(this.elementRef.nativeElement, 'keydown').pipe(
-            shareReplay({ bufferSize: 1, refCount: false })
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
         const blur$ = fromEvent<FocusEvent>(this.elementRef.nativeElement, 'blur').pipe(
-            shareReplay({ bufferSize: 1, refCount: false })
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
         const validateOnBlur$ = blur$.pipe(
@@ -210,11 +209,11 @@ export class NgxDatepickerMaskDirective {
                         this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.maskValue);
                     }
                 }
-            })
+            }),
         );
 
         const applyMaskOnFocus$ = focus$.pipe(
-            filter(() => !this.elementRef.nativeElement.value)
+            filter(() => !this.elementRef.nativeElement.value),
         );
 
         const maskApplied$ = keyDown$.pipe(
@@ -238,7 +237,7 @@ export class NgxDatepickerMaskDirective {
             }),
             tap(() => {
                 this.renderer.setProperty(this.elementRef.nativeElement, 'value', this.maskValue);
-            })
+            }),
         );
 
         const keyApplied$ = keyDown$.pipe(
@@ -329,7 +328,6 @@ export class NgxDatepickerMaskDirective {
                             this.elementRef.nativeElement.setSelectionRange(start, start);
                         }
                     }
-
                 } else if (keyCode === 'Backspace') {
                     let value = this.elementRef.nativeElement.value;
                     const char = value.substring(start - 1, end);
@@ -361,15 +359,13 @@ export class NgxDatepickerMaskDirective {
                                     this.elementRef.nativeElement.setSelectionRange(newStart, newStart);
                                 }
                                 return false;
-                            })
+                            }),
                         );
                     } else {
                         selectPreviousChar();
                     }
-
                 } else if ((keyCode === 'KeyA' && e.ctrlKey) || (keyCode === 'KeyA' && e.metaKey)) { // Ctrl+ A + Cmd + A (Mac)
                     this.elementRef.nativeElement.setSelectionRange(0, -1);
-
                 } else if (/^[0-9]$/.exec(e.key)) {
                     let value = this.elementRef.nativeElement.value;
                     if (end > start) {
@@ -400,33 +396,29 @@ export class NgxDatepickerMaskDirective {
                                 this.renderer.setProperty(this.elementRef.nativeElement, 'value', value);
                                 selectNextChar();
                                 return false;
-                            })
+                            }),
                         );
                     }
-
                 } else if (keyCode === 'KeyD') {
                     const today = set(new Date(), { seconds: 0, milliseconds: 0 });
                     this.setValue(today);
                     this.elementRef.nativeElement.setSelectionRange(0, -1);
-
                 } else if (keyCode === 'Enter') {
                     this.parseAndSetValue(this.elementRef.nativeElement.value);
-
                 } else if (this.forwardToInputKeyCodes.includes(e.key)) {
                     return of(undefined);
-
                 } else {
                     console.log('DatepickerMaskDirective ignored code', keyCode);
                 }
 
                 e.preventDefault();
                 return of(false);
-            })
+            }),
         );
 
         keyApplied$.pipe(
             mergeWith(maskApplied$, paste$, selectAll$, dblClick$, validateOnBlur$),
-            takeUntilDestroyed()
+            takeUntilDestroyed(),
         ).subscribe();
     }
 

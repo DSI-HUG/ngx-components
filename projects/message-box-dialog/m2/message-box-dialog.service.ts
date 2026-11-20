@@ -6,7 +6,7 @@ import { NgxMessageBoxDialogButtons, type NgxMessageBoxDialogData, type NgxMessa
 import { NgxMessageBoxDialogIntl } from './providers';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class NgxMessageBoxDialogService {
     protected readonly intl = inject(NgxMessageBoxDialogIntl, { optional: true });
@@ -20,7 +20,7 @@ export class NgxMessageBoxDialogService {
                 if (typeof dialogData === 'string') {
                     messageBoxDialogData = {
                         text: dialogData,
-                        buttons: NgxMessageBoxDialogButtons.OK
+                        buttons: NgxMessageBoxDialogButtons.OK,
                     } as NgxMessageBoxDialogData;
                 } else {
                     messageBoxDialogData = dialogData;
@@ -29,11 +29,11 @@ export class NgxMessageBoxDialogService {
 
                 const dialogConfig: MatDialogConfig<NgxMessageBoxDialogData | string> = {
                     panelClass: 'no-padding-dialog',
-                    data: dialogData
+                    data: dialogData,
                 };
 
                 return this.dialog.open<unknown, NgxMessageBoxDialogData | string, NgxMessageBoxDialogResponse>(dialogComponent.NgxMessageBoxDialogComponent, Object.assign(dialogConfig, additionalDialogConfig)).afterClosed();
-            })
+            }),
         );
     }
 
@@ -41,11 +41,11 @@ export class NgxMessageBoxDialogService {
         const dialogData = {
             text: message,
             // eslint-disable-next-line no-bitwise -- Combine the requested button flags.
-            buttons: NgxMessageBoxDialogButtons.OK | NgxMessageBoxDialogButtons.CANCEL
+            buttons: NgxMessageBoxDialogButtons.OK | NgxMessageBoxDialogButtons.CANCEL,
         } as NgxMessageBoxDialogData;
 
         return this.open$(dialogData, dialogConfig).pipe(
-            take(1)
+            take(1),
         );
     }
 }

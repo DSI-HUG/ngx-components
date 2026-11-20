@@ -13,7 +13,7 @@ import type { Snackbar } from '../snackbar.service';
     styleUrl: './snackbar.component.scss',
     imports: [
         MatIconModule,
-        MatButtonModule
+        MatButtonModule,
     ],
     /* eslint-disable @typescript-eslint/naming-convention */
     host: {
@@ -25,10 +25,10 @@ import type { Snackbar } from '../snackbar.service';
         '[class.timed]': '!!duration()',
         '[style.animation-duration.ms]': 'duration()',
         '[class.around-icon]': '!!duration() && animationType() === \'around-icon\'',
-        '[class.horizontal]': '!!duration() && animationType() === \'horizontal\''
+        '[class.horizontal]': '!!duration() && animationType() === \'horizontal\'',
     },
 
-    standalone: true
+    standalone: true,
 })
 export class NgxSnackbarComponent {
     public readonly snackbar = input.required<Snackbar>();
@@ -62,7 +62,6 @@ export class NgxSnackbarComponent {
 
     public constructor() {
         effect(onCleanup => {
-
             const snackbar = this.snackbar();
 
             if (snackbar.severity !== 'info' && snackbar.severity !== 'success') {
@@ -70,12 +69,11 @@ export class NgxSnackbarComponent {
             }
 
             const subscription = timer(snackbar.duration).pipe(
-                takeUntilDestroyed(this.destroyRef)
+                takeUntilDestroyed(this.destroyRef),
             ).subscribe(() => { this.expired.emit(snackbar.uuid); });
 
             onCleanup(() => { subscription.unsubscribe(); });
         });
-
     }
 
     protected expire(): void {

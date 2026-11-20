@@ -18,11 +18,10 @@ import { NgxStatusDetailDialogService } from './status-detail/status-detail-dial
     imports: [
         MatButton,
         MatIcon,
-        NgxSnackbarComponent
-    ]
+        NgxSnackbarComponent,
+    ],
 })
 export class NgxStatusComponent {
-
     public get status(): NgxStatus | undefined {
         return this._status;
     }
@@ -47,16 +46,15 @@ export class NgxStatusComponent {
     private _status?: NgxStatus;
 
     public constructor() {
-
         this.displayDetailedStatus$.pipe(
             throttleTime(1000),
             switchMap(status => this.statusDetailDialogService.open$(status).pipe(
                 catchError((err: unknown) => {
                     console.error(this.intl?.openStatusDetailDialogFailed ?? 'Failed to open status detail dialog', err);
                     return EMPTY;
-                })
+                }),
             )),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe();
     }
 

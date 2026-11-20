@@ -30,7 +30,7 @@ export class NgxCache<T, K = string> extends Map<K, NgxCacheEntry<T>> {
             data$ = defaultValueFn(now);
             super.set(key, {
                 timeStamp: this.duty ? now + this.duty : 0,
-                data$
+                data$,
             });
         }
         return data$;
@@ -39,7 +39,7 @@ export class NgxCache<T, K = string> extends Map<K, NgxCacheEntry<T>> {
     public setCache(key: K, value: T): void {
         super.set(key, {
             timeStamp: this.duty ? Date.now() + this.duty : 0,
-            data$: value
+            data$: value,
         });
     }
 }
@@ -56,7 +56,7 @@ export class NgxObservableCache<T, K = string> extends NgxCache<Observable<T>, K
                 // Clear cache entry in case of observable failure
                 this.delete(key);
                 return throwError(() => err);
-            })
+            }),
         );
     }
 }

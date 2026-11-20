@@ -6,7 +6,6 @@ import { NgxAbstractIntl } from '@hug/ngx-core';
  */
 @Injectable()
 export class NgxLayoutIntl extends NgxAbstractIntl<NgxLayoutIntl> {
-
     public closeLabel = '';
     public backLabel = '';
     public sideFilterLabel = '';

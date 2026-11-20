@@ -8,8 +8,8 @@ import { Component, input } from '@angular/core';
     styleUrl: './side-nav.component.scss',
 
     host: {
-        '[class.divider]': 'withDivider()'
-    }
+        '[class.divider]': 'withDivider()',
+    },
 
 })
 export class NgxSideNavComponent {

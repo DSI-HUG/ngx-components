@@ -6,7 +6,6 @@ import type { NgxTimePickerHarnessFilters } from './time-picker-harness-filters'
 
 /** Harness for interacting with a ngx time picker in tests. */
 export class NgxTimePickerHarness extends MatFormFieldControlHarness {
-
     // eslint-disable-next-line @typescript-eslint/naming-convention
     public static hostSelector = 'ngx-time-picker';
 

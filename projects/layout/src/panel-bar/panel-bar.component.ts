@@ -15,7 +15,7 @@ import { NgxSearchBarContainerComponent } from '../search-bar-container';
     templateUrl: './panel-bar.component.html',
     styleUrl: './panel-bar.component.scss',
     encapsulation: ViewEncapsulation.None,
-    imports: [MatIcon, MatIconButton, MatTooltip, NgTemplateOutlet]
+    imports: [MatIcon, MatIconButton, MatTooltip, NgTemplateOutlet],
 })
 export class NgxPanelBarComponent {
     // inputs

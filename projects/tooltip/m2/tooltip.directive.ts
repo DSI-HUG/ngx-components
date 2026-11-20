@@ -4,7 +4,7 @@ import { fromEvent, type Observable, of, switchMap, take, takeUntil, timer } fro
 
 @Directive({
     selector: '[ngx-tooltip]',
-    standalone: true
+    standalone: true,
 })
 export class NgxTooltipDirective {
     // eslint-disable-next-line @angular-eslint/no-input-rename
@@ -16,7 +16,6 @@ export class NgxTooltipDirective {
     private destroyRef = inject(DestroyRef);
 
     public constructor() {
-
         const triggerElement = this.elementRef.nativeElement;
 
         // Install global CSS if not already present
@@ -42,9 +41,9 @@ export class NgxTooltipDirective {
             switchMap(() => timer(this.delay).pipe(
                 take(1),
                 switchMap(() => this.openTooltip$ ? this.openTooltip$(triggerElement) : of(undefined)),
-                takeUntil(leave$)
+                takeUntil(leave$),
             )),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe();
     }
 }

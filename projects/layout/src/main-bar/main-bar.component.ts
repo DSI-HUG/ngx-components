@@ -4,6 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     selector: 'ngx-main-bar',
     templateUrl: './main-bar.component.html',
     styleUrl: './main-bar.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxMainBarComponent { }

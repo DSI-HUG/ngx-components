@@ -25,8 +25,8 @@ import { NgxLayoutIntl } from './providers';
         MatDrawerContainer,
         MatDrawerContent,
         MatToolbar,
-        MatTooltip
-    ]
+        MatTooltip,
+    ],
 })
 export class NgxLayoutComponent {
     @Input() public toolbarColor = 'primary';

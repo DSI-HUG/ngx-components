@@ -44,6 +44,7 @@
         "@angular/compiler-cli": "~22.3.0",
         "@angular/core": "~22.3.0",
         "@angular/forms": "~22.3.0",
+        "@angular/language-server": "^22.3.0",
         "@angular/material": "~22.3.0",
         "@angular/material-date-fns-adapter": "~22.3.0",
         "@angular/platform-browser": "~22.3.0",

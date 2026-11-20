@@ -16,11 +16,10 @@ import { NgxMessageBoxDialogIntl } from './providers';
         MatButtonModule,
         MatDialogModule,
         MatIconModule,
-        MatToolbarModule
-    ]
+        MatToolbarModule,
+    ],
 })
 export class NgxMessageBoxDialogComponent {
-
     protected dialogParams = inject<NgxMessageBoxDialogData>(MAT_DIALOG_DATA);
 
     protected readonly intl = inject(NgxMessageBoxDialogIntl, { optional: true });

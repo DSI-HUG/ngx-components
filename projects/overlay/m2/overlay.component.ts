@@ -30,8 +30,8 @@ export interface OverlayInfos {
     imports: [
         AsyncPipe,
         NgTemplateOutlet,
-        CdkConnectedOverlay
-    ]
+        CdkConnectedOverlay,
+    ],
 })
 export class NgxOverlayComponent implements OnChanges {
     @Input() public ownerElement!: HTMLElement;
@@ -102,7 +102,7 @@ export class NgxOverlayComponent implements OnChanges {
                 return this.mediaService.isMobile$;
             }),
             startWith(false),
-            shareReplay({ bufferSize: 1, refCount: false })
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
         this.overlayInfos$ = this.show$.pipe(
@@ -134,9 +134,9 @@ export class NgxOverlayComponent implements OnChanges {
                             offsetY: Number(showParams.offsetY) || 0,
                             origin: new ElementRef(mobileElement ?? eventElement ?? ownerElement ?? this.elementRef.nativeElement),
                             width: isMobile ? this.widthForMobile : this.width,
-                            context: showParams.context
+                            context: showParams.context,
                         };
-                    })
+                    }),
                 );
 
                 const updatePosition$ = this.overlayRef$.pipe(
@@ -144,21 +144,21 @@ export class NgxOverlayComponent implements OnChanges {
                     switchMap(overlayRef => {
                         overlayRef.updatePosition();
                         return EMPTY;
-                    })
+                    }),
                 );
 
                 return info$.pipe(
-                    mergeWith(updatePosition$)
+                    mergeWith(updatePosition$),
                 );
             }),
-            shareReplay({ bufferSize: 1, refCount: false })
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
 
         this.isVisible$ = this.overlayInfos$.pipe(
             map(Boolean),
             startWith(false),
-            distinctUntilChanged()
+            distinctUntilChanged(),
         );
     }
 

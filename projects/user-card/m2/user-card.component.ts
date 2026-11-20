@@ -27,11 +27,10 @@ interface DisplayableUserCard {
     templateUrl: './user-card.component.html',
     encapsulation: ViewEncapsulation.None,
     imports: [
-        NgClass
-    ]
+        NgClass,
+    ],
 })
 export class NgxUserCardComponent implements OnChanges {
-
     @Input()
     public user!: NgxUserCard;
 
@@ -48,15 +47,15 @@ export class NgxUserCardComponent implements OnChanges {
             this.intl?.medTech ?? 'Medical-technical',
             this.intl?.social ?? 'Social',
             this.intl?.medTherapeutic ?? 'Medical-therapeutic',
-            this.intl?.pharmacy ?? 'Pharmacy'
+            this.intl?.pharmacy ?? 'Pharmacy',
         ];
         this.blueBadgeFamily = [
             this.intl?.care ?? 'Care',
-            this.intl?.nurse ?? 'Nurse'
+            this.intl?.nurse ?? 'Nurse',
         ];
         this.redBadgeFamily = [
             this.intl?.dentist ?? 'Dentist',
-            this.intl?.doctor ?? 'Doctor'
+            this.intl?.doctor ?? 'Doctor',
         ];
     }
 
@@ -88,7 +87,7 @@ export class NgxUserCardComponent implements OnChanges {
             phoneNumber: this.formatPhone(user.phone),
             mobileNumber: this.formatPhone(user.bip || user.mobile),
             email: user.email?.toLowerCase(),
-            address: this.getUserAddress(user)
+            address: this.getUserAddress(user),
         };
     }
 

@@ -10,7 +10,7 @@ export class NgxDatepickerMaskValidatorService implements Validator {
         }
 
         return {
-            invalidDate: {}
+            invalidDate: {},
         };
     }
 }

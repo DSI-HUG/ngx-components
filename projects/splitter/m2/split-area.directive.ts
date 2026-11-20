@@ -11,10 +11,9 @@ import type { NgxSplitterDirection } from './splitter-direction-type';
  */
 @Directive({
     selector: 'ngx-split-area',
-    standalone: true
+    standalone: true,
 })
 export class NgxSplitAreaDirective {
-
     @HostBinding('style.order')
     public order?: number;
 
@@ -33,7 +32,7 @@ export class NgxSplitAreaDirective {
 
     public get size(): number | undefined {
         const parentElement = this.elementRef.nativeElement.parentElement;
-        const parentSizeInPixels = parentElement && (this.direction === 'horizontal' ? parentElement.offsetWidth : parentElement.offsetHeight) || undefined;
+        const parentSizeInPixels = (parentElement && (this.direction === 'horizontal' ? parentElement.offsetWidth : parentElement.offsetHeight)) || undefined;
         return parentSizeInPixels && (100 * this.sizeinPixels / parentSizeInPixels);
     }
 

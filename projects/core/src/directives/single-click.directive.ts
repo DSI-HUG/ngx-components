@@ -4,7 +4,7 @@ import { ReplaySubject, throttleTime } from 'rxjs';
 
 @Directive({
     selector: '[ngx-single-click]',
-    standalone: true
+    standalone: true,
 })
 export class NgxSingleClickDirective implements OnInit {
     @Input()
@@ -38,7 +38,7 @@ export class NgxSingleClickDirective implements OnInit {
     public ngOnInit(): void {
         this._clicks$.pipe(
             throttleTime(this.throttleTime),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe((event: MouseEvent) => { this.singleClick.emit(event); });
     }
 }

@@ -15,5 +15,5 @@ export const provideNgxLayout = (options?: NgxOptionsIntl<NgxLayoutIntl>): Envir
     provideNgxIntl(
         NgxLayoutIntl,
         options?.translationsPath ?? 'translations/ngx-layout',
-        options?.customIntl ?? NgxLayoutIntl
+        options?.customIntl ?? NgxLayoutIntl,
     );

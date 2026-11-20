@@ -15,5 +15,5 @@ export const provideNgxDatePicker = (options?: NgxOptionsIntl<NgxDatePickerIntl>
     provideNgxIntl(
         NgxDatePickerIntl,
         options?.translationsPath ?? 'translations/ngx-date-picker',
-        options?.customIntl ?? NgxDatePickerIntl
+        options?.customIntl ?? NgxDatePickerIntl,
     );
