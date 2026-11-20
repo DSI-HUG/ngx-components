@@ -27,7 +27,7 @@ const buttonDimensions = 40;
     ]
 })
 export class NgxActionsGroupComponent {
-    public readonly mainAction = input(false, { transform: booleanAttribute });
+    public readonly withMainAction = input(false, { transform: booleanAttribute });
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 

@@ -1,7 +1,7 @@
 import { html } from '../helper';
 
 export const actionsGroupTemplate = html`
-    <ngx-actions-group mainAction>
+    <ngx-actions-group withMainAction>
         <ngx-action
             label="Filtres"
             icon="filter_list"

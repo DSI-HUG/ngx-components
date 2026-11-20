@@ -6,7 +6,7 @@
             [disabled]="item.disabled()"
             [matTooltip]="item.label()"
             [matMenuTriggerFor]="item.menu() ?? null"
-            [class.main-action]="mainAction() && $index === 0"
+            [class.main-action]="withMainAction() && $index === 0"
             (click)="item.execute.emit()">
             <mat-icon>{{ item.icon() }}</mat-icon>
         </button>
