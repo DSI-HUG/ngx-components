@@ -1,3 +1,19 @@
+## 21.2.0 (2026-11-20)
+
+### 🚀 Features
+
+- upgrade to @hug/eslint-config 29 + eslint 10 (#NGXCPTS-62) ([f611379](https://github.com/DSI-HUG/ngx-components/commit/f611379))
+- upgrade dependencies + remove unsued @angular/animations (#NGXCPTS-62) ([c4ede5e](https://github.com/DSI-HUG/ngx-components/commit/c4ede5e))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-message-box**: upgraded to `v21.2.0`
+- **@hug/ngx-snackbar**: upgraded to `v21.1.0`
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+
 ## 21.1.0 (2026-07-14)
 
 ### 🚀 Features

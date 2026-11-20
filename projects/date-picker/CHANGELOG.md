@@ -1,3 +1,24 @@
+## 21.3.0 (2026-11-20)
+
+### 🚀 Features
+
+- upgrade to @hug/eslint-config 29 + eslint 10 (#NGXCPTS-62) ([f611379](https://github.com/DSI-HUG/ngx-components/commit/f611379))
+- upgrade dependencies + remove unsued @angular/animations (#NGXCPTS-62) ([c4ede5e](https://github.com/DSI-HUG/ngx-components/commit/c4ede5e))
+
+### 🐛 Fixes
+
+- **NgxDatepickerMaskDirective:** emit dateChange for a complete date or on blur (#NGXCPTS-47) ([07e65cc](https://github.com/DSI-HUG/ngx-components/commit/07e65cc))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-time-picker**: upgraded to `v21.3.0`
+- **@hug/ngx-core**: upgraded to `v21.5.0`
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+- keaa @KEAA
+
 ## 21.2.3 (2026-11-11)
 
 ### 🌱 Dependencies

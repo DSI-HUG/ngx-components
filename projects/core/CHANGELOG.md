@@ -1,3 +1,14 @@
+## 21.5.0 (2026-11-20)
+
+### 🚀 Features
+
+- upgrade to @hug/eslint-config 29 + eslint 10 (#NGXCPTS-62) ([f611379](https://github.com/DSI-HUG/ngx-components/commit/f611379))
+- upgrade dependencies + remove unsued @angular/animations (#NGXCPTS-62) ([c4ede5e](https://github.com/DSI-HUG/ngx-components/commit/c4ede5e))
+
+### ❤️ Thank You
+
+- damien-guillermet @damien-guillermet
+
 ## 21.4.0 (2026-11-11)
 
 ### 🚀 Features
