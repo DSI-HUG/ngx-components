@@ -3,7 +3,6 @@ import { MatFabButton, MatIconButton } from '@angular/material/button';
 import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideNgxSearchContainer } from '@hug/ngx-search-container';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 import { provideNgxLayout } from 'projects/layout/src/providers';
@@ -21,7 +20,6 @@ const meta: Meta<NgxLayoutComponent> = {
     decorators: [
         applicationConfig({
             providers: [
-                provideAnimations(), // Provides animations to the application
                 provideNgxLayout(),
                 provideNgxStatus(),
                 provideNgxSearchContainer(),
