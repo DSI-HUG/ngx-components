@@ -31,7 +31,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test search-container",
-        "test:ci": "ng test search-container --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test search-container --watch=false",
         "build:ng": "ng build search-container -c=production",
         "build": "nx build:ng @hug/ngx-search-container --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-search-container --verbose",

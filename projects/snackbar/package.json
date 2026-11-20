@@ -23,7 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test snackbar",
-        "test:ci": "ng test snackbar --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test snackbar --watch=false",
         "build:ng": "ng build snackbar -c=production",
         "build": "nx build:ng @hug/ngx-snackbar --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-snackbar --verbose",

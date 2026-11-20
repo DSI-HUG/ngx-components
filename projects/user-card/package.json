@@ -31,7 +31,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test user-card",
-        "test:ci": "ng test user-card --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test user-card --watch=false",
         "build:ng": "ng build user-card -c=production",
         "build": "nx build:ng @hug/ngx-user-card --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-user-card --verbose",

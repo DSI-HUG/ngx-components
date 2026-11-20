@@ -31,7 +31,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test layout",
-        "test:ci": "ng test layout --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test layout --watch=false",
         "build:ng": "ng build layout -c=production",
         "build": "nx build:ng @hug/ngx-layout --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-layout --verbose",

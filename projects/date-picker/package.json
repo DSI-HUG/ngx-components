@@ -28,7 +28,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test date-picker",
-        "test:ci": "ng test date-picker --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test date-picker --watch=false",
         "build:ng": "ng build date-picker -c=production",
         "build": "nx build:ng @hug/ngx-date-picker --verbose",
         "release": "nx release -p=@hug/ngx-date-picker --yes --verbose",
