@@ -5,7 +5,7 @@ const { noop } = require('@angular-devkit/schematics');
 
 exports.default = options =>
     schematic('new-package', [
-        spawn('ng', ['g', 'library', options.libName]),
+        spawn('ng', ['g', 'library', options.libName, '--test-runner=vitest']),
 
         workspace()
             // deploy files

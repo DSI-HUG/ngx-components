@@ -46,11 +46,15 @@ npm run lint -w projects/<package_name>
 
 ## Unit testing a package
 
-Unit testing a package can be executed with the following command:
+Library unit tests use Vitest through Angular CLI. Run them for one package with:
 
 ```sh
 npm run test -w projects/<package_name>
 ```
+
+Most packages run in jsdom. The layout package uses headless Chromium for CSS and geometry tests. Before running it locally in watch mode, install the browser with `npx playwright install chromium --only-shell`.
+
+Run all library tests once with `npm run test:ci`. The layout CI script installs Chromium automatically.
 
 ## Building a package
 

@@ -3,6 +3,9 @@
     "compilerOptions": {
         "esModuleInterop": true,
         "moduleResolution": "bundler",
+        "types": [
+            "vitest/globals"
+        ],
         "paths": {
             "@hug/ngx-core": [
                 "./projects/core/src"

@@ -27,7 +27,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test tooltip",
-        "test:ci": "ng test tooltip --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test tooltip --watch=false",
         "build:ng": "ng build tooltip -c=production",
         "build": "nx build:ng @hug/ngx-tooltip --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-tooltip --verbose",

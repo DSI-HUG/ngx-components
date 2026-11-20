@@ -30,7 +30,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test list-loader",
-        "test:ci": "ng test list-loader --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test list-loader --watch=false",
         "build:ng": "ng build list-loader -c=production",
         "build": "nx build:ng @hug/ngx-list-loader --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-list-loader --verbose",

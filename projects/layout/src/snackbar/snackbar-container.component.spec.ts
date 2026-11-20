@@ -43,7 +43,7 @@ describe('NgxSnackbarContainerComponent', () => {
         expect(olderStyle.alignSelf).toBe('end');
         expect(olderStyle.transformOrigin).toBe(`${snackbars[0].offsetWidth / 2}px 0px`);
         expect(olderStyle.transitionProperty).toBe('transform, scale, opacity, visibility');
-        expect(olderStyle.transitionDuration.split(',').every(duration => duration.trim() === '0.25s')).toBeTrue();
+        expect(olderStyle.transitionDuration.split(',').every(duration => duration.trim() === '0.25s')).toBe(true);
         expect(new DOMMatrix(olderStyle.transform).a).toBeCloseTo(0.95);
         expect(new DOMMatrix(newerStyle.transform).a).toBe(1);
         expect(getComputedStyle(snackbars[0].querySelector('.content')!).opacity).toBe('0');

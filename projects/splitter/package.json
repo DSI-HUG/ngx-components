@@ -30,7 +30,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test splitter",
-        "test:ci": "ng test splitter --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test splitter --watch=false",
         "build:ng": "ng build splitter -c=production",
         "build": "nx build:ng @hug/ngx-splitter --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-splitter --verbose",

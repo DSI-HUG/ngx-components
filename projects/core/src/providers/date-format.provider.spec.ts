@@ -16,7 +16,7 @@ describe('NgxDateFormatProvider', () => {
     const standardMonthYearA11yLabel = 'MMMM yyyy';
 
     const isEqualsTo = (factory: (localeId: string) => MatDateFormats, localeId: string, expected: MatDateFormats): void => {
-        expect(factory(localeId)).withContext(localeId).toEqual(expected);
+        expect(factory(localeId), localeId).toEqual(expected);
     };
 
     it('When yearOnly should build MatDateFormats correctly', () => {

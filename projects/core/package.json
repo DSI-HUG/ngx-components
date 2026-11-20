@@ -47,7 +47,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test core",
-        "test:ci": "ng test core --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test core --watch=false",
         "build:ng": "ng build core -c=production",
         "build": "nx build:ng @hug/ngx-core --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-core --verbose",

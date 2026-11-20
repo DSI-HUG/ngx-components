@@ -27,7 +27,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test overlay",
-        "test:ci": "ng test overlay --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test overlay --watch=false",
         "build:ng": "ng build overlay -c=production",
         "build": "nx build:ng @hug/ngx-overlay --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-overlay --verbose",
