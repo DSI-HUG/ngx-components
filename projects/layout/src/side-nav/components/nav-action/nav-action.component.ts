@@ -15,7 +15,7 @@ import { MatIcon } from '@angular/material/icon';
     }
 
 })
-export class NavActionComponent {
+export class NgxNavActionComponent {
     public active = input<boolean>(false);
     public outline = input<boolean>(false);
 }

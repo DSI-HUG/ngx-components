@@ -5,6 +5,8 @@
             [ariaLabel]="item.label()"
             [disabled]="item.disabled()"
             [matTooltip]="item.label()"
+            [matMenuTriggerFor]="item.menu() ?? null"
+            [class.main-action]="withMainAction() && $index === 0"
             (click)="item.execute.emit()">
             <mat-icon>{{ item.icon() }}</mat-icon>
         </button>
@@ -22,7 +24,12 @@
 
     <mat-menu #menuActionsGroup="matMenu">
         @for (item of hiddenItems(); track $index) {
-            <button mat-menu-item [ariaLabel]="item.label()" [disabled]="item.disabled()" (click)="item.execute.emit()">
+            <button
+                mat-menu-item
+                [ariaLabel]="item.label()"
+                [disabled]="item.disabled()"
+                (click)="item.execute.emit()"
+                [matMenuTriggerFor]="item.menu() ?? null">
                 <mat-icon>{{ item.icon() }}</mat-icon>
                 <span>{{ item.label() }}</span>
             </button>

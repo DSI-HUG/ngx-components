@@ -12,6 +12,6 @@ import { Component, input } from '@angular/core';
     }
 
 })
-export class SideNavComponent {
+export class NgxSideNavComponent {
     public withDivider = input<boolean>(false);
 }

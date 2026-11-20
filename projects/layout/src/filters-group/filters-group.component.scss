@@ -238,6 +238,10 @@ ngx-filters-group {
                     flex-direction: column;
                     gap: var(--ngx-filters-group-overlay-content-filter-gap, 0.5rem);
 
+                    &.is-disabled {
+                        opacity: var(--ngx-filters-group-overlay-content-filter-disabled-opacity, 0.38);
+                    }
+
                     > [aria-expanded='true'] {
                         .expand-icon {
                             transform: rotate(180deg);

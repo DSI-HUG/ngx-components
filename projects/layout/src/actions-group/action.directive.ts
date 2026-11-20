@@ -1,4 +1,5 @@
 import { Directive, input, output } from '@angular/core';
+import type { MatMenuPanel } from '@angular/material/menu';
 
 
 @Directive({
@@ -10,6 +11,7 @@ export class NgxActionDirective {
     public readonly icon = input.required<string>();
     public readonly label = input.required<string>();
     public readonly disabled = input<boolean>(false);
+    public readonly menu = input<MatMenuPanel>();
 
     public readonly execute = output();
 }

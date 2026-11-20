@@ -13,6 +13,6 @@ import { MatTooltip } from '@angular/material/tooltip';
     }
 
 })
-export class NavButtonComponent {
+export class NgxNavButtonComponent {
     public active = input<boolean>(false);
 }

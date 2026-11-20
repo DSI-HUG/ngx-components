@@ -1,4 +1,4 @@
-import { Component, computed, contentChildren, ElementRef, inject, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, Component, computed, contentChildren, ElementRef, inject, input, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
@@ -26,6 +26,7 @@ const buttonDimensions = 40;
     ]
 })
 export class NgxActionsGroupComponent {
+    public readonly withMainAction = input(false, { transform: booleanAttribute });
 
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
