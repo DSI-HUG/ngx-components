@@ -49,20 +49,29 @@
         "core": {
             "projectType": "library",
             "root": "projects/core",
-            "sourceRoot": "projects/core/src",
+            "sourceRoot": "projects/core",
             "prefix": "core",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/core/ng-package.json"
+                        "tsConfig": "projects/core/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-core",
+                        "assets": [
+                            "projects/core/CHANGELOG.md",
+                            {
+                                "input": "projects/core/m2/styles",
+                                "glob": "**/*",
+                                "output": "./m2/styles"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/core/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/core/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -78,20 +87,29 @@
         "list-loader": {
             "projectType": "library",
             "root": "projects/list-loader",
-            "sourceRoot": "projects/list-loader/src",
+            "sourceRoot": "projects/list-loader",
             "prefix": "list-loader",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/list-loader/ng-package.json"
+                        "tsConfig": "projects/list-loader/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-list-loader",
+                        "assets": [
+                            "projects/list-loader/CHANGELOG.md",
+                            {
+                                "input": "projects/list-loader/m2/",
+                                "glob": "_list-loader-theme.scss",
+                                "output": "./m2"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/list-loader/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/list-loader/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -107,20 +125,29 @@
         "message-box": {
             "projectType": "library",
             "root": "projects/message-box",
-            "sourceRoot": "projects/message-box/src",
+            "sourceRoot": "projects/message-box",
             "prefix": "message-box",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/message-box/ng-package.json"
+                        "tsConfig": "projects/message-box/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-message-box",
+                        "assets": [
+                            "projects/message-box/CHANGELOG.md",
+                            {
+                                "input": "projects/message-box/m2/",
+                                "glob": "_message-box-theme.scss",
+                                "output": "./m2"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/message-box/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/message-box/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -136,20 +163,29 @@
         "numeric-stepper": {
             "projectType": "library",
             "root": "projects/numeric-stepper",
-            "sourceRoot": "projects/numeric-stepper/src",
+            "sourceRoot": "projects/numeric-stepper",
             "prefix": "numeric-stepper",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/numeric-stepper/ng-package.json"
+                        "tsConfig": "projects/numeric-stepper/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-numeric-stepper",
+                        "assets": [
+                            "projects/numeric-stepper/CHANGELOG.md",
+                            {
+                                "input": "projects/numeric-stepper/m2/",
+                                "glob": "_numeric-stepper-theme.scss",
+                                "output": "./m2"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/numeric-stepper/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/numeric-stepper/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -165,20 +201,24 @@
         "overlay": {
             "projectType": "library",
             "root": "projects/overlay",
-            "sourceRoot": "projects/overlay/src",
+            "sourceRoot": "projects/overlay",
             "prefix": "overlay",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/overlay/ng-package.json"
+                        "tsConfig": "projects/overlay/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-overlay",
+                        "assets": [
+                            "projects/overlay/CHANGELOG.md"
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/overlay/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/overlay/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -194,20 +234,24 @@
         "snackbar": {
             "projectType": "library",
             "root": "projects/snackbar",
-            "sourceRoot": "projects/snackbar/src",
+            "sourceRoot": "projects/snackbar",
             "prefix": "snackbar",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/snackbar/ng-package.json"
+                        "tsConfig": "projects/snackbar/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-snackbar",
+                        "assets": [
+                            "projects/snackbar/CHANGELOG.md"
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/snackbar/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/snackbar/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -223,20 +267,29 @@
         "splitter": {
             "projectType": "library",
             "root": "projects/splitter",
-            "sourceRoot": "projects/splitter/src",
+            "sourceRoot": "projects/splitter",
             "prefix": "splitter",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/splitter/ng-package.json"
+                        "tsConfig": "projects/splitter/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-splitter",
+                        "assets": [
+                            "projects/splitter/CHANGELOG.md",
+                            {
+                                "input": "projects/splitter/m2/",
+                                "glob": "_splitter-theme.scss",
+                                "output": "./m2"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/splitter/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/splitter/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -252,20 +305,33 @@
         "status": {
             "projectType": "library",
             "root": "projects/status",
-            "sourceRoot": "projects/status/src",
+            "sourceRoot": "projects/status",
             "prefix": "status",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/status/ng-package.json"
+                        "tsConfig": "projects/status/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-status",
+                        "assets": [
+                            "projects/status/CHANGELOG.md",
+                            {
+                                "input": "projects/status/m2/",
+                                "glob": "_status-theme.scss",
+                                "output": "./m2"
+                            },
+                            {
+                                "glob": "m2/translations/**/*",
+                                "input": "projects/status"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/status/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/status/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -281,20 +347,24 @@
         "time-picker": {
             "projectType": "library",
             "root": "projects/time-picker",
-            "sourceRoot": "projects/time-picker/src",
+            "sourceRoot": "projects/time-picker",
             "prefix": "time-picker",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/time-picker/ng-package.json"
+                        "tsConfig": "projects/time-picker/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-time-picker",
+                        "assets": [
+                            "projects/time-picker/CHANGELOG.md"
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/time-picker/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/time-picker/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -310,20 +380,24 @@
         "tooltip": {
             "projectType": "library",
             "root": "projects/tooltip",
-            "sourceRoot": "projects/tooltip/src",
+            "sourceRoot": "projects/tooltip",
             "prefix": "tooltip",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/tooltip/ng-package.json"
+                        "tsConfig": "projects/tooltip/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-tooltip",
+                        "assets": [
+                            "projects/tooltip/CHANGELOG.md"
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/tooltip/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/tooltip/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -339,20 +413,29 @@
         "sidenav": {
             "projectType": "library",
             "root": "projects/sidenav",
-            "sourceRoot": "projects/sidenav/src",
+            "sourceRoot": "projects/sidenav",
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/sidenav/ng-package.json"
+                        "tsConfig": "projects/sidenav/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-sidenav",
+                        "assets": [
+                            "projects/sidenav/CHANGELOG.md",
+                            {
+                                "input": "projects/sidenav/m2/",
+                                "glob": "_sidenav-theme.scss",
+                                "output": "./m2"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/sidenav/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/sidenav/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -368,20 +451,37 @@
         "layout": {
             "projectType": "library",
             "root": "projects/layout",
-            "sourceRoot": "projects/layout/src",
+            "sourceRoot": "projects/layout",
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/layout/ng-package.json"
+                        "tsConfig": "projects/layout/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-layout",
+                        "assets": [
+                            "projects/layout/CHANGELOG.md",
+                            {
+                                "input": "projects/layout/m2/",
+                                "glob": "_layout-theme.scss",
+                                "output": "./m2"
+                            },
+                            {
+                                "glob": "m2/translations/**/*",
+                                "input": "projects/layout"
+                            },
+                            {
+                                "glob": "translations/**/*",
+                                "input": "projects/layout"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/layout/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/layout/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -397,20 +497,33 @@
         "user-card": {
             "projectType": "library",
             "root": "projects/user-card",
-            "sourceRoot": "projects/user-card/src",
+            "sourceRoot": "projects/user-card",
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/user-card/ng-package.json"
+                        "tsConfig": "projects/user-card/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-user-card",
+                        "assets": [
+                            "projects/user-card/CHANGELOG.md",
+                            {
+                                "input": "projects/user-card/m2/",
+                                "glob": "_user-card-theme.scss",
+                                "output": "./m2"
+                            },
+                            {
+                                "glob": "m2/translations/**/*",
+                                "input": "projects/user-card"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/user-card/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/user-card/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -426,20 +539,24 @@
         "user-tooltip": {
             "projectType": "library",
             "root": "projects/user-tooltip",
-            "sourceRoot": "projects/user-tooltip/src",
+            "sourceRoot": "projects/user-tooltip",
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/user-tooltip/ng-package.json"
+                        "tsConfig": "projects/user-tooltip/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-user-tooltip",
+                        "assets": [
+                            "projects/user-tooltip/CHANGELOG.md"
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/user-tooltip/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/user-tooltip/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -455,20 +572,33 @@
         "search-container": {
             "projectType": "library",
             "root": "projects/search-container",
-            "sourceRoot": "projects/search-container/src",
+            "sourceRoot": "projects/search-container",
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/search-container/ng-package.json"
+                        "tsConfig": "projects/search-container/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-search-container",
+                        "assets": [
+                            "projects/search-container/CHANGELOG.md",
+                            {
+                                "input": "projects/search-container/m2/",
+                                "glob": "_search-container-theme.scss",
+                                "output": "./m2"
+                            },
+                            {
+                                "glob": "m2/translations/**/*",
+                                "input": "projects/search-container"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/search-container/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/search-container/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -484,20 +614,33 @@
         "message-box-dialog": {
             "projectType": "library",
             "root": "projects/message-box-dialog",
-            "sourceRoot": "projects/message-box-dialog/src",
+            "sourceRoot": "projects/message-box-dialog",
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/message-box-dialog/ng-package.json"
+                        "tsConfig": "projects/message-box-dialog/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-message-box-dialog",
+                        "assets": [
+                            "projects/message-box-dialog/CHANGELOG.md",
+                            {
+                                "input": "projects/message-box-dialog/m2/",
+                                "glob": "_message-box-dialog-theme.scss",
+                                "output": "./m2"
+                            },
+                            {
+                                "glob": "m2/translations/**/*",
+                                "input": "projects/message-box-dialog"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/message-box-dialog/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/message-box-dialog/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -513,20 +656,28 @@
         "date-picker": {
             "projectType": "library",
             "root": "projects/date-picker",
-            "sourceRoot": "projects/date-picker/src",
+            "sourceRoot": "projects/date-picker",
             "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:ng-packagr",
+                    "builder": "@angular/build:library",
                     "options": {
-                        "project": "projects/date-picker/ng-package.json"
+                        "tsConfig": "projects/date-picker/tsconfig.lib.json",
+                        "outputPath": "dist/ngx-date-picker",
+                        "assets": [
+                            "projects/date-picker/CHANGELOG.md",
+                            {
+                                "glob": "m2/translations/**/*",
+                                "input": "projects/date-picker"
+                            }
+                        ]
                     },
                     "configurations": {
                         "production": {
                             "tsConfig": "projects/date-picker/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "tsConfig": "projects/date-picker/tsconfig.lib.json"
+                            "compilationMode": "full"
                         }
                     },
                     "defaultConfiguration": "production"

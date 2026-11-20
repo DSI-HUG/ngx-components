@@ -22,14 +22,16 @@
     "sideEffects": false,
     "exports": {
         "./m2": {
-            "sass": "./m2/_layout-theme.scss"
+            "sass": "./m2/_layout-theme.scss",
+            "default": "./m2/index.ts"
         },
         "./m2/translations/*": {
             "default": "./m2/translations/**/*.json"
         },
         "./translations/*": {
             "default": "./translations/**/*.json"
-        }
+        },
+        ".": "./src/index.ts"
     },
     "scripts": {
         "lint": "eslint . --fix",
@@ -47,9 +49,6 @@
         "@angular/material": ">=21 <22",
         "@hug/ngx-core": "^22.0.0-alpha.5",
         "@hug/ngx-sidenav": "^22.0.1-alpha.0"
-    },
-    "dependencies": {
-        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public",

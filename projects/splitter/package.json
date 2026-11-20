@@ -22,8 +22,10 @@
     "sideEffects": false,
     "exports": {
         "./m2": {
-            "sass": "./m2/_splitter-theme.scss"
-        }
+            "sass": "./m2/_splitter-theme.scss",
+            "default": "./m2/index.ts"
+        },
+        ".": "./src/index.ts"
     },
     "scripts": {
         "lint": "eslint . --fix",
@@ -39,9 +41,6 @@
         "@angular/common": ">=21 <22",
         "@angular/core": ">=21 <22",
         "rxjs": "^7.8.2"
-    },
-    "dependencies": {
-        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public",

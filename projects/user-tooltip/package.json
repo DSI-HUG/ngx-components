@@ -2,6 +2,10 @@
     "name": "@hug/ngx-user-tooltip",
     "version": "22.0.1-alpha.0",
     "description": "HUG Angular - user-tooltip component",
+    "exports": {
+        ".": "./src/index.ts",
+        "./m2": "./m2/index.ts"
+    },
     "homepage": "https://github.com/dsi-hug/ngx-components",
     "license": "GPL-3.0-only",
     "author": "HUG - Hôpitaux Universitaires Genève",
@@ -35,9 +39,6 @@
         "@angular/material": ">=21 <22",
         "@hug/ngx-tooltip": "^22.0.1-alpha.0",
         "@hug/ngx-user-card": "^22.0.1-alpha.0"
-    },
-    "dependencies": {
-        "tslib": "^2.8.1"
     },
     "publishConfig": {
         "access": "public",
