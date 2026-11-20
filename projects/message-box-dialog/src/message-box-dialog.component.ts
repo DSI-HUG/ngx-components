@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { NgxMessageBoxDialogButtons, NgxMessageBoxDialogData } from './message-box-dialog.model';
+import { NgxMessageBoxDialogButtons, type NgxMessageBoxDialogData } from './message-box-dialog.model';
 import { NgxMessageBoxDialogIntl } from './providers';
 
 @Component({
@@ -17,11 +17,10 @@ import { NgxMessageBoxDialogIntl } from './providers';
         MatButtonModule,
         MatDialogModule,
         MatIconModule,
-        MatToolbarModule
-    ]
+        MatToolbarModule,
+    ],
 })
 export class NgxMessageBoxDialogComponent {
-
     protected dialogParams = inject<NgxMessageBoxDialogData>(MAT_DIALOG_DATA);
 
     protected readonly intl = inject(NgxMessageBoxDialogIntl, { optional: true });

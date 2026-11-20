@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { TruthyTypesOf } from 'rxjs';
+import type { TruthyTypesOf } from 'rxjs';
 
 declare global {
     interface Array<T> {
@@ -22,7 +22,7 @@ declare global {
 @NgModule()
 export class NgxCustomArrayModule {
     public constructor() {
-        (Array.prototype as void[]).filterMap = function <T, U>(this: T[], predicate: (value: T, index: number, _array: T[]) => U | undefined): TruthyTypesOf<U>[] {
+        (Array.prototype as unknown[]).filterMap = function <T, U>(this: T[], predicate: (value: T, index: number, _array: T[]) => U | undefined): TruthyTypesOf<U>[] {
             return this.map(predicate).filter(v => v !== undefined);
         };
     }

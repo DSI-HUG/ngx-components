@@ -10,10 +10,11 @@ export * from './ngx-user-card-intl';
  * @param options - The component's providing options.
  * @param options.translationsPath - The path to the translations files (default: `translations/ngx-user-card`).
  * @param options.customIntl - A custom internationalization class to inject.
+ * @returns The environment providers to register at the application level.
  */
 export const provideNgxUserCard = (options?: NgxOptionsIntl<NgxUserCardIntl>): EnvironmentProviders =>
     provideNgxIntl(
         NgxUserCardIntl,
         options?.translationsPath ?? 'translations/ngx-user-card',
-        options?.customIntl ?? NgxUserCardIntl
+        options?.customIntl ?? NgxUserCardIntl,
     );

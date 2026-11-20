@@ -1,4 +1,4 @@
-import { EnvironmentProviders, inject, LOCALE_ID, makeEnvironmentProviders, provideAppInitializer, Type } from '@angular/core';
+import { type EnvironmentProviders, inject, LOCALE_ID, makeEnvironmentProviders, provideAppInitializer, type Type } from '@angular/core';
 
 export interface NgxOptionsIntl<T> {
     translationsPath?: string;
@@ -10,14 +10,14 @@ export const provideNgxIntl = <T extends NgxAbstractIntl<T>>(
     translationsPath: string,
     customIntl: Type<T>,
     retryCount = 3,
-    retryDelayInMs = 10
+    retryDelayInMs = 10,
 ): EnvironmentProviders =>
     makeEnvironmentProviders([
         { provide: intl, useClass: customIntl },
         provideAppInitializer(() => {
             const localeId = inject(LOCALE_ID);
             return inject(intl).init(localeId, translationsPath, retryCount, retryDelayInMs);
-        })
+        }),
     ]);
 
 /**
@@ -25,13 +25,12 @@ export const provideNgxIntl = <T extends NgxAbstractIntl<T>>(
  */
 
 export abstract class NgxAbstractIntl<T extends NgxAbstractIntl<T>> {
-
     private static readonly DEFAULT_LOCALE = 'en-US';
 
     private static readonly FALLBACKS = new Map<string, string>([
         ['en', NgxAbstractIntl.DEFAULT_LOCALE],
         ['fr', 'fr-CH'],
-        ['de', 'de-CH']
+        ['de', 'de-CH'],
     ]);
 
     private static readonly ERR_TEXT = '**ERR-MISSING-TRANSLATION**';
@@ -40,7 +39,7 @@ export abstract class NgxAbstractIntl<T extends NgxAbstractIntl<T>> {
         console.debug('Initializing intl with locale', localeId, 'and path', translationsPath, ' (retry', retryCount, 'times with', retryDelayInMs, 'ms of delay)');
         const locale = new Intl.Locale(localeId);
         const intl = await this.loadFromFile(locale.language, translationsPath, retryCount, retryDelayInMs)
-            .catch(async err => {
+            .catch(async (err: unknown) => {
                 const fallbackLocaleId = NgxAbstractIntl.FALLBACKS.get(locale.language) ?? new Intl.Locale(NgxAbstractIntl.DEFAULT_LOCALE).language;
                 console.warn(`Failed to get the translation file for requested locale ${localeId}. Fallback to ${fallbackLocaleId} locale.`, err);
                 try {
@@ -85,7 +84,7 @@ export abstract class NgxAbstractIntl<T extends NgxAbstractIntl<T>> {
             })
             .then(file => file.json())
             .then((fileJson: T) => fileJson)
-            .catch(async err => {
+            .catch(async (err: unknown) => {
                 if (retryCount > 0) {
                     console.log(`Failed to fetch the translation file for locale ${localeId} at path ${translationsPath}. Let's retry (${retryCount} attempts left) in ${retryDelayInMs} milliseconds.`);
                     return this.sleep(retryDelayInMs)

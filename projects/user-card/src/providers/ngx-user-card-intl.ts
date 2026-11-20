@@ -6,7 +6,6 @@ import { NgxAbstractIntl } from '@hug/ngx-core';
  */
 @Injectable()
 export class NgxUserCardIntl extends NgxAbstractIntl<NgxUserCardIntl> {
-
     public service = '';
     public type = '';
     public phoneNumber = '';

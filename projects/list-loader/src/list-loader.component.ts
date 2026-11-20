@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     templateUrl: './list-loader.component.html',
     styleUrls: ['./list-loader.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true
+    standalone: true,
 })
 export class NgxListLoaderComponent {
     @Input()

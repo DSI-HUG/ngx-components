@@ -1,5 +1,5 @@
-import { EnvironmentProviders } from '@angular/core';
-import { NgxOptionsIntl, provideNgxIntl } from '@hug/ngx-core';
+import type { EnvironmentProviders } from '@angular/core';
+import { type NgxOptionsIntl, provideNgxIntl } from '@hug/ngx-core';
 
 import { NgxDatePickerIntl } from './ngx-date-picker-intl';
 
@@ -10,10 +10,11 @@ export * from './ngx-date-picker-intl';
  * @param options - The component's providing options.
  * @param options.translationsPath - The path to the translations files (default: `translations/ngx-date-picker`).
  * @param options.customIntl - A custom internationalization class to inject.
+ * @returns The environment providers to register at the application level.
  */
 export const provideNgxDatePicker = (options?: NgxOptionsIntl<NgxDatePickerIntl>): EnvironmentProviders =>
     provideNgxIntl(
         NgxDatePickerIntl,
         options?.translationsPath ?? 'translations/ngx-date-picker',
-        options?.customIntl ?? NgxDatePickerIntl
+        options?.customIntl ?? NgxDatePickerIntl,
     );

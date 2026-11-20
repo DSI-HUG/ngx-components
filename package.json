@@ -51,7 +51,7 @@
         "@angular/router": "~21.2.26",
         "@commitlint/cli": "~20.3.1",
         "@commitlint/config-conventional": "~20.3.1",
-        "@hug/eslint-config": "~20.3.3",
+        "@hug/eslint-config": "~29.0.0",
         "@hug/ngx-schematics-utilities": "^12.2.3",
         "@nx/js": "22.4.4",
         "@swc-node/register": "^1.12.1",

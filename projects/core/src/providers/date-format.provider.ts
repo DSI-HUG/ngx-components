@@ -1,9 +1,10 @@
-import { MatDateFormats } from '@angular/material/core';
+import type { MatDateFormats } from '@angular/material/core';
 
 /**
  * Build a mask for given locale + date format options.
  * @param localeId the locale.
  * @param options the date format options.
+ * @returns the date mask.
  */
 const buildMaskFromParts = (localeId: string, options: Intl.DateTimeFormatOptions): string => {
     const formatter = new Intl.DateTimeFormat(localeId, options);
@@ -68,11 +69,12 @@ export type NgxDateFormat = 'full' | 'long' | 'short' | 'monthYearOnly' | 'yearO
  * Build a factory for MAT_DATE_FORMATS like `yyyy.MM.dd HH:mm:ss`.
  * <br>Only works with <b>Latin alphabet</b>.
  * @param dateFormat the date format to use.
+ * @returns a factory building the MatDateFormats for a given locale.
  */
 export const buildNgxMatDateFormatsFactory = (dateFormat: NgxDateFormat) => (localeId: string): MatDateFormats => {
     const options: Intl.DateTimeFormatOptions = {
         year: 'numeric',
-        hour12: false
+        hour12: false,
     };
 
     switch (dateFormat) {
@@ -106,14 +108,14 @@ export const buildNgxMatDateFormatsFactory = (dateFormat: NgxDateFormat) => (loc
 
     const result: MatDateFormats = {
         parse: {
-            dateInput
+            dateInput,
         },
         display: {
             dateInput,
             monthYearLabel,
             dateA11yLabel: 'LL',
-            monthYearA11yLabel
-        }
+            monthYearA11yLabel,
+        },
     };
     console.debug('MatDateFormats provided for', dateFormat, 'format and locale', localeId, ':', result);
     return result;

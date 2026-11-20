@@ -3,10 +3,10 @@ import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@
 import { MatIconButton } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
-import { NgxMessageBoxComponent, NgxMessageBoxType } from '@hug/ngx-message-box';
+import { NgxMessageBoxComponent, type NgxMessageBoxType } from '@hug/ngx-message-box';
 
 import { NgxStatusIntl } from '../providers';
-import { NgxStatus } from '../status.model';
+import type { NgxStatus } from '../status.model';
 
 @Component({
     selector: 'ngx-status-detail',
@@ -19,11 +19,10 @@ import { NgxStatus } from '../status.model';
         DatePipe,
         MatIcon,
         MatIconButton,
-        NgxMessageBoxComponent
-    ]
+        NgxMessageBoxComponent,
+    ],
 })
 export class NgxStatusDetailComponent {
-
     protected fullTextError: string;
     protected messageBoxType: NgxMessageBoxType;
     protected readonly intl = inject(NgxStatusIntl, { optional: true });
