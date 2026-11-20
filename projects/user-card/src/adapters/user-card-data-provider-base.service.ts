@@ -1,8 +1,7 @@
-import { NgxUserCard } from '../user-card.model';
-import { UserCardDisplayModel } from './user-card-display.model';
+import type { NgxUserCard } from '../user-card.model';
+import type { UserCardDisplayModel } from './user-card-display.model';
 
 export abstract class UserCardDataProviderBaseService {
-
     protected getUserAddress(user: NgxUserCard): string | undefined {
         if (user.organisation || user.address || user.zipCode || user.city) {
             let address = '';
@@ -16,7 +15,7 @@ export abstract class UserCardDataProviderBaseService {
                 address += `${user.zipCode} `;
             }
             if (user.city) {
-                address += `${user.city}`;
+                address += user.city;
             }
             return address;
         }
@@ -38,7 +37,7 @@ export abstract class UserCardDataProviderBaseService {
     }
 
     protected getFunction(user: NgxUserCard): string {
-        return user.groupFunctionLabel ? `${user.groupFunctionLabel}` : `${user.functionSefName ? user.functionSefName : ''} ${user.functionSefCode ? `(${user.functionSefCode})` : ''} ${user.role ? `/ ${user.role}` : ''}`;
+        return user.groupFunctionLabel ? user.groupFunctionLabel : `${user.functionSefName ? user.functionSefName : ''} ${user.functionSefCode ? `(${user.functionSefCode})` : ''} ${user.role ? `/ ${user.role}` : ''}`;
     }
 
     protected getFullName(user: NgxUserCard): string {
@@ -58,5 +57,4 @@ export abstract class UserCardDataProviderBaseService {
     abstract buildDisplayableUserCard(user: NgxUserCard): UserCardDisplayModel;
 
     abstract getShortTitle(user: NgxUserCard): string;
-
 }

@@ -23,7 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test time-picker",
-        "test:ci": "ng test time-picker --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test time-picker --watch=false",
         "build:ng": "ng build time-picker -c=production",
         "build": "nx build:ng @hug/ngx-time-picker --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-time-picker --verbose",
@@ -40,7 +40,7 @@
         "rxjs": "^7.8.2"
     },
     "dependencies": {
-        "tslib": "^2.8.1"
+        "tslib": "^2.9.1"
     },
     "publishConfig": {
         "access": "public"

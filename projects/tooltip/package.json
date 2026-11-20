@@ -23,7 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test tooltip",
-        "test:ci": "ng test tooltip --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test tooltip --watch=false",
         "build:ng": "ng build tooltip -c=production",
         "build": "nx build:ng @hug/ngx-tooltip --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-tooltip --verbose",
@@ -35,11 +35,11 @@
         "@angular/core": ">=21 <22",
         "@angular/material": ">=21 <22",
         "@hug/ngx-core": "^21.4.0",
-        "lodash-es": "^4.17.21",
+        "lodash-es": "^4.18.1",
         "rxjs": "^7.8.2"
     },
     "dependencies": {
-        "tslib": "^2.8.1"
+        "tslib": "^2.9.1"
     },
     "publishConfig": {
         "access": "public"

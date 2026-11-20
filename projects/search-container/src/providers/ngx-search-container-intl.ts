@@ -6,7 +6,6 @@ import { NgxAbstractIntl } from '@hug/ngx-core';
  */
 @Injectable()
 export class NgxSearchContainerIntl extends NgxAbstractIntl<NgxSearchContainerIntl> {
-
     public clearSearch = '';
     public openSearch = '';
     public exitSearch = '';

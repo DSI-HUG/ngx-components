@@ -1,18 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 
 import { NgxUserCardIntl } from '../providers';
-import { NgxUserCard } from '../user-card.model';
+import type { NgxUserCard } from '../user-card.model';
 import { UserCardDataProviderBaseService } from './user-card-data-provider-base.service';
 import type { BadgeColor, UserCardDisplayModel } from './user-card-display.model';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 /**
  * @deprecated This service is deprecated and will be removed in future versions. Please use UserCardDataProviderService instead.
  */
 export class UserCardDataAdapterLegacyService extends UserCardDataProviderBaseService {
-
     protected greenBadgeFamily: string[];
     protected blueBadgeFamily: string[];
     protected redBadgeFamily: string[];
@@ -25,15 +24,15 @@ export class UserCardDataAdapterLegacyService extends UserCardDataProviderBaseSe
             this.intl?.medTech ?? 'Medical-technical',
             this.intl?.social ?? 'Social',
             this.intl?.medTherapeutic ?? 'Medical-therapeutic',
-            this.intl?.pharmacy ?? 'Pharmacy'
+            this.intl?.pharmacy ?? 'Pharmacy',
         ];
         this.blueBadgeFamily = [
             this.intl?.care ?? 'Care',
-            this.intl?.nurse ?? 'Nurse'
+            this.intl?.nurse ?? 'Nurse',
         ];
         this.redBadgeFamily = [
             this.intl?.dentist ?? 'Dentist',
-            this.intl?.doctor ?? 'Doctor'
+            this.intl?.doctor ?? 'Doctor',
         ];
     }
 
@@ -49,7 +48,7 @@ export class UserCardDataAdapterLegacyService extends UserCardDataProviderBaseSe
             phoneNumber: this.formatPhone(user.phone),
             mobileNumber: this.formatPhone(user.bip || user.mobile),
             email: user.email?.toLowerCase(),
-            address: this.getUserAddress(user)
+            address: this.getUserAddress(user),
         };
     }
 
@@ -88,5 +87,4 @@ export class UserCardDataAdapterLegacyService extends UserCardDataProviderBaseSe
         }
         return 'grey';
     }
-
 }

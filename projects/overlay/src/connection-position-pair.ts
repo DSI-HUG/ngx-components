@@ -1,4 +1,4 @@
-import { ConnectionPositionPair, OriginConnectionPosition, OverlayConnectionPosition } from '@angular/cdk/overlay';
+import { ConnectionPositionPair, type OriginConnectionPosition, type OverlayConnectionPosition } from '@angular/cdk/overlay';
 
 export class NgxOverlayConnectionPositionPair extends ConnectionPositionPair {
     public static parse(value: string): ConnectionPositionPair[] {
@@ -12,12 +12,12 @@ export class NgxOverlayConnectionPositionPair extends ConnectionPositionPair {
 
             const originPosition = {
                 originX: poss[0],
-                originY: poss[1]
+                originY: poss[1],
             } as OriginConnectionPosition;
 
             const overlayPosition = {
                 overlayX: poss[2],
-                overlayY: poss[3]
+                overlayY: poss[3],
             } as OverlayConnectionPosition;
 
             positions.push(new NgxOverlayConnectionPositionPair(originPosition, overlayPosition));

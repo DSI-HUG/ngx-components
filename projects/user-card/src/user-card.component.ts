@@ -1,12 +1,12 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { type BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, type OnChanges, type SimpleChanges, ViewEncapsulation } from '@angular/core';
 
 import { UserCardDataProviderService } from './adapters/user-card-data-provider.service';
 import { UserCardDataAdapterLegacyService } from './adapters/user-card-data-provider-legacy.service';
-import { UserCardDisplayModel } from './adapters/user-card-display.model';
+import type { UserCardDisplayModel } from './adapters/user-card-display.model';
 import { NgxUserCardIntl } from './providers';
-import { NgxUserCard } from './user-card.model';
+import type { NgxUserCard } from './user-card.model';
 
 
 @Component({
@@ -16,11 +16,10 @@ import { NgxUserCard } from './user-card.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
-        NgClass
-    ]
+        NgClass,
+    ],
 })
 export class NgxUserCardComponent implements OnChanges {
-
     @Input()
     public user!: NgxUserCard;
 
@@ -50,5 +49,4 @@ export class NgxUserCardComponent implements OnChanges {
                 : this.userCardAdapterLegacy.buildDisplayableUserCard(this.user);
         }
     }
-
 }

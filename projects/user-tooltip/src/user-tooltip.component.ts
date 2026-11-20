@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { NgxTooltipComponentInterface } from '@hug/ngx-tooltip';
-import { NgxUserCard, NgxUserCardComponent } from '@hug/ngx-user-card';
+import type { NgxTooltipComponentInterface } from '@hug/ngx-tooltip';
+import { type NgxUserCard, NgxUserCardComponent } from '@hug/ngx-user-card';
 
 @Component({
     selector: 'ngx-user-tooltip',
@@ -9,8 +9,8 @@ import { NgxUserCard, NgxUserCardComponent } from '@hug/ngx-user-card';
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        NgxUserCardComponent
-    ]
+        NgxUserCardComponent,
+    ],
 })
 export class NgxUserTooltipComponent implements NgxTooltipComponentInterface {
     public elementRef = inject<ElementRef<HTMLElement>>(ElementRef);

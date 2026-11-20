@@ -1,4 +1,4 @@
-import { MatDateFormats } from '@angular/material/core';
+import type { MatDateFormats } from '@angular/material/core';
 
 import { buildNgxMatDateFormatsFactory } from './date-format.provider';
 
@@ -16,7 +16,7 @@ describe('NgxDateFormatProvider', () => {
     const standardMonthYearA11yLabel = 'MMMM yyyy';
 
     const isEqualsTo = (factory: (localeId: string) => MatDateFormats, localeId: string, expected: MatDateFormats): void => {
-        expect(factory(localeId)).withContext(localeId).toEqual(expected);
+        expect(factory(localeId), localeId).toEqual(expected);
     };
 
     it('When yearOnly should build MatDateFormats correctly', () => {
@@ -24,14 +24,14 @@ describe('NgxDateFormatProvider', () => {
 
         const standardExpected: MatDateFormats = {
             parse: {
-                dateInput: 'yyyy'
+                dateInput: 'yyyy',
             },
             display: {
                 dateInput: 'yyyy',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         };
 
         isEqualsTo(factory, localeFrCh, standardExpected);
@@ -40,14 +40,14 @@ describe('NgxDateFormatProvider', () => {
         isEqualsTo(factory, localeEnUs, standardExpected);
         isEqualsTo(factory, localeEs, {
             parse: {
-                dateInput: 'yyyy'
+                dateInput: 'yyyy',
             },
             display: {
                 dateInput: 'yyyy',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: 'MMMM de yyyy'
-            }
+                monthYearA11yLabel: 'MMMM de yyyy',
+            },
         });
         isEqualsTo(factory, localePl, standardExpected);
         isEqualsTo(factory, localeSv, standardExpected);
@@ -59,14 +59,14 @@ describe('NgxDateFormatProvider', () => {
             const dateInput = `MM${separator}yyyy`;
             return {
                 parse: {
-                    dateInput
+                    dateInput,
                 },
                 display: {
                     dateInput,
                     monthYearLabel: standardMonthYearLabel,
                     dateA11yLabel: standardDateA11yLabel,
-                    monthYearA11yLabel: standardMonthYearA11yLabel
-                }
+                    monthYearA11yLabel: standardMonthYearA11yLabel,
+                },
             };
         };
 
@@ -76,26 +76,26 @@ describe('NgxDateFormatProvider', () => {
         isEqualsTo(factory, localeEnUs, formatExpected('/'));
         isEqualsTo(factory, localeEs, {
             parse: {
-                dateInput: 'MM/yyyy'
+                dateInput: 'MM/yyyy',
             },
             display: {
                 dateInput: 'MM/yyyy',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: 'MMMM de yyyy'
-            }
+                monthYearA11yLabel: 'MMMM de yyyy',
+            },
         });
         isEqualsTo(factory, localePl, formatExpected('.'));
         isEqualsTo(factory, localeSv, {
             parse: {
-                dateInput: 'yyyy-MM'
+                dateInput: 'yyyy-MM',
             },
             display: {
                 dateInput: 'yyyy-MM',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         });
     });
 
@@ -104,14 +104,14 @@ describe('NgxDateFormatProvider', () => {
 
         const standardExpected: MatDateFormats = {
             parse: {
-                dateInput: 'dd.MM.yyyy'
+                dateInput: 'dd.MM.yyyy',
             },
             display: {
                 dateInput: 'dd.MM.yyyy',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         };
 
         isEqualsTo(factory, localeFrCh, standardExpected);
@@ -119,37 +119,37 @@ describe('NgxDateFormatProvider', () => {
         isEqualsTo(factory, localeDeCh, standardExpected);
         isEqualsTo(factory, localeEnUs, {
             parse: {
-                dateInput: 'MM/dd/yyyy'
+                dateInput: 'MM/dd/yyyy',
             },
             display: {
                 dateInput: 'MM/dd/yyyy',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         });
         isEqualsTo(factory, localeEs, {
             parse: {
-                dateInput: 'dd/MM/yyyy'
+                dateInput: 'dd/MM/yyyy',
             },
             display: {
                 dateInput: 'dd/MM/yyyy',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: 'MMMM de yyyy'
-            }
+                monthYearA11yLabel: 'MMMM de yyyy',
+            },
         });
         isEqualsTo(factory, localePl, standardExpected);
         isEqualsTo(factory, localeSv, {
             parse: {
-                dateInput: 'yyyy-MM-dd'
+                dateInput: 'yyyy-MM-dd',
             },
             display: {
                 dateInput: 'yyyy-MM-dd',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         });
     });
 
@@ -158,62 +158,62 @@ describe('NgxDateFormatProvider', () => {
 
         const standardExpected: MatDateFormats = {
             parse: {
-                dateInput: 'dd.MM.yyyy, HH:mm'
+                dateInput: 'dd.MM.yyyy, HH:mm',
             },
             display: {
                 dateInput: 'dd.MM.yyyy, HH:mm',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         };
 
         isEqualsTo(factory, localeFrCh, {
             parse: {
-                dateInput: 'dd.MM.yyyy HH:mm'
+                dateInput: 'dd.MM.yyyy HH:mm',
             },
             display: {
                 dateInput: 'dd.MM.yyyy HH:mm',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         });
         isEqualsTo(factory, localeItCh, standardExpected);
         isEqualsTo(factory, localeDeCh, standardExpected);
         isEqualsTo(factory, localeEnUs, {
             parse: {
-                dateInput: 'MM/dd/yyyy, HH:mm'
+                dateInput: 'MM/dd/yyyy, HH:mm',
             },
             display: {
                 dateInput: 'MM/dd/yyyy, HH:mm',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         });
         isEqualsTo(factory, localeEs, {
             parse: {
-                dateInput: 'dd/MM/yyyy, HH:mm'
+                dateInput: 'dd/MM/yyyy, HH:mm',
             },
             display: {
                 dateInput: 'dd/MM/yyyy, HH:mm',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: 'MMMM de yyyy'
-            }
+                monthYearA11yLabel: 'MMMM de yyyy',
+            },
         });
         isEqualsTo(factory, localePl, standardExpected);
         isEqualsTo(factory, localeSv, {
             parse: {
-                dateInput: 'yyyy-MM-dd HH:mm'
+                dateInput: 'yyyy-MM-dd HH:mm',
             },
             display: {
                 dateInput: 'yyyy-MM-dd HH:mm',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         });
     });
 
@@ -222,62 +222,62 @@ describe('NgxDateFormatProvider', () => {
 
         const standardExpected: MatDateFormats = {
             parse: {
-                dateInput: 'dd.MM.yyyy, HH:mm:ss'
+                dateInput: 'dd.MM.yyyy, HH:mm:ss',
             },
             display: {
                 dateInput: 'dd.MM.yyyy, HH:mm:ss',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         };
 
         isEqualsTo(factory, localeFrCh, {
             parse: {
-                dateInput: 'dd.MM.yyyy HH:mm:ss'
+                dateInput: 'dd.MM.yyyy HH:mm:ss',
             },
             display: {
                 dateInput: 'dd.MM.yyyy HH:mm:ss',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         });
         isEqualsTo(factory, localeItCh, standardExpected);
         isEqualsTo(factory, localeDeCh, standardExpected);
         isEqualsTo(factory, localeEnUs, {
             parse: {
-                dateInput: 'MM/dd/yyyy, HH:mm:ss'
+                dateInput: 'MM/dd/yyyy, HH:mm:ss',
             },
             display: {
                 dateInput: 'MM/dd/yyyy, HH:mm:ss',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         });
         isEqualsTo(factory, localeEs, {
             parse: {
-                dateInput: 'dd/MM/yyyy, HH:mm:ss'
+                dateInput: 'dd/MM/yyyy, HH:mm:ss',
             },
             display: {
                 dateInput: 'dd/MM/yyyy, HH:mm:ss',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: 'MMMM de yyyy'
-            }
+                monthYearA11yLabel: 'MMMM de yyyy',
+            },
         });
         isEqualsTo(factory, localePl, standardExpected);
         isEqualsTo(factory, localeSv, {
             parse: {
-                dateInput: 'yyyy-MM-dd HH:mm:ss'
+                dateInput: 'yyyy-MM-dd HH:mm:ss',
             },
             display: {
                 dateInput: 'yyyy-MM-dd HH:mm:ss',
                 monthYearLabel: standardMonthYearLabel,
                 dateA11yLabel: standardDateA11yLabel,
-                monthYearA11yLabel: standardMonthYearA11yLabel
-            }
+                monthYearA11yLabel: standardMonthYearA11yLabel,
+            },
         });
     });
 });

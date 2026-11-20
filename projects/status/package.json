@@ -31,7 +31,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test status",
-        "test:ci": "ng test status --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test status --watch=false",
         "build:ng": "ng build status -c=production",
         "build": "nx build:ng @hug/ngx-status --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-status --verbose",
@@ -47,7 +47,7 @@
         "rxjs": "^7.8.2"
     },
     "dependencies": {
-        "tslib": "^2.8.1"
+        "tslib": "^2.9.1"
     },
     "publishConfig": {
         "access": "public"

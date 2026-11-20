@@ -3,8 +3,7 @@ import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxOverlayComponent } from '../../../overlay/src/overlay.component';
 
@@ -12,11 +11,6 @@ const meta: Meta<NgxOverlayComponent> = {
     title: 'Components/Overlay',
     component: NgxOverlayComponent,
     decorators: [
-        applicationConfig({
-            providers: [
-                provideAnimations() // Provides animations to the application
-            ]
-        }),
         moduleMetadata({
             imports: [
                 MatIcon, MatIconButton, MatButton
@@ -337,7 +331,7 @@ export const ownerElement: Story = {
                 <div class="ngx-menu-content button-menu">
                     @for (item of items; track $index) {
                         <button mat-button class="ngx-menu-item" (click)="select(item.text); menu.close()">{{ item.text }}</button>
-                    }                
+                    }
                 </div>
             </ngx-overlay>
         </section>

@@ -10,10 +10,11 @@ export * from './ngx-status-intl';
  * @param options - The component's providing options.
  * @param options.translationsPath - The path to the translations files (default: `translations/ngx-status`).
  * @param options.customIntl - A custom internationalization class to inject.
+ * @returns The environment providers to register at the application level.
  */
 export const provideNgxStatus = (options?: NgxOptionsIntl<NgxStatusIntl>): EnvironmentProviders =>
     provideNgxIntl(
         NgxStatusIntl,
         options?.translationsPath ?? 'translations/ngx-status',
-        options?.customIntl ?? NgxStatusIntl
+        options?.customIntl ?? NgxStatusIntl,
     );

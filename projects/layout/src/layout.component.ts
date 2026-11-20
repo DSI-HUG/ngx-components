@@ -1,6 +1,6 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { type BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, EventEmitter, inject, Input, Output, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, EventEmitter, inject, Input, Output, type TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatDrawer, MatDrawerContainer, MatDrawerContent } from '@angular/material/sidenav';
@@ -26,8 +26,8 @@ import { NgxLayoutIntl } from './providers';
         MatDrawerContainer,
         MatDrawerContent,
         MatToolbar,
-        MatTooltip
-    ]
+        MatTooltip,
+    ],
 })
 export class NgxLayoutComponent {
     @Input() public toolbarColor = 'primary';

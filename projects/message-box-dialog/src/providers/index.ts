@@ -10,10 +10,11 @@ export * from './ngx-message-box-dialog-intl';
  * @param options - The component's providing options.
  * @param options.translationsPath - The path to the translations files (default: `translations/ngx-message-box-dialog`).
  * @param options.customIntl - A custom internationalization class to inject.
+ * @returns The environment providers to register at the application level.
  */
 export const provideNgxMessageBoxDialog = (options?: NgxOptionsIntl<NgxMessageBoxDialogIntl>): EnvironmentProviders =>
     provideNgxIntl(
         NgxMessageBoxDialogIntl,
         options?.translationsPath ?? 'translations/ngx-message-box-dialog',
-        options?.customIntl ?? NgxMessageBoxDialogIntl
+        options?.customIntl ?? NgxMessageBoxDialogIntl,
     );

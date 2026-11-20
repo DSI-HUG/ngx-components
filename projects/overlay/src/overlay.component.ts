@@ -1,9 +1,9 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { CdkConnectedOverlay, OverlayContainer, OverlayRef } from '@angular/cdk/overlay';
+import { type BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { CdkConnectedOverlay, OverlayContainer, type OverlayRef } from '@angular/cdk/overlay';
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, inject, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, inject, Input, type OnChanges, type SimpleChanges, type TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgxMediaService } from '@hug/ngx-core';
-import { BehaviorSubject, combineLatestWith, distinctUntilChanged, EMPTY, map, mergeWith, Observable, of, ReplaySubject, shareReplay, startWith, Subject, switchMap, take } from 'rxjs';
+import { BehaviorSubject, combineLatestWith, distinctUntilChanged, EMPTY, map, mergeWith, type Observable, of, ReplaySubject, shareReplay, startWith, Subject, switchMap, take } from 'rxjs';
 
 import { defaultConnectionPositionPair, NgxOverlayConnectionPositionPair } from './connection-position-pair';
 
@@ -31,8 +31,8 @@ export interface OverlayInfos {
     imports: [
         AsyncPipe,
         NgTemplateOutlet,
-        CdkConnectedOverlay
-    ]
+        CdkConnectedOverlay,
+    ],
 })
 export class NgxOverlayComponent implements OnChanges {
     @Input() public ownerElement!: HTMLElement;
@@ -103,7 +103,7 @@ export class NgxOverlayComponent implements OnChanges {
                 return this.mediaService.isMobile$;
             }),
             startWith(false),
-            shareReplay({ bufferSize: 1, refCount: false })
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
         this.overlayInfos$ = this.show$.pipe(
@@ -129,13 +129,13 @@ export class NgxOverlayComponent implements OnChanges {
                     map(([ownerElement, isMobile]) => {
                         const mobileElement = isMobile ? document.body : undefined;
                         return {
-                            offsetX: showParams.offsetX && +showParams.offsetX || 0,
-                            offsetY: showParams.offsetY && +showParams.offsetY || 0,
+                            offsetX: showParams.offsetX || 0,
+                            offsetY: showParams.offsetY || 0,
                             origin: new ElementRef(mobileElement ?? showParams.event?.target ?? ownerElement ?? this.elementRef.nativeElement),
                             width: isMobile ? this.widthForMobile : this.width,
-                            context: showParams.context
-                        } as OverlayInfos;
-                    })
+                            context: showParams.context,
+                        };
+                    }),
                 );
 
                 const updatePosition$ = this.overlayRef$.pipe(
@@ -143,21 +143,21 @@ export class NgxOverlayComponent implements OnChanges {
                     switchMap(overlayRef => {
                         overlayRef.updatePosition();
                         return EMPTY;
-                    })
+                    }),
                 );
 
                 return info$.pipe(
-                    mergeWith(updatePosition$)
+                    mergeWith(updatePosition$),
                 );
             }),
-            shareReplay({ bufferSize: 1, refCount: false })
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
 
         this.isVisible$ = this.overlayInfos$.pipe(
             map(Boolean),
             startWith(false),
-            distinctUntilChanged()
+            distinctUntilChanged(),
         );
     }
 
@@ -190,15 +190,21 @@ export class NgxOverlayComponent implements OnChanges {
         this._positions = typeof value === 'string' ? NgxOverlayConnectionPositionPair.parse(value) : value;
     }
 
-    /** Si pas null, sera utilisé quand isMobile est vrai. Si null et si isMobile est vrai,
+    /**
+     * Si pas null, sera utilisé quand isMobile est vrai. Si null et si isMobile est vrai,
      *  alors c'est la valeur 'start top start top' qui est utilisée.
-     * */
+     */
     @Input()
     public set positionsForMobile(value: NgxOverlayConnectionPositionPair[] | string) {
         this._positionsForMobile = typeof value === 'string' ? NgxOverlayConnectionPositionPair.parse(value) : value;
     }
 
-    /** Affiche le dialog. */
+    /**
+     * Affiche le dialog.
+     * @param eventOrOffsetX The mouse event used as origin, or the horizontal offset.
+     * @param offsetY The vertical offset.
+     * @param context The context passed to the overlay content.
+     */
     public show(eventOrOffsetX?: MouseEvent | number, offsetY?: number, context?: unknown): void {
         if (typeof eventOrOffsetX === 'number') {
             this.show$.next({ offsetX: eventOrOffsetX, offsetY, context });

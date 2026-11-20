@@ -1,2 +1,2 @@
-export * from './search-container.component';
 export { NgxSearchContainerIntl, provideNgxSearchContainer } from './providers';
+export * from './search-container.component';

@@ -1,10 +1,10 @@
 import { DestroyRef, Directive, ElementRef, inject, Input } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { fromEvent, Observable, of, switchMap, take, takeUntil, timer } from 'rxjs';
+import { fromEvent, type Observable, of, switchMap, take, takeUntil, timer } from 'rxjs';
 
 @Directive({
     selector: '[ngx-tooltip]',
-    standalone: true
+    standalone: true,
 })
 export class NgxTooltipDirective {
     // eslint-disable-next-line @angular-eslint/no-input-rename
@@ -16,7 +16,6 @@ export class NgxTooltipDirective {
     private destroyRef = inject(DestroyRef);
 
     public constructor() {
-
         const triggerElement = this.elementRef.nativeElement;
 
         // Install global CSS if not already present
@@ -41,10 +40,10 @@ export class NgxTooltipDirective {
         fromEvent<MouseEvent>(triggerElement, 'mouseenter').pipe(
             switchMap(() => timer(this.delay).pipe(
                 take(1),
-                switchMap(() => this.openTooltip$ ? this.openTooltip$(triggerElement) : of(undefined as void)),
-                takeUntil(leave$)
+                switchMap(() => this.openTooltip$ ? this.openTooltip$(triggerElement) : of(undefined)),
+                takeUntil(leave$),
             )),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe();
     }
 }

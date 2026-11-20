@@ -1,11 +1,11 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, EventEmitter, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { type BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, EventEmitter, inject, Input, type OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AbstractControl } from '@angular/forms';
+import type { AbstractControl } from '@angular/forms';
 import { MatIconButton } from '@angular/material/button';
 import { DateAdapter } from '@angular/material/core';
-import { MatDatepicker, MatDateRangeInput, MatDateRangePicker } from '@angular/material/datepicker';
-import { MatFormFieldControl } from '@angular/material/form-field';
+import { type MatDatepicker, MatDateRangeInput, type MatDateRangePicker } from '@angular/material/datepicker';
+import type { MatFormFieldControl } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { set } from 'date-fns';
@@ -22,8 +22,8 @@ import { NgxDatePickerIntl } from '../providers';
     imports: [
         MatIcon,
         MatIconButton,
-        MatTooltip
-    ]
+        MatTooltip,
+    ],
 })
 export class NgxDatepickerButtonsComponent implements OnInit {
     @Output() public readonly dateChange = new EventEmitter<Date>();
@@ -72,14 +72,14 @@ export class NgxDatepickerButtonsComponent implements OnInit {
                     if (this.forInput && ((this.forInput instanceof MatDateRangeInput && !this.forInput.getStartValue()) || !this.forInput.value)) {
                         this.forPicker.select(new Date());
                     }
-                })
+                }),
             )),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe();
 
         if (this.forInput.ngControl?.valueChanges) {
             this.forInput.ngControl.valueChanges.pipe(
-                takeUntilDestroyed(this.destroyRef)
+                takeUntilDestroyed(this.destroyRef),
             ).subscribe(() => {
                 this.changeDetectorRef.markForCheck();
             });

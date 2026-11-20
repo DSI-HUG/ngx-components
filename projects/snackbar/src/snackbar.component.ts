@@ -1,6 +1,6 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { type AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, EventEmitter, HostListener, inject, Input, type OnDestroy, type OnInit, Output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { debounce, delay, Subject, Subscription, take, tap, timer } from 'rxjs';
+import { debounce, delay, Subject, type Subscription, take, tap, timer } from 'rxjs';
 
 interface Animation {
     before: CSSStyleDeclaration;
@@ -16,7 +16,7 @@ interface Animation {
     selector: 'ngx-snackbar',
     styleUrls: ['./snackbar.component.scss'],
     template: '<ng-content></ng-content>',
-    standalone: true
+    standalone: true,
 })
 export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
     /**
@@ -26,7 +26,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /**
      * callback used to negate the boolean responsible for the presence of the snackbar on the dom (see demo)
-    */
+     */
     // eslint-disable-next-line @angular-eslint/no-output-on-prefix
     @Output() public readonly onAnimationDone = new EventEmitter();
 
@@ -109,7 +109,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
             bottom: false,
             left: false,
             right: false,
-            top: false
+            top: false,
         };
 
         // set _alignments
@@ -126,12 +126,8 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /**
      * Creates an instance of SnackbarComponent.
-     *
-     * @param elementRef
-     * @param renderer
      */
     public constructor() {
-
         this.host = this.elementRef.nativeElement;
 
         if (!NgxSnackbarComponent.INSTANCES) {
@@ -148,7 +144,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
         };
 
         this.animate$sub = this.animate$.pipe(
-            tap(animation => applyParams(animation.before)),
+            tap(animation => { applyParams(animation.before); }),
             delay(1),
             tap(animation => {
                 this.host.style.transitionDuration = `${animation.duration}ms`;
@@ -156,9 +152,9 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.host.style.transitionProperty = Object.keys(animation.before).join(',');
             }),
             debounce(animation => timer(animation.delay || 1)),
-            tap(animation => applyParams(animation.after)),
+            tap(animation => { applyParams(animation.after); }),
             debounce(animation => timer(animation.duration)),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe(() => {
             this.host.style.transitionDuration = '';
             this.host.style.transitionTimingFunction = '';
@@ -168,8 +164,6 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /**
      * used to recalculate the position of the snackbar on the X axis when resizing / changing from landscape to portrait and vice versa
-     *
-     * @param event
      */
     @HostListener('window:resize', [])
     public onResize(): void {
@@ -226,8 +220,8 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
                 }
             }),
             delay(this.leaveAnimationDuration),
-            takeUntilDestroyed(this.destroyRef)
-        ).subscribe(() => this.onAnimationDone.emit());
+            takeUntilDestroyed(this.destroyRef),
+        ).subscribe(() => { this.onAnimationDone.emit(); });
     }
 
     /**
@@ -254,8 +248,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /**
      * emit animation done
-     *
-     * @param event
+     * @param event The animation event.
      */
     protected animationDone(event: Event): void {
         this.onAnimationDone.emit(event);
@@ -273,8 +266,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /**
      * compute cumulated height of all snackbars, precedent instance height, width and height of the innerContainer
-     *
-     * @return cumulated height of all snackbars, precedent instance height, width and height of the innerContainer
+     * @returns cumulated height of all snackbars, precedent instance height, width and height of the innerContainer
      */
     private computePosition(): { innerContainerWidth: number; innerContainerHeight: number; precedentInstanceHeight: number; computedHeight: number } {
         // Inner container
@@ -314,7 +306,7 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
             innerContainerWidth,
             innerContainerHeight,
             precedentInstanceHeight,
-            computedHeight
+            computedHeight,
         };
     }
 
@@ -322,53 +314,51 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
      * set the final position of the snackbar
      */
     private setPosition(): void {
-
         const { innerContainerWidth, innerContainerHeight, computedHeight } = this.computePosition();
 
         if (this.anchor === 'left') {
-            this.host.style.left = `${2}%`;
-            this.host.style.bottom = `calc(${33}% + ${computedHeight}px)`;
+            this.host.style.left = '2%';
+            this.host.style.bottom = `calc(33% + ${computedHeight}px)`;
         }
         if (this.anchor === 'right') {
-            this.host.style.left = `calc(${98}% - ${innerContainerWidth}px)`;
-            this.host.style.bottom = `calc(${33}% + ${computedHeight}px)`;
+            this.host.style.left = `calc(98% - ${innerContainerWidth}px)`;
+            this.host.style.bottom = `calc(33% + ${computedHeight}px)`;
         }
         if (this.anchor === 'top') {
-            this.host.style.left = `calc(${50}% - ${innerContainerWidth / 2}px )`;
-            this.host.style.bottom = `calc(${92}% - ${innerContainerHeight}px)`;
+            this.host.style.left = `calc(50% - ${innerContainerWidth / 2}px )`;
+            this.host.style.bottom = `calc(92% - ${innerContainerHeight}px)`;
         }
         if (this.anchor === 'bottom') {
-            this.host.style.left = `calc(${50}% - ${innerContainerWidth / 2}px )`;
-            this.host.style.bottom = `calc(${2}% + ${computedHeight}px)`;
+            this.host.style.left = `calc(50% - ${innerContainerWidth / 2}px )`;
+            this.host.style.bottom = `calc(2% + ${computedHeight}px)`;
         }
 
         if (this.anchor === 'bottom-left') {
-            this.host.style.left = `${2}%`;
-            this.host.style.bottom = `calc(${2}% + ${computedHeight}px)`;
+            this.host.style.left = '2%';
+            this.host.style.bottom = `calc(2% + ${computedHeight}px)`;
         }
         if (this.anchor === 'bottom-right') {
-            this.host.style.left = `calc(${98}% - ${innerContainerWidth}px)`;
-            this.host.style.bottom = `calc(${2}% + ${computedHeight}px)`;
+            this.host.style.left = `calc(98% - ${innerContainerWidth}px)`;
+            this.host.style.bottom = `calc(2% + ${computedHeight}px)`;
         }
         if (this.anchor === 'left-top') {
-            this.host.style.left = `${2}%`;
-            this.host.style.bottom = `calc(${92}% - ${innerContainerHeight}px - ${computedHeight}px)`;
+            this.host.style.left = '2%';
+            this.host.style.bottom = `calc(92% - ${innerContainerHeight}px - ${computedHeight}px)`;
         }
         if (this.anchor === 'right-top') {
-            this.host.style.left = `calc(${98}% - ${innerContainerWidth}px)`;
-            this.host.style.bottom = `calc(${92}% - ${innerContainerHeight}px - ${computedHeight}px)`;
+            this.host.style.left = `calc(98% - ${innerContainerWidth}px)`;
+            this.host.style.bottom = `calc(92% - ${innerContainerHeight}px - ${computedHeight}px)`;
         }
-
     }
 
     /**
-     * recalculate X position for the snackbar (see @HostListener)
+     * recalculate X position for the snackbar (see `@HostListener`)
      */
     private setNewWidth(): void {
         const { innerContainerWidth } = this.computePosition();
 
         if (this.anchor === 'top' || this.anchor === 'bottom') {
-            this.elementRef.nativeElement.style.left = `calc(${50}% - ${innerContainerWidth / 2}px )`;
+            this.elementRef.nativeElement.style.left = `calc(50% - ${innerContainerWidth / 2}px )`;
         }
     }
 
@@ -379,11 +369,9 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
      * to cause unexpected behavior (understand bug)
      * there is also a known bug, if you close a snackbar which share anchor and container with an other one created at the same moment
      * adaptation of the position will not be performed correctly, see demo for more information about how to avoid this behavior
-     *
-     * @param height
+     * @param height The height of the disposed snackbar.
      */
     private launchAdaptAnimation(height: number): void {
-
         let direction = 1;
         if (this._alignments.top) {
             direction = -1;
@@ -394,13 +382,13 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.animate$.next({
             before: {
-                transform: `${transform}`
+                transform: transform,
             },
             after: {
-                transform: `matrix(1,0,0,1,0,${sixth + ((height + this.marginTop) * direction)})`
+                transform: `matrix(1,0,0,1,0,${sixth + ((height + this.marginTop) * direction)})`,
             },
             duration: this.adaptAnimationDuration,
-            easing: 'ease'
+            easing: 'ease',
         } as Animation);
     }
 
@@ -416,15 +404,15 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.animate$.next({
             before: {
                 opacity: '0',
-                transform: `translateY(${direction * 200}%)`
+                transform: `translateY(${direction * 200}%)`,
             },
             after: {
                 opacity: '1',
-                transform: 'translateY(0)'
+                transform: 'translateY(0)',
             },
             delay: this.delay,
             duration: this.enterAnimationDuration,
-            easing: 'ease'
+            easing: 'ease',
         } as Animation);
     }
 
@@ -434,13 +422,13 @@ export class NgxSnackbarComponent implements OnInit, AfterViewInit, OnDestroy {
     private launchLeaveAnimation(): void {
         this.animate$.next({
             before: {
-                opacity: '1'
+                opacity: '1',
             },
             after: {
-                opacity: '0'
+                opacity: '0',
             },
             duration: this.leaveAnimationDuration,
-            easing: 'ease'
+            easing: 'ease',
         } as Animation);
     }
 }

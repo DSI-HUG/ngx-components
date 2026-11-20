@@ -1,12 +1,12 @@
-import { ComponentType, ConnectedPosition } from '@angular/cdk/overlay';
+import type { ComponentType, ConnectedPosition } from '@angular/cdk/overlay';
 import { inject } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, type MatDialogRef } from '@angular/material/dialog';
 import { subscribeWith } from '@hug/ngx-core';
 import { merge } from 'lodash-es';
-import { debounceTime, delay, EMPTY, filter, fromEvent, map, mergeWith, Observable, shareReplay, Subject, switchMap, take, tap, withLatestFrom } from 'rxjs';
+import { debounceTime, delay, EMPTY, filter, fromEvent, map, mergeWith, type Observable, shareReplay, Subject, switchMap, take, tap, withLatestFrom } from 'rxjs';
 
-import { NgxTooltipConfig } from './tooltip.model';
-import { NgxTooltipComponentInterface } from './tooltip-component.interface';
+import type { NgxTooltipConfig } from './tooltip.model';
+import type { NgxTooltipComponentInterface } from './tooltip-component.interface';
 
 export abstract class NgxTooltipService<D, T extends NgxTooltipComponentInterface> {
     protected close$ = new Subject<void>();
@@ -17,88 +17,86 @@ export abstract class NgxTooltipService<D, T extends NgxTooltipComponentInterfac
             originY: 'bottom',
             overlayX: 'center',
             overlayY: 'top',
-            offsetY: 20
+            offsetY: 20,
         },
         {
             originX: 'center',
             originY: 'top',
             overlayX: 'center',
             overlayY: 'bottom',
-            offsetY: -20
+            offsetY: -20,
         },
         {
             originX: 'start',
             originY: 'center',
             overlayX: 'end',
             overlayY: 'center',
-            offsetX: -20
+            offsetX: -20,
         },
         {
             originX: 'end',
             originY: 'center',
             overlayX: 'start',
             overlayY: 'top',
-            offsetX: 20
+            offsetX: 20,
         },
         {
             originX: 'start',
             originY: 'bottom',
             overlayX: 'start',
             overlayY: 'top',
-            offsetY: 20
+            offsetY: 20,
         },
         {
             originX: 'start',
             originY: 'top',
             overlayX: 'start',
             overlayY: 'bottom',
-            offsetY: -20
+            offsetY: -20,
         },
         {
             originX: 'end',
             originY: 'bottom',
             overlayX: 'end',
             overlayY: 'top',
-            offsetY: 20
+            offsetY: 20,
         },
         {
             originX: 'end',
             originY: 'top',
             overlayX: 'end',
             overlayY: 'bottom',
-            offsetY: -20
+            offsetY: -20,
         },
         {
             originX: 'start',
             originY: 'top',
             overlayX: 'start',
-            overlayY: 'top'
-        }
+            overlayY: 'top',
+        },
     ];
 
     protected dialog = inject(MatDialog);
 
     public constructor(private tooltipConfig?: MatDialogConfig<D>) {
-        if (!this.tooltipConfig) {
-            this.tooltipConfig = new MatDialogConfig();
-        }
+        this.tooltipConfig ??= new MatDialogConfig();
     }
 
     public open$(triggerElement: HTMLElement, tooltipData: D, tooltipConfig?: NgxTooltipConfig<D>): Observable<void> {
         this.close();
 
         const additionalPanelClass = (tooltipConfig?.panelClass && tooltipConfig.panelClass instanceof Array && tooltipConfig.panelClass)
-            || (tooltipConfig?.panelClass && typeof tooltipConfig?.panelClass === 'string' && [tooltipConfig?.panelClass])
-            || new Array<string>();
+          || (tooltipConfig?.panelClass && typeof tooltipConfig?.panelClass === 'string' && [tooltipConfig?.panelClass])
+          || new Array<string>();
 
         const config = merge(tooltipConfig, {
             hasBackdrop: false,
-            panelClass: ['ngx-tooltip-overlay', 'no-padding-dialog', 'ngx-tooltip-opening', ...additionalPanelClass]
+            panelClass: ['ngx-tooltip-overlay', 'no-padding-dialog', 'ngx-tooltip-opening', ...additionalPanelClass],
         } as NgxTooltipConfig<D>);
 
 
         const dialogRef$ = this.openRef$(tooltipData, triggerElement, config).pipe(
-            shareReplay({ bufferSize: 1, refCount: false })
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
         const checkClose$ = dialogRef$.pipe(
@@ -111,19 +109,19 @@ export abstract class NgxTooltipService<D, T extends NgxTooltipComponentInterfac
                 const mouseLeaveTooltip$ = tooltipElement ? fromEvent(tooltipElement, 'mouseleave') : EMPTY;
                 const set$ = mouseEnterTooltip$.pipe(
                     mergeWith(mouseEnterTrigger$),
-                    map(() => false)
+                    map(() => false),
                 );
                 const reset$ = mouseLeaveTooltip$.pipe(
                     mergeWith(mouseLeaveTrigger$),
-                    map(() => true)
+                    map(() => true),
                 );
                 return set$.pipe(
                     mergeWith(reset$),
                     debounceTime(config.hideDelay || 200),
                     filter(Boolean),
-                    map(() => undefined as void)
+                    map(() => undefined),
                 );
-            })
+            }),
         );
 
         const close$ = checkClose$.pipe(
@@ -131,13 +129,13 @@ export abstract class NgxTooltipService<D, T extends NgxTooltipComponentInterfac
             withLatestFrom(dialogRef$),
             tap(([_, dialogRef]) => dialogRef.removePanelClass('ngx-tooltip-opened')),
             delay(300),
-            tap(([response, dialogRef]) => dialogRef.close(response))
+            tap(([response, dialogRef]) => { dialogRef.close(response); }),
         );
 
         return dialogRef$.pipe(
             switchMap(dialogRef => dialogRef.afterClosed()),
             subscribeWith(close$),
-            shareReplay({ bufferSize: 1, refCount: false })
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
     }
 
@@ -149,13 +147,13 @@ export abstract class NgxTooltipService<D, T extends NgxTooltipComponentInterfac
         return this.loadComponent$().pipe(
             take(1),
             switchMap(component => {
-                const config = merge({}, this.tooltipConfig, tooltipConfig || {} as Partial<MatDialogConfig<D>>);
+                const config = merge({}, this.tooltipConfig, tooltipConfig || {});
                 config.data = tooltipData || {} as D;
                 config.minWidth = config.minWidth || '100px';
 
-                const dialogRef = this.dialog.open<NgxTooltipComponentInterface, D, void>(component, config);
+                const dialogRef = this.dialog.open<NgxTooltipComponentInterface, D, undefined>(component, config);
                 return dialogRef.afterOpened().pipe(
-                    map(() => dialogRef)
+                    map(() => dialogRef),
                 );
             }),
             tap(tooltipRef => {
@@ -239,7 +237,7 @@ export abstract class NgxTooltipService<D, T extends NgxTooltipComponentInterfac
 
                         tooltipRef.updatePosition({
                             left: `${left}px`,
-                            top: `${top}px`
+                            top: `${top}px`,
                         });
                         tooltipRef.addPanelClass('ngx-tooltip-opened');
 
@@ -248,7 +246,7 @@ export abstract class NgxTooltipService<D, T extends NgxTooltipComponentInterfac
                 } else {
                     console.error('A tooltip component must inherits from TooltipComponent directive. Position can\'t be updated');
                 }
-            })
+            }),
         );
     }
 

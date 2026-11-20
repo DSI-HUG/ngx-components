@@ -28,7 +28,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test numeric-stepper",
-        "test:ci": "ng test numeric-stepper --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test numeric-stepper --watch=false",
         "build:ng": "ng build numeric-stepper -c=production",
         "build": "nx build:ng @hug/ngx-numeric-stepper --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-numeric-stepper --verbose",
@@ -43,7 +43,7 @@
         "rxjs": "^7.8.2"
     },
     "dependencies": {
-        "tslib": "^2.8.1"
+        "tslib": "^2.9.1"
     },
     "publishConfig": {
         "access": "public"

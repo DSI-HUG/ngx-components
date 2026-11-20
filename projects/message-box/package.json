@@ -28,7 +28,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test message-box",
-        "test:ci": "ng test message-box --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test message-box --watch=false",
         "build:ng": "ng build message-box -c=production",
         "build": "nx build:ng @hug/ngx-message-box --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-message-box --verbose",
@@ -41,7 +41,7 @@
         "@angular/material": ">=21 <22"
     },
     "dependencies": {
-        "tslib": "^2.8.1"
+        "tslib": "^2.9.1"
     },
     "publishConfig": {
         "access": "public"

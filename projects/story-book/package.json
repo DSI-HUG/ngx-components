@@ -8,11 +8,11 @@
     },
     "devDependencies": {
         "@compodoc/compodoc": "^1.1.32",
-        "@storybook/addon-links": "^10.1.10",
-        "@storybook/addon-themes": "^10.1.10",
-        "@storybook/angular": "^10.1.10",
-        "storybook": "^10.1.10",
-        "eslint-plugin-storybook": "^10.1.10",
-        "@storybook/addon-docs": "^10.1.10"
+        "@storybook/addon-links": "^10.6.8",
+        "@storybook/addon-themes": "^10.6.8",
+        "@storybook/angular": "^10.6.8",
+        "storybook": "^10.6.8",
+        "eslint-plugin-storybook": "^10.6.8",
+        "@storybook/addon-docs": "^10.6.8"
     }
 }

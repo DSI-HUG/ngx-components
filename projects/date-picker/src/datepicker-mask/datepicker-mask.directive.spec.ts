@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, LOCALE_ID } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { type ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -16,7 +16,7 @@ import { NgxDatepickerMaskDirective } from './datepicker-mask.directive';
             (dateChange)="dateChanges.push($event.value)" (dateInput)="dateInputs.push($event.value)" />
         <mat-datepicker #picker></mat-datepicker>
     `,
-    imports: [ReactiveFormsModule, MatDatepickerModule, NgxDatepickerMaskDirective]
+    imports: [ReactiveFormsModule, MatDatepickerModule, NgxDatepickerMaskDirective],
 })
 class HostComponent {
     public readonly control = new FormControl<Date | null>(new Date(2025, 11, 24));
@@ -43,13 +43,13 @@ describe('NgxDatepickerMaskDirective dateChange', () => {
                 { provide: LOCALE_ID, useValue: 'fr-CH' },
                 { provide: MAT_DATE_LOCALE, useValue: frCH },
                 { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
-                { provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] }
-            ]
+                { provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] },
+            ],
         }).compileComponents();
         fixture = TestBed.createComponent(HostComponent);
         fixture.detectChanges();
         await fixture.whenStable();
-        input = (fixture.nativeElement as HTMLElement).querySelector('input')!;
+        input = (fixture.nativeElement as HTMLElement).getElementsByTagName('input')[0];
         input.focus();
         input.dispatchEvent(new FocusEvent('focus'));
         input.value = '24.12.2025';

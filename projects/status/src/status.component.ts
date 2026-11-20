@@ -6,7 +6,7 @@ import { NgxSnackbarComponent } from '@hug/ngx-snackbar';
 import { catchError, EMPTY, Subject, switchMap, throttleTime } from 'rxjs';
 
 import { NgxStatusIntl } from './providers';
-import { NgxStatus, NgxStatusAction, NgxStatusType } from './status.model';
+import type { NgxStatus, NgxStatusAction, NgxStatusType } from './status.model';
 import { NgxStatusDetailDialogService } from './status-detail/status-detail-dialog.service';
 
 @Component({
@@ -19,11 +19,10 @@ import { NgxStatusDetailDialogService } from './status-detail/status-detail-dial
     imports: [
         MatButton,
         MatIcon,
-        NgxSnackbarComponent
-    ]
+        NgxSnackbarComponent,
+    ],
 })
 export class NgxStatusComponent {
-
     public get status(): NgxStatus | undefined {
         return this._status;
     }
@@ -48,16 +47,15 @@ export class NgxStatusComponent {
     private _status?: NgxStatus;
 
     public constructor() {
-
         this.displayDetailedStatus$.pipe(
             throttleTime(1000),
             switchMap(status => this.statusDetailDialogService.open$(status).pipe(
-                catchError(err => {
+                catchError((err: unknown) => {
                     console.error(this.intl?.openStatusDetailDialogFailed ?? 'Failed to open status detail dialog', err);
                     return EMPTY;
-                })
+                }),
             )),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe();
     }
 
