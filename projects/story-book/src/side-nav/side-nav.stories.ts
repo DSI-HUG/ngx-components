@@ -22,19 +22,19 @@ import { NgxMainBarComponent } from '@hug/ngx-layout/main-bar';
 import { NgxPanelComponent } from '@hug/ngx-layout/panel';
 import { NgxPanelBarComponent } from '@hug/ngx-layout/panel-bar';
 import { NgxSearchBarContainerComponent, NgxSearchInputDirective } from '@hug/ngx-layout/search-bar-container';
-import { NavActionComponent, NavButtonComponent, NavSectionComponent, SideNavComponent } from '@hug/ngx-layout/side-nav';
+import { NgxNavActionComponent, NgxNavButtonComponent, NgxNavSectionComponent, NgxSideNavComponent } from '@hug/ngx-layout/side-nav';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 
-const meta: Meta<SideNavComponent> = {
+const meta: Meta<NgxSideNavComponent> = {
     title: 'Components/Layout-m3/SideNav',
-    component: SideNavComponent,
+    component: NgxSideNavComponent,
     decorators: [
         moduleMetadata({
             imports: [
-                NavActionComponent,
-                NavButtonComponent,
-                NavSectionComponent,
+                NgxNavActionComponent,
+                NgxNavButtonComponent,
+                NgxNavSectionComponent,
                 MatIcon,
                 FormsModule,
                 MatIcon,
@@ -83,7 +83,7 @@ const meta: Meta<SideNavComponent> = {
     }
 };
 export default meta;
-type Story = StoryObj<SideNavComponent>;
+type Story = StoryObj<NgxSideNavComponent>;
 
 export const defaultStory: Story = {
     parameters: {

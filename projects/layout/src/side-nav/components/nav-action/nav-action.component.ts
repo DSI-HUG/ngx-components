@@ -16,7 +16,7 @@ import { MatIcon } from '@angular/material/icon';
     }
     /* eslint-enable @typescript-eslint/naming-convention */
 })
-export class NavActionComponent {
+export class NgxNavActionComponent {
     public active = input<boolean>(false);
     public outline = input<boolean>(false);
 }
