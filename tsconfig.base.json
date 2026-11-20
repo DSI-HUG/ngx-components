@@ -2,7 +2,6 @@
     "extends": "./tsconfig.hug.json",
     "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": ".",
         "strict": true,
         "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": true,
@@ -24,58 +23,58 @@
         ],
         "paths": {
             "@hug/ngx-core": [
-                "dist/ngx-core"
+                "./dist/ngx-core"
             ],
             "@hug/ngx-date-picker": [
-                "dist/ngx-date-picker"
+                "./dist/ngx-date-picker"
             ],
             "@hug/ngx-layout": [
-                "dist/ngx-layout"
+                "./dist/ngx-layout"
             ],
             "@hug/ngx-list-loader": [
-                "dist/ngx-list-loader"
+                "./dist/ngx-list-loader"
             ],
             "@hug/ngx-message-box/m2": [
-                "dist/ngx-message-box/m2"
+                "./dist/ngx-message-box/m2"
             ],
             "@hug/ngx-message-box-dialog": [
-                "dist/ngx-message-box-dialog"
+                "./dist/ngx-message-box-dialog"
             ],
             "@hug/ngx-numeric-stepper/m2": [
-                "dist/ngx-numeric-stepper/m2"
+                "./dist/ngx-numeric-stepper/m2"
             ],
             "@hug/ngx-overlay": [
-                "dist/ngx-overlay"
+                "./dist/ngx-overlay"
             ],
             "@hug/ngx-search-container": [
-                "dist/ngx-search-container"
+                "./dist/ngx-search-container"
             ],
             "@hug/ngx-sidenav": [
-                "dist/ngx-sidenav"
+                "./dist/ngx-sidenav"
             ],
             "@hug/ngx-sidenav/m2": [
-                "dist/ngx-sidenav/m2"
+                "./dist/ngx-sidenav/m2"
             ],
             "@hug/ngx-snackbar/m2": [
-                "dist/ngx-snackbar/m2"
+                "./dist/ngx-snackbar/m2"
             ],
             "@hug/ngx-splitter": [
-                "dist/ngx-splitter"
+                "./dist/ngx-splitter"
             ],
             "@hug/ngx-status": [
-                "dist/ngx-status"
+                "./dist/ngx-status"
             ],
             "@hug/ngx-time-picker/m2": [
-                "dist/ngx-time-picker/m2"
+                "./dist/ngx-time-picker/m2"
             ],
             "@hug/ngx-tooltip": [
-                "dist/ngx-tooltip"
+                "./dist/ngx-tooltip"
             ],
             "@hug/ngx-user-card/m2": [
-                "dist/ngx-user-card/m2"
+                "./dist/ngx-user-card/m2"
             ],
             "@hug/ngx-user-tooltip": [
-                "dist/ngx-user-tooltip"
+                "./dist/ngx-user-tooltip"
             ]
         }
     },
