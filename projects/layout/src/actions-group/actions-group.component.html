@@ -7,7 +7,7 @@
             [matTooltip]="item.label()"
             [matMenuTriggerFor]="item.menu() ?? null"
             [class.main-action]="withMainAction() && $index === 0"
-            (click)="item.execute.emit()">
+            (click)="item.click.emit()">
             <mat-icon>{{ item.icon() }}</mat-icon>
         </button>
     }
@@ -28,7 +28,7 @@
                 mat-menu-item
                 [ariaLabel]="item.label()"
                 [disabled]="item.disabled()"
-                (click)="item.execute.emit()"
+                (click)="item.click.emit()"
                 [matMenuTriggerFor]="item.menu() ?? null">
                 <mat-icon>{{ item.icon() }}</mat-icon>
                 <span>{{ item.label() }}</span>

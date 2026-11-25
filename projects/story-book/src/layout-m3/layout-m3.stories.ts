@@ -136,6 +136,7 @@ type LayoutStoryProps = Story['args'] & {
     selectedDateRangeLabel: () => string;
     originSelectedLabel: () => string;
     typesSelectedLabel: () => string;
+    showAlert: (label: string) => void;
     buttonResetClicked: () => void;
     applyFilters: () => void;
     cancelFilters: () => void;
@@ -284,6 +285,11 @@ const props = (args: Story['args']): LayoutStoryProps => ({
     typesSelectedLabel(): string {
         return this.types.join(', ');
     },
+
+    showAlert: (label: string): void => {
+        alert(label);
+    },
+
     buttonResetClicked(): void {
         this.selectedPeriod = [];
         this.selectedStartDate = undefined;
