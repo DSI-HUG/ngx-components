@@ -13,5 +13,5 @@ export class NgxActionDirective {
     public readonly disabled = input<boolean>(false);
     public readonly menu = input<MatMenuPanel>();
 
-    public readonly execute = output<void>();
+    public readonly click = output<void>();
 }
