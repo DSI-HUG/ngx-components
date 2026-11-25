@@ -1,3 +1,13 @@
+## 22.0.1-alpha.1 (2026-11-20)
+
+### 🚀 Features
+
+- **filters:** add disabled state, integrate Matmenu, add withMainAction... ([#163](https://github.com/DSI-HUG/ngx-components/pull/163))
+
+### ❤️ Thank You
+
+- Eshtea @Eshtea
+
 ## 22.0.1-alpha.0 (2026-11-18)
 
 ### 🌱 Dependencies
