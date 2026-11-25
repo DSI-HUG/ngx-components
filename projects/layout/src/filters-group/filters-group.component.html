@@ -208,7 +208,7 @@
         cdkConnectedOverlay
         [cdkConnectedOverlayOrigin]="overlayOrigin"
         [cdkConnectedOverlayOpen]="overlayOpen"
-        (detach)="this.overlayOpen.set(false)"
+        (detach)="this.overlayOpen.set(false); this.moreFiltersOverlay.set(false)"
         [cdkConnectedOverlayHasBackdrop]="true"
         (backdropClick)="closeOnBackdropClick()"
         cdkConnectedOverlayPanelClass="filters-group--overlay"
