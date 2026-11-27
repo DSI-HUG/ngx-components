@@ -125,6 +125,8 @@ export class NgxFiltersGroupComponent {
         return this.allFilterViews().slice(0, visibleFiltersEndIndex);
     });
 
+    protected readonly activeVisibleFilters = computed(() => this.visibleFilters().filter(f => f.active).map(f => f.source));
+
     protected readonly invisibleFilters = computed(() => {
         const visibleFiltersEndIndex = this.visibleFiltersEndIndex();
         if (visibleFiltersEndIndex < 0) {

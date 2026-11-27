@@ -44,13 +44,14 @@
 
     <section class="filter-container" #container>
         @if (this.visibleFilters().length) {
-            <mat-chip-listbox multiple>
-                @for (f of visibleFilters(); track $index) {
+            <mat-chip-listbox multiple [value]="activeVisibleFilters()">
+                @for (f of visibleFilters(); track f.source) {
                     @if (f.type === 'toggle') {
                         <mat-chip-option
                             selectable="true"
+                            [value]="f.source"
                             [selected]="f.active"
-                            (selectionChange)="f.source.active.set($event.selected)"
+                            (selectionChange)="$event.isUserInput && f.source.active.set($event.selected)"
                             [disabled]="f.source.disabled()">
                             @if (f.source.icon()) {
                                 <mat-icon matChipAvatar>{{ f.source.icon() }}</mat-icon>
@@ -60,6 +61,7 @@
                     } @else {
                         <mat-chip-option
                             [selectable]="false"
+                            [value]="f.source"
                             [selected]="f.active"
                             [class.filter-overlay-open]="isSameOverlay(f.templateRef)"
                             cdkOverlayOrigin
