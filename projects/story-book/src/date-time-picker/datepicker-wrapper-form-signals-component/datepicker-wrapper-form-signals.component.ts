@@ -1,5 +1,5 @@
 import { NgComponentOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, createEnvironmentInjector, effect, EnvironmentInjector, EnvironmentProviders, inject, Injector, input, LOCALE_ID, Provider, Signal, signal } from '@angular/core';
+import { Component, computed, createEnvironmentInjector, effect, EnvironmentInjector, type EnvironmentProviders, inject, type Injector, input, LOCALE_ID, type Provider, type Signal, signal } from '@angular/core';
 import { form, FormField } from '@angular/forms/signals';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatOption } from '@angular/material/core';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
@@ -7,8 +7,8 @@ import { MatSelect } from '@angular/material/select';
 import { DateFnsAdapter, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
 import { frCH } from 'date-fns/locale';
 
-import { buildNgxMatDateFormatsFactory, NgxDateFormat } from '../../../../core/src/providers/date-format.provider';
-import { DatePickerInputs } from '../date-picker/date-picker.component';
+import { buildNgxMatDateFormatsFactory, type NgxDateFormat } from '../../../../core/src/providers/date-format.provider';
+import type { DatePickerInputs } from '../date-picker/date-picker.component';
 import { DatePickerFormSignalsComponent } from '../date-picker-form-signals/date-picker-form-signals.component';
 
 type DateFormatOption = NgxDateFormat | 'MAT_DATE_FNS_FORMATS';
@@ -17,7 +17,6 @@ type DateFormatOption = NgxDateFormat | 'MAT_DATE_FNS_FORMATS';
     selector: 'datepicker-wrapper-form-signals',
     templateUrl: './datepicker-wrapper-form-signals.component.html',
     styleUrls: ['./datepicker-wrapper-form-signals.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MatFormField,
         MatLabel,
@@ -50,7 +49,7 @@ export class DatepickerWrapperFormSignalsComponent {
     private readonly parentInjector = inject(EnvironmentInjector);
 
     public constructor() {
-        effect(() => this.dateFormatModel.set(this.dateFormat()));
+        effect(() => { this.dateFormatModel.set(this.dateFormat()); });
 
         this.datePickerInjector = computed(() => {
             const df = this.dateFormatModel() || this.dateFormat();

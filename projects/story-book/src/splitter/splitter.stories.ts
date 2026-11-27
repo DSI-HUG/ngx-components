@@ -2,20 +2,22 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxSplitAreaDirective } from '../../../splitter/m2/split-area.directive';
 import { NgxSplitterComponent } from '../../../splitter/m2/splitter.component';
+import { m2Decorators } from '../m2-theme';
 
 const meta: Meta<NgxSplitterComponent> = {
     title: 'Components/Splitter',
     component: NgxSplitterComponent,
     decorators: [
+        ...m2Decorators,
         moduleMetadata({
             imports: [
-                NgxSplitAreaDirective
-            ]
-        })
+                NgxSplitAreaDirective,
+            ],
+        }),
     ],
     tags: ['autodocs'],
     argTypes: {
@@ -25,59 +27,59 @@ const meta: Meta<NgxSplitterComponent> = {
             options: ['horizontal', 'vertical'],
             table: {
                 type: { summary: 'NgxSplitterDirection' },
-                defaultValue: { summary: 'horizontal' }
-            }
+                defaultValue: { summary: 'horizontal' },
+            },
         },
         gutterSize: {
             description: 'Specifies the width of the gutter in pixels.',
             control: 'number',
             table: {
                 type: { summary: 'number' },
-                defaultValue: { summary: '10' }
-            }
+                defaultValue: { summary: '10' },
+            },
         },
         disabled: {
             description: 'Determines whether the splitter is active or disabled.',
             control: 'boolean',
             table: {
                 type: { summary: 'boolean' },
-                defaultValue: { summary: 'false' }
-            }
+                defaultValue: { summary: 'false' },
+            },
         },
         dragStart: {
             description: 'Event triggered when the user starts dragging the cursor.',
             action: 'dragStart',
             table: {
-                type: { summary: 'EventEmitter<void>' }
-            }
+                type: { summary: 'EventEmitter<void>' },
+            },
         },
         dragProgress: {
             description: 'Event triggered during the cursor drag, providing the progress as a percentage.',
             action: 'dragProgress',
             table: {
-                type: { summary: 'EventEmitter<number>' }
-            }
+                type: { summary: 'EventEmitter<number>' },
+            },
         },
         dragEnd: {
             description: 'Event triggered when the user stops dragging the cursor.',
             action: 'dragEnd',
             table: {
-                type: { summary: 'EventEmitter<void>' }
-            }
-        }
+                type: { summary: 'EventEmitter<void>' },
+            },
+        },
     },
     parameters: {
         docs: {
             description: {
-                component: 'The `NgxSplitterComponent` allows splitting a container into resizable parts either horizontally or vertically. It supports dynamic resizing, event callbacks during drag operations, and flexible gutter sizing.'
-            }
-        }
+                component: 'The `NgxSplitterComponent` allows splitting a container into resizable parts either horizontally or vertically. It supports dynamic resizing, event callbacks during drag operations, and flexible gutter sizing.',
+            },
+        },
     },
     args: {
         direction: 'horizontal',
         gutterSize: '10',
-        disabled: false
-    }
+        disabled: false,
+    },
 };
 export default meta;
 
@@ -87,9 +89,9 @@ export const standard: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This story demonstrates the standard usage of `NgxSplitterComponent`, where the container is split into two resizable areas in a horizontal direction. The first area takes 25% of the space, while the second area takes 75%.'
-            }
-        }
+                story: 'This story demonstrates the standard usage of `NgxSplitterComponent`, where the container is split into two resizable areas in a horizontal direction. The first area takes 25% of the space, while the second area takes 75%.',
+            },
+        },
     },
     render: args => ({
         props: args,
@@ -104,20 +106,20 @@ export const standard: Story = {
                 </ngx-split-area>
             </ngx-splitter>
         </section>
-        `
+        `,
     }),
     args: {
-        direction: 'horizontal'
-    }
+        direction: 'horizontal',
+    },
 };
 
 export const verticalSplit: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This story illustrates a vertical splitter, dividing the container into two areas. The first area occupies 25% of the height, while the second takes 75%.'
-            }
-        }
+                story: 'This story illustrates a vertical splitter, dividing the container into two areas. The first area occupies 25% of the height, while the second takes 75%.',
+            },
+        },
     },
     render: args => ({
         props: args,
@@ -128,20 +130,20 @@ export const verticalSplit: Story = {
                 <ngx-split-area size="75" minSizePixel="100">Area 2</ngx-split-area>
             </ngx-splitter>
         </section>
-        `
+        `,
     }),
     args: {
-        direction: 'vertical'
-    }
+        direction: 'vertical',
+    },
 };
 
 export const disabledSplitter: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'In this story, the splitter is disabled, preventing the user from resizing the areas.'
-            }
-        }
+                story: 'In this story, the splitter is disabled, preventing the user from resizing the areas.',
+            },
+        },
     },
     render: args => ({
         props: args,
@@ -152,34 +154,34 @@ export const disabledSplitter: Story = {
                 <ngx-split-area size="75" minSizePixel="100">Area 2</ngx-split-area>
             </ngx-splitter>
         </section>
-        `
+        `,
     }),
     args: {
-        disabled: true
-    }
+        disabled: true,
+    },
 };
 
 export const gutterSizeControl: Story = {
     decorators: [
         moduleMetadata({
             imports: [
-                MatButtonToggleGroup, MatButtonToggle
-            ]
-        })
+                MatButtonToggleGroup, MatButtonToggle,
+            ],
+        }),
     ],
     parameters: {
         docs: {
             description: {
-                story: 'This story showcases the ability to control the gutter size dynamically. Use the buttons to change the gutter size between predefined values.'
-            }
-        }
+                story: 'This story showcases the ability to control the gutter size dynamically. Use the buttons to change the gutter size between predefined values.',
+            },
+        },
     },
     render: args => ({
         props: {
             ...args,
             changeGutterSize(size: number): void {
                 this['gutterSize'] = size;
-            }
+            },
         },
         template: `
         <section class="splitter bigger">
@@ -197,21 +199,21 @@ export const gutterSizeControl: Story = {
                 </mat-button-toggle-group>
             </div>
         </section>
-        `
-    })
+        `,
+    }),
 };
 
 export const combinedSplitters: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This story presents a combination of two splitters: a vertical splitter nested inside a horizontal splitter. This allows creating a complex layout with resizable areas in both directions.'
-            }
-        }
+                story: 'This story presents a combination of two splitters: a vertical splitter nested inside a horizontal splitter. This allows creating a complex layout with resizable areas in both directions.',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
         <section class="splitter combined">
@@ -237,8 +239,8 @@ export const combinedSplitters: Story = {
                 </ngx-split-area>
             </ngx-splitter>
         </section>
-        `
-    })
+        `,
+    }),
 };
 
 
@@ -246,16 +248,16 @@ export const customizableSplitAreas: Story = {
     decorators: [
         moduleMetadata({
             imports: [
-                MatFormField, MatLabel, FormsModule, MatInput
-            ]
-        })
+                MatFormField, MatLabel, FormsModule, MatInput,
+            ],
+        }),
     ],
     parameters: {
         docs: {
             description: {
-                story: 'This story provides an example of how to customize the properties of each split area dynamically. It allows changing the size and minimum size of each area through input fields.'
-            }
-        }
+                story: 'This story provides an example of how to customize the properties of each split area dynamically. It allows changing the size and minimum size of each area through input fields.',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -287,7 +289,7 @@ export const customizableSplitAreas: Story = {
             },
             secondAreaMinSizeChanged(size: number): void {
                 this['secondAreaMinSize'] = size;
-            }
+            },
         },
         template: `
         <section class="splitter bigger">
@@ -325,6 +327,6 @@ export const customizableSplitAreas: Story = {
                 </div>
             </div>
         </section>
-        `
-    })
+        `,
+    }),
 };

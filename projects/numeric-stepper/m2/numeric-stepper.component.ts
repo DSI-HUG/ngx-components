@@ -1,23 +1,22 @@
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, ElementRef, EventEmitter, HostBinding, inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { type BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { ChangeDetectorRef, Component, DestroyRef, ElementRef, EventEmitter, HostBinding, inject, Input, type OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatFormFieldControl } from '@angular/material/form-field';
+import type { MatFormFieldControl } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
-import { filterMap, KeyCodes } from '@hug/ngx-core';
+import { filterMap, type KeyCodes } from '@hug/ngx-core';
 import { combineLatestWith, debounceTime, delay, filter, fromEvent, map, mergeWith, ReplaySubject, shareReplay, startWith, Subject, switchMap, tap, timer, withLatestFrom } from 'rxjs';
 
 export type NgxNumericStepperLayout = 'vertical' | 'horizontal' | 'horizontal-inlay';
 
 // TODO sdil refactor rxjs flows
 @Component({
-    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'ngx-numeric-stepper',
     styleUrls: ['./numeric-stepper.component.scss'],
     templateUrl: './numeric-stepper.component.html',
     imports: [
-        MatIcon
+        MatIcon,
     ],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class NgxNumericStepperComponent implements OnInit {
     private static TYPE_ERROR = 'Input element on the same mat-form-field must be type="number". With other input type, use increment or decrement events and implement your proper functions to change the value.';
@@ -103,7 +102,6 @@ export class NgxNumericStepperComponent implements OnInit {
                 }
 
                 this.topUp = this.topDown = inputBounds.top + (inputBounds.height - this.arrowSize) / 2 - bounds.top;
-
             } else if (this.layout === 'horizontal-inlay') {
                 this.heightShadow = Math.min(54, containerBounds?.height || formFieldBounds.height) + 4;
                 this.topShadow = containerBounds?.top ?? (inputBounds.top + (inputBounds.height - this.heightShadow) / 2 - 5) - bounds.top;
@@ -116,7 +114,6 @@ export class NgxNumericStepperComponent implements OnInit {
                 }
 
                 this.topUp = this.topDown = inputBounds.top + (inputBounds.height - this.arrowSize) / 2 - bounds.top;
-
             } else {
                 this.heightShadow = 90;
                 this.topShadow = inputBounds.top - bounds.top + (inputBounds.height - this.heightShadow) / 2;
@@ -170,7 +167,7 @@ export class NgxNumericStepperComponent implements OnInit {
                 return [inputElement, formFieldElement, containerElement] as const;
             }),
             filter(([inputElement, formFieldElement]) => !!formFieldElement && !!inputElement),
-            shareReplay({ bufferSize: 1, refCount: false })
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
         const step = (inputElement: HTMLInputElement, event: 'increment' | 'decrement', fn: 'stepUp' | 'stepDown'): void => {
@@ -206,16 +203,16 @@ export class NgxNumericStepperComponent implements OnInit {
                     step(inputElement, 'decrement', 'stepDown');
                 }
             }),
-            shareReplay({ bufferSize: 1, refCount: false })
+            shareReplay({ bufferSize: 1, refCount: false }),
         );
 
         const valueChange$ = linkedElements$.pipe(
             filterMap(([inputElement]) => inputElement),
-            switchMap(inputElement => fromEvent<void>(inputElement, 'input').pipe(
-                mergeWith(step$, fromEvent<void>(inputElement, 'paste'), fromEvent<void>(inputElement, 'keypress'))
+            switchMap(inputElement => fromEvent(inputElement, 'input').pipe(
+                mergeWith(step$, fromEvent(inputElement, 'paste'), fromEvent(inputElement, 'keypress')),
             )),
             debounceTime(50),
-            startWith(undefined)
+            startWith(undefined),
         );
 
         linkedElements$.pipe(
@@ -228,17 +225,17 @@ export class NgxNumericStepperComponent implements OnInit {
                 return fromEvent<MouseEvent>(element, 'mouseenter').pipe(
                     switchMap(() => valueChange$),
                     mergeWith(this.show$.pipe(
-                        delay(200)
+                        delay(200),
                     )),
-                    tap(() => calcPositions(inputElement, formFieldElement, containerElement)),
+                    tap(() => { calcPositions(inputElement, formFieldElement, containerElement); }),
                     switchMap(() => fromEvent<MouseEvent>(element, 'mouseleave')),
                     delay(400),
                     tap(() => {
                         formFieldElement?.removeAttribute('hover');
-                    })
+                    }),
                 );
             }),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe();
 
         linkedElements$.pipe(
@@ -252,7 +249,7 @@ export class NgxNumericStepperComponent implements OnInit {
                 }
                 return false;
             }),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe(event => {
             event.preventDefault();
             return false;
@@ -262,7 +259,7 @@ export class NgxNumericStepperComponent implements OnInit {
             combineLatestWith(this.validateArrows$),
             filterMap(([[inputElement]]) => inputElement),
             debounceTime(1),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe(inputElement => {
             if (inputElement.disabled) {
                 this.disableDown = true;
@@ -279,7 +276,7 @@ export class NgxNumericStepperComponent implements OnInit {
         });
 
         step$.pipe(
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe();
 
         if (this.showOnInit) {

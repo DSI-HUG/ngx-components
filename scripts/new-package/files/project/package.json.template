@@ -23,7 +23,7 @@
     "scripts": {
         "lint": "eslint . --fix",
         "test": "ng test <%= libName %>",
-        "test:ci": "ng test <%= libName %> --watch=false --browsers=ChromeHeadless",
+        "test:ci": "ng test <%= libName %> --watch=false",
         "build:ng": "ng build <%= libName %> -c=production",
         "build": "nx build:ng @hug/ngx-<%= libName %> --verbose",
         "release": "node -r @swc-node/register ../../scripts/release.ts --projects=@hug/ngx-<%= libName %> --verbose",

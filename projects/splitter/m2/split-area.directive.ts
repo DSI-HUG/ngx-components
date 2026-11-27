@@ -1,20 +1,19 @@
 /**
  * Created by rtr on 22.12.2016.
  */
-import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
-import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
+import { coerceNumberProperty, type NumberInput } from '@angular/cdk/coercion';
+import { Directive, ElementRef, HostBinding, inject, Input } from '@angular/core';
 
-import { NgxSplitterDirection } from './splitter-direction-type';
+import type { NgxSplitterDirection } from './splitter-direction-type';
 
 /**
  * Directive representing a panel in a Splitter Component
  */
 @Directive({
     selector: 'ngx-split-area',
-    standalone: true
+    standalone: true,
 })
 export class NgxSplitAreaDirective {
-
     @HostBinding('style.order')
     public order?: number;
 
@@ -33,7 +32,7 @@ export class NgxSplitAreaDirective {
 
     public get size(): number | undefined {
         const parentElement = this.elementRef.nativeElement.parentElement;
-        const parentSizeInPixels = parentElement && (this.direction === 'horizontal' ? parentElement.offsetWidth : parentElement.offsetHeight) || undefined;
+        const parentSizeInPixels = (parentElement && (this.direction === 'horizontal' ? parentElement.offsetWidth : parentElement.offsetHeight)) || undefined;
         return parentSizeInPixels && (100 * this.sizeinPixels / parentSizeInPixels);
     }
 
@@ -65,5 +64,5 @@ export class NgxSplitAreaDirective {
 
     private _minSizePixel = 0;
 
-    public constructor(private elementRef: ElementRef<HTMLElement>) { }
+    private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 }

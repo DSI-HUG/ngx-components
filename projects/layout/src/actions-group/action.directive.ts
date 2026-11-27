@@ -4,7 +4,7 @@ import type { MatMenuPanel } from '@angular/material/menu';
 
 @Directive({
     selector: 'ngx-action',
-    standalone: true
+    standalone: true,
 })
 export class NgxActionDirective {
     // Basic action fields
@@ -13,5 +13,5 @@ export class NgxActionDirective {
     public readonly disabled = input<boolean>(false);
     public readonly menu = input<MatMenuPanel>();
 
-    public readonly click = output<void>();
+    public readonly execute = output();
 }

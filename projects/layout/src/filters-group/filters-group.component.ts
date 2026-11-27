@@ -2,7 +2,7 @@ import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { CdkAccordion, CdkAccordionItem } from '@angular/cdk/accordion';
 import { CdkConnectedOverlay, CdkOverlayOrigin, type ConnectionPositionPair } from '@angular/cdk/overlay';
 import { LowerCasePipe, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, contentChildren, ElementRef, inject, input, linkedSignal, output, signal, type TemplateRef, viewChild, viewChildren, ViewEncapsulation } from '@angular/core';
+import { Component, computed, contentChildren, ElementRef, inject, input, linkedSignal, output, signal, type TemplateRef, viewChild, viewChildren, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatBadge } from '@angular/material/badge';
 import { MatButton, MatIconButton } from '@angular/material/button';
@@ -16,7 +16,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { resizeSignal } from '../common/resize-signal';
 import { NgxLayoutIntl } from '../providers';
 import { NgxExpandedDirective } from './expanded-filter.directive';
-import { FILTER_TOKEN, NgxComplexFilter, NgxToggleFilter } from './filter-chip.model';
+import { FILTER_TOKEN, type NgxComplexFilter, type NgxToggleFilter } from './filter-chip.model';
 
 export interface NgxFilterContext {
     $implicit: () => void;
@@ -42,7 +42,6 @@ type FilterView = ToggleFilterView | ComplexFilterView;
     selector: 'ngx-filters-group',
     templateUrl: './filters-group.component.html',
     styleUrl: './filters-group.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
         MatIcon,
@@ -67,8 +66,8 @@ type FilterView = ToggleFilterView | ComplexFilterView;
         MatButton,
         NgxExpandedDirective,
         MatTooltip,
-        MatProgressSpinner
-    ]
+        MatProgressSpinner,
+    ],
 })
 export class NgxFiltersGroupComponent {
     public readonly resetRequested = output();
@@ -95,13 +94,13 @@ export class NgxFiltersGroupComponent {
         originY: 'bottom',
         overlayX: 'center',
         overlayY: 'top',
-        offsetY: 16
+        offsetY: 16,
     }, {
         originX: 'end',
         originY: 'bottom',
         overlayX: 'end',
         overlayY: 'top',
-        offsetY: 16
+        offsetY: 16,
     }];
 
     protected readonly hasOverflow = computed(() => {
@@ -146,18 +145,18 @@ export class NgxFiltersGroupComponent {
 
             return this.liveFilterViews();
         },
-        computation: (filters, previous) => filters ?? previous?.value ?? []
+        computation: (filters, previous) => filters ?? previous?.value ?? [],
     });
 
     protected readonly expandedFilters = viewChildren(NgxExpandedDirective);
     protected readonly hasExpandedFilters = computed(() => this.expandedFilters().some(filter => filter.ngxExpandedFilter()));
 
     protected readonly complexFilters = computed(() =>
-        this.allFilters().filter(filter => filter.type === 'complex')
+        this.allFilters().filter(filter => filter.type === 'complex'),
     );
 
     protected readonly allComplexFiltersDisabled = computed(() =>
-        this.complexFilters().every(filter => filter.disabled())
+        this.complexFilters().every(filter => filter.disabled()),
     );
 
     protected readonly filterContext = {
@@ -165,9 +164,8 @@ export class NgxFiltersGroupComponent {
             if (!this.moreFiltersOverlay()) {
                 this.requireExplicitApply.set(false);
                 this.overlayOpen.set(false);
-
             }
-        }
+        },
     };
 
     protected readonly currentFilter = computed(() => {
@@ -212,7 +210,7 @@ export class NgxFiltersGroupComponent {
 
     private readonly visibleFiltersEndIndex = linkedSignal<number | undefined, number>({
         source: () => this.overlayOpen() ? undefined : this.measuredVisibleFiltersEndIndex(),
-        computation: (index, previous) => index ?? previous?.value ?? -1
+        computation: (index, previous) => index ?? previous?.value ?? -1,
     });
 
     private readonly measuredVisibleFiltersEndIndex = computed(() => {
@@ -248,7 +246,7 @@ export class NgxFiltersGroupComponent {
     }
 
     protected async emitAppliedFilters(): Promise<void> {
-        let valid = true;
+        let valid: boolean;
         this.validating.set(true);
 
         if (this.currentFilter()) {
@@ -259,7 +257,7 @@ export class NgxFiltersGroupComponent {
             this.collapseAllFilters();
             const filters = this.allFilters().filter<NgxComplexFilter>(
                 filter =>
-                    filter.type === 'complex'
+                    filter.type === 'complex',
             );
 
             const results = await Promise.all(
@@ -268,7 +266,7 @@ export class NgxFiltersGroupComponent {
                     const filterValid = await validate();
 
                     return filterValid && !filter.applyDisabled();
-                })
+                }),
             );
 
             valid = results.every(result => result);
@@ -292,7 +290,7 @@ export class NgxFiltersGroupComponent {
 
     protected scrollToFirstError(): void {
         this.scrollToElement(() =>
-            this.filtersContent()?.nativeElement.querySelector<HTMLElement>('.filter.has-error .headline')
+            this.filtersContent()?.nativeElement.querySelector<HTMLElement>('.filter.has-error .headline'),
         );
     }
 
@@ -301,7 +299,7 @@ export class NgxFiltersGroupComponent {
             $implicit: (): void => {
                 item.close();
                 this.scrollToElement(() => headline);
-            }
+            },
         };
     }
 
@@ -315,7 +313,7 @@ export class NgxFiltersGroupComponent {
     }
 
     protected isSameOverlay(
-        templateRef: TemplateRef<unknown>
+        templateRef: TemplateRef<unknown>,
     ): boolean {
         return this.overlayOpen() && this.overlayContent() === templateRef;
     }
@@ -325,7 +323,7 @@ export class NgxFiltersGroupComponent {
         trigger: CdkOverlayOrigin,
         templateRef: TemplateRef<unknown>,
         moreFiltersOverlay: boolean,
-        requireExplicitApply = false
+        requireExplicitApply = false,
     ): void {
         this.overlayOpen.set(false);
 
@@ -353,7 +351,7 @@ export class NgxFiltersGroupComponent {
         trigger: CdkOverlayOrigin,
         templateRef: TemplateRef<unknown>,
         moreFiltersOverlay: boolean,
-        requireExplicitApply?: boolean
+        requireExplicitApply?: boolean,
     ): void {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();

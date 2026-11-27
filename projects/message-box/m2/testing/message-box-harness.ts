@@ -1,8 +1,7 @@
-import { BaseHarnessFilters, ComponentHarness, HarnessPredicate } from '@angular/cdk/testing';
+import { type BaseHarnessFilters, ComponentHarness, HarnessPredicate } from '@angular/cdk/testing';
 
 /** Harness for interacting with a ngx message box in tests. */
 export class NgxMessageBoxHarness extends ComponentHarness {
-
     // eslint-disable-next-line @typescript-eslint/naming-convention
     public static hostSelector = 'ngx-message-box';
 

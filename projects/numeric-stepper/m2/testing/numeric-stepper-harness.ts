@@ -1,6 +1,6 @@
 
 import { HarnessPredicate, TestKey } from '@angular/cdk/testing';
-import { InputHarnessFilters, MatInputHarness } from '@angular/material/input/testing';
+import { type InputHarnessFilters, MatInputHarness } from '@angular/material/input/testing';
 
 /** Harness for interacting with a ngx numeric stepper in tests. */
 export class NgxNumericStepperHarness extends MatInputHarness {

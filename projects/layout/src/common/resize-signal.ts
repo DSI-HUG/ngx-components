@@ -1,8 +1,8 @@
-import { effect, ElementRef, type Signal, signal } from '@angular/core';
+import { effect, type ElementRef, type Signal, signal } from '@angular/core';
 
 export const resizeSignal = (
     element: () => ElementRef<HTMLElement> | undefined,
-    box: ResizeObserverBoxOptions = 'border-box'
+    box: ResizeObserverBoxOptions = 'border-box',
 ): Signal<ResizeObserverEntry | undefined> => {
     const value = signal<ResizeObserverEntry | undefined>(undefined);
 
@@ -17,7 +17,7 @@ export const resizeSignal = (
             contentRect: new DOMRect(),
             contentBoxSize: [],
             devicePixelContentBoxSize: [],
-            target: el
+            target: el,
         };
 
         value.set(initialValue);
@@ -27,7 +27,7 @@ export const resizeSignal = (
         });
 
         ro.observe(el, { box });
-        onCleanup(() => ro.disconnect());
+        onCleanup(() => { ro.disconnect(); });
     });
 
     return value;

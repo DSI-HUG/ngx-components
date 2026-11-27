@@ -1,18 +1,17 @@
-import { BooleanInput, coerceBooleanProperty, coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
+import { type BooleanInput, coerceBooleanProperty, coerceNumberProperty, type NumberInput } from '@angular/cdk/coercion';
 import { DecimalPipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, type ElementRef, EventEmitter, HostBinding, inject, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
-import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
+import { type ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
+import { type MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NgxNumericStepperComponent, NgxNumericStepperLayout } from '@hug/ngx-numeric-stepper/m2';
+import { NgxNumericStepperComponent, type NgxNumericStepperLayout } from '@hug/ngx-numeric-stepper/m2';
 import { set } from 'date-fns';
 import { debounceTime, distinctUntilChanged, EMPTY, map, mergeWith, Subject, switchMap, tap, timer } from 'rxjs';
 
 export type NgxTimePickerDisplayMode = 'fullTime' | 'fullTimeWithHoursDisabled' | 'fullTimeWithMinutesDisabled' | 'hoursOnly' | 'minutesOnly';
 
 @Component({
-    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'ngx-time-picker',
     styleUrls: ['./time-picker.component.scss'],
     templateUrl: './time-picker.component.html',
@@ -23,8 +22,8 @@ export type NgxTimePickerDisplayMode = 'fullTime' | 'fullTimeWithHoursDisabled' 
         FormsModule,
         MatFormFieldModule,
         MatInputModule,
-        NgxNumericStepperComponent
-    ]
+        NgxNumericStepperComponent,
+    ],
 })
 export class NgxTimePickerComponent implements ControlValueAccessor {
     @ViewChild('hours') public hours?: ElementRef<HTMLInputElement>;
@@ -127,7 +126,7 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                 }
 
                 this.changeDetectorRef.markForCheck();
-            })
+            }),
         );
 
         const minutesChange$ = this.minutesChange$.pipe(
@@ -141,7 +140,7 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                     minutes = event;
                 }
 
-                return minutes && !isNaN(minutes) && minutes || 0;
+                return (minutes && !isNaN(minutes) && minutes) || 0;
             }),
             tap(minutes => {
                 const newValue = this.value ? new Date(this.value.getTime()) : new Date();
@@ -158,7 +157,7 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                 }
 
                 this.changeDetectorRef.markForCheck();
-            })
+            }),
         );
 
         const setFocusToNextInput$ = this.hoursKeyDown$.pipe(
@@ -178,18 +177,18 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
                         return timer(0).pipe(
                             tap(() => {
                                 this.minutes?.nativeElement.select();
-                            })
+                            }),
                         );
                     }
                 }
 
                 return EMPTY;
-            })
+            }),
         );
 
         hoursChange$.pipe(
             mergeWith(minutesChange$, setFocusToNextInput$),
-            takeUntilDestroyed()
+            takeUntilDestroyed(),
         ).subscribe();
     }
 
@@ -208,7 +207,10 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
         return this._value;
     }
 
-    /** From ControlValueAccessor interface */
+    /**
+     * From ControlValueAccessor interface
+     * @param value
+     */
     public writeValue(value: Date | undefined): void {
         if ((value ?? null) !== (this._value ?? null)) {
             if (value instanceof Date) {
@@ -221,12 +223,18 @@ export class NgxTimePickerComponent implements ControlValueAccessor {
         }
     }
 
-    /** From ControlValueAccessor interface */
+    /**
+     * From ControlValueAccessor interface
+     * @param fn
+     */
     public registerOnChange(fn: (_a: unknown) => void): void {
         this.onChangeCallback = fn;
     }
 
-    /** From ControlValueAccessor interface */
+    /**
+     * From ControlValueAccessor interface
+     * @param fn
+     */
     public registerOnTouched(fn: () => void): void {
         this.onTouchedCallback = fn;
     }

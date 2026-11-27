@@ -1,31 +1,33 @@
-import { type Meta, type StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 
 import { NgxListLoaderComponent } from '../../../list-loader/m2/list-loader.component';
+import { m2Decorators } from '../m2-theme';
 
 
 const meta: Meta<NgxListLoaderComponent> = {
     title: 'Components/List Loader',
     component: NgxListLoaderComponent,
+    decorators: [...m2Decorators],
     tags: ['autodocs'],
     parameters: {
         docs: {
             description: {
-                component: 'The `NgxListLoaderComponent` is used to display a loading indicator when fetching large amounts of data. It includes a spinner animation and an optional label for context.'
-            }
-        }
+                component: 'The `NgxListLoaderComponent` is used to display a loading indicator when fetching large amounts of data. It includes a spinner animation and an optional label for context.',
+            },
+        },
     },
     argTypes: {
         label: {
             description: 'The label text displayed alongside the loader.',
             control: {
-                type: 'text'
+                type: 'text',
             },
             table: {
                 type: { summary: 'string' },
-                defaultValue: { summary: '' }
-            }
-        }
-    }
+                defaultValue: { summary: '' },
+            },
+        },
+    },
 };
 
 export default meta;
@@ -36,37 +38,37 @@ export const standard: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Displays the default loader without a label. This is useful when no additional context is needed.'
-            }
-        }
+                story: 'Displays the default loader without a label. This is useful when no additional context is needed.',
+            },
+        },
     },
     args: {
-        label: ''
-    }
+        label: '',
+    },
 };
 
 export const withLabel: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Shows the loader with a custom label. This can be used to provide additional information or context while the data is loading.'
-            }
-        }
+                story: 'Shows the loader with a custom label. This can be used to provide additional information or context while the data is loading.',
+            },
+        },
     },
     args: {
-        label: 'Loading data, please wait...'
-    }
+        label: 'Loading data, please wait...',
+    },
 };
 
 export const withLongLabel: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Displays the loader with a long label to test how it handles extended text. This is useful to ensure that the layout accommodates longer messages.'
-            }
-        }
+                story: 'Displays the loader with a long label to test how it handles extended text. This is useful to ensure that the layout accommodates longer messages.',
+            },
+        },
     },
     args: {
-        label: 'This is a very long label that we use to test how the loader handles extended text. It should wrap or truncate gracefully depending on the design.'
-    }
+        label: 'This is a very long label that we use to test how the loader handles extended text. It should wrap or truncate gracefully depending on the design.',
+    },
 };

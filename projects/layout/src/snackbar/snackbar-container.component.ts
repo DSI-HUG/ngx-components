@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, viewChildren } from '@angular/core';
+import { Component, computed, inject, input, viewChildren } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -10,11 +10,10 @@ import { SnackbarService } from './snackbar.service';
     selector: 'ngx-snackbar-container',
     templateUrl: './snackbar-container.component.html',
     styleUrl: './snackbar-container.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MatIconModule,
         MatButtonModule,
-        NgxSnackbarComponent
+        NgxSnackbarComponent,
     ],
     /* eslint-disable @typescript-eslint/naming-convention */
     host: {
@@ -23,12 +22,15 @@ import { SnackbarService } from './snackbar.service';
         '[style.padding-block-end.px]': 'offset()',
         '[style.--ngx-snackbar-count]': 'snackbars().length',
         '[style.--ngx-snackbar-total-height.px]': 'layout().totalHeight',
-        '[style.--ngx-snackbar-buffer-height.px]': 'layout().bufferHeight'
-    }
-    /* eslint-disable @typescript-eslint/naming-convention */
+        '[style.--ngx-snackbar-buffer-height.px]': 'layout().bufferHeight',
+    },
+
 })
 export class NgxSnackbarContainerComponent {
     public readonly offset = input<number>(0);
+
+    private readonly snackbarService = inject(SnackbarService);
+    private readonly components = viewChildren(NgxSnackbarComponent);
 
     protected readonly snackbars = computed(() => this.snackbarService.snackbars());
 
@@ -42,12 +44,9 @@ export class NgxSnackbarContainerComponent {
         return {
             offsets,
             totalHeight,
-            bufferHeight: Math.max(0, ...heights)
+            bufferHeight: Math.max(0, ...heights),
         };
     });
-
-    private readonly snackbarService = inject(SnackbarService);
-    private readonly components = viewChildren(NgxSnackbarComponent);
 
 
     protected remove(uuid: string): void {

@@ -1,8 +1,8 @@
 import { TemplatePortal } from '@angular/cdk/portal';
-import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, OnDestroy, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { type AfterViewInit, Component, DestroyRef, ElementRef, inject, type OnDestroy, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButton } from '@angular/material/button';
-import { MatDatepicker, MatDatepickerApply, MatDatepickerInput, MatDateSelectionModel } from '@angular/material/datepicker';
+import { MatDatepicker, MatDatepickerApply, type MatDatepickerInput, MatDateSelectionModel } from '@angular/material/datepicker';
 import { NgxTimePickerComponent } from '@hug/ngx-time-picker/m2';
 import { cloneDeep } from 'lodash-es';
 import { delay, filter, map, tap } from 'rxjs';
@@ -13,16 +13,14 @@ import { NgxDatePickerIntl } from '../providers';
     selector: 'ngx-datepicker-with-time',
     templateUrl: './datepicker-with-time.component.html',
     styleUrls: ['./datepicker-with-time.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
         MatButton,
         NgxTimePickerComponent,
-        MatDatepickerApply
-    ]
+        MatDatepickerApply,
+    ],
 })
 export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy {
-
     @ViewChild(TemplateRef)
     private template?: TemplateRef<unknown>;
 
@@ -41,7 +39,6 @@ export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy 
     private portal?: TemplatePortal;
 
     public constructor() {
-
         this.datepicker.openedStream.pipe(
             tap(() => {
                 const datePickerInput = this.datepicker.datepickerInput as MatDatepickerInput<Date>;
@@ -50,7 +47,7 @@ export class NgxDatepickerWithTimeComponent implements AfterViewInit, OnDestroy 
             delay(1),
             map(() => this.timePickerElement?.nativeElement.parentElement),
             filter(Boolean),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe(datePickerContainer => {
             const containerRef = this.viewContainerRef.element.nativeElement as HTMLElement;
             datePickerContainer.setAttribute('layout', containerRef?.ownerDocument?.body?.clientHeight <= 500 ? 'h' : 'v');

@@ -26,7 +26,7 @@ import { NgxPageComponent } from '@hug/ngx-layout/page';
 import { NgxPanelComponent } from '@hug/ngx-layout/panel';
 import { NgxPanelBarComponent } from '@hug/ngx-layout/panel-bar';
 import { NgxSearchBarContainerComponent, NgxSearchInputDirective } from '@hug/ngx-layout/search-bar-container/';
-import { type Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { html } from '../helper';
 import { argTypesLayout } from './arg-types-layout';
@@ -37,7 +37,7 @@ import {
     filtersGroupFoldedTemplate,
     filtersGroupTemplate,
     searchBarFoldedTemplate,
-    searchBarTemplate
+    searchBarTemplate,
 } from './templates';
 
 const meta: Meta = {
@@ -81,18 +81,18 @@ const meta: Meta = {
                 NgxBarTitleDirective,
                 NgxColumnComponent,
                 NgxActionDirective,
-                MatError
+                MatError,
             ],
             providers: [
-                provideNativeDateAdapter()
-            ]
-        })
+                provideNativeDateAdapter(),
+            ],
+        }),
     ],
     parameters: {
-        layout: 'fullscreen'
+        layout: 'fullscreen',
     },
     argTypes: {
-        ...argTypesLayout
+        ...argTypesLayout,
     },
     args: {
         mode: 'standard',
@@ -109,11 +109,11 @@ const meta: Meta = {
         hasSearchPanelBar: true,
         hasActionsPanelBar: true,
         hasFiltersPanelBar: true,
-        hasTitlePanelBar: true
+        hasTitlePanelBar: true,
     },
     tags: [
-        'autodocs'
-    ]
+        'autodocs',
+    ],
 };
 export default meta;
 
@@ -159,7 +159,7 @@ const copyFilters = (state: FiltersState): FiltersState => ({
     selectedStartDate: state.selectedStartDate,
     selectedEndDate: state.selectedEndDate,
     origin: [...state.origin],
-    types: [...state.types]
+    types: [...state.types],
 });
 
 const referenceProps = (): Pick<LayoutStoryProps, 'reference' | 'referenceError' | 'appliedReference' | 'validateReference'> => {
@@ -178,7 +178,7 @@ const referenceProps = (): Pick<LayoutStoryProps, 'reference' | 'referenceError'
             const valid = /^REF-\d{3}$/.test(value);
             referenceError.set(valid ? '' : 'La référence doit respecter le format REF-123.');
             return valid;
-        }
+        },
     };
 };
 
@@ -199,7 +199,7 @@ const props = (args: Story['args']): LayoutStoryProps => ({
         selectedStartDate: undefined as Date | undefined,
         selectedEndDate: undefined as Date | undefined,
         origin: [] as string[],
-        types: [] as string[]
+        types: [] as string[],
     },
 
     selectedDateRangeLabel(): string {
@@ -222,7 +222,7 @@ const props = (args: Story['args']): LayoutStoryProps => ({
                     return '';
                 }
                 if (!s) {
-                    return `jusqu'au ${e!.toLocaleDateString('fr-CH')}`;
+                    return `jusqu'au ${e?.toLocaleDateString('fr-CH') || 'date inconnue'}`;
                 }
                 if (!e) {
                     return `dès le: ${s.toLocaleDateString('fr-CH')}`;
@@ -301,7 +301,7 @@ const props = (args: Story['args']): LayoutStoryProps => ({
         this.reference.set('');
         this.referenceError.set('');
         console.log('reset clicked');
-    }
+    },
 });
 
 export const allComponents: Story = {
@@ -431,8 +431,8 @@ export const allComponents: Story = {
                     </ngx-panel>
                 </ngx-page>
             </ngx-layout>
-        </div>`
-    })
+        </div>`,
+    }),
 };
 
 export const oneColumns: Story = {
@@ -546,8 +546,8 @@ export const oneColumns: Story = {
                     </ngx-panel>
                 </ngx-page>
             </ngx-layout>
-        </div>`
-    })
+        </div>`,
+    }),
 };
 
 export const onlyPanel: Story = {
@@ -646,8 +646,8 @@ export const onlyPanel: Story = {
                     </ngx-panel>
                 </ngx-page>
             </ngx-layout>
-        </div>`
-    })
+        </div>`,
+    }),
 };
 
 export const filtersGroup: Story = {
@@ -662,8 +662,8 @@ export const filtersGroup: Story = {
                 width: 100%;
             ">${filtersGroupTemplate}</div>
         `,
-        props: props(args)
-    })
+        props: props(args),
+    }),
 };
 
 export const actionGroup: Story = {
@@ -677,6 +677,6 @@ export const actionGroup: Story = {
                 width: 100%;
                 height: 100vh;
             ">${actionsGroupTemplate}</div>`,
-        props: props(args)
-    })
+        props: props(args),
+    }),
 };

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, Input, ViewEncapsulation } from '@angular/core';
+import { Component, DestroyRef, inject, Input, ViewEncapsulation } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { MatFabButton, MatIconButton } from '@angular/material/button';
@@ -15,7 +15,6 @@ import { NgxStatusService } from '../../../status/m2/status.service';
     selector: 'storybook-layout-wrapper',
     templateUrl: './layout-wrapper.component.html',
     styleUrls: ['./layout-wrapper.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [

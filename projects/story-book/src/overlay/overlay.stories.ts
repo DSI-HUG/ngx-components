@@ -3,75 +3,71 @@ import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxOverlayComponent } from '../../../overlay/m2/overlay.component';
+import { m2Decorators } from '../m2-theme';
 
 const meta: Meta<NgxOverlayComponent> = {
     title: 'Components/Overlay',
     component: NgxOverlayComponent,
     decorators: [
-        applicationConfig({
-            providers: [
-                provideAnimations() // Provides animations to the application
-            ]
-        }),
+        ...m2Decorators,
         moduleMetadata({
             imports: [
-                MatIcon, MatIconButton, MatButton
-            ]
-        })
+                MatIcon, MatIconButton, MatButton,
+            ],
+        }),
     ],
     tags: ['autodocs'],
     argTypes: {
         width: {
             description: 'Defines the width of the overlay for desktop view.',
             table: {
-                type: { summary: 'string' }
-            }
+                type: { summary: 'string' },
+            },
         },
         widthForMobile: {
             description: 'Defines the width of the overlay for mobile view. It is only used when isMobile is true.',
             table: {
                 type: { summary: 'string' },
-                disable: true
-            }
+                disable: true,
+            },
         },
         isMobile: {
             description: 'Determines whether the overlay should use mobile-specific settings.',
             table: {
                 type: { summary: 'boolean' },
-                disable: true
-            }
+                disable: true,
+            },
         },
         overlayBackdropClass: {
             description: 'CSS class applied to the overlay backdrop. Can be used to style the backdrop.',
             table: {
-                type: { summary: 'string' }
-            }
+                type: { summary: 'string' },
+            },
         },
         overlayContainerClass: {
             description: 'CSS class applied to the overlay container. Allows customization of the overlay appearance.',
             table: {
-                type: { summary: 'string' }
-            }
-        }
+                type: { summary: 'string' },
+            },
+        },
     },
     args: {
         width: '400px',
         widthForMobile: '200px',
         isMobile: false,
         overlayBackdropClass: '',
-        overlayContainerClass: ''
+        overlayContainerClass: '',
     },
     parameters: {
         docs: {
             description: {
-                component: 'The `NgxOverlayComponent` displays an overlay that appears above the page content. It supports custom widths, mobile-specific settings, and customizable CSS classes for both the container and backdrop.'
-            }
-        }
-    }
+                component: 'The `NgxOverlayComponent` displays an overlay that appears above the page content. It supports custom widths, mobile-specific settings, and customizable CSS classes for both the container and backdrop.',
+            },
+        },
+    },
 };
 export default meta;
 type Story = StoryObj<NgxOverlayComponent>;
@@ -85,11 +81,11 @@ export const standard: Story = {
                 { text: 'Refresh' },
                 { text: 'Settings' },
                 { text: 'Help', disabled: true },
-                { text: 'Sign Out' }
+                { text: 'Sign Out' },
             ],
             select(text: string): void {
                 this['selected'] = text;
-            }
+            },
         },
         template: `
         <section class="overlay">
@@ -105,31 +101,31 @@ export const standard: Story = {
                 </div>
             </ngx-overlay>
         </section>
-      `
-    })
+      `,
+    }),
 };
 
 export const overlayWidth: Story = {
     decorators: [
         moduleMetadata({
             imports: [
-                MatFormField, MatLabel, MatHint, FormsModule, MatInput
-            ]
-        })
+                MatFormField, MatLabel, MatHint, FormsModule, MatInput,
+            ],
+        }),
     ],
     parameters: {
         docs: {
             description: {
-                story: 'Configure the width of the overlay using the <code>width</code> property. Adjust the input field to see changes in real-time.'
-            }
-        }
+                story: 'Configure the width of the overlay using the <code>width</code> property. Adjust the input field to see changes in real-time.',
+            },
+        },
     },
     render: args => ({
         props: {
             ...args,
             widthChanged(value: string): void {
                 this['width'] = value;
-            }
+            },
         },
         template: `
         <section class="overlay">
@@ -154,25 +150,25 @@ export const overlayWidth: Story = {
                 </mat-form-field>
             </div>
         </section>
-      `
-    })
+      `,
+    }),
 };
 
 /**
    @todo: Je ne sais pas comment fonctionne l'overlay sur mobile, supprimer les tags quand OK
-**/
+ */
 export const overlayForMobile: Story = {
     tags: ['!dev', '!autodocs'], // Pour disable sur le menu à gauche !dev, et sur la doc !autodocs
     parameters: {
         docs: {
             description: {
-                story: 'Set a <code>widthForMobile</code> that is used when <code>isMobile</code> is true to adjust the overlay width for mobile devices.'
-            }
-        }
+                story: 'Set a <code>widthForMobile</code> that is used when <code>isMobile</code> is true to adjust the overlay width for mobile devices.',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
         <section class="overlay">
@@ -189,21 +185,21 @@ export const overlayForMobile: Story = {
                 </div>
             </ngx-overlay>
         </section>
-      `
+      `,
     }),
     args: {
         widthForMobile: '200px',
-        isMobile: true
-    }
+        isMobile: true,
+    },
 };
 
 export const overlayClass: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Customize the overlay appearance by applying custom CSS classes. Use <code>overlayContainerClass</code> for the overlay itself and <code>overlayBackdropClass</code> for the backdrop.'
-            }
-        }
+                story: 'Customize the overlay appearance by applying custom CSS classes. Use <code>overlayContainerClass</code> for the overlay itself and <code>overlayBackdropClass</code> for the backdrop.',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -213,11 +209,11 @@ export const overlayClass: Story = {
                 { text: 'Refresh' },
                 { text: 'Settings' },
                 { text: 'Help', disabled: true },
-                { text: 'Sign Out' }
+                { text: 'Sign Out' },
             ],
             select(text: string): void {
                 this['selected'] = text;
-            }
+            },
         },
         template: `
         <section class="overlay">
@@ -236,21 +232,21 @@ export const overlayClass: Story = {
                 </div>
             </ngx-overlay>
         </section>
-      `
+      `,
     }),
     args: {
         overlayContainerClass: 'myCustomContainerClass',
-        overlayBackdropClass: 'myCustomBackdropClass'
-    }
+        overlayBackdropClass: 'myCustomBackdropClass',
+    },
 };
 
 export const textContainerExample: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'An example demonstrating the NgxOverlay component with a large block of text and a custom style.'
-            }
-        }
+                story: 'An example demonstrating the NgxOverlay component with a large block of text and a custom style.',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -260,11 +256,11 @@ export const textContainerExample: Story = {
                 { text: 'Refresh' },
                 { text: 'Settings' },
                 { text: 'Help', disabled: true },
-                { text: 'Sign Out' }
+                { text: 'Sign Out' },
             ],
             select(text: string): void {
                 this['selected'] = text;
-            }
+            },
         },
         template: `
         <section class="overlay">
@@ -285,26 +281,26 @@ export const textContainerExample: Story = {
                 </div>
             </ngx-overlay>
         </section>
-      `
+      `,
     }),
     args: {
         overlayContainerClass: 'customContainerForLorem',
         overlayBackdropClass: 'myCustomBackdropClass',
-        width: '100vw'
-    }
+        width: '100vw',
+    },
 };
 
 /**
    @todo: Je ne sais pas comment fonctionne l'input ownerElement, supprimer les tags quand OK
-**/
+ */
 export const ownerElement: Story = {
     tags: ['!dev', '!autodocs'], // Pour disable sur le menu à gauche !dev, et sur la doc !autodocs
     parameters: {
         docs: {
             description: {
-                story: 'You can provide two custom css classes to the component: <ul><li><code>overlayContainerClass</code>allows you to customize the overlay itself</li><li><code>overlayBackdropClass</code>allows you to customize the overlay backdrop</li></ul>'
-            }
-        }
+                story: 'You can provide two custom css classes to the component: <ul><li><code>overlayContainerClass</code>allows you to customize the overlay itself</li><li><code>overlayBackdropClass</code>allows you to customize the overlay backdrop</li></ul>',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -314,11 +310,11 @@ export const ownerElement: Story = {
                 { text: 'Refresh' },
                 { text: 'Settings' },
                 { text: 'Help', disabled: true },
-                { text: 'Sign Out' }
+                { text: 'Sign Out' },
             ],
             select(text: string): void {
                 this['selected'] = text;
-            }
+            },
         },
         template: `
         <section class="overlay">
@@ -337,25 +333,25 @@ export const ownerElement: Story = {
                 <div class="ngx-menu-content button-menu">
                     @for (item of items; track $index) {
                         <button mat-button class="ngx-menu-item" (click)="select(item.text); menu.close()">{{ item.text }}</button>
-                    }                
+                    }
                 </div>
             </ngx-overlay>
         </section>
-      `
+      `,
     }),
     args: {
         overlayContainerClass: 'myCustomContainerClass',
-        overlayBackdropClass: 'myCustomBackdropClass'
-    }
+        overlayBackdropClass: 'myCustomBackdropClass',
+    },
 };
 
 export const navigationExample: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Here an example of navigation through the component'
-            }
-        }
+                story: 'Here an example of navigation through the component',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -365,11 +361,11 @@ export const navigationExample: Story = {
                 { text: 'Refresh' },
                 { text: 'Settings' },
                 { text: 'Help', disabled: true },
-                { text: 'Sign Out' }
+                { text: 'Sign Out' },
             ],
             select(text: string): void {
                 this['selected'] = text;
-            }
+            },
         },
         template: `
         <section class="overlay">
@@ -387,6 +383,6 @@ export const navigationExample: Story = {
                 </div>
             </ngx-overlay>
         </section>
-      `
-    })
+      `,
+    }),
 };

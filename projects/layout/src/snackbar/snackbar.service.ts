@@ -8,7 +8,7 @@ export class SnackbarAction {
 
     public constructor(
         name: string,
-        action: () => void
+        action: () => void,
     ) {
         this.name = name;
         this.execute = action;
@@ -26,7 +26,7 @@ abstract class BaseSnackbar {
     public constructor(
         title: string,
         body?: string,
-        action?: SnackbarAction
+        action?: SnackbarAction,
     ) {
         this.uuid = crypto.randomUUID();
         this.title = title;
@@ -47,7 +47,7 @@ export class InfoSnackbar extends BaseSnackbar {
         title: string,
         body?: string,
         action?: SnackbarAction,
-        duration?: number
+        duration?: number,
     ) {
         super(title, body, action);
         this.duration = duration || 3000;
@@ -62,7 +62,7 @@ export class SuccessSnackbar extends BaseSnackbar {
         title: string,
         body?: string,
         action?: SnackbarAction,
-        duration?: number
+        duration?: number,
     ) {
         super(title, body, action);
         this.duration = duration || 3000;
@@ -80,7 +80,7 @@ export class ErrorSnackbar extends BaseSnackbar {
 export type Snackbar = InfoSnackbar | SuccessSnackbar | WarnSnackbar | ErrorSnackbar;
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class SnackbarService {
     public readonly snackbars = signal<readonly Snackbar[]>([]);

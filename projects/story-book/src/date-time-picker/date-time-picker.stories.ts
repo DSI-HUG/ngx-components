@@ -14,6 +14,7 @@ import { setDefaultOptions } from 'date-fns';
 import { frCH } from 'date-fns/locale';
 
 import { NgxDatepickerWithTimeComponent } from '../../../date-picker/m2/datepicker-with-time/datepicker-with-time.component';
+import { m2Decorators } from '../m2-theme';
 import { DatepickerWrapperComponent } from './datepicker-wrapper-component/datepicker-wrapper.component';
 import { DatepickerWrapperFormSignalsComponent } from './datepicker-wrapper-form-signals-component/datepicker-wrapper-form-signals.component';
 
@@ -25,30 +26,31 @@ const meta: Meta<NgxDatepickerWithTimeComponent> = {
     component: NgxDatepickerWithTimeComponent,
     tags: ['autodocs'],
     decorators: [
+        ...m2Decorators,
         moduleMetadata({
             imports: [
                 FormsModule,
                 MatDatepickerModule,
                 MatIconModule,
                 MatInputModule,
-                MatFormFieldModule
+                MatFormFieldModule,
             ],
             providers: [
                 { provide: LOCALE_ID, useValue: 'fr-CH' },
                 { provide: MAT_DATE_LOCALE, useValue: frCH },
                 { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
-                { provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] }
-            ]
-        })
+                { provide: DateAdapter, useClass: DateFnsAdapter, deps: [MAT_DATE_LOCALE] },
+            ],
+        }),
     ],
     parameters: {
         layout: 'centered',
         docs: {
             description: {
-                component: 'The `NgxDatepickerWithTimeComponent` utilizes `MatDatepicker` and `NgxNumericStepper` to extend the classic DatePicker with TimePicker functionality.<br /><b>Note:</b> The Angular `NativeDateAdapter` does not support time format. You must use Moment, DateFns, or a custom date adapter to enable this feature.'
-            }
-        }
-    }
+                component: 'The `NgxDatepickerWithTimeComponent` utilizes `MatDatepicker` and `NgxNumericStepper` to extend the classic DatePicker with TimePicker functionality.<br /><b>Note:</b> The Angular `NativeDateAdapter` does not support time format. You must use Moment, DateFns, or a custom date adapter to enable this feature.',
+            },
+        },
+    },
 };
 
 export default meta;
@@ -59,7 +61,7 @@ export const standard: Story = {
         props: {
             ...args,
             value: new Date(),
-            appearance: 'outline'
+            appearance: 'outline',
         },
         template: `
             <mat-form-field [appearance]="appearance">
@@ -70,43 +72,43 @@ export const standard: Story = {
                     <ngx-datepicker-with-time></ngx-datepicker-with-time>
                 </mat-datepicker>
             </mat-form-field>
-          `
-    })
+          `,
+    }),
 };
 
 export const withMask: Story = {
     decorators: [
         moduleMetadata({
             imports: [
-                DatepickerWrapperComponent
-            ]
-        })
+                DatepickerWrapperComponent,
+            ],
+        }),
     ],
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
             <datepicker-wrapper></datepicker-wrapper>
-          `
-    })
+          `,
+    }),
 };
 
 export const withMaskAndFormSignals: Story = {
     decorators: [
         moduleMetadata({
             imports: [
-                DatepickerWrapperFormSignalsComponent
-            ]
-        })
+                DatepickerWrapperFormSignalsComponent,
+            ],
+        }),
     ],
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
             <datepicker-wrapper-form-signals></datepicker-wrapper-form-signals>
-          `
-    })
+          `,
+    }),
 };
 

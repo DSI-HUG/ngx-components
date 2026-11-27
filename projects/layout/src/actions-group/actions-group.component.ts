@@ -1,4 +1,4 @@
-import { booleanAttribute, ChangeDetectionStrategy, Component, computed, contentChildren, ElementRef, inject, input, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, Component, computed, contentChildren, ElementRef, inject, input, ViewEncapsulation } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
@@ -15,7 +15,6 @@ const buttonDimensions = 40;
     selector: 'ngx-actions-group',
     templateUrl: './actions-group.component.html',
     styleUrl: './actions-group.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     imports: [
         MatIcon,
@@ -23,8 +22,8 @@ const buttonDimensions = 40;
         MatTooltip,
         MatMenu,
         MatMenuItem,
-        MatMenuTrigger
-    ]
+        MatMenuTrigger,
+    ],
 })
 export class NgxActionsGroupComponent {
     public readonly withMainAction = input(false, { transform: booleanAttribute });
@@ -42,7 +41,7 @@ export class NgxActionsGroupComponent {
         const maxItems = this.getMaxVisibleAction(this.hostWidth());
         return {
             visible: items.slice(0, maxItems),
-            hidden: items.slice(maxItems)
+            hidden: items.slice(maxItems),
         };
     });
 
@@ -52,7 +51,6 @@ export class NgxActionsGroupComponent {
     private readonly hostWidth = computed(() => Math.ceil(this.hostSize()?.contentRect.width || 0));
 
     private getMaxVisibleAction(width: number): number {
-
         const maxNumberOfActions = Math.floor(width / (buttonDimensions + buttonGap));
 
         const maxVisibleActions = Math.max(1, maxNumberOfActions);

@@ -1,16 +1,18 @@
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxSnackbarComponent } from '../../../snackbar/m2/snackbar.component';
+import { m2Decorators } from '../m2-theme';
 
 const meta: Meta<NgxSnackbarComponent> = {
     title: 'Components/Snackbar',
     component: NgxSnackbarComponent,
     decorators: [
+        ...m2Decorators,
         moduleMetadata({
             imports: [
-                NgxSnackbarComponent
-            ]
-        })
+                NgxSnackbarComponent,
+            ],
+        }),
     ],
     tags: ['autodocs'],
     argTypes: {
@@ -20,10 +22,10 @@ const meta: Meta<NgxSnackbarComponent> = {
     parameters: {
         docs: {
             description: {
-                component: 'The `NgxSnackbarComponent` displays an html component inside a bar, as used in [Status](?path=/docs/components-status--docs)'
-            }
-        }
-    }
+                component: 'The `NgxSnackbarComponent` displays an html component inside a bar, as used in [Status](?path=/docs/components-status--docs)',
+            },
+        },
+    },
 };
 export default meta;
 type Story = StoryObj<NgxSnackbarComponent>;
@@ -32,13 +34,13 @@ export const complete: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This example showcases a `NgxSnackbarComponent` with a text message displayed for a small duration'
-            }
-        }
+                story: 'This example showcases a `NgxSnackbarComponent` with a text message displayed for a small duration',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
         <section class="snack">
@@ -49,7 +51,7 @@ export const complete: Story = {
                 text displayed in the <b>bottom right</b> during <b>5</b> seconds, after <b>1</b> second
             </ngx-snackbar>
         </section>
-      `
+      `,
     }),
-    args: {}
+    args: {},
 };

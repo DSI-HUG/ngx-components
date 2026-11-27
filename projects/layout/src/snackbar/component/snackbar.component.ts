@@ -1,20 +1,19 @@
-import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, input, output } from '@angular/core';
+import { Component, computed, DestroyRef, effect, ElementRef, inject, input, output } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { timer } from 'rxjs';
 
 import { resizeSignal } from '../../common/resize-signal';
-import { Snackbar } from '../snackbar.service';
+import type { Snackbar } from '../snackbar.service';
 
 @Component({
     selector: 'ngx-snackbar',
     templateUrl: './snackbar.component.html',
     styleUrl: './snackbar.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MatIconModule,
-        MatButtonModule
+        MatButtonModule,
     ],
     /* eslint-disable @typescript-eslint/naming-convention */
     host: {
@@ -26,10 +25,10 @@ import { Snackbar } from '../snackbar.service';
         '[class.timed]': '!!duration()',
         '[style.animation-duration.ms]': 'duration()',
         '[class.around-icon]': '!!duration() && animationType() === \'around-icon\'',
-        '[class.horizontal]': '!!duration() && animationType() === \'horizontal\''
+        '[class.horizontal]': '!!duration() && animationType() === \'horizontal\'',
     },
-    /* eslint-disable @typescript-eslint/naming-convention */
-    standalone: true
+
+    standalone: true,
 })
 export class NgxSnackbarComponent {
     public readonly snackbar = input.required<Snackbar>();
@@ -63,7 +62,6 @@ export class NgxSnackbarComponent {
 
     public constructor() {
         effect(onCleanup => {
-
             const snackbar = this.snackbar();
 
             if (snackbar.severity !== 'info' && snackbar.severity !== 'success') {
@@ -71,12 +69,11 @@ export class NgxSnackbarComponent {
             }
 
             const subscription = timer(snackbar.duration).pipe(
-                takeUntilDestroyed(this.destroyRef)
-            ).subscribe(() => this.expired.emit(snackbar.uuid));
+                takeUntilDestroyed(this.destroyRef),
+            ).subscribe(() => { this.expired.emit(snackbar.uuid); });
 
-            onCleanup(() => subscription.unsubscribe());
+            onCleanup(() => { subscription.unsubscribe(); });
         });
-
     }
 
     protected expire(): void {

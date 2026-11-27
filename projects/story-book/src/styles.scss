@@ -1,3 +1,7 @@
+@use '@angular/material' as mat;
+@use '../../core/m2/styles/themeVariables' as m2;
+@use '../../core/m2/styles/mixins/material-icons-theme' as materialIconsTheme;
+
 /* @import '@angular/material/prebuilt-themes/indigo-pink.css';*/
 
 @import '@fontsource/roboto/300.css';
@@ -5,16 +9,6 @@
 @import '@fontsource/roboto/500.css';
 @import '@fontsource/roboto/700.css';
 @import '@fontsource/material-icons';
-
-/* @import './layout/layout.scss';
-@import './list-loader/list-loader.scss';
-@import './message-box/message-box.scss';
-@import './overlay/overlay.scss';
-@import './search-container/search-container.scss';
-@import './splitter/splitter.scss';
-@import './status/status.scss';
-@import './user-card/user-card.scss';
-@import './snackbar/snackbar.scss';*/
 
 @import './layout-m3/layout-m3.scss';
 
@@ -30,5 +24,28 @@
 
     &:hover {
         background-color: var(--mat-sys-outline);
+    }
+}
+
+.storybook-m2 {
+    @include mat.all-component-themes(m2.$theme);
+    @include materialIconsTheme.theme();
+
+    @import './layout/layout.scss';
+    @import './date-time-picker/date-time-picker.scss';
+    @import './list-loader/list-loader.scss';
+    @import './message-box/message-box.scss';
+    @import './overlay/overlay.scss';
+    @import './search-container/search-container.scss';
+    @import './splitter/splitter.scss';
+    @import './status/status.scss';
+    @import './user-card/user-card.scss';
+    @import './snackbar/snackbar.scss';
+
+    display: contents;
+
+    mat-icon,
+    .material-symbols {
+        font-variation-settings: normal;
     }
 }

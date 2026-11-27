@@ -1,5 +1,5 @@
 import { inject, Injector, runInInjectionContext } from '@angular/core';
-import type { ActivatedRouteSnapshot, CanActivateFn, CanMatchFn, GuardResult, MaybeAsync, Route, RouterStateSnapshot, UrlSegment } from '@angular/router';
+import type { ActivatedRouteSnapshot, CanActivateFn, CanMatchFn, GuardResult, MaybeAsync, RouterStateSnapshot } from '@angular/router';
 import { from, isObservable, type Observable, of, switchMap } from 'rxjs';
 
 /**
@@ -13,7 +13,7 @@ export const chainActivateGuards = (...guards: CanActivateFn[]): CanActivateFn =
  * @param guards the guards
  * @returns the chained results of the guards until first condition is not met
  */
-export const chainMatchGuards = (...guards: CanMatchFn[]): CanMatchFn => (route: Route, segments: UrlSegment[]): MaybeAsync<GuardResult> => chainGuards$(guard$ => guard$(route, segments), guards);
+export const chainMatchGuards = (...guards: CanMatchFn[]): CanMatchFn => (...args) => chainGuards$(guard$ => guard$(...args), guards);
 
 /**
  * @param applyGuard$ result of previous guard

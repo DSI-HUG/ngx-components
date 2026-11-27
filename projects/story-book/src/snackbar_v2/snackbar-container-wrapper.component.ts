@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
-import { ErrorSnackbar, InfoSnackbar, SnackbarAction, SnackbarService, SnackbarSeverity, SuccessSnackbar, WarnSnackbar } from '../../../layout/src/snackbar/snackbar.service';
+import { ErrorSnackbar, InfoSnackbar, SnackbarAction, SnackbarService, type SnackbarSeverity, SuccessSnackbar, WarnSnackbar } from '../../../layout/src/snackbar/snackbar.service';
 import { NgxSnackbarContainerComponent } from '../../../layout/src/snackbar/snackbar-container.component';
 
 @Component({
     selector: 'storybook-snackbar-container-wrapper',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         NgxSnackbarContainerComponent,
         MatButtonModule
@@ -14,7 +13,7 @@ import { NgxSnackbarContainerComponent } from '../../../layout/src/snackbar/snac
     providers: [
         SnackbarService
     ],
-    // eslint-disable-next-line @angular-eslint/component-max-inline-declarations
+     
     templateUrl: './snackbar-container-wrapper.component.html',
     styleUrl: './snackbar-container-wrapper.component.scss'
 })

@@ -6,7 +6,6 @@ import { NgxAbstractIntl } from '@hug/ngx-core';
  */
 @Injectable()
 export class NgxStatusIntl extends NgxAbstractIntl<NgxStatusIntl> {
-
     public errorDetails = '';
     public copyToClipboard = '';
     public dateError = '';
