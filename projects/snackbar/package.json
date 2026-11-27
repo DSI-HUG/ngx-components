@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-snackbar",
-    "version": "22.0.0-alpha.4",
+    "version": "22.0.0-alpha.5",
     "description": "HUG Angular - snackbar component",
     "exports": {
         ".": "./src/index.ts",

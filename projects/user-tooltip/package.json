@@ -1,6 +1,6 @@
 {
     "name": "@hug/ngx-user-tooltip",
-    "version": "22.0.1-alpha.0",
+    "version": "22.0.1-alpha.1",
     "description": "HUG Angular - user-tooltip component",
     "exports": {
         ".": "./src/index.ts",
@@ -37,8 +37,8 @@
         "@angular/common": ">=22 <23",
         "@angular/core": ">=22 <23",
         "@angular/material": ">=22 <23",
-        "@hug/ngx-tooltip": "^22.0.1-alpha.0",
-        "@hug/ngx-user-card": "^22.0.1-alpha.0"
+        "@hug/ngx-tooltip": "^22.0.1-alpha.1",
+        "@hug/ngx-user-card": "^22.0.1-alpha.1"
     },
     "publishConfig": {
         "access": "public",
