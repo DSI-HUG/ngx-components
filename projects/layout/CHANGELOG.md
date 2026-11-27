@@ -1,3 +1,18 @@
+## 22.0.1-alpha.3 (2026-11-27)
+
+### 🐛 Fixes
+
+- **filters-group:** update mat-chip-listbox to use activeVisibleFilters and improve selection handling (DESIGNSYS-114) ([5eeed964](https://github.com/DSI-HUG/ngx-components/commit/5eeed964))
+
+### 🌱 Dependencies
+
+- **@hug/ngx-sidenav**: upgraded to `v22.0.1-alpha.1`
+- **@hug/ngx-core**: upgraded to `v22.0.0-alpha.6`
+
+### ❤️ Thank You
+
+- Esther Layat
+
 ## 22.0.1-alpha.2 (2026-11-25)
 
 ### 🚀 Features

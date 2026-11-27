@@ -1,3 +1,11 @@
+## 22.0.0-alpha.5 (2026-11-27)
+
+### 🌱 Dependencies
+
+- **@hug/ngx-message-box**: upgraded to `v22.0.0-alpha.5`
+- **@hug/ngx-snackbar**: upgraded to `v22.0.0-alpha.5`
+- **@hug/ngx-core**: upgraded to `v22.0.0-alpha.6`
+
 ## 22.0.0-alpha.4 (2026-11-18)
 
 ### 🌱 Dependencies

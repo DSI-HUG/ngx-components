@@ -1,3 +1,7 @@
+## 22.0.0-alpha.6 (2026-11-27)
+
+This was a version bump only for @hug/ngx-core to align it with other projects, there were no code changes.
+
 ## 22.0.0-alpha.5 (2026-11-18)
 
 This was a version bump only for @hug/ngx-core to align it with other projects, there were no code changes.
