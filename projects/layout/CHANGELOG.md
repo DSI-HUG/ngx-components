@@ -1,3 +1,13 @@
+## 22.0.1-alpha.2 (2026-11-25)
+
+### 🚀 Features
+
+- **actions-group, filters-group:** rename execute to click and add isApplyRequired #DESIGNSYS-114 ([#166](https://github.com/DSI-HUG/ngx-components/pull/166))
+
+### ❤️ Thank You
+
+- Eshtea @Eshtea
+
 ## 22.0.1-alpha.1 (2026-11-20)
 
 ### 🚀 Features

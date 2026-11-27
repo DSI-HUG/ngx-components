@@ -75,6 +75,10 @@ export class NgxFiltersGroupComponent {
     public readonly applied = output();
     public readonly folded = input<boolean>(false);
 
+    public get isApplyRequired(): boolean {
+        return this.requireExplicitApply() || this.moreFiltersOverlay();
+    }
+
     protected readonly intl = inject(NgxLayoutIntl, { optional: true });
 
     // #region Overlay
@@ -236,6 +240,7 @@ export class NgxFiltersGroupComponent {
     protected emitCanceled(): void {
         this.canceled.emit();
         this.overlayOpen.set(false);
+        this.moreFiltersOverlay.set(false);
     }
 
     protected async emitAppliedFilters(): Promise<void> {
@@ -276,6 +281,7 @@ export class NgxFiltersGroupComponent {
 
         this.applied.emit();
         this.requireExplicitApply.set(false);
+        this.moreFiltersOverlay.set(false);
         this.overlayOpen.set(false);
         this.validating.set(false);
     }
@@ -300,6 +306,7 @@ export class NgxFiltersGroupComponent {
 
         if (!this.overlayOpen()) {
             this.requireExplicitApply.set(false);
+            this.moreFiltersOverlay.set(false);
         }
     }
 

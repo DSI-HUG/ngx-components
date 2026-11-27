@@ -6,42 +6,41 @@ export const actionsGroupTemplate = html`
             label="Filtres"
             icon="filter_list"
             [menu]="filtersMenu"
-            (execute)="() => alert('Filtres')"
         />
         <ngx-action
             label="Colonnes"
             icon="view_column"
-            (execute)="() => alert('Colonnes')"
+            (click)="showAlert('Colonnes')"
         />
         <ngx-action
             label="Paramètres"
             icon="settings"
-            (execute)="() => alert('Paramètres')"
+            (click)="showAlert('Paramètres')"
         />
         <ngx-action
             label="Télécharger"
             icon="download"
-            (execute)="() => alert('Télécharger')"
+            (click)="showAlert('Télécharger')"
         />
         <ngx-action
             label="Partager"
             icon="share"
-            (execute)="() => alert('Partager')"
+            (click)="showAlert('Partager')"
         />
         <ngx-action
             label="Tableau de bord"
             icon="dashboard"
-            (execute)="() => alert('Tableau de bord')"
+            (click)="showAlert('Tableau de bord')"
         />
         <ngx-action
             label="Notifications"
             icon="notifications"
-            (execute)="alert('Notifications !')"
+            (click)="showAlert('Notifications !')"
         />
         <ngx-action
             label="Aide"
             icon="help_outline"
-            (execute)="alert('help_outline !')"
+            (click)="showAlert('help_outline !')"
         />
         <mat-menu #filtersMenu="matMenu">
             <button mat-menu-item>Dernières 24 heures</button>
