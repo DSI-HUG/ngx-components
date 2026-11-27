@@ -5,6 +5,7 @@ import { MatInput } from '@angular/material/input';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxNumericStepperComponent } from '../../../numeric-stepper/m2/numeric-stepper.component';
+import { m2Decorators } from '../m2-theme';
 
 const baseStyles = `
     section {
@@ -34,6 +35,7 @@ const meta: Meta<NgxNumericStepperComponent> = {
     title: 'Components/Numeric Stepper',
     component: NgxNumericStepperComponent,
     decorators: [
+        ...m2Decorators,
         moduleMetadata({
             imports: [
                 MatLabel,
@@ -41,9 +43,9 @@ const meta: Meta<NgxNumericStepperComponent> = {
                 MatPrefix,
                 MatSuffix,
                 MatFormField,
-                FormsModule
-            ]
-        })
+                FormsModule,
+            ],
+        }),
     ],
     tags: ['autodocs'],
     argTypes: {
@@ -53,41 +55,41 @@ const meta: Meta<NgxNumericStepperComponent> = {
             description: 'Layout of the stepper control.',
             table: {
                 defaultValue: { summary: 'vertical' },
-                type: { summary: 'NgxNumericStepperLayout' }
-            }
+                type: { summary: 'NgxNumericStepperLayout' },
+            },
         },
         arrowIcons: {
             control: { type: 'boolean' },
             description: 'Whether to display arrow icons.',
             table: {
                 defaultValue: { summary: 'false' },
-                type: { summary: 'boolean' }
-            }
+                type: { summary: 'boolean' },
+            },
         },
         showOnInit: {
             control: { type: 'boolean' },
             description: 'Whether to display controls before hover.',
             table: {
                 defaultValue: { summary: 'false' },
-                type: { summary: 'boolean' }
-            }
+                type: { summary: 'boolean' },
+            },
         },
         increment: { control: false },
         decrement: { control: false },
-        input: { control: false }
+        input: { control: false },
     },
     args: {
         layout: 'vertical',
         arrowIcons: false,
-        showOnInit: false
+        showOnInit: false,
     },
     parameters: {
         docs: {
             description: {
-                component: 'The `NgxNumericStepperComponent` adds increment and decrement controls to an input inside a `mat-form-field`.'
-            }
-        }
-    }
+                component: 'The `NgxNumericStepperComponent` adds increment and decrement controls to an input inside a `mat-form-field`.',
+            },
+        },
+    },
 };
 
 export default meta;
@@ -98,7 +100,7 @@ export const standard: Story = {
         props: {
             ...args,
             value: 115,
-            appearance: 'outline'
+            appearance: 'outline',
         },
         template: `
             <section>
@@ -117,21 +119,21 @@ export const standard: Story = {
                 </div>
             </section>
         `,
-        styles: [baseStyles]
-    })
+        styles: [baseStyles],
+    }),
 };
 
 export const layouts: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Compare all supported layouts: `vertical`, `horizontal`, and `horizontal-inlay`.'
-            }
-        }
+                story: 'Compare all supported layouts: `vertical`, `horizontal`, and `horizontal-inlay`.',
+            },
+        },
     },
     render: () => ({
         props: {
-            value: 115
+            value: 115,
         },
         template: `
             <section class="grid">
@@ -163,15 +165,15 @@ export const layouts: Story = {
                 </div>
             </section>
         `,
-        styles: [baseStyles]
-    })
+        styles: [baseStyles],
+    }),
 };
 
 export const appearance: Story = {
     decorators: [
         moduleMetadata({
-            imports: [MatButtonToggle, MatButtonToggleGroup]
-        })
+            imports: [MatButtonToggle, MatButtonToggleGroup],
+        }),
     ],
     render: args => ({
         props: {
@@ -180,7 +182,7 @@ export const appearance: Story = {
             currentAppearance: 'outline',
             setAppearance(value: 'outline' | 'fill'): void {
                 this['currentAppearance'] = value;
-            }
+            },
         },
         template: `
             <section>
@@ -206,17 +208,17 @@ export const appearance: Story = {
                 </div>
             </section>
         `,
-        styles: [baseStyles]
-    })
+        styles: [baseStyles],
+    }),
 };
 
 export const prefixAndSuffix: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Use text prefix and suffix while keeping stepper controls.'
-            }
-        }
+                story: 'Use text prefix and suffix while keeping stepper controls.',
+            },
+        },
     },
     render: () => ({
         props: {
@@ -228,7 +230,7 @@ export const prefixAndSuffix: Story = {
             },
             setSuffix(value: string): void {
                 this['suffix'] = value;
-            }
+            },
         },
         template: `
             <section>
@@ -262,6 +264,6 @@ export const prefixAndSuffix: Story = {
                 </div>
             </section>
         `,
-        styles: [baseStyles]
-    })
+        styles: [baseStyles],
+    }),
 };

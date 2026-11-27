@@ -6,6 +6,7 @@ import { NgxSearchContainerIntl, provideNgxSearchContainer } from '@hug/ngx-sear
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxSearchContainerComponent, NgxSearchInputDirective } from '../../../search-container/m2/search-container.component';
+import { m2Decorators } from '../m2-theme';
 
 @Injectable()
 export class CustomNgxSearchContainerIntl extends NgxSearchContainerIntl {
@@ -17,31 +18,32 @@ const meta: Meta<NgxSearchContainerComponent> = {
     title: 'Components/Search Container',
     component: NgxSearchContainerComponent,
     decorators: [
+        ...m2Decorators,
         applicationConfig({
             providers: [
-                provideNgxSearchContainer({ customIntl: CustomNgxSearchContainerIntl })
-            ]
+                provideNgxSearchContainer({ customIntl: CustomNgxSearchContainerIntl }),
+            ],
         }),
         moduleMetadata({
             imports: [
                 NgxSearchInputDirective,
                 MatTooltip,
-                FormsModule
-            ]
-        })
+                FormsModule,
+            ],
+        }),
     ],
     tags: ['autodocs'],
     parameters: {
         docs: {
             description: {
-                component: 'The `NgxSearchContainerComponent` provides a flexible search interface with customizable tooltips for actions such as clearing, opening, and closing the search.It integrates with an input field via the `ngx-search-input` directive to enable search functionality. The tooltip for the clear button is now defined by intl.clearSearch (previously clearTooltip).'
-            }
+                component: 'The `NgxSearchContainerComponent` provides a flexible search interface with customizable tooltips for actions such as clearing, opening, and closing the search.It integrates with an input field via the `ngx-search-input` directive to enable search functionality. The tooltip for the clear button is now defined by intl.clearSearch (previously clearTooltip).',
+            },
         },
         backgrounds: {
             // Set default background value for all component stories
-            default: 'Dark'
-        }
-    }
+            default: 'Dark',
+        },
+    },
 };
 export default meta;
 
@@ -51,9 +53,9 @@ export const standard: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Displays a basic search container with default tooltips. Includes an input field for search queries.'
-            }
-        }
+                story: 'Displays a basic search container with default tooltips. Includes an input field for search queries.',
+            },
+        },
     },
     render: args => ({
         props: args,
@@ -61,35 +63,35 @@ export const standard: Story = {
             <ngx-search-container>
               <input ngx-search-input type="text" placeholder="Rechercher dans la liste" [(ngModel)]="searchModel" />
             </ngx-search-container>
-          `
-    })
+          `,
+    }),
 };
 
 export const customTooltips: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Shows the search container with custom tooltip texts for clear, open, and close actions.'
-            }
-        }
+                story: 'Shows the search container with custom tooltip texts for clear, open, and close actions.',
+            },
+        },
     },
-    ...standard
+    ...standard,
 };
 
 export const searchWithLists: Story = {
     decorators: [
         moduleMetadata({
             imports: [
-                MatList, MatListItem
-            ]
-        })
+                MatList, MatListItem,
+            ],
+        }),
     ],
     parameters: {
         docs: {
             description: {
-                story: 'Demonstrates the search container with a full list and search functionality. The search input filters the list based on user input and displays the results in separate sections.'
-            }
-        }
+                story: 'Demonstrates the search container with a full list and search functionality. The search input filters the list based on user input and displays the results in separate sections.',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -131,9 +133,8 @@ export const searchWithLists: Story = {
                     this['searchList'] = this['fullList'] as string[];
                 } else {
                     this['searchList'] = (this['fullList'] as string[]).filter((animal: string) => animal.includes(event));
-
                 }
-            }
+            },
         },
         template: `
             <section>
@@ -181,17 +182,17 @@ export const searchWithLists: Story = {
             .mdc-list-item.mdc-list-item--with-one-line {
               height: 24px;
             }
-          `]
-    })
+          `],
+    }),
 };
 
 export const initialValue: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Demonstrates the search container with an initial value.'
-            }
-        }
+                story: 'Demonstrates the search container with an initial value.',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -199,7 +200,7 @@ export const initialValue: Story = {
             search: 'My initial search',
             log: (event: string): void => {
                 console.log(event);
-            }
+            },
         },
         template: `
             <section>
@@ -217,6 +218,6 @@ export const initialValue: Story = {
               font-family: 'Roboto';
               background-color: initial;
             }
-          `]
-    })
+          `],
+    }),
 };

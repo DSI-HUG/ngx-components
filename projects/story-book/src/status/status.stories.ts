@@ -3,45 +3,47 @@ import { NgxStatusComponent, NgxStatusService, provideNgxStatus } from '@hug/ngx
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxSnackbarComponent } from '../../../snackbar/m2/snackbar.component';
+import { m2Decorators } from '../m2-theme';
 
 const meta: Meta<NgxStatusComponent> = {
     title: 'Components/Status',
     component: NgxStatusComponent,
     decorators: [
+        ...m2Decorators,
         applicationConfig({
             providers: [
-                provideNgxStatus()
-            ]
+                provideNgxStatus(),
+            ],
         }),
         moduleMetadata({
             imports: [
-                NgxSnackbarComponent
+                NgxSnackbarComponent,
             ],
-            providers: [NgxStatusService]
-        })
+            providers: [NgxStatusService],
+        }),
     ],
     tags: ['autodocs'],
     argTypes: {
         status: {
             description: 'The object containing the status details to be displayed.',
             control: {
-                type: 'object'
+                type: 'object',
             },
             table: {
                 type: { summary: 'NgxStatus' },
-                defaultValue: { summary: 'undefined' }
-            }
-        }
+                defaultValue: { summary: 'undefined' },
+            },
+        },
     },
     args: {
     },
     parameters: {
         docs: {
             description: {
-                component: 'The `NgxStatusComponent` displays informational messages in a popup, leveraging the `NgxSnackbarComponent`. It supports various types of notifications, custom actions, and detailed technical information.'
-            }
-        }
-    }
+                component: 'The `NgxStatusComponent` displays informational messages in a popup, leveraging the `NgxSnackbarComponent`. It supports various types of notifications, custom actions, and detailed technical information.',
+            },
+        },
+    },
 };
 export default meta;
 type Story = StoryObj<NgxStatusComponent>;
@@ -50,19 +52,19 @@ export const complete: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This example showcases a `NgxStatusComponent` with all available features, including title, type, text, date, duration, custom CSS class, technical text, and multiple actions.'
-            }
-        }
+                story: 'This example showcases a `NgxStatusComponent` with all available features, including title, type, text, date, duration, custom CSS class, technical text, and multiple actions.',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
         <section class="status">
           <ngx-status [status]="status"></ngx-status>
         </section>
-      `
+      `,
     }),
     args: {
         status: {
@@ -77,84 +79,84 @@ export const complete: Story = {
             actions: [
                 {
                     label: 'Action 1',
-                    callback: (): void => console.log('Action 1 triggered.')
+                    callback: (): void => { console.log('Action 1 triggered.'); },
                 },
                 {
                     label: 'Action 2',
-                    callback: (): void => console.log('Action 2 triggered.')
-                }
-            ]
-        }
-    }
+                    callback: (): void => { console.log('Action 2 triggered.'); },
+                },
+            ],
+        },
+    },
 };
 
 export const minimumRequired: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This example demonstrates the `NgxStatusComponent` with only the required fields: `title` and `type`. Additional fields are optional.'
-            }
-        }
+                story: 'This example demonstrates the `NgxStatusComponent` with only the required fields: `title` and `type`. Additional fields are optional.',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
         <section class="status">
           <ngx-status [status]="status"></ngx-status>
         </section>
-      `
+      `,
     }),
     args: {
         status: {
             title: 'Sample Status Title',
-            type: 'info'
-        }
-    }
+            type: 'info',
+        },
+    },
 };
 
 export const statusText: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This example demonstrates how to use the `text` property to display additional information in the status component.'
-            }
-        }
+                story: 'This example demonstrates how to use the `text` property to display additional information in the status component.',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
         <section class="status">
           <ngx-status [status]="status"></ngx-status>
         </section>
-      `
+      `,
     }),
     args: {
         status: {
             title: 'Sample Status Title',
             type: 'info',
-            text: 'Detailed message providing more context about the status.'
-        }
-    }
+            text: 'Detailed message providing more context about the status.',
+        },
+    },
 };
 
 export const statusType: Story = {
     decorators: [
         moduleMetadata({
             imports: [
-                MatButtonToggleGroup, MatButtonToggle
-            ]
-        })
+                MatButtonToggleGroup, MatButtonToggle,
+            ],
+        }),
     ],
     parameters: {
         docs: {
             description: {
-                story: 'This example illustrates the different `type` values that the `NgxStatusComponent` can have: `primary`, `info`, `success`, `warn`, and `danger`. Use the buttons to switch between types.'
-            }
-        }
+                story: 'This example illustrates the different `type` values that the `NgxStatusComponent` can have: `primary`, `info`, `success`, `warn`, and `danger`. Use the buttons to switch between types.',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -163,9 +165,9 @@ export const statusType: Story = {
                 this['status'] = {
                     title: 'Sample Status Title',
                     type: type,
-                    text: 'Sample text for the status message.'
+                    text: 'Sample text for the status message.',
                 };
-            }
+            },
         },
         template: `
         <section class="status">
@@ -181,34 +183,34 @@ export const statusType: Story = {
                 </mat-button-toggle-group>
             </div>
         </section>
-      `
+      `,
     }),
     args: {
         status: {
             title: 'Sample Status Title',
             type: 'success',
-            text: 'Sample text for the status message.'
-        }
-    }
+            text: 'Sample text for the status message.',
+        },
+    },
 };
 
 export const statusTechnicalText: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This example shows how to include `technicalText` and `date` in the `NgxStatusComponent`. An info icon will appear, and clicking it will show the technical details in a dialog.'
-            }
-        }
+                story: 'This example shows how to include `technicalText` and `date` in the `NgxStatusComponent`. An info icon will appear, and clicking it will show the technical details in a dialog.',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
         <section class="status">
             <ngx-status [status]="status"></ngx-status>
         </section>
-      `
+      `,
     }),
     args: {
         status: {
@@ -216,28 +218,28 @@ export const statusTechnicalText: Story = {
             type: 'danger',
             date: new Date(),
             text: 'This is an error message.',
-            technicalText: 'Detailed technical information about the error.'
-        }
-    }
+            technicalText: 'Detailed technical information about the error.',
+        },
+    },
 };
 
 export const statusActions: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This example demonstrates how to add actions to the `NgxStatusComponent`. Each action can be triggered with a callback.'
-            }
-        }
+                story: 'This example demonstrates how to add actions to the `NgxStatusComponent`. Each action can be triggered with a callback.',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
         <section class="status">
           <ngx-status [status]="status"></ngx-status>
         </section>
-      `
+      `,
     }),
     args: {
         status: {
@@ -247,69 +249,69 @@ export const statusActions: Story = {
             actions: [
                 {
                     label: 'Action 1',
-                    callback: (): void => alert('Action 1 executed.')
+                    callback: (): void => { alert('Action 1 executed.'); },
                 },
                 {
                     label: 'Action 2',
-                    callback: (): void => alert('Action 2 executed.')
-                }
-            ]
-        }
-    }
+                    callback: (): void => { alert('Action 2 executed.'); },
+                },
+            ],
+        },
+    },
 };
 
 export const statusDuration: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This example demonstrates setting a custom `duration` for the `NgxStatusComponent`. By default, the duration is 30 seconds for danger types and 8 seconds for other types.'
-            }
-        }
+                story: 'This example demonstrates setting a custom `duration` for the `NgxStatusComponent`. By default, the duration is 30 seconds for danger types and 8 seconds for other types.',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
         <section class="status">
             <ngx-status [status]="status"></ngx-status>
         </section>
-      `
+      `,
     }),
     args: {
         status: {
             title: 'Sample Status Title',
             type: 'info',
             text: 'Message with custom duration.',
-            duration: 3000 // Duration in milliseconds
-        }
-    }
+            duration: 3000, // Duration in milliseconds
+        },
+    },
 };
 
 export const statusCustomCssClass: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This example shows how to apply custom CSS styles to the `NgxStatusComponent` using the `className` property.'
-            }
-        }
+                story: 'This example shows how to apply custom CSS styles to the `NgxStatusComponent` using the `className` property.',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
         <section class="status">
             <ngx-status [status]="status"></ngx-status>
         </section>
-      `
+      `,
     }),
     args: {
         status: {
             title: 'Sample Status Title',
             type: 'info',
             text: 'Message with custom CSS class.',
-            className: 'my-custom-css-class'
-        }
-    }
+            className: 'my-custom-css-class',
+        },
+    },
 };

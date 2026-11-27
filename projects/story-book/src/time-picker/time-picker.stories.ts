@@ -3,15 +3,18 @@ import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-
 import { NgxTimePickerComponent } from '@hug/ngx-time-picker/m2';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
+import { m2Decorators } from '../m2-theme';
+
 const meta: Meta<NgxTimePickerComponent> = {
     title: 'Components/Time Picker',
     component: NgxTimePickerComponent,
     decorators: [
+        ...m2Decorators,
         moduleMetadata({
             imports: [
-                FormsModule
-            ]
-        })
+                FormsModule,
+            ],
+        }),
     ],
     tags: ['autodocs'],
     argTypes: {
@@ -21,8 +24,8 @@ const meta: Meta<NgxTimePickerComponent> = {
             description: 'Display mode of the time picker.',
             table: {
                 defaultValue: { summary: 'fullTime' },
-                type: { summary: 'NgxTimePickerDisplayMode' }
-            }
+                type: { summary: 'NgxTimePickerDisplayMode' },
+            },
         },
         layout: {
             options: ['vertical', 'horizontal', 'horizontal-inlay'],
@@ -30,8 +33,8 @@ const meta: Meta<NgxTimePickerComponent> = {
             description: 'Layout of numeric steppers.',
             table: {
                 defaultValue: { summary: 'vertical' },
-                type: { summary: 'NgxNumericStepperLayout' }
-            }
+                type: { summary: 'NgxNumericStepperLayout' },
+            },
         },
         appearance: {
             options: ['outline', 'fill'],
@@ -39,71 +42,71 @@ const meta: Meta<NgxTimePickerComponent> = {
             description: 'Material form field appearance.',
             table: {
                 defaultValue: { summary: 'outline' },
-                type: { summary: 'MatFormFieldAppearance' }
-            }
+                type: { summary: 'MatFormFieldAppearance' },
+            },
         },
         step: {
             control: { type: 'number' },
             description: 'Step used when incrementing/decrementing minutes.',
             table: {
                 defaultValue: { summary: '1' },
-                type: { summary: 'number' }
-            }
+                type: { summary: 'number' },
+            },
         },
         disabled: {
             control: { type: 'boolean' },
             description: 'Disables both fields and steppers.',
             table: {
                 defaultValue: { summary: 'false' },
-                type: { summary: 'boolean' }
-            }
+                type: { summary: 'boolean' },
+            },
         },
         autoFocus: {
             control: { type: 'boolean' },
             description: 'Automatically moves focus to minutes after two valid hour digits.',
             table: {
                 defaultValue: { summary: 'true' },
-                type: { summary: 'boolean' }
-            }
+                type: { summary: 'boolean' },
+            },
         },
         forceNullValue: {
             control: { type: 'boolean' },
             description: 'Forces value display to null on active field when the other one is disabled and control is pristine.',
             table: {
                 defaultValue: { summary: 'false' },
-                type: { summary: 'boolean' }
-            }
+                type: { summary: 'boolean' },
+            },
         },
         defaultPlaceholderHours: {
             control: { type: 'text' },
             description: 'Placeholder used in the hours input.',
             table: {
                 defaultValue: { summary: '_ _' },
-                type: { summary: 'string' }
-            }
+                type: { summary: 'string' },
+            },
         },
         defaultPlaceholderMinutes: {
             control: { type: 'text' },
             description: 'Placeholder used in the minutes input.',
             table: {
                 defaultValue: { summary: '_ _' },
-                type: { summary: 'string' }
-            }
+                type: { summary: 'string' },
+            },
         },
         time: {
             control: false,
             description: 'Current date value bound to the component.',
             table: {
                 defaultValue: { summary: undefined },
-                type: { summary: 'Date | undefined' }
-            }
+                type: { summary: 'Date | undefined' },
+            },
         },
         timeChange: {
             control: false,
             table: {
-                type: { summary: 'EventEmitter<Date>' }
-            }
-        }
+                type: { summary: 'EventEmitter<Date>' },
+            },
+        },
     },
     args: {
         mode: 'fullTime',
@@ -114,15 +117,15 @@ const meta: Meta<NgxTimePickerComponent> = {
         autoFocus: true,
         forceNullValue: false,
         defaultPlaceholderHours: '_ _',
-        defaultPlaceholderMinutes: '_ _'
+        defaultPlaceholderMinutes: '_ _',
     },
     parameters: {
         docs: {
             description: {
-                component: 'The `NgxTimePickerComponent` provides hour and minute fields with integrated `NgxNumericStepper` controls. It supports several display modes, step customization and Material appearances.'
-            }
-        }
-    }
+                component: 'The `NgxTimePickerComponent` provides hour and minute fields with integrated `NgxNumericStepper` controls. It supports several display modes, step customization and Material appearances.',
+            },
+        },
+    },
 };
 
 export default meta;
@@ -132,7 +135,7 @@ export const standard: Story = {
     render: args => ({
         props: {
             ...args,
-            time: new Date(2026, 2, 9, 14, 30)
+            time: new Date(2026, 2, 9, 14, 30),
         },
         template: `
             <section>
@@ -155,22 +158,22 @@ export const standard: Story = {
                 background-color: white;
                 padding: 1rem;
             }
-        `]
-    })
+        `],
+    }),
 };
 
 export const modes: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This story showcases all supported display modes.'
-            }
-        }
+                story: 'This story showcases all supported display modes.',
+            },
+        },
     },
     render: args => ({
         props: {
             ...args,
-            time: new Date(2026, 2, 9, 14, 30)
+            time: new Date(2026, 2, 9, 14, 30),
         },
         template: `
             <section class="grouped">
@@ -210,22 +213,22 @@ export const modes: Story = {
                 margin: 0 0 0.5rem;
                 font-size: 0.85rem;
             }
-        `]
-    })
+        `],
+    }),
 };
 
 export const layouts: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'This story compares supported stepper layouts.'
-            }
-        }
+                story: 'This story compares supported stepper layouts.',
+            },
+        },
     },
     render: args => ({
         props: {
             ...args,
-            time: new Date(2026, 2, 9, 9, 45)
+            time: new Date(2026, 2, 9, 9, 45),
         },
         template: `
             <section class="grouped">
@@ -257,8 +260,8 @@ export const layouts: Story = {
                 margin: 0 0 0.5rem;
                 font-size: 0.85rem;
             }
-        `]
-    })
+        `],
+    }),
 };
 
 export const appearance: Story = {
@@ -266,9 +269,9 @@ export const appearance: Story = {
         moduleMetadata({
             imports: [
                 MatButtonToggle,
-                MatButtonToggleGroup
-            ]
-        })
+                MatButtonToggleGroup,
+            ],
+        }),
     ],
     render: args => ({
         props: {
@@ -277,7 +280,7 @@ export const appearance: Story = {
             currentAppearance: 'outline',
             appearanceChanged(value: 'outline' | 'fill'): void {
                 this['currentAppearance'] = value;
-            }
+            },
         },
         template: `
             <section>
@@ -309,17 +312,17 @@ export const appearance: Story = {
                 display: flex;
                 justify-content: center;
             }
-        `]
-    })
+        `],
+    }),
 };
 
 export const withStepAndState: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Demonstrates minute stepping, disabled state and custom placeholders.'
-            }
-        }
+                story: 'Demonstrates minute stepping, disabled state and custom placeholders.',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -331,7 +334,7 @@ export const withStepAndState: Story = {
             defaultPlaceholderMinutes: 'mm',
             toggleDisabled(): void {
                 this['disabled'] = !this['disabled'];
-            }
+            },
         },
         template: `
             <section>
@@ -367,6 +370,6 @@ export const withStepAndState: Story = {
                 padding: 0.5rem 0.75rem;
                 cursor: pointer;
             }
-        `]
-    })
+        `],
+    }),
 };

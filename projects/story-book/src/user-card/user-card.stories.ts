@@ -3,6 +3,7 @@ import { provideNgxUserCard } from '@hug/ngx-user-card/m2';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 import { NgxUserCardComponent } from '../../../user-card/m2/user-card.component';
+import { m2Decorators } from '../m2-theme';
 import { UserTooltipWrapperComponent } from './user-tooltip-wrapper/user-tooltip-wrapper.component';
 
 
@@ -11,44 +12,45 @@ const meta: Meta<NgxUserCardComponent> = {
     component: NgxUserCardComponent,
     tags: ['autodocs'],
     decorators: [
+        ...m2Decorators,
         applicationConfig({
             providers: [
-                provideNgxUserCard()
-            ]
+                provideNgxUserCard(),
+            ],
         }),
         moduleMetadata({
             imports: [
                 MatButtonToggleGroup,
-                MatButtonToggle
-            ]
-        })
+                MatButtonToggle,
+            ],
+        }),
     ],
     parameters: {
         layout: 'centered',
         docs: {
             description: {
-                component: 'The `NgxUserCardComponent` displays user information. The UserCard can be expanded or compressed, showing or hiding additional details based on the `expanded` input.'
-            }
-        }
+                component: 'The `NgxUserCardComponent` displays user information. The UserCard can be expanded or compressed, showing or hiding additional details based on the `expanded` input.',
+            },
+        },
     },
     argTypes: {
         expanded: {
             control: 'boolean',
             table: {
                 defaultValue: {
-                    summary: 'true'
+                    summary: 'true',
                 },
-                type: { summary: 'boolean' }
+                type: { summary: 'boolean' },
             },
-            description: 'Set to false to have a compressed UserCard with less information.'
+            description: 'Set to false to have a compressed UserCard with less information.',
         },
         user: {
             control: 'object',
             table: {
-                type: { summary: 'NgxUserCard' }
+                type: { summary: 'NgxUserCard' },
             },
-            description: 'User information object for displaying in the card.'
-        }
+            description: 'User information object for displaying in the card.',
+        },
     },
     args: {
         user: {
@@ -74,10 +76,10 @@ const meta: Meta<NgxUserCardComponent> = {
             mobile: '+44 150 509 39',
             address: 'Carouge, 7 Rue St Julien',
             city: 'Carouge',
-            zipCode: '1227'
+            zipCode: '1227',
         },
-        expanded: false
-    }
+        expanded: false,
+    },
 };
 
 export default meta;
@@ -86,27 +88,27 @@ type Story = StoryObj<NgxUserCardComponent>;
 
 export const standard: Story = {
     args: {
-        expanded: true
-    }
+        expanded: true,
+    },
 };
 
 export const notExpandedUserCard: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'You can set the "expanded" property to false to have a compressed UserCard with less information.'
-            }
-        }
-    }
+                story: 'You can set the "expanded" property to false to have a compressed UserCard with less information.',
+            },
+        },
+    },
 };
 
 export const dynamicBadgeColor: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Depending on the user\'s "familyCode" property given, the UserCard can have a green, blue, red or gray colored badge.<br /><ul><li>Green : <code>Médico-technique</code>, <code>Social</code>, <code>Médico-thérapeutique</code>, <code>Pharmacie</code></li><li>Blue : <code>Soins</code>, <code>Infirmier-e</code></li><li>Red : <code>Médecin dentiste</code>, <code>Médecin</code></li><li>Gray : Any other text</li><li>Nothing : Empty familyCode</li></ul>'
-            }
-        }
+                story: 'Depending on the user\'s "familyCode" property given, the UserCard can have a green, blue, red or gray colored badge.<br /><ul><li>Green : <code>Médico-technique</code>, <code>Social</code>, <code>Médico-thérapeutique</code>, <code>Pharmacie</code></li><li>Blue : <code>Soins</code>, <code>Infirmier-e</code></li><li>Red : <code>Médecin dentiste</code>, <code>Médecin</code></li><li>Gray : Any other text</li><li>Nothing : Empty familyCode</li></ul>',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -135,9 +137,9 @@ export const dynamicBadgeColor: Story = {
                     mobile: '+44 150 509 39',
                     address: 'Carouge, 7 Rue St Julien',
                     city: 'Carouge',
-                    zipCode: '1227'
+                    zipCode: '1227',
                 };
-            }
+            },
         },
         template: `
         <section>
@@ -153,7 +155,7 @@ export const dynamicBadgeColor: Story = {
             </mat-button-toggle-group>
           </div>
         </section>
-      `
+      `,
     }),
     args: {
         user: {
@@ -179,18 +181,18 @@ export const dynamicBadgeColor: Story = {
             mobile: '+44 150 509 39',
             address: 'Carouge, 7 Rue St Julien',
             city: 'Carouge',
-            zipCode: '1227'
-        }
-    }
+            zipCode: '1227',
+        },
+    },
 };
 
 export const userAbbreviationTitle: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Depending on the user\'s "title" property given, the UserCard will display its abbreviation.<br /><ul><li>Docteur / Docteure : <code>Dr</code>, <code>Dre</code></li><li>Monsieur / Madame : <code>M</code>, <code>Mme</code></li><li>Professeur / Professeure : <code>Pr</code>, <code>Pre</code></li></ul>Any other text in the "title" property will be displayed entirely.'
-            }
-        }
+                story: 'Depending on the user\'s "title" property given, the UserCard will display its abbreviation.<br /><ul><li>Docteur / Docteure : <code>Dr</code>, <code>Dre</code></li><li>Monsieur / Madame : <code>M</code>, <code>Mme</code></li><li>Professeur / Professeure : <code>Pr</code>, <code>Pre</code></li></ul>Any other text in the "title" property will be displayed entirely.',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -219,9 +221,9 @@ export const userAbbreviationTitle: Story = {
                     mobile: '+44 150 509 39',
                     address: 'Carouge, 7 Rue St Julien',
                     city: 'Carouge',
-                    zipCode: '1227'
+                    zipCode: '1227',
                 };
-            }
+            },
         },
         template: `
         <section>
@@ -239,7 +241,7 @@ export const userAbbreviationTitle: Story = {
             </mat-button-toggle-group>
           </div>
         </section>
-      `
+      `,
     }),
     args: {
         user: {
@@ -265,18 +267,18 @@ export const userAbbreviationTitle: Story = {
             mobile: '+44 150 509 39',
             address: 'Carouge, 7 Rue St Julien',
             city: 'Carouge',
-            zipCode: '1227'
-        }
-    }
+            zipCode: '1227',
+        },
+    },
 };
 
 export const userWithMissingInfo: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Displays the component when certain user information is missing. This helps ensure that the rendering remains consistent even with incomplete data.'
-            }
-        }
+                story: 'Displays the component when certain user information is missing. This helps ensure that the rendering remains consistent even with incomplete data.',
+            },
+        },
     },
     args: {
         user: {
@@ -284,27 +286,27 @@ export const userWithMissingInfo: Story = {
             firstname: 'Jean',
             lastname: 'PATATE',
             initials: 'jpat',
-            email: 'jean.patate@hug.ch'
+            email: 'jean.patate@hug.ch',
             // Phone number and address are missing
         },
-        expanded: true
-    }
+        expanded: true,
+    },
 };
 
 export const userTooltip: Story = {
     decorators: [
         moduleMetadata({
             imports: [
-                UserTooltipWrapperComponent
-            ]
-        })
+                UserTooltipWrapperComponent,
+            ],
+        }),
     ],
     parameters: {
         docs: {
             description: {
-                story: 'Displays the user card inside a user-tooltip'
-            }
-        }
+                story: 'Displays the user card inside a user-tooltip',
+            },
+        },
     },
     render: args => ({
         props: args,
@@ -333,8 +335,8 @@ export const userTooltip: Story = {
                 mobile: '+44 150 509 39',
                 address: 'Carouge, 7 Rue St Julien',
                 city: 'Carouge',
-                zipCode: '1227'
-            }
-        }
-    })
+                zipCode: '1227',
+            },
+        },
+    }),
 };

@@ -9,26 +9,28 @@ import { NgxSearchContainerComponent, NgxSearchInputDirective, provideNgxSearchC
 import { NgxStatusService, provideNgxStatus } from '@hug/ngx-status/m2';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
+import { m2Decorators } from '../m2-theme';
 import { StorybookLayoutWrapperComponent } from './layout-wrapper.component';
 
 const meta: Meta<NgxLayoutComponent> = {
     title: 'Components/Layout',
     component: NgxLayoutComponent,
     decorators: [
+        ...m2Decorators,
         applicationConfig({
             providers: [
                 provideNgxLayout(),
                 provideNgxStatus(),
                 provideNgxSearchContainer(),
-                provideNgxMessageBoxDialog()
-            ]
+                provideNgxMessageBoxDialog(),
+            ],
         }),
         moduleMetadata({
             imports: [
-                FormsModule
+                FormsModule,
             ],
-            providers: [NgxStatusService]
-        })
+            providers: [NgxStatusService],
+        }),
     ],
     tags: ['autodocs'],
     argTypes: {
@@ -38,23 +40,23 @@ const meta: Meta<NgxLayoutComponent> = {
             description: 'Sets the color of the toolbar. Choose between primary or accent themes.',
             table: {
                 defaultValue: {
-                    summary: 'primary'
+                    summary: 'primary',
                 },
-                type: { summary: 'primary | accent' }
-            }
-        }
+                type: { summary: 'primary | accent' },
+            },
+        },
     },
     args: {
-        toolbarColor: 'primary'
+        toolbarColor: 'primary',
     },
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
-                component: 'The `NgxLayoutComponent` is a flexible layout component for creating application layouts at HUG. It includes options for toolbars, actions, and side panels, making it adaptable for various use cases.'
-            }
-        }
-    }
+                component: 'The `NgxLayoutComponent` is a flexible layout component for creating application layouts at HUG. It includes options for toolbars, actions, and side panels, making it adaptable for various use cases.',
+            },
+        },
+    },
 };
 export default meta;
 type Story = StoryObj<NgxLayoutComponent>;
@@ -63,42 +65,42 @@ export const completeLayout: Story = {
     decorators: [
         moduleMetadata({
             imports: [
-                StorybookLayoutWrapperComponent
-            ]
-        })
+                StorybookLayoutWrapperComponent,
+            ],
+        }),
     ],
     parameters: {
         docs: {
             description: {
-                story: 'Here you can see everything that can be added to have this complete component. <ul><li>Template <code>layoutToolbar</code><br/><ul><li><code>toolbar-title</code>directive on span to add title</li><li><code>ngx-search-container</code>component for searching</li></ul></li><li>Template <code>layoutPrimaryAction</code></li><li>Template <code>layoutActions</code></li><li>Template <code>layoutRight</code><br/><ul><li><code>filters-chip-list</code>directive on div to contain mat-chip-listbox</li></ul></li><li>Template <code>layoutInfoBoxes</code></li></ul>'
-            }
-        }
+                story: 'Here you can see everything that can be added to have this complete component. <ul><li>Template <code>layoutToolbar</code><br/><ul><li><code>toolbar-title</code>directive on span to add title</li><li><code>ngx-search-container</code>component for searching</li></ul></li><li>Template <code>layoutPrimaryAction</code></li><li>Template <code>layoutActions</code></li><li>Template <code>layoutRight</code><br/><ul><li><code>filters-chip-list</code>directive on div to contain mat-chip-listbox</li></ul></li><li>Template <code>layoutInfoBoxes</code></li></ul>',
+            },
+        },
     },
     render: args => ({
         props: args,
-        template: '<storybook-layout-wrapper [toolbarColor]="toolbarColor"></storybook-layout-wrapper>'
-    })
+        template: '<storybook-layout-wrapper [toolbarColor]="toolbarColor"></storybook-layout-wrapper>',
+    }),
 };
 
 
 export const layoutToolbar: Story = {
     args: {
-        toolbarColor: 'accent'
+        toolbarColor: 'accent',
     },
     decorators: [
         moduleMetadata({
             imports: [
                 NgxSearchInputDirective,
-                NgxSearchContainerComponent
-            ]
-        })
+                NgxSearchContainerComponent,
+            ],
+        }),
     ],
     parameters: {
         docs: {
             description: {
-                story: 'The <code>layoutToolbar</code> template inside the component adds a toolbar to it.<ul><li>The <code>toolbarColor</code> Input on the component allows you to define the color of the toolbar. Here I have <code>toolbarColor="accent"</code></li><li>The span with directive <code>toolbar-title</code> allows you to add a title to the toolbar</li><li>You can add an <code>ngx-search-container</code> in the toolbar. Its size will fit by default</li></ul>'
-            }
-        }
+                story: 'The <code>layoutToolbar</code> template inside the component adds a toolbar to it.<ul><li>The <code>toolbarColor</code> Input on the component allows you to define the color of the toolbar. Here I have <code>toolbarColor="accent"</code></li><li>The span with directive <code>toolbar-title</code> allows you to add a title to the toolbar</li><li>You can add an <code>ngx-search-container</code> in the toolbar. Its size will fit by default</li></ul>',
+            },
+        },
     },
     render: args => ({
         props: {
@@ -106,7 +108,7 @@ export const layoutToolbar: Story = {
             search: '',
             log: (msg: string, event?: Event): void => {
                 console.log(msg, event);
-            }
+            },
         },
         template: `
             <section>
@@ -120,8 +122,8 @@ export const layoutToolbar: Story = {
                     <div class="content-container">Layout content</div>
                 </ngx-layout>
             </section>
-          `
-    })
+          `,
+    }),
 };
 
 export const actionsToolbar: Story = {
@@ -131,23 +133,23 @@ export const actionsToolbar: Story = {
                 MatFabButton,
                 MatIconButton,
                 MatTooltip,
-                MatIcon
-            ]
-        })
+                MatIcon,
+            ],
+        }),
     ],
     parameters: {
         docs: {
             description: {
-                story: 'The actions template inside the component adds buttons on the toolbar. You must have the <code>layoutToolbar</code> template for it to work correctly. <ul><li>The <code>layoutPrimaryAction</code> template allows you to add one primary button on the toolbar. Here my add icon button.</li><li>The <code>layoutActions</code> template allows you to add additional buttons to the toolbar. Here my refresh and my favorite icon button.</li></ul>'
-            }
-        }
+                story: 'The actions template inside the component adds buttons on the toolbar. You must have the <code>layoutToolbar</code> template for it to work correctly. <ul><li>The <code>layoutPrimaryAction</code> template allows you to add one primary button on the toolbar. Here my add icon button.</li><li>The <code>layoutActions</code> template allows you to add additional buttons to the toolbar. Here my refresh and my favorite icon button.</li></ul>',
+            },
+        },
     },
     render: args => ({
         props: {
             ...args,
             log: (msg: string): void => {
                 alert(msg);
-            }
+            },
         },
         template: `
             <section>
@@ -178,8 +180,8 @@ export const actionsToolbar: Story = {
                     </div>
                 </ngx-layout>
             </section>
-          `
-    })
+          `,
+    }),
 };
 
 export const rightPanel: Story = {
@@ -187,20 +189,20 @@ export const rightPanel: Story = {
         moduleMetadata({
             imports: [
                 MatChipListbox,
-                MatChipOption
-            ]
-        })
+                MatChipOption,
+            ],
+        }),
     ],
     parameters: {
         docs: {
             description: {
-                story: 'The <code>layoutRight</code> template inside the component adds a right panel to it.<ul><li>A button to Open/Close the right panel will be automatically added to the toolbar</li><li>>You can add a <code>filters-chip-list</code> directive that can manage your filters</li></ul>'
-            }
-        }
+                story: 'The <code>layoutRight</code> template inside the component adds a right panel to it.<ul><li>A button to Open/Close the right panel will be automatically added to the toolbar</li><li>>You can add a <code>filters-chip-list</code> directive that can manage your filters</li></ul>',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
             <section class="moreHeight">
@@ -226,21 +228,21 @@ export const rightPanel: Story = {
                     <div class="content-container">Layout content</div>
                 </ngx-layout>
             </section>
-          `
-    })
+          `,
+    }),
 };
 
 export const infosBoxes: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'The <code>layoutInfoBoxes</code> template inside the component allows you to add informations under the toolbar.'
-            }
-        }
+                story: 'The <code>layoutInfoBoxes</code> template inside the component allows you to add informations under the toolbar.',
+            },
+        },
     },
     render: args => ({
         props: {
-            ...args
+            ...args,
         },
         template: `
             <section>
@@ -258,6 +260,6 @@ export const infosBoxes: Story = {
                     <div class="content-container">Layout content</div>
                 </ngx-layout>
             </section>
-          `
-    })
+          `,
+    }),
 };
